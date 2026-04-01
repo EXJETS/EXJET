@@ -1,0 +1,22 @@
+[
+  { "code": "KTEB", "name": "Teterboro Airport", "city": "New York", "country": "US", "lat": 40.8501, "lng": -74.0608 },
+  { "code": "KVNY", "name": "Van Nuys Airport", "city": "Los Angeles", "country": "US", "lat": 34.2098, "lng": -118.4897 },
+  { "code": "KLAS", "name": "Harry Reid International", "city": "Las Vegas", "country": "US", "lat": 36.0840, "lng": -115.1537 },
+  { "code": "KPBI", "name": "Palm Beach International", "city": "Palm Beach", "country": "US", "lat": 26.6832, "lng": -80.0956 },
+  { "code": "KAUS", "name": "Austin-Bergstrom International", "city": "Austin", "country": "US", "lat": 30.1945, "lng": -97.6699 },
+  { "code": "KMIA", "name": "Miami International Airport", "city": "Miami", "country": "US", "lat": 25.7959, "lng": -80.2870 },
+  { "code": "KSFO", "name": "San Francisco International", "city": "San Francisco", "country": "US", "lat": 37.6213, "lng": -122.3790 },
+  { "code": "KORD", "name": "O'Hare International Airport", "city": "Chicago", "country": "US", "lat": 41.9742, "lng": -87.9073 },
+  { "code": "KDAL", "name": "Dallas Love Field", "city": "Dallas", "country": "US", "lat": 32.8471, "lng": -96.8518 },
+  { "code": "KATL", "name": "Hartsfield-Jackson Atlanta", "city": "Atlanta", "country": "US", "lat": 33.6407, "lng": -84.4277 },
+  { "code": "KDEN", "name": "Denver International Airport", "city": "Denver", "country": "US", "lat": 39.8561, "lng": -104.6737 },
+  { "code": "KJFK", "name": "John F. Kennedy International", "city": "New York", "country": "US", "lat": 40.6413, "lng": -73.7781 },
+  { "code": "KBOS", "name": "Boston Logan International", "city": "Boston", "country": "US", "lat": 42.3656, "lng": -71.0096 },
+  { "code": "KSEA", "name": "Seattle-Tacoma International", "city": "Seattle", "country": "US", "lat": 47.4502, "lng": -122.3088 },
+  { "code": "KDCA", "name": "Ronald Reagan Washington", "city": "Washington D.C.", "country": "US", "lat": 38.8512, "lng": -77.0402 },
+  { "code": "EGLL", "name": "London Heathrow Airport", "city": "London", "country": "UK", "lat": 51.4700, "lng": -0.4543 },
+  { "code": "LFPB", "name": "Paris Le Bourget Airport", "city": "Paris", "country": "FR", "lat": 48.9694, "lng": 2.4414 },
+  { "code": "EHAM", "name": "Amsterdam Schiphol Airport", "city": "Amsterdam", "country": "NL", "lat": 52.3105, "lng": 4.7683 },
+  { "code": "OMDB", "name": "Dubai International Airport", "city": "Dubai", "country": "AE", "lat": 25.2532, "lng": 55.3657 },
+  { "code": "VHHH", "name": "Hong Kong International", "city": "Hong Kong", "country": "HK", "lat": 22.3080, "lng": 113.9185 }
+]
