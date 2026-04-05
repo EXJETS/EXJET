@@ -58,7 +58,7 @@ function AirportDropdown({
   return (
     <div
       className={cn(
-        "absolute left-0 right-0 z-50 overflow-hidden rounded-xl border border-white/20 bg-white/95 shadow-2xl backdrop-blur-xl",
+        "absolute left-0 right-0 z-50 overflow-hidden rounded-xl border border-navy-200/50 bg-white shadow-2xl",
         "max-h-[280px] overflow-y-auto",
         "animate-in fade-in slide-in-from-top-2 duration-200",
         position === "below" ? "top-full mt-2" : "bottom-full mb-2"
@@ -72,21 +72,21 @@ function AirportDropdown({
             e.preventDefault();
             onSelect(airport);
           }}
-          className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-amber-50/80"
+          className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-navy-50"
         >
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-gradient-to-br from-amber-100 to-amber-50 text-amber-700">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-navy-100 text-navy-700">
             <Plane className="h-4 w-4" />
           </div>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
-              <span className="text-sm font-semibold text-gray-900">
+              <span className="text-sm font-semibold text-navy-900">
                 {airport.code}
               </span>
-              <span className="truncate text-sm text-gray-500">
+              <span className="truncate text-sm text-navy-500">
                 {airport.city}, {airport.country}
               </span>
             </div>
-            <p className="truncate text-xs text-gray-400">{airport.name}</p>
+            <p className="truncate text-xs text-navy-400">{airport.name}</p>
           </div>
         </button>
       ))}
@@ -120,7 +120,6 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
   const toRef = useRef<HTMLDivElement>(null);
   const passengersRef = useRef<HTMLDivElement>(null);
 
-  // Sync local state when store changes (e.g. swap)
   useEffect(() => {
     setFromQuery(from);
   }, [from]);
@@ -129,7 +128,6 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
     setToQuery(to);
   }, [to]);
 
-  // Close dropdowns on outside click
   useEffect(() => {
     function handleClick(e: MouseEvent) {
       if (fromRef.current && !fromRef.current.contains(e.target as Node)) {
@@ -185,8 +183,6 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
   );
 
   const isHero = variant === "hero";
-
-  // Get today's date as minimum for date input
   const today = new Date().toISOString().split("T")[0];
 
   return (
@@ -200,12 +196,12 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
       <div
         className={cn(
           "relative flex items-center",
-          "rounded-full border border-white/30 bg-white/95 backdrop-blur-xl",
-          "shadow-[0_8px_40px_rgba(0,0,0,0.12),0_2px_8px_rgba(0,0,0,0.06)]",
-          "transition-shadow duration-300 hover:shadow-[0_12px_48px_rgba(0,0,0,0.16),0_4px_12px_rgba(0,0,0,0.08)]",
+          "rounded-full border bg-white",
+          "shadow-[0_8px_40px_rgba(10,25,41,0.12),0_2px_8px_rgba(10,25,41,0.06)]",
+          "transition-shadow duration-300 hover:shadow-[0_12px_48px_rgba(10,25,41,0.18),0_4px_12px_rgba(10,25,41,0.08)]",
           isHero
-            ? "flex-col gap-0 rounded-2xl p-2 md:flex-row md:rounded-full md:p-2"
-            : "flex-row rounded-full p-1.5"
+            ? "flex-col gap-0 rounded-2xl border-navy-200/30 p-2 md:flex-row md:rounded-full md:p-2"
+            : "flex-row rounded-full border-navy-200/30 p-1.5"
         )}
       >
         {/* FROM Field */}
@@ -220,14 +216,14 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
         >
           <MapPin
             className={cn(
-              "shrink-0 text-amber-600",
+              "shrink-0 text-navy-600",
               isHero ? "h-5 w-5" : "h-4 w-4"
             )}
           />
           <div className="min-w-0 flex-1">
             <label
               className={cn(
-                "block font-medium uppercase tracking-wider text-gray-400",
+                "block font-medium uppercase tracking-wider text-navy-400",
                 isHero ? "text-[10px]" : "hidden"
               )}
             >
@@ -244,10 +240,10 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
               }}
               onFocus={() => setShowFromDropdown(true)}
               className={cn(
-                "w-full bg-transparent outline-none placeholder:text-gray-300",
+                "w-full bg-transparent outline-none placeholder:text-navy-300",
                 isHero
-                  ? "text-sm font-medium text-gray-900"
-                  : "text-xs font-medium text-gray-900"
+                  ? "text-sm font-medium text-navy-900"
+                  : "text-xs font-medium text-navy-900"
               )}
             />
           </div>
@@ -264,8 +260,8 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
           type="button"
           onClick={handleSwap}
           className={cn(
-            "z-10 flex shrink-0 items-center justify-center rounded-full border border-gray-200 bg-white text-gray-500 transition-all",
-            "hover:border-amber-300 hover:bg-amber-50 hover:text-amber-600",
+            "z-10 flex shrink-0 items-center justify-center rounded-full border border-navy-200 bg-white text-navy-500 transition-all",
+            "hover:border-navy-400 hover:bg-navy-50 hover:text-navy-700",
             "active:scale-90",
             isHero
               ? "mx-auto -my-2 h-9 w-9 shadow-md md:mx-0 md:my-0 md:h-8 md:w-8"
@@ -288,14 +284,14 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
         >
           <MapPin
             className={cn(
-              "shrink-0 text-amber-600",
+              "shrink-0 text-navy-600",
               isHero ? "h-5 w-5" : "h-4 w-4"
             )}
           />
           <div className="min-w-0 flex-1">
             <label
               className={cn(
-                "block font-medium uppercase tracking-wider text-gray-400",
+                "block font-medium uppercase tracking-wider text-navy-400",
                 isHero ? "text-[10px]" : "hidden"
               )}
             >
@@ -312,10 +308,10 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
               }}
               onFocus={() => setShowToDropdown(true)}
               className={cn(
-                "w-full bg-transparent outline-none placeholder:text-gray-300",
+                "w-full bg-transparent outline-none placeholder:text-navy-300",
                 isHero
-                  ? "text-sm font-medium text-gray-900"
-                  : "text-xs font-medium text-gray-900"
+                  ? "text-sm font-medium text-navy-900"
+                  : "text-xs font-medium text-navy-900"
               )}
             />
           </div>
@@ -330,7 +326,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
         {/* Divider */}
         <div
           className={cn(
-            "hidden bg-gray-200 md:block",
+            "hidden bg-navy-200 md:block",
             isHero ? "h-10 w-px" : "h-7 w-px"
           )}
         />
@@ -346,14 +342,14 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
         >
           <Calendar
             className={cn(
-              "shrink-0 text-amber-600",
+              "shrink-0 text-navy-600",
               isHero ? "h-5 w-5" : "h-4 w-4"
             )}
           />
           <div className="min-w-0 flex-1">
             <label
               className={cn(
-                "block font-medium uppercase tracking-wider text-gray-400",
+                "block font-medium uppercase tracking-wider text-navy-400",
                 isHero ? "text-[10px]" : "hidden"
               )}
             >
@@ -368,9 +364,9 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                 "w-full bg-transparent outline-none",
                 "[&::-webkit-calendar-picker-indicator]:opacity-0 [&::-webkit-calendar-picker-indicator]:absolute",
                 isHero
-                  ? "text-sm font-medium text-gray-900"
-                  : "text-xs font-medium text-gray-900",
-                !date && "text-gray-300"
+                  ? "text-sm font-medium text-navy-900"
+                  : "text-xs font-medium text-navy-900",
+                !date && "text-navy-300"
               )}
             />
           </div>
@@ -379,7 +375,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
         {/* Divider */}
         <div
           className={cn(
-            "hidden bg-gray-200 md:block",
+            "hidden bg-navy-200 md:block",
             isHero ? "h-10 w-px" : "h-7 w-px"
           )}
         />
@@ -396,7 +392,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
         >
           <Users
             className={cn(
-              "shrink-0 text-amber-600",
+              "shrink-0 text-navy-600",
               isHero ? "h-5 w-5" : "h-4 w-4"
             )}
           />
@@ -408,7 +404,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
             <div className="flex-1">
               <label
                 className={cn(
-                  "block font-medium uppercase tracking-wider text-gray-400",
+                  "block font-medium uppercase tracking-wider text-navy-400",
                   isHero ? "pointer-events-none text-[10px]" : "hidden"
                 )}
               >
@@ -416,7 +412,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
               </label>
               <span
                 className={cn(
-                  "block font-medium text-gray-900",
+                  "block font-medium text-navy-900",
                   isHero ? "text-sm" : "text-xs"
                 )}
               >
@@ -425,7 +421,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
             </div>
             <ChevronDown
               className={cn(
-                "shrink-0 text-gray-400 transition-transform",
+                "shrink-0 text-navy-400 transition-transform",
                 showPassengers && "rotate-180",
                 isHero ? "h-4 w-4" : "h-3 w-3"
               )}
@@ -434,9 +430,9 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
 
           {/* Passengers Dropdown */}
           {showPassengers && (
-            <div className="absolute left-0 right-0 top-full z-50 mt-2 rounded-xl border border-white/20 bg-white/95 p-4 shadow-2xl backdrop-blur-xl">
+            <div className="absolute left-0 right-0 top-full z-50 mt-2 rounded-xl border border-navy-200/50 bg-white p-4 shadow-2xl">
               <div className="flex items-center justify-between">
-                <span className="text-sm font-medium text-gray-700">
+                <span className="text-sm font-medium text-navy-700">
                   Passengers
                 </span>
                 <div className="flex items-center gap-3">
@@ -446,16 +442,16 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                       setPassengers(Math.max(1, passengers - 1))
                     }
                     className={cn(
-                      "flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors",
+                      "flex h-8 w-8 items-center justify-center rounded-full border border-navy-300 text-navy-600 transition-colors",
                       passengers <= 1
                         ? "cursor-not-allowed opacity-40"
-                        : "hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700"
+                        : "hover:border-navy-500 hover:bg-navy-50 hover:text-navy-800"
                     )}
                     disabled={passengers <= 1}
                   >
                     -
                   </button>
-                  <span className="w-6 text-center text-lg font-semibold text-gray-900">
+                  <span className="w-6 text-center text-lg font-semibold text-navy-900">
                     {passengers}
                   </span>
                   <button
@@ -464,10 +460,10 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                       setPassengers(Math.min(16, passengers + 1))
                     }
                     className={cn(
-                      "flex h-8 w-8 items-center justify-center rounded-full border border-gray-300 text-gray-600 transition-colors",
+                      "flex h-8 w-8 items-center justify-center rounded-full border border-navy-300 text-navy-600 transition-colors",
                       passengers >= 16
                         ? "cursor-not-allowed opacity-40"
-                        : "hover:border-amber-400 hover:bg-amber-50 hover:text-amber-700"
+                        : "hover:border-navy-500 hover:bg-navy-50 hover:text-navy-800"
                     )}
                     disabled={passengers >= 16}
                   >
@@ -484,9 +480,9 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
           type="submit"
           className={cn(
             "group flex shrink-0 items-center justify-center gap-2 rounded-full font-semibold text-white transition-all",
-            "bg-gradient-to-r from-amber-600 to-amber-500",
-            "shadow-[0_4px_16px_rgba(217,119,6,0.4)]",
-            "hover:from-amber-500 hover:to-amber-400 hover:shadow-[0_6px_24px_rgba(217,119,6,0.5)]",
+            "bg-navy-900",
+            "shadow-[0_4px_16px_rgba(10,25,41,0.3)]",
+            "hover:bg-navy-800 hover:shadow-[0_6px_24px_rgba(10,25,41,0.4)]",
             "active:scale-[0.97]",
             isHero
               ? "mx-2 mt-2 w-full px-8 py-3.5 text-sm md:ml-2 md:mt-0 md:w-auto md:px-6 md:py-3"

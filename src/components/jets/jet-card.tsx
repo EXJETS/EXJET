@@ -2,16 +2,16 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Heart, Star, Users, Gauge, Navigation, ChevronLeft, ChevronRight, Plane, MapPin } from "lucide-react";
+import { Heart, Star, Users, Gauge, Navigation, ChevronLeft, ChevronRight, Plane } from "lucide-react";
 import { cn, formatCurrency, getCategoryLabel, getCategoryColor } from "@/lib/utils";
 import type { Jet } from "@/types";
 
 const categoryGradients: Record<string, string> = {
-  light: "from-sky-400 to-blue-600",
-  midsize: "from-violet-400 to-purple-600",
-  super_midsize: "from-amber-400 to-orange-600",
-  heavy: "from-emerald-400 to-teal-600",
-  ultra_long: "from-rose-400 to-red-600",
+  light: "from-navy-800 to-navy-900",
+  midsize: "from-navy-700 to-navy-900",
+  super_midsize: "from-navy-800 to-navy-950",
+  heavy: "from-navy-700 to-navy-950",
+  ultra_long: "from-navy-800 to-navy-950",
 };
 
 interface JetCardProps {
@@ -49,8 +49,8 @@ export function JetCard({ jet }: JetCardProps) {
     <Link href={`/jets/${jet.id}`}>
       <div
         className={cn(
-          "group rounded-xl overflow-hidden bg-white border border-gray-200 transition-all duration-300",
-          isHovered && "scale-[1.02] shadow-xl"
+          "group rounded-2xl overflow-hidden bg-white border border-navy-100 transition-all duration-300",
+          isHovered && "scale-[1.02] shadow-xl shadow-navy-900/10"
         )}
         onMouseEnter={() => setIsHovered(true)}
         onMouseLeave={() => setIsHovered(false)}
@@ -63,7 +63,7 @@ export function JetCard({ jet }: JetCardProps) {
               gradient
             )}
           >
-            <Plane className="w-20 h-20 text-white/30" strokeWidth={1.5} />
+            <Plane className="w-20 h-20 text-white/20" strokeWidth={1.5} />
           </div>
 
           {/* Favorite button */}
@@ -74,7 +74,7 @@ export function JetCard({ jet }: JetCardProps) {
             <Heart
               className={cn(
                 "w-5 h-5 transition-colors",
-                isFavorited ? "fill-red-500 text-red-500" : "text-gray-600"
+                isFavorited ? "fill-red-500 text-red-500" : "text-navy-600"
               )}
             />
           </button>
@@ -83,8 +83,7 @@ export function JetCard({ jet }: JetCardProps) {
           <div className="absolute top-3 left-3 z-10">
             <span
               className={cn(
-                "px-2.5 py-1 rounded-full text-xs font-semibold",
-                getCategoryColor(jet.category)
+                "px-2.5 py-1 rounded-full text-xs font-semibold bg-white/90 text-navy-900 backdrop-blur-sm"
               )}
             >
               {getCategoryLabel(jet.category)}
@@ -92,8 +91,8 @@ export function JetCard({ jet }: JetCardProps) {
           </div>
 
           {/* Live indicator */}
-          <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5 px-2 py-1 rounded-full bg-black/50 backdrop-blur-sm">
-            <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
+          <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5 px-2 py-1 rounded-full bg-navy-950/60 backdrop-blur-sm">
+            <span className="h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
             <span className="text-[10px] font-medium text-white">Available</span>
           </div>
 
@@ -105,7 +104,7 @@ export function JetCard({ jet }: JetCardProps) {
               isHovered && "opacity-100"
             )}
           >
-            <ChevronLeft className="w-4 h-4 text-gray-700" />
+            <ChevronLeft className="w-4 h-4 text-navy-700" />
           </button>
           <button
             onClick={handleNext}
@@ -114,7 +113,7 @@ export function JetCard({ jet }: JetCardProps) {
               isHovered && "opacity-100"
             )}
           >
-            <ChevronRight className="w-4 h-4 text-gray-700" />
+            <ChevronRight className="w-4 h-4 text-navy-700" />
           </button>
 
           {/* Carousel dots */}
@@ -135,19 +134,19 @@ export function JetCard({ jet }: JetCardProps) {
         <div className="p-4">
           <div className="flex items-start justify-between mb-1">
             <div>
-              <h3 className="font-semibold text-gray-900 text-base leading-tight">
+              <h3 className="font-semibold text-navy-900 text-base leading-tight">
                 {jet.name}
               </h3>
-              <p className="text-sm text-gray-500">{jet.manufacturer}</p>
+              <p className="text-sm text-navy-500">{jet.manufacturer}</p>
             </div>
             {jet.rating && (
               <div className="flex items-center gap-1 shrink-0">
-                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                <span className="text-sm font-medium text-gray-900">
+                <Star className="w-4 h-4 fill-navy-900 text-navy-900" />
+                <span className="text-sm font-medium text-navy-900">
                   {jet.rating.toFixed(1)}
                 </span>
                 {jet.reviewCount != null && (
-                  <span className="text-sm text-gray-500">
+                  <span className="text-sm text-navy-500">
                     ({jet.reviewCount})
                   </span>
                 )}
@@ -156,7 +155,7 @@ export function JetCard({ jet }: JetCardProps) {
           </div>
 
           {/* Specs row */}
-          <div className="flex items-center gap-4 mt-3 text-sm text-gray-600">
+          <div className="flex items-center gap-4 mt-3 text-sm text-navy-500">
             <div className="flex items-center gap-1">
               <Users className="w-4 h-4" />
               <span>{jet.passengers} pax</span>
@@ -176,13 +175,13 @@ export function JetCard({ jet }: JetCardProps) {
           </div>
 
           {/* Price */}
-          <div className="mt-3 pt-3 border-t border-gray-100">
-            <p className="text-gray-900">
-              <span className="text-sm text-gray-500">From </span>
+          <div className="mt-3 pt-3 border-t border-navy-100">
+            <p className="text-navy-900">
+              <span className="text-sm text-navy-500">From </span>
               <span className="font-semibold">
                 {formatCurrency(jet.hourlyRate)}
               </span>
-              <span className="text-sm text-gray-500"> /hr</span>
+              <span className="text-sm text-navy-500"> /hr</span>
             </p>
           </div>
         </div>
