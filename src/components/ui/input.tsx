@@ -9,14 +9,15 @@ export interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
 
 export const Input = forwardRef<HTMLInputElement, InputProps>(
   ({ label, error, hint, className, id, ...props }, ref) => {
-    const inputId = id ?? (label ? label.toLowerCase().replace(/\s+/g, "-") : undefined);
+    const inputId =
+      id ?? (label ? label.toLowerCase().replace(/\s+/g, "-") : undefined);
 
     return (
       <div className="w-full">
         {label && (
           <label
             htmlFor={inputId}
-            className="mb-1.5 block text-sm font-medium text-gray-700"
+            className="mb-2 block font-mono text-[11px] uppercase tracking-widest text-white/50"
           >
             {label}
           </label>
@@ -25,10 +26,11 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           ref={ref}
           id={inputId}
           className={cn(
-            "block w-full rounded-lg border border-gray-300 bg-white px-3.5 py-2.5 text-sm text-gray-900 placeholder:text-gray-400 transition-colors",
-            "focus:border-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-500/20",
-            "disabled:cursor-not-allowed disabled:bg-gray-50 disabled:text-gray-500",
-            error && "border-red-500 focus:border-red-500 focus:ring-red-500/20",
+            "block w-full rounded-lg border border-white/10 bg-white/[0.03] px-4 py-3 text-[14px] text-white placeholder:text-white/30 transition-colors",
+            "hover:border-white/20",
+            "focus:border-white/40 focus:bg-white/[0.05] focus:outline-none focus:ring-0",
+            "disabled:cursor-not-allowed disabled:opacity-50",
+            error && "border-red-500/50 focus:border-red-500",
             className
           )}
           aria-invalid={error ? true : undefined}
@@ -38,12 +40,15 @@ export const Input = forwardRef<HTMLInputElement, InputProps>(
           {...props}
         />
         {error && (
-          <p id={`${inputId}-error`} className="mt-1.5 text-sm text-red-600">
+          <p
+            id={`${inputId}-error`}
+            className="mt-2 text-[12px] text-red-400"
+          >
             {error}
           </p>
         )}
         {hint && !error && (
-          <p id={`${inputId}-hint`} className="mt-1.5 text-sm text-gray-500">
+          <p id={`${inputId}-hint`} className="mt-2 text-[12px] text-white/40">
             {hint}
           </p>
         )}

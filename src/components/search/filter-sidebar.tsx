@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { SlidersHorizontal, X, ChevronDown } from "lucide-react";
+import { SlidersHorizontal, X, ChevronDown, Minus, Plus } from "lucide-react";
 import { cn, getCategoryLabel } from "@/lib/utils";
 import { JetCategory } from "@/types";
 import { useSearchStore } from "@/stores/search-store";
@@ -52,19 +52,19 @@ export default function FilterSidebar({ className, onClose }: FilterSidebarProps
   return (
     <aside
       className={cn(
-        "flex flex-col gap-6 rounded-2xl border border-zinc-200 bg-white p-6 shadow-sm dark:border-zinc-800 dark:bg-zinc-950",
+        "flex flex-col gap-6 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-xl",
         className
       )}
     >
       {/* Header */}
       <div className="flex items-center justify-between">
         <div className="flex items-center gap-2">
-          <SlidersHorizontal className="h-5 w-5 text-zinc-600 dark:text-zinc-400" />
-          <h2 className="text-lg font-semibold text-zinc-900 dark:text-zinc-100">
+          <SlidersHorizontal className="h-4 w-4 text-white/50" strokeWidth={1.75} />
+          <h2 className="font-mono text-[11px] uppercase tracking-widest text-white/70">
             Filters
           </h2>
           {activeFilterCount > 0 && (
-            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-amber-500 px-1.5 text-xs font-medium text-white">
+            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1.5 text-[10px] font-semibold text-black">
               {activeFilterCount}
             </span>
           )}
@@ -72,50 +72,72 @@ export default function FilterSidebar({ className, onClose }: FilterSidebarProps
         {onClose && (
           <button
             onClick={onClose}
-            className="rounded-full p-1.5 text-zinc-500 transition-colors hover:bg-zinc-100 hover:text-zinc-700 dark:hover:bg-zinc-800 dark:hover:text-zinc-300"
+            className="rounded-full p-1.5 text-white/50 transition-colors hover:bg-white/[0.06] hover:text-white"
             aria-label="Close filters"
           >
-            <X className="h-5 w-5" />
+            <X className="h-4 w-4" />
           </button>
         )}
       </div>
 
       {/* Jet Category */}
       <div className="flex flex-col gap-3">
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+        <h3 className="font-mono text-[10px] uppercase tracking-widest text-white/40">
           Jet Category
         </h3>
-        <div className="flex flex-col gap-2">
-          {JET_CATEGORIES.map((category) => (
-            <label
-              key={category}
-              className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-1.5 transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-900"
-            >
-              <input
-                type="checkbox"
-                checked={categories.includes(category)}
-                onChange={() => toggleCategory(category)}
-                className="h-4 w-4 rounded border-zinc-300 text-amber-500 accent-amber-500 focus:ring-amber-500"
-              />
-              <span className="text-sm text-zinc-700 dark:text-zinc-300">
-                {getCategoryLabel(category)}
-              </span>
-            </label>
-          ))}
+        <div className="flex flex-col gap-1">
+          {JET_CATEGORIES.map((category) => {
+            const active = categories.includes(category);
+            return (
+              <label
+                key={category}
+                className="flex cursor-pointer items-center gap-3 rounded-lg px-2 py-2 transition-colors hover:bg-white/[0.04]"
+              >
+                <span
+                  className={cn(
+                    "flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border transition-colors",
+                    active
+                      ? "border-white bg-white"
+                      : "border-white/20 bg-transparent"
+                  )}
+                >
+                  {active && (
+                    <svg
+                      className="h-3 w-3 text-black"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="3"
+                    >
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  )}
+                </span>
+                <input
+                  type="checkbox"
+                  checked={active}
+                  onChange={() => toggleCategory(category)}
+                  className="sr-only"
+                />
+                <span className="text-[13px] text-white/80">
+                  {getCategoryLabel(category)}
+                </span>
+              </label>
+            );
+          })}
         </div>
       </div>
 
-      {/* Divider */}
-      <hr className="border-zinc-200 dark:border-zinc-800" />
+      <div className="h-px w-full bg-white/[0.06]" />
 
       {/* Price Range */}
       <div className="flex flex-col gap-3">
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+        <h3 className="font-mono text-[10px] uppercase tracking-widest text-white/40">
           Price Range
         </h3>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2">
           <div className="relative flex-1">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-zinc-400">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[13px] text-white/30">
               $
             </span>
             <input
@@ -128,12 +150,12 @@ export default function FilterSidebar({ className, onClose }: FilterSidebarProps
                   priceMax
                 )
               }
-              className="w-full rounded-lg border border-zinc-200 bg-white py-2 pl-7 pr-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+              className="w-full rounded-lg border border-white/10 bg-white/[0.03] py-2 pl-6 pr-3 text-[13px] text-white placeholder:text-white/30 outline-none transition-colors focus:border-white/40"
             />
           </div>
-          <span className="text-sm text-zinc-400">&ndash;</span>
+          <span className="text-white/30">–</span>
           <div className="relative flex-1">
-            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-sm text-zinc-400">
+            <span className="absolute left-3 top-1/2 -translate-y-1/2 text-[13px] text-white/30">
               $
             </span>
             <input
@@ -146,18 +168,17 @@ export default function FilterSidebar({ className, onClose }: FilterSidebarProps
                   e.target.value ? Number(e.target.value) : null
                 )
               }
-              className="w-full rounded-lg border border-zinc-200 bg-white py-2 pl-7 pr-3 text-sm text-zinc-900 placeholder:text-zinc-400 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+              className="w-full rounded-lg border border-white/10 bg-white/[0.03] py-2 pl-6 pr-3 text-[13px] text-white placeholder:text-white/30 outline-none transition-colors focus:border-white/40"
             />
           </div>
         </div>
       </div>
 
-      {/* Divider */}
-      <hr className="border-zinc-200 dark:border-zinc-800" />
+      <div className="h-px w-full bg-white/[0.06]" />
 
       {/* Passenger Count */}
       <div className="flex flex-col gap-3">
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+        <h3 className="font-mono text-[10px] uppercase tracking-widest text-white/40">
           Passengers
         </h3>
         <div className="flex items-center gap-3">
@@ -166,34 +187,38 @@ export default function FilterSidebar({ className, onClose }: FilterSidebarProps
               setPassengerCount(Math.max(0, (passengerCount ?? 0) - 1) || null)
             }
             disabled={!passengerCount}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-300 text-zinc-600 transition-colors hover:border-zinc-400 hover:text-zinc-800 disabled:cursor-not-allowed disabled:opacity-40 dark:border-zinc-600 dark:text-zinc-400 dark:hover:border-zinc-500"
+            className={cn(
+              "flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-white transition-colors",
+              !passengerCount
+                ? "cursor-not-allowed opacity-30"
+                : "hover:bg-white hover:text-black"
+            )}
           >
-            &minus;
+            <Minus className="h-3.5 w-3.5" strokeWidth={2} />
           </button>
-          <span className="min-w-[2rem] text-center text-sm font-medium text-zinc-900 dark:text-zinc-100">
+          <span className="min-w-[2rem] text-center text-[14px] font-semibold text-white">
             {passengerCount ?? "Any"}
           </span>
           <button
             onClick={() => setPassengerCount((passengerCount ?? 0) + 1)}
-            className="flex h-9 w-9 items-center justify-center rounded-full border border-zinc-300 text-zinc-600 transition-colors hover:border-zinc-400 hover:text-zinc-800 dark:border-zinc-600 dark:text-zinc-400 dark:hover:border-zinc-500"
+            className="flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-white transition-colors hover:bg-white hover:text-black"
           >
-            +
+            <Plus className="h-3.5 w-3.5" strokeWidth={2} />
           </button>
         </div>
       </div>
 
-      {/* Divider */}
-      <hr className="border-zinc-200 dark:border-zinc-800" />
+      <div className="h-px w-full bg-white/[0.06]" />
 
       {/* Sort By */}
       <div className="flex flex-col gap-3">
-        <h3 className="text-sm font-semibold uppercase tracking-wide text-zinc-500 dark:text-zinc-400">
+        <h3 className="font-mono text-[10px] uppercase tracking-widest text-white/40">
           Sort By
         </h3>
         <div className="relative">
           <button
             onClick={() => setSortOpen(!sortOpen)}
-            className="flex w-full items-center justify-between rounded-lg border border-zinc-200 bg-white px-3 py-2 text-sm text-zinc-900 transition-colors hover:border-zinc-300 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 dark:border-zinc-700 dark:bg-zinc-900 dark:text-zinc-100"
+            className="flex w-full items-center justify-between rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2 text-[13px] text-white transition-colors hover:border-white/20"
           >
             <span>
               {SORT_OPTIONS.find((o) => o.value === sortBy)?.label ??
@@ -201,13 +226,14 @@ export default function FilterSidebar({ className, onClose }: FilterSidebarProps
             </span>
             <ChevronDown
               className={cn(
-                "h-4 w-4 text-zinc-400 transition-transform",
+                "h-3.5 w-3.5 text-white/40 transition-transform",
                 sortOpen && "rotate-180"
               )}
+              strokeWidth={2}
             />
           </button>
           {sortOpen && (
-            <ul className="absolute z-10 mt-1 w-full overflow-hidden rounded-lg border border-zinc-200 bg-white shadow-lg dark:border-zinc-700 dark:bg-zinc-900">
+            <ul className="absolute z-10 mt-1 w-full overflow-hidden rounded-lg border border-white/10 bg-black/90 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.8)] backdrop-blur-xl">
               {SORT_OPTIONS.map((option) => (
                 <li key={option.value}>
                   <button
@@ -216,10 +242,10 @@ export default function FilterSidebar({ className, onClose }: FilterSidebarProps
                       setSortOpen(false);
                     }}
                     className={cn(
-                      "flex w-full px-3 py-2 text-left text-sm transition-colors hover:bg-zinc-50 dark:hover:bg-zinc-800",
+                      "flex w-full px-3 py-2 text-left text-[13px] transition-colors hover:bg-white/[0.06]",
                       sortBy === option.value
-                        ? "font-medium text-amber-600 dark:text-amber-400"
-                        : "text-zinc-700 dark:text-zinc-300"
+                        ? "font-medium text-white"
+                        : "text-white/70"
                     )}
                   >
                     {option.label}
@@ -235,9 +261,9 @@ export default function FilterSidebar({ className, onClose }: FilterSidebarProps
       {activeFilterCount > 0 && (
         <button
           onClick={clearFilters}
-          className="flex items-center justify-center gap-2 rounded-xl border border-zinc-200 px-4 py-2.5 text-sm font-medium text-zinc-600 transition-colors hover:border-zinc-300 hover:text-zinc-800 dark:border-zinc-700 dark:text-zinc-400 dark:hover:border-zinc-600 dark:hover:text-zinc-200"
+          className="flex items-center justify-center gap-2 rounded-full border border-white/15 px-4 py-2 text-[12px] font-medium text-white/70 transition-colors hover:border-white/30 hover:text-white"
         >
-          <X className="h-4 w-4" />
+          <X className="h-3.5 w-3.5" />
           Clear Filters
         </button>
       )}

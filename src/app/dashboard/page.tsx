@@ -2,8 +2,8 @@
 
 import Link from "next/link";
 import {
-  Plane, Calendar, Navigation, Star, MapPin, ArrowRight,
-  Radio, Clock, TrendingUp, CreditCard,
+  Plane, Navigation, Star, MapPin, ArrowRight,
+  Radio, CreditCard,
 } from "lucide-react";
 import { StatCard } from "@/components/dashboard/stat-card";
 import { StatusBadge } from "@/components/dashboard/status-badge";
@@ -29,83 +29,90 @@ const pastTrips = [
   { id: "bk-005", jet: "Challenger 350", from: "Dallas",       to: "Denver",     date: "2026-01-15", status: "cancelled" as const, price: 27664 },
 ];
 
-// Nearby available jets (Turo-style, location-based)
 const nearbyJets = [
-  { id: "gulfstream-g500",   name: "Gulfstream G500",   distance: "3.2 mi", airport: "KTEB", category: "heavy",       hourlyRate: 8200, rating: 4.9, status: "available" as const },
+  { id: "gulfstream-g500",   name: "Gulfstream G500",   distance: "3.2 mi", airport: "KTEB", category: "heavy",        hourlyRate: 8200, rating: 4.9, status: "available" as const },
   { id: "challenger-350",    name: "Challenger 350",    distance: "3.2 mi", airport: "KTEB", category: "super_midsize", hourlyRate: 5600, rating: 4.7, status: "available" as const },
-  { id: "phenom-300e",       name: "Phenom 300E",       distance: "8.1 mi", airport: "KJFK", category: "light",        hourlyRate: 3500, rating: 4.9, status: "available" as const },
+  { id: "phenom-300e",       name: "Phenom 300E",       distance: "8.1 mi", airport: "KJFK", category: "light",         hourlyRate: 3500, rating: 4.9, status: "available" as const },
   { id: "citation-longitude",name: "Citation Longitude",distance: "11 mi",  airport: "KHPN", category: "super_midsize", hourlyRate: 5400, rating: 4.8, status: "available" as const },
 ];
 
-const categoryGradients: Record<string, string> = {
-  light: "from-sky-400 to-blue-600", midsize: "from-violet-400 to-purple-600",
-  super_midsize: "from-amber-400 to-orange-500", heavy: "from-emerald-400 to-teal-600",
-  ultra_long: "from-rose-400 to-red-600",
-};
-
 export default function ClientDashboardPage() {
   return (
-    <div className="p-6 max-w-7xl mx-auto w-full">
+    <div className="mx-auto w-full max-w-7xl p-6">
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="mb-6 flex items-center justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Welcome back, John</h1>
-          <p className="text-sm text-gray-500 mt-0.5">4 jets available near Teterboro · Updated just now</p>
+          <p className="font-mono text-[11px] uppercase tracking-widest text-white/60">Overview</p>
+          <h1 className="mt-2 text-[28px] font-semibold tracking-tight text-white">Welcome back, John</h1>
+          <p className="mt-1 text-[13px] text-white/50">4 jets available near Teterboro · Updated just now</p>
         </div>
-        <Link href="/search" className="px-4 py-2 rounded-xl bg-amber-500 text-white text-sm font-semibold hover:bg-amber-600 transition-colors flex items-center gap-2">
-          <Plane className="w-4 h-4" /> Book a Flight
+        <Link
+          href="/search"
+          className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[13px] font-medium text-black transition-colors hover:bg-white/90 active:scale-[0.98]"
+        >
+          <Plane className="h-3.5 w-3.5" strokeWidth={2} /> Book a Flight
         </Link>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
-        <StatCard label="Total Flights"  value="12"        icon={Plane}       color="amber"  trend={{ value: "3 this year", up: true }} />
-        <StatCard label="Miles Flown"    value="45,200"    icon={Navigation}  color="blue"   sub="~18 trips around Earth" />
-        <StatCard label="Total Spent"    value="$259,562"  icon={CreditCard}  color="purple" trend={{ value: "14%", up: true }} />
-        <StatCard label="Avg Rating"     value="4.9 ★"    icon={Star}        color="green"  sub="Your given ratings" />
+      <div className="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
+        <StatCard label="Total Flights"  value="12"        icon={Plane}       trend={{ value: "3 this year", up: true }} />
+        <StatCard label="Miles Flown"    value="45,200"    icon={Navigation}  sub="~18 trips around Earth" />
+        <StatCard label="Total Spent"    value="$259,562"  icon={CreditCard}  trend={{ value: "14%", up: true }} />
+        <StatCard label="Avg Rating"     value="4.9 ★"    icon={Star}        sub="Your given ratings" />
       </div>
 
       {/* Nearby Jets + Spend Chart */}
-      <div className="grid lg:grid-cols-3 gap-6 mb-6">
+      <div className="mb-6 grid gap-4 lg:grid-cols-3">
         {/* Spend chart */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-5">
-          <div className="flex items-center justify-between mb-3">
-            <h2 className="font-semibold text-gray-900">Spend (12 mo)</h2>
-            <span className="text-xs text-gray-400">{formatCurrency(spendData.reduce((a,b)=>a+b,0))} total</span>
+        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 backdrop-blur-xl">
+          <div className="mb-3 flex items-center justify-between">
+            <p className="font-mono text-[11px] uppercase tracking-widest text-white/60">Spend (12 mo)</p>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+              {formatCurrency(spendData.reduce((a, b) => a + b, 0))} total
+            </span>
           </div>
           <div className="h-28">
-            <MiniChart data={spendData} color="#8b5cf6" height={112} />
+            <MiniChart data={spendData} color="#ffffff" height={112} />
           </div>
         </div>
 
         {/* Nearby jets */}
-        <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-200 p-5">
-          <div className="flex items-center justify-between mb-4">
+        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 backdrop-blur-xl lg:col-span-2">
+          <div className="mb-4 flex items-center justify-between">
             <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-amber-500" />
-              <h2 className="font-semibold text-gray-900">Jets Near You</h2>
-              <span className="text-xs text-gray-400">· Teterboro area</span>
+              <MapPin className="h-3.5 w-3.5 text-white/60" strokeWidth={2} />
+              <p className="font-mono text-[11px] uppercase tracking-widest text-white/60">Jets Near You</p>
+              <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">· Teterboro</span>
             </div>
-            <Link href="/search" className="text-xs text-amber-600 hover:text-amber-700 font-medium flex items-center gap-1">
-              See all <ArrowRight className="w-3 h-3" />
+            <Link href="/search" className="inline-flex items-center gap-1 text-[12px] font-medium text-white/70 transition-colors hover:text-white">
+              See all <ArrowRight className="h-3 w-3" strokeWidth={2} />
             </Link>
           </div>
-          <div className="grid sm:grid-cols-2 gap-3">
+          <div className="grid gap-3 sm:grid-cols-2">
             {nearbyJets.map((j) => (
-              <Link key={j.id} href={`/jets/${j.id}`}
-                className="flex items-center gap-3 p-3 rounded-xl border border-gray-100 hover:border-amber-200 hover:bg-amber-50/50 transition-all group">
-                <div className={`w-10 h-10 rounded-lg bg-gradient-to-br flex items-center justify-center shrink-0 ${categoryGradients[j.category]}`}>
-                  <Plane className="w-5 h-5 text-white/80" />
+              <Link
+                key={j.id}
+                href={`/jets/${j.id}`}
+                className="group flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.02] p-3 transition-colors hover:border-white/20 hover:bg-white/[0.04]"
+              >
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+                  <Plane className="h-4 w-4 text-white/80" strokeWidth={1.75} />
                 </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-sm font-semibold text-gray-900 truncate group-hover:text-amber-700">{j.name}</p>
-                  <p className="text-xs text-gray-400">{j.airport} · {j.distance} away</p>
+                <div className="min-w-0 flex-1">
+                  <p className="truncate text-[13px] font-semibold text-white">{j.name}</p>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+                    {j.airport} · {j.distance}
+                  </p>
                 </div>
-                <div className="text-right shrink-0">
-                  <p className="text-xs font-bold text-amber-600">{formatCurrency(j.hourlyRate)}<span className="text-gray-400 font-normal">/hr</span></p>
-                  <div className="flex items-center gap-1 justify-end">
-                    <span className="w-1.5 h-1.5 rounded-full bg-green-400" />
-                    <span className="text-[10px] text-gray-400">Available</span>
+                <div className="shrink-0 text-right">
+                  <p className="text-[12px] font-semibold text-white">
+                    {formatCurrency(j.hourlyRate)}
+                    <span className="font-normal text-white/40">/hr</span>
+                  </p>
+                  <div className="flex items-center justify-end gap-1">
+                    <span className="h-1 w-1 rounded-full bg-emerald-400" />
+                    <span className="font-mono text-[9px] uppercase tracking-widest text-white/40">Available</span>
                   </div>
                 </div>
               </Link>
@@ -116,35 +123,41 @@ export default function ClientDashboardPage() {
 
       {/* Upcoming Trips */}
       <div className="mb-6">
-        <div className="flex items-center justify-between mb-4">
-          <h2 className="font-semibold text-gray-900">Upcoming Trips</h2>
-          <Link href="/dashboard/tracking" className="text-xs text-amber-600 hover:text-amber-700 font-medium flex items-center gap-1">
-            <Radio className="w-3 h-3" /> Track Fleet Live
+        <div className="mb-4 flex items-center justify-between">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-white/60">Upcoming Trips</p>
+          <Link
+            href="/dashboard/tracking"
+            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-white/70 transition-colors hover:text-white"
+          >
+            <Radio className="h-3 w-3 text-emerald-300" strokeWidth={2} /> Track Fleet Live
           </Link>
         </div>
-        <div className="grid gap-4">
+        <div className="grid gap-3">
           {upcomingTrips.map((trip) => (
-            <Link key={trip.id} href={`/dashboard/bookings/${trip.id}`}
-              className="bg-white rounded-xl border border-gray-200 p-5 hover:shadow-md transition-shadow flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+            <Link
+              key={trip.id}
+              href={`/dashboard/bookings/${trip.id}`}
+              className="flex flex-col justify-between gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-5 backdrop-blur-xl transition-colors hover:border-white/20 hover:bg-white/[0.04] sm:flex-row sm:items-center"
+            >
               <div className="flex items-center gap-4">
-                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center shrink-0">
-                  <Plane className="w-6 h-6 text-white" />
+                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04]">
+                  <Plane className="h-5 w-5 text-white/80" strokeWidth={1.75} />
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-900">{trip.jet}</h3>
-                  <div className="flex items-center gap-2 text-sm text-gray-500 mt-0.5">
+                  <h3 className="text-[14px] font-semibold tracking-tight text-white">{trip.jet}</h3>
+                  <div className="mt-1 flex items-center gap-2 text-[12px] text-white/60">
                     <span>{trip.from} ({trip.fromCode})</span>
-                    <ArrowRight className="w-3 h-3" />
+                    <ArrowRight className="h-3 w-3 text-white/30" strokeWidth={2} />
                     <span>{trip.to} ({trip.toCode})</span>
                   </div>
                 </div>
               </div>
-              <div className="flex items-center gap-4 sm:gap-6">
+              <div className="flex items-center gap-6">
                 <div className="text-right">
-                  <p className="text-sm font-medium text-gray-900">
+                  <p className="text-[12px] text-white/60">
                     {new Date(trip.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                   </p>
-                  <p className="text-sm font-semibold text-amber-600">{formatCurrency(trip.price)}</p>
+                  <p className="mt-0.5 text-[13px] font-semibold text-white">{formatCurrency(trip.price)}</p>
                 </div>
                 <StatusBadge status={trip.status} />
               </div>
@@ -155,20 +168,27 @@ export default function ClientDashboardPage() {
 
       {/* Past Trips */}
       <div>
-        <h2 className="font-semibold text-gray-900 mb-4">Past Trips</h2>
-        <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+        <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-white/60">Past Trips</p>
+        <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-xl">
           {pastTrips.map((trip, i) => (
-            <Link key={trip.id} href={`/dashboard/bookings/${trip.id}`}
-              className={`flex items-center justify-between p-4 hover:bg-gray-50 transition-colors ${i < pastTrips.length - 1 ? "border-b border-gray-100" : ""}`}>
+            <Link
+              key={trip.id}
+              href={`/dashboard/bookings/${trip.id}`}
+              className={`flex items-center justify-between p-4 transition-colors hover:bg-white/[0.04] ${
+                i < pastTrips.length - 1 ? "border-b border-white/[0.06]" : ""
+              }`}
+            >
               <div className="flex items-center gap-3">
-                <Plane className="w-4 h-4 text-gray-400" />
+                <Plane className="h-3.5 w-3.5 text-white/40" strokeWidth={1.75} />
                 <div>
-                  <p className="text-sm font-medium text-gray-900">{trip.jet}</p>
-                  <p className="text-xs text-gray-400">{trip.from} → {trip.to} · {new Date(trip.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}</p>
+                  <p className="text-[13px] font-medium text-white">{trip.jet}</p>
+                  <p className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+                    {trip.from} → {trip.to} · {new Date(trip.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
+                  </p>
                 </div>
               </div>
               <div className="flex items-center gap-3">
-                <span className="text-sm font-medium text-gray-700">{formatCurrency(trip.price)}</span>
+                <span className="text-[13px] font-medium text-white/80">{formatCurrency(trip.price)}</span>
                 <StatusBadge status={trip.status} />
               </div>
             </Link>

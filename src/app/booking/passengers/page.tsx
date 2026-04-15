@@ -35,84 +35,99 @@ export default function PassengersPage() {
 
   if (!jet) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <Plane className="w-12 h-12 text-gray-300 mb-4" />
-        <h2 className="text-xl font-semibold mb-2">Start from the beginning</h2>
-        <Link href="/search" className="px-6 py-3 rounded-xl bg-amber-500 text-white font-semibold">Browse Jets</Link>
+      <div className="flex min-h-screen flex-col items-center justify-center bg-black text-white">
+        <Plane className="mb-4 h-12 w-12 text-white/20" strokeWidth={1.25} />
+        <h2 className="text-[20px] font-semibold tracking-tight">Start from the beginning</h2>
+        <Link
+          href="/search"
+          className="mt-6 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-black hover:bg-white/90"
+        >
+          Browse Jets
+        </Link>
       </div>
     );
   }
 
+  const inputCls =
+    "w-full rounded-lg border border-white/10 bg-white/[0.03] px-3 py-2.5 text-[13px] text-white placeholder:text-white/30 outline-none focus:border-white/40";
+  const dateInputCls = inputCls + " [color-scheme:dark]";
+  const labelCls = "mb-1 block font-mono text-[10px] uppercase tracking-widest text-white/60";
+
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-black text-white">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         <BookingStepper currentStep={2} />
 
-        <div className="flex flex-col lg:flex-row gap-8 mt-8">
+        <div className="mt-8 flex flex-col gap-8 lg:flex-row">
           <div className="flex-1 space-y-4">
-            <h2 className="text-lg font-semibold text-gray-900">Passenger Information</h2>
-            <p className="text-sm text-gray-500">Please provide details for all {passengerCount} passenger{passengerCount > 1 ? "s" : ""}.</p>
+            <p className="font-mono text-[11px] uppercase tracking-widest text-white/60">Passengers</p>
+            <h2 className="text-[24px] font-semibold tracking-tight text-white">Passenger Information</h2>
+            <p className="text-[13px] text-white/60">
+              Please provide details for all {passengerCount} passenger{passengerCount > 1 ? "s" : ""}.
+            </p>
 
             {forms.map((passenger, idx) => (
-              <div key={idx} className="bg-white rounded-2xl border border-gray-200 p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <div className="w-8 h-8 rounded-full bg-amber-100 flex items-center justify-center">
-                    <User className="w-4 h-4 text-amber-600" />
+              <div key={idx} className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-xl">
+                <div className="mb-4 flex items-center gap-2">
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.04]">
+                    <User className="h-3.5 w-3.5 text-white/80" strokeWidth={1.75} />
                   </div>
-                  <h3 className="font-semibold text-gray-900">Passenger {idx + 1}{idx === 0 ? " (Lead)" : ""}</h3>
+                  <h3 className="text-[14px] font-semibold tracking-tight text-white">
+                    Passenger {idx + 1}{idx === 0 ? " (Lead)" : ""}
+                  </h3>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">First Name *</label>
+                    <label className={labelCls}>First Name *</label>
                     <input
                       type="text" value={passenger.firstName}
                       onChange={(e) => updateField(idx, "firstName", e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                      className={inputCls}
                       placeholder="John"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Last Name *</label>
+                    <label className={labelCls}>Last Name *</label>
                     <input
                       type="text" value={passenger.lastName}
                       onChange={(e) => updateField(idx, "lastName", e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                      className={inputCls}
                       placeholder="Smith"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Email *</label>
+                    <label className={labelCls}>Email *</label>
                     <input
                       type="email" value={passenger.email}
                       onChange={(e) => updateField(idx, "email", e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                      className={inputCls}
                       placeholder="john@example.com"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Phone</label>
+                    <label className={labelCls}>Phone</label>
                     <input
                       type="tel" value={passenger.phone}
                       onChange={(e) => updateField(idx, "phone", e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                      className={inputCls}
                       placeholder="+1 (555) 000-0000"
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Date of Birth</label>
+                    <label className={labelCls}>Date of Birth</label>
                     <input
                       type="date" value={passenger.dateOfBirth}
                       onChange={(e) => updateField(idx, "dateOfBirth", e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                      className={dateInputCls}
                     />
                   </div>
                   <div>
-                    <label className="block text-sm font-medium text-gray-700 mb-1">Passport Number</label>
+                    <label className={labelCls}>Passport Number</label>
                     <input
                       type="text" value={passenger.passportNumber}
                       onChange={(e) => updateField(idx, "passportNumber", e.target.value)}
-                      className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                      className={inputCls}
                       placeholder="Optional"
                     />
                   </div>
@@ -121,24 +136,24 @@ export default function PassengersPage() {
             ))}
 
             {/* Navigation */}
-            <div className="flex justify-between mt-6">
+            <div className="mt-6 flex justify-between">
               <button
                 onClick={() => { setStep(1); router.push("/booking?jet=" + jet.id); }}
-                className="px-6 py-3 rounded-xl border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors flex items-center gap-2"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 py-2.5 text-[12px] font-medium text-white transition-colors hover:border-white/30 hover:bg-white/[0.06]"
               >
-                <ArrowLeft className="w-4 h-4" /> Back
+                <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2} /> Back
               </button>
               <button
                 onClick={handleContinue}
                 disabled={!isValid}
-                className="px-8 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold hover:from-amber-600 hover:to-amber-700 transition-all disabled:opacity-50 flex items-center gap-2"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-black transition-colors hover:bg-white/90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
               >
-                Continue to Review <ArrowRight className="w-4 h-4" />
+                Continue to Review <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
               </button>
             </div>
           </div>
 
-          <div className="w-full lg:w-80 shrink-0">
+          <div className="w-full shrink-0 lg:w-80">
             <TripSummary />
           </div>
         </div>

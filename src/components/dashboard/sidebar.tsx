@@ -5,8 +5,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
   Plane, LayoutDashboard, Calendar, DollarSign, Settings, Users,
-  BarChart3, Map, Building2, ShieldCheck, Menu, X, Bell, ChevronDown,
-  Wrench, Radio, FileText, CreditCard, LogOut, User,
+  BarChart3, Building2, Menu, X, Bell, Radio, CreditCard, LogOut, User,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -44,10 +43,10 @@ const navItems: Record<DashboardRole, NavItem[]> = {
   ],
 };
 
-const roleConfig: Record<DashboardRole, { label: string; color: string; dot: string }> = {
-  client:   { label: "Client Portal",   color: "from-amber-500 to-amber-600",   dot: "bg-amber-400"  },
-  operator: { label: "Operator Portal", color: "from-blue-600 to-blue-700",     dot: "bg-blue-400"   },
-  admin:    { label: "Admin Portal",    color: "from-gray-800 to-gray-900",     dot: "bg-green-400"  },
+const roleLabels: Record<DashboardRole, string> = {
+  client:   "Client Portal",
+  operator: "Operator Portal",
+  admin:    "Admin Portal",
 };
 
 interface SidebarProps {
@@ -61,26 +60,26 @@ export function Sidebar({ role, userName = "John Doe", userInitials = "JD", noti
   const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const items = navItems[role];
-  const cfg = roleConfig[role];
+  const roleLabel = roleLabels[role];
 
   const SidebarContent = () => (
-    <div className="flex flex-col h-full">
+    <div className="flex h-full flex-col bg-black">
       {/* Logo / Role */}
-      <div className={cn("px-5 py-4 bg-gradient-to-r text-white", cfg.color)}>
-        <Link href="/" className="flex items-center gap-2 mb-3">
-          <div className="w-7 h-7 rounded-lg bg-white/20 flex items-center justify-center">
-            <Plane className="w-4 h-4 text-white" />
+      <div className="border-b border-white/[0.08] px-5 py-5">
+        <Link href="/" className="mb-3 flex items-center gap-2">
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/15 bg-white/[0.04]">
+            <Plane className="h-3.5 w-3.5 text-white" strokeWidth={2} />
           </div>
-          <span className="font-bold text-lg tracking-tight">EXJET</span>
+          <span className="text-[15px] font-semibold tracking-tight text-white">EXJET</span>
         </Link>
         <div className="flex items-center gap-2">
-          <span className={cn("h-2 w-2 rounded-full", cfg.dot)} />
-          <span className="text-xs font-medium text-white/80">{cfg.label}</span>
+          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+          <span className="font-mono text-[10px] uppercase tracking-widest text-white/50">{roleLabel}</span>
         </div>
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-3 py-4 space-y-0.5 overflow-y-auto">
+      <nav className="flex-1 space-y-0.5 overflow-y-auto px-3 py-4">
         {items.map((item) => {
           const active = pathname === item.href || (item.href !== "/" + role.split("/")[0] && pathname.startsWith(item.href));
           return (
@@ -89,16 +88,19 @@ export function Sidebar({ role, userName = "John Doe", userInitials = "JD", noti
               href={item.href}
               onClick={() => setMobileOpen(false)}
               className={cn(
-                "flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm font-medium transition-all",
+                "flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all",
                 active
-                  ? "bg-amber-50 text-amber-700"
-                  : "text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+                  ? "border border-white/[0.08] bg-white/[0.06] text-white"
+                  : "border border-transparent text-white/60 hover:bg-white/[0.04] hover:text-white"
               )}
             >
-              <item.icon className={cn("w-4.5 h-4.5", active ? "text-amber-600" : "text-gray-400")} style={{ width: "1.125rem", height: "1.125rem" }} />
+              <item.icon
+                className={cn("h-4 w-4", active ? "text-white" : "text-white/40")}
+                strokeWidth={1.75}
+              />
               <span className="flex-1">{item.label}</span>
               {item.badge && (
-                <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500 text-white">
+                <span className="rounded-full border border-white/15 bg-white/[0.06] px-1.5 py-0.5 font-mono text-[10px] text-white">
                   {item.badge}
                 </span>
               )}
@@ -108,24 +110,26 @@ export function Sidebar({ role, userName = "John Doe", userInitials = "JD", noti
       </nav>
 
       {/* User Footer */}
-      <div className="px-3 py-4 border-t border-gray-100">
+      <div className="border-t border-white/[0.08] px-3 py-4">
         {notifications > 0 && (
-          <button className="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-sm text-gray-600 hover:bg-gray-100 mb-1">
-            <Bell className="w-4 h-4 text-gray-400" />
-            <span className="flex-1">Notifications</span>
-            <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-red-500 text-white">{notifications}</span>
+          <button className="mb-1 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] text-white/70 transition-colors hover:bg-white/[0.04] hover:text-white">
+            <Bell className="h-4 w-4 text-white/40" strokeWidth={1.75} />
+            <span className="flex-1 text-left">Notifications</span>
+            <span className="rounded-full bg-red-500/15 px-1.5 py-0.5 font-mono text-[10px] text-red-300 ring-1 ring-red-400/20">
+              {notifications}
+            </span>
           </button>
         )}
         <div className="flex items-center gap-3 px-3 py-2">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-white/15 bg-white/[0.06] text-[11px] font-semibold text-white">
             {userInitials}
           </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-gray-900 truncate">{userName}</p>
-            <p className="text-[11px] text-gray-400 capitalize">{role}</p>
+          <div className="min-w-0 flex-1">
+            <p className="truncate text-[13px] font-medium text-white">{userName}</p>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-white/40">{role}</p>
           </div>
-          <button className="text-gray-400 hover:text-gray-600">
-            <LogOut className="w-4 h-4" />
+          <button className="text-white/40 transition-colors hover:text-white">
+            <LogOut className="h-4 w-4" strokeWidth={1.75} />
           </button>
         </div>
       </div>
@@ -135,30 +139,36 @@ export function Sidebar({ role, userName = "John Doe", userInitials = "JD", noti
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="hidden lg:flex flex-col w-56 shrink-0 bg-white border-r border-gray-200 min-h-screen sticky top-0 h-screen">
+      <aside className="sticky top-0 hidden h-screen min-h-screen w-56 shrink-0 flex-col border-r border-white/[0.08] bg-black lg:flex">
         <SidebarContent />
       </aside>
 
       {/* Mobile top bar */}
-      <div className="lg:hidden fixed top-0 inset-x-0 z-40 flex items-center justify-between h-14 px-4 bg-white border-b border-gray-200">
+      <div className="fixed inset-x-0 top-0 z-40 flex h-14 items-center justify-between border-b border-white/[0.08] bg-black px-4 lg:hidden">
         <Link href="/" className="flex items-center gap-2">
-          <div className={cn("w-7 h-7 rounded-lg flex items-center justify-center bg-gradient-to-br text-white", cfg.color)}>
-            <Plane className="w-4 h-4" />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-white/15 bg-white/[0.04]">
+            <Plane className="h-3.5 w-3.5 text-white" strokeWidth={2} />
           </div>
-          <span className="font-bold text-gray-900">EXJET</span>
+          <span className="text-[14px] font-semibold tracking-tight text-white">EXJET</span>
         </Link>
-        <button onClick={() => setMobileOpen(true)} className="p-2 rounded-lg hover:bg-gray-100">
-          <Menu className="w-5 h-5 text-gray-600" />
+        <button
+          onClick={() => setMobileOpen(true)}
+          className="rounded-lg p-2 text-white/70 transition-colors hover:bg-white/[0.05] hover:text-white"
+        >
+          <Menu className="h-5 w-5" strokeWidth={1.75} />
         </button>
       </div>
 
       {/* Mobile drawer */}
       {mobileOpen && (
-        <div className="lg:hidden fixed inset-0 z-50 flex">
-          <div className="absolute inset-0 bg-black/40" onClick={() => setMobileOpen(false)} />
-          <div className="relative w-64 bg-white shadow-xl flex flex-col">
-            <button onClick={() => setMobileOpen(false)} className="absolute top-3 right-3 p-1.5 rounded-lg hover:bg-gray-100">
-              <X className="w-5 h-5 text-gray-500" />
+        <div className="fixed inset-0 z-50 flex lg:hidden">
+          <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+          <div className="relative flex w-64 flex-col border-r border-white/[0.08] bg-black">
+            <button
+              onClick={() => setMobileOpen(false)}
+              className="absolute right-3 top-3 rounded-lg p-1.5 text-white/70 transition-colors hover:bg-white/[0.05] hover:text-white"
+            >
+              <X className="h-5 w-5" strokeWidth={1.75} />
             </button>
             <SidebarContent />
           </div>

@@ -2,13 +2,14 @@ import { type HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 const colorStyles = {
-  blue: "bg-blue-50 text-blue-700 ring-blue-600/20",
-  green: "bg-green-50 text-green-700 ring-green-600/20",
-  red: "bg-red-50 text-red-700 ring-red-600/20",
-  yellow: "bg-yellow-50 text-yellow-700 ring-yellow-600/20",
-  gray: "bg-gray-50 text-gray-700 ring-gray-600/20",
-  purple: "bg-purple-50 text-purple-700 ring-purple-600/20",
-  indigo: "bg-indigo-50 text-indigo-700 ring-indigo-600/20",
+  blue: "bg-blue-500/10 text-blue-300 ring-blue-400/20",
+  green: "bg-emerald-500/10 text-emerald-300 ring-emerald-400/20",
+  red: "bg-red-500/10 text-red-300 ring-red-400/20",
+  yellow: "bg-amber-500/10 text-amber-300 ring-amber-400/20",
+  gray: "bg-white/[0.06] text-white/70 ring-white/15",
+  purple: "bg-purple-500/10 text-purple-300 ring-purple-400/20",
+  indigo: "bg-indigo-500/10 text-indigo-300 ring-indigo-400/20",
+  white: "bg-white text-black ring-white",
 } as const;
 
 type BadgeColor = keyof typeof colorStyles;
@@ -17,11 +18,11 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
   color?: BadgeColor;
 }
 
-export function Badge({ color = "blue", className, ...props }: BadgeProps) {
+export function Badge({ color = "gray", className, ...props }: BadgeProps) {
   return (
     <span
       className={cn(
-        "inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium ring-1 ring-inset",
+        "inline-flex items-center rounded-full px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest ring-1 ring-inset",
         colorStyles[color],
         className
       )}

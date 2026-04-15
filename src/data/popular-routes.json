@@ -1,0 +1,82 @@
+[
+  {
+    "id": "pr-teb-lax",
+    "from": { "code": "KTEB", "city": "New York", "airport": "Teterboro" },
+    "to":   { "code": "KLAX", "city": "Los Angeles", "airport": "Los Angeles Intl" },
+    "flightTime": "5h 45m",
+    "distanceNm": 2144,
+    "recommended": "Heavy",
+    "fromPrice": 42500,
+    "demand": "very_high"
+  },
+  {
+    "id": "pr-miami-teb",
+    "from": { "code": "KOPF", "city": "Miami", "airport": "Opa-Locka" },
+    "to":   { "code": "KTEB", "city": "New York", "airport": "Teterboro" },
+    "flightTime": "2h 50m",
+    "distanceNm": 951,
+    "recommended": "Midsize",
+    "fromPrice": 18900,
+    "demand": "high"
+  },
+  {
+    "id": "pr-van-las",
+    "from": { "code": "KVNY", "city": "Los Angeles", "airport": "Van Nuys" },
+    "to":   { "code": "KLAS", "city": "Las Vegas", "airport": "Harry Reid" },
+    "flightTime": "1h 05m",
+    "distanceNm": 207,
+    "recommended": "Light",
+    "fromPrice": 7400,
+    "demand": "high"
+  },
+  {
+    "id": "pr-teb-mia",
+    "from": { "code": "KTEB", "city": "New York", "airport": "Teterboro" },
+    "to":   { "code": "KOPF", "city": "Miami", "airport": "Opa-Locka" },
+    "flightTime": "2h 55m",
+    "distanceNm": 951,
+    "recommended": "Midsize",
+    "fromPrice": 19200,
+    "demand": "very_high"
+  },
+  {
+    "id": "pr-ldn-nyc",
+    "from": { "code": "EGGW", "city": "London", "airport": "Luton" },
+    "to":   { "code": "KTEB", "city": "New York", "airport": "Teterboro" },
+    "flightTime": "7h 20m",
+    "distanceNm": 3010,
+    "recommended": "Ultra Long",
+    "fromPrice": 94500,
+    "demand": "medium"
+  },
+  {
+    "id": "pr-par-nce",
+    "from": { "code": "LFPB", "city": "Paris", "airport": "Le Bourget" },
+    "to":   { "code": "LFMN", "city": "Nice", "airport": "Côte d'Azur" },
+    "flightTime": "1h 20m",
+    "distanceNm": 372,
+    "recommended": "Light",
+    "fromPrice": 9200,
+    "demand": "high"
+  },
+  {
+    "id": "pr-dxb-lhr",
+    "from": { "code": "OMDB", "city": "Dubai", "airport": "International" },
+    "to":   { "code": "EGGW", "city": "London", "airport": "Luton" },
+    "flightTime": "7h 10m",
+    "distanceNm": 2947,
+    "recommended": "Ultra Long",
+    "fromPrice": 89500,
+    "demand": "medium"
+  },
+  {
+    "id": "pr-lax-hkg",
+    "from": { "code": "KLAX", "city": "Los Angeles", "airport": "Los Angeles Intl" },
+    "to":   { "code": "VHHH", "city": "Hong Kong", "airport": "International" },
+    "flightTime": "14h 30m",
+    "distanceNm": 6243,
+    "recommended": "Ultra Long",
+    "fromPrice": 172000,
+    "demand": "medium"
+  }
+]

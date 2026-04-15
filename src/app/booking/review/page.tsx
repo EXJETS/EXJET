@@ -19,10 +19,15 @@ export default function ReviewPage() {
 
   if (!jet) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <Plane className="w-12 h-12 text-gray-300 mb-4" />
-        <h2 className="text-xl font-semibold mb-2">Start from the beginning</h2>
-        <Link href="/search" className="px-6 py-3 rounded-xl bg-amber-500 text-white font-semibold">Browse Jets</Link>
+      <div className="flex min-h-screen flex-col items-center justify-center bg-black text-white">
+        <Plane className="mb-4 h-12 w-12 text-white/20" strokeWidth={1.25} />
+        <h2 className="text-[20px] font-semibold tracking-tight">Start from the beginning</h2>
+        <Link
+          href="/search"
+          className="mt-6 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-black hover:bg-white/90"
+        >
+          Browse Jets
+        </Link>
       </div>
     );
   }
@@ -33,98 +38,115 @@ export default function ReviewPage() {
   const total = basePrice + fuelSurcharge + taxes;
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-black text-white">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         <BookingStepper currentStep={3} />
 
-        <div className="flex flex-col lg:flex-row gap-8 mt-8">
+        <div className="mt-8 flex flex-col gap-8 lg:flex-row">
           <div className="flex-1 space-y-6">
-            <h2 className="text-lg font-semibold text-gray-900">Review Your Booking</h2>
+            <div>
+              <p className="font-mono text-[11px] uppercase tracking-widest text-white/60">Review</p>
+              <h2 className="mt-2 text-[24px] font-semibold tracking-tight text-white">Review Your Booking</h2>
+            </div>
 
             {/* Flight Details */}
-            <div className="bg-white rounded-2xl border border-gray-200 p-6">
-              <h3 className="font-semibold text-gray-900 mb-4">Flight Details</h3>
-              <div className="space-y-4">
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-xl">
+              <p className="font-mono text-[11px] uppercase tracking-widest text-white/60">Flight Details</p>
+              <div className="mt-4 space-y-4">
                 <div className="flex items-center gap-3">
-                  <Plane className="w-5 h-5 text-amber-500" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+                    <Plane className="h-4 w-4 text-white/80" strokeWidth={1.75} />
+                  </div>
                   <div>
-                    <p className="font-medium text-gray-900">{jet.name}</p>
-                    <p className="text-sm text-gray-500">{jet.manufacturer} · {getCategoryLabel(jet.category)}</p>
+                    <p className="text-[14px] font-semibold tracking-tight text-white">{jet.name}</p>
+                    <p className="text-[12px] text-white/50">{jet.manufacturer} · {getCategoryLabel(jet.category)}</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-8 pl-8">
+                <div className="flex flex-wrap items-center gap-6 pl-[52px]">
                   <div className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-green-500" />
-                    <span className="text-sm">{departureAirport?.city} ({departureAirport?.code})</span>
+                    <MapPin className="h-3.5 w-3.5 text-emerald-300" strokeWidth={2} />
+                    <span className="text-[13px] text-white/85">{departureAirport?.city} ({departureAirport?.code})</span>
                   </div>
-                  <span className="text-gray-400">→</span>
+                  <span className="text-white/30">→</span>
                   <div className="flex items-center gap-2">
-                    <MapPin className="w-4 h-4 text-red-500" />
-                    <span className="text-sm">{arrivalAirport?.city} ({arrivalAirport?.code})</span>
+                    <MapPin className="h-3.5 w-3.5 text-red-300" strokeWidth={2} />
+                    <span className="text-[13px] text-white/85">{arrivalAirport?.city} ({arrivalAirport?.code})</span>
                   </div>
                 </div>
-                <div className="flex items-center gap-8 pl-8">
+                <div className="flex flex-wrap items-center gap-6 pl-[52px]">
                   <div className="flex items-center gap-2">
-                    <Calendar className="w-4 h-4 text-gray-400" />
-                    <span className="text-sm">{departureDate && new Date(departureDate).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}</span>
+                    <Calendar className="h-3.5 w-3.5 text-white/40" strokeWidth={1.75} />
+                    <span className="text-[13px] text-white/85">
+                      {departureDate &&
+                        new Date(departureDate).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}
+                    </span>
                   </div>
                   {returnDate && (
                     <div className="flex items-center gap-2">
-                      <Calendar className="w-4 h-4 text-gray-400" />
-                      <span className="text-sm">Return: {new Date(returnDate).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}</span>
+                      <Calendar className="h-3.5 w-3.5 text-white/40" strokeWidth={1.75} />
+                      <span className="text-[13px] text-white/85">
+                        Return: {new Date(returnDate).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" })}
+                      </span>
                     </div>
                   )}
                 </div>
-                <div className="flex items-center gap-2 pl-8">
-                  <Users className="w-4 h-4 text-gray-400" />
-                  <span className="text-sm">{passengerCount} passenger{passengerCount > 1 ? "s" : ""}</span>
+                <div className="flex items-center gap-2 pl-[52px]">
+                  <Users className="h-3.5 w-3.5 text-white/40" strokeWidth={1.75} />
+                  <span className="text-[13px] text-white/85">
+                    {passengerCount} passenger{passengerCount > 1 ? "s" : ""}
+                  </span>
                 </div>
               </div>
             </div>
 
             {/* Passengers */}
-            <div className="bg-white rounded-2xl border border-gray-200 p-6">
-              <h3 className="font-semibold text-gray-900 mb-4">Passengers</h3>
-              <div className="space-y-3">
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-xl">
+              <p className="font-mono text-[11px] uppercase tracking-widest text-white/60">Passengers</p>
+              <div className="mt-4 space-y-0">
                 {passengers.map((p, i) => (
-                  <div key={i} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+                  <div
+                    key={i}
+                    className="flex items-center justify-between border-b border-white/[0.06] py-3 last:border-0"
+                  >
                     <div>
-                      <p className="text-sm font-medium text-gray-900">{p.firstName} {p.lastName}</p>
-                      <p className="text-xs text-gray-500">{p.email}</p>
+                      <p className="text-[13px] font-medium text-white">{p.firstName} {p.lastName}</p>
+                      <p className="text-[11px] text-white/50">{p.email}</p>
                     </div>
-                    <span className="text-xs text-gray-400">{i === 0 ? "Lead Passenger" : `Passenger ${i + 1}`}</span>
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+                      {i === 0 ? "Lead" : `Pax ${i + 1}`}
+                    </span>
                   </div>
                 ))}
               </div>
             </div>
 
             {/* Price Breakdown */}
-            <div className="bg-white rounded-2xl border border-gray-200 p-6">
-              <h3 className="font-semibold text-gray-900 mb-4">Price Breakdown</h3>
-              <div className="space-y-3">
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Base charter price</span>
-                  <span>{formatCurrency(basePrice)}</span>
+            <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-xl">
+              <p className="font-mono text-[11px] uppercase tracking-widest text-white/60">Price Breakdown</p>
+              <div className="mt-4 space-y-2.5">
+                <div className="flex justify-between text-[13px]">
+                  <span className="text-white/60">Base charter price</span>
+                  <span className="text-white">{formatCurrency(basePrice)}</span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Fuel surcharge (15%)</span>
-                  <span>{formatCurrency(fuelSurcharge)}</span>
+                <div className="flex justify-between text-[13px]">
+                  <span className="text-white/60">Fuel surcharge (15%)</span>
+                  <span className="text-white">{formatCurrency(fuelSurcharge)}</span>
                 </div>
-                <div className="flex justify-between text-sm">
-                  <span className="text-gray-500">Taxes & fees (8.5%)</span>
-                  <span>{formatCurrency(taxes)}</span>
+                <div className="flex justify-between text-[13px]">
+                  <span className="text-white/60">Taxes &amp; fees (8.5%)</span>
+                  <span className="text-white">{formatCurrency(taxes)}</span>
                 </div>
-                <div className="flex justify-between text-base font-bold pt-3 border-t border-gray-200">
-                  <span>Total</span>
-                  <span className="text-amber-600">{formatCurrency(total)}</span>
+                <div className="flex items-baseline justify-between border-t border-white/[0.08] pt-3">
+                  <span className="text-[14px] font-semibold text-white">Total</span>
+                  <span className="text-[20px] font-semibold tracking-tight text-white">{formatCurrency(total)}</span>
                 </div>
               </div>
             </div>
 
             {/* Terms */}
-            <div className="flex items-start gap-3 p-4 rounded-xl bg-blue-50 border border-blue-100">
-              <Shield className="w-5 h-5 text-blue-500 shrink-0 mt-0.5" />
-              <p className="text-sm text-blue-700">
+            <div className="flex items-start gap-3 rounded-xl border border-white/[0.08] bg-white/[0.02] p-4">
+              <Shield className="mt-0.5 h-4 w-4 shrink-0 text-white/70" strokeWidth={1.75} />
+              <p className="text-[13px] leading-relaxed text-white/70">
                 By confirming this booking, you agree to EXJET&apos;s terms of service and cancellation policy.
                 Free cancellation up to 48 hours before departure.
               </p>
@@ -134,20 +156,20 @@ export default function ReviewPage() {
             <div className="flex justify-between">
               <button
                 onClick={() => { setStep(2); router.push("/booking/passengers"); }}
-                className="px-6 py-3 rounded-xl border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 flex items-center gap-2"
+                className="inline-flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-5 py-2.5 text-[12px] font-medium text-white transition-colors hover:border-white/30 hover:bg-white/[0.06]"
               >
-                <ArrowLeft className="w-4 h-4" /> Back
+                <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2} /> Back
               </button>
               <button
                 onClick={handleConfirm}
-                className="px-10 py-3.5 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-white font-bold text-lg hover:from-amber-600 hover:to-amber-700 transition-all shadow-lg shadow-amber-500/25 flex items-center gap-2"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-[13px] font-medium text-black transition-colors hover:bg-white/90 active:scale-[0.98]"
               >
-                <Check className="w-5 h-5" /> Confirm Booking
+                <Check className="h-4 w-4" strokeWidth={2.25} /> Confirm Booking
               </button>
             </div>
           </div>
 
-          <div className="w-full lg:w-80 shrink-0">
+          <div className="w-full shrink-0 lg:w-80">
             <TripSummary />
           </div>
         </div>
