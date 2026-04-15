@@ -56,14 +56,14 @@ export function Footer() {
           {/* Branding */}
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2">
-              <Plane className="h-6 w-6 text-blue-500" />
-              <span className="text-xl font-bold tracking-tight text-white">
-                EXJET
+              <Plane className="h-5 w-5 text-white" strokeWidth={1.75} />
+              <span className="text-lg font-semibold tracking-[0.18em] text-white">
+                EXJET<span className="text-gray-500">.com</span>
               </span>
             </Link>
             <p className="mt-4 text-sm leading-relaxed text-gray-500">
-              Elevating private aviation with seamless booking, unmatched safety,
-              and world-class service.
+              Global Access, On-Demand. Reserve a private jet in minutes —
+              curated worldwide fleet, 24/7 concierge.
             </p>
           </div>
 
@@ -95,7 +95,7 @@ export function Footer() {
         {/* Bottom section */}
         <div className="mt-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
           <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} EXJET. All rights reserved.
+            &copy; {new Date().getFullYear()} EXJET.com · All rights reserved.
           </p>
 
           <div className="flex items-center gap-4">

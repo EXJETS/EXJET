@@ -46,6 +46,9 @@ export function Navbar() {
           <PlaneTakeoff className="h-4 w-4" strokeWidth={2} />
           <span className="text-[15px] font-semibold tracking-[0.2em]">
             EXJET
+            <span className={solid ? "text-neutral-400" : "text-white/50"}>
+              .com
+            </span>
           </span>
         </Link>
 

@@ -4,9 +4,37 @@ import { Footer } from "@/components/layout/footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "EXJET — Global Access, On-Demand.",
+  metadataBase: new URL("https://exjet.com"),
+  title: {
+    default: "EXJET.com — Global Access, On-Demand.",
+    template: "%s · EXJET.com",
+  },
   description:
-    "Reserve a private jet in minutes. A minimalist booking experience for a world-class fleet — available on every continent, 24 hours a day.",
+    "Global Access, On-Demand. Reserve a private jet in minutes across 50+ destinations worldwide — curated fleet, ARGUS Platinum safety, 24/7 concierge.",
+  applicationName: "EXJET",
+  keywords: [
+    "private jet",
+    "jet charter",
+    "private aviation",
+    "on demand",
+    "EXJET",
+    "exjet.com",
+  ],
+  alternates: { canonical: "/" },
+  openGraph: {
+    type: "website",
+    url: "https://exjet.com",
+    siteName: "EXJET",
+    title: "EXJET.com — Global Access, On-Demand.",
+    description:
+      "Reserve a private jet in minutes. A curated worldwide fleet, available 24/7.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "EXJET.com — Global Access, On-Demand.",
+    description:
+      "Reserve a private jet in minutes. A curated worldwide fleet, available 24/7.",
+  },
 };
 
 export default function RootLayout({
