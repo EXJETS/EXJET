@@ -5,14 +5,6 @@ import { Plane, Camera, Armchair, ChevronLeft, ChevronRight } from "lucide-react
 import { cn } from "@/lib/utils";
 import type { Jet } from "@/types";
 
-const categoryGradients: Record<string, string> = {
-  light: "from-sky-400 to-blue-600",
-  midsize: "from-violet-400 to-purple-600",
-  super_midsize: "from-amber-400 to-orange-600",
-  heavy: "from-emerald-400 to-teal-600",
-  ultra_long: "from-rose-400 to-red-600",
-};
-
 const exteriorLabels = ["Front Quarter", "Side Profile", "Tail Section", "Landing Gear", "Cockpit"];
 const interiorLabels = ["Main Cabin", "Seating Area", "Galley", "Lavatory", "Entertainment"];
 
@@ -24,7 +16,6 @@ export function JetGallery({ jet }: JetGalleryProps) {
   const [activeTab, setActiveTab] = useState<"exterior" | "interior">("exterior");
   const [activeIndex, setActiveIndex] = useState(0);
 
-  const gradient = categoryGradients[jet.category] || categoryGradients.light;
   const labels = activeTab === "exterior" ? exteriorLabels : interiorLabels;
 
   const handleTabChange = (tab: "exterior" | "interior") => {
@@ -33,104 +24,100 @@ export function JetGallery({ jet }: JetGalleryProps) {
   };
 
   return (
-    <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
       {/* Tab Switcher */}
-      <div className="flex items-center gap-2 mb-4">
+      <div className="mb-4 flex items-center gap-2">
         <button
           onClick={() => handleTabChange("exterior")}
           className={cn(
-            "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all",
+            "inline-flex items-center gap-2 rounded-full px-4 py-2 text-[12px] font-medium transition-colors",
             activeTab === "exterior"
-              ? "bg-gray-900 text-white shadow-md"
-              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              ? "bg-white text-black"
+              : "border border-white/15 bg-white/[0.03] text-white/70 hover:border-white/30 hover:bg-white/[0.06] hover:text-white"
           )}
         >
-          <Camera className="w-4 h-4" />
+          <Camera className="h-3.5 w-3.5" strokeWidth={2} />
           Exterior
         </button>
         <button
           onClick={() => handleTabChange("interior")}
           className={cn(
-            "flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium transition-all",
+            "inline-flex items-center gap-2 rounded-full px-4 py-2 text-[12px] font-medium transition-colors",
             activeTab === "interior"
-              ? "bg-gray-900 text-white shadow-md"
-              : "bg-gray-100 text-gray-600 hover:bg-gray-200"
+              ? "bg-white text-black"
+              : "border border-white/15 bg-white/[0.03] text-white/70 hover:border-white/30 hover:bg-white/[0.06] hover:text-white"
           )}
         >
-          <Armchair className="w-4 h-4" />
+          <Armchair className="h-3.5 w-3.5" strokeWidth={2} />
           Interior
         </button>
       </div>
 
       {/* Main Image */}
-      <div className="relative group">
-        <div
-          className={cn(
-            "relative aspect-[16/9] rounded-2xl overflow-hidden bg-gradient-to-br",
-            activeTab === "interior"
-              ? "from-gray-700 via-gray-800 to-gray-900"
-              : gradient
-          )}
-        >
+      <div className="group relative">
+        <div className="relative aspect-[16/9] overflow-hidden rounded-2xl border border-white/[0.08] bg-gradient-to-br from-neutral-900 to-black">
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:48px_48px]" />
+
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3">
             {activeTab === "exterior" ? (
-              <Plane className="w-32 h-32 text-white/20" strokeWidth={1} />
+              <Plane className="h-32 w-32 text-white/20" strokeWidth={1} />
             ) : (
-              <Armchair className="w-32 h-32 text-white/20" strokeWidth={1} />
+              <Armchair className="h-32 w-32 text-white/20" strokeWidth={1} />
             )}
-            <span className="text-white/40 text-sm font-medium">{labels[activeIndex]}</span>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+              {labels[activeIndex]} · {jet.name}
+            </span>
           </div>
 
           {/* Nav arrows */}
           <button
             onClick={() => setActiveIndex((prev) => (prev === 0 ? labels.length - 1 : prev - 1))}
-            className="absolute left-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
+            className="absolute left-4 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/40 text-white opacity-0 backdrop-blur-md transition-all hover:border-white/30 hover:bg-black/60 group-hover:opacity-100"
           >
-            <ChevronLeft className="w-5 h-5 text-gray-700" />
+            <ChevronLeft className="h-4 w-4" strokeWidth={2} />
           </button>
           <button
             onClick={() => setActiveIndex((prev) => (prev === labels.length - 1 ? 0 : prev + 1))}
-            className="absolute right-4 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/90 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white"
+            className="absolute right-4 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full border border-white/15 bg-black/40 text-white opacity-0 backdrop-blur-md transition-all hover:border-white/30 hover:bg-black/60 group-hover:opacity-100"
           >
-            <ChevronRight className="w-5 h-5 text-gray-700" />
+            <ChevronRight className="h-4 w-4" strokeWidth={2} />
           </button>
 
           {/* Counter */}
-          <div className="absolute bottom-4 left-4 bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-full">
+          <div className="absolute bottom-4 left-4 rounded-full border border-white/15 bg-black/40 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-white/80 backdrop-blur-md">
             {activeIndex + 1} / {labels.length}
           </div>
 
           {/* Tab indicator */}
-          <div className="absolute top-4 right-4 bg-black/50 backdrop-blur-sm text-white text-xs px-3 py-1.5 rounded-full flex items-center gap-1.5">
-            {activeTab === "exterior" ? <Camera className="w-3 h-3" /> : <Armchair className="w-3 h-3" />}
-            {activeTab === "exterior" ? "Exterior" : "Interior"}
+          <div className="absolute right-4 top-4 inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-black/40 px-3 py-1 font-mono text-[10px] uppercase tracking-widest text-white/80 backdrop-blur-md">
+            {activeTab === "exterior" ? <Camera className="h-3 w-3" strokeWidth={2} /> : <Armchair className="h-3 w-3" strokeWidth={2} />}
+            {activeTab}
           </div>
         </div>
       </div>
 
       {/* Thumbnail Strip */}
-      <div className="flex gap-2 mt-3 overflow-x-auto pb-1">
+      <div className="mt-3 flex gap-2 overflow-x-auto pb-1">
         {labels.map((label, i) => (
           <button
             key={label}
             onClick={() => setActiveIndex(i)}
             className={cn(
-              "relative shrink-0 w-24 h-16 rounded-lg overflow-hidden bg-gradient-to-br transition-all",
-              activeTab === "interior"
-                ? "from-gray-600 to-gray-800"
-                : gradient,
+              "relative flex h-16 w-24 shrink-0 items-center justify-center overflow-hidden rounded-lg border bg-gradient-to-br from-neutral-900 to-black transition-all",
               activeIndex === i
-                ? "ring-2 ring-amber-500 ring-offset-2 opacity-100"
-                : "opacity-50 hover:opacity-75"
+                ? "border-white/40 opacity-100"
+                : "border-white/[0.08] opacity-60 hover:border-white/20 hover:opacity-90"
             )}
           >
-            <div className="absolute inset-0 flex flex-col items-center justify-center">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:16px_16px]" />
+            <div className="relative flex flex-col items-center">
               {activeTab === "exterior" ? (
-                <Plane className="w-5 h-5 text-white/30" strokeWidth={1} />
+                <Plane className="h-5 w-5 text-white/40" strokeWidth={1.25} />
               ) : (
-                <Armchair className="w-5 h-5 text-white/30" strokeWidth={1} />
+                <Armchair className="h-5 w-5 text-white/40" strokeWidth={1.25} />
               )}
-              <span className="text-[8px] text-white/50 mt-0.5">{label}</span>
+              <span className="mt-0.5 font-mono text-[8px] uppercase tracking-widest text-white/50">{label}</span>
             </div>
           </button>
         ))}
