@@ -1,0 +1,50 @@
+[
+  {
+    "id": "el-1",
+    "from": { "code": "KPBI", "city": "Palm Beach", "airport": "International" },
+    "to":   { "code": "KTEB", "city": "New York", "airport": "Teterboro" },
+    "date": "2026-04-19",
+    "departTime": "11:00",
+    "aircraft": "Challenger 605",
+    "capacity": 12,
+    "retailPrice": 38000,
+    "price": 14900,
+    "discountPct": 61
+  },
+  {
+    "id": "el-2",
+    "from": { "code": "KVNY", "city": "Los Angeles", "airport": "Van Nuys" },
+    "to":   { "code": "KHIO", "city": "Portland", "airport": "Hillsboro" },
+    "date": "2026-04-25",
+    "departTime": "13:20",
+    "aircraft": "Hawker 900XP",
+    "capacity": 8,
+    "retailPrice": 22000,
+    "price": 8900,
+    "discountPct": 60
+  },
+  {
+    "id": "el-3",
+    "from": { "code": "LFPB", "city": "Paris", "airport": "Le Bourget" },
+    "to":   { "code": "LIPZ", "city": "Venice", "airport": "Marco Polo" },
+    "date": "2026-05-04",
+    "departTime": "10:00",
+    "aircraft": "Falcon 2000LX",
+    "capacity": 10,
+    "retailPrice": 29000,
+    "price": 11200,
+    "discountPct": 61
+  },
+  {
+    "id": "el-4",
+    "from": { "code": "KLAS", "city": "Las Vegas", "airport": "Harry Reid" },
+    "to":   { "code": "KSDL", "city": "Scottsdale", "airport": "Scottsdale" },
+    "date": "2026-04-30",
+    "departTime": "15:00",
+    "aircraft": "Citation Sovereign",
+    "capacity": 9,
+    "retailPrice": 17500,
+    "price": 6800,
+    "discountPct": 61
+  }
+]

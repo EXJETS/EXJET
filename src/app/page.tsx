@@ -1,236 +1,376 @@
 import Link from "next/link";
-import { Search, Plane, CheckCircle, Star, Users, Clock, Globe, Headphones, ArrowRight, ChevronRight } from "lucide-react";
-import SearchBar from "@/components/search/search-bar";
+import {
+  PlaneTakeoff,
+  PlaneLanding,
+  ShieldCheck,
+  Globe2,
+  Clock4,
+  Headset,
+  Sparkles,
+  ArrowRight,
+  ChevronRight,
+  Tag,
+  Users,
+  Gauge,
+  Ruler,
+  Quote,
+  Search,
+  Zap,
+  Wallet,
+  Award,
+} from "lucide-react";
+import { FlightBookingWidget } from "@/components/booking/flight-booking-widget";
+import {
+  EmptyLegCard,
+  type EmptyLeg,
+} from "@/components/booking/empty-leg-card";
 import { JetGrid } from "@/components/jets/jet-grid";
-import jets from "@/data/jets.json";
+import jetsData from "@/data/jets.json";
+import emptyLegsData from "@/data/empty-legs.json";
+import type { Jet } from "@/types";
 
-const trustIndicators = [
-  { icon: Plane, label: "500+ Flights", description: "Completed safely" },
-  { icon: Globe, label: "20+ Aircraft", description: "Premium fleet" },
-  { icon: Clock, label: "50+ Destinations", description: "Worldwide" },
-  { icon: Headphones, label: "24/7 Support", description: "Always available" },
+const jets = jetsData as unknown as Jet[];
+const emptyLegs = emptyLegsData as EmptyLeg[];
+
+const pressLogos = [
+  "FORBES",
+  "BLOOMBERG",
+  "THE WALL STREET JOURNAL",
+  "CONDÉ NAST",
+  "ROBB REPORT",
+  "THE NEW YORK TIMES",
+];
+
+const stats = [
+  { label: "500+",   caption: "Flights completed" },
+  { label: "50+",    caption: "Destinations" },
+  { label: "ARGUS",  caption: "Platinum safety" },
+  { label: "24 / 7", caption: "Concierge" },
 ];
 
 const steps = [
   {
-    number: 1,
+    number: "01",
     title: "Search",
-    description: "Enter your route, dates, and passenger count to find available aircraft.",
+    description:
+      "Enter your route, dates, and passengers. Instant availability. Transparent pricing.",
     icon: Search,
   },
   {
-    number: 2,
-    title: "Choose",
-    description: "Browse and compare jets by price, range, and amenities to find your perfect match.",
-    icon: Plane,
+    number: "02",
+    title: "Select",
+    description:
+      "Compare aircraft side‑by‑side. Filter by range, cabin, speed, and amenities.",
+    icon: PlaneTakeoff,
   },
   {
-    number: 3,
-    title: "Fly",
-    description: "Confirm your booking, sit back, and enjoy a seamless private flight experience.",
-    icon: CheckCircle,
+    number: "03",
+    title: "Soar",
+    description:
+      "Confirm in minutes. Track your flight live. Arrive effortlessly, anywhere.",
+    icon: PlaneLanding,
   },
 ];
 
-const categories = [
+const pillars = [
   {
-    name: "Light",
-    slug: "light",
-    passengers: "4-6",
-    priceRange: "$3,000 - $6,000/hr",
-    description: "Perfect for short trips with small groups. Efficient and cost-effective.",
-    gradient: "from-sky-500 to-blue-600",
+    icon: ShieldCheck,
+    title: "Safety, non‑negotiable",
+    body: "Only ARGUS Platinum and Wyvern Wingman operators fly in our network.",
   },
   {
-    name: "Midsize",
-    slug: "midsize",
-    passengers: "6-8",
-    priceRange: "$5,000 - $8,000/hr",
-    description: "The ideal balance of comfort, range, and value for medium-distance travel.",
-    gradient: "from-violet-500 to-purple-600",
+    icon: Clock4,
+    title: "Wheels‑up in 4 hours",
+    body: "Same-day departures from every major metro. No queues. No delays.",
   },
   {
-    name: "Super Midsize",
-    slug: "super-midsize",
-    passengers: "8-10",
-    priceRange: "$6,500 - $10,000/hr",
-    description: "Stand-up cabins with coast-to-coast range and spacious interiors.",
-    gradient: "from-amber-500 to-orange-600",
+    icon: Sparkles,
+    title: "Curated cabins",
+    body: "Every interior inspected for condition, finish, and onboard amenities.",
   },
   {
-    name: "Heavy",
-    slug: "heavy",
-    passengers: "10-14",
-    priceRange: "$8,000 - $14,000/hr",
-    description: "Maximum luxury with full galley, bedroom suites, and intercontinental range.",
-    gradient: "from-emerald-500 to-green-600",
+    icon: Headset,
+    title: "Concierge 24/7",
+    body: "A dedicated flight specialist on call, every hour of every day.",
+  },
+];
+
+const tiers = [
+  {
+    name: "Access",
+    price: "Pay‑as‑you‑fly",
+    tagline: "No membership. Book on demand.",
+    highlight: false,
+    features: [
+      "Instant quotes on every aircraft",
+      "Full fleet & empty‑leg access",
+      "Standard 24/7 concierge",
+      "Flexible cancellation on charter",
+    ],
+    cta: "Start Flying",
   },
   {
-    name: "Ultra Long Range",
-    slug: "ultra-long-range",
-    passengers: "12-19",
-    priceRange: "$12,000 - $20,000/hr",
-    description: "The pinnacle of private aviation. Fly nonstop to any destination on earth.",
-    gradient: "from-rose-500 to-red-600",
+    name: "Select",
+    price: "$1,500 / mo",
+    tagline: "For frequent flyers who want more.",
+    highlight: true,
+    features: [
+      "Locked hourly rates",
+      "Priority aircraft sourcing",
+      "Dedicated flight advisor",
+      "Complimentary catering upgrades",
+      "20% off select empty legs",
+    ],
+    cta: "Become a Member",
+  },
+  {
+    name: "Elite",
+    price: "Invite‑only",
+    tagline: "Bespoke aviation for principals.",
+    highlight: false,
+    features: [
+      "Guaranteed availability worldwide",
+      "Fixed global hourly rates",
+      "Private hangar preferences",
+      "White‑glove ground coordination",
+      "Unlimited empty‑leg access",
+    ],
+    cta: "Request an Invite",
   },
 ];
 
 const testimonials = [
   {
+    text: "The booking experience is as refined as the aircraft. EXJET has replaced every other option for our leadership team.",
     name: "Alexandra Chen",
     role: "CEO, Vantage Capital",
-    rating: 5,
-    text: "EXJET transformed the way our executive team travels. Booking is effortless, the aircraft are immaculate, and their concierge service is second to none. We've never looked back.",
   },
   {
+    text: "Between games and training camps I need reliability and discretion. EXJET delivers — every single time.",
     name: "Marcus Whitfield",
     role: "Professional Athlete",
-    rating: 5,
-    text: "Between games and training camps, I need reliability and discretion. EXJET delivers every single time. The app makes last-minute bookings a breeze, even at 2 AM.",
   },
   {
+    text: "We chartered a heavy jet for our team retreat to Aspen. From boarding to arrival, every detail was flawless.",
     name: "Isabella Moreau",
     role: "Creative Director, Lumière Studios",
-    rating: 5,
-    text: "We chartered a heavy jet for our team retreat to Aspen and it was flawless. From the champagne on boarding to the seamless ground transport, every detail was perfect.",
   },
 ];
 
 export default function HomePage() {
-  const featuredJets = (jets as any[]).filter((jet: any) => jet.featured);
+  const featuredJets = jets.filter((j) => j.featured);
 
   return (
-    <main className="min-h-screen">
-      {/* =============================== */}
-      {/* HERO SECTION                     */}
-      {/* =============================== */}
-      <section className="relative bg-gradient-to-b from-gray-900 via-gray-800 to-black overflow-hidden">
-        {/* Decorative background elements */}
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-20 left-1/4 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-1/4 w-80 h-80 bg-white/5 rounded-full blur-3xl" />
-        </div>
+    <>
+      {/* ============================================================ */}
+      {/* HERO — Vercel mesh + Tesla full-viewport + Apple type         */}
+      {/* ============================================================ */}
+      <section className="relative overflow-hidden bg-black text-white">
+        {/* Mesh + grid backdrop */}
+        <div className="pointer-events-none absolute inset-0 mesh-hero" />
+        <div className="pointer-events-none absolute inset-0 bg-linegrid opacity-60" />
+        <div className="pointer-events-none absolute inset-x-0 top-0 h-[1px] bg-gradient-to-r from-transparent via-white/15 to-transparent" />
 
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pt-32 pb-24 text-center">
-          {/* Badge */}
-          <div className="animate-fade-in-up inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-1.5 text-sm text-gray-300 mb-8 backdrop-blur-sm">
-            <span className="inline-block h-2 w-2 rounded-full bg-emerald-400 animate-pulse" />
-            Now serving 50+ destinations worldwide
-          </div>
-
-          {/* Headline */}
-          <h1 className="animate-fade-in-up text-5xl sm:text-6xl lg:text-7xl font-bold tracking-tight text-white mb-6">
-            Fly Private.{" "}
-            <span className="bg-gradient-to-r from-amber-400 via-yellow-300 to-amber-400 bg-clip-text text-transparent">
-              Fly Your Way.
-            </span>
-          </h1>
-
-          {/* Subheadline */}
-          <p className="animate-fade-in-up mx-auto max-w-2xl text-lg sm:text-xl text-gray-400 mb-12 leading-relaxed">
-            Book your private jet in minutes. Access 20+ premium aircraft for any destination worldwide.
+        <div className="relative mx-auto flex min-h-[100svh] max-w-6xl flex-col items-center justify-center px-5 pt-32 pb-16 text-center sm:px-8">
+          {/* Mono eyebrow — Vercel */}
+          <p className="animate-fade-in-up eyebrow-mono text-white/50">
+            [ 01 ] &nbsp;— &nbsp;Global Access, On‑Demand.
           </p>
 
-          {/* Search Bar */}
-          <div className="animate-fade-in-up mx-auto max-w-4xl mb-16">
-            <SearchBar variant="hero" />
+          {/* Headline — Apple display, gradient */}
+          <h1 className="animate-fade-in-up animate-delay-100 display-xl mt-6">
+            <span className="gradient-text">Your jet.</span>
+            <br />
+            <span className="gradient-text">Ready when you are.</span>
+          </h1>
+
+          <p className="animate-fade-in-up animate-delay-200 mx-auto mt-7 max-w-xl text-[17px] leading-relaxed text-white/60">
+            Reserve a private jet to any of 50+ destinations — in under 60
+            seconds. No memberships. No minimums. Just flight.
+          </p>
+
+          {/* Dual CTAs — Tesla pattern */}
+          <div className="animate-fade-in-up animate-delay-300 mt-10 flex flex-col items-center gap-3 sm:flex-row">
+            <Link
+              href="#book"
+              className="inline-flex min-w-[220px] items-center justify-center gap-1.5 rounded-full bg-white px-7 py-3 text-[13px] font-medium text-black transition-colors hover:bg-white/90"
+            >
+              Reserve a Jet
+              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
+            </Link>
+            <Link
+              href="#empty-legs"
+              className="inline-flex min-w-[220px] items-center justify-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-7 py-3 text-[13px] font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/10"
+            >
+              <Tag className="h-3.5 w-3.5" strokeWidth={2} />
+              View Empty Legs
+            </Link>
           </div>
 
-          {/* Trust Indicators */}
-          <div className="animate-fade-in-up grid grid-cols-2 md:grid-cols-4 gap-6 mx-auto max-w-3xl">
-            {trustIndicators.map((indicator) => (
-              <div key={indicator.label} className="flex flex-col items-center gap-2">
-                <div className="flex items-center justify-center w-10 h-10 rounded-full bg-white/5 border border-white/10">
-                  <indicator.icon className="w-5 h-5 text-amber-400" />
-                </div>
-                <span className="text-white font-semibold text-lg">{indicator.label}</span>
-                <span className="text-gray-500 text-sm">{indicator.description}</span>
+          {/* Booking Widget */}
+          <div
+            id="book"
+            className="animate-fade-in-up animate-delay-400 mt-14 w-full max-w-5xl"
+          >
+            <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-black/50 shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+              <FlightBookingWidget />
+            </div>
+          </div>
+
+          {/* Stat bar */}
+          <div className="animate-fade-in-up animate-delay-500 mt-12 grid w-full max-w-4xl grid-cols-2 divide-white/[0.08] border-y border-white/[0.08] md:grid-cols-4 md:divide-x">
+            {stats.map((s) => (
+              <div
+                key={s.caption}
+                className="flex flex-col items-center gap-1 py-5"
+              >
+                <span className="text-xl font-semibold tracking-tight text-white">
+                  {s.label}
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+                  {s.caption}
+                </span>
               </div>
             ))}
           </div>
         </div>
-
-        {/* Bottom fade */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent dark:from-gray-950" />
       </section>
 
-      {/* =============================== */}
-      {/* FEATURED JETS SECTION            */}
-      {/* =============================== */}
-      <section className="py-24 bg-white dark:bg-gray-950">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="flex items-end justify-between mb-12">
-            <div>
-              <p className="text-sm font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-2">
-                Our Fleet
-              </p>
-              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-                Popular Aircraft
-              </h2>
-              <p className="mt-3 text-gray-600 dark:text-gray-400 max-w-xl">
-                Hand-picked jets trusted by executives, celebrities, and discerning travelers around the globe.
-              </p>
-            </div>
-            <Link
-              href="/jets"
-              className="hidden sm:inline-flex items-center gap-2 text-sm font-semibold text-amber-600 hover:text-amber-700 dark:text-amber-400 dark:hover:text-amber-300 transition-colors"
-            >
-              View All Aircraft
-              <ArrowRight className="w-4 h-4" />
-            </Link>
-          </div>
-
-          <JetGrid jets={featuredJets} />
-
-          <div className="mt-10 text-center sm:hidden">
-            <Link
-              href="/jets"
-              className="inline-flex items-center gap-2 rounded-full bg-gray-900 px-8 py-3 text-sm font-semibold text-white hover:bg-gray-800 transition-colors dark:bg-white dark:text-gray-900 dark:hover:bg-gray-100"
-            >
-              View All Aircraft
-              <ArrowRight className="w-4 h-4" />
-            </Link>
+      {/* ============================================================ */}
+      {/* PRESS STRIP — Vercel hairline marquee                          */}
+      {/* ============================================================ */}
+      <section className="relative border-y border-white/[0.08] bg-black py-8">
+        <p className="mb-5 text-center font-mono text-[10px] uppercase tracking-[0.3em] text-white/40">
+          As featured in
+        </p>
+        <div className="relative overflow-hidden">
+          <div className="animate-marquee flex min-w-max items-center gap-16 whitespace-nowrap px-8">
+            {[...pressLogos, ...pressLogos, ...pressLogos].map((logo, i) => (
+              <span
+                key={`${logo}-${i}`}
+                className="text-[13px] font-semibold tracking-[0.25em] text-white/30"
+              >
+                {logo}
+              </span>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* =============================== */}
-      {/* HOW IT WORKS SECTION             */}
-      {/* =============================== */}
-      <section className="py-24 bg-gray-50 dark:bg-gray-900">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-sm font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-2">
-              Simple Process
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-              How It Works
-            </h2>
-            <p className="mt-3 text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-              From search to takeoff in three simple steps. Private jet travel has never been this easy.
-            </p>
+      {/* ============================================================ */}
+      {/* EMPTY LEG DEALS — flyxo-inspired card grid                     */}
+      {/* ============================================================ */}
+      <section
+        id="empty-legs"
+        className="relative overflow-hidden bg-black py-24 sm:py-32"
+      >
+        <div className="pointer-events-none absolute inset-0 mesh-accent" />
+
+        <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+          <div className="mb-12 flex flex-col items-start justify-between gap-6 md:flex-row md:items-end">
+            <div>
+              <p className="eyebrow-mono text-white/50">
+                [ 02 ] &nbsp;— &nbsp;Empty Legs
+              </p>
+              <h2 className="display-lg mt-4 gradient-text">
+                Luxury for less.
+              </h2>
+              <p className="mt-4 max-w-xl text-[17px] leading-relaxed text-white/60">
+                Repositioning flights, discounted up to <span className="text-white">70%</span>. Entire aircraft, no membership required. Book in seconds.
+              </p>
+            </div>
+            <Link
+              href="/search?mode=empty"
+              className="group inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/5 px-4 py-2 text-[13px] text-white transition-colors hover:bg-white/10"
+            >
+              View all deals
+              <ArrowRight
+                className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
+                strokeWidth={2}
+              />
+            </Link>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8 lg:gap-12">
+          <div className="grid gap-4 md:grid-cols-2">
+            {emptyLegs.map((leg) => (
+              <EmptyLegCard key={leg.id} leg={leg} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* CHARTER THE FLEET — white surface (Apple product detail)       */}
+      {/* ============================================================ */}
+      <section className="relative bg-black py-20 sm:py-28">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <div className="overflow-hidden rounded-3xl bg-white p-8 sm:p-14">
+            <div className="mb-12 text-center">
+              <p className="eyebrow-mono text-neutral-500">
+                [ 03 ] &nbsp;— &nbsp;Charter
+              </p>
+              <h2 className="display-lg mt-4 text-neutral-950">
+                Book the entire jet.
+              </h2>
+              <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-neutral-500">
+                Hand‑picked aircraft from our global network. Every jet inspected,
+                every operator certified ARGUS Platinum or Wyvern Wingman.
+              </p>
+            </div>
+
+            <JetGrid jets={featuredJets} />
+
+            <div className="mt-12 flex justify-center">
+              <Link
+                href="/jets"
+                className="group inline-flex items-center gap-1 text-[14px] font-medium text-neutral-900 transition-colors hover:text-neutral-700"
+              >
+                View the entire fleet
+                <ChevronRight
+                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                  strokeWidth={2.25}
+                />
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* HOW IT WORKS — Vercel numbered cards                           */}
+      {/* ============================================================ */}
+      <section className="relative overflow-hidden bg-black py-24 sm:py-32">
+        <div className="pointer-events-none absolute inset-0 bg-dotgrid opacity-40" />
+
+        <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+          <div className="mb-16 text-center">
+            <p className="eyebrow-mono text-white/50">
+              [ 04 ] &nbsp;— &nbsp;Process
+            </p>
+            <h2 className="display-lg mt-4 gradient-text">
+              Three steps. Zero friction.
+            </h2>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
             {steps.map((step) => (
-              <div key={step.number} className="relative text-center group">
-                {/* Connector line (between cards) */}
-                {step.number < 3 && (
-                  <div className="hidden md:block absolute top-12 left-[60%] w-[80%] border-t-2 border-dashed border-gray-300 dark:border-gray-700" />
-                )}
-
-                {/* Number circle */}
-                <div className="relative mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-2xl bg-white shadow-lg border border-gray-100 dark:bg-gray-800 dark:border-gray-700 group-hover:shadow-xl group-hover:-translate-y-1 transition-all duration-300">
-                  <div className="absolute -top-3 -right-3 flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 text-white text-sm font-bold shadow-md">
+              <div
+                key={step.number}
+                className="group relative flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8 transition-colors hover:border-white/20 hover:bg-white/[0.04]"
+              >
+                <div className="flex items-center justify-between">
+                  <span className="font-mono text-[12px] tracking-widest text-white/40">
                     {step.number}
-                  </div>
-                  <step.icon className="h-10 w-10 text-gray-700 dark:text-gray-300" />
+                  </span>
+                  <step.icon
+                    className="h-5 w-5 text-white/70"
+                    strokeWidth={1.5}
+                  />
                 </div>
-
-                <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
+                <h3 className="mt-12 text-[22px] font-semibold tracking-tight text-white">
                   {step.title}
                 </h3>
-                <p className="text-gray-600 dark:text-gray-400 leading-relaxed max-w-xs mx-auto">
+                <p className="mt-3 text-[14px] leading-relaxed text-white/60">
                   {step.description}
                 </p>
               </div>
@@ -239,161 +379,186 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* =============================== */}
-      {/* CATEGORIES SECTION               */}
-      {/* =============================== */}
-      <section className="py-24 bg-white dark:bg-gray-950">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-sm font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-2">
-              Aircraft Classes
+      {/* ============================================================ */}
+      {/* WHY EXJET — Feature pillars                                    */}
+      {/* ============================================================ */}
+      <section className="relative bg-black py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <div className="mb-16 text-center">
+            <p className="eyebrow-mono text-white/50">
+              [ 05 ] &nbsp;— &nbsp;Why EXJET
             </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-              Browse by Category
-            </h2>
-            <p className="mt-3 text-gray-600 dark:text-gray-400 max-w-xl mx-auto">
-              From quick regional hops to transcontinental voyages, find the perfect class for your journey.
-            </p>
-          </div>
-
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-            {categories.map((category) => (
-              <Link
-                key={category.slug}
-                href={`/search?category=${category.slug}`}
-                className="group relative overflow-hidden rounded-2xl p-6 text-white transition-all duration-300 hover:-translate-y-1 hover:shadow-2xl"
-              >
-                {/* Gradient background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${category.gradient} opacity-90 group-hover:opacity-100 transition-opacity`} />
-                <div className="absolute inset-0 bg-black/10" />
-
-                {/* Content */}
-                <div className="relative z-10">
-                  <h3 className="text-xl font-bold mb-1">{category.name}</h3>
-                  <div className="flex items-center gap-3 text-sm text-white/80 mb-4">
-                    <span className="flex items-center gap-1">
-                      <Users className="w-3.5 h-3.5" />
-                      {category.passengers} passengers
-                    </span>
-                  </div>
-                  <p className="text-sm text-white/80 leading-relaxed mb-4">
-                    {category.description}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-sm font-semibold text-white/90">
-                      {category.priceRange}
-                    </span>
-                    <span className="flex items-center gap-1 text-sm font-medium text-white group-hover:translate-x-1 transition-transform">
-                      Explore <ChevronRight className="w-4 h-4" />
-                    </span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* =============================== */}
-      {/* TESTIMONIALS SECTION             */}
-      {/* =============================== */}
-      <section className="py-24 bg-gray-50 dark:bg-gray-900">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <p className="text-sm font-semibold uppercase tracking-wider text-amber-600 dark:text-amber-400 mb-2">
-              Testimonials
-            </p>
-            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-              Trusted by Industry Leaders
+            <h2 className="display-lg mt-4 gradient-text">
+              Designed around you.
             </h2>
           </div>
 
-          <div className="grid md:grid-cols-3 gap-8">
-            {testimonials.map((testimonial) => (
+          <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+            {pillars.map((f) => (
               <div
-                key={testimonial.name}
-                className="rounded-2xl bg-white p-8 shadow-sm border border-gray-100 dark:bg-gray-800 dark:border-gray-700 hover:shadow-lg transition-shadow duration-300"
+                key={f.title}
+                className="group flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8 transition-colors hover:border-white/20 hover:bg-white/[0.04]"
               >
-                {/* Stars */}
-                <div className="flex gap-1 mb-4">
-                  {Array.from({ length: testimonial.rating }).map((_, i) => (
-                    <Star
-                      key={i}
-                      className="w-5 h-5 fill-amber-400 text-amber-400"
-                    />
-                  ))}
-                </div>
-
-                {/* Quote */}
-                <blockquote className="text-gray-700 dark:text-gray-300 leading-relaxed mb-6">
-                  &ldquo;{testimonial.text}&rdquo;
-                </blockquote>
-
-                {/* Author */}
-                <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-gradient-to-br from-amber-400 to-amber-600 text-white font-bold text-sm">
-                    {testimonial.name
-                      .split(" ")
-                      .map((n) => n[0])
-                      .join("")}
-                  </div>
-                  <div>
-                    <p className="font-semibold text-gray-900 dark:text-white text-sm">
-                      {testimonial.name}
-                    </p>
-                    <p className="text-gray-500 dark:text-gray-400 text-xs">
-                      {testimonial.role}
-                    </p>
-                  </div>
-                </div>
+                <f.icon
+                  className="h-6 w-6 text-white/80"
+                  strokeWidth={1.5}
+                />
+                <h3 className="mt-10 text-[17px] font-semibold tracking-tight text-white">
+                  {f.title}
+                </h3>
+                <p className="mt-2 text-[14px] leading-relaxed text-white/55">
+                  {f.body}
+                </p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* =============================== */}
-      {/* CTA SECTION                      */}
-      {/* =============================== */}
-      <section className="relative py-24 bg-gradient-to-b from-gray-900 via-gray-800 to-black overflow-hidden">
-        {/* Decorative elements */}
-        <div className="absolute inset-0">
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-500/5 rounded-full blur-3xl" />
-        </div>
+      {/* ============================================================ */}
+      {/* MEMBERSHIP TIERS — flyxo-style                                 */}
+      {/* ============================================================ */}
+      <section className="relative overflow-hidden bg-black py-24 sm:py-32">
+        <div className="pointer-events-none absolute inset-0 mesh-accent" />
 
-        <div className="relative mx-auto max-w-3xl px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            Ready to{" "}
-            <span className="bg-gradient-to-r from-amber-400 to-yellow-300 bg-clip-text text-transparent">
-              Fly?
-            </span>
-          </h2>
-          <p className="text-lg text-gray-400 mb-10 max-w-xl mx-auto">
-            Your next private jet experience is just a few clicks away. Search available aircraft and book your flight today.
-          </p>
-
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-            <Link
-              href="/search"
-              className="inline-flex items-center gap-2 rounded-full bg-amber-500 px-8 py-4 text-base font-semibold text-gray-900 hover:bg-amber-400 transition-colors shadow-lg shadow-amber-500/20"
-            >
-              <Search className="w-5 h-5" />
-              Search Flights
-            </Link>
-            <Link
-              href="/jets"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-white/5 px-8 py-4 text-base font-semibold text-white hover:bg-white/10 transition-colors backdrop-blur-sm"
-            >
-              Browse Aircraft
-              <ArrowRight className="w-5 h-5" />
-            </Link>
+        <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+          <div className="mb-16 text-center">
+            <p className="eyebrow-mono text-white/50">
+              [ 06 ] &nbsp;— &nbsp;Membership
+            </p>
+            <h2 className="display-lg mt-4 gradient-text">
+              Fly the way that fits.
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-white/60">
+              Book on demand or join one of two membership tiers — each built
+              around how often you fly.
+            </p>
           </div>
 
-          <p className="mt-8 text-sm text-gray-500">
-            No commitment required. Free quotes in under 60 seconds.
-          </p>
+          <div className="grid gap-4 md:grid-cols-3">
+            {tiers.map((t) => (
+              <div
+                key={t.name}
+                className={`relative flex flex-col rounded-2xl border p-8 transition-colors ${
+                  t.highlight
+                    ? "border-white/25 bg-white/[0.06]"
+                    : "border-white/[0.08] bg-white/[0.02] hover:border-white/15"
+                }`}
+              >
+                {t.highlight && (
+                  <span className="absolute -top-2.5 left-6 inline-flex items-center gap-1 rounded-full border border-white/20 bg-black px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-white">
+                    <Zap className="h-3 w-3" strokeWidth={2.25} />
+                    Most popular
+                  </span>
+                )}
+                <div className="flex items-center gap-2">
+                  {t.name === "Access" && <Wallet className="h-4 w-4 text-white/70" strokeWidth={1.5} />}
+                  {t.name === "Select" && <Zap     className="h-4 w-4 text-white/70" strokeWidth={1.5} />}
+                  {t.name === "Elite"  && <Award   className="h-4 w-4 text-white/70" strokeWidth={1.5} />}
+                  <span className="font-mono text-[11px] uppercase tracking-widest text-white/50">
+                    {t.name}
+                  </span>
+                </div>
+                <h3 className="mt-4 text-[26px] font-semibold tracking-tight text-white">
+                  {t.price}
+                </h3>
+                <p className="mt-1 text-[13px] text-white/55">{t.tagline}</p>
+
+                <ul className="mt-8 space-y-3 border-t border-white/[0.08] pt-6 text-[13px]">
+                  {t.features.map((f) => (
+                    <li key={f} className="flex items-start gap-2 text-white/75">
+                      <span className="mt-[7px] inline-block h-1 w-1 rounded-full bg-white/60" />
+                      {f}
+                    </li>
+                  ))}
+                </ul>
+
+                <Link
+                  href={t.name === "Elite" ? "/auth/register" : "/search"}
+                  className={`mt-8 inline-flex items-center justify-center gap-1.5 rounded-full px-5 py-2.5 text-[13px] font-medium transition-colors ${
+                    t.highlight
+                      ? "bg-white text-black hover:bg-white/90"
+                      : "border border-white/15 bg-white/5 text-white hover:bg-white/10"
+                  }`}
+                >
+                  {t.cta}
+                  <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
+                </Link>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
-    </main>
+
+      {/* ============================================================ */}
+      {/* TESTIMONIALS                                                   */}
+      {/* ============================================================ */}
+      <section className="relative bg-black py-24 sm:py-32">
+        <div className="mx-auto max-w-6xl px-5 sm:px-8">
+          <div className="mb-14 text-center">
+            <p className="eyebrow-mono text-white/50">
+              [ 07 ] &nbsp;— &nbsp;In their words
+            </p>
+            <h2 className="display-lg mt-4 gradient-text">
+              Trusted at altitude.
+            </h2>
+          </div>
+
+          <div className="grid gap-4 md:grid-cols-3">
+            {testimonials.map((t) => (
+              <figure
+                key={t.name}
+                className="flex flex-col rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8"
+              >
+                <Quote className="h-5 w-5 text-white/40" strokeWidth={1.5} />
+                <blockquote className="mt-5 text-[16px] leading-relaxed text-white/85">
+                  {t.text}
+                </blockquote>
+                <figcaption className="mt-6 border-t border-white/[0.08] pt-5">
+                  <p className="text-[13px] font-semibold text-white">
+                    {t.name}
+                  </p>
+                  <p className="text-[12px] text-white/50">{t.role}</p>
+                </figcaption>
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ============================================================ */}
+      {/* CLOSING CTA — Tesla full-bleed                                 */}
+      {/* ============================================================ */}
+      <section className="relative flex min-h-[70vh] items-center overflow-hidden bg-black">
+        <div className="pointer-events-none absolute inset-0 mesh-hero opacity-80" />
+        <div className="pointer-events-none absolute inset-0 bg-linegrid opacity-40" />
+
+        <div className="relative mx-auto w-full max-w-4xl px-5 py-28 text-center sm:px-8">
+          <p className="eyebrow-mono text-white/50">
+            [ 08 ] &nbsp;— &nbsp;Cleared for takeoff
+          </p>
+          <h2 className="display-xl mt-6 gradient-text">Clear skies ahead.</h2>
+          <p className="mx-auto mt-6 max-w-lg text-[17px] leading-relaxed text-white/60">
+            Your next flight begins with a single tap. Live availability, transparent pricing, zero friction.
+          </p>
+          <div className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+            <Link
+              href="#book"
+              className="inline-flex min-w-[220px] items-center justify-center gap-1.5 rounded-full bg-white px-8 py-3 text-[13px] font-medium text-black transition-colors hover:bg-white/90"
+            >
+              <Search className="h-3.5 w-3.5" strokeWidth={2.25} />
+              Reserve a Jet
+            </Link>
+            <Link
+              href="#empty-legs"
+              className="inline-flex min-w-[220px] items-center justify-center gap-1.5 rounded-full border border-white/20 bg-white/5 px-8 py-3 text-[13px] font-medium text-white backdrop-blur-sm transition-colors hover:bg-white/10"
+            >
+              <Tag className="h-3.5 w-3.5" strokeWidth={2} />
+              Empty Legs
+            </Link>
+          </div>
+        </div>
+      </section>
+    </>
   );
 }
