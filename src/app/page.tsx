@@ -150,7 +150,7 @@ export default function HomePage() {
         {/* Hero copy — centered, tall, Tesla-style */}
         <div className="relative z-10 mx-auto w-full max-w-6xl flex-1 flex flex-col items-center justify-center px-6 pt-32 text-center">
           <p className="animate-fade-in-up eyebrow text-white/60">
-            Private Aviation, On Demand
+            Global Access, On‑Demand.
           </p>
           <h1 className="animate-fade-in-up animate-delay-100 display-xl mt-5 text-white">
             Your jet.

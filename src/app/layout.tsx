@@ -4,7 +4,7 @@ import { Footer } from "@/components/layout/footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "EXJET — Private Aviation, On Demand",
+  title: "EXJET — Global Access, On-Demand.",
   description:
     "Reserve a private jet in minutes. A minimalist booking experience for a world-class fleet — available on every continent, 24 hours a day.",
 };
