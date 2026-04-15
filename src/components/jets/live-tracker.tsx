@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Plane, Radio, MapPin, Gauge, ArrowUp, Clock, RefreshCw, Wifi, AlertCircle } from "lucide-react";
+import { Plane, Radio, MapPin, Gauge, ArrowUp, Clock, RefreshCw, Wifi } from "lucide-react";
 import { cn } from "@/lib/utils";
 import type { Jet } from "@/types";
 
@@ -50,8 +50,6 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
 
   const fetchPosition = () => {
     setLoading(true);
-    // Simulate API call to ADS-B Exchange
-    // In production: fetch(`https://adsbexchange.com/api/aircraft/v2/registration/${registration}`)
     setTimeout(() => {
       setPosition(generateMockPosition(jet.id));
       setLastUpdate(new Date());
@@ -65,79 +63,83 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
 
   useEffect(() => {
     if (!autoRefresh) return;
-    const interval = setInterval(fetchPosition, 30000); // Refresh every 30s
+    const interval = setInterval(fetchPosition, 30000);
     return () => clearInterval(interval);
   }, [autoRefresh, jet.id]);
 
   if (compact) {
     return (
-      <div className="flex items-center gap-3 px-3 py-2 rounded-lg bg-gray-50 border border-gray-100">
-        <div className={cn(
-          "flex items-center justify-center w-8 h-8 rounded-full",
-          position?.onGround ? "bg-blue-100" : "bg-green-100"
-        )}>
+      <div className="flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.02] px-3 py-2.5">
+        <div
+          className={cn(
+            "flex h-8 w-8 items-center justify-center rounded-full ring-1",
+            position?.onGround
+              ? "bg-white/[0.04] text-white/70 ring-white/10"
+              : "bg-emerald-500/10 text-emerald-300 ring-emerald-400/20"
+          )}
+        >
           {position?.onGround ? (
-            <MapPin className="w-4 h-4 text-blue-600" />
+            <MapPin className="h-4 w-4" strokeWidth={1.75} />
           ) : (
-            <Plane className="w-4 h-4 text-green-600" />
+            <Plane className="h-4 w-4" strokeWidth={1.75} />
           )}
         </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-xs font-medium text-gray-900">
+        <div className="min-w-0 flex-1">
+          <p className="text-[12px] font-medium text-white">
             {loading ? "Locating..." : position?.onGround ? "On Ground" : "In Flight"}
           </p>
-          <p className="text-[10px] text-gray-500">
-            {position?.registration} · Updated {lastUpdate.toLocaleTimeString()}
+          <p className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+            {position?.registration} · {lastUpdate.toLocaleTimeString()}
           </p>
         </div>
-        <div className={cn(
-          "h-2 w-2 rounded-full",
-          loading ? "bg-yellow-400 animate-pulse" : position?.onGround ? "bg-blue-400" : "bg-green-400 animate-pulse"
-        )} />
+        <div
+          className={cn(
+            "h-1.5 w-1.5 rounded-full",
+            loading ? "bg-amber-300 animate-pulse" : position?.onGround ? "bg-white/40" : "bg-emerald-400 animate-pulse"
+          )}
+        />
       </div>
     );
   }
 
   return (
-    <div className="rounded-2xl border border-gray-200 bg-white overflow-hidden">
+    <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-xl">
       {/* Header */}
-      <div className="flex items-center justify-between px-5 py-3 border-b border-gray-100 bg-gray-50">
+      <div className="flex items-center justify-between border-b border-white/[0.08] bg-white/[0.02] px-5 py-3">
         <div className="flex items-center gap-2">
-          <Radio className="w-4 h-4 text-green-500" />
-          <h3 className="text-sm font-semibold text-gray-900">Live Aircraft Tracking</h3>
-          <span className="text-[10px] px-2 py-0.5 rounded-full bg-green-100 text-green-700 font-medium">ADS-B</span>
+          <Radio className="h-3.5 w-3.5 text-emerald-300" strokeWidth={2} />
+          <h3 className="text-[13px] font-semibold tracking-tight text-white">Live Aircraft Tracking</h3>
+          <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-emerald-300 ring-1 ring-emerald-400/20">
+            ADS-B
+          </span>
         </div>
         <div className="flex items-center gap-2">
           <button
             onClick={() => setAutoRefresh(!autoRefresh)}
             className={cn(
-              "text-[10px] px-2 py-1 rounded-full font-medium transition-colors",
-              autoRefresh ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500"
+              "rounded-full px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest transition-colors",
+              autoRefresh
+                ? "bg-emerald-500/10 text-emerald-300 ring-1 ring-emerald-400/20"
+                : "bg-white/[0.04] text-white/50 ring-1 ring-white/10"
             )}
           >
-            {autoRefresh ? "Auto-refresh ON" : "Auto-refresh OFF"}
+            {autoRefresh ? "Auto ON" : "Auto OFF"}
           </button>
           <button
             onClick={fetchPosition}
             disabled={loading}
-            className="p-1.5 rounded-lg hover:bg-gray-100 transition-colors disabled:opacity-50"
+            className="rounded-lg p-1.5 text-white/60 transition-colors hover:bg-white/[0.05] hover:text-white disabled:opacity-50"
           >
-            <RefreshCw className={cn("w-4 h-4 text-gray-500", loading && "animate-spin")} />
+            <RefreshCw className={cn("h-4 w-4", loading && "animate-spin")} strokeWidth={1.75} />
           </button>
         </div>
       </div>
 
       {/* Map Placeholder */}
-      <div className="relative aspect-[2/1] bg-gradient-to-br from-slate-100 via-blue-50 to-slate-100">
-        {/* Grid lines simulating a map */}
-        <div className="absolute inset-0 opacity-20">
-          {Array.from({ length: 8 }).map((_, i) => (
-            <div key={`h-${i}`} className="absolute left-0 right-0 border-t border-slate-300" style={{ top: `${(i + 1) * 12.5}%` }} />
-          ))}
-          {Array.from({ length: 12 }).map((_, i) => (
-            <div key={`v-${i}`} className="absolute top-0 bottom-0 border-l border-slate-300" style={{ left: `${(i + 1) * 8.33}%` }} />
-          ))}
-        </div>
+      <div className="relative aspect-[2/1] overflow-hidden bg-gradient-to-br from-neutral-950 via-black to-neutral-950">
+        {/* Grid */}
+        <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:48px_48px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05),transparent_70%)]" />
 
         {/* Aircraft position */}
         {position && !loading && (
@@ -149,28 +151,29 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
               transform: "translate(-50%, -50%)",
             }}
           >
-            <div className={cn(
-              "relative flex items-center justify-center",
-              !position.onGround && "animate-pulse"
-            )}>
-              {/* Pulse rings */}
+            <div className="relative flex items-center justify-center">
               {!position.onGround && (
                 <>
-                  <div className="absolute w-12 h-12 rounded-full bg-green-400/20 animate-ping" />
-                  <div className="absolute w-8 h-8 rounded-full bg-green-400/30" />
+                  <div className="absolute h-12 w-12 animate-ping rounded-full bg-emerald-400/20" />
+                  <div className="absolute h-8 w-8 rounded-full bg-emerald-400/30" />
                 </>
               )}
-              <div className={cn(
-                "relative w-6 h-6 rounded-full flex items-center justify-center z-10",
-                position.onGround ? "bg-blue-500" : "bg-green-500"
-              )}>
+              <div
+                className={cn(
+                  "relative z-10 flex h-6 w-6 items-center justify-center rounded-full ring-1",
+                  position.onGround
+                    ? "bg-white/10 text-white ring-white/20"
+                    : "bg-emerald-500 text-black ring-emerald-300/50"
+                )}
+              >
                 <Plane
-                  className="w-3.5 h-3.5 text-white"
+                  className="h-3.5 w-3.5"
+                  strokeWidth={2}
                   style={{ transform: `rotate(${position.heading}deg)` }}
                 />
               </div>
             </div>
-            <span className="mt-1 text-[10px] font-semibold text-gray-700 bg-white/80 px-1.5 py-0.5 rounded backdrop-blur-sm">
+            <span className="mt-1 rounded border border-white/10 bg-black/60 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-white/80 backdrop-blur-md">
               {position.registration}
             </span>
           </div>
@@ -178,74 +181,76 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
 
         {loading && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex items-center gap-2 bg-white/90 backdrop-blur-sm px-4 py-2 rounded-full shadow-sm">
-              <Wifi className="w-4 h-4 text-amber-500 animate-pulse" />
-              <span className="text-sm text-gray-600">Acquiring signal...</span>
+            <div className="flex items-center gap-2 rounded-full border border-white/[0.08] bg-black/60 px-4 py-2 backdrop-blur-md">
+              <Wifi className="h-4 w-4 animate-pulse text-emerald-300" strokeWidth={2} />
+              <span className="text-[12px] text-white/70">Acquiring signal...</span>
             </div>
           </div>
         )}
 
-        {/* Map attribution */}
-        <div className="absolute bottom-2 right-2 text-[9px] text-gray-400 bg-white/70 px-2 py-0.5 rounded backdrop-blur-sm">
+        {/* Attribution */}
+        <div className="absolute bottom-2 right-2 rounded border border-white/10 bg-black/60 px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest text-white/40 backdrop-blur-md">
           Data via ADS-B Exchange
         </div>
       </div>
 
       {/* Position Data */}
       {position && !loading && (
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px bg-gray-100">
-          <div className="bg-white p-3 flex flex-col items-center">
-            <div className="flex items-center gap-1 text-gray-400 mb-1">
-              <ArrowUp className="w-3 h-3" style={{ transform: `rotate(${position.heading}deg)` }} />
-              <span className="text-[10px] uppercase tracking-wide">Altitude</span>
-            </div>
-            <span className="text-sm font-semibold text-gray-900">
-              {position.onGround ? "Ground" : `${position.altitude.toLocaleString()} ft`}
-            </span>
-          </div>
-          <div className="bg-white p-3 flex flex-col items-center">
-            <div className="flex items-center gap-1 text-gray-400 mb-1">
-              <Gauge className="w-3 h-3" />
-              <span className="text-[10px] uppercase tracking-wide">Speed</span>
-            </div>
-            <span className="text-sm font-semibold text-gray-900">
-              {position.onGround ? "0" : `${position.speed}`} kts
-            </span>
-          </div>
-          <div className="bg-white p-3 flex flex-col items-center">
-            <div className="flex items-center gap-1 text-gray-400 mb-1">
-              <MapPin className="w-3 h-3" />
-              <span className="text-[10px] uppercase tracking-wide">Position</span>
-            </div>
-            <span className="text-xs font-semibold text-gray-900">
-              {position.lat.toFixed(2)}°N, {Math.abs(position.lng).toFixed(2)}°W
-            </span>
-          </div>
-          <div className="bg-white p-3 flex flex-col items-center">
-            <div className="flex items-center gap-1 text-gray-400 mb-1">
-              <Clock className="w-3 h-3" />
-              <span className="text-[10px] uppercase tracking-wide">Updated</span>
-            </div>
-            <span className="text-xs font-semibold text-gray-900">
-              {lastUpdate.toLocaleTimeString()}
-            </span>
-          </div>
+        <div className="grid grid-cols-2 border-t border-white/[0.08] sm:grid-cols-4">
+          <DataCell
+            icon={<ArrowUp className="h-3 w-3" strokeWidth={2} style={{ transform: `rotate(${position.heading}deg)` }} />}
+            label="Altitude"
+            value={position.onGround ? "Ground" : `${position.altitude.toLocaleString()} ft`}
+          />
+          <DataCell
+            icon={<Gauge className="h-3 w-3" strokeWidth={2} />}
+            label="Speed"
+            value={`${position.onGround ? 0 : position.speed} kts`}
+          />
+          <DataCell
+            icon={<MapPin className="h-3 w-3" strokeWidth={2} />}
+            label="Position"
+            value={`${position.lat.toFixed(2)}°N, ${Math.abs(position.lng).toFixed(2)}°W`}
+          />
+          <DataCell
+            icon={<Clock className="h-3 w-3" strokeWidth={2} />}
+            label="Updated"
+            value={lastUpdate.toLocaleTimeString()}
+          />
         </div>
       )}
 
       {/* Status Bar */}
-      <div className="px-5 py-2 border-t border-gray-100 bg-gray-50 flex items-center justify-between">
+      <div className="flex items-center justify-between border-t border-white/[0.08] bg-white/[0.02] px-5 py-2.5">
         <div className="flex items-center gap-2">
-          <div className={cn(
-            "h-2 w-2 rounded-full",
-            loading ? "bg-yellow-400 animate-pulse" : position?.onGround ? "bg-blue-400" : "bg-green-400 animate-pulse"
-          )} />
-          <span className="text-xs text-gray-500">
-            {loading ? "Acquiring position..." : position?.onGround ? "Aircraft on ground — available for charter" : "Aircraft in flight — tracking live"}
+          <div
+            className={cn(
+              "h-1.5 w-1.5 rounded-full",
+              loading ? "bg-amber-300 animate-pulse" : position?.onGround ? "bg-white/40" : "bg-emerald-400 animate-pulse"
+            )}
+          />
+          <span className="text-[12px] text-white/60">
+            {loading
+              ? "Acquiring position..."
+              : position?.onGround
+              ? "Aircraft on ground — available for charter"
+              : "Aircraft in flight — tracking live"}
           </span>
         </div>
-        <span className="text-[10px] text-gray-400">{position?.registration}</span>
+        <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">{position?.registration}</span>
       </div>
+    </div>
+  );
+}
+
+function DataCell({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+  return (
+    <div className="flex flex-col items-center border-r border-white/[0.06] p-3 last:border-r-0 even:border-r-0 sm:even:border-r sm:last:border-r-0">
+      <div className="mb-1 flex items-center gap-1 text-white/40">
+        {icon}
+        <span className="font-mono text-[10px] uppercase tracking-widest">{label}</span>
+      </div>
+      <span className="text-[12px] font-semibold text-white">{value}</span>
     </div>
   );
 }
