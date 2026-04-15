@@ -4,9 +4,9 @@ import { Footer } from "@/components/layout/footer";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "EXJET | Private Jet Charter",
+  title: "EXJET — Private Aviation, On Demand",
   description:
-    "Book luxury private jet charters on-demand. EXJET delivers seamless booking, world-class safety, and an unrivaled flight experience to destinations worldwide.",
+    "Reserve a private jet in minutes. A minimalist booking experience for a world-class fleet — available on every continent, 24 hours a day.",
 };
 
 export default function RootLayout({
@@ -16,9 +16,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="min-h-screen bg-white text-gray-900 antialiased">
+      <body className="min-h-screen bg-white text-neutral-900 antialiased">
         <Navbar />
-        <main className="pt-16">{children}</main>
+        <main>{children}</main>
         <Footer />
       </body>
     </html>

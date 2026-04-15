@@ -1,37 +1,55 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary-50: #f0f4ff;
-  --color-primary-100: #dbe4ff;
-  --color-primary-200: #bac8ff;
-  --color-primary-300: #91a7ff;
-  --color-primary-400: #748ffc;
-  --color-primary-500: #5c7cfa;
-  --color-primary-600: #4c6ef5;
-  --color-primary-700: #4263eb;
-  --color-primary-800: #3b5bdb;
-  --color-primary-900: #364fc7;
+  --color-primary-50: #f5f5f7;
+  --color-primary-100: #e8e8ed;
+  --color-primary-200: #d2d2d7;
+  --color-primary-300: #86868b;
+  --color-primary-400: #6e6e73;
+  --color-primary-500: #1d1d1f;
+  --color-primary-600: #0a0a0a;
 
-  --color-gold-50: #fff9e6;
-  --color-gold-100: #fff3cc;
-  --color-gold-200: #ffe699;
-  --color-gold-300: #ffd966;
-  --color-gold-400: #ffcc33;
-  --color-gold-500: #f5b800;
-  --color-gold-600: #cc9900;
-  --color-gold-700: #997300;
+  --color-accent-500: #0071e3;
+  --color-accent-600: #0077ed;
 
-  --font-sans: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --font-sans:
+    "SF Pro Display", "SF Pro Text", -apple-system, BlinkMacSystemFont,
+    "Helvetica Neue", "Segoe UI", Roboto, Arial, sans-serif;
 }
 
 html {
   scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: "kern" 1, "liga" 1, "calt" 1;
+  letter-spacing: -0.01em;
+}
+
+/* Display typography — Apple / Tesla headline feel */
+.display-xl {
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 600;
+  line-height: 1.02;
+  letter-spacing: -0.035em;
+}
+
+.display-lg {
+  font-size: clamp(2.25rem, 5vw, 4.25rem);
+  font-weight: 600;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+
+.eyebrow {
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
 }
 
 /* Custom scrollbar */
@@ -43,53 +61,54 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d1d5db;
+  background: #d2d2d7;
   border-radius: 3px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #9ca3af;
+  background: #86868b;
 }
 
-/* Search bar animations */
 @keyframes fadeInUp {
   from {
     opacity: 0;
-    transform: translateY(20px);
+    transform: translateY(16px);
   }
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
 .animate-fade-in-up {
-  animation: fadeInUp 0.6s ease-out forwards;
+  animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
-
 .animate-delay-100 {
   animation-delay: 0.1s;
+  opacity: 0;
 }
 .animate-delay-200 {
-  animation-delay: 0.2s;
+  animation-delay: 0.25s;
+  opacity: 0;
 }
 .animate-delay-300 {
-  animation-delay: 0.3s;
+  animation-delay: 0.4s;
+  opacity: 0;
+}
+.animate-delay-400 {
+  animation-delay: 0.55s;
+  opacity: 0;
 }
 
-/* Glass morphism */
 .glass {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.72);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
 }
-
 .glass-dark {
-  background: rgba(0, 0, 0, 0.6);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: saturate(180%) blur(20px);
+  -webkit-backdrop-filter: saturate(180%) blur(20px);
 }
 
-/* Image carousel dots */
 .carousel-dot {
   transition: all 0.3s ease;
 }
