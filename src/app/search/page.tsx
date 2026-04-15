@@ -32,7 +32,6 @@ function SearchResultsContent() {
   const filteredJets = useMemo(() => {
     let jets = [...(jetsData as Jet[])];
 
-    // Category filter from store or URL
     const activeCategories = categories.length > 0 ? categories : [];
     if (urlCategory && activeCategories.length === 0) {
       const catSlug = urlCategory.replace("-", "_");
@@ -41,7 +40,6 @@ function SearchResultsContent() {
       jets = jets.filter((jet) => activeCategories.includes(jet.category));
     }
 
-    // Price range filter
     if (priceMin != null) {
       jets = jets.filter((jet) => jet.hourlyRate >= priceMin);
     }
@@ -49,13 +47,11 @@ function SearchResultsContent() {
       jets = jets.filter((jet) => jet.hourlyRate <= priceMax);
     }
 
-    // Passenger count filter
     const paxFilter = passengerCount ?? (urlPassengers ? Number(urlPassengers) : null);
     if (paxFilter != null && paxFilter > 0) {
       jets = jets.filter((jet) => jet.passengers >= paxFilter);
     }
 
-    // Sort
     jets.sort((a, b) => {
       switch (sortBy) {
         case "price_asc":
@@ -86,31 +82,35 @@ function SearchResultsContent() {
   }, [mobileFiltersOpen]);
 
   return (
-    <div className="min-h-screen bg-gray-50">
+    <div className="min-h-screen bg-black text-white">
       {/* Compact Search Bar */}
-      <div className="border-b border-gray-200 bg-white">
-        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
+      <div className="border-b border-white/[0.08] bg-black/80 backdrop-blur-xl">
+        <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
           <SearchBar variant="compact" />
         </div>
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-8">
         {/* Top Bar */}
-        <div className="mb-6 flex items-center justify-between">
-          <div className="flex items-center gap-3">
-            <Plane className="h-5 w-5 text-amber-500" />
-            <h1 className="text-lg font-semibold text-gray-900">
-              <span className="text-amber-600">{filteredJets.length}</span>{" "}
-              {filteredJets.length === 1 ? "jet" : "jets"} available
+        <div className="mb-6 flex items-center justify-between gap-4">
+          <div className="flex min-w-0 items-center gap-3">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+              Results
+            </span>
+            <h1 className="text-[14px] font-medium text-white">
+              <span className="text-white">{filteredJets.length}</span>{" "}
+              <span className="text-white/60">
+                {filteredJets.length === 1 ? "jet" : "jets"} available
+              </span>
             </h1>
             {(urlFrom || urlTo) && (
-              <span className="hidden text-sm text-gray-500 sm:inline">
+              <span className="hidden truncate font-mono text-[11px] uppercase tracking-widest text-white/40 sm:inline">
                 {urlFrom && urlTo
                   ? `${urlFrom} → ${urlTo}`
                   : urlFrom
                     ? `from ${urlFrom}`
                     : `to ${urlTo}`}
-                {urlDate ? ` on ${urlDate}` : ""}
+                {urlDate ? ` · ${urlDate}` : ""}
               </span>
             )}
           </div>
@@ -119,7 +119,7 @@ function SearchResultsContent() {
             <select
               value={sortBy ?? "price_asc"}
               onChange={(e) => setSortBy(e.target.value)}
-              className="hidden rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm text-gray-700 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500 md:block"
+              className="hidden rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[12px] text-white outline-none transition-colors hover:border-white/20 focus:border-white/40 md:block [color-scheme:dark]"
             >
               <option value="price_asc">Price: Low to High</option>
               <option value="price_desc">Price: High to Low</option>
@@ -130,9 +130,9 @@ function SearchResultsContent() {
 
             <button
               onClick={() => setMobileFiltersOpen(true)}
-              className="flex items-center gap-2 rounded-lg border border-gray-200 bg-white px-3 py-2 text-sm font-medium text-gray-700 transition-colors hover:border-gray-300 lg:hidden"
+              className="flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-4 py-2 text-[12px] font-medium text-white transition-colors hover:border-white/30 hover:bg-white/[0.06] lg:hidden"
             >
-              <SlidersHorizontal className="h-4 w-4" />
+              <SlidersHorizontal className="h-3.5 w-3.5" strokeWidth={1.75} />
               Filters
             </button>
           </div>
@@ -147,15 +147,7 @@ function SearchResultsContent() {
           </div>
 
           <div className="min-w-0 flex-1">
-            {filteredJets.length > 0 ? (
-              <JetGrid jets={filteredJets} />
-            ) : (
-              <div className="flex flex-col items-center justify-center rounded-2xl border border-dashed border-gray-300 py-20">
-                <Plane className="mb-4 h-12 w-12 text-gray-300" />
-                <h3 className="mb-2 text-lg font-semibold text-gray-700">No jets found</h3>
-                <p className="text-sm text-gray-500">Try adjusting your filters to see more results.</p>
-              </div>
-            )}
+            <JetGrid jets={filteredJets} dark />
           </div>
         </div>
       </div>
@@ -163,11 +155,14 @@ function SearchResultsContent() {
       {/* Mobile Filter Slide-over */}
       {mobileFiltersOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
-          <div className="absolute inset-0 bg-black/40 backdrop-blur-sm" onClick={() => setMobileFiltersOpen(false)} />
+          <div
+            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            onClick={() => setMobileFiltersOpen(false)}
+          />
           <div className="absolute inset-y-0 right-0 flex w-full max-w-sm">
-            <div className="relative flex w-full flex-col overflow-y-auto bg-white shadow-xl">
+            <div className="relative flex w-full flex-col overflow-y-auto bg-black">
               <div className="p-4">
-                <FilterSidebar className="border-0 shadow-none" onClose={() => setMobileFiltersOpen(false)} />
+                <FilterSidebar onClose={() => setMobileFiltersOpen(false)} />
               </div>
             </div>
           </div>
@@ -181,10 +176,12 @@ export default function SearchPage() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-screen items-center justify-center bg-gray-50">
-          <div className="flex items-center gap-3 text-gray-500">
-            <Plane className="h-5 w-5 animate-pulse" />
-            <span className="text-sm">Loading search results...</span>
+        <div className="flex min-h-screen items-center justify-center bg-black">
+          <div className="flex items-center gap-3 text-white/50">
+            <Plane className="h-5 w-5 animate-pulse" strokeWidth={1.5} />
+            <span className="font-mono text-[11px] uppercase tracking-widest">
+              Loading results
+            </span>
           </div>
         </div>
       }

@@ -4,19 +4,41 @@ import { JetCard } from "./jet-card";
 
 interface JetGridProps {
   jets: Jet[];
+  dark?: boolean;
 }
 
-export function JetGrid({ jets }: JetGridProps) {
+export function JetGrid({ jets, dark = true }: JetGridProps) {
   if (!jets || jets.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center">
-        <div className="w-16 h-16 rounded-full bg-gray-100 flex items-center justify-center mb-4">
-          <Plane className="w-8 h-8 text-gray-400" />
+        <div
+          className={
+            dark
+              ? "flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/5 mb-4"
+              : "flex h-16 w-16 items-center justify-center rounded-full bg-neutral-100 mb-4"
+          }
+        >
+          <Plane
+            className={dark ? "h-7 w-7 text-white/50" : "h-7 w-7 text-neutral-400"}
+            strokeWidth={1.5}
+          />
         </div>
-        <h3 className="text-lg font-semibold text-gray-900 mb-1">
+        <h3
+          className={
+            dark
+              ? "text-[16px] font-semibold text-white mb-1"
+              : "text-[16px] font-semibold text-neutral-900 mb-1"
+          }
+        >
           No jets found
         </h3>
-        <p className="text-sm text-gray-500 max-w-sm">
+        <p
+          className={
+            dark
+              ? "text-[13px] text-white/50 max-w-sm"
+              : "text-[13px] text-neutral-500 max-w-sm"
+          }
+        >
           Try adjusting your search filters or check back later for new
           availability.
         </p>
@@ -25,9 +47,9 @@ export function JetGrid({ jets }: JetGridProps) {
   }
 
   return (
-    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {jets.map((jet) => (
-        <JetCard key={jet.id} jet={jet} />
+        <JetCard key={jet.id} jet={jet} dark={dark} />
       ))}
     </div>
   );

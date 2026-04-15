@@ -2,191 +2,244 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Heart, Star, Users, Gauge, Navigation, ChevronLeft, ChevronRight, Plane, MapPin } from "lucide-react";
-import { cn, formatCurrency, getCategoryLabel, getCategoryColor } from "@/lib/utils";
+import {
+  Star,
+  Users,
+  Gauge,
+  Ruler,
+  Plane,
+  ArrowUpRight,
+} from "lucide-react";
+import { cn, formatCurrency, getCategoryLabel } from "@/lib/utils";
 import type { Jet } from "@/types";
-
-const categoryGradients: Record<string, string> = {
-  light: "from-sky-400 to-blue-600",
-  midsize: "from-violet-400 to-purple-600",
-  super_midsize: "from-amber-400 to-orange-600",
-  heavy: "from-emerald-400 to-teal-600",
-  ultra_long: "from-rose-400 to-red-600",
-};
 
 interface JetCardProps {
   jet: Jet;
+  dark?: boolean;
 }
 
-export function JetCard({ jet }: JetCardProps) {
-  const [currentImage, setCurrentImage] = useState(0);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isFavorited, setIsFavorited] = useState(false);
-
-  const imageCount = jet.images?.length || 3;
-  const totalDots = Math.max(imageCount, 3);
-  const gradient = categoryGradients[jet.category] || categoryGradients.light;
-
-  const handlePrev = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentImage((prev) => (prev === 0 ? totalDots - 1 : prev - 1));
-  };
-
-  const handleNext = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setCurrentImage((prev) => (prev === totalDots - 1 ? 0 : prev + 1));
-  };
-
-  const handleFavorite = (e: React.MouseEvent) => {
-    e.preventDefault();
-    e.stopPropagation();
-    setIsFavorited((prev) => !prev);
-  };
+export function JetCard({ jet, dark = true }: JetCardProps) {
+  const [hovered, setHovered] = useState(false);
 
   return (
-    <Link href={`/jets/${jet.id}`}>
-      <div
+    <Link href={`/jets/${jet.id}`} className="block">
+      <article
+        onMouseEnter={() => setHovered(true)}
+        onMouseLeave={() => setHovered(false)}
         className={cn(
-          "group rounded-xl overflow-hidden bg-white border border-gray-200 transition-all duration-300",
-          isHovered && "scale-[1.02] shadow-xl"
+          "group relative overflow-hidden rounded-2xl border transition-all duration-300",
+          dark
+            ? "border-white/[0.08] bg-white/[0.02] hover:border-white/20 hover:bg-white/[0.04]"
+            : "border-neutral-200 bg-white hover:border-neutral-300"
         )}
-        onMouseEnter={() => setIsHovered(true)}
-        onMouseLeave={() => setIsHovered(false)}
       >
-        {/* Image area */}
-        <div className="relative aspect-[16/10] overflow-hidden">
-          <div
-            className={cn(
-              "absolute inset-0 bg-gradient-to-br flex items-center justify-center",
-              gradient
-            )}
-          >
-            <Plane className="w-20 h-20 text-white/30" strokeWidth={1.5} />
+        {/* Image area — dark geometric with plane silhouette */}
+        <div
+          className={cn(
+            "relative aspect-[16/10] overflow-hidden",
+            dark ? "bg-gradient-to-br from-neutral-900 to-black" : "bg-neutral-100"
+          )}
+        >
+          <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06),transparent_60%)]" />
+          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:32px_32px]" />
+
+          <div className="absolute inset-0 flex items-center justify-center">
+            <Plane
+              className={cn(
+                "h-16 w-16 transition-transform duration-500",
+                dark ? "text-white/20" : "text-neutral-300",
+                hovered && "translate-x-2 -translate-y-1"
+              )}
+              strokeWidth={1}
+            />
           </div>
 
-          {/* Favorite button */}
-          <button
-            onClick={handleFavorite}
-            className="absolute top-3 right-3 z-10 p-1.5 rounded-full bg-white/80 backdrop-blur-sm hover:bg-white transition-colors"
-          >
-            <Heart
-              className={cn(
-                "w-5 h-5 transition-colors",
-                isFavorited ? "fill-red-500 text-red-500" : "text-gray-600"
-              )}
-            />
-          </button>
-
-          {/* Category badge */}
-          <div className="absolute top-3 left-3 z-10">
+          {/* Category eyebrow */}
+          <div className="absolute left-4 top-4">
             <span
               className={cn(
-                "px-2.5 py-1 rounded-full text-xs font-semibold",
-                getCategoryColor(jet.category)
+                "rounded-full border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest backdrop-blur-md",
+                dark
+                  ? "border-white/15 bg-black/40 text-white/80"
+                  : "border-neutral-300 bg-white/70 text-neutral-700"
               )}
             >
               {getCategoryLabel(jet.category)}
             </span>
           </div>
 
-          {/* Live indicator */}
-          <div className="absolute bottom-3 left-3 z-10 flex items-center gap-1.5 px-2 py-1 rounded-full bg-black/50 backdrop-blur-sm">
-            <span className="h-2 w-2 rounded-full bg-green-400 animate-pulse" />
-            <span className="text-[10px] font-medium text-white">Available</span>
+          {/* Availability dot */}
+          <div className="absolute left-4 bottom-4 flex items-center gap-1.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" />
+            <span
+              className={cn(
+                "font-mono text-[10px] uppercase tracking-widest",
+                dark ? "text-white/60" : "text-neutral-600"
+              )}
+            >
+              Available
+            </span>
           </div>
 
-          {/* Carousel arrows */}
-          <button
-            onClick={handlePrev}
+          {/* Hover arrow */}
+          <div
             className={cn(
-              "absolute left-2 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/90 shadow-md opacity-0 transition-opacity hover:bg-white",
-              isHovered && "opacity-100"
+              "absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300",
+              dark
+                ? "border-white/15 bg-black/40 text-white backdrop-blur-md"
+                : "border-neutral-300 bg-white/70 text-neutral-800",
+              hovered ? "opacity-100 translate-x-0 -translate-y-0" : "opacity-0 translate-x-1 translate-y-1"
             )}
           >
-            <ChevronLeft className="w-4 h-4 text-gray-700" />
-          </button>
-          <button
-            onClick={handleNext}
-            className={cn(
-              "absolute right-2 top-1/2 -translate-y-1/2 z-10 p-1 rounded-full bg-white/90 shadow-md opacity-0 transition-opacity hover:bg-white",
-              isHovered && "opacity-100"
-            )}
-          >
-            <ChevronRight className="w-4 h-4 text-gray-700" />
-          </button>
-
-          {/* Carousel dots */}
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-1.5 z-10">
-            {Array.from({ length: totalDots }).map((_, i) => (
-              <span
-                key={i}
-                className={cn(
-                  "w-1.5 h-1.5 rounded-full transition-colors",
-                  i === currentImage ? "bg-white" : "bg-white/50"
-                )}
-              />
-            ))}
+            <ArrowUpRight className="h-4 w-4" strokeWidth={2} />
           </div>
         </div>
 
         {/* Content */}
-        <div className="p-4">
-          <div className="flex items-start justify-between mb-1">
-            <div>
-              <h3 className="font-semibold text-gray-900 text-base leading-tight">
+        <div className="p-5">
+          <div className="flex items-start justify-between gap-3">
+            <div className="min-w-0">
+              <h3
+                className={cn(
+                  "truncate text-[15px] font-semibold tracking-tight",
+                  dark ? "text-white" : "text-neutral-950"
+                )}
+              >
                 {jet.name}
               </h3>
-              <p className="text-sm text-gray-500">{jet.manufacturer}</p>
+              <p
+                className={cn(
+                  "mt-0.5 text-[12px]",
+                  dark ? "text-white/50" : "text-neutral-500"
+                )}
+              >
+                {jet.manufacturer}
+              </p>
             </div>
             {jet.rating && (
-              <div className="flex items-center gap-1 shrink-0">
-                <Star className="w-4 h-4 fill-yellow-400 text-yellow-400" />
-                <span className="text-sm font-medium text-gray-900">
+              <div className="flex shrink-0 items-center gap-1">
+                <Star className="h-3.5 w-3.5 fill-white text-white" />
+                <span
+                  className={cn(
+                    "text-[12px] font-medium",
+                    dark ? "text-white" : "text-neutral-900"
+                  )}
+                >
                   {jet.rating.toFixed(1)}
                 </span>
-                {jet.reviewCount != null && (
-                  <span className="text-sm text-gray-500">
-                    ({jet.reviewCount})
-                  </span>
-                )}
               </div>
             )}
           </div>
 
-          {/* Specs row */}
-          <div className="flex items-center gap-4 mt-3 text-sm text-gray-600">
-            <div className="flex items-center gap-1">
-              <Users className="w-4 h-4" />
-              <span>{jet.passengers} pax</span>
-            </div>
-            {jet.speed && (
-              <div className="flex items-center gap-1">
-                <Gauge className="w-4 h-4" />
-                <span>{jet.speed} kts</span>
-              </div>
+          {/* Specs */}
+          <div
+            className={cn(
+              "mt-5 flex items-center gap-4 border-t pt-4",
+              dark ? "border-white/[0.06]" : "border-neutral-200"
             )}
-            {jet.range && (
-              <div className="flex items-center gap-1">
-                <Navigation className="w-4 h-4" />
-                <span>{jet.range} nm</span>
-              </div>
-            )}
+          >
+            <Spec
+              icon={Users}
+              value={`${jet.passengers}`}
+              label="pax"
+              dark={dark}
+            />
+            {jet.speed ? (
+              <Spec
+                icon={Gauge}
+                value={`${jet.speed}`}
+                label="kts"
+                dark={dark}
+              />
+            ) : null}
+            {jet.range ? (
+              <Spec
+                icon={Ruler}
+                value={`${jet.range}`}
+                label="nm"
+                dark={dark}
+              />
+            ) : null}
           </div>
 
           {/* Price */}
-          <div className="mt-3 pt-3 border-t border-gray-100">
-            <p className="text-gray-900">
-              <span className="text-sm text-gray-500">From </span>
-              <span className="font-semibold">
+          <div
+            className={cn(
+              "mt-4 flex items-baseline justify-between border-t pt-4",
+              dark ? "border-white/[0.06]" : "border-neutral-200"
+            )}
+          >
+            <div className="flex items-baseline gap-1">
+              <span
+                className={cn(
+                  "font-mono text-[10px] uppercase tracking-widest",
+                  dark ? "text-white/40" : "text-neutral-500"
+                )}
+              >
+                From
+              </span>
+              <span
+                className={cn(
+                  "text-[18px] font-semibold tracking-tight",
+                  dark ? "text-white" : "text-neutral-950"
+                )}
+              >
                 {formatCurrency(jet.hourlyRate)}
               </span>
-              <span className="text-sm text-gray-500"> /hr</span>
-            </p>
+              <span
+                className={cn(
+                  "text-[12px]",
+                  dark ? "text-white/50" : "text-neutral-500"
+                )}
+              >
+                / hr
+              </span>
+            </div>
+            <span
+              className={cn(
+                "inline-flex items-center gap-1 text-[12px] font-medium transition-transform",
+                dark ? "text-white" : "text-neutral-900",
+                hovered && "translate-x-0.5"
+              )}
+            >
+              View
+              <ArrowUpRight className="h-3 w-3" strokeWidth={2} />
+            </span>
           </div>
         </div>
-      </div>
+      </article>
     </Link>
+  );
+}
+
+function Spec({
+  icon: Icon,
+  value,
+  label,
+  dark,
+}: {
+  icon: typeof Users;
+  value: string;
+  label: string;
+  dark: boolean;
+}) {
+  return (
+    <div className="flex items-center gap-1.5">
+      <Icon
+        className={cn("h-3.5 w-3.5", dark ? "text-white/50" : "text-neutral-400")}
+        strokeWidth={1.75}
+      />
+      <span
+        className={cn(
+          "text-[12px]",
+          dark ? "text-white/80" : "text-neutral-700"
+        )}
+      >
+        <span className="font-medium">{value}</span>{" "}
+        <span className={dark ? "text-white/40" : "text-neutral-400"}>
+          {label}
+        </span>
+      </span>
+    </div>
   );
 }

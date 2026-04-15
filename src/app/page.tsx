@@ -300,38 +300,37 @@ export default function HomePage() {
       </section>
 
       {/* ============================================================ */}
-      {/* CHARTER THE FLEET — white surface (Apple product detail)       */}
+      {/* CHARTER THE FLEET — dark cohesive surface                      */}
       {/* ============================================================ */}
-      <section className="relative bg-black py-20 sm:py-28">
-        <div className="mx-auto max-w-6xl px-5 sm:px-8">
-          <div className="overflow-hidden rounded-3xl bg-white p-8 sm:p-14">
-            <div className="mb-12 text-center">
-              <p className="eyebrow-mono text-neutral-500">
-                [ 03 ] &nbsp;— &nbsp;Charter
-              </p>
-              <h2 className="display-lg mt-4 text-neutral-950">
-                Book the entire jet.
-              </h2>
-              <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-neutral-500">
-                Hand‑picked aircraft from our global network. Every jet inspected,
-                every operator certified ARGUS Platinum or Wyvern Wingman.
-              </p>
-            </div>
+      <section className="relative overflow-hidden bg-black py-24 sm:py-32">
+        <div className="pointer-events-none absolute inset-0 bg-dotgrid opacity-30" />
+        <div className="relative mx-auto max-w-6xl px-5 sm:px-8">
+          <div className="mb-14 text-center">
+            <p className="eyebrow-mono text-white/50">
+              [ 03 ] &nbsp;— &nbsp;Charter
+            </p>
+            <h2 className="display-lg mt-4 gradient-text">
+              Book the entire jet.
+            </h2>
+            <p className="mx-auto mt-4 max-w-xl text-[17px] leading-relaxed text-white/60">
+              Hand‑picked aircraft from our global network. Every jet inspected,
+              every operator certified ARGUS Platinum or Wyvern Wingman.
+            </p>
+          </div>
 
-            <JetGrid jets={featuredJets} />
+          <JetGrid jets={featuredJets} />
 
-            <div className="mt-12 flex justify-center">
-              <Link
-                href="/jets"
-                className="group inline-flex items-center gap-1 text-[14px] font-medium text-neutral-900 transition-colors hover:text-neutral-700"
-              >
-                View the entire fleet
-                <ChevronRight
-                  className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
-                  strokeWidth={2.25}
-                />
-              </Link>
-            </div>
+          <div className="mt-12 flex justify-center">
+            <Link
+              href="/jets"
+              className="group inline-flex items-center gap-1 text-[14px] font-medium text-white transition-colors hover:text-white/80"
+            >
+              View the entire fleet
+              <ChevronRight
+                className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
+                strokeWidth={2.25}
+              />
+            </Link>
           </div>
         </div>
       </section>
