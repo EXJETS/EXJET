@@ -3,13 +3,13 @@
 import { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
-import { Plane, MapPin, Calendar, Users, ArrowRight, ChevronDown } from "lucide-react";
+import { Plane, MapPin, Calendar, Users, ArrowRight } from "lucide-react";
 import jetsData from "@/data/jets.json";
 import airportsData from "@/data/airports.json";
 import { useBookingStore } from "@/stores/booking-store";
 import BookingStepper from "@/components/booking/booking-stepper";
 import TripSummary from "@/components/booking/trip-summary";
-import { cn, formatCurrency, getCategoryLabel } from "@/lib/utils";
+import { formatCurrency, getCategoryLabel } from "@/lib/utils";
 import type { Jet, Airport } from "@/types";
 
 function BookingContent() {
@@ -54,9 +54,14 @@ function BookingContent() {
   const filterAirports = (query: string) => {
     if (!query) return [];
     const q = query.toLowerCase();
-    return airports.filter(
-      (a) => a.code.toLowerCase().includes(q) || a.city.toLowerCase().includes(q) || a.name.toLowerCase().includes(q)
-    ).slice(0, 6);
+    return airports
+      .filter(
+        (a) =>
+          a.code.toLowerCase().includes(q) ||
+          a.city.toLowerCase().includes(q) ||
+          a.name.toLowerCase().includes(q)
+      )
+      .slice(0, 6);
   };
 
   const handleContinue = () => {
@@ -65,13 +70,22 @@ function BookingContent() {
     router.push("/booking/passengers");
   };
 
+  const inputCls =
+    "w-full rounded-lg border border-white/10 bg-white/[0.03] py-3 pl-10 pr-4 text-[13px] text-white placeholder:text-white/30 outline-none focus:border-white/40";
+  const dateInputCls =
+    "w-full rounded-lg border border-white/10 bg-white/[0.03] py-3 pl-10 pr-3 text-[13px] text-white placeholder:text-white/30 outline-none focus:border-white/40 [color-scheme:dark]";
+  const labelCls = "mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-white/60";
+
   if (!jet) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <Plane className="w-12 h-12 text-gray-300 mb-4" />
-        <h2 className="text-xl font-semibold text-gray-900 mb-2">No aircraft selected</h2>
-        <p className="text-gray-500 mb-6">Please select a jet from our fleet first.</p>
-        <Link href="/search" className="px-6 py-3 rounded-xl bg-amber-500 text-white font-semibold hover:bg-amber-600 transition-colors">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-black px-4 text-white">
+        <Plane className="mb-4 h-12 w-12 text-white/20" strokeWidth={1.25} />
+        <h2 className="text-[20px] font-semibold tracking-tight text-white">No aircraft selected</h2>
+        <p className="mt-2 text-[13px] text-white/60">Please select a jet from our fleet first.</p>
+        <Link
+          href="/search"
+          className="mt-6 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-black transition-colors hover:bg-white/90"
+        >
           Browse Jets
         </Link>
       </div>
@@ -79,33 +93,36 @@ function BookingContent() {
   }
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-black text-white">
+      <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         <BookingStepper currentStep={1} />
 
-        <div className="flex flex-col lg:flex-row gap-8 mt-8">
+        <div className="mt-8 flex flex-col gap-8 lg:flex-row">
           {/* Main Form */}
           <div className="flex-1">
             {/* Selected Jet */}
-            <div className="mb-6 p-4 rounded-xl bg-white border border-gray-200 flex items-center gap-4">
-              <div className="w-16 h-12 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center">
-                <Plane className="w-6 h-6 text-white" />
+            <div className="mb-6 flex items-center gap-4 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-4 backdrop-blur-xl">
+              <div className="flex h-12 w-16 items-center justify-center rounded-lg border border-white/[0.08] bg-white/[0.04]">
+                <Plane className="h-5 w-5 text-white/80" strokeWidth={1.75} />
               </div>
-              <div className="flex-1">
-                <h3 className="font-semibold text-gray-900">{jet.name}</h3>
-                <p className="text-sm text-gray-500">{jet.manufacturer} · {getCategoryLabel(jet.category)}</p>
+              <div className="min-w-0 flex-1">
+                <h3 className="truncate text-[14px] font-semibold tracking-tight text-white">{jet.name}</h3>
+                <p className="text-[12px] text-white/50">{jet.manufacturer} · {getCategoryLabel(jet.category)}</p>
               </div>
-              <p className="text-lg font-bold text-amber-600">{formatCurrency(jet.hourlyRate)}/hr</p>
+              <p className="text-[16px] font-semibold tracking-tight text-white">
+                {formatCurrency(jet.hourlyRate)}
+                <span className="text-[12px] font-normal text-white/50">/hr</span>
+              </p>
             </div>
 
-            <div className="bg-white rounded-2xl border border-gray-200 p-6 space-y-6">
-              <h2 className="text-lg font-semibold text-gray-900">Trip Details</h2>
+            <div className="space-y-5 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-xl">
+              <p className="font-mono text-[11px] uppercase tracking-widest text-white/60">Trip Details</p>
 
               {/* Departure Airport */}
               <div className="relative">
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Departure Airport</label>
+                <label className={labelCls}>Departure Airport</label>
                 <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-green-500" />
+                  <MapPin className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-emerald-300" strokeWidth={2} />
                   <input
                     type="text"
                     placeholder="Search departure city or airport..."
@@ -113,23 +130,23 @@ function BookingContent() {
                     onChange={(e) => { setDepSearch(e.target.value); setShowDepDropdown(true); }}
                     onFocus={() => setShowDepDropdown(true)}
                     onBlur={() => setTimeout(() => setShowDepDropdown(false), 200)}
-                    className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                    className={inputCls}
                   />
                 </div>
                 {showDepDropdown && filterAirports(depSearch).length > 0 && (
-                  <div className="absolute z-50 left-0 right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-xl max-h-60 overflow-y-auto">
+                  <div className="absolute left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto rounded-xl border border-white/[0.08] bg-neutral-950 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.8)] backdrop-blur-xl">
                     {filterAirports(depSearch).map((a) => (
                       <button
                         key={a.code}
                         type="button"
                         onMouseDown={(e) => { e.preventDefault(); setDepartureAirport(a); setDepSearch(`${a.city} (${a.code})`); setShowDepDropdown(false); }}
-                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-amber-50 text-left"
+                        className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-white/[0.05]"
                       >
-                        <Plane className="w-4 h-4 text-amber-600" />
+                        <Plane className="h-3.5 w-3.5 text-white/60" strokeWidth={1.75} />
                         <div>
-                          <span className="text-sm font-semibold">{a.code}</span>
-                          <span className="text-sm text-gray-500 ml-2">{a.city}, {a.country}</span>
-                          <p className="text-xs text-gray-400">{a.name}</p>
+                          <span className="text-[13px] font-semibold text-white">{a.code}</span>
+                          <span className="ml-2 text-[13px] text-white/60">{a.city}, {a.country}</span>
+                          <p className="text-[11px] text-white/40">{a.name}</p>
                         </div>
                       </button>
                     ))}
@@ -139,9 +156,9 @@ function BookingContent() {
 
               {/* Arrival Airport */}
               <div className="relative">
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Arrival Airport</label>
+                <label className={labelCls}>Arrival Airport</label>
                 <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-red-500" />
+                  <MapPin className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-red-300" strokeWidth={2} />
                   <input
                     type="text"
                     placeholder="Search arrival city or airport..."
@@ -149,23 +166,23 @@ function BookingContent() {
                     onChange={(e) => { setArrSearch(e.target.value); setShowArrDropdown(true); }}
                     onFocus={() => setShowArrDropdown(true)}
                     onBlur={() => setTimeout(() => setShowArrDropdown(false), 200)}
-                    className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                    className={inputCls}
                   />
                 </div>
                 {showArrDropdown && filterAirports(arrSearch).length > 0 && (
-                  <div className="absolute z-50 left-0 right-0 mt-1 bg-white border border-gray-200 rounded-xl shadow-xl max-h-60 overflow-y-auto">
+                  <div className="absolute left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto rounded-xl border border-white/[0.08] bg-neutral-950 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.8)] backdrop-blur-xl">
                     {filterAirports(arrSearch).map((a) => (
                       <button
                         key={a.code}
                         type="button"
                         onMouseDown={(e) => { e.preventDefault(); setArrivalAirport(a); setArrSearch(`${a.city} (${a.code})`); setShowArrDropdown(false); }}
-                        className="w-full flex items-center gap-3 px-4 py-3 hover:bg-amber-50 text-left"
+                        className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-white/[0.05]"
                       >
-                        <Plane className="w-4 h-4 text-amber-600" />
+                        <Plane className="h-3.5 w-3.5 text-white/60" strokeWidth={1.75} />
                         <div>
-                          <span className="text-sm font-semibold">{a.code}</span>
-                          <span className="text-sm text-gray-500 ml-2">{a.city}, {a.country}</span>
-                          <p className="text-xs text-gray-400">{a.name}</p>
+                          <span className="text-[13px] font-semibold text-white">{a.code}</span>
+                          <span className="ml-2 text-[13px] text-white/60">{a.city}, {a.country}</span>
+                          <p className="text-[11px] text-white/40">{a.name}</p>
                         </div>
                       </button>
                     ))}
@@ -174,30 +191,30 @@ function BookingContent() {
               </div>
 
               {/* Dates */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Departure Date</label>
+                  <label className={labelCls}>Departure Date</label>
                   <div className="relative">
-                    <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <Calendar className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" strokeWidth={1.75} />
                     <input
                       type="date"
                       min={today}
                       value={departureDate}
                       onChange={(e) => setDepartureDate(e.target.value)}
-                      className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                      className={dateInputCls}
                     />
                   </div>
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-gray-700 mb-1.5">Return Date (optional)</label>
+                  <label className={labelCls}>Return Date (optional)</label>
                   <div className="relative">
-                    <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                    <Calendar className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" strokeWidth={1.75} />
                     <input
                       type="date"
                       min={departureDate || today}
                       value={returnDate}
                       onChange={(e) => setReturnDate(e.target.value)}
-                      className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                      className={dateInputCls}
                     />
                   </div>
                 </div>
@@ -205,49 +222,52 @@ function BookingContent() {
 
               {/* Passengers */}
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Number of Passengers</label>
+                <label className={labelCls}>Number of Passengers</label>
                 <div className="flex items-center gap-4">
                   <button
                     onClick={() => setPassengerCount(Math.max(1, passengerCount - 1))}
-                    className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 disabled:opacity-40"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-white transition-colors hover:border-white/30 hover:bg-white/[0.06] disabled:opacity-40"
                     disabled={passengerCount <= 1}
                   >
                     −
                   </button>
                   <div className="flex items-center gap-2">
-                    <Users className="w-5 h-5 text-gray-400" />
-                    <span className="text-lg font-semibold text-gray-900 w-8 text-center">{passengerCount}</span>
+                    <Users className="h-4 w-4 text-white/40" strokeWidth={1.75} />
+                    <span className="w-8 text-center text-[18px] font-semibold text-white">{passengerCount}</span>
                   </div>
                   <button
                     onClick={() => setPassengerCount(Math.min(jet.passengers, passengerCount + 1))}
-                    className="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-gray-600 hover:bg-gray-50 disabled:opacity-40"
+                    className="flex h-10 w-10 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] text-white transition-colors hover:border-white/30 hover:bg-white/[0.06] disabled:opacity-40"
                     disabled={passengerCount >= jet.passengers}
                   >
                     +
                   </button>
-                  <span className="text-sm text-gray-400">Max {jet.passengers}</span>
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">Max {jet.passengers}</span>
                 </div>
               </div>
             </div>
 
             {/* Continue */}
-            <div className="flex justify-between mt-6">
-              <Link href={`/jets/${jet.id}`} className="px-6 py-3 rounded-xl border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 transition-colors">
+            <div className="mt-6 flex justify-between">
+              <Link
+                href={`/jets/${jet.id}`}
+                className="rounded-full border border-white/15 bg-white/[0.03] px-5 py-2.5 text-[12px] font-medium text-white transition-colors hover:border-white/30 hover:bg-white/[0.06]"
+              >
                 Back to Jet
               </Link>
               <button
                 onClick={handleContinue}
                 disabled={!departureAirport || !arrivalAirport || !departureDate}
-                className="px-8 py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold hover:from-amber-600 hover:to-amber-700 transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center gap-2"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-black transition-colors hover:bg-white/90 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Continue to Passengers
-                <ArrowRight className="w-4 h-4" />
+                <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
               </button>
             </div>
           </div>
 
           {/* Sidebar */}
-          <div className="w-full lg:w-80 shrink-0">
+          <div className="w-full shrink-0 lg:w-80">
             <TripSummary />
           </div>
         </div>
@@ -258,7 +278,13 @@ function BookingContent() {
 
 export default function BookingPage() {
   return (
-    <Suspense fallback={<div className="min-h-screen flex items-center justify-center"><Plane className="w-6 h-6 animate-pulse text-gray-400" /></div>}>
+    <Suspense
+      fallback={
+        <div className="flex min-h-screen items-center justify-center bg-black">
+          <Plane className="h-6 w-6 animate-pulse text-white/40" strokeWidth={1.75} />
+        </div>
+      }
+    >
       <BookingContent />
     </Suspense>
   );

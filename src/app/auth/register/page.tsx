@@ -22,150 +22,164 @@ export default function RegisterPage() {
     setTimeout(() => setLoading(false), 1500);
   };
 
+  const inputCls =
+    "w-full rounded-lg border border-white/10 bg-white/[0.03] py-2.5 pl-10 pr-3 text-[13px] text-white placeholder:text-white/30 outline-none focus:border-white/40";
+  const labelCls = "mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-white/60";
+
   return (
-    <div className="min-h-screen bg-gray-50 flex items-center justify-center px-4 py-12">
-      <div className="w-full max-w-md">
+    <div className="relative flex min-h-screen items-center justify-center overflow-hidden bg-black px-4 py-12 text-white">
+      <div className="pointer-events-none absolute inset-0 mesh-hero opacity-80" />
+      <div className="pointer-events-none absolute inset-0 bg-linegrid opacity-40" />
+
+      <div className="relative w-full max-w-md">
         {/* Logo */}
-        <div className="text-center mb-8">
-          <Link href="/" className="inline-flex items-center gap-2 justify-center mb-4">
-            <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-amber-500 to-amber-600">
-              <Plane className="h-5 w-5 text-white" />
+        <div className="mb-8 text-center">
+          <Link href="/" className="mb-5 inline-flex items-center justify-center gap-2">
+            <div className="flex h-9 w-9 items-center justify-center rounded-xl border border-white/15 bg-white/[0.04]">
+              <Plane className="h-4 w-4 text-white" strokeWidth={2} />
             </div>
-            <span className="text-2xl font-bold tracking-tight text-gray-900">EXJET</span>
+            <span className="text-[20px] font-semibold tracking-tight text-white">EXJET</span>
           </Link>
-          <h1 className="text-2xl font-bold text-gray-900">Create your account</h1>
-          <p className="text-sm text-gray-500 mt-1">Join EXJET and fly private today</p>
+          <p className="font-mono text-[11px] uppercase tracking-widest text-white/60">Create Account</p>
+          <h1 className="mt-3 text-[28px] font-semibold tracking-tight text-white">Join EXJET</h1>
+          <p className="mt-1 text-[13px] text-white/60">Fly private, on demand</p>
         </div>
 
         {/* Card */}
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-8">
+        <div className="rounded-2xl border border-white/[0.08] bg-white/[0.02] p-8 backdrop-blur-xl">
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Name Row */}
             <div className="grid grid-cols-2 gap-3">
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">First Name</label>
+                <label className={labelCls}>First Name</label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <User className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-white/40" strokeWidth={1.75} />
                   <input
                     type="text"
                     value={form.firstName}
                     onChange={(e) => update("firstName", e.target.value)}
                     placeholder="John"
                     required
-                    className="w-full pl-10 pr-3 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                    className={inputCls}
                   />
                 </div>
               </div>
               <div>
-                <label className="block text-sm font-medium text-gray-700 mb-1.5">Last Name</label>
+                <label className={labelCls}>Last Name</label>
                 <div className="relative">
-                  <User className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+                  <User className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-white/40" strokeWidth={1.75} />
                   <input
                     type="text"
                     value={form.lastName}
                     onChange={(e) => update("lastName", e.target.value)}
                     placeholder="Doe"
                     required
-                    className="w-full pl-10 pr-3 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                    className={inputCls}
                   />
                 </div>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Email address</label>
+              <label className={labelCls}>Email address</label>
               <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" strokeWidth={1.75} />
                 <input
                   type="email"
                   value={form.email}
                   onChange={(e) => update("email", e.target.value)}
                   placeholder="you@example.com"
                   required
-                  className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                  className={inputCls + " py-3"}
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Phone number</label>
+              <label className={labelCls}>Phone number</label>
               <div className="relative">
-                <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" strokeWidth={1.75} />
                 <input
                   type="tel"
                   value={form.phone}
                   onChange={(e) => update("phone", e.target.value)}
                   placeholder="+1 (555) 000-0000"
-                  className="w-full pl-11 pr-4 py-3 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                  className={inputCls + " py-3"}
                 />
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Password</label>
+              <label className={labelCls}>Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" strokeWidth={1.75} />
                 <input
                   type={showPassword ? "text" : "password"}
                   value={form.password}
                   onChange={(e) => update("password", e.target.value)}
                   placeholder="Min. 8 characters"
                   required
-                  className="w-full pl-11 pr-11 py-3 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                  className={inputCls + " py-3 pr-10"}
                 />
-                <button type="button" onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 transition-colors hover:text-white"
+                >
+                  {showPassword ? <EyeOff className="h-4 w-4" strokeWidth={1.75} /> : <Eye className="h-4 w-4" strokeWidth={1.75} />}
                 </button>
               </div>
             </div>
 
             <div>
-              <label className="block text-sm font-medium text-gray-700 mb-1.5">Confirm Password</label>
+              <label className={labelCls}>Confirm Password</label>
               <div className="relative">
-                <Lock className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-white/40" strokeWidth={1.75} />
                 <input
                   type={showConfirm ? "text" : "password"}
                   value={form.confirmPassword}
                   onChange={(e) => update("confirmPassword", e.target.value)}
                   placeholder="Repeat password"
                   required
-                  className="w-full pl-11 pr-11 py-3 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none"
+                  className={inputCls + " py-3 pr-10"}
                 />
-                <button type="button" onClick={() => setShowConfirm(!showConfirm)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600">
-                  {showConfirm ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                <button
+                  type="button"
+                  onClick={() => setShowConfirm(!showConfirm)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-white/40 transition-colors hover:text-white"
+                >
+                  {showConfirm ? <EyeOff className="h-4 w-4" strokeWidth={1.75} /> : <Eye className="h-4 w-4" strokeWidth={1.75} />}
                 </button>
               </div>
             </div>
 
-            <label className="flex items-start gap-3 cursor-pointer">
+            <label className="flex cursor-pointer items-start gap-3">
               <input
                 type="checkbox"
                 checked={agreedToTerms}
                 onChange={(e) => setAgreedToTerms(e.target.checked)}
-                className="mt-0.5 h-4 w-4 rounded border-gray-300 accent-amber-500"
+                className="mt-0.5 h-4 w-4 rounded border-white/20 bg-white/5 accent-white"
               />
-              <span className="text-sm text-gray-600">
+              <span className="text-[12px] text-white/65">
                 I agree to EXJET&apos;s{" "}
-                <Link href="#" className="text-amber-600 hover:text-amber-700 underline">Terms of Service</Link>
+                <Link href="#" className="text-white underline-offset-4 hover:underline">Terms of Service</Link>
                 {" "}and{" "}
-                <Link href="#" className="text-amber-600 hover:text-amber-700 underline">Privacy Policy</Link>
+                <Link href="#" className="text-white underline-offset-4 hover:underline">Privacy Policy</Link>
               </span>
             </label>
 
             <button
               type="submit"
               disabled={loading || !agreedToTerms}
-              className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold hover:from-amber-600 hover:to-amber-700 transition-all shadow-sm disabled:opacity-60"
+              className="w-full rounded-full bg-white px-6 py-3 text-[13px] font-medium text-black transition-colors hover:bg-white/90 active:scale-[0.98] disabled:opacity-60"
             >
               {loading ? "Creating account..." : "Create Account"}
             </button>
           </form>
 
-          <p className="text-center text-sm text-gray-500 mt-6">
+          <p className="mt-6 text-center text-[13px] text-white/60">
             Already have an account?{" "}
-            <Link href="/auth/login" className="text-amber-600 hover:text-amber-700 font-medium">
+            <Link href="/auth/login" className="font-medium text-white underline-offset-4 hover:underline">
               Sign in
             </Link>
           </p>

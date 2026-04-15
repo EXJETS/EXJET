@@ -1,0 +1,82 @@
+[
+  {
+    "id": "f1-miami",
+    "league": "F1",
+    "event": "Miami Grand Prix",
+    "venue": "Miami International Autodrome",
+    "city": "Miami, FL",
+    "date": "2026-05-03",
+    "endDate": "2026-05-03",
+    "airports": ["KOPF", "KMIA", "KFLL"]
+  },
+  {
+    "id": "f1-monaco",
+    "league": "F1",
+    "event": "Monaco Grand Prix",
+    "venue": "Circuit de Monaco",
+    "city": "Monte Carlo, MC",
+    "date": "2026-05-24",
+    "endDate": "2026-05-24",
+    "airports": ["LFMN", "LIMJ"]
+  },
+  {
+    "id": "f1-austin",
+    "league": "F1",
+    "event": "United States Grand Prix",
+    "venue": "Circuit of the Americas",
+    "city": "Austin, TX",
+    "date": "2026-10-25",
+    "endDate": "2026-10-25",
+    "airports": ["KAUS", "KGTU"]
+  },
+  {
+    "id": "nba-finals",
+    "league": "NBA",
+    "event": "NBA Finals",
+    "venue": "Series venues",
+    "city": "TBD",
+    "date": "2026-06-04",
+    "endDate": "2026-06-22",
+    "airports": ["KTEB", "KLAX", "KBOS", "KMIA"]
+  },
+  {
+    "id": "nfl-super-bowl",
+    "league": "NFL",
+    "event": "Super Bowl LXI",
+    "venue": "SoFi Stadium",
+    "city": "Inglewood, CA",
+    "date": "2027-02-07",
+    "endDate": "2027-02-07",
+    "airports": ["KLAX", "KVNY", "KHHR"]
+  },
+  {
+    "id": "nhl-stanley",
+    "league": "NHL",
+    "event": "Stanley Cup Final",
+    "venue": "Series venues",
+    "city": "TBD",
+    "date": "2026-06-03",
+    "endDate": "2026-06-20",
+    "airports": ["KTEB", "CYYZ", "KBOS"]
+  },
+  {
+    "id": "fifa-wc",
+    "league": "FIFA",
+    "event": "FIFA World Cup",
+    "venue": "Multiple host cities",
+    "city": "USA · Canada · Mexico",
+    "date": "2026-06-11",
+    "endDate": "2026-07-19",
+    "airports": ["KJFK", "KLAX", "CYYZ", "MMMX"]
+  },
+  {
+    "id": "masters",
+    "league": "Masters",
+    "event": "The Masters Tournament",
+    "venue": "Augusta National Golf Club",
+    "city": "Augusta, GA",
+    "date": "2027-04-08",
+    "endDate": "2027-04-11",
+    "airports": ["KAGS", "KDNL"]
+  }
+]

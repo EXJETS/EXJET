@@ -1,0 +1,34 @@
+[
+  {
+    "id": "news-1",
+    "category": "Fleet",
+    "title": "EXJET adds two Gulfstream G700s to North American fleet",
+    "excerpt": "Ultra-long-range capability now available out of Teterboro and Van Nuys for transpacific and transatlantic missions.",
+    "date": "2026-04-12",
+    "readingTime": "3 min"
+  },
+  {
+    "id": "news-2",
+    "category": "Safety",
+    "title": "Every EXJET operator now ARGUS Platinum + IS-BAO Stage 3",
+    "excerpt": "We completed the 2026 audit cycle across every tail in the network — the highest ratings in business aviation.",
+    "date": "2026-04-08",
+    "readingTime": "4 min"
+  },
+  {
+    "id": "news-3",
+    "category": "Product",
+    "title": "Empty legs now bookable in a single tap",
+    "excerpt": "See every repositioning flight in the network in real time. Save up to 75% versus retail charter.",
+    "date": "2026-04-02",
+    "readingTime": "2 min"
+  },
+  {
+    "id": "news-4",
+    "category": "Events",
+    "title": "Your 2026 Grand Prix and Major championship flight guide",
+    "excerpt": "From Monaco to Miami to the Masters — curated routes, slot guidance, and FBO recs.",
+    "date": "2026-03-28",
+    "readingTime": "6 min"
+  }
+]
