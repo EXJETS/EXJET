@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { CheckCircle, Plane, MapPin, Calendar, Users, ArrowRight, Download, Phone } from "lucide-react";
+import { CheckCircle, Plane, MapPin, Calendar, Users, ArrowRight } from "lucide-react";
 import { useBookingStore } from "@/stores/booking-store";
 import BookingStepper from "@/components/booking/booking-stepper";
 import { formatCurrency, getCategoryLabel } from "@/lib/utils";
@@ -13,10 +13,15 @@ export default function ConfirmationPage() {
 
   if (!jet) {
     return (
-      <div className="min-h-screen flex flex-col items-center justify-center">
-        <Plane className="w-12 h-12 text-gray-300 mb-4" />
-        <h2 className="text-xl font-semibold mb-2">No booking found</h2>
-        <Link href="/search" className="px-6 py-3 rounded-xl bg-amber-500 text-white font-semibold">Browse Jets</Link>
+      <div className="flex min-h-screen flex-col items-center justify-center bg-black text-white">
+        <Plane className="mb-4 h-12 w-12 text-white/20" strokeWidth={1.25} />
+        <h2 className="text-[20px] font-semibold tracking-tight">No booking found</h2>
+        <Link
+          href="/search"
+          className="mt-6 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-black hover:bg-white/90"
+        >
+          Browse Jets
+        </Link>
       </div>
     );
   }
@@ -25,114 +30,116 @@ export default function ConfirmationPage() {
   const total = Math.round(basePrice * 1.235);
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <div className="min-h-screen bg-black text-white">
+      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
         <BookingStepper currentStep={4} />
 
         <div className="mt-8 text-center">
           {/* Success Icon */}
-          <div className="inline-flex items-center justify-center w-20 h-20 rounded-full bg-green-100 mb-6">
-            <CheckCircle className="w-10 h-10 text-green-500" />
+          <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-emerald-500/10 ring-1 ring-emerald-400/20">
+            <CheckCircle className="h-8 w-8 text-emerald-300" strokeWidth={1.75} />
           </div>
 
-          <h1 className="text-3xl font-bold text-gray-900 mb-2">Booking Confirmed!</h1>
-          <p className="text-gray-500 mb-2">Your private jet charter has been successfully booked.</p>
-          <p className="text-sm text-gray-400 mb-8">
-            Booking Reference: <span className="font-mono font-bold text-gray-900">{bookingRef}</span>
+          <p className="font-mono text-[11px] uppercase tracking-widest text-emerald-300">Cleared for takeoff</p>
+          <h1 className="mt-3 text-[32px] font-semibold tracking-tight text-white">Booking Confirmed</h1>
+          <p className="mt-2 text-[14px] text-white/60">Your private jet charter has been successfully booked.</p>
+          <p className="mt-3 text-[12px] text-white/50">
+            Booking Reference:{" "}
+            <span className="font-mono font-semibold text-white">{bookingRef}</span>
           </p>
         </div>
 
         {/* Booking Summary Card */}
-        <div className="bg-white rounded-2xl border border-gray-200 shadow-sm p-6 mb-6">
-          <div className="flex items-center gap-4 pb-4 border-b border-gray-100">
-            <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center">
-              <Plane className="w-7 h-7 text-white" />
+        <div className="mt-8 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-xl">
+          <div className="flex items-center gap-4 border-b border-white/[0.08] pb-4">
+            <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-white/[0.08] bg-white/[0.04]">
+              <Plane className="h-6 w-6 text-white/80" strokeWidth={1.75} />
             </div>
             <div>
-              <h3 className="font-bold text-gray-900 text-lg">{jet.name}</h3>
-              <p className="text-sm text-gray-500">{jet.manufacturer} · {getCategoryLabel(jet.category)}</p>
+              <h3 className="text-[16px] font-semibold tracking-tight text-white">{jet.name}</h3>
+              <p className="text-[12px] text-white/50">{jet.manufacturer} · {getCategoryLabel(jet.category)}</p>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 py-4">
-            <div className="flex items-center gap-3">
-              <MapPin className="w-5 h-5 text-green-500" />
-              <div>
-                <p className="text-xs text-gray-400">From</p>
-                <p className="text-sm font-medium">{departureAirport?.city} ({departureAirport?.code})</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <MapPin className="w-5 h-5 text-red-500" />
-              <div>
-                <p className="text-xs text-gray-400">To</p>
-                <p className="text-sm font-medium">{arrivalAirport?.city} ({arrivalAirport?.code})</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Calendar className="w-5 h-5 text-gray-400" />
-              <div>
-                <p className="text-xs text-gray-400">Date</p>
-                <p className="text-sm font-medium">
-                  {departureDate && new Date(departureDate).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" })}
-                </p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Users className="w-5 h-5 text-gray-400" />
-              <div>
-                <p className="text-xs text-gray-400">Passengers</p>
-                <p className="text-sm font-medium">{passengerCount} guest{passengerCount > 1 ? "s" : ""}</p>
-              </div>
-            </div>
+          <div className="grid grid-cols-1 gap-4 py-5 sm:grid-cols-2">
+            <InfoLine
+              icon={<MapPin className="h-4 w-4 text-emerald-300" strokeWidth={2} />}
+              label="From"
+              value={`${departureAirport?.city} (${departureAirport?.code})`}
+            />
+            <InfoLine
+              icon={<MapPin className="h-4 w-4 text-red-300" strokeWidth={2} />}
+              label="To"
+              value={`${arrivalAirport?.city} (${arrivalAirport?.code})`}
+            />
+            <InfoLine
+              icon={<Calendar className="h-4 w-4 text-white/60" strokeWidth={1.75} />}
+              label="Date"
+              value={
+                departureDate
+                  ? new Date(departureDate).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric", year: "numeric" })
+                  : "—"
+              }
+            />
+            <InfoLine
+              icon={<Users className="h-4 w-4 text-white/60" strokeWidth={1.75} />}
+              label="Passengers"
+              value={`${passengerCount} guest${passengerCount > 1 ? "s" : ""}`}
+            />
           </div>
 
-          <div className="pt-4 border-t border-gray-100 flex items-center justify-between">
-            <span className="text-sm text-gray-500">Total Paid</span>
-            <span className="text-2xl font-bold text-amber-600">{formatCurrency(total)}</span>
+          <div className="flex items-baseline justify-between border-t border-white/[0.08] pt-4">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-white/50">Total Paid</span>
+            <span className="text-[24px] font-semibold tracking-tight text-white">{formatCurrency(total)}</span>
           </div>
         </div>
 
         {/* Next Steps */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-6">
-          <h3 className="font-semibold text-gray-900 mb-4">What&apos;s Next?</h3>
-          <div className="space-y-3">
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-0.5">
-                <span className="text-xs font-bold text-amber-600">1</span>
+        <div className="mt-6 rounded-2xl border border-white/[0.08] bg-white/[0.02] p-6 backdrop-blur-xl">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-white/60">What&apos;s Next?</p>
+          <div className="mt-4 space-y-3">
+            {[
+              "You'll receive a confirmation email with your complete itinerary and boarding details.",
+              "Our concierge team will contact you 24 hours before departure to finalize catering and ground transport.",
+              "Arrive at the FBO 15 minutes before your scheduled departure. No lines, no waiting.",
+            ].map((text, i) => (
+              <div key={i} className="flex items-start gap-3">
+                <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-white/[0.08] bg-white/[0.04]">
+                  <span className="font-mono text-[10px] font-semibold text-white">{i + 1}</span>
+                </div>
+                <p className="text-[13px] leading-relaxed text-white/70">{text}</p>
               </div>
-              <p className="text-sm text-gray-600">You&apos;ll receive a confirmation email with your complete itinerary and boarding details.</p>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-0.5">
-                <span className="text-xs font-bold text-amber-600">2</span>
-              </div>
-              <p className="text-sm text-gray-600">Our concierge team will contact you 24 hours before departure to finalize catering and ground transport.</p>
-            </div>
-            <div className="flex items-start gap-3">
-              <div className="w-6 h-6 rounded-full bg-amber-100 flex items-center justify-center shrink-0 mt-0.5">
-                <span className="text-xs font-bold text-amber-600">3</span>
-              </div>
-              <p className="text-sm text-gray-600">Arrive at the FBO 15 minutes before your scheduled departure. No lines, no waiting.</p>
-            </div>
+            ))}
           </div>
         </div>
 
         {/* Actions */}
-        <div className="flex flex-col sm:flex-row gap-3">
+        <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <Link
             href="/dashboard"
-            className="flex-1 text-center py-3 px-6 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold hover:from-amber-600 hover:to-amber-700 transition-all flex items-center justify-center gap-2"
+            className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-black transition-colors hover:bg-white/90 active:scale-[0.98]"
           >
-            View Dashboard <ArrowRight className="w-4 h-4" />
+            View Dashboard <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
           </Link>
           <Link
             href="/search"
-            className="flex-1 text-center py-3 px-6 rounded-xl border border-gray-200 text-gray-700 font-medium hover:bg-gray-50 transition-colors"
+            className="inline-flex flex-1 items-center justify-center rounded-full border border-white/15 bg-white/[0.03] px-6 py-3 text-[13px] font-medium text-white transition-colors hover:border-white/30 hover:bg-white/[0.06]"
           >
             Book Another Flight
           </Link>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function InfoLine({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+  return (
+    <div className="flex items-center gap-3">
+      {icon}
+      <div>
+        <p className="font-mono text-[10px] uppercase tracking-widest text-white/40">{label}</p>
+        <p className="mt-0.5 text-[13px] font-medium text-white">{value}</p>
       </div>
     </div>
   );
