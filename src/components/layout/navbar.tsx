@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
-import { Menu, X, PlaneTakeoff } from "lucide-react";
+import { Menu, X, PlaneTakeoff, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
@@ -23,47 +23,37 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const solid = scrolled || mobileOpen;
-
   return (
     <header
       className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-colors duration-300",
-        solid
-          ? "border-b border-black/5 bg-white/80 backdrop-blur-xl"
+        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
+        scrolled || mobileOpen
+          ? "border-b border-white/[0.08] bg-black/70 backdrop-blur-xl"
           : "bg-transparent"
       )}
     >
       <nav className="mx-auto flex h-14 max-w-6xl items-center justify-between px-5 sm:px-8">
-        {/* Logo */}
+        {/* Wordmark — Vercel-style tight, Geist sans */}
         <Link
           href="/"
-          className={cn(
-            "flex items-center gap-1.5 transition-colors",
-            solid ? "text-neutral-900" : "text-white"
-          )}
+          className="group flex items-center gap-2 text-white"
         >
-          <PlaneTakeoff className="h-4 w-4" strokeWidth={2} />
-          <span className="text-[15px] font-semibold tracking-[0.2em]">
+          <span className="flex h-6 w-6 items-center justify-center rounded-md border border-white/15 bg-white/5 transition-colors group-hover:bg-white/10">
+            <PlaneTakeoff className="h-3.5 w-3.5" strokeWidth={2} />
+          </span>
+          <span className="text-[14px] font-semibold tracking-[0.16em]">
             EXJET
-            <span className={solid ? "text-neutral-400" : "text-white/50"}>
-              .com
-            </span>
+            <span className="text-white/40">.com</span>
           </span>
         </Link>
 
-        {/* Desktop nav links — Apple-style small, evenly spaced */}
-        <ul className="hidden items-center gap-9 md:flex">
+        {/* Desktop nav — small, monospace-caps look */}
+        <ul className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className={cn(
-                  "text-[13px] font-normal transition-colors",
-                  solid
-                    ? "text-neutral-700 hover:text-neutral-950"
-                    : "text-white/80 hover:text-white"
-                )}
+                className="text-[13px] text-white/60 transition-colors hover:text-white"
               >
                 {link.label}
               </Link>
@@ -71,28 +61,24 @@ export function Navbar() {
           ))}
         </ul>
 
-        {/* Desktop CTA — single pill */}
+        {/* CTA — Vercel pill with arrow */}
         <div className="hidden md:flex">
           <Link
             href="/search"
-            className={cn(
-              "inline-flex items-center rounded-full px-4 py-1.5 text-[13px] font-medium transition-colors",
-              solid
-                ? "bg-neutral-900 text-white hover:bg-neutral-700"
-                : "bg-white text-neutral-900 hover:bg-white/90"
-            )}
+            className="group inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-[13px] font-medium text-black transition-colors hover:bg-white/90"
           >
             Reserve
+            <ArrowRight
+              className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
+              strokeWidth={2.25}
+            />
           </Link>
         </div>
 
-        {/* Mobile menu button */}
+        {/* Mobile button */}
         <button
           type="button"
-          className={cn(
-            "inline-flex items-center justify-center rounded-md p-2 md:hidden transition-colors",
-            solid ? "text-neutral-900" : "text-white"
-          )}
+          className="inline-flex items-center justify-center rounded-md p-2 text-white md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
@@ -100,10 +86,10 @@ export function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
+      {/* Mobile sheet */}
       <div
         className={cn(
-          "overflow-hidden border-t border-black/5 bg-white/95 backdrop-blur-xl transition-all duration-300 md:hidden",
+          "overflow-hidden border-t border-white/[0.08] transition-all duration-300 md:hidden",
           mobileOpen ? "max-h-96" : "max-h-0"
         )}
       >
@@ -113,7 +99,7 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="block rounded-lg px-3 py-3 text-[15px] font-medium text-neutral-800 transition-colors hover:bg-neutral-100"
+              className="block rounded-lg px-3 py-3 text-[15px] font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
             >
               {link.label}
             </Link>
@@ -121,9 +107,10 @@ export function Navbar() {
           <Link
             href="/search"
             onClick={() => setMobileOpen(false)}
-            className="mt-2 block rounded-full bg-neutral-900 px-5 py-3 text-center text-sm font-medium text-white"
+            className="mt-2 flex items-center justify-center gap-1.5 rounded-full bg-white px-5 py-3 text-sm font-medium text-black"
           >
             Reserve
+            <ArrowRight className="h-4 w-4" strokeWidth={2.25} />
           </Link>
         </div>
       </div>

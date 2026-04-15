@@ -1,41 +1,48 @@
 import Link from "next/link";
-import { Plane, Instagram, Twitter, Linkedin, Facebook } from "lucide-react";
+import {
+  PlaneTakeoff,
+  Instagram,
+  Twitter,
+  Linkedin,
+  Facebook,
+  ArrowUpRight,
+} from "lucide-react";
 
 const columns = [
   {
-    title: "Company",
+    title: "Book",
     links: [
-      { label: "About Us", href: "/about" },
-      { label: "Careers", href: "/careers" },
-      { label: "Press", href: "/press" },
-      { label: "Blog", href: "/blog" },
+      { label: "Charter a Jet", href: "/search" },
+      { label: "Empty Legs", href: "/search?mode=empty" },
+      { label: "Browse Fleet", href: "/jets" },
+      { label: "Live Tracking", href: "/tracking" },
     ],
   },
   {
-    title: "Services",
+    title: "Company",
     links: [
-      { label: "On-Demand Charter", href: "/services/charter" },
-      { label: "Empty Legs", href: "/services/empty-legs" },
-      { label: "Jet Card", href: "/services/jet-card" },
-      { label: "Group Charter", href: "/services/group" },
+      { label: "About", href: "/about" },
+      { label: "Careers", href: "/careers" },
+      { label: "Press", href: "/press" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {
     title: "Support",
     links: [
       { label: "Help Center", href: "/help" },
-      { label: "Contact Us", href: "/contact" },
       { label: "Safety", href: "/safety" },
-      { label: "FAQs", href: "/faq" },
+      { label: "FAQ", href: "/faq" },
+      { label: "Status", href: "/status" },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Terms of Service", href: "/terms" },
-      { label: "Privacy Policy", href: "/privacy" },
-      { label: "Cookie Policy", href: "/cookies" },
-      { label: "Refund Policy", href: "/refunds" },
+      { label: "Terms", href: "/terms" },
+      { label: "Privacy", href: "/privacy" },
+      { label: "Cookies", href: "/cookies" },
+      { label: "Refunds", href: "/refunds" },
     ],
   },
 ];
@@ -49,38 +56,58 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-gray-800 bg-gray-950 text-gray-400">
-      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
-        {/* Top section */}
-        <div className="grid grid-cols-2 gap-8 md:grid-cols-5">
-          {/* Branding */}
+    <footer className="relative border-t border-white/[0.08] bg-black text-white/60">
+      <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
+        {/* Top — wordmark + columns */}
+        <div className="grid grid-cols-2 gap-10 md:grid-cols-5">
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2">
-              <Plane className="h-5 w-5 text-white" strokeWidth={1.75} />
-              <span className="text-lg font-semibold tracking-[0.18em] text-white">
-                EXJET<span className="text-gray-500">.com</span>
+              <span className="flex h-6 w-6 items-center justify-center rounded-md border border-white/15 bg-white/5">
+                <PlaneTakeoff className="h-3.5 w-3.5 text-white" strokeWidth={2} />
+              </span>
+              <span className="text-[14px] font-semibold tracking-[0.16em] text-white">
+                EXJET
+                <span className="text-white/40">.com</span>
               </span>
             </Link>
-            <p className="mt-4 text-sm leading-relaxed text-gray-500">
-              Global Access, On-Demand. Reserve a private jet in minutes —
+            <p className="mt-5 max-w-xs text-[13px] leading-relaxed text-white/50">
+              Global Access, On‑Demand. Reserve a private jet in minutes —
               curated worldwide fleet, 24/7 concierge.
             </p>
+
+            <div className="mt-6 flex items-center gap-2">
+              {socialLinks.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-white/5 text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+                >
+                  <Icon className="h-3.5 w-3.5" strokeWidth={1.75} />
+                </a>
+              ))}
+            </div>
           </div>
 
-          {/* Link columns */}
           {columns.map((col) => (
             <div key={col.title}>
-              <h3 className="text-sm font-semibold uppercase tracking-wider text-white">
+              <h3 className="font-mono text-[11px] uppercase tracking-widest text-white/40">
                 {col.title}
               </h3>
-              <ul className="mt-4 space-y-3">
+              <ul className="mt-5 space-y-3">
                 {col.links.map((link) => (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="text-sm transition-colors hover:text-white"
+                      className="group inline-flex items-center gap-1 text-[13px] text-white/70 transition-colors hover:text-white"
                     >
                       {link.label}
+                      <ArrowUpRight
+                        className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100"
+                        strokeWidth={1.75}
+                      />
                     </Link>
                   </li>
                 ))}
@@ -89,29 +116,14 @@ export function Footer() {
           ))}
         </div>
 
-        {/* Divider */}
-        <div className="mt-12 border-t border-gray-800" />
-
-        {/* Bottom section */}
-        <div className="mt-8 flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm text-gray-500">
-            &copy; {new Date().getFullYear()} EXJET.com · All rights reserved.
+        {/* Bottom strip */}
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/[0.08] pt-8 text-[12px] sm:flex-row sm:items-center">
+          <p className="font-mono text-white/40">
+            © {new Date().getFullYear()} EXJET.com · All rights reserved.
           </p>
-
-          <div className="flex items-center gap-4">
-            {socialLinks.map(({ icon: Icon, href, label }) => (
-              <a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                className="rounded-full p-2 text-gray-500 transition-colors hover:bg-gray-800 hover:text-white"
-              >
-                <Icon className="h-5 w-5" />
-              </a>
-            ))}
-          </div>
+          <p className="font-mono text-white/40">
+            Global Access, On‑Demand.
+          </p>
         </div>
       </div>
     </footer>
