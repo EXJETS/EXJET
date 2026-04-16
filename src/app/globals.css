@@ -166,6 +166,15 @@ body {
   background: rgba(0, 0, 0, 0.28);
 }
 
+/* Hide scrollbar (used in carousels) */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
 /* ==========================================================
    Motion
    ========================================================== */
