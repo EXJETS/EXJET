@@ -58,10 +58,10 @@ export default function OperatorFleetPage() {
         </div>
         <div className="flex items-center gap-3">
           <div className="flex rounded-xl border border-gray-200 overflow-hidden bg-white">
-            <button onClick={() => setView("grid")} className={cn("px-3 py-2 text-xs font-medium transition-colors", view === "grid" ? "bg-amber-500 text-white" : "text-gray-600 hover:bg-gray-50")}>Grid</button>
-            <button onClick={() => setView("list")} className={cn("px-3 py-2 text-xs font-medium transition-colors", view === "list" ? "bg-amber-500 text-white" : "text-gray-600 hover:bg-gray-50")}>List</button>
+            <button onClick={() => setView("grid")} className={cn("px-3 py-2 text-xs font-medium transition-colors", view === "grid" ? "bg-amber-500 text-neutral-950" : "text-gray-600 hover:bg-gray-50")}>Grid</button>
+            <button onClick={() => setView("list")} className={cn("px-3 py-2 text-xs font-medium transition-colors", view === "list" ? "bg-amber-500 text-neutral-950" : "text-gray-600 hover:bg-gray-50")}>List</button>
           </div>
-          <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500 text-white text-sm font-semibold hover:bg-amber-600 transition-colors">
+          <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-amber-500 text-neutral-950 text-sm font-semibold hover:bg-amber-600 transition-colors">
             <Plus className="w-4 h-4" /> Add Aircraft
           </button>
         </div>
@@ -88,26 +88,26 @@ export default function OperatorFleetPage() {
             <div key={ac.id} className="bg-white rounded-2xl border border-gray-200 overflow-hidden hover:shadow-lg transition-shadow">
               {/* Aircraft visual */}
               <div className={cn("relative h-36 bg-gradient-to-br flex items-center justify-center", categoryGradients[ac.category])}>
-                <Plane className="w-16 h-16 text-white/25" strokeWidth={1} />
+                <Plane className="w-16 h-16 text-neutral-300" strokeWidth={1} />
                 <div className="absolute top-3 left-3"><StatusBadge status={ac.status} dot /></div>
                 <div className="absolute top-3 right-3 flex gap-1">
-                  <button className="p-1.5 rounded-lg bg-white/20 hover:bg-white/30 backdrop-blur-sm transition-colors">
-                    <Edit2 className="w-3.5 h-3.5 text-white" />
+                  <button className="p-1.5 rounded-lg bg-neutral-200 hover:bg-neutral-200 backdrop-blur-sm transition-colors">
+                    <Edit2 className="w-3.5 h-3.5 text-neutral-950" />
                   </button>
-                  <button className="p-1.5 rounded-lg bg-white/20 hover:bg-red-500/50 backdrop-blur-sm transition-colors">
-                    <Trash2 className="w-3.5 h-3.5 text-white" />
+                  <button className="p-1.5 rounded-lg bg-neutral-200 hover:bg-red-100 backdrop-blur-sm transition-colors">
+                    <Trash2 className="w-3.5 h-3.5 text-neutral-950" />
                   </button>
                 </div>
                 <div className="absolute bottom-3 left-3 flex items-center gap-2">
-                  <span className="text-[10px] font-bold font-mono text-white/90 bg-black/30 px-2 py-0.5 rounded backdrop-blur-sm">{ac.reg}</span>
+                  <span className="text-[10px] font-bold font-mono text-neutral-900 bg-neutral-200 px-2 py-0.5 rounded backdrop-blur-sm">{ac.reg}</span>
                   <span className={cn("text-[10px] px-2 py-0.5 rounded-full font-semibold", getCategoryColor(ac.category))}>{getCategoryLabel(ac.category)}</span>
                 </div>
                 {/* Photo count badges */}
                 <div className="absolute bottom-3 right-3 flex gap-1.5">
-                  <span className="flex items-center gap-1 text-[10px] text-white/80 bg-black/30 px-1.5 py-0.5 rounded backdrop-blur-sm">
+                  <span className="flex items-center gap-1 text-[10px] text-neutral-800 bg-neutral-200 px-1.5 py-0.5 rounded backdrop-blur-sm">
                     <Camera className="w-2.5 h-2.5" />{ac.exteriorPhotos}
                   </span>
-                  <span className="flex items-center gap-1 text-[10px] text-white/80 bg-black/30 px-1.5 py-0.5 rounded backdrop-blur-sm">
+                  <span className="flex items-center gap-1 text-[10px] text-neutral-800 bg-neutral-200 px-1.5 py-0.5 rounded backdrop-blur-sm">
                     <Armchair className="w-2.5 h-2.5" />{ac.interiorPhotos}
                   </span>
                 </div>
@@ -168,7 +168,7 @@ export default function OperatorFleetPage() {
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
                       <div className={cn("w-8 h-8 rounded-lg flex items-center justify-center bg-gradient-to-br", categoryGradients[ac.category])}>
-                        <Plane className="w-4 h-4 text-white" />
+                        <Plane className="w-4 h-4 text-neutral-950" />
                       </div>
                       <div>
                         <p className="font-medium text-gray-900">{ac.name}</p>

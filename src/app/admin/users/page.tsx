@@ -74,7 +74,7 @@ export default function AdminUsersPage() {
               <tr key={u.id} className="hover:bg-gray-50 transition-colors">
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white text-xs font-bold">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-neutral-950 text-xs font-bold">
                       {u.name.split(" ").map(n=>n[0]).join("")}
                     </div>
                     <span className="font-medium text-gray-900">{u.name}</span>

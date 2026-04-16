@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ArrowLeft, Plane, MapPin, Calendar, Users, CreditCard, Download, Phone, X } from "lucide-react";
+import { ArrowLeft, Plane, MapPin, Calendar, Users, Download, Phone, X } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 
 export default async function BookingDetailPage({
@@ -9,7 +9,6 @@ export default async function BookingDetailPage({
 }) {
   const { id } = await params;
 
-  // Sample booking data
   const booking = {
     id,
     ref: `EXJ-${id.toUpperCase().slice(-6)}`,
@@ -35,117 +34,129 @@ export default async function BookingDetailPage({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <Link href="/dashboard" className="inline-flex items-center gap-2 text-gray-600 hover:text-gray-900 text-sm mb-6">
-          <ArrowLeft className="w-4 h-4" /> Back to Dashboard
+    <div className="min-h-screen bg-white text-neutral-950">
+      <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
+        <Link
+          href="/dashboard"
+          className="mb-6 inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-950"
+        >
+          <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2} /> Back to Dashboard
         </Link>
 
         {/* Header */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-6">
-          <div className="flex items-start justify-between mb-4">
+        <div className="mb-6 rounded-2xl border border-neutral-200 bg-white p-6 backdrop-blur-xl">
+          <div className="mb-3 flex items-start justify-between">
             <div className="flex items-center gap-4">
-              <div className="w-14 h-14 rounded-xl bg-gradient-to-br from-rose-400 to-red-600 flex items-center justify-center">
-                <Plane className="w-7 h-7 text-white" />
+              <div className="flex h-14 w-14 items-center justify-center rounded-xl border border-neutral-200 bg-neutral-100">
+                <Plane className="h-6 w-6 text-neutral-800" strokeWidth={1.75} />
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gray-900">{booking.jet}</h1>
-                <p className="text-sm text-gray-500">{booking.manufacturer} · {booking.category}</p>
+                <h1 className="text-[20px] font-semibold tracking-tight text-neutral-950">{booking.jet}</h1>
+                <p className="text-[12px] text-neutral-500">{booking.manufacturer} · {booking.category}</p>
               </div>
             </div>
-            <span className="px-3 py-1 rounded-full text-xs font-semibold bg-green-100 text-green-700 capitalize">
+            <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-emerald-700 ring-1 ring-emerald-200">
               {booking.status}
             </span>
           </div>
-          <p className="text-sm text-gray-400">Booking Ref: <span className="font-mono font-bold text-gray-700">{booking.ref}</span></p>
+          <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+            Booking Ref: <span className="font-semibold text-neutral-800">{booking.ref}</span>
+          </p>
         </div>
 
         {/* Flight Info */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-6">
-          <h2 className="font-semibold text-gray-900 mb-4">Flight Information</h2>
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <div className="flex items-center gap-3">
-              <MapPin className="w-5 h-5 text-green-500" />
-              <div>
-                <p className="text-xs text-gray-400">From</p>
-                <p className="text-sm font-medium">{booking.from} ({booking.fromCode})</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <MapPin className="w-5 h-5 text-red-500" />
-              <div>
-                <p className="text-xs text-gray-400">To</p>
-                <p className="text-sm font-medium">{booking.to} ({booking.toCode})</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Calendar className="w-5 h-5 text-gray-400" />
-              <div>
-                <p className="text-xs text-gray-400">Departure</p>
-                <p className="text-sm font-medium">{new Date(booking.date).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}</p>
-              </div>
-            </div>
-            <div className="flex items-center gap-3">
-              <Users className="w-5 h-5 text-gray-400" />
-              <div>
-                <p className="text-xs text-gray-400">Passengers</p>
-                <p className="text-sm font-medium">{booking.passengers} guests</p>
-              </div>
-            </div>
+        <div className="mb-6 rounded-2xl border border-neutral-200 bg-white p-6 backdrop-blur-xl">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-neutral-600">Flight Information</p>
+          <div className="mt-4 grid grid-cols-1 gap-4 sm:grid-cols-2">
+            <InfoItem
+              icon={<MapPin className="h-4 w-4 text-emerald-700" strokeWidth={2} />}
+              label="From"
+              value={`${booking.from} (${booking.fromCode})`}
+            />
+            <InfoItem
+              icon={<MapPin className="h-4 w-4 text-red-700" strokeWidth={2} />}
+              label="To"
+              value={`${booking.to} (${booking.toCode})`}
+            />
+            <InfoItem
+              icon={<Calendar className="h-4 w-4 text-neutral-600" strokeWidth={1.75} />}
+              label="Departure"
+              value={new Date(booking.date).toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric", year: "numeric" })}
+            />
+            <InfoItem
+              icon={<Users className="h-4 w-4 text-neutral-600" strokeWidth={1.75} />}
+              label="Passengers"
+              value={`${booking.passengers} guests`}
+            />
           </div>
         </div>
 
         {/* Passengers */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-6">
-          <h2 className="font-semibold text-gray-900 mb-4">Passenger Manifest</h2>
-          <div className="space-y-3">
+        <div className="mb-6 rounded-2xl border border-neutral-200 bg-white p-6 backdrop-blur-xl">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-neutral-600">Passenger Manifest</p>
+          <div className="mt-4">
             {booking.passengerList.map((p, i) => (
-              <div key={i} className="flex items-center justify-between py-2 border-b border-gray-100 last:border-0">
+              <div
+                key={i}
+                className="flex items-center justify-between border-b border-neutral-200 py-3 last:border-0"
+              >
                 <div>
-                  <p className="text-sm font-medium text-gray-900">{p.name}</p>
-                  <p className="text-xs text-gray-500">{p.email}</p>
+                  <p className="text-[13px] font-medium text-neutral-950">{p.name}</p>
+                  <p className="text-[11px] text-neutral-500">{p.email}</p>
                 </div>
-                <span className="text-xs text-gray-400 font-mono">{p.passport}</span>
+                <span className="font-mono text-[11px] text-neutral-400">{p.passport}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Price Breakdown */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-6 mb-6">
-          <h2 className="font-semibold text-gray-900 mb-4">Price Breakdown</h2>
-          <div className="space-y-2">
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Base charter price</span>
-              <span>{formatCurrency(booking.basePrice)}</span>
+        <div className="mb-6 rounded-2xl border border-neutral-200 bg-white p-6 backdrop-blur-xl">
+          <p className="font-mono text-[11px] uppercase tracking-widest text-neutral-600">Price Breakdown</p>
+          <div className="mt-4 space-y-2.5">
+            <div className="flex justify-between text-[13px]">
+              <span className="text-neutral-600">Base charter price</span>
+              <span className="text-neutral-950">{formatCurrency(booking.basePrice)}</span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Fuel surcharge</span>
-              <span>{formatCurrency(booking.fuelSurcharge)}</span>
+            <div className="flex justify-between text-[13px]">
+              <span className="text-neutral-600">Fuel surcharge</span>
+              <span className="text-neutral-950">{formatCurrency(booking.fuelSurcharge)}</span>
             </div>
-            <div className="flex justify-between text-sm">
-              <span className="text-gray-500">Taxes & fees</span>
-              <span>{formatCurrency(booking.taxes)}</span>
+            <div className="flex justify-between text-[13px]">
+              <span className="text-neutral-600">Taxes &amp; fees</span>
+              <span className="text-neutral-950">{formatCurrency(booking.taxes)}</span>
             </div>
-            <div className="flex justify-between font-bold pt-3 border-t border-gray-200">
-              <span>Total</span>
-              <span className="text-amber-600">{formatCurrency(booking.total)}</span>
+            <div className="flex items-baseline justify-between border-t border-neutral-200 pt-3">
+              <span className="text-[14px] font-semibold text-neutral-950">Total</span>
+              <span className="text-[20px] font-semibold tracking-tight text-neutral-950">{formatCurrency(booking.total)}</span>
             </div>
           </div>
         </div>
 
         {/* Actions */}
         <div className="flex flex-wrap gap-3">
-          <button className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50">
-            <Download className="w-4 h-4" /> Download Itinerary
+          <button className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-5 py-2.5 text-[12px] font-medium text-neutral-950 transition-colors hover:border-neutral-400 hover:bg-neutral-100">
+            <Download className="h-3.5 w-3.5" strokeWidth={1.75} /> Download Itinerary
           </button>
-          <button className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50">
-            <Phone className="w-4 h-4" /> Contact Support
+          <button className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-5 py-2.5 text-[12px] font-medium text-neutral-950 transition-colors hover:border-neutral-400 hover:bg-neutral-100">
+            <Phone className="h-3.5 w-3.5" strokeWidth={1.75} /> Contact Support
           </button>
-          <button className="flex items-center gap-2 px-5 py-2.5 rounded-xl border border-red-200 text-sm font-medium text-red-600 hover:bg-red-50">
-            <X className="w-4 h-4" /> Cancel Booking
+          <button className="inline-flex items-center gap-2 rounded-full bg-red-50 px-5 py-2.5 text-[12px] font-medium text-red-700 ring-1 ring-red-200 transition-colors hover:bg-red-500/15">
+            <X className="h-3.5 w-3.5" strokeWidth={1.75} /> Cancel Booking
           </button>
         </div>
+      </div>
+    </div>
+  );
+}
+
+function InfoItem({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
+  return (
+    <div className="flex items-center gap-3">
+      {icon}
+      <div>
+        <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">{label}</p>
+        <p className="mt-0.5 text-[13px] font-medium text-neutral-950">{value}</p>
       </div>
     </div>
   );

@@ -69,13 +69,13 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
 
   if (compact) {
     return (
-      <div className="flex items-center gap-3 rounded-xl border border-white/[0.08] bg-white/[0.02] px-3 py-2.5">
+      <div className="flex items-center gap-3 rounded-xl border border-neutral-200 bg-white px-3 py-2.5">
         <div
           className={cn(
             "flex h-8 w-8 items-center justify-center rounded-full ring-1",
             position?.onGround
-              ? "bg-white/[0.04] text-white/70 ring-white/10"
-              : "bg-emerald-500/10 text-emerald-300 ring-emerald-400/20"
+              ? "bg-neutral-100 text-neutral-700 ring-neutral-200"
+              : "bg-emerald-50 text-emerald-700 ring-emerald-200"
           )}
         >
           {position?.onGround ? (
@@ -85,17 +85,17 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
           )}
         </div>
         <div className="min-w-0 flex-1">
-          <p className="text-[12px] font-medium text-white">
+          <p className="text-[12px] font-medium text-neutral-950">
             {loading ? "Locating..." : position?.onGround ? "On Ground" : "In Flight"}
           </p>
-          <p className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
             {position?.registration} · {lastUpdate.toLocaleTimeString()}
           </p>
         </div>
         <div
           className={cn(
             "h-1.5 w-1.5 rounded-full",
-            loading ? "bg-amber-300 animate-pulse" : position?.onGround ? "bg-white/40" : "bg-emerald-400 animate-pulse"
+            loading ? "bg-amber-300 animate-pulse" : position?.onGround ? "bg-neutral-300" : "bg-emerald-500 animate-pulse"
           )}
         />
       </div>
@@ -103,13 +103,13 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-xl">
+    <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white backdrop-blur-xl">
       {/* Header */}
-      <div className="flex items-center justify-between border-b border-white/[0.08] bg-white/[0.02] px-5 py-3">
+      <div className="flex items-center justify-between border-b border-neutral-200 bg-white px-5 py-3">
         <div className="flex items-center gap-2">
-          <Radio className="h-3.5 w-3.5 text-emerald-300" strokeWidth={2} />
-          <h3 className="text-[13px] font-semibold tracking-tight text-white">Live Aircraft Tracking</h3>
-          <span className="inline-flex items-center rounded-full bg-emerald-500/10 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-emerald-300 ring-1 ring-emerald-400/20">
+          <Radio className="h-3.5 w-3.5 text-emerald-700" strokeWidth={2} />
+          <h3 className="text-[13px] font-semibold tracking-tight text-neutral-950">Live Aircraft Tracking</h3>
+          <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-emerald-700 ring-1 ring-emerald-200">
             ADS-B
           </span>
         </div>
@@ -119,8 +119,8 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
             className={cn(
               "rounded-full px-2.5 py-1 font-mono text-[10px] uppercase tracking-widest transition-colors",
               autoRefresh
-                ? "bg-emerald-500/10 text-emerald-300 ring-1 ring-emerald-400/20"
-                : "bg-white/[0.04] text-white/50 ring-1 ring-white/10"
+                ? "bg-emerald-50 text-emerald-700 ring-1 ring-emerald-200"
+                : "bg-neutral-100 text-neutral-500 ring-1 ring-neutral-200"
             )}
           >
             {autoRefresh ? "Auto ON" : "Auto OFF"}
@@ -128,7 +128,7 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
           <button
             onClick={fetchPosition}
             disabled={loading}
-            className="rounded-lg p-1.5 text-white/60 transition-colors hover:bg-white/[0.05] hover:text-white disabled:opacity-50"
+            className="rounded-lg p-1.5 text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-950 disabled:opacity-50"
           >
             <RefreshCw className={cn("h-4 w-4", loading && "animate-spin")} strokeWidth={1.75} />
           </button>
@@ -136,10 +136,10 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
       </div>
 
       {/* Map Placeholder */}
-      <div className="relative aspect-[2/1] overflow-hidden bg-gradient-to-br from-neutral-950 via-black to-neutral-950">
+      <div className="relative aspect-[2/1] overflow-hidden bg-gradient-to-br from-neutral-50 via-neutral-100 to-neutral-50">
         {/* Grid */}
         <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.04)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.04)_1px,transparent_1px)] bg-[size:48px_48px]" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.05),transparent_70%)]" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(0,0,0,0.04),transparent_70%)]" />
 
         {/* Aircraft position */}
         {position && !loading && (
@@ -162,8 +162,8 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
                 className={cn(
                   "relative z-10 flex h-6 w-6 items-center justify-center rounded-full ring-1",
                   position.onGround
-                    ? "bg-white/10 text-white ring-white/20"
-                    : "bg-emerald-500 text-black ring-emerald-300/50"
+                    ? "bg-neutral-100 text-neutral-950 ring-neutral-300"
+                    : "bg-emerald-500 text-emerald-950 ring-emerald-200"
                 )}
               >
                 <Plane
@@ -173,7 +173,7 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
                 />
               </div>
             </div>
-            <span className="mt-1 rounded border border-white/10 bg-black/60 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-white/80 backdrop-blur-md">
+            <span className="mt-1 rounded border border-neutral-200 bg-white/80 px-1.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-neutral-800 backdrop-blur-md">
               {position.registration}
             </span>
           </div>
@@ -181,22 +181,22 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
 
         {loading && (
           <div className="absolute inset-0 flex items-center justify-center">
-            <div className="flex items-center gap-2 rounded-full border border-white/[0.08] bg-black/60 px-4 py-2 backdrop-blur-md">
-              <Wifi className="h-4 w-4 animate-pulse text-emerald-300" strokeWidth={2} />
-              <span className="text-[12px] text-white/70">Acquiring signal...</span>
+            <div className="flex items-center gap-2 rounded-full border border-neutral-200 bg-white/80 px-4 py-2 backdrop-blur-md">
+              <Wifi className="h-4 w-4 animate-pulse text-emerald-700" strokeWidth={2} />
+              <span className="text-[12px] text-neutral-700">Acquiring signal...</span>
             </div>
           </div>
         )}
 
         {/* Attribution */}
-        <div className="absolute bottom-2 right-2 rounded border border-white/10 bg-black/60 px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest text-white/40 backdrop-blur-md">
+        <div className="absolute bottom-2 right-2 rounded border border-neutral-200 bg-white/80 px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest text-neutral-400 backdrop-blur-md">
           Data via ADS-B Exchange
         </div>
       </div>
 
       {/* Position Data */}
       {position && !loading && (
-        <div className="grid grid-cols-2 border-t border-white/[0.08] sm:grid-cols-4">
+        <div className="grid grid-cols-2 border-t border-neutral-200 sm:grid-cols-4">
           <DataCell
             icon={<ArrowUp className="h-3 w-3" strokeWidth={2} style={{ transform: `rotate(${position.heading}deg)` }} />}
             label="Altitude"
@@ -221,15 +221,15 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
       )}
 
       {/* Status Bar */}
-      <div className="flex items-center justify-between border-t border-white/[0.08] bg-white/[0.02] px-5 py-2.5">
+      <div className="flex items-center justify-between border-t border-neutral-200 bg-white px-5 py-2.5">
         <div className="flex items-center gap-2">
           <div
             className={cn(
               "h-1.5 w-1.5 rounded-full",
-              loading ? "bg-amber-300 animate-pulse" : position?.onGround ? "bg-white/40" : "bg-emerald-400 animate-pulse"
+              loading ? "bg-amber-300 animate-pulse" : position?.onGround ? "bg-neutral-300" : "bg-emerald-500 animate-pulse"
             )}
           />
-          <span className="text-[12px] text-white/60">
+          <span className="text-[12px] text-neutral-600">
             {loading
               ? "Acquiring position..."
               : position?.onGround
@@ -237,7 +237,7 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
               : "Aircraft in flight — tracking live"}
           </span>
         </div>
-        <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">{position?.registration}</span>
+        <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">{position?.registration}</span>
       </div>
     </div>
   );
@@ -245,12 +245,12 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
 
 function DataCell({ icon, label, value }: { icon: React.ReactNode; label: string; value: string }) {
   return (
-    <div className="flex flex-col items-center border-r border-white/[0.06] p-3 last:border-r-0 even:border-r-0 sm:even:border-r sm:last:border-r-0">
-      <div className="mb-1 flex items-center gap-1 text-white/40">
+    <div className="flex flex-col items-center border-r border-neutral-200 p-3 last:border-r-0 even:border-r-0 sm:even:border-r sm:last:border-r-0">
+      <div className="mb-1 flex items-center gap-1 text-neutral-400">
         {icon}
         <span className="font-mono text-[10px] uppercase tracking-widest">{label}</span>
       </div>
-      <span className="text-[12px] font-semibold text-white">{value}</span>
+      <span className="text-[12px] font-semibold text-neutral-950">{value}</span>
     </div>
   );
 }

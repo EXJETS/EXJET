@@ -47,7 +47,7 @@ export default function AdminOperatorsPage() {
     <div className="p-6 max-w-7xl mx-auto w-full">
       <div className="flex items-center justify-between mb-6">
         <h1 className="text-2xl font-bold text-gray-900">Operators</h1>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-900 text-white text-sm font-semibold hover:bg-gray-800">
+        <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-900 text-neutral-950 text-sm font-semibold hover:bg-gray-800">
           <Plus className="w-4 h-4" /> Add Operator
         </button>
       </div>
@@ -75,7 +75,7 @@ export default function AdminOperatorsPage() {
                 className={`w-full text-left bg-white rounded-2xl border p-5 hover:shadow-md transition-all ${selected?.id === op.id ? "border-amber-300 shadow-md" : "border-gray-200"}`}>
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-white font-bold text-sm">{op.initials}</div>
+                    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-neutral-950 font-bold text-sm">{op.initials}</div>
                     <div>
                       <div className="flex items-center gap-2">
                         <p className="font-semibold text-gray-900">{op.name}</p>
@@ -103,7 +103,7 @@ export default function AdminOperatorsPage() {
             <div className="bg-white rounded-2xl border border-gray-200 p-6 sticky top-6">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-white font-bold text-lg">{selected.initials}</div>
+                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-neutral-950 font-bold text-lg">{selected.initials}</div>
                   <div>
                     <div className="flex items-center gap-2">
                       <h2 className="text-lg font-bold text-gray-900">{selected.name}</h2>
@@ -144,7 +144,7 @@ export default function AdminOperatorsPage() {
                 <button className="flex-1 py-2 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50">
                   {selected.status === "active" ? "Suspend" : "Reactivate"}
                 </button>
-                <button className="flex-1 py-2 rounded-xl bg-amber-500 text-white text-sm font-semibold hover:bg-amber-600">
+                <button className="flex-1 py-2 rounded-xl bg-amber-500 text-neutral-950 text-sm font-semibold hover:bg-amber-600">
                   Message
                 </button>
               </div>

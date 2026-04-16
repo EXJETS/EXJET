@@ -68,7 +68,7 @@ export default function AdminSettingsPage() {
         </div>
       </div>
 
-      <button className="w-full py-3 rounded-xl bg-gradient-to-r from-gray-800 to-gray-900 text-white font-semibold hover:from-gray-900 hover:to-black transition-all flex items-center justify-center gap-2">
+      <button className="w-full py-3 rounded-xl bg-gradient-to-r from-gray-800 to-gray-900 text-neutral-950 font-semibold hover:from-gray-900 hover:to-black transition-all flex items-center justify-center gap-2">
         <Save className="w-4 h-4" /> Save Settings
       </button>
     </div>

@@ -56,21 +56,21 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-white/[0.08] bg-black text-white/60">
+    <footer className="relative border-t border-neutral-200 bg-white text-neutral-600">
       <div className="mx-auto max-w-6xl px-5 py-20 sm:px-8">
         {/* Top — wordmark + columns */}
         <div className="grid grid-cols-2 gap-10 md:grid-cols-5">
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="flex items-center gap-2">
-              <span className="flex h-6 w-6 items-center justify-center rounded-md border border-white/15 bg-white/5">
-                <PlaneTakeoff className="h-3.5 w-3.5 text-white" strokeWidth={2} />
+              <span className="flex h-6 w-6 items-center justify-center rounded-md border border-neutral-300 bg-neutral-50">
+                <PlaneTakeoff className="h-3.5 w-3.5 text-neutral-950" strokeWidth={2} />
               </span>
-              <span className="text-[14px] font-semibold tracking-[0.16em] text-white">
+              <span className="text-[14px] font-semibold tracking-[0.16em] text-neutral-950">
                 EXJET
-                <span className="text-white/40">.com</span>
+                <span className="text-neutral-400">.com</span>
               </span>
             </Link>
-            <p className="mt-5 max-w-xs text-[13px] leading-relaxed text-white/50">
+            <p className="mt-5 max-w-xs text-[13px] leading-relaxed text-neutral-500">
               Global Access, On‑Demand. Reserve a private jet in minutes —
               curated worldwide fleet, 24/7 concierge.
             </p>
@@ -83,7 +83,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-8 w-8 items-center justify-center rounded-md border border-white/10 bg-white/5 text-white/60 transition-colors hover:bg-white/10 hover:text-white"
+                  className="flex h-8 w-8 items-center justify-center rounded-md border border-neutral-200 bg-neutral-50 text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-neutral-950"
                 >
                   <Icon className="h-3.5 w-3.5" strokeWidth={1.75} />
                 </a>
@@ -93,7 +93,7 @@ export function Footer() {
 
           {columns.map((col) => (
             <div key={col.title}>
-              <h3 className="font-mono text-[11px] uppercase tracking-widest text-white/40">
+              <h3 className="font-mono text-[11px] uppercase tracking-widest text-neutral-400">
                 {col.title}
               </h3>
               <ul className="mt-5 space-y-3">
@@ -101,7 +101,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="group inline-flex items-center gap-1 text-[13px] text-white/70 transition-colors hover:text-white"
+                      className="group inline-flex items-center gap-1 text-[13px] text-neutral-700 transition-colors hover:text-neutral-950"
                     >
                       {link.label}
                       <ArrowUpRight
@@ -117,11 +117,11 @@ export function Footer() {
         </div>
 
         {/* Bottom strip */}
-        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-white/[0.08] pt-8 text-[12px] sm:flex-row sm:items-center">
-          <p className="font-mono text-white/40">
+        <div className="mt-16 flex flex-col items-start justify-between gap-4 border-t border-neutral-200 pt-8 text-[12px] sm:flex-row sm:items-center">
+          <p className="font-mono text-neutral-400">
             © {new Date().getFullYear()} EXJET.com · All rights reserved.
           </p>
-          <p className="font-mono text-white/40">
+          <p className="font-mono text-neutral-400">
             Global Access, On‑Demand.
           </p>
         </div>

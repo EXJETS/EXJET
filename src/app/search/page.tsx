@@ -82,9 +82,9 @@ function SearchResultsContent() {
   }, [mobileFiltersOpen]);
 
   return (
-    <div className="min-h-screen bg-black text-white">
+    <div className="min-h-screen bg-white text-neutral-950">
       {/* Compact Search Bar */}
-      <div className="border-b border-white/[0.08] bg-black/80 backdrop-blur-xl">
+      <div className="border-b border-neutral-200 bg-white/80 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
           <SearchBar variant="compact" />
         </div>
@@ -94,17 +94,17 @@ function SearchResultsContent() {
         {/* Top Bar */}
         <div className="mb-6 flex items-center justify-between gap-4">
           <div className="flex min-w-0 items-center gap-3">
-            <span className="font-mono text-[10px] uppercase tracking-widest text-white/40">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
               Results
             </span>
-            <h1 className="text-[14px] font-medium text-white">
-              <span className="text-white">{filteredJets.length}</span>{" "}
-              <span className="text-white/60">
+            <h1 className="text-[14px] font-medium text-neutral-950">
+              <span className="text-neutral-950">{filteredJets.length}</span>{" "}
+              <span className="text-neutral-600">
                 {filteredJets.length === 1 ? "jet" : "jets"} available
               </span>
             </h1>
             {(urlFrom || urlTo) && (
-              <span className="hidden truncate font-mono text-[11px] uppercase tracking-widest text-white/40 sm:inline">
+              <span className="hidden truncate font-mono text-[11px] uppercase tracking-widest text-neutral-400 sm:inline">
                 {urlFrom && urlTo
                   ? `${urlFrom} → ${urlTo}`
                   : urlFrom
@@ -119,7 +119,7 @@ function SearchResultsContent() {
             <select
               value={sortBy ?? "price_asc"}
               onChange={(e) => setSortBy(e.target.value)}
-              className="hidden rounded-full border border-white/10 bg-white/[0.03] px-4 py-2 text-[12px] text-white outline-none transition-colors hover:border-white/20 focus:border-white/40 md:block [color-scheme:dark]"
+              className="hidden rounded-full border border-neutral-200 bg-neutral-50 px-4 py-2 text-[12px] text-neutral-950 outline-none transition-colors hover:border-neutral-300 focus:border-neutral-400 md:block"
             >
               <option value="price_asc">Price: Low to High</option>
               <option value="price_desc">Price: High to Low</option>
@@ -130,7 +130,7 @@ function SearchResultsContent() {
 
             <button
               onClick={() => setMobileFiltersOpen(true)}
-              className="flex items-center gap-2 rounded-full border border-white/15 bg-white/[0.03] px-4 py-2 text-[12px] font-medium text-white transition-colors hover:border-white/30 hover:bg-white/[0.06] lg:hidden"
+              className="flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-4 py-2 text-[12px] font-medium text-neutral-950 transition-colors hover:border-neutral-400 hover:bg-neutral-100 lg:hidden"
             >
               <SlidersHorizontal className="h-3.5 w-3.5" strokeWidth={1.75} />
               Filters
@@ -147,7 +147,7 @@ function SearchResultsContent() {
           </div>
 
           <div className="min-w-0 flex-1">
-            <JetGrid jets={filteredJets} dark />
+            <JetGrid jets={filteredJets} />
           </div>
         </div>
       </div>
@@ -156,11 +156,11 @@ function SearchResultsContent() {
       {mobileFiltersOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div
-            className="absolute inset-0 bg-black/70 backdrop-blur-sm"
+            className="absolute inset-0 bg-neutral-950/40 backdrop-blur-sm"
             onClick={() => setMobileFiltersOpen(false)}
           />
           <div className="absolute inset-y-0 right-0 flex w-full max-w-sm">
-            <div className="relative flex w-full flex-col overflow-y-auto bg-black">
+            <div className="relative flex w-full flex-col overflow-y-auto bg-white">
               <div className="p-4">
                 <FilterSidebar onClose={() => setMobileFiltersOpen(false)} />
               </div>
@@ -176,8 +176,8 @@ export default function SearchPage() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-screen items-center justify-center bg-black">
-          <div className="flex items-center gap-3 text-white/50">
+        <div className="flex min-h-screen items-center justify-center bg-white">
+          <div className="flex items-center gap-3 text-neutral-500">
             <Plane className="h-5 w-5 animate-pulse" strokeWidth={1.5} />
             <span className="font-mono text-[11px] uppercase tracking-widest">
               Loading results

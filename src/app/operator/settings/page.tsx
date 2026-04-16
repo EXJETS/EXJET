@@ -78,7 +78,7 @@ export default function OperatorSettingsPage() {
         </div>
       </div>
 
-      <button className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-white font-semibold hover:from-amber-600 hover:to-amber-700 transition-all flex items-center justify-center gap-2">
+      <button className="w-full py-3 rounded-xl bg-gradient-to-r from-amber-500 to-amber-600 text-neutral-950 font-semibold hover:from-amber-600 hover:to-amber-700 transition-all flex items-center justify-center gap-2">
         <Save className="w-4 h-4" /> Save Changes
       </button>
     </div>
