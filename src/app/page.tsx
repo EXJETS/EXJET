@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import SearchBar from "@/components/search/search-bar";
 import { EmptyLegCard } from "@/components/booking/empty-leg-card";
+import { CardCarousel } from "@/components/ui/card-carousel";
 import popularRoutes from "@/data/popular-routes.json";
 import emptyLegs from "@/data/empty-legs.json";
 import news from "@/data/news.json";
@@ -118,10 +119,12 @@ export default function HomePage() {
             ctaHref="/search"
             ctaLabel="See all routes"
           />
-          <div className="mt-12 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {popularRoutes.map((r) => (
-              <PopularRouteCard key={r.id} route={r} />
-            ))}
+          <div className="mt-16">
+            <CardCarousel itemClassName="w-[80%] sm:w-[48%] md:w-[36%] lg:w-[26%]">
+              {popularRoutes.map((r) => (
+                <PopularRouteCard key={r.id} route={r} />
+              ))}
+            </CardCarousel>
           </div>
         </div>
       </section>
@@ -141,10 +144,12 @@ export default function HomePage() {
             ctaHref="/search?category=empty-legs"
             ctaLabel="Browse all empty legs"
           />
-          <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2">
-            {emptyLegs.map((leg) => (
-              <EmptyLegCard key={leg.id} leg={leg} />
-            ))}
+          <div className="mt-16">
+            <CardCarousel itemClassName="w-[88%] sm:w-[60%] md:w-[48%] lg:w-[42%]">
+              {emptyLegs.map((leg) => (
+                <EmptyLegCard key={leg.id} leg={leg} />
+              ))}
+            </CardCarousel>
           </div>
         </div>
       </section>
@@ -158,10 +163,12 @@ export default function HomePage() {
             description="Fleet additions, safety milestones, and product releases."
             icon={Newspaper}
           />
-          <div className="mt-12 grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-4">
-            {news.map((item) => (
-              <NewsCard key={item.id} item={item} />
-            ))}
+          <div className="mt-16">
+            <CardCarousel itemClassName="w-[80%] sm:w-[48%] md:w-[36%] lg:w-[26%]">
+              {news.map((item) => (
+                <NewsCard key={item.id} item={item} />
+              ))}
+            </CardCarousel>
           </div>
         </div>
       </section>
