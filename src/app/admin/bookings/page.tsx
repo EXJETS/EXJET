@@ -64,7 +64,7 @@ export default function AdminBookingsPage() {
             <button key={t} onClick={() => setTab(t)}
               className={cn("px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-all",
                 tab === t ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700")}>
-              {t} {count > 0 && <span className={cn("ml-1 px-1.5 py-0.5 rounded-full text-[9px]", tab === t ? "bg-amber-500 text-white" : "bg-gray-200 text-gray-600")}>{count}</span>}
+              {t} {count > 0 && <span className={cn("ml-1 px-1.5 py-0.5 rounded-full text-[9px]", tab === t ? "bg-amber-500 text-neutral-950" : "bg-gray-200 text-gray-600")}>{count}</span>}
             </button>
           );
         })}

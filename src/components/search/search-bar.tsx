@@ -60,7 +60,7 @@ function AirportDropdown({
   return (
     <div
       className={cn(
-        "absolute left-0 right-0 z-50 overflow-hidden rounded-xl border border-white/10 bg-black/90 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.8)] backdrop-blur-xl",
+        "absolute left-0 right-0 z-50 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-[0_20px_50px_-10px_rgba(0,0,0,0.18)] backdrop-blur-xl",
         "max-h-[280px] overflow-y-auto",
         position === "below" ? "top-full mt-2" : "bottom-full mb-2"
       )}
@@ -73,21 +73,21 @@ function AirportDropdown({
             e.preventDefault();
             onSelect(airport);
           }}
-          className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-white/[0.06]"
+          className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-neutral-100"
         >
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-white/10 bg-white/[0.04] text-white/70">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-neutral-200 bg-neutral-100 text-neutral-700">
             <Plane className="h-4 w-4" strokeWidth={1.75} />
           </div>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
-              <span className="font-mono text-[13px] font-semibold tracking-wide text-white">
+              <span className="font-mono text-[13px] font-semibold tracking-wide text-neutral-950">
                 {airport.code}
               </span>
-              <span className="truncate text-[13px] text-white/60">
+              <span className="truncate text-[13px] text-neutral-600">
                 {airport.city}, {airport.country}
               </span>
             </div>
-            <p className="truncate text-[11px] text-white/40">{airport.name}</p>
+            <p className="truncate text-[11px] text-neutral-400">{airport.name}</p>
           </div>
         </button>
       ))}
@@ -192,7 +192,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
       <div
         className={cn(
           "relative flex items-stretch",
-          "rounded-2xl border border-white/[0.08] bg-white/[0.02] backdrop-blur-xl",
+          "rounded-2xl border border-neutral-200 bg-white backdrop-blur-xl",
           isHero
             ? "flex-col gap-0 p-2 md:flex-row"
             : "flex-row p-1.5"
@@ -202,15 +202,15 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
         <div
           ref={fromRef}
           className={cn(
-            "relative flex items-center gap-3 rounded-xl px-4 transition-colors hover:bg-white/[0.03]",
+            "relative flex items-center gap-3 rounded-xl px-4 transition-colors hover:bg-neutral-50",
             isHero
               ? "w-full py-3 md:w-auto md:flex-1 md:py-3"
               : "flex-1"
           )}
         >
-          <MapPin className="h-4 w-4 shrink-0 text-white/50" strokeWidth={1.75} />
+          <MapPin className="h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.75} />
           <div className="min-w-0 flex-1">
-            <label className="block font-mono text-[10px] uppercase tracking-widest text-white/40">
+            <label className="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
               From
             </label>
             <input
@@ -223,7 +223,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                 if (!e.target.value) setFrom("", "");
               }}
               onFocus={() => setShowFromDropdown(true)}
-              className="w-full bg-transparent text-[14px] font-medium text-white outline-none placeholder:text-white/30"
+              className="w-full bg-transparent text-[14px] font-medium text-neutral-950 outline-none placeholder:text-neutral-400"
             />
           </div>
           <AirportDropdown
@@ -239,8 +239,8 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
           type="button"
           onClick={handleSwap}
           className={cn(
-            "z-10 flex shrink-0 items-center justify-center rounded-full border border-white/10 bg-black text-white/60 transition-all",
-            "hover:border-white/25 hover:bg-white/10 hover:text-white",
+            "z-10 flex shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-600 transition-all",
+            "hover:border-neutral-400 hover:bg-neutral-100 hover:text-neutral-950",
             "active:scale-90",
             isHero
               ? "mx-auto -my-2 h-9 w-9 md:mx-1 md:my-auto md:h-8 md:w-8"
@@ -255,15 +255,15 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
         <div
           ref={toRef}
           className={cn(
-            "relative flex items-center gap-3 rounded-xl px-4 transition-colors hover:bg-white/[0.03]",
+            "relative flex items-center gap-3 rounded-xl px-4 transition-colors hover:bg-neutral-50",
             isHero
               ? "w-full py-3 md:w-auto md:flex-1 md:py-3"
               : "flex-1"
           )}
         >
-          <MapPin className="h-4 w-4 shrink-0 text-white/50" strokeWidth={1.75} />
+          <MapPin className="h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.75} />
           <div className="min-w-0 flex-1">
-            <label className="block font-mono text-[10px] uppercase tracking-widest text-white/40">
+            <label className="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
               To
             </label>
             <input
@@ -276,7 +276,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                 if (!e.target.value) setTo("", "");
               }}
               onFocus={() => setShowToDropdown(true)}
-              className="w-full bg-transparent text-[14px] font-medium text-white outline-none placeholder:text-white/30"
+              className="w-full bg-transparent text-[14px] font-medium text-neutral-950 outline-none placeholder:text-neutral-400"
             />
           </div>
           <AirportDropdown
@@ -287,20 +287,20 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
           />
         </div>
 
-        <div className="hidden h-10 w-px self-center bg-white/[0.08] md:block" />
+        <div className="hidden h-10 w-px self-center bg-neutral-200 md:block" />
 
         {/* DATE */}
         <div
           className={cn(
-            "relative flex items-center gap-3 rounded-xl px-4 transition-colors hover:bg-white/[0.03]",
+            "relative flex items-center gap-3 rounded-xl px-4 transition-colors hover:bg-neutral-50",
             isHero
               ? "w-full py-3 md:min-w-[170px] md:py-3"
               : "min-w-[130px]"
           )}
         >
-          <Calendar className="h-4 w-4 shrink-0 text-white/50" strokeWidth={1.75} />
+          <Calendar className="h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.75} />
           <div className="min-w-0 flex-1">
-            <label className="block font-mono text-[10px] uppercase tracking-widest text-white/40">
+            <label className="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
               Date
             </label>
             <input
@@ -309,43 +309,43 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
               value={date}
               onChange={(e) => setDate(e.target.value)}
               className={cn(
-                "w-full bg-transparent text-[14px] font-medium text-white outline-none",
-                "[color-scheme:dark]",
-                !date && "text-white/30"
+                "w-full bg-transparent text-[14px] font-medium text-neutral-950 outline-none",
+                "",
+                !date && "text-neutral-400"
               )}
             />
           </div>
         </div>
 
-        <div className="hidden h-10 w-px self-center bg-white/[0.08] md:block" />
+        <div className="hidden h-10 w-px self-center bg-neutral-200 md:block" />
 
         {/* PASSENGERS */}
         <div
           ref={passengersRef}
           className={cn(
-            "relative flex items-center gap-3 rounded-xl px-4 transition-colors hover:bg-white/[0.03]",
+            "relative flex items-center gap-3 rounded-xl px-4 transition-colors hover:bg-neutral-50",
             isHero
               ? "w-full py-3 md:min-w-[150px] md:py-3"
               : "min-w-[110px]"
           )}
         >
-          <Users className="h-4 w-4 shrink-0 text-white/50" strokeWidth={1.75} />
+          <Users className="h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.75} />
           <button
             type="button"
             onClick={() => setShowPassengers(!showPassengers)}
             className="flex min-w-0 flex-1 items-center gap-1 text-left"
           >
             <div className="flex-1">
-              <label className="pointer-events-none block font-mono text-[10px] uppercase tracking-widest text-white/40">
+              <label className="pointer-events-none block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
                 Passengers
               </label>
-              <span className="block text-[14px] font-medium text-white">
+              <span className="block text-[14px] font-medium text-neutral-950">
                 {passengers} {passengers === 1 ? "Guest" : "Guests"}
               </span>
             </div>
             <ChevronDown
               className={cn(
-                "h-3.5 w-3.5 shrink-0 text-white/40 transition-transform",
+                "h-3.5 w-3.5 shrink-0 text-neutral-400 transition-transform",
                 showPassengers && "rotate-180"
               )}
               strokeWidth={2}
@@ -353,9 +353,9 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
           </button>
 
           {showPassengers && (
-            <div className="absolute left-0 right-0 top-full z-50 mt-2 rounded-xl border border-white/10 bg-black/90 p-4 shadow-[0_30px_60px_-10px_rgba(0,0,0,0.8)] backdrop-blur-xl">
+            <div className="absolute left-0 right-0 top-full z-50 mt-2 rounded-xl border border-neutral-200 bg-white p-4 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.18)] backdrop-blur-xl">
               <div className="flex items-center justify-between">
-                <span className="font-mono text-[11px] uppercase tracking-widest text-white/60">
+                <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-600">
                   Passengers
                 </span>
                 <div className="flex items-center gap-3">
@@ -364,15 +364,15 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                     onClick={() => setPassengers(Math.max(1, passengers - 1))}
                     disabled={passengers <= 1}
                     className={cn(
-                      "flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-white transition-colors",
+                      "flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 text-neutral-950 transition-colors",
                       passengers <= 1
                         ? "cursor-not-allowed opacity-30"
-                        : "hover:bg-white hover:text-black"
+                        : "hover:bg-neutral-950 hover:text-white"
                     )}
                   >
                     <Minus className="h-3.5 w-3.5" strokeWidth={2} />
                   </button>
-                  <span className="w-6 text-center text-[15px] font-semibold text-white">
+                  <span className="w-6 text-center text-[15px] font-semibold text-neutral-950">
                     {passengers}
                   </span>
                   <button
@@ -380,10 +380,10 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                     onClick={() => setPassengers(Math.min(16, passengers + 1))}
                     disabled={passengers >= 16}
                     className={cn(
-                      "flex h-8 w-8 items-center justify-center rounded-full border border-white/15 text-white transition-colors",
+                      "flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 text-neutral-950 transition-colors",
                       passengers >= 16
                         ? "cursor-not-allowed opacity-30"
-                        : "hover:bg-white hover:text-black"
+                        : "hover:bg-neutral-950 hover:text-white"
                     )}
                   >
                     <Plus className="h-3.5 w-3.5" strokeWidth={2} />
@@ -398,7 +398,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
         <button
           type="submit"
           className={cn(
-            "group flex shrink-0 items-center justify-center gap-1.5 rounded-full bg-white font-medium text-black transition-colors hover:bg-white/90 active:scale-[0.98]",
+            "group flex shrink-0 items-center justify-center gap-1.5 rounded-full bg-white font-medium text-black transition-colors hover:bg-neutral-800 active:scale-[0.98]",
             isHero
               ? "mx-2 mt-2 w-full px-6 py-3 text-[13px] md:ml-2 md:mt-0 md:w-auto md:px-6"
               : "ml-1 px-4 py-2 text-[12px]"

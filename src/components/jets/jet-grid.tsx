@@ -14,19 +14,19 @@ export function JetGrid({ jets, dark = true }: JetGridProps) {
         <div
           className={
             dark
-              ? "flex h-16 w-16 items-center justify-center rounded-full border border-white/10 bg-white/5 mb-4"
+              ? "flex h-16 w-16 items-center justify-center rounded-full border border-neutral-200 bg-neutral-100 mb-4"
               : "flex h-16 w-16 items-center justify-center rounded-full bg-neutral-100 mb-4"
           }
         >
           <Plane
-            className={dark ? "h-7 w-7 text-white/50" : "h-7 w-7 text-neutral-400"}
+            className={dark ? "h-7 w-7 text-neutral-500" : "h-7 w-7 text-neutral-400"}
             strokeWidth={1.5}
           />
         </div>
         <h3
           className={
             dark
-              ? "text-[16px] font-semibold text-white mb-1"
+              ? "text-[16px] font-semibold text-neutral-950 mb-1"
               : "text-[16px] font-semibold text-neutral-900 mb-1"
           }
         >
@@ -35,7 +35,7 @@ export function JetGrid({ jets, dark = true }: JetGridProps) {
         <p
           className={
             dark
-              ? "text-[13px] text-white/50 max-w-sm"
+              ? "text-[13px] text-neutral-500 max-w-sm"
               : "text-[13px] text-neutral-500 max-w-sm"
           }
         >

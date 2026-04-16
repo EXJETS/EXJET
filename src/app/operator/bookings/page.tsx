@@ -54,7 +54,7 @@ export default function OperatorBookingsPage() {
               tab === t ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700"
             )}
           >
-            {t} {counts[t] > 0 && <span className={cn("ml-1 px-1.5 py-0.5 rounded-full text-[9px]", tab === t ? "bg-amber-500 text-white" : "bg-gray-200 text-gray-600")}>{counts[t]}</span>}
+            {t} {counts[t] > 0 && <span className={cn("ml-1 px-1.5 py-0.5 rounded-full text-[9px]", tab === t ? "bg-amber-500 text-neutral-950" : "bg-gray-200 text-gray-600")}>{counts[t]}</span>}
           </button>
         ))}
       </div>
@@ -86,7 +86,7 @@ export default function OperatorBookingsPage() {
                   <td className="px-4 py-3 font-mono text-xs font-semibold text-gray-700">{b.id}</td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white text-[10px] font-bold">
+                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-neutral-950 text-[10px] font-bold">
                         {b.client.split(" ").map(n => n[0]).join("")}
                       </div>
                       <span className="font-medium text-gray-900">{b.client}</span>

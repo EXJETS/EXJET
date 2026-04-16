@@ -2,14 +2,14 @@ import { type HTMLAttributes } from "react";
 import { cn } from "@/lib/utils";
 
 const colorStyles = {
-  blue: "bg-blue-500/10 text-blue-300 ring-blue-400/20",
-  green: "bg-emerald-500/10 text-emerald-300 ring-emerald-400/20",
-  red: "bg-red-500/10 text-red-300 ring-red-400/20",
-  yellow: "bg-amber-500/10 text-amber-300 ring-amber-400/20",
-  gray: "bg-white/[0.06] text-white/70 ring-white/15",
-  purple: "bg-purple-500/10 text-purple-300 ring-purple-400/20",
-  indigo: "bg-indigo-500/10 text-indigo-300 ring-indigo-400/20",
-  white: "bg-white text-black ring-white",
+  blue: "bg-blue-50 text-blue-700 ring-blue-200",
+  green: "bg-emerald-50 text-emerald-700 ring-emerald-200",
+  red: "bg-red-50 text-red-700 ring-red-200",
+  yellow: "bg-amber-50 text-amber-700 ring-amber-200",
+  gray: "bg-neutral-100 text-neutral-700 ring-neutral-200",
+  purple: "bg-purple-50 text-purple-700 ring-purple-200",
+  indigo: "bg-indigo-50 text-indigo-700 ring-indigo-200",
+  white: "bg-neutral-950 text-neutral-950 ring-neutral-950",
 } as const;
 
 type BadgeColor = keyof typeof colorStyles;

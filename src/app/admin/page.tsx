@@ -49,7 +49,7 @@ export default function AdminPage() {
           <Link href="/admin/analytics" className="px-4 py-2 rounded-xl border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 flex items-center gap-2">
             <TrendingUp className="w-4 h-4" /> Analytics
           </Link>
-          <Link href="/admin/operators" className="px-4 py-2 rounded-xl bg-gray-900 text-white text-sm font-semibold hover:bg-gray-800 flex items-center gap-2">
+          <Link href="/admin/operators" className="px-4 py-2 rounded-xl bg-gray-900 text-neutral-950 text-sm font-semibold hover:bg-gray-800 flex items-center gap-2">
             <Building2 className="w-4 h-4" /> Operators
           </Link>
         </div>
@@ -106,7 +106,7 @@ export default function AdminPage() {
             {recentBookings.map((b) => (
               <div key={b.id} className="flex items-center justify-between p-3 rounded-xl border border-gray-100 hover:bg-gray-50 transition-colors">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-white text-[10px] font-bold">
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-neutral-950 text-[10px] font-bold">
                     {b.client.split(" ").map(n=>n[0]).join("")}
                   </div>
                   <div>

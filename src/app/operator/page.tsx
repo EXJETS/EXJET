@@ -41,7 +41,7 @@ export default function OperatorPage() {
           <h1 className="text-2xl font-bold text-gray-900">Operator Overview</h1>
           <p className="text-sm text-gray-500 mt-0.5">Welcome back, Sky Charter Co. · April 2026</p>
         </div>
-        <Link href="/operator/fleet" className="px-4 py-2 rounded-xl bg-amber-500 text-white text-sm font-semibold hover:bg-amber-600 transition-colors flex items-center gap-2">
+        <Link href="/operator/fleet" className="px-4 py-2 rounded-xl bg-amber-500 text-neutral-950 text-sm font-semibold hover:bg-amber-600 transition-colors flex items-center gap-2">
           <Plane className="w-4 h-4" /> Manage Fleet
         </Link>
       </div>
@@ -112,7 +112,7 @@ export default function OperatorPage() {
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
               <h2 className="font-semibold text-gray-900">Pending Requests</h2>
-              <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500 text-white">{pendingBookings.length}</span>
+              <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500 text-neutral-950">{pendingBookings.length}</span>
             </div>
             <Link href="/operator/bookings" className="text-xs text-amber-600 hover:text-amber-700 font-medium">See all</Link>
           </div>
@@ -127,7 +127,7 @@ export default function OperatorPage() {
                 <div className="text-right shrink-0 ml-3">
                   <p className="text-sm font-bold text-amber-700">{formatCurrency(b.amount)}</p>
                   <div className="flex gap-1 mt-1.5">
-                    <button className="px-2 py-1 rounded-lg bg-green-500 text-white text-[10px] font-semibold hover:bg-green-600">Accept</button>
+                    <button className="px-2 py-1 rounded-lg bg-green-500 text-neutral-950 text-[10px] font-semibold hover:bg-green-600">Accept</button>
                     <button className="px-2 py-1 rounded-lg bg-white border border-gray-200 text-[10px] font-medium text-gray-600 hover:bg-gray-50">Decline</button>
                   </div>
                 </div>
@@ -147,7 +147,7 @@ export default function OperatorPage() {
               <div key={f.id} className="flex items-center justify-between p-3 rounded-xl border border-gray-100 hover:bg-gray-50 transition-colors">
                 <div className="flex items-center gap-3">
                   <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center">
-                    <Plane className="w-4 h-4 text-white" />
+                    <Plane className="w-4 h-4 text-neutral-950" />
                   </div>
                   <div>
                     <p className="text-sm font-medium text-gray-900">{f.route}</p>

@@ -73,7 +73,7 @@ export default function RootLayout({
       lang="en"
       className={`${GeistSans.variable} ${GeistMono.variable}`}
     >
-      <body className="min-h-screen bg-black text-white antialiased">
+      <body className="min-h-screen bg-white text-neutral-950 antialiased">
         <Navbar />
         <main>{children}</main>
         <Footer />

@@ -28,7 +28,7 @@ export function Navbar() {
       className={cn(
         "fixed inset-x-0 top-0 z-50 transition-all duration-300",
         scrolled || mobileOpen
-          ? "border-b border-white/[0.08] bg-black/70 backdrop-blur-xl"
+          ? "border-b border-neutral-200 bg-white/80 backdrop-blur-xl"
           : "bg-transparent"
       )}
     >
@@ -36,14 +36,14 @@ export function Navbar() {
         {/* Wordmark — Vercel-style tight, Geist sans */}
         <Link
           href="/"
-          className="group flex items-center gap-2 text-white"
+          className="group flex items-center gap-2 text-neutral-950"
         >
-          <span className="flex h-6 w-6 items-center justify-center rounded-md border border-white/15 bg-white/5 transition-colors group-hover:bg-white/10">
+          <span className="flex h-6 w-6 items-center justify-center rounded-md border border-neutral-300 bg-neutral-50 transition-colors group-hover:bg-neutral-100">
             <PlaneTakeoff className="h-3.5 w-3.5" strokeWidth={2} />
           </span>
           <span className="text-[14px] font-semibold tracking-[0.16em]">
             EXJET
-            <span className="text-white/40">.com</span>
+            <span className="text-neutral-400">.com</span>
           </span>
         </Link>
 
@@ -53,7 +53,7 @@ export function Navbar() {
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-[13px] text-white/60 transition-colors hover:text-white"
+                className="text-[13px] text-neutral-600 transition-colors hover:text-neutral-950"
               >
                 {link.label}
               </Link>
@@ -65,7 +65,7 @@ export function Navbar() {
         <div className="hidden md:flex">
           <Link
             href="/search"
-            className="group inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-1.5 text-[13px] font-medium text-black transition-colors hover:bg-white/90"
+            className="group inline-flex items-center gap-1.5 rounded-full bg-neutral-950 px-4 py-1.5 text-[13px] font-medium text-neutral-950 transition-colors hover:bg-neutral-800"
           >
             Reserve
             <ArrowRight
@@ -78,7 +78,7 @@ export function Navbar() {
         {/* Mobile button */}
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-md p-2 text-white md:hidden"
+          className="inline-flex items-center justify-center rounded-md p-2 text-neutral-950 md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
@@ -89,7 +89,7 @@ export function Navbar() {
       {/* Mobile sheet */}
       <div
         className={cn(
-          "overflow-hidden border-t border-white/[0.08] transition-all duration-300 md:hidden",
+          "overflow-hidden border-t border-neutral-200 transition-all duration-300 md:hidden",
           mobileOpen ? "max-h-96" : "max-h-0"
         )}
       >
@@ -99,7 +99,7 @@ export function Navbar() {
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="block rounded-lg px-3 py-3 text-[15px] font-medium text-white/80 transition-colors hover:bg-white/5 hover:text-white"
+              className="block rounded-lg px-3 py-3 text-[15px] font-medium text-neutral-800 transition-colors hover:bg-neutral-50 hover:text-neutral-950"
             >
               {link.label}
             </Link>
@@ -107,7 +107,7 @@ export function Navbar() {
           <Link
             href="/search"
             onClick={() => setMobileOpen(false)}
-            className="mt-2 flex items-center justify-center gap-1.5 rounded-full bg-white px-5 py-3 text-sm font-medium text-black"
+            className="mt-2 flex items-center justify-center gap-1.5 rounded-full bg-neutral-950 px-5 py-3 text-sm font-medium text-neutral-950"
           >
             Reserve
             <ArrowRight className="h-4 w-4" strokeWidth={2.25} />

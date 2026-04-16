@@ -3,15 +3,15 @@ import { cn } from "@/lib/utils";
 type Status = "confirmed" | "pending" | "completed" | "cancelled" | "active" | "inactive" | "available" | "in_flight" | "maintenance";
 
 const styles: Record<Status, string> = {
-  confirmed:   "bg-emerald-500/10 text-emerald-300 ring-emerald-400/20",
-  pending:     "bg-amber-500/10   text-amber-300   ring-amber-400/20",
-  completed:   "bg-white/[0.06]   text-white/70    ring-white/10",
-  cancelled:   "bg-red-500/10     text-red-300     ring-red-400/20",
-  active:      "bg-emerald-500/10 text-emerald-300 ring-emerald-400/20",
-  inactive:    "bg-white/[0.06]   text-white/50    ring-white/10",
-  available:   "bg-emerald-500/10 text-emerald-300 ring-emerald-400/20",
+  confirmed:   "bg-emerald-50 text-emerald-700 ring-emerald-200",
+  pending:     "bg-amber-50   text-amber-700   ring-amber-200",
+  completed:   "bg-neutral-100   text-neutral-700    ring-neutral-200",
+  cancelled:   "bg-red-50     text-red-700     ring-red-200",
+  active:      "bg-emerald-50 text-emerald-700 ring-emerald-200",
+  inactive:    "bg-neutral-100   text-neutral-500    ring-neutral-200",
+  available:   "bg-emerald-50 text-emerald-700 ring-emerald-200",
   in_flight:   "bg-sky-500/10     text-sky-300     ring-sky-400/20",
-  maintenance: "bg-amber-500/10   text-amber-300   ring-amber-400/20",
+  maintenance: "bg-amber-50   text-amber-700   ring-amber-200",
 };
 
 const labels: Record<Status, string> = {

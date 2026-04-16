@@ -1,14 +1,14 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #000000;
-  --color-foreground: #ededed;
-  --color-muted: #a1a1a1;
-  --color-subtle: #666666;
-  --color-hairline: rgba(255, 255, 255, 0.08);
-  --color-hairline-strong: rgba(255, 255, 255, 0.14);
+  --color-background: #ffffff;
+  --color-foreground: #0a0a0a;
+  --color-muted: #525252;
+  --color-subtle: #737373;
+  --color-hairline: rgba(0, 0, 0, 0.08);
+  --color-hairline-strong: rgba(0, 0, 0, 0.14);
 
-  --color-accent: #ffffff;
+  --color-accent: #000000;
   --color-accent-blue: #0070f3;
 
   --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont,
@@ -20,7 +20,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
@@ -29,8 +29,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1, "cv11" 1;
   letter-spacing: -0.011em;
-  background: #000;
-  color: #ededed;
+  background: #ffffff;
+  color: #0a0a0a;
 }
 
 /* ==========================================================
@@ -72,11 +72,11 @@ body {
 }
 
 /* ==========================================================
-   Vercel-style grid and gradient backdrops
+   Vercel-style grid and gradient backdrops (light)
    ========================================================== */
 .bg-dotgrid {
   background-image: radial-gradient(
-    rgba(255, 255, 255, 0.08) 1px,
+    rgba(0, 0, 0, 0.08) 1px,
     transparent 1px
   );
   background-size: 24px 24px;
@@ -85,12 +85,12 @@ body {
 .bg-linegrid {
   background-image: linear-gradient(
       to right,
-      rgba(255, 255, 255, 0.04) 1px,
+      rgba(0, 0, 0, 0.04) 1px,
       transparent 1px
     ),
     linear-gradient(
       to bottom,
-      rgba(255, 255, 255, 0.04) 1px,
+      rgba(0, 0, 0, 0.04) 1px,
       transparent 1px
     );
   background-size: 64px 64px;
@@ -99,17 +99,17 @@ body {
 .mesh-hero {
   background-image: radial-gradient(
       ellipse 80% 50% at 50% -20%,
-      rgba(120, 119, 198, 0.25),
+      rgba(120, 119, 198, 0.12),
       transparent 60%
     ),
     radial-gradient(
       ellipse 60% 50% at 80% 60%,
-      rgba(255, 255, 255, 0.06),
+      rgba(0, 0, 0, 0.04),
       transparent 50%
     ),
     radial-gradient(
       ellipse 60% 50% at 20% 50%,
-      rgba(255, 255, 255, 0.04),
+      rgba(0, 0, 0, 0.03),
       transparent 50%
     );
 }
@@ -117,7 +117,7 @@ body {
 .mesh-accent {
   background-image: radial-gradient(
     ellipse 60% 60% at 50% 50%,
-    rgba(255, 255, 255, 0.05),
+    rgba(0, 0, 0, 0.04),
     transparent 60%
   );
 }
@@ -129,16 +129,16 @@ body {
   inset: 0;
   pointer-events: none;
   background-image: url("data:image/svg+xml;utf8,<svg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.3'/></svg>");
-  opacity: 0.04;
-  mix-blend-mode: overlay;
+  opacity: 0.03;
+  mix-blend-mode: multiply;
 }
 
-/* Gradient text (Vercel-style) */
+/* Gradient text (light, fades to neutral) */
 .gradient-text {
   background: linear-gradient(
     180deg,
-    rgba(255, 255, 255, 1) 0%,
-    rgba(255, 255, 255, 0.65) 100%
+    rgba(10, 10, 10, 1) 0%,
+    rgba(10, 10, 10, 0.55) 100%
   );
   -webkit-background-clip: text;
   background-clip: text;
@@ -147,7 +147,7 @@ body {
 
 /* Borders */
 .hairline {
-  border-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(0, 0, 0, 0.08);
 }
 
 /* Scrollbar */
@@ -159,11 +159,11 @@ body {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgba(0, 0, 0, 0.14);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.22);
+  background: rgba(0, 0, 0, 0.28);
 }
 
 /* ==========================================================
@@ -198,10 +198,10 @@ body {
 
 /* Glass surfaces */
 .glass {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: saturate(180%) blur(12px);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .carousel-dot { transition: all 0.3s ease; }
