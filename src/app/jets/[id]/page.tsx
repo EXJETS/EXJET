@@ -46,7 +46,7 @@ export default async function JetDetailPage({
         </p>
         <Link
           href="/search"
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-black transition-colors hover:bg-neutral-800"
+          className="mt-8 inline-flex items-center gap-2 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800"
         >
           <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2} />
           Browse All Jets
@@ -178,7 +178,7 @@ export default async function JetDetailPage({
               {/* Book Button */}
               <Link
                 href={`/booking?jet=${jet.id}`}
-                className="block w-full rounded-full bg-white px-6 py-3 text-center text-[13px] font-medium text-black transition-colors hover:bg-neutral-800"
+                className="block w-full rounded-full bg-neutral-950 px-6 py-3 text-center text-[13px] font-medium text-white transition-colors hover:bg-neutral-800"
               >
                 Book This Jet
               </Link>

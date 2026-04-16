@@ -398,7 +398,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
         <button
           type="submit"
           className={cn(
-            "group flex shrink-0 items-center justify-center gap-1.5 rounded-full bg-white font-medium text-black transition-colors hover:bg-neutral-800 active:scale-[0.98]",
+            "group flex shrink-0 items-center justify-center gap-1.5 rounded-full bg-neutral-950 font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98]",
             isHero
               ? "mx-2 mt-2 w-full px-6 py-3 text-[13px] md:ml-2 md:mt-0 md:w-auto md:px-6"
               : "ml-1 px-4 py-2 text-[12px]"

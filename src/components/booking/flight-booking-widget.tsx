@@ -159,7 +159,7 @@ export function FlightBookingWidget() {
           {/* Submit */}
           <button
             type="submit"
-            className="group mt-2 inline-flex h-[58px] items-center justify-center gap-2 self-end rounded-xl bg-white px-6 text-[13px] font-semibold text-black transition-colors hover:bg-neutral-800 md:mt-0"
+            className="group mt-2 inline-flex h-[58px] items-center justify-center gap-2 self-end rounded-xl bg-neutral-950 px-6 text-[13px] font-semibold text-white transition-colors hover:bg-neutral-800 md:mt-0"
           >
             <Search className="h-4 w-4" strokeWidth={2.25} />
             Search

@@ -64,7 +64,7 @@ export default function FilterSidebar({ className, onClose }: FilterSidebarProps
             Filters
           </h2>
           {activeFilterCount > 0 && (
-            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-white px-1.5 text-[10px] font-semibold text-black">
+            <span className="flex h-5 min-w-5 items-center justify-center rounded-full bg-neutral-950 px-1.5 text-[10px] font-semibold text-white">
               {activeFilterCount}
             </span>
           )}
@@ -97,13 +97,13 @@ export default function FilterSidebar({ className, onClose }: FilterSidebarProps
                   className={cn(
                     "flex h-4 w-4 shrink-0 items-center justify-center rounded-sm border transition-colors",
                     active
-                      ? "border-white bg-white"
+                      ? "border-neutral-950 bg-neutral-950"
                       : "border-neutral-300 bg-transparent"
                   )}
                 >
                   {active && (
                     <svg
-                      className="h-3 w-3 text-black"
+                      className="h-3 w-3 text-white"
                       viewBox="0 0 24 24"
                       fill="none"
                       stroke="currentColor"

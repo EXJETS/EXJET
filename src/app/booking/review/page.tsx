@@ -162,7 +162,7 @@ export default function ReviewPage() {
               </button>
               <button
                 onClick={handleConfirm}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-8 py-3 text-[13px] font-medium text-black transition-colors hover:bg-neutral-800 active:scale-[0.98]"
+                className="inline-flex items-center gap-2 rounded-full bg-neutral-950 px-8 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98]"
               >
                 <Check className="h-4 w-4" strokeWidth={2.25} /> Confirm Booking
               </button>

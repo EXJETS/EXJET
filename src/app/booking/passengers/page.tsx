@@ -146,7 +146,7 @@ export default function PassengersPage() {
               <button
                 onClick={handleContinue}
                 disabled={!isValid}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-black transition-colors hover:bg-neutral-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex items-center gap-2 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Continue to Review <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
               </button>

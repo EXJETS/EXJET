@@ -84,7 +84,7 @@ function BookingContent() {
         <p className="mt-2 text-[13px] text-neutral-600">Please select a jet from our fleet first.</p>
         <Link
           href="/search"
-          className="mt-6 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-black transition-colors hover:bg-neutral-800"
+          className="mt-6 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800"
         >
           Browse Jets
         </Link>
@@ -258,7 +258,7 @@ function BookingContent() {
               <button
                 onClick={handleContinue}
                 disabled={!departureAirport || !arrivalAirport || !departureDate}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-black transition-colors hover:bg-neutral-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex items-center gap-2 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Continue to Passengers
                 <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />

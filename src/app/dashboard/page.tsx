@@ -48,7 +48,7 @@ export default function ClientDashboardPage() {
         </div>
         <Link
           href="/search"
-          className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2.5 text-[13px] font-medium text-black transition-colors hover:bg-neutral-800 active:scale-[0.98]"
+          className="inline-flex items-center gap-2 rounded-full bg-neutral-950 px-5 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98]"
         >
           <Plane className="h-3.5 w-3.5" strokeWidth={2} /> Book a Flight
         </Link>

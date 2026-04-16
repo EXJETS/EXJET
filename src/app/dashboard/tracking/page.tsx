@@ -55,7 +55,7 @@ export default function ClientTrackingPage() {
           <p className="mt-2 text-[13px] text-neutral-500">Book a flight to track your aircraft live.</p>
           <Link
             href="/search"
-            className="mt-6 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-black transition-colors hover:bg-neutral-800 active:scale-[0.98]"
+            className="mt-6 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98]"
           >
             Browse Jets
           </Link>

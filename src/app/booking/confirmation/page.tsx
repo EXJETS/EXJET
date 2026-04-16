@@ -117,7 +117,7 @@ export default function ConfirmationPage() {
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <Link
             href="/dashboard"
-            className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-black transition-colors hover:bg-neutral-800 active:scale-[0.98]"
+            className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98]"
           >
             View Dashboard <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
           </Link>

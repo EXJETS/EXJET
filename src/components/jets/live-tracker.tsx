@@ -163,7 +163,7 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
                   "relative z-10 flex h-6 w-6 items-center justify-center rounded-full ring-1",
                   position.onGround
                     ? "bg-neutral-100 text-neutral-950 ring-neutral-300"
-                    : "bg-emerald-500 text-black ring-emerald-300/50"
+                    : "bg-emerald-500 text-emerald-950 ring-emerald-200"
                 )}
               >
                 <Plane

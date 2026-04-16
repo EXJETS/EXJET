@@ -135,7 +135,7 @@ export default function TrackingPage() {
                         "flex h-4 w-4 items-center justify-center rounded-full ring-1",
                         a.onGround
                           ? "bg-neutral-100 text-neutral-950 ring-neutral-300"
-                          : "bg-emerald-500 text-black ring-emerald-300/50"
+                          : "bg-emerald-500 text-emerald-950 ring-emerald-200"
                       )}
                     >
                       <Plane className="h-2.5 w-2.5" style={{ transform: `rotate(${a.heading}deg)` }} strokeWidth={2} />
@@ -224,7 +224,7 @@ export default function TrackingPage() {
                   </Link>
                   <Link
                     href={`/booking?jet=${selected.jet.id}`}
-                    className="flex-1 rounded-full bg-white px-4 py-2 text-center text-[12px] font-medium text-black transition-colors hover:bg-neutral-800"
+                    className="flex-1 rounded-full bg-neutral-950 px-4 py-2 text-center text-[12px] font-medium text-white transition-colors hover:bg-neutral-800"
                   >
                     Book Now
                   </Link>

@@ -147,7 +147,7 @@ function SearchResultsContent() {
           </div>
 
           <div className="min-w-0 flex-1">
-            <JetGrid jets={filteredJets} dark />
+            <JetGrid jets={filteredJets} />
           </div>
         </div>
       </div>
@@ -156,7 +156,7 @@ function SearchResultsContent() {
       {mobileFiltersOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div
-            className="absolute inset-0 bg-white backdrop-blur-sm"
+            className="absolute inset-0 bg-neutral-950/40 backdrop-blur-sm"
             onClick={() => setMobileFiltersOpen(false)}
           />
           <div className="absolute inset-y-0 right-0 flex w-full max-w-sm">
