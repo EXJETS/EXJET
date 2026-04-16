@@ -3,13 +3,10 @@ import {
   PlaneTakeoff,
   ArrowRight,
   ArrowUpRight,
-  Flame,
   Calendar,
   Clock,
   MapPin,
-  Trophy,
-  Newspaper,
-  HelpCircle,
+  ShieldCheck,
 } from "lucide-react";
 import SearchBar from "@/components/search/search-bar";
 import { EmptyLegCard } from "@/components/booking/empty-leg-card";
@@ -73,33 +70,43 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      {/* HERO — Search-first */}
-      <section className="relative overflow-hidden border-b border-neutral-200">
+      {/* HERO — Editorial / Cinematic */}
+      <section className="relative overflow-hidden">
         <div className="mesh-hero absolute inset-0" aria-hidden />
         <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(0,0,0,0.04),transparent_60%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(184,155,110,0.08),transparent_70%)]"
           aria-hidden
         />
-        <div className="relative mx-auto max-w-7xl px-4 pt-28 pb-16 sm:px-6 lg:px-8 lg:pt-40 lg:pb-24">
-          <div className="flex flex-col items-center text-center">
-            <span className="mb-6 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-neutral-100 px-3 py-1 font-mono text-[11px] uppercase tracking-widest text-neutral-700">
-              <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-              Global Access, On-Demand.
+
+        <div className="relative mx-auto max-w-7xl px-5 pt-28 pb-20 sm:px-8 lg:pt-40 lg:pb-28">
+          {/* Editorial chapter rule */}
+          <div className="mb-10 flex justify-center">
+            <span className="chapter-rule">
+              <span className="text-champagne">EXJET</span>
+              <span className="text-[var(--color-muted)]">Est. for the modern voyager</span>
             </span>
-            <h1 className="display-xl max-w-4xl bg-gradient-to-b from-neutral-950 to-neutral-500 bg-clip-text text-transparent">
-              The private jet, booked in minutes.
+          </div>
+
+          {/* Editorial display headline */}
+          <div className="mx-auto max-w-5xl text-center">
+            <h1 className="display-serif text-[var(--color-ink)]">
+              Global access,
+              <br />
+              <em className="display-serif-italic text-champagne">on&nbsp;demand.</em>
             </h1>
-            <p className="mt-5 max-w-xl text-[15px] leading-relaxed text-neutral-600">
-              Search any route worldwide. Confirmed in under four hours on a
-              curated, ARGUS Platinum–audited fleet.
+            <p className="mx-auto mt-8 max-w-xl text-[15px] leading-[1.7] text-[var(--color-muted)]">
+              An invitation to travel without compromise. A curated worldwide
+              fleet, ARGUS Platinum&ndash;audited, confirmed in under four hours.
             </p>
           </div>
 
-          <div className="mt-10 flex justify-center">
+          {/* Search */}
+          <div className="mt-14 flex justify-center">
             <SearchBar variant="hero" />
           </div>
 
-          <div className="mt-10 grid grid-cols-2 gap-4 sm:grid-cols-4">
+          {/* Editorial KPI band */}
+          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-[var(--color-hairline)] sm:grid-cols-4">
             <HeroStat label="Airports" value="5,000+" />
             <HeroStat label="Network tails" value="2,400+" />
             <HeroStat label="Avg. confirm" value="< 4 hr" />
@@ -108,14 +115,61 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* THE COLLECTION — Editorial intro chapter */}
+      <section className="relative border-t border-[var(--color-hairline)] bg-white">
+        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-24 sm:px-8 md:grid-cols-12 lg:py-32">
+          <div className="md:col-span-5">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-champagne">
+              I · The Collection
+            </span>
+            <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
+              A curated fleet,
+              <br />
+              <em className="display-serif-italic">without exception.</em>
+            </h2>
+          </div>
+          <div className="md:col-span-7">
+            <p className="text-[15px] leading-[1.85] text-[var(--color-muted)]">
+              Every aircraft on EXJET is hand-selected from operators that
+              meet ARGUS Platinum and Wyvern Wingman standards. From light
+              jets for the morning meeting to ultra-long-range cabins crossing
+              continents overnight &mdash; each tail is vetted, each crew
+              dual-rated, each cabin appointed.
+            </p>
+            <div className="mt-8 grid grid-cols-1 gap-x-10 gap-y-5 border-t border-[var(--color-hairline)] pt-8 sm:grid-cols-2">
+              <Hallmark
+                title="ARGUS Platinum"
+                desc="The aviation industry's highest independent safety rating."
+              />
+              <Hallmark
+                title="24/7 Concierge"
+                desc="Live trip specialists, never automated phone trees."
+              />
+              <Hallmark
+                title="Five categories"
+                desc="Light · Midsize · Super Midsize · Heavy · Ultra Long."
+              />
+              <Hallmark
+                title="No membership"
+                desc="Pay per flight. No initiation, no monthly minimums."
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* POPULAR ROUTES */}
-      <section id="popular-routes" className="relative border-b border-neutral-200 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section
+        id="popular-routes"
+        className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24"
+      >
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeader
-            eyebrow="01 · Popular Routes"
-            title="Where our jets fly most"
-            description="Live pricing on the routes our members request most this week."
-            icon={Flame}
+            chapter="II"
+            eyebrow="Most-flown corridors"
+            title="Popular routes,"
+            italic="this week"
+            description="Live pricing on the journeys our members request most."
             ctaHref="/search"
             ctaLabel="See all routes"
           />
@@ -130,17 +184,17 @@ export default function HomePage() {
       </section>
 
       {/* EMPTY LEGS */}
-      <section id="empty-legs" className="relative border-b border-neutral-200 py-20">
-        <div
-          className="bg-dotgrid pointer-events-none absolute inset-0 opacity-40"
-          aria-hidden
-        />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section
+        id="empty-legs"
+        className="relative border-t border-[var(--color-hairline)] bg-white py-24"
+      >
+        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeader
-            eyebrow="02 · Empty Legs"
-            title="Repositioning flights, up to 75% off"
-            description="One-way charter at a fixed price. Live inventory across our network."
-            icon={PlaneTakeoff}
+            chapter="III"
+            eyebrow="Repositioning at concierge fares"
+            title="Empty legs,"
+            italic="up to 75% off"
+            description="Fixed-price one-way charter on returning aircraft. Live inventory across our network."
             ctaHref="/search?category=empty-legs"
             ctaLabel="Browse all empty legs"
           />
@@ -155,13 +209,17 @@ export default function HomePage() {
       </section>
 
       {/* NEWS & UPDATES */}
-      <section id="news" className="relative border-b border-neutral-200 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section
+        id="news"
+        className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24"
+      >
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeader
-            eyebrow="03 · News & Updates"
-            title="What's new at EXJET"
-            description="Fleet additions, safety milestones, and product releases."
-            icon={Newspaper}
+            chapter="IV"
+            eyebrow="The journal"
+            title="News &"
+            italic="dispatches"
+            description="Fleet additions, safety milestones, and new destinations."
           />
           <div className="mt-16">
             <CardCarousel itemClassName="w-[80%] sm:w-[48%] md:w-[36%] lg:w-[26%]">
@@ -174,28 +232,32 @@ export default function HomePage() {
       </section>
 
       {/* SPORTS & EVENTS CALENDAR */}
-      <section id="events" className="relative border-b border-neutral-200 py-20">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <section
+        id="events"
+        className="relative border-t border-[var(--color-hairline)] bg-white py-24"
+      >
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeader
-            eyebrow="04 · Sports Calendar"
-            title="Every major championship. One aircraft away."
+            chapter="V"
+            eyebrow="The season"
+            title="Every championship,"
+            italic="one cabin away"
             description="Curated routes and nearest jet airports for the global sports calendar."
-            icon={Trophy}
           />
 
-          <div className="mt-10 flex flex-wrap items-center gap-2">
+          <div className="mt-12 flex flex-wrap items-center gap-2">
             {["F1", "NBA", "NFL", "NHL", "FIFA", "Masters"].map((l) => {
               const count = sportsEvents.filter((e) => e.league === l).length;
               return (
                 <span
                   key={l}
                   className={cn(
-                    "inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-widest ring-1 ring-inset",
+                    "inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] ring-1 ring-inset",
                     leagueColor(l)
                   )}
                 >
                   {l}
-                  <span className="rounded-full bg-neutral-300 px-1.5 py-0.5 text-[10px] text-neutral-800">
+                  <span className="rounded-full bg-[var(--color-ink)]/10 px-1.5 py-0.5 text-[10px] text-[var(--color-ink)]">
                     {count}
                   </span>
                 </span>
@@ -203,19 +265,19 @@ export default function HomePage() {
             })}
           </div>
 
-          <ul className="mt-6 overflow-hidden rounded-2xl border border-neutral-200 bg-white backdrop-blur-xl">
+          <ul className="mt-8 overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white">
             {sportsEvents.map((event, idx) => (
               <li
                 key={event.id}
                 className={cn(
-                  "group flex flex-col gap-3 p-5 transition-colors hover:bg-neutral-50 sm:flex-row sm:items-center sm:gap-6",
-                  idx !== 0 && "border-t border-neutral-200"
+                  "group flex flex-col gap-3 p-6 transition-colors hover:bg-[var(--color-ivory)] sm:flex-row sm:items-center sm:gap-6",
+                  idx !== 0 && "border-t border-[var(--color-hairline)]"
                 )}
               >
                 <div className="flex w-28 shrink-0 items-center gap-3">
                   <span
                     className={cn(
-                      "inline-flex h-7 items-center justify-center rounded-full px-2.5 font-mono text-[10px] uppercase tracking-widest ring-1 ring-inset",
+                      "inline-flex h-7 items-center justify-center rounded-full px-2.5 font-mono text-[10px] uppercase tracking-[0.2em] ring-1 ring-inset",
                       leagueColor(event.league)
                     )}
                   >
@@ -224,28 +286,30 @@ export default function HomePage() {
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                    <h3 className="text-[15px] font-semibold text-neutral-950">
+                    <h3 className="font-serif text-[20px] leading-tight text-[var(--color-ink)]">
                       {event.event}
                     </h3>
-                    <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-400">
+                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-subtle)]">
                       {event.city}
                     </span>
                   </div>
-                  <p className="mt-1 text-[12px] text-neutral-500">{event.venue}</p>
+                  <p className="mt-1 text-[12px] text-[var(--color-muted)]">
+                    {event.venue}
+                  </p>
                 </div>
                 <div className="flex flex-wrap items-center gap-4">
-                  <div className="flex items-center gap-1.5 text-neutral-700">
+                  <div className="flex items-center gap-1.5 text-[var(--color-ink-soft)]">
                     <Calendar
-                      className="h-3.5 w-3.5 text-neutral-400"
+                      className="h-3.5 w-3.5 text-champagne"
                       strokeWidth={1.75}
                     />
                     <span className="text-[12px]">
                       {formatDateRange(event.date, event.endDate)}
                     </span>
                   </div>
-                  <div className="hidden items-center gap-1.5 text-neutral-600 sm:flex">
+                  <div className="hidden items-center gap-1.5 text-[var(--color-muted)] sm:flex">
                     <MapPin
-                      className="h-3.5 w-3.5 text-neutral-400"
+                      className="h-3.5 w-3.5 text-champagne"
                       strokeWidth={1.75}
                     />
                     <span className="font-mono text-[11px] tracking-wide">
@@ -254,9 +318,9 @@ export default function HomePage() {
                   </div>
                   <Link
                     href={`/search?event=${event.id}`}
-                    className="inline-flex items-center gap-1 rounded-full border border-neutral-300 bg-neutral-50 px-3 py-1.5 text-[12px] font-medium text-neutral-950 transition-colors hover:bg-neutral-950 hover:text-white"
+                    className="inline-flex items-center gap-1 rounded-full border border-[var(--color-ink)] bg-transparent px-3.5 py-1.5 text-[12px] font-medium text-[var(--color-ink)] transition-colors hover:bg-[var(--color-ink)] hover:text-white"
                   >
-                    Book
+                    Reserve
                     <ArrowRight className="h-3 w-3" strokeWidth={2.25} />
                   </Link>
                 </div>
@@ -267,29 +331,33 @@ export default function HomePage() {
       </section>
 
       {/* FAQ */}
-      <section id="faq" className="relative border-b border-neutral-200 py-20">
-        <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+      <section
+        id="faq"
+        className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24"
+      >
+        <div className="mx-auto max-w-4xl px-5 sm:px-8">
           <SectionHeader
-            eyebrow="05 · FAQ"
-            title="Frequently asked"
-            description="Everything you need to know before chartering your first flight."
-            icon={HelpCircle}
+            chapter="VI"
+            eyebrow="Before you fly"
+            title="Frequently"
+            italic="asked"
+            description="Everything you need to know before chartering your first journey."
             align="center"
           />
-          <div className="mt-12 overflow-hidden rounded-2xl border border-neutral-200 bg-white backdrop-blur-xl">
+          <div className="mt-16 overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white">
             {faq.map((item, idx) => (
               <details
                 key={idx}
                 className={cn(
                   "group",
-                  idx !== 0 && "border-t border-neutral-200"
+                  idx !== 0 && "border-t border-[var(--color-hairline)]"
                 )}
               >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-6 py-5 transition-colors hover:bg-neutral-50">
-                  <h3 className="text-[14px] font-medium text-neutral-950">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-7 py-6 transition-colors hover:bg-[var(--color-ivory)]">
+                  <h3 className="font-serif text-[19px] leading-tight text-[var(--color-ink)]">
                     {item.q}
                   </h3>
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-neutral-200 text-neutral-600 transition-all group-open:rotate-45 group-open:border-neutral-400 group-open:text-neutral-950">
+                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[var(--color-hairline-strong)] text-[var(--color-muted)] transition-all group-open:rotate-45 group-open:border-champagne group-open:bg-champagne group-open:text-white">
                     <svg
                       viewBox="0 0 24 24"
                       className="h-3 w-3"
@@ -302,8 +370,8 @@ export default function HomePage() {
                     </svg>
                   </span>
                 </summary>
-                <div className="px-6 pb-5">
-                  <p className="text-[13px] leading-relaxed text-neutral-600">
+                <div className="px-7 pb-6">
+                  <p className="text-[14px] leading-[1.85] text-[var(--color-muted)]">
                     {item.a}
                   </p>
                 </div>
@@ -313,33 +381,39 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CLOSING CTA */}
-      <section className="relative py-24">
-        <div className="mesh-accent absolute inset-0 opacity-40" aria-hidden />
-        <div className="relative mx-auto max-w-4xl px-4 text-center sm:px-6 lg:px-8">
-          <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-500">
-            Ready when you are
-          </span>
-          <h2 className="display-lg mt-4 bg-gradient-to-b from-neutral-950 to-neutral-500 bg-clip-text text-transparent">
-            Global Access, On-Demand.
+      {/* CLOSING — Editorial CTA on ink */}
+      <section className="relative overflow-hidden">
+        <div className="mesh-ink absolute inset-0" aria-hidden />
+        <div className="relative mx-auto max-w-5xl px-5 py-32 text-center sm:px-8 lg:py-40">
+          <div className="flex justify-center">
+            <span className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-champagne">
+              <span className="h-px w-8 bg-champagne/60" />
+              Ready when you are
+              <span className="h-px w-8 bg-champagne/60" />
+            </span>
+          </div>
+          <h2 className="display-serif mt-8 text-white">
+            The world,
+            <br />
+            <em className="display-serif-italic text-champagne">on your schedule.</em>
           </h2>
-          <p className="mx-auto mt-4 max-w-xl text-[15px] text-neutral-600">
-            Search a route, pick your aircraft, and we&apos;ll confirm. No
-            membership required.
+          <p className="mx-auto mt-8 max-w-xl text-[15px] leading-[1.8] text-white/70">
+            Choose a route, select an aircraft, confirm in minutes.
+            No membership. No waiting list.
           </p>
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="#popular-routes"
-              className="inline-flex items-center gap-1.5 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:bg-champagne hover:text-white"
             >
-              Start a search
+              Begin a search
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
             </Link>
             <Link
               href="#empty-legs"
-              className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-neutral-50 px-6 py-3 text-[13px] font-medium text-neutral-950 transition-colors hover:bg-neutral-100"
+              className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-transparent px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:border-white hover:bg-white/10"
             >
-              Browse empty legs
+              View empty legs
             </Link>
           </div>
         </div>
@@ -352,28 +426,50 @@ export default function HomePage() {
 
 function HeroStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-xl border border-neutral-200 bg-white px-4 py-3 backdrop-blur-xl">
-      <div className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+    <div className="flex flex-col items-center gap-2 bg-[var(--color-ivory)] px-5 py-7 text-center">
+      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-champagne">
         {label}
+      </span>
+      <span className="font-serif text-[22px] leading-none text-[var(--color-ink)]">
+        {value}
+      </span>
+    </div>
+  );
+}
+
+function Hallmark({ title, desc }: { title: string; desc: string }) {
+  return (
+    <div className="flex items-start gap-3">
+      <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-champagne/10 text-champagne">
+        <ShieldCheck className="h-3 w-3" strokeWidth={2} />
+      </span>
+      <div>
+        <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink)]">
+          {title}
+        </div>
+        <div className="mt-1 text-[13px] leading-relaxed text-[var(--color-muted)]">
+          {desc}
+        </div>
       </div>
-      <div className="mt-1 text-[15px] font-semibold text-neutral-950">{value}</div>
     </div>
   );
 }
 
 function SectionHeader({
+  chapter,
   eyebrow,
   title,
+  italic,
   description,
-  icon: Icon,
   ctaHref,
   ctaLabel,
   align = "left",
 }: {
+  chapter: string;
   eyebrow: string;
   title: string;
+  italic?: string;
   description?: string;
-  icon?: typeof Flame;
   ctaHref?: string;
   ctaLabel?: string;
   align?: "left" | "center";
@@ -381,40 +477,48 @@ function SectionHeader({
   return (
     <div
       className={cn(
-        "flex flex-col gap-3",
+        "flex flex-col gap-6",
         align === "center"
           ? "items-center text-center"
-          : "md:flex-row md:items-end md:justify-between md:gap-8"
+          : "md:flex-row md:items-end md:justify-between md:gap-12"
       )}
     >
       <div className={cn(align === "center" ? "" : "max-w-2xl")}>
-        <div
-          className={cn(
-            "flex items-center gap-2",
-            align === "center" && "justify-center"
-          )}
-        >
-          {Icon && (
-            <Icon className="h-3.5 w-3.5 text-neutral-500" strokeWidth={1.75} />
-          )}
-          <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-500">
-            {eyebrow}
-          </span>
-        </div>
-        <h2 className="mt-3 text-[28px] font-semibold tracking-tight text-neutral-950 sm:text-[32px]">
+        <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-champagne">
+          {chapter} · {eyebrow}
+        </span>
+        <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
           {title}
+          {italic && (
+            <>
+              {" "}
+              <em className="display-serif-italic text-[var(--color-muted)]">
+                {italic}
+              </em>
+            </>
+          )}
         </h2>
         {description && (
-          <p className="mt-2 text-[14px] text-neutral-600">{description}</p>
+          <p
+            className={cn(
+              "mt-4 text-[14px] leading-relaxed text-[var(--color-muted)]",
+              align === "center" ? "mx-auto max-w-md" : "max-w-lg"
+            )}
+          >
+            {description}
+          </p>
         )}
       </div>
       {ctaHref && ctaLabel && align !== "center" && (
         <Link
           href={ctaHref}
-          className="inline-flex items-center gap-1.5 self-start rounded-full border border-neutral-300 bg-neutral-50 px-4 py-2 text-[12px] font-medium text-neutral-950 transition-colors hover:border-neutral-400 hover:bg-neutral-100 md:self-end"
+          className="group inline-flex items-center gap-2 self-start text-[13px] font-medium text-[var(--color-ink)] transition-colors hover:text-champagne md:self-end"
         >
           {ctaLabel}
-          <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
+          <ArrowUpRight
+            className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+            strokeWidth={2}
+          />
         </Link>
       )}
     </div>
@@ -429,67 +533,68 @@ function PopularRouteCard({
   return (
     <Link
       href={`/search?from=${route.from.code}&to=${route.to.code}`}
-      className="group relative flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white p-5 transition-all hover:border-neutral-300 hover:bg-neutral-100"
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white p-7 transition-all hover:border-champagne hover:shadow-[0_24px_50px_-20px_rgba(184,155,110,0.35)]"
     >
       <div className="flex items-center justify-between">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
-          Popular
+        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-champagne">
+          Route
         </span>
         {route.demand === "very_high" && (
-          <span className="inline-flex items-center gap-1 rounded-full border border-emerald-400/20 bg-emerald-50 px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest text-emerald-700">
-            <Flame className="h-2.5 w-2.5" strokeWidth={2} />
-            Hot
+          <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-bordeaux)]">
+            In demand
           </span>
         )}
       </div>
 
-      <div className="mt-5 flex items-start justify-between gap-2">
+      <div className="mt-7 flex items-start justify-between gap-2">
         <div>
-          <div className="text-[10px] uppercase tracking-widest text-neutral-400">
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
             {route.from.city}
           </div>
-          <div className="mt-1 font-mono text-[22px] font-semibold leading-none text-neutral-950">
+          <div className="mt-1 font-serif text-[34px] leading-none text-[var(--color-ink)]">
             {route.from.code}
           </div>
         </div>
         <div className="relative flex-1 self-center">
-          <div className="h-px w-full bg-gradient-to-r from-neutral-200 via-neutral-400 to-neutral-200" />
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-champagne/60 to-transparent" />
           <PlaneTakeoff
-            className="absolute left-1/2 top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 text-neutral-600 transition-transform group-hover:translate-x-0"
-            strokeWidth={1.75}
+            className="absolute left-1/2 top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 text-champagne transition-transform group-hover:translate-x-0"
+            strokeWidth={1.5}
           />
         </div>
         <div className="text-right">
-          <div className="text-[10px] uppercase tracking-widest text-neutral-400">
+          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
             {route.to.city}
           </div>
-          <div className="mt-1 font-mono text-[22px] font-semibold leading-none text-neutral-950">
+          <div className="mt-1 font-serif text-[34px] leading-none text-[var(--color-ink)]">
             {route.to.code}
           </div>
         </div>
       </div>
 
-      <div className="mt-5 flex items-center gap-4 border-t border-neutral-200 pt-4 text-[11px] text-neutral-600">
-        <div className="flex items-center gap-1">
-          <Clock className="h-3 w-3 text-neutral-400" strokeWidth={1.75} />
+      <div className="mt-7 flex items-center gap-4 border-t border-[var(--color-hairline)] pt-5 text-[11px] text-[var(--color-muted)]">
+        <div className="flex items-center gap-1.5">
+          <Clock className="h-3 w-3 text-champagne" strokeWidth={1.75} />
           {route.flightTime}
         </div>
-        <div className="font-mono text-neutral-500">{route.distanceNm} nm</div>
-        <div className="ml-auto rounded-full border border-neutral-200 bg-neutral-100 px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest text-neutral-700">
+        <div className="font-mono text-[var(--color-subtle)]">
+          {route.distanceNm} nm
+        </div>
+        <div className="ml-auto font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
           {route.recommended}
         </div>
       </div>
 
-      <div className="mt-4 flex items-end justify-between border-t border-neutral-200 pt-4">
-        <div className="flex items-baseline gap-1">
-          <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+      <div className="mt-auto flex items-end justify-between border-t border-[var(--color-hairline)] pt-5">
+        <div>
+          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-champagne">
             From
           </span>
-          <span className="text-[18px] font-semibold text-neutral-950">
+          <div className="font-serif text-[24px] leading-none text-[var(--color-ink)]">
             {formatCurrency(route.fromPrice)}
-          </span>
+          </div>
         </div>
-        <span className="inline-flex items-center gap-1 text-[12px] font-medium text-neutral-950 transition-transform group-hover:translate-x-0.5">
+        <span className="inline-flex items-center gap-1 text-[12px] font-medium text-[var(--color-ink)] transition-transform group-hover:translate-x-0.5">
           Quote
           <ArrowUpRight className="h-3 w-3" strokeWidth={2} />
         </span>
@@ -500,31 +605,31 @@ function PopularRouteCard({
 
 function NewsCard({ item }: { item: (typeof news)[number] }) {
   const when = new Date(item.date).toLocaleDateString("en-US", {
-    month: "short",
+    month: "long",
     day: "numeric",
     year: "numeric",
   });
   return (
-    <article className="group relative flex flex-col overflow-hidden rounded-2xl border border-neutral-200 bg-white p-5 transition-all hover:border-neutral-300 hover:bg-neutral-100">
+    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white p-7 transition-all hover:border-champagne hover:shadow-[0_24px_50px_-20px_rgba(184,155,110,0.25)]">
       <div className="flex items-center justify-between">
-        <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-600">
+        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-champagne">
           {item.category}
         </span>
-        <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-subtle)]">
           {when}
         </span>
       </div>
-      <h3 className="mt-4 text-[15px] font-semibold leading-snug tracking-tight text-neutral-950">
+      <h3 className="mt-6 font-serif text-[22px] leading-tight text-[var(--color-ink)]">
         {item.title}
       </h3>
-      <p className="mt-2 flex-1 text-[13px] leading-relaxed text-neutral-600">
+      <p className="mt-3 flex-1 text-[13px] leading-[1.75] text-[var(--color-muted)]">
         {item.excerpt}
       </p>
-      <div className="mt-5 flex items-center justify-between border-t border-neutral-200 pt-4">
-        <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-400">
+      <div className="mt-6 flex items-center justify-between border-t border-[var(--color-hairline)] pt-5">
+        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
           {item.readingTime} read
         </span>
-        <span className="inline-flex items-center gap-1 text-[12px] font-medium text-neutral-950 transition-transform group-hover:translate-x-0.5">
+        <span className="inline-flex items-center gap-1 text-[12px] font-medium text-[var(--color-ink)] transition-transform group-hover:translate-x-0.5">
           Read
           <ArrowUpRight className="h-3 w-3" strokeWidth={2} />
         </span>
@@ -536,19 +641,19 @@ function NewsCard({ item }: { item: (typeof news)[number] }) {
 function leagueColor(league: string) {
   switch (league) {
     case "F1":
-      return "bg-red-50 text-red-700 ring-red-200";
+      return "bg-[var(--color-bordeaux)]/8 text-[var(--color-bordeaux)] ring-[var(--color-bordeaux)]/20";
     case "NBA":
-      return "bg-amber-50 text-amber-700 ring-amber-200";
+      return "bg-amber-50 text-amber-800 ring-amber-200";
     case "NFL":
-      return "bg-blue-50 text-blue-700 ring-blue-200";
+      return "bg-blue-50 text-blue-800 ring-blue-200";
     case "NHL":
-      return "bg-indigo-50 text-indigo-700 ring-indigo-200";
+      return "bg-indigo-50 text-indigo-800 ring-indigo-200";
     case "FIFA":
-      return "bg-emerald-50 text-emerald-700 ring-emerald-200";
+      return "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-[var(--color-forest)]/20";
     case "Masters":
-      return "bg-green-50 text-green-700 ring-green-200";
+      return "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-[var(--color-forest)]/20";
     default:
-      return "bg-neutral-100 text-neutral-700 ring-neutral-300";
+      return "bg-[var(--color-hairline)] text-[var(--color-ink)] ring-[var(--color-hairline-strong)]";
   }
 }
 
