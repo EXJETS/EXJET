@@ -18,7 +18,7 @@ interface JetCardProps {
   dark?: boolean;
 }
 
-export function JetCard({ jet, dark = true }: JetCardProps) {
+export function JetCard({ jet, dark = false }: JetCardProps) {
   const [hovered, setHovered] = useState(false);
 
   return (

@@ -7,7 +7,7 @@ interface JetGridProps {
   dark?: boolean;
 }
 
-export function JetGrid({ jets, dark = true }: JetGridProps) {
+export function JetGrid({ jets, dark = false }: JetGridProps) {
   if (!jets || jets.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center py-20 text-center">
