@@ -43,8 +43,8 @@ export default function AdminBookingsPage() {
   return (
     <div className="p-6 max-w-7xl mx-auto w-full">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">All Bookings</h1>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50">
+        <h1 className="text-2xl font-bold text-[var(--color-ink)]">All Bookings</h1>
+        <button className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[var(--color-hairline)] text-sm font-medium text-[var(--color-muted)] hover:bg-[var(--color-ivory)]">
           <Download className="w-4 h-4" /> Export CSV
         </button>
       </div>
@@ -57,55 +57,55 @@ export default function AdminBookingsPage() {
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-1 bg-gray-100 rounded-xl p-1 mb-5 w-fit">
+      <div className="flex gap-1 bg-[var(--color-ivory-deep)] rounded-xl p-1 mb-5 w-fit">
         {(["all","pending","confirmed","completed","cancelled"] as Tab[]).map((t) => {
           const count = t === "all" ? allBookings.length : allBookings.filter(b => b.status === t).length;
           return (
             <button key={t} onClick={() => setTab(t)}
               className={cn("px-3 py-1.5 rounded-lg text-xs font-semibold capitalize transition-all",
-                tab === t ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700")}>
-              {t} {count > 0 && <span className={cn("ml-1 px-1.5 py-0.5 rounded-full text-[9px]", tab === t ? "bg-amber-500 text-neutral-950" : "bg-gray-200 text-gray-600")}>{count}</span>}
+                tab === t ? "bg-[var(--color-ivory)] text-[var(--color-ink)] shadow-sm" : "text-[var(--color-muted)] hover:text-[var(--color-ink-soft)]")}>
+              {t} {count > 0 && <span className={cn("ml-1 px-1.5 py-0.5 rounded-full text-[9px]", tab === t ? "bg-champagne text-white" : "bg-[var(--color-bone)] text-[var(--color-muted)]")}>{count}</span>}
             </button>
           );
         })}
       </div>
 
       <div className="relative mb-4 max-w-sm">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-subtle)]" />
         <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
           placeholder="Search by client, jet, operator..."
-          className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none" />
+          className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[var(--color-hairline)] text-sm focus:border-[var(--color-hairline-strong)] outline-none bg-[var(--color-ivory)] text-[var(--color-ink)]" />
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+      <div className="bg-[var(--color-ivory)] rounded-2xl border border-[var(--color-hairline)] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-[var(--color-ivory-deep)] border-b border-[var(--color-hairline)]">
               <tr>
                 {["ID","Client","Operator","Aircraft","Route","Date","Pax","Amount","Commission","Status"].map((h) => (
-                  <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide whitespace-nowrap">{h}</th>
+                  <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-[var(--color-muted)] uppercase tracking-wide whitespace-nowrap">{h}</th>
                 ))}
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-[var(--color-hairline)]">
               {filtered.map((b) => (
-                <tr key={b.id} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-4 py-3 font-mono text-xs font-semibold text-gray-700">{b.id}</td>
-                  <td className="px-4 py-3 font-medium text-gray-900">{b.client}</td>
-                  <td className="px-4 py-3 text-gray-600 text-xs">{b.operator}</td>
+                <tr key={b.id} className="hover:bg-[var(--color-ivory-deep)] transition-colors">
+                  <td className="px-4 py-3 font-mono text-xs font-semibold text-[var(--color-ink-soft)]">{b.id}</td>
+                  <td className="px-4 py-3 font-medium text-[var(--color-ink)]">{b.client}</td>
+                  <td className="px-4 py-3 text-[var(--color-muted)] text-xs">{b.operator}</td>
                   <td className="px-4 py-3">
                     <div className="flex items-center gap-1.5">
-                      <Plane className="w-3.5 h-3.5 text-gray-400 shrink-0" />
-                      <span className="text-gray-700 text-xs">{b.jet}</span>
+                      <Plane className="w-3.5 h-3.5 text-[var(--color-subtle)] shrink-0" />
+                      <span className="text-[var(--color-ink-soft)] text-xs">{b.jet}</span>
                     </div>
                   </td>
-                  <td className="px-4 py-3 font-mono text-xs text-gray-600">{b.route}</td>
-                  <td className="px-4 py-3 text-xs text-gray-600 whitespace-nowrap">
+                  <td className="px-4 py-3 font-mono text-xs text-[var(--color-muted)]">{b.route}</td>
+                  <td className="px-4 py-3 text-xs text-[var(--color-muted)] whitespace-nowrap">
                     {new Date(b.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
                   </td>
-                  <td className="px-4 py-3 text-gray-600 text-xs">{b.pax}</td>
-                  <td className="px-4 py-3 font-semibold text-gray-900">{formatCurrency(b.amount)}</td>
-                  <td className="px-4 py-3 font-semibold text-green-600">{formatCurrency(b.commission)}</td>
+                  <td className="px-4 py-3 text-[var(--color-muted)] text-xs">{b.pax}</td>
+                  <td className="px-4 py-3 font-semibold text-[var(--color-ink)]">{formatCurrency(b.amount)}</td>
+                  <td className="px-4 py-3 font-semibold text-[var(--color-forest)]">{formatCurrency(b.commission)}</td>
                   <td className="px-4 py-3"><StatusBadge status={b.status} /></td>
                 </tr>
               ))}
@@ -113,7 +113,7 @@ export default function AdminBookingsPage() {
           </table>
         </div>
         {filtered.length === 0 && (
-          <div className="py-16 text-center text-gray-400">
+          <div className="py-16 text-center text-[var(--color-subtle)]">
             <Plane className="w-8 h-8 mx-auto mb-2 opacity-30" />
             <p className="text-sm">No bookings found</p>
           </div>

@@ -53,7 +53,7 @@ export function FlightBookingWidget() {
   return (
     <div className="relative w-full">
       {/* Tabs — Charter / Empty Legs */}
-      <div className="flex items-center gap-1 rounded-t-2xl border-b border-neutral-200 bg-neutral-50 p-1.5 backdrop-blur-xl">
+      <div className="flex items-center gap-1 rounded-t-2xl border-b border-[var(--color-hairline)] bg-[var(--color-ivory)] p-1.5 backdrop-blur-xl">
         {modes.map((m) => (
           <button
             key={m.id}
@@ -62,8 +62,8 @@ export function FlightBookingWidget() {
             className={cn(
               "group flex-1 inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-[13px] font-medium transition-all",
               mode === m.id
-                ? "bg-neutral-950 text-neutral-950 shadow-sm"
-                : "text-neutral-700 hover:text-neutral-950 hover:bg-neutral-100"
+                ? "bg-[var(--color-ink)] text-white shadow-sm"
+                : "text-[var(--color-ink-soft)] hover:text-[var(--color-ink)] hover:bg-[var(--color-ivory)]"
             )}
           >
             <m.icon className="h-4 w-4" strokeWidth={1.75} />
@@ -74,17 +74,17 @@ export function FlightBookingWidget() {
 
       {/* Hint + trip toggle */}
       <div className="flex items-center justify-between px-4 pt-4 sm:px-5">
-        <p className="text-[11px] font-mono uppercase tracking-widest text-neutral-400">
+        <p className="text-[11px] font-mono uppercase tracking-widest text-[var(--color-subtle)]">
           {modes.find((m) => m.id === mode)?.hint}
         </p>
         {mode === "charter" && (
-          <div className="flex items-center rounded-full border border-neutral-200 bg-neutral-100 p-0.5 text-[12px]">
+          <div className="flex items-center rounded-full border border-[var(--color-hairline)] bg-[var(--color-ivory-deep)] p-0.5 text-[12px]">
             <button
               type="button"
               onClick={() => setTrip("oneway")}
               className={cn(
                 "rounded-full px-3 py-1 transition-colors",
-                trip === "oneway" ? "bg-neutral-950 text-neutral-950" : "text-neutral-700 hover:text-neutral-950"
+                trip === "oneway" ? "bg-[var(--color-ink)] text-white" : "text-[var(--color-ink-soft)] hover:text-[var(--color-ink)]"
               )}
             >
               One‑way
@@ -94,7 +94,7 @@ export function FlightBookingWidget() {
               onClick={() => setTrip("roundtrip")}
               className={cn(
                 "rounded-full px-3 py-1 transition-colors",
-                trip === "roundtrip" ? "bg-neutral-950 text-neutral-950" : "text-neutral-700 hover:text-neutral-950"
+                trip === "roundtrip" ? "bg-[var(--color-ink)] text-white" : "text-[var(--color-ink-soft)] hover:text-[var(--color-ink)]"
               )}
             >
               Round‑trip
@@ -120,7 +120,7 @@ export function FlightBookingWidget() {
             type="button"
             onClick={swap}
             aria-label="Swap origin and destination"
-            className="hidden md:flex h-10 w-10 self-end items-center justify-center rounded-full border border-neutral-200 bg-neutral-100 text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-950 mb-1"
+            className="hidden md:flex h-10 w-10 self-end items-center justify-center rounded-full border border-[var(--color-hairline)] bg-[var(--color-ivory-deep)] text-[var(--color-ink-soft)] transition-colors hover:bg-[var(--color-ivory)] hover:text-[var(--color-ink)] mb-1"
           >
             <ArrowLeftRight className="h-4 w-4" strokeWidth={1.75} />
           </button>
@@ -159,7 +159,7 @@ export function FlightBookingWidget() {
           {/* Submit */}
           <button
             type="submit"
-            className="group mt-2 inline-flex h-[58px] items-center justify-center gap-2 self-end rounded-xl bg-neutral-950 px-6 text-[13px] font-semibold text-white transition-colors hover:bg-neutral-800 md:mt-0"
+            className="group mt-2 inline-flex h-[58px] items-center justify-center gap-2 self-end rounded-xl bg-[var(--color-ink)] px-6 text-[13px] font-semibold text-white transition-colors hover:bg-[var(--color-ink-soft)] md:mt-0"
           >
             <Search className="h-4 w-4" strokeWidth={2.25} />
             Search
@@ -177,7 +177,7 @@ export function FlightBookingWidget() {
           </div>
         )}
 
-        <p className="mt-4 text-[11px] text-neutral-400">
+        <p className="mt-4 text-[11px] text-[var(--color-subtle)]">
           No account required to quote. Free to search. Transparent pricing.
         </p>
       </form>
@@ -201,18 +201,18 @@ function Field({
   onChange: (v: string) => void;
 }) {
   return (
-    <label className="group flex h-[58px] flex-col justify-center rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-1 transition-colors focus-within:border-neutral-400 focus-within:bg-neutral-100">
-      <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+    <label className="group flex h-[58px] flex-col justify-center rounded-xl border border-[var(--color-hairline)] bg-[var(--color-ivory)] px-3 py-1 transition-colors focus-within:border-[var(--color-champagne)] focus-within:bg-[var(--color-ivory-deep)]">
+      <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-subtle)]">
         {label}
       </span>
       <div className="flex items-center gap-2">
-        <Icon className="h-4 w-4 text-neutral-500" strokeWidth={1.75} />
+        <Icon className="h-4 w-4 text-[var(--color-muted)]" strokeWidth={1.75} />
         <input
           type={type}
           placeholder={placeholder}
           value={value}
           onChange={(e) => onChange(e.target.value)}
-          className="w-full bg-transparent text-[14px] text-neutral-950 placeholder:text-neutral-400 outline-none"
+          className="w-full bg-transparent text-[14px] text-[var(--color-ink)] placeholder:text-[var(--color-subtle)] outline-none"
         />
       </div>
     </label>
@@ -227,21 +227,21 @@ function PaxField({
   onChange: (n: number) => void;
 }) {
   return (
-    <div className="flex h-[58px] flex-col justify-center rounded-xl border border-neutral-200 bg-neutral-50 px-3 py-1">
-      <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+    <div className="flex h-[58px] flex-col justify-center rounded-xl border border-[var(--color-hairline)] bg-[var(--color-ivory)] px-3 py-1">
+      <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-subtle)]">
         Passengers
       </span>
       <div className="flex items-center gap-2">
-        <Users className="h-4 w-4 text-neutral-500" strokeWidth={1.75} />
+        <Users className="h-4 w-4 text-[var(--color-muted)]" strokeWidth={1.75} />
         <div className="flex flex-1 items-center justify-between">
-          <span className="text-[14px] text-neutral-950">
+          <span className="text-[14px] text-[var(--color-ink)]">
             {value} {value === 1 ? "Guest" : "Guests"}
           </span>
           <div className="flex items-center gap-1">
             <button
               type="button"
               onClick={() => onChange(Math.max(1, value - 1))}
-              className="flex h-6 w-6 items-center justify-center rounded-full border border-neutral-300 bg-neutral-100 text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-950"
+              className="flex h-6 w-6 items-center justify-center rounded-full border border-[var(--color-hairline-strong)] bg-[var(--color-ivory-deep)] text-[var(--color-ink-soft)] transition-colors hover:bg-[var(--color-ivory)] hover:text-[var(--color-ink)]"
               aria-label="Decrease"
             >
               −
@@ -249,7 +249,7 @@ function PaxField({
             <button
               type="button"
               onClick={() => onChange(Math.min(19, value + 1))}
-              className="flex h-6 w-6 items-center justify-center rounded-full border border-neutral-300 bg-neutral-100 text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-950"
+              className="flex h-6 w-6 items-center justify-center rounded-full border border-[var(--color-hairline-strong)] bg-[var(--color-ivory-deep)] text-[var(--color-ink-soft)] transition-colors hover:bg-[var(--color-ivory)] hover:text-[var(--color-ink)]"
               aria-label="Increase"
             >
               +

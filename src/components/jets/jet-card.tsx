@@ -29,15 +29,15 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
         className={cn(
           "group relative overflow-hidden rounded-2xl border transition-all duration-300",
           dark
-            ? "border-neutral-200 bg-white hover:border-neutral-300 hover:bg-neutral-100"
-            : "border-neutral-200 bg-white hover:border-neutral-300"
+            ? "border-[var(--color-hairline)] bg-white hover:border-champagne hover:shadow-[0_24px_50px_-20px_rgba(184,155,110,0.35)]"
+            : "border-[var(--color-hairline)] bg-white hover:border-champagne hover:shadow-[0_24px_50px_-20px_rgba(184,155,110,0.35)]"
         )}
       >
         {/* Image area — dark geometric with plane silhouette */}
         <div
           className={cn(
             "relative aspect-[16/10] overflow-hidden",
-            dark ? "bg-gradient-to-br from-neutral-100 to-neutral-200" : "bg-neutral-100"
+            dark ? "bg-gradient-to-br from-[var(--color-ivory)] to-[var(--color-ivory-deep)]" : "bg-[var(--color-ivory-deep)]"
           )}
         >
           <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.06),transparent_60%)]" />
@@ -47,7 +47,7 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
             <Plane
               className={cn(
                 "h-16 w-16 transition-transform duration-500",
-                dark ? "text-neutral-300" : "text-neutral-300",
+                dark ? "text-[var(--color-bone)]" : "text-[var(--color-bone)]",
                 hovered && "translate-x-2 -translate-y-1"
               )}
               strokeWidth={1}
@@ -60,8 +60,8 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
               className={cn(
                 "rounded-full border px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest backdrop-blur-md",
                 dark
-                  ? "border-neutral-300 bg-neutral-300 text-neutral-800"
-                  : "border-neutral-300 bg-white/80 text-neutral-700"
+                  ? "border-[var(--color-hairline)] bg-[var(--color-ivory-deep)] text-[var(--color-ink-soft)]"
+                  : "border-[var(--color-hairline)] bg-white/80 text-[var(--color-ink-soft)]"
               )}
             >
               {getCategoryLabel(jet.category)}
@@ -70,11 +70,11 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
 
           {/* Availability dot */}
           <div className="absolute left-4 bottom-4 flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
+            <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-champagne)]" />
             <span
               className={cn(
                 "font-mono text-[10px] uppercase tracking-widest",
-                dark ? "text-neutral-600" : "text-neutral-600"
+                dark ? "text-[var(--color-muted)]" : "text-[var(--color-muted)]"
               )}
             >
               Available
@@ -86,8 +86,8 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
             className={cn(
               "absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300",
               dark
-                ? "border-neutral-300 bg-neutral-300 text-neutral-950 backdrop-blur-md"
-                : "border-neutral-300 bg-white/80 text-neutral-800",
+                ? "border-[var(--color-hairline)] bg-[var(--color-ivory-deep)] text-[var(--color-ink)] backdrop-blur-md"
+                : "border-[var(--color-hairline)] bg-white/80 text-[var(--color-ink-soft)]",
               hovered ? "opacity-100 translate-x-0 -translate-y-0" : "opacity-0 translate-x-1 translate-y-1"
             )}
           >
@@ -102,7 +102,7 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
               <h3
                 className={cn(
                   "truncate text-[15px] font-semibold tracking-tight",
-                  dark ? "text-neutral-950" : "text-neutral-950"
+                  dark ? "text-[var(--color-ink)]" : "text-[var(--color-ink)]"
                 )}
               >
                 {jet.name}
@@ -110,7 +110,7 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
               <p
                 className={cn(
                   "mt-0.5 text-[12px]",
-                  dark ? "text-neutral-500" : "text-neutral-500"
+                  dark ? "text-[var(--color-muted)]" : "text-[var(--color-muted)]"
                 )}
               >
                 {jet.manufacturer}
@@ -118,11 +118,11 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
             </div>
             {jet.rating && (
               <div className="flex shrink-0 items-center gap-1">
-                <Star className="h-3.5 w-3.5 fill-white text-neutral-950" />
+                <Star className="h-3.5 w-3.5 fill-white text-[var(--color-ink)]" />
                 <span
                   className={cn(
                     "text-[12px] font-medium",
-                    dark ? "text-neutral-950" : "text-neutral-900"
+                    dark ? "text-[var(--color-ink)]" : "text-[var(--color-ink)]"
                   )}
                 >
                   {jet.rating.toFixed(1)}
@@ -135,7 +135,7 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
           <div
             className={cn(
               "mt-5 flex items-center gap-4 border-t pt-4",
-              dark ? "border-neutral-200" : "border-neutral-200"
+              dark ? "border-[var(--color-hairline)]" : "border-[var(--color-hairline)]"
             )}
           >
             <Spec
@@ -166,14 +166,14 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
           <div
             className={cn(
               "mt-4 flex items-baseline justify-between border-t pt-4",
-              dark ? "border-neutral-200" : "border-neutral-200"
+              dark ? "border-[var(--color-hairline)]" : "border-[var(--color-hairline)]"
             )}
           >
             <div className="flex items-baseline gap-1">
               <span
                 className={cn(
                   "font-mono text-[10px] uppercase tracking-widest",
-                  dark ? "text-neutral-400" : "text-neutral-500"
+                  dark ? "text-[var(--color-subtle)]" : "text-[var(--color-muted)]"
                 )}
               >
                 From
@@ -181,7 +181,7 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
               <span
                 className={cn(
                   "text-[18px] font-semibold tracking-tight",
-                  dark ? "text-neutral-950" : "text-neutral-950"
+                  dark ? "text-[var(--color-ink)]" : "text-[var(--color-ink)]"
                 )}
               >
                 {formatCurrency(jet.hourlyRate)}
@@ -189,7 +189,7 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
               <span
                 className={cn(
                   "text-[12px]",
-                  dark ? "text-neutral-500" : "text-neutral-500"
+                  dark ? "text-[var(--color-muted)]" : "text-[var(--color-muted)]"
                 )}
               >
                 / hr
@@ -198,7 +198,7 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
             <span
               className={cn(
                 "inline-flex items-center gap-1 text-[12px] font-medium transition-transform",
-                dark ? "text-neutral-950" : "text-neutral-900",
+                dark ? "text-[var(--color-ink)]" : "text-[var(--color-ink)]",
                 hovered && "translate-x-0.5"
               )}
             >
@@ -226,17 +226,17 @@ function Spec({
   return (
     <div className="flex items-center gap-1.5">
       <Icon
-        className={cn("h-3.5 w-3.5", dark ? "text-neutral-500" : "text-neutral-400")}
+        className={cn("h-3.5 w-3.5", dark ? "text-[var(--color-muted)]" : "text-[var(--color-subtle)]")}
         strokeWidth={1.75}
       />
       <span
         className={cn(
           "text-[12px]",
-          dark ? "text-neutral-800" : "text-neutral-700"
+          dark ? "text-[var(--color-ink-soft)]" : "text-[var(--color-ink-soft)]"
         )}
       >
         <span className="font-medium">{value}</span>{" "}
-        <span className={dark ? "text-neutral-400" : "text-neutral-400"}>
+        <span className={dark ? "text-[var(--color-subtle)]" : "text-[var(--color-subtle)]"}>
           {label}
         </span>
       </span>

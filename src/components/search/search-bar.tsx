@@ -68,7 +68,7 @@ function AirportDropdown({
   return (
     <div
       className={cn(
-        "absolute left-0 right-0 z-50 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-[0_20px_50px_-10px_rgba(0,0,0,0.18)] backdrop-blur-xl",
+        "absolute left-0 right-0 z-50 overflow-hidden rounded-xl border border-[var(--color-hairline)] bg-white shadow-[0_20px_50px_-10px_rgba(0,0,0,0.18)] backdrop-blur-xl",
         "max-h-[280px] overflow-y-auto",
         position === "below" ? "top-full mt-2" : "bottom-full mb-2"
       )}
@@ -81,21 +81,21 @@ function AirportDropdown({
             e.preventDefault();
             onSelect(airport);
           }}
-          className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-neutral-100"
+          className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-[var(--color-ivory)]"
         >
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-neutral-200 bg-neutral-100 text-neutral-700">
+          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-[var(--color-hairline)] bg-[var(--color-ivory-deep)] text-[var(--color-ink-soft)]">
             <Plane className="h-4 w-4" strokeWidth={1.75} />
           </div>
           <div className="min-w-0 flex-1">
             <div className="flex items-center gap-2">
-              <span className="font-mono text-[13px] font-semibold tracking-wide text-neutral-950">
+              <span className="font-mono text-[13px] font-semibold tracking-wide text-[var(--color-ink)]">
                 {airport.code}
               </span>
-              <span className="truncate text-[13px] text-neutral-600">
+              <span className="truncate text-[13px] text-[var(--color-muted)]">
                 {airport.city}, {airport.country}
               </span>
             </div>
-            <p className="truncate text-[11px] text-neutral-400">{airport.name}</p>
+            <p className="truncate text-[11px] text-[var(--color-subtle)]">{airport.name}</p>
           </div>
         </button>
       ))}
@@ -131,11 +131,11 @@ function AirportField({
   return (
     <div
       ref={ref}
-      className="relative flex flex-1 items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-neutral-50"
+      className="relative flex flex-1 items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-[var(--color-ivory)]"
     >
-      <MapPin className="h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.75} />
+      <MapPin className="h-4 w-4 shrink-0 text-[var(--color-muted)]" strokeWidth={1.75} />
       <div className="min-w-0 flex-1">
-        <label className="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+        <label className="block font-mono text-[10px] uppercase tracking-widest text-[var(--color-subtle)]">
           {label}
         </label>
         <input
@@ -147,7 +147,7 @@ function AirportField({
             setOpen(true);
           }}
           onFocus={() => setOpen(true)}
-          className="w-full bg-transparent text-[14px] font-medium text-neutral-950 outline-none placeholder:text-neutral-400"
+          className="w-full bg-transparent text-[14px] font-medium text-[var(--color-ink)] outline-none placeholder:text-[var(--color-subtle)]"
         />
       </div>
       <AirportDropdown
@@ -199,20 +199,20 @@ function StepperField({
       <button
         type="button"
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left transition-colors hover:bg-neutral-50"
+        className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left transition-colors hover:bg-[var(--color-ivory)]"
       >
-        <Icon className="h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.75} />
+        <Icon className="h-4 w-4 shrink-0 text-[var(--color-muted)]" strokeWidth={1.75} />
         <div className="min-w-0 flex-1">
-          <span className="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+          <span className="block font-mono text-[10px] uppercase tracking-widest text-[var(--color-subtle)]">
             {label}
           </span>
-          <span className="block text-[14px] font-medium text-neutral-950">
+          <span className="block text-[14px] font-medium text-[var(--color-ink)]">
             {summary}
           </span>
         </div>
         <ChevronDown
           className={cn(
-            "h-3.5 w-3.5 shrink-0 text-neutral-400 transition-transform",
+            "h-3.5 w-3.5 shrink-0 text-[var(--color-subtle)] transition-transform",
             open && "rotate-180"
           )}
           strokeWidth={2}
@@ -220,18 +220,18 @@ function StepperField({
       </button>
 
       {open && (
-        <div className="absolute left-0 right-0 top-full z-50 mt-2 rounded-xl border border-neutral-200 bg-white p-2 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+        <div className="absolute left-0 right-0 top-full z-50 mt-2 rounded-xl border border-[var(--color-hairline)] bg-white p-2 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.18)] backdrop-blur-xl">
           {items.map((it) => (
             <div
               key={it.key}
               className="flex items-center justify-between gap-4 rounded-lg px-3 py-2.5"
             >
               <div className="min-w-0">
-                <div className="text-[13px] font-medium text-neutral-950">
+                <div className="text-[13px] font-medium text-[var(--color-ink)]">
                   {it.title}
                 </div>
                 {it.subtitle && (
-                  <div className="text-[11px] text-neutral-500">{it.subtitle}</div>
+                  <div className="text-[11px] text-[var(--color-muted)]">{it.subtitle}</div>
                 )}
               </div>
               <div className="flex items-center gap-3">
@@ -240,15 +240,15 @@ function StepperField({
                   onClick={() => it.onChange(Math.max(it.min, it.value - 1))}
                   disabled={it.value <= it.min}
                   className={cn(
-                    "flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 text-neutral-950 transition-colors",
+                    "flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-hairline)] text-[var(--color-ink)] transition-colors",
                     it.value <= it.min
                       ? "cursor-not-allowed opacity-30"
-                      : "hover:bg-neutral-950 hover:text-white"
+                      : "hover:bg-[var(--color-champagne)] hover:border-[var(--color-champagne)] hover:text-white"
                   )}
                 >
                   <Minus className="h-3.5 w-3.5" strokeWidth={2} />
                 </button>
-                <span className="w-6 text-center text-[15px] font-semibold text-neutral-950">
+                <span className="w-6 text-center text-[15px] font-semibold text-[var(--color-ink)]">
                   {it.value}
                 </span>
                 <button
@@ -256,10 +256,10 @@ function StepperField({
                   onClick={() => it.onChange(Math.min(it.max, it.value + 1))}
                   disabled={it.value >= it.max}
                   className={cn(
-                    "flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 text-neutral-950 transition-colors",
+                    "flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-hairline)] text-[var(--color-ink)] transition-colors",
                     it.value >= it.max
                       ? "cursor-not-allowed opacity-30"
-                      : "hover:bg-neutral-950 hover:text-white"
+                      : "hover:bg-[var(--color-champagne)] hover:border-[var(--color-champagne)] hover:text-white"
                   )}
                 >
                   <Plus className="h-3.5 w-3.5" strokeWidth={2} />
@@ -372,7 +372,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
       )}
     >
       {/* Trip-type tabs */}
-      <div className="mb-3 inline-flex items-center gap-1 rounded-full border border-neutral-200 bg-white p-1 backdrop-blur-xl">
+      <div className="mb-3 inline-flex items-center gap-1 rounded-full border border-[var(--color-hairline)] bg-white p-1 backdrop-blur-xl">
         {TRIP_TYPES.map((t) => {
           const active = tripType === t.value;
           return (
@@ -383,8 +383,8 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
               className={cn(
                 "rounded-full px-3.5 py-1.5 text-[12px] font-medium transition-colors",
                 active
-                  ? "bg-neutral-950 text-white"
-                  : "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-950"
+                  ? "bg-[var(--color-champagne)] text-white"
+                  : "text-[var(--color-muted)] hover:bg-[var(--color-ivory)] hover:text-[var(--color-ink)]"
               )}
             >
               {t.label}
@@ -393,7 +393,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
         })}
       </div>
 
-      <div className="rounded-2xl border border-neutral-200 bg-white p-2 backdrop-blur-xl">
+      <div className="rounded-2xl border border-[var(--color-hairline)] bg-white p-2 backdrop-blur-xl">
         {tripType !== "multi_leg" ? (
           <div className="flex flex-col gap-0 md:flex-row md:items-stretch">
             {/* FROM */}
@@ -419,7 +419,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                 setFromQuery(to);
                 setToQuery(from);
               }}
-              className="z-10 mx-auto -my-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-600 transition-all hover:border-neutral-400 hover:bg-neutral-100 hover:text-neutral-950 active:scale-90 md:mx-1 md:my-auto md:h-8 md:w-8"
+              className="z-10 mx-auto -my-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-[var(--color-hairline)] bg-white text-[var(--color-muted)] transition-all hover:border-[var(--color-hairline-strong)] hover:bg-[var(--color-ivory)] hover:text-[var(--color-ink)] active:scale-90 md:mx-1 md:my-auto md:h-8 md:w-8"
               aria-label="Swap departure and arrival"
             >
               <ArrowLeftRight className="h-3.5 w-3.5" strokeWidth={2} />
@@ -440,13 +440,13 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
               }}
             />
 
-            <div className="hidden h-10 w-px self-center bg-neutral-200 md:block" />
+            <div className="hidden h-10 w-px self-center bg-[var(--color-hairline)] md:block" />
 
             {/* DATE + TIME */}
-            <div className="flex flex-1 items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-neutral-50 md:max-w-[260px]">
-              <Calendar className="h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.75} />
+            <div className="flex flex-1 items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-[var(--color-ivory)] md:max-w-[260px]">
+              <Calendar className="h-4 w-4 shrink-0 text-[var(--color-muted)]" strokeWidth={1.75} />
               <div className="min-w-0 flex-1">
-                <label className="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+                <label className="block font-mono text-[10px] uppercase tracking-widest text-[var(--color-subtle)]">
                   {tripType === "round_trip" ? "Depart" : "Date / Time"}
                 </label>
                 <div className="flex items-center gap-2">
@@ -456,8 +456,8 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                     value={date}
                     onChange={(e) => setDate(e.target.value)}
                     className={cn(
-                      "min-w-0 flex-1 bg-transparent text-[14px] font-medium text-neutral-950 outline-none",
-                      !date && "text-neutral-400"
+                      "min-w-0 flex-1 bg-transparent text-[14px] font-medium text-[var(--color-ink)] outline-none",
+                      !date && "text-[var(--color-subtle)]"
                     )}
                   />
                   <input
@@ -465,8 +465,8 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                     value={time}
                     onChange={(e) => setTime(e.target.value)}
                     className={cn(
-                      "w-[78px] bg-transparent text-[14px] font-medium text-neutral-950 outline-none",
-                      !time && "text-neutral-400"
+                      "w-[78px] bg-transparent text-[14px] font-medium text-[var(--color-ink)] outline-none",
+                      !time && "text-[var(--color-subtle)]"
                     )}
                   />
                 </div>
@@ -476,14 +476,14 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
             {/* RETURN (only round_trip) */}
             {tripType === "round_trip" && (
               <>
-                <div className="hidden h-10 w-px self-center bg-neutral-200 md:block" />
-                <div className="flex flex-1 items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-neutral-50 md:max-w-[260px]">
+                <div className="hidden h-10 w-px self-center bg-[var(--color-hairline)] md:block" />
+                <div className="flex flex-1 items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-[var(--color-ivory)] md:max-w-[260px]">
                   <Calendar
-                    className="h-4 w-4 shrink-0 text-neutral-500"
+                    className="h-4 w-4 shrink-0 text-[var(--color-muted)]"
                     strokeWidth={1.75}
                   />
                   <div className="min-w-0 flex-1">
-                    <label className="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+                    <label className="block font-mono text-[10px] uppercase tracking-widest text-[var(--color-subtle)]">
                       Return
                     </label>
                     <div className="flex items-center gap-2">
@@ -493,8 +493,8 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                         value={returnDate}
                         onChange={(e) => setReturnDate(e.target.value)}
                         className={cn(
-                          "min-w-0 flex-1 bg-transparent text-[14px] font-medium text-neutral-950 outline-none",
-                          !returnDate && "text-neutral-400"
+                          "min-w-0 flex-1 bg-transparent text-[14px] font-medium text-[var(--color-ink)] outline-none",
+                          !returnDate && "text-[var(--color-subtle)]"
                         )}
                       />
                       <input
@@ -502,8 +502,8 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                         value={returnTime}
                         onChange={(e) => setReturnTime(e.target.value)}
                         className={cn(
-                          "w-[78px] bg-transparent text-[14px] font-medium text-neutral-950 outline-none",
-                          !returnTime && "text-neutral-400"
+                          "w-[78px] bg-transparent text-[14px] font-medium text-[var(--color-ink)] outline-none",
+                          !returnTime && "text-[var(--color-subtle)]"
                         )}
                       />
                     </div>
@@ -512,7 +512,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
               </>
             )}
 
-            <div className="hidden h-10 w-px self-center bg-neutral-200 md:block" />
+            <div className="hidden h-10 w-px self-center bg-[var(--color-hairline)] md:block" />
 
             {/* PASSENGERS / BAGS / PETS */}
             <div className="md:min-w-[220px]">
@@ -555,7 +555,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
             {/* SEARCH */}
             <button
               type="submit"
-              className="group ml-auto mt-2 flex shrink-0 items-center justify-center gap-1.5 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98] md:ml-2 md:mt-0"
+              className="group ml-auto mt-2 flex shrink-0 items-center justify-center gap-1.5 rounded-full bg-[var(--color-champagne)] px-6 py-3 text-[13px] font-medium text-white transition-colors hover:opacity-90 active:scale-[0.98] md:ml-2 md:mt-0"
             >
               <Search className="h-3.5 w-3.5" strokeWidth={2.25} />
               <span>Search Jets</span>
@@ -579,7 +579,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
               <button
                 type="button"
                 onClick={addLeg}
-                className="inline-flex items-center justify-center gap-1.5 self-start rounded-full border border-neutral-300 bg-neutral-50 px-3.5 py-2 text-[12px] font-medium text-neutral-950 transition-colors hover:border-neutral-400 hover:bg-neutral-100"
+                className="inline-flex items-center justify-center gap-1.5 self-start rounded-full border border-[var(--color-hairline)] bg-[var(--color-ivory)] px-3.5 py-2 text-[12px] font-medium text-[var(--color-ink)] transition-colors hover:border-[var(--color-hairline-strong)] hover:bg-[var(--color-ivory-deep)]"
               >
                 <Plus className="h-3.5 w-3.5" strokeWidth={2} />
                 Add another leg
@@ -624,7 +624,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                 </div>
                 <button
                   type="submit"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98]"
+                  className="inline-flex items-center justify-center gap-1.5 rounded-full bg-[var(--color-champagne)] px-6 py-3 text-[13px] font-medium text-white transition-colors hover:opacity-90 active:scale-[0.98]"
                 >
                   <Search className="h-3.5 w-3.5" strokeWidth={2.25} />
                   Search Jets
@@ -659,8 +659,8 @@ function MultiLegRow({
   useEffect(() => setToQuery(leg.to), [leg.to]);
 
   return (
-    <div className="flex flex-col items-stretch gap-1 rounded-xl border border-neutral-200 bg-neutral-50/50 p-1 md:flex-row md:items-center">
-      <div className="flex h-8 w-12 shrink-0 items-center justify-center rounded-md font-mono text-[11px] uppercase tracking-widest text-neutral-500 md:ml-2">
+    <div className="flex flex-col items-stretch gap-1 rounded-xl border border-[var(--color-hairline)] bg-[var(--color-ivory)]/60 p-1 md:flex-row md:items-center">
+      <div className="flex h-8 w-12 shrink-0 items-center justify-center rounded-md font-mono text-[11px] uppercase tracking-widest text-[var(--color-muted)] md:ml-2">
         Leg {index + 1}
       </div>
 
@@ -692,10 +692,10 @@ function MultiLegRow({
         }}
       />
 
-      <div className="flex flex-1 items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-neutral-50 md:max-w-[260px]">
-        <Clock className="h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.75} />
+      <div className="flex flex-1 items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-[var(--color-ivory)] md:max-w-[260px]">
+        <Clock className="h-4 w-4 shrink-0 text-[var(--color-muted)]" strokeWidth={1.75} />
         <div className="min-w-0 flex-1">
-          <label className="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+          <label className="block font-mono text-[10px] uppercase tracking-widest text-[var(--color-subtle)]">
             Date / Time
           </label>
           <div className="flex items-center gap-2">
@@ -705,8 +705,8 @@ function MultiLegRow({
               value={leg.date}
               onChange={(e) => onUpdate({ date: e.target.value })}
               className={cn(
-                "min-w-0 flex-1 bg-transparent text-[14px] font-medium text-neutral-950 outline-none",
-                !leg.date && "text-neutral-400"
+                "min-w-0 flex-1 bg-transparent text-[14px] font-medium text-[var(--color-ink)] outline-none",
+                !leg.date && "text-[var(--color-subtle)]"
               )}
             />
             <input
@@ -714,8 +714,8 @@ function MultiLegRow({
               value={leg.time}
               onChange={(e) => onUpdate({ time: e.target.value })}
               className={cn(
-                "w-[78px] bg-transparent text-[14px] font-medium text-neutral-950 outline-none",
-                !leg.time && "text-neutral-400"
+                "w-[78px] bg-transparent text-[14px] font-medium text-[var(--color-ink)] outline-none",
+                !leg.time && "text-[var(--color-subtle)]"
               )}
             />
           </div>
@@ -727,7 +727,7 @@ function MultiLegRow({
           type="button"
           onClick={onRemove}
           aria-label={`Remove leg ${index + 1}`}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-950 md:mr-2"
+          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-[var(--color-muted)] transition-colors hover:bg-[var(--color-ivory)] hover:text-[var(--color-ink)] md:mr-2"
         >
           <Trash2 className="h-3.5 w-3.5" strokeWidth={1.75} />
         </button>

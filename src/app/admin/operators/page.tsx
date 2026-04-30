@@ -46,8 +46,8 @@ export default function AdminOperatorsPage() {
   return (
     <div className="p-6 max-w-7xl mx-auto w-full">
       <div className="flex items-center justify-between mb-6">
-        <h1 className="text-2xl font-bold text-gray-900">Operators</h1>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-gray-900 text-neutral-950 text-sm font-semibold hover:bg-gray-800">
+        <h1 className="text-2xl font-bold text-[var(--color-ink)]">Operators</h1>
+        <button className="flex items-center gap-2 px-4 py-2 rounded-xl bg-[var(--color-ink)] text-white text-sm font-semibold hover:bg-[var(--color-ink-soft)]">
           <Plus className="w-4 h-4" /> Add Operator
         </button>
       </div>
@@ -63,34 +63,34 @@ export default function AdminOperatorsPage() {
         {/* List */}
         <div className={`${selected ? "hidden lg:block lg:w-1/2" : "w-full"}`}>
           <div className="relative mb-4">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-subtle)]" />
             <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
               placeholder="Search operators..."
-              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none" />
+              className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[var(--color-hairline)] text-sm focus:border-[var(--color-hairline-strong)] outline-none bg-[var(--color-ivory)] text-[var(--color-ink)]" />
           </div>
 
           <div className="space-y-3">
             {filtered.map((op) => (
               <button key={op.id} onClick={() => setSelected(op)}
-                className={`w-full text-left bg-white rounded-2xl border p-5 hover:shadow-md transition-all ${selected?.id === op.id ? "border-amber-300 shadow-md" : "border-gray-200"}`}>
+                className={`w-full text-left bg-[var(--color-ivory)] rounded-2xl border p-5 hover:shadow-md transition-all ${selected?.id === op.id ? "border-champagne shadow-md" : "border-[var(--color-hairline)]"}`}>
                 <div className="flex items-start justify-between">
                   <div className="flex items-center gap-3">
-                    <div className="w-11 h-11 rounded-xl bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-neutral-950 font-bold text-sm">{op.initials}</div>
+                    <div className="w-11 h-11 rounded-xl bg-[var(--color-ivory-deep)] border border-[var(--color-hairline-strong)] flex items-center justify-center text-[var(--color-ink)] font-bold text-sm">{op.initials}</div>
                     <div>
                       <div className="flex items-center gap-2">
-                        <p className="font-semibold text-gray-900">{op.name}</p>
-                        {op.verified && <CheckCircle className="w-4 h-4 text-blue-500" />}
+                        <p className="font-semibold text-[var(--color-ink)]">{op.name}</p>
+                        {op.verified && <CheckCircle className="w-4 h-4 text-[var(--color-forest)]" />}
                       </div>
-                      <p className="text-xs text-gray-400">{op.location} · Joined {op.joined}</p>
+                      <p className="text-xs text-[var(--color-subtle)]">{op.location} · Joined {op.joined}</p>
                     </div>
                   </div>
                   <StatusBadge status={op.status} />
                 </div>
-                <div className="grid grid-cols-4 gap-3 mt-4 pt-3 border-t border-gray-100">
-                  <div><p className="text-[10px] text-gray-400">Fleet</p><p className="text-sm font-semibold">{op.jets}</p></div>
-                  <div><p className="text-[10px] text-gray-400">Bookings</p><p className="text-sm font-semibold">{op.bookings}</p></div>
-                  <div><p className="text-[10px] text-gray-400">Revenue</p><p className="text-sm font-semibold">{formatCurrency(op.revenue)}</p></div>
-                  <div><p className="text-[10px] text-gray-400">Rating</p><p className="text-sm font-semibold">★ {op.rating}</p></div>
+                <div className="grid grid-cols-4 gap-3 mt-4 pt-3 border-t border-[var(--color-hairline)]">
+                  <div><p className="text-[10px] text-[var(--color-subtle)]">Fleet</p><p className="text-sm font-semibold text-[var(--color-ink)]">{op.jets}</p></div>
+                  <div><p className="text-[10px] text-[var(--color-subtle)]">Bookings</p><p className="text-sm font-semibold text-[var(--color-ink)]">{op.bookings}</p></div>
+                  <div><p className="text-[10px] text-[var(--color-subtle)]">Revenue</p><p className="text-sm font-semibold text-[var(--color-ink)]">{formatCurrency(op.revenue)}</p></div>
+                  <div><p className="text-[10px] text-[var(--color-subtle)]">Rating</p><p className="text-sm font-semibold text-[var(--color-ink)]">★ {op.rating}</p></div>
                 </div>
               </button>
             ))}
@@ -100,19 +100,19 @@ export default function AdminOperatorsPage() {
         {/* Detail Panel */}
         {selected && (
           <div className="flex-1 lg:w-1/2">
-            <div className="bg-white rounded-2xl border border-gray-200 p-6 sticky top-6">
+            <div className="bg-[var(--color-ivory)] rounded-2xl border border-[var(--color-hairline)] p-6 sticky top-6">
               <div className="flex items-start justify-between mb-4">
                 <div className="flex items-center gap-3">
-                  <div className="w-14 h-14 rounded-2xl bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center text-neutral-950 font-bold text-lg">{selected.initials}</div>
+                  <div className="w-14 h-14 rounded-2xl bg-[var(--color-ivory-deep)] border border-[var(--color-hairline-strong)] flex items-center justify-center text-[var(--color-ink)] font-bold text-lg">{selected.initials}</div>
                   <div>
                     <div className="flex items-center gap-2">
-                      <h2 className="text-lg font-bold text-gray-900">{selected.name}</h2>
-                      {selected.verified && <CheckCircle className="w-4 h-4 text-blue-500" />}
+                      <h2 className="text-lg font-bold text-[var(--color-ink)]">{selected.name}</h2>
+                      {selected.verified && <CheckCircle className="w-4 h-4 text-[var(--color-forest)]" />}
                     </div>
-                    <p className="text-sm text-gray-400">{selected.location}</p>
+                    <p className="text-sm text-[var(--color-subtle)]">{selected.location}</p>
                   </div>
                 </div>
-                <button onClick={() => setSelected(null)} className="text-gray-400 hover:text-gray-600 text-xs">✕</button>
+                <button onClick={() => setSelected(null)} className="text-[var(--color-subtle)] hover:text-[var(--color-muted)] text-xs">✕</button>
               </div>
 
               <div className="grid grid-cols-2 gap-3 mb-5">
@@ -122,29 +122,29 @@ export default function AdminOperatorsPage() {
                   { label: "Joined",   val: selected.joined   },
                   { label: "Reviews",  val: String(selected.reviews) },
                 ].map(({ label, val }) => (
-                  <div key={label} className="bg-gray-50 rounded-xl p-3">
-                    <p className="text-[10px] text-gray-400 uppercase tracking-wide">{label}</p>
-                    <p className="text-sm font-medium text-gray-900 mt-0.5">{val}</p>
+                  <div key={label} className="bg-[var(--color-ivory-deep)] rounded-xl p-3">
+                    <p className="text-[10px] text-[var(--color-subtle)] uppercase tracking-wide">{label}</p>
+                    <p className="text-sm font-medium text-[var(--color-ink)] mt-0.5">{val}</p>
                   </div>
                 ))}
               </div>
 
               <div className="mb-5">
-                <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Fleet ({selected.jets} aircraft)</p>
+                <p className="text-xs font-semibold text-[var(--color-muted)] uppercase tracking-wide mb-2">Fleet ({selected.jets} aircraft)</p>
                 <div className="space-y-1.5">
                   {selected.aircraftList.map((ac) => (
-                    <div key={ac} className="flex items-center gap-2 text-sm text-gray-700">
-                      <Plane className="w-3.5 h-3.5 text-gray-400" /> {ac}
+                    <div key={ac} className="flex items-center gap-2 text-sm text-[var(--color-ink-soft)]">
+                      <Plane className="w-3.5 h-3.5 text-[var(--color-subtle)]" /> {ac}
                     </div>
                   ))}
                 </div>
               </div>
 
               <div className="flex gap-2">
-                <button className="flex-1 py-2 rounded-xl border border-gray-200 text-sm font-medium text-gray-700 hover:bg-gray-50">
+                <button className="flex-1 py-2 rounded-xl border border-[var(--color-hairline)] text-sm font-medium text-[var(--color-ink-soft)] hover:bg-[var(--color-ivory-deep)]">
                   {selected.status === "active" ? "Suspend" : "Reactivate"}
                 </button>
-                <button className="flex-1 py-2 rounded-xl bg-amber-500 text-neutral-950 text-sm font-semibold hover:bg-amber-600">
+                <button className="flex-1 py-2 rounded-xl bg-champagne text-white text-sm font-semibold hover:bg-[var(--color-ink-soft)]">
                   Message
                 </button>
               </div>

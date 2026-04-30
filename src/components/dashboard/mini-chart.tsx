@@ -6,7 +6,7 @@ interface MiniChartProps {
   height?: number;
 }
 
-export function MiniChart({ data, color = "#ffffff", height = 40 }: MiniChartProps) {
+export function MiniChart({ data, color = "#b89b6e", height = 40 }: MiniChartProps) {
   if (!data.length) return null;
   const max = Math.max(...data);
   const min = Math.min(...data);

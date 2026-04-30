@@ -27,9 +27,9 @@ export default function BookingStepper({ currentStep }: BookingStepperProps) {
                 <div
                   className={cn(
                     "flex h-10 w-10 items-center justify-center rounded-full text-[13px] font-semibold transition-all duration-300",
-                    complete && "bg-neutral-950 text-neutral-950",
-                    active && "border border-neutral-400 bg-neutral-100 text-neutral-950 ring-4 ring-neutral-100",
-                    !complete && !active && "border border-neutral-200 bg-white text-neutral-400"
+                    complete && "bg-[var(--color-ink)] text-white",
+                    active && "border border-champagne bg-[var(--color-ivory-deep)] text-[var(--color-ink)] ring-4 ring-[var(--color-ivory-deep)]",
+                    !complete && !active && "border border-[var(--color-hairline)] bg-white text-[var(--color-subtle)]"
                   )}
                 >
                   {complete ? <Check className="h-4 w-4" strokeWidth={2.25} /> : step.number}
@@ -37,7 +37,7 @@ export default function BookingStepper({ currentStep }: BookingStepperProps) {
                 <span
                   className={cn(
                     "mt-2 whitespace-nowrap font-mono text-[10px] uppercase tracking-widest",
-                    step.number <= currentStep ? "text-neutral-800" : "text-neutral-400"
+                    step.number <= currentStep ? "text-[var(--color-ink-soft)]" : "text-[var(--color-subtle)]"
                   )}
                 >
                   {step.label}
@@ -49,7 +49,7 @@ export default function BookingStepper({ currentStep }: BookingStepperProps) {
                   <div
                     className={cn(
                       "h-px w-full transition-all duration-300",
-                      step.number < currentStep ? "bg-neutral-600" : "bg-neutral-200"
+                      step.number < currentStep ? "bg-[var(--color-muted)]" : "bg-[var(--color-hairline)]"
                     )}
                   />
                 </div>
