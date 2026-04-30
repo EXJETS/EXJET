@@ -14,20 +14,20 @@ export function JetGrid({ jets, dark = false }: JetGridProps) {
         <div
           className={
             dark
-              ? "flex h-16 w-16 items-center justify-center rounded-full border border-neutral-200 bg-neutral-100 mb-4"
-              : "flex h-16 w-16 items-center justify-center rounded-full bg-neutral-100 mb-4"
+              ? "flex h-16 w-16 items-center justify-center rounded-full border border-[var(--color-hairline)] bg-[var(--color-ivory-deep)] mb-4"
+              : "flex h-16 w-16 items-center justify-center rounded-full bg-[var(--color-ivory-deep)] mb-4"
           }
         >
           <Plane
-            className={dark ? "h-7 w-7 text-neutral-500" : "h-7 w-7 text-neutral-400"}
+            className={dark ? "h-7 w-7 text-[var(--color-muted)]" : "h-7 w-7 text-[var(--color-subtle)]"}
             strokeWidth={1.5}
           />
         </div>
         <h3
           className={
             dark
-              ? "text-[16px] font-semibold text-neutral-950 mb-1"
-              : "text-[16px] font-semibold text-neutral-900 mb-1"
+              ? "text-[16px] font-semibold text-[var(--color-ink)] mb-1"
+              : "text-[16px] font-semibold text-[var(--color-ink)] mb-1"
           }
         >
           No jets found
@@ -35,8 +35,8 @@ export function JetGrid({ jets, dark = false }: JetGridProps) {
         <p
           className={
             dark
-              ? "text-[13px] text-neutral-500 max-w-sm"
-              : "text-[13px] text-neutral-500 max-w-sm"
+              ? "text-[13px] text-[var(--color-muted)] max-w-sm"
+              : "text-[13px] text-[var(--color-muted)] max-w-sm"
           }
         >
           Try adjusting your search filters or check back later for new

@@ -12,13 +12,13 @@ function SpecItem({ icon, label, value }: SpecItemProps) {
   if (value == null) return null;
 
   return (
-    <div className="flex items-center gap-3 rounded-xl border border-neutral-200 bg-white p-4 transition-colors hover:border-neutral-300 hover:bg-neutral-100">
-      <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-neutral-200 bg-neutral-50 text-neutral-800">
+    <div className="flex items-center gap-3 rounded-xl border border-[var(--color-hairline)] bg-white p-4 transition-colors hover:border-[var(--color-hairline-strong)] hover:bg-[var(--color-ivory)]">
+      <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--color-hairline)] bg-[var(--color-ivory)] text-[var(--color-ink-soft)]">
         {icon}
       </div>
       <div>
-        <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">{label}</p>
-        <p className="mt-0.5 text-[13px] font-semibold text-neutral-950">{value}</p>
+        <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-subtle)]">{label}</p>
+        <p className="mt-0.5 text-[13px] font-semibold text-[var(--color-ink)]">{value}</p>
       </div>
     </div>
   );

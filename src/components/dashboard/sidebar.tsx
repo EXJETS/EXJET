@@ -63,18 +63,18 @@ export function Sidebar({ role, userName = "John Doe", userInitials = "JD", noti
   const roleLabel = roleLabels[role];
 
   const SidebarContent = () => (
-    <div className="flex h-full flex-col bg-white">
+    <div className="flex h-full flex-col bg-[var(--color-ivory)]">
       {/* Logo / Role */}
-      <div className="border-b border-neutral-200 px-5 py-5">
+      <div className="border-b border-[var(--color-hairline)] px-5 py-5">
         <Link href="/" className="mb-3 flex items-center gap-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100">
-            <Plane className="h-3.5 w-3.5 text-neutral-950" strokeWidth={2} />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-[var(--color-hairline-strong)] bg-[var(--color-ivory-deep)]">
+            <Plane className="h-3.5 w-3.5 text-[var(--color-ink)]" strokeWidth={2} />
           </div>
-          <span className="text-[15px] font-semibold tracking-tight text-neutral-950">EXJET</span>
+          <span className="text-[15px] font-semibold tracking-tight text-[var(--color-ink)]">EXJET</span>
         </Link>
         <div className="flex items-center gap-2">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
-          <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">{roleLabel}</span>
+          <span className="h-1.5 w-1.5 rounded-full bg-[var(--color-forest)]" />
+          <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-muted)]">{roleLabel}</span>
         </div>
       </div>
 
@@ -90,17 +90,17 @@ export function Sidebar({ role, userName = "John Doe", userInitials = "JD", noti
               className={cn(
                 "flex items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] font-medium transition-all",
                 active
-                  ? "border border-neutral-200 bg-neutral-100 text-neutral-950"
-                  : "border border-transparent text-neutral-600 hover:bg-neutral-100 hover:text-neutral-950"
+                  ? "bg-[var(--color-ivory)] text-[var(--color-ink)] border-l-2 border-champagne"
+                  : "border border-transparent text-[var(--color-muted)] hover:bg-[var(--color-ivory)] hover:text-[var(--color-ink)]"
               )}
             >
               <item.icon
-                className={cn("h-4 w-4", active ? "text-neutral-950" : "text-neutral-400")}
+                className={cn("h-4 w-4", active ? "text-[var(--color-ink)]" : "text-[var(--color-subtle)]")}
                 strokeWidth={1.75}
               />
               <span className="flex-1">{item.label}</span>
               {item.badge && (
-                <span className="rounded-full border border-neutral-300 bg-neutral-100 px-1.5 py-0.5 font-mono text-[10px] text-neutral-950">
+                <span className="rounded-full border border-[var(--color-hairline-strong)] bg-[var(--color-ivory-deep)] px-1.5 py-0.5 font-mono text-[10px] text-[var(--color-ink)]">
                   {item.badge}
                 </span>
               )}
@@ -110,25 +110,25 @@ export function Sidebar({ role, userName = "John Doe", userInitials = "JD", noti
       </nav>
 
       {/* User Footer */}
-      <div className="border-t border-neutral-200 px-3 py-4">
+      <div className="border-t border-[var(--color-hairline)] px-3 py-4">
         {notifications > 0 && (
-          <button className="mb-1 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-950">
-            <Bell className="h-4 w-4 text-neutral-400" strokeWidth={1.75} />
+          <button className="mb-1 flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-[13px] text-[var(--color-ink-soft)] transition-colors hover:bg-[var(--color-ivory)] hover:text-[var(--color-ink)]">
+            <Bell className="h-4 w-4 text-[var(--color-subtle)]" strokeWidth={1.75} />
             <span className="flex-1 text-left">Notifications</span>
-            <span className="rounded-full bg-red-500/15 px-1.5 py-0.5 font-mono text-[10px] text-red-700 ring-1 ring-red-200">
+            <span className="rounded-full bg-champagne px-1.5 py-0.5 font-mono text-[10px] text-white">
               {notifications}
             </span>
           </button>
         )}
         <div className="flex items-center gap-3 px-3 py-2">
-          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-neutral-300 bg-neutral-100 text-[11px] font-semibold text-neutral-950">
+          <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[var(--color-hairline-strong)] bg-[var(--color-ivory-deep)] text-[11px] font-semibold text-[var(--color-ink)]">
             {userInitials}
           </div>
           <div className="min-w-0 flex-1">
-            <p className="truncate text-[13px] font-medium text-neutral-950">{userName}</p>
-            <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">{role}</p>
+            <p className="truncate text-[13px] font-medium text-[var(--color-ink)]">{userName}</p>
+            <p className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-subtle)]">{role}</p>
           </div>
-          <button className="text-neutral-400 transition-colors hover:text-neutral-950">
+          <button className="text-[var(--color-subtle)] transition-colors hover:text-[var(--color-ink)]">
             <LogOut className="h-4 w-4" strokeWidth={1.75} />
           </button>
         </div>
@@ -139,21 +139,21 @@ export function Sidebar({ role, userName = "John Doe", userInitials = "JD", noti
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="sticky top-0 hidden h-screen min-h-screen w-56 shrink-0 flex-col border-r border-neutral-200 bg-white lg:flex">
+      <aside className="sticky top-0 hidden h-screen min-h-screen w-56 shrink-0 flex-col border-r border-[var(--color-hairline)] bg-[var(--color-ivory)] lg:flex">
         <SidebarContent />
       </aside>
 
       {/* Mobile top bar */}
-      <div className="fixed inset-x-0 top-0 z-40 flex h-14 items-center justify-between border-b border-neutral-200 bg-white px-4 lg:hidden">
+      <div className="fixed inset-x-0 top-0 z-40 flex h-14 items-center justify-between border-b border-[var(--color-hairline)] bg-[var(--color-ivory)] px-4 lg:hidden">
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100">
-            <Plane className="h-3.5 w-3.5 text-neutral-950" strokeWidth={2} />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-[var(--color-hairline-strong)] bg-[var(--color-ivory-deep)]">
+            <Plane className="h-3.5 w-3.5 text-[var(--color-ink)]" strokeWidth={2} />
           </div>
-          <span className="text-[14px] font-semibold tracking-tight text-neutral-950">EXJET</span>
+          <span className="text-[14px] font-semibold tracking-tight text-[var(--color-ink)]">EXJET</span>
         </Link>
         <button
           onClick={() => setMobileOpen(true)}
-          className="rounded-lg p-2 text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-950"
+          className="rounded-lg p-2 text-[var(--color-ink-soft)] transition-colors hover:bg-[var(--color-ivory-deep)] hover:text-[var(--color-ink)]"
         >
           <Menu className="h-5 w-5" strokeWidth={1.75} />
         </button>
@@ -162,11 +162,11 @@ export function Sidebar({ role, userName = "John Doe", userInitials = "JD", noti
       {/* Mobile drawer */}
       {mobileOpen && (
         <div className="fixed inset-0 z-50 flex lg:hidden">
-          <div className="absolute inset-0 bg-white backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
-          <div className="relative flex w-64 flex-col border-r border-neutral-200 bg-white">
+          <div className="absolute inset-0 bg-[var(--color-ivory)] backdrop-blur-sm" onClick={() => setMobileOpen(false)} />
+          <div className="relative flex w-64 flex-col border-r border-[var(--color-hairline)] bg-[var(--color-ivory)]">
             <button
               onClick={() => setMobileOpen(false)}
-              className="absolute right-3 top-3 rounded-lg p-1.5 text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-950"
+              className="absolute right-3 top-3 rounded-lg p-1.5 text-[var(--color-ink-soft)] transition-colors hover:bg-[var(--color-ivory-deep)] hover:text-[var(--color-ink)]"
             >
               <X className="h-5 w-5" strokeWidth={1.75} />
             </button>

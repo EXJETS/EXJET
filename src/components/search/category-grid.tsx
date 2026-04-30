@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { ArrowRight, Users, Gauge, MapPin, CheckCircle2 } from "lucide-react";
 import jetsData from "@/data/jets.json";
@@ -16,9 +17,10 @@ interface CategoryGridProps {
 interface CategoryMeta {
   key: JetCategory;
   tagline: string;
-  /** Min recommended distance in nm. Used with routeDistanceNm to highlight matches. */
   minRangeNm: number;
   maxRangeNm: number;
+  image?: string;
+  featuredAircraft?: string;
 }
 
 const CATEGORY_META: CategoryMeta[] = [
@@ -45,12 +47,15 @@ const CATEGORY_META: CategoryMeta[] = [
     tagline: "Long range, full galley",
     minRangeNm: 3000,
     maxRangeNm: 5000,
+    image: "/jets/global-5500.png",
+    featuredAircraft: "Global 5500",
   },
   {
     key: "ultra_long",
     tagline: "Intercontinental, non-stop",
     minRangeNm: 5000,
     maxRangeNm: 8000,
+    featuredAircraft: "Global 7500",
   },
 ];
 
@@ -101,34 +106,52 @@ export function CategoryGrid({ routeDistanceNm, hrefBase }: CategoryGridProps) {
             key={meta.key}
             href={href}
             className={cn(
-              "group relative flex flex-col overflow-hidden rounded-2xl border bg-white p-6 transition-all hover:bg-neutral-50",
+              "group relative flex flex-col overflow-hidden rounded-2xl border bg-white transition-all hover:bg-[var(--color-ivory)]",
               isRecommended
-                ? "border-neutral-950 ring-1 ring-neutral-950"
-                : "border-neutral-200 hover:border-neutral-300"
+                ? "border-[var(--color-champagne)] ring-1 ring-[var(--color-champagne)]"
+                : "border-[var(--color-hairline)] hover:border-[var(--color-hairline-strong)]"
             )}
           >
-            {isRecommended && (
-              <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-neutral-950 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-white">
-                <CheckCircle2 className="h-3 w-3" strokeWidth={2} />
-                Recommended
-              </span>
+            {/* Jet image banner */}
+            {meta.image && (
+              <div className="relative h-36 w-full overflow-hidden bg-[var(--color-ivory-deep)]">
+                <Image
+                  src={meta.image}
+                  alt={meta.featuredAircraft ?? getCategoryLabel(meta.key)}
+                  fill
+                  className="object-contain object-center py-3 transition-transform duration-500 group-hover:scale-[1.03]"
+                />
+              </div>
             )}
 
-            <div className="flex items-start justify-between gap-3">
-              <div>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
-                  Category
+            <div className="flex flex-col flex-1 p-6">
+              {isRecommended && (
+                <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-[var(--color-champagne)] px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-white">
+                  <CheckCircle2 className="h-3 w-3" strokeWidth={2} />
+                  Recommended
                 </span>
-                <h3 className="mt-1 text-[20px] font-semibold tracking-tight text-neutral-950">
-                  {getCategoryLabel(meta.key)}
-                </h3>
-                <p className="mt-1 text-[13px] text-neutral-600">
-                  {meta.tagline}
-                </p>
-              </div>
-            </div>
+              )}
 
-            <div className="mt-6 grid grid-cols-3 gap-3 border-t border-neutral-200 pt-4 text-[12px]">
+              <div className="flex items-start justify-between gap-3">
+                <div>
+                  <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-subtle)]">
+                    Category
+                  </span>
+                  <h3 className="mt-1 text-[20px] font-semibold tracking-tight text-[var(--color-ink)]">
+                    {getCategoryLabel(meta.key)}
+                  </h3>
+                  {meta.featuredAircraft && (
+                    <p className="mt-0.5 font-serif italic text-[14px] text-champagne">
+                      {meta.featuredAircraft}
+                    </p>
+                  )}
+                  <p className="mt-1 text-[13px] text-[var(--color-muted)]">
+                    {meta.tagline}
+                  </p>
+                </div>
+              </div>
+
+            <div className="mt-6 grid grid-cols-3 gap-3 border-t border-[var(--color-hairline)] pt-4 text-[12px]">
               <Stat
                 icon={Users}
                 label="Pax"
@@ -146,31 +169,31 @@ export function CategoryGrid({ routeDistanceNm, hrefBase }: CategoryGridProps) {
               />
             </div>
 
-            <div className="mt-4 border-t border-neutral-200 pt-4">
-              <div className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+            <div className="mt-4 border-t border-[var(--color-hairline)] pt-4">
+              <div className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-subtle)]">
                 Available aircraft
               </div>
-              <div className="mt-1 text-[12px] text-neutral-700">
+              <div className="mt-1 text-[12px] text-[var(--color-ink-soft)]">
                 {stats.sample.join(" · ")}
                 {stats.count > 3 && (
-                  <span className="text-neutral-500"> + {stats.count - 3} more</span>
+                  <span className="text-[var(--color-muted)]"> + {stats.count - 3} more</span>
                 )}
               </div>
             </div>
 
-            <div className="mt-5 flex items-end justify-between border-t border-neutral-200 pt-4">
+            <div className="mt-5 flex items-end justify-between border-t border-[var(--color-hairline)] pt-4">
               <div>
-                <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+                <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-subtle)]">
                   From
                 </span>
-                <div className="text-[18px] font-semibold text-neutral-950">
+                <div className="text-[18px] font-semibold text-[var(--color-ink)]">
                   {formatCurrency(stats.fromPrice)}
-                  <span className="ml-1 font-mono text-[11px] font-normal text-neutral-500">
+                  <span className="ml-1 font-mono text-[11px] font-normal text-[var(--color-muted)]">
                     /hr
                   </span>
                 </div>
               </div>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-neutral-950 px-3.5 py-1.5 text-[12px] font-medium text-white transition-colors group-hover:bg-neutral-800">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[var(--color-champagne)] px-3.5 py-1.5 text-[12px] font-medium text-white transition-colors group-hover:opacity-90">
                 Select
                 <ArrowRight
                   className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
@@ -178,6 +201,7 @@ export function CategoryGrid({ routeDistanceNm, hrefBase }: CategoryGridProps) {
                 />
               </span>
             </div>
+            </div>{/* end p-6 wrapper */}
           </Link>
         );
       })}
@@ -196,11 +220,11 @@ function Stat({
 }) {
   return (
     <div>
-      <div className="flex items-center gap-1 font-mono text-[10px] uppercase tracking-widest text-neutral-400">
+      <div className="flex items-center gap-1 font-mono text-[10px] uppercase tracking-widest text-[var(--color-subtle)]">
         <Icon className="h-3 w-3" strokeWidth={1.75} />
         {label}
       </div>
-      <div className="mt-0.5 text-[13px] font-medium text-neutral-950">
+      <div className="mt-0.5 text-[13px] font-medium text-[var(--color-ink)]">
         {value}
       </div>
     </div>

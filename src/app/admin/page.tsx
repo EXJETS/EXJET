@@ -42,14 +42,14 @@ export default function AdminPage() {
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Admin Overview</h1>
-          <p className="text-sm text-gray-500 mt-0.5">Platform health · April 2026</p>
+          <h1 className="text-2xl font-bold text-[var(--color-ink)]">Admin Overview</h1>
+          <p className="text-sm text-[var(--color-muted)] mt-0.5">Platform health · April 2026</p>
         </div>
         <div className="flex gap-2">
-          <Link href="/admin/analytics" className="px-4 py-2 rounded-xl border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50 flex items-center gap-2">
+          <Link href="/admin/analytics" className="px-4 py-2 rounded-xl border border-[var(--color-hairline)] text-sm font-medium text-[var(--color-muted)] hover:bg-[var(--color-ivory)] flex items-center gap-2">
             <TrendingUp className="w-4 h-4" /> Analytics
           </Link>
-          <Link href="/admin/operators" className="px-4 py-2 rounded-xl bg-gray-900 text-neutral-950 text-sm font-semibold hover:bg-gray-800 flex items-center gap-2">
+          <Link href="/admin/operators" className="px-4 py-2 rounded-xl bg-[var(--color-ink)] text-white text-sm font-semibold hover:bg-[var(--color-ink-soft)] flex items-center gap-2">
             <Building2 className="w-4 h-4" /> Operators
           </Link>
         </div>
@@ -65,29 +65,29 @@ export default function AdminPage() {
 
       {/* Revenue + Bookings Chart */}
       <div className="grid lg:grid-cols-2 gap-6 mb-6">
-        <div className="bg-white rounded-2xl border border-gray-200 p-5">
+        <div className="bg-[var(--color-ivory)] rounded-2xl border border-[var(--color-hairline)] p-5">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="font-semibold text-gray-900">Platform Revenue (12 mo)</h2>
-            <span className="text-xs text-green-600 bg-green-50 px-2 py-1 rounded-full font-semibold flex items-center gap-1">
+            <h2 className="font-semibold text-[var(--color-ink)]">Platform Revenue (12 mo)</h2>
+            <span className="text-xs text-[var(--color-forest)] bg-[var(--color-forest)]/10 px-2 py-1 rounded-full font-semibold flex items-center gap-1">
               <TrendingUp className="w-3 h-3" /> +38%
             </span>
           </div>
-          <div className="h-32"><MiniChart data={revenueData} color="#f59e0b" height={128} /></div>
+          <div className="h-32"><MiniChart data={revenueData} color="#b89b6e" height={128} /></div>
           <div className="flex justify-between mt-1">
             {["M","J","J","A","S","O","N","D","J","F","M","A"].map((m, i) => (
-              <span key={i} className="text-[9px] text-gray-400">{m}</span>
+              <span key={i} className="text-[9px] text-[var(--color-subtle)]">{m}</span>
             ))}
           </div>
         </div>
-        <div className="bg-white rounded-2xl border border-gray-200 p-5">
+        <div className="bg-[var(--color-ivory)] rounded-2xl border border-[var(--color-hairline)] p-5">
           <div className="flex items-center justify-between mb-3">
-            <h2 className="font-semibold text-gray-900">Bookings (12 mo)</h2>
-            <span className="text-xs text-blue-600 bg-blue-50 px-2 py-1 rounded-full font-semibold">{bookingsData.reduce((a,b)=>a+b,0)} total</span>
+            <h2 className="font-semibold text-[var(--color-ink)]">Bookings (12 mo)</h2>
+            <span className="text-xs text-[var(--color-forest)] bg-[var(--color-forest)]/10 px-2 py-1 rounded-full font-semibold">{bookingsData.reduce((a,b)=>a+b,0)} total</span>
           </div>
-          <div className="h-32"><MiniChart data={bookingsData} color="#3b82f6" height={128} /></div>
+          <div className="h-32"><MiniChart data={bookingsData} color="#b89b6e" height={128} /></div>
           <div className="flex justify-between mt-1">
             {["M","J","J","A","S","O","N","D","J","F","M","A"].map((m, i) => (
-              <span key={i} className="text-[9px] text-gray-400">{m}</span>
+              <span key={i} className="text-[9px] text-[var(--color-subtle)]">{m}</span>
             ))}
           </div>
         </div>
@@ -95,29 +95,29 @@ export default function AdminPage() {
 
       <div className="grid lg:grid-cols-3 gap-6">
         {/* Recent bookings */}
-        <div className="lg:col-span-2 bg-white rounded-2xl border border-gray-200 p-5">
+        <div className="lg:col-span-2 bg-[var(--color-ivory)] rounded-2xl border border-[var(--color-hairline)] p-5">
           <div className="flex items-center justify-between mb-4">
-            <h2 className="font-semibold text-gray-900">Recent Bookings</h2>
-            <Link href="/admin/bookings" className="text-xs text-amber-600 hover:text-amber-700 font-medium flex items-center gap-1">
+            <h2 className="font-semibold text-[var(--color-ink)]">Recent Bookings</h2>
+            <Link href="/admin/bookings" className="text-xs text-champagne hover:text-[var(--color-ink-soft)] font-medium flex items-center gap-1">
               View all <ArrowUpRight className="w-3 h-3" />
             </Link>
           </div>
           <div className="space-y-3">
             {recentBookings.map((b) => (
-              <div key={b.id} className="flex items-center justify-between p-3 rounded-xl border border-gray-100 hover:bg-gray-50 transition-colors">
+              <div key={b.id} className="flex items-center justify-between p-3 rounded-xl border border-[var(--color-hairline)] hover:bg-[var(--color-ivory-deep)] transition-colors">
                 <div className="flex items-center gap-3">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-neutral-950 text-[10px] font-bold">
+                  <div className="w-8 h-8 rounded-full bg-champagne/10 border border-champagne/20 flex items-center justify-center text-champagne text-[10px] font-bold">
                     {b.client.split(" ").map(n=>n[0]).join("")}
                   </div>
                   <div>
-                    <p className="text-sm font-medium text-gray-900">{b.client}</p>
-                    <p className="text-xs text-gray-400">{b.jet} · {b.operator}</p>
+                    <p className="text-sm font-medium text-[var(--color-ink)]">{b.client}</p>
+                    <p className="text-xs text-[var(--color-subtle)]">{b.jet} · {b.operator}</p>
                   </div>
                 </div>
                 <div className="flex items-center gap-3">
                   <div className="text-right">
-                    <p className="text-sm font-semibold text-gray-900">{formatCurrency(b.amount)}</p>
-                    <p className="text-[10px] text-gray-400">{b.time}</p>
+                    <p className="text-sm font-semibold text-[var(--color-ink)]">{formatCurrency(b.amount)}</p>
+                    <p className="text-[10px] text-[var(--color-subtle)]">{b.time}</p>
                   </div>
                   <StatusBadge status={b.status} />
                 </div>
@@ -129,18 +129,18 @@ export default function AdminPage() {
         {/* Alerts + Operator summary */}
         <div className="space-y-5">
           {/* Alerts */}
-          <div className="bg-white rounded-2xl border border-gray-200 p-5">
-            <h2 className="font-semibold text-gray-900 mb-3">Alerts</h2>
+          <div className="bg-[var(--color-ivory)] rounded-2xl border border-[var(--color-hairline)] p-5">
+            <h2 className="font-semibold text-[var(--color-ink)] mb-3">Alerts</h2>
             <div className="space-y-2">
               {alerts.map((a, i) => (
-                <div key={i} className={`flex items-start gap-2 p-2.5 rounded-lg ${a.type === "warning" ? "bg-amber-50 border border-amber-100" : "bg-green-50 border border-green-100"}`}>
+                <div key={i} className={`flex items-start gap-2 p-2.5 rounded-lg ${a.type === "warning" ? "bg-champagne/8 border border-champagne/20" : "bg-[var(--color-forest)]/8 border border-[var(--color-forest)]/20"}`}>
                   {a.type === "warning"
-                    ? <AlertTriangle className="w-4 h-4 text-amber-500 shrink-0 mt-0.5" />
-                    : <CheckCircle  className="w-4 h-4 text-green-500 shrink-0 mt-0.5" />
+                    ? <AlertTriangle className="w-4 h-4 text-champagne shrink-0 mt-0.5" />
+                    : <CheckCircle  className="w-4 h-4 text-[var(--color-forest)] shrink-0 mt-0.5" />
                   }
                   <div>
-                    <p className="text-xs text-gray-700">{a.msg}</p>
-                    <p className="text-[10px] text-gray-400 mt-0.5">{a.time}</p>
+                    <p className="text-xs text-[var(--color-ink-soft)]">{a.msg}</p>
+                    <p className="text-[10px] text-[var(--color-subtle)] mt-0.5">{a.time}</p>
                   </div>
                 </div>
               ))}
@@ -148,20 +148,20 @@ export default function AdminPage() {
           </div>
 
           {/* Top operators */}
-          <div className="bg-white rounded-2xl border border-gray-200 p-5">
+          <div className="bg-[var(--color-ivory)] rounded-2xl border border-[var(--color-hairline)] p-5">
             <div className="flex items-center justify-between mb-3">
-              <h2 className="font-semibold text-gray-900">Operators</h2>
-              <Link href="/admin/operators" className="text-xs text-amber-600 font-medium">View all</Link>
+              <h2 className="font-semibold text-[var(--color-ink)]">Operators</h2>
+              <Link href="/admin/operators" className="text-xs text-champagne font-medium">View all</Link>
             </div>
             <div className="space-y-2">
               {operators.map((op) => (
-                <div key={op.name} className="flex items-center justify-between py-1.5 border-b border-gray-100 last:border-0">
+                <div key={op.name} className="flex items-center justify-between py-1.5 border-b border-[var(--color-hairline)] last:border-0">
                   <div>
-                    <p className="text-sm font-medium text-gray-900">{op.name}</p>
-                    <p className="text-xs text-gray-400">{op.jets} jets · {op.bookings} bookings</p>
+                    <p className="text-sm font-medium text-[var(--color-ink)]">{op.name}</p>
+                    <p className="text-xs text-[var(--color-subtle)]">{op.jets} jets · {op.bookings} bookings</p>
                   </div>
                   <div className="text-right">
-                    <p className="text-xs font-semibold text-gray-700">{formatCurrency(op.revenue)}</p>
+                    <p className="text-xs font-semibold text-[var(--color-ink-soft)]">{formatCurrency(op.revenue)}</p>
                     <StatusBadge status={op.status} />
                   </div>
                 </div>

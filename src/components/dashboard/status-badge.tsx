@@ -3,15 +3,15 @@ import { cn } from "@/lib/utils";
 type Status = "confirmed" | "pending" | "completed" | "cancelled" | "active" | "inactive" | "available" | "in_flight" | "maintenance";
 
 const styles: Record<Status, string> = {
-  confirmed:   "bg-emerald-50 text-emerald-700 ring-emerald-200",
-  pending:     "bg-amber-50   text-amber-700   ring-amber-200",
-  completed:   "bg-neutral-100   text-neutral-700    ring-neutral-200",
-  cancelled:   "bg-red-50     text-red-700     ring-red-200",
-  active:      "bg-emerald-50 text-emerald-700 ring-emerald-200",
-  inactive:    "bg-neutral-100   text-neutral-500    ring-neutral-200",
-  available:   "bg-emerald-50 text-emerald-700 ring-emerald-200",
+  confirmed:   "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-[var(--color-forest)]/20",
+  pending:     "bg-champagne/10 text-champagne ring-champagne/20",
+  completed:   "bg-[var(--color-ivory-deep)] text-[var(--color-muted)] ring-[var(--color-hairline-strong)]",
+  cancelled:   "bg-[var(--color-bordeaux)]/8 text-[var(--color-bordeaux)] ring-[var(--color-bordeaux)]/20",
+  active:      "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-[var(--color-forest)]/20",
+  inactive:    "bg-[var(--color-ivory-deep)] text-[var(--color-muted)] ring-[var(--color-hairline-strong)]",
+  available:   "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-[var(--color-forest)]/20",
   in_flight:   "bg-sky-500/10     text-sky-300     ring-sky-400/20",
-  maintenance: "bg-amber-50   text-amber-700   ring-amber-200",
+  maintenance: "bg-champagne/10 text-champagne ring-champagne/20",
 };
 
 const labels: Record<Status, string> = {

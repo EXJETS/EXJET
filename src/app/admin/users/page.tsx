@@ -33,7 +33,7 @@ export default function AdminUsersPage() {
 
   return (
     <div className="p-6 max-w-7xl mx-auto w-full">
-      <h1 className="text-2xl font-bold text-gray-900 mb-6">Users</h1>
+      <h1 className="text-2xl font-bold text-[var(--color-ink)] mb-6">Users</h1>
 
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-6">
         <StatCard label="Total Users"   value={String(users.length)}                                            icon={Users}     color="amber" />
@@ -44,57 +44,57 @@ export default function AdminUsersPage() {
 
       <div className="flex items-center gap-3 mb-4">
         <div className="relative flex-1 max-w-sm">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-[var(--color-subtle)]" />
           <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
             placeholder="Search users..."
-            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none" />
+            className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-[var(--color-hairline)] text-sm focus:border-[var(--color-hairline-strong)] outline-none bg-[var(--color-ivory)] text-[var(--color-ink)]" />
         </div>
-        <div className="flex gap-1 bg-gray-100 rounded-xl p-1">
+        <div className="flex gap-1 bg-[var(--color-ivory-deep)] rounded-xl p-1">
           {(["all","active","inactive"] as const).map((f) => (
             <button key={f} onClick={() => setFilter(f)}
               className={cn("px-3 py-1.5 rounded-lg text-xs font-semibold capitalize",
-                filter === f ? "bg-white text-gray-900 shadow-sm" : "text-gray-500 hover:text-gray-700")}>
+                filter === f ? "bg-[var(--color-ivory)] text-[var(--color-ink)] shadow-sm" : "text-[var(--color-muted)] hover:text-[var(--color-ink-soft)]")}>
               {f}
             </button>
           ))}
         </div>
       </div>
 
-      <div className="bg-white rounded-2xl border border-gray-200 overflow-hidden">
+      <div className="bg-[var(--color-ivory)] rounded-2xl border border-[var(--color-hairline)] overflow-hidden">
         <table className="w-full text-sm">
-          <thead className="bg-gray-50 border-b border-gray-200">
+          <thead className="bg-[var(--color-ivory-deep)] border-b border-[var(--color-hairline)]">
             <tr>
               {["User","Email","Joined","Bookings","Total Spent","Last Seen","Status",""].map((h) => (
-                <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide whitespace-nowrap">{h}</th>
+                <th key={h} className="px-4 py-3 text-left text-xs font-semibold text-[var(--color-muted)] uppercase tracking-wide whitespace-nowrap">{h}</th>
               ))}
             </tr>
           </thead>
-          <tbody className="divide-y divide-gray-100">
+          <tbody className="divide-y divide-[var(--color-hairline)]">
             {filtered.map((u) => (
-              <tr key={u.id} className="hover:bg-gray-50 transition-colors">
+              <tr key={u.id} className="hover:bg-[var(--color-ivory-deep)] transition-colors">
                 <td className="px-4 py-3">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-amber-400 to-amber-600 flex items-center justify-center text-neutral-950 text-xs font-bold">
+                    <div className="w-8 h-8 rounded-full bg-champagne/10 border border-champagne/20 flex items-center justify-center text-champagne text-xs font-bold">
                       {u.name.split(" ").map(n=>n[0]).join("")}
                     </div>
-                    <span className="font-medium text-gray-900">{u.name}</span>
+                    <span className="font-medium text-[var(--color-ink)]">{u.name}</span>
                   </div>
                 </td>
-                <td className="px-4 py-3 text-gray-500 text-xs">{u.email}</td>
-                <td className="px-4 py-3 text-gray-500 text-xs">{u.joined}</td>
-                <td className="px-4 py-3 font-medium text-gray-900">{u.bookings}</td>
-                <td className="px-4 py-3 font-semibold text-gray-900">{formatCurrency(u.spent)}</td>
-                <td className="px-4 py-3 text-xs text-gray-400">{u.lastSeen}</td>
+                <td className="px-4 py-3 text-[var(--color-muted)] text-xs">{u.email}</td>
+                <td className="px-4 py-3 text-[var(--color-muted)] text-xs">{u.joined}</td>
+                <td className="px-4 py-3 font-medium text-[var(--color-ink)]">{u.bookings}</td>
+                <td className="px-4 py-3 font-semibold text-[var(--color-ink)]">{formatCurrency(u.spent)}</td>
+                <td className="px-4 py-3 text-xs text-[var(--color-subtle)]">{u.lastSeen}</td>
                 <td className="px-4 py-3">
                   <span className={cn("px-2 py-0.5 rounded-full text-xs font-semibold",
-                    u.status === "active" ? "bg-green-100 text-green-700" : "bg-gray-100 text-gray-500")}>
+                    u.status === "active" ? "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-1 ring-[var(--color-forest)]/20" : "bg-[var(--color-ivory-deep)] text-[var(--color-muted)] ring-1 ring-[var(--color-hairline-strong)]")}>
                     {u.status}
                   </span>
                 </td>
                 <td className="px-4 py-3">
                   <div className="flex gap-1">
-                    <button className="p-1.5 rounded-lg hover:bg-gray-100 text-gray-400 hover:text-gray-600" title="Email"><Mail className="w-3.5 h-3.5" /></button>
-                    <button className="p-1.5 rounded-lg hover:bg-red-50 text-gray-400 hover:text-red-500" title="Suspend"><Ban className="w-3.5 h-3.5" /></button>
+                    <button className="p-1.5 rounded-lg hover:bg-[var(--color-ivory-deep)] text-[var(--color-subtle)] hover:text-[var(--color-muted)]" title="Email"><Mail className="w-3.5 h-3.5" /></button>
+                    <button className="p-1.5 rounded-lg hover:bg-[var(--color-bordeaux)]/8 text-[var(--color-subtle)] hover:text-[var(--color-bordeaux)]" title="Suspend"><Ban className="w-3.5 h-3.5" /></button>
                   </div>
                 </td>
               </tr>

@@ -3,15 +3,15 @@ import { cn } from "@/lib/utils";
 
 const variantStyles = {
   primary:
-    "bg-neutral-950 text-neutral-950 hover:bg-neutral-800 disabled:hover:bg-neutral-950",
+    "bg-[var(--color-ink)] text-white hover:bg-[var(--color-ink-soft)] disabled:hover:bg-[var(--color-ink)]",
   secondary:
-    "border border-neutral-300 bg-white text-neutral-900 hover:bg-neutral-50 hover:border-neutral-400",
+    "border border-[var(--color-hairline)] bg-white text-[var(--color-ink)] hover:bg-[var(--color-ivory)] hover:border-[var(--color-hairline-strong)]",
   ghost:
-    "text-neutral-700 hover:bg-neutral-100 hover:text-neutral-950",
+    "text-[var(--color-ink-soft)] hover:bg-[var(--color-ivory)] hover:text-[var(--color-ink)]",
   danger:
-    "bg-red-600 text-neutral-950 hover:bg-red-500",
+    "bg-red-600 text-white hover:bg-red-500",
   outline:
-    "border border-neutral-300 bg-transparent text-neutral-900 hover:bg-neutral-50",
+    "border border-[var(--color-hairline)] bg-transparent text-[var(--color-ink)] hover:bg-[var(--color-ivory)]",
 } as const;
 
 const sizeStyles = {
@@ -46,7 +46,7 @@ export function Button<T extends ElementType = "button">({
     <Component
       className={cn(
         "inline-flex items-center justify-center gap-1.5 font-medium transition-colors duration-200",
-        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-neutral-400 focus-visible:ring-offset-2 focus-visible:ring-offset-white",
+        "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-hairline-strong)] focus-visible:ring-offset-2 focus-visible:ring-offset-white",
         "disabled:pointer-events-none disabled:opacity-50",
         variantStyles[variant],
         sizeStyles[size],

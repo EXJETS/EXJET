@@ -31,10 +31,10 @@ export default function AdminAnalyticsPage() {
     <div className="p-6 max-w-7xl mx-auto w-full">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Analytics</h1>
-          <p className="text-sm text-gray-500 mt-0.5">Platform performance · Last 12 months</p>
+          <h1 className="text-2xl font-bold text-[var(--color-ink)]">Analytics</h1>
+          <p className="text-sm text-[var(--color-muted)] mt-0.5">Platform performance · Last 12 months</p>
         </div>
-        <span className="text-xs px-3 py-1.5 rounded-full bg-green-100 text-green-700 font-semibold flex items-center gap-1">
+        <span className="text-xs px-3 py-1.5 rounded-full bg-[var(--color-forest)]/10 text-[var(--color-forest)] font-semibold flex items-center gap-1">
           <TrendingUp className="w-3 h-3" /> All metrics up YoY
         </span>
       </div>
@@ -49,16 +49,16 @@ export default function AdminAnalyticsPage() {
       {/* Charts row */}
       <div className="grid lg:grid-cols-3 gap-5 mb-6">
         {[
-          { label: "Revenue",  data: monthlyRevenue.map(v=>v/1000), suffix: "k", color: "#f59e0b" },
-          { label: "Bookings", data: monthlyBookings,                suffix: "",  color: "#3b82f6" },
-          { label: "Users",    data: monthlyUsers,                   suffix: "",  color: "#10b981" },
+          { label: "Revenue",  data: monthlyRevenue.map(v=>v/1000), suffix: "k", color: "#b89b6e" },
+          { label: "Bookings", data: monthlyBookings,                suffix: "",  color: "#b89b6e" },
+          { label: "Users",    data: monthlyUsers,                   suffix: "",  color: "#b89b6e" },
         ].map(({ label, data, suffix, color }) => (
-          <div key={label} className="bg-white rounded-2xl border border-gray-200 p-5">
-            <h3 className="font-semibold text-gray-900 mb-1">{label}</h3>
-            <p className="text-xs text-gray-400 mb-3">Monthly · 12 months</p>
+          <div key={label} className="bg-[var(--color-ivory)] rounded-2xl border border-[var(--color-hairline)] p-5">
+            <h3 className="font-semibold text-[var(--color-ink)] mb-1">{label}</h3>
+            <p className="text-xs text-[var(--color-subtle)] mb-3">Monthly · 12 months</p>
             <div className="h-24"><MiniChart data={data} color={color} height={96} /></div>
             <div className="flex justify-between mt-2">
-              {months.map((m) => <span key={m} className="text-[9px] text-gray-400">{m}</span>)}
+              {months.map((m) => <span key={m} className="text-[9px] text-[var(--color-subtle)]">{m}</span>)}
             </div>
           </div>
         ))}
@@ -66,22 +66,22 @@ export default function AdminAnalyticsPage() {
 
       <div className="grid lg:grid-cols-2 gap-5">
         {/* Top routes */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-5">
-          <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <Globe className="w-4 h-4 text-amber-500" /> Top Routes
+        <div className="bg-[var(--color-ivory)] rounded-2xl border border-[var(--color-hairline)] p-5">
+          <h2 className="font-semibold text-[var(--color-ink)] mb-4 flex items-center gap-2">
+            <Globe className="w-4 h-4 text-champagne" /> Top Routes
           </h2>
           <div className="space-y-4">
             {topRoutes.map((r) => (
               <div key={r.route}>
                 <div className="flex justify-between mb-1">
-                  <span className="text-sm font-mono font-medium text-gray-900">{r.route}</span>
+                  <span className="text-sm font-mono font-medium text-[var(--color-ink)]">{r.route}</span>
                   <div className="text-right">
-                    <span className="text-sm font-semibold text-gray-900">{r.count}</span>
-                    <span className="text-xs text-gray-400 ml-2">{formatCurrency(r.revenue)}</span>
+                    <span className="text-sm font-semibold text-[var(--color-ink)]">{r.count}</span>
+                    <span className="text-xs text-[var(--color-subtle)] ml-2">{formatCurrency(r.revenue)}</span>
                   </div>
                 </div>
-                <div className="w-full bg-gray-100 rounded-full h-1.5">
-                  <div className="bg-amber-500 h-1.5 rounded-full transition-all" style={{ width: `${r.pct}%` }} />
+                <div className="w-full bg-[var(--color-bone)] rounded-full h-1.5">
+                  <div className="bg-champagne h-1.5 rounded-full transition-all" style={{ width: `${r.pct}%` }} />
                 </div>
               </div>
             ))}
@@ -89,9 +89,9 @@ export default function AdminAnalyticsPage() {
         </div>
 
         {/* Revenue by category */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-5">
-          <h2 className="font-semibold text-gray-900 mb-4 flex items-center gap-2">
-            <Plane className="w-4 h-4 text-amber-500" /> Revenue by Category
+        <div className="bg-[var(--color-ivory)] rounded-2xl border border-[var(--color-hairline)] p-5">
+          <h2 className="font-semibold text-[var(--color-ink)] mb-4 flex items-center gap-2">
+            <Plane className="w-4 h-4 text-champagne" /> Revenue by Category
           </h2>
           {/* Stacked bar */}
           <div className="flex rounded-xl overflow-hidden h-8 mb-4">
@@ -104,11 +104,11 @@ export default function AdminAnalyticsPage() {
               <div key={c.name} className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <span className={`w-2.5 h-2.5 rounded-full ${c.color}`} />
-                  <span className="text-sm text-gray-700">{c.name}</span>
+                  <span className="text-sm text-[var(--color-ink-soft)]">{c.name}</span>
                 </div>
                 <div className="flex items-center gap-3">
-                  <span className="text-sm font-semibold text-gray-900">{formatCurrency(c.revenue)}</span>
-                  <span className="text-xs text-gray-400 w-8 text-right">{c.pct}%</span>
+                  <span className="text-sm font-semibold text-[var(--color-ink)]">{formatCurrency(c.revenue)}</span>
+                  <span className="text-xs text-[var(--color-subtle)] w-8 text-right">{c.pct}%</span>
                 </div>
               </div>
             ))}

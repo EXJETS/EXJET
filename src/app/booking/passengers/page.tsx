@@ -35,12 +35,12 @@ export default function PassengersPage() {
 
   if (!jet) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-white text-neutral-950">
-        <Plane className="mb-4 h-12 w-12 text-neutral-300" strokeWidth={1.25} />
+      <div className="flex min-h-screen flex-col items-center justify-center bg-white text-[var(--color-ink)]">
+        <Plane className="mb-4 h-12 w-12 text-[var(--color-subtle)]" strokeWidth={1.25} />
         <h2 className="text-[20px] font-semibold tracking-tight">Start from the beginning</h2>
         <Link
           href="/search"
-          className="mt-6 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-neutral-950 hover:bg-neutral-800"
+          className="mt-6 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-[var(--color-ink)] hover:bg-[var(--color-ink-soft)]"
         >
           Browse Jets
         </Link>
@@ -49,30 +49,30 @@ export default function PassengersPage() {
   }
 
   const inputCls =
-    "w-full rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2.5 text-[13px] text-neutral-950 placeholder:text-neutral-400 outline-none focus:border-neutral-400";
+    "w-full rounded-lg border border-[var(--color-hairline)] bg-[var(--color-ivory)] px-3 py-2.5 text-[13px] text-[var(--color-ink)] placeholder:text-[var(--color-subtle)] outline-none focus:border-[var(--color-champagne)]";
   const dateInputCls = inputCls + "";
-  const labelCls = "mb-1 block font-mono text-[10px] uppercase tracking-widest text-neutral-600";
+  const labelCls = "mb-1 block font-mono text-[10px] uppercase tracking-widest text-[var(--color-muted)]";
 
   return (
-    <div className="min-h-screen bg-white text-neutral-950">
+    <div className="min-h-screen bg-white text-[var(--color-ink)]">
       <div className="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8">
         <BookingStepper currentStep={2} />
 
         <div className="mt-8 flex flex-col gap-8 lg:flex-row">
           <div className="flex-1 space-y-4">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-neutral-600">Passengers</p>
-            <h2 className="text-[24px] font-semibold tracking-tight text-neutral-950">Passenger Information</h2>
-            <p className="text-[13px] text-neutral-600">
+            <p className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-muted)]">Passengers</p>
+            <h2 className="text-[24px] font-semibold tracking-tight text-[var(--color-ink)]">Passenger Information</h2>
+            <p className="text-[13px] text-[var(--color-muted)]">
               Please provide details for all {passengerCount} passenger{passengerCount > 1 ? "s" : ""}.
             </p>
 
             {forms.map((passenger, idx) => (
-              <div key={idx} className="rounded-2xl border border-neutral-200 bg-white p-6 backdrop-blur-xl">
+              <div key={idx} className="rounded-2xl border border-[var(--color-hairline)] bg-white p-6 backdrop-blur-xl">
                 <div className="mb-4 flex items-center gap-2">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full border border-neutral-200 bg-neutral-100">
-                    <User className="h-3.5 w-3.5 text-neutral-800" strokeWidth={1.75} />
+                  <div className="flex h-8 w-8 items-center justify-center rounded-full border border-[var(--color-hairline)] bg-[var(--color-ivory-deep)]">
+                    <User className="h-3.5 w-3.5 text-[var(--color-ink-soft)]" strokeWidth={1.75} />
                   </div>
-                  <h3 className="text-[14px] font-semibold tracking-tight text-neutral-950">
+                  <h3 className="text-[14px] font-semibold tracking-tight text-[var(--color-ink)]">
                     Passenger {idx + 1}{idx === 0 ? " (Lead)" : ""}
                   </h3>
                 </div>
@@ -139,14 +139,14 @@ export default function PassengersPage() {
             <div className="mt-6 flex justify-between">
               <button
                 onClick={() => { setStep(1); router.push("/booking?jet=" + jet.id); }}
-                className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-5 py-2.5 text-[12px] font-medium text-neutral-950 transition-colors hover:border-neutral-400 hover:bg-neutral-100"
+                className="inline-flex items-center gap-2 rounded-full border border-[var(--color-hairline)] bg-[var(--color-ivory)] px-5 py-2.5 text-[12px] font-medium text-[var(--color-ink)] transition-colors hover:border-[var(--color-hairline-strong)] hover:bg-[var(--color-ivory)]"
               >
                 <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2} /> Back
               </button>
               <button
                 onClick={handleContinue}
                 disabled={!isValid}
-                className="inline-flex items-center gap-2 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-[var(--color-ink-soft)] active:scale-[0.98] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 Continue to Review <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
               </button>
