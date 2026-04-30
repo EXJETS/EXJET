@@ -41,10 +41,10 @@ export default function OperatorEarningsPage() {
     <div className="p-6 max-w-7xl mx-auto w-full">
       <div className="flex items-center justify-between mb-6">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Earnings</h1>
-          <p className="text-sm text-gray-500 mt-0.5">Revenue breakdown for your fleet</p>
+          <h1 className="text-2xl font-bold text-[var(--color-ink)]">Earnings</h1>
+          <p className="text-sm text-[var(--color-muted)] mt-0.5">Revenue breakdown for your fleet</p>
         </div>
-        <button className="flex items-center gap-2 px-4 py-2 rounded-xl border border-gray-200 text-sm font-medium text-gray-600 hover:bg-gray-50">
+        <button className="flex items-center gap-2 px-4 py-2 rounded-xl border border-[var(--color-hairline)] text-sm font-medium text-[var(--color-muted)] hover:bg-[var(--color-ivory-deep)]">
           <Download className="w-4 h-4" /> Export Report
         </button>
       </div>
@@ -58,21 +58,21 @@ export default function OperatorEarningsPage() {
       </div>
 
       {/* Revenue chart */}
-      <div className="bg-white rounded-2xl border border-gray-200 p-5 mb-6">
+      <div className="bg-[var(--color-ivory)] rounded-2xl border border-[var(--color-hairline)] p-5 mb-6">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="font-semibold text-gray-900">Monthly Revenue</h2>
-          <div className="flex gap-3 text-xs text-gray-400">
-            <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-amber-500 inline-block rounded" /> Revenue</span>
+          <h2 className="font-semibold text-[var(--color-ink)]">Monthly Revenue</h2>
+          <div className="flex gap-3 text-xs text-[var(--color-subtle)]">
+            <span className="flex items-center gap-1"><span className="w-3 h-0.5 bg-champagne inline-block rounded" /> Revenue</span>
           </div>
         </div>
         <div className="h-40">
-          <MiniChart data={monthlyData.map(m => m.revenue)} color="#f59e0b" height={160} />
+          <MiniChart data={monthlyData.map(m => m.revenue)} color="#b89b6e" height={160} />
         </div>
         <div className="flex justify-between mt-2">
           {monthlyData.map((m) => (
             <div key={m.month} className="text-center">
-              <p className="text-[9px] text-gray-400">{m.month}</p>
-              <p className="text-[9px] font-semibold text-gray-600">${(m.revenue/1000).toFixed(0)}k</p>
+              <p className="text-[9px] text-[var(--color-subtle)]">{m.month}</p>
+              <p className="text-[9px] font-semibold text-[var(--color-muted)]">${(m.revenue/1000).toFixed(0)}k</p>
             </div>
           ))}
         </div>
@@ -80,43 +80,43 @@ export default function OperatorEarningsPage() {
 
       <div className="grid lg:grid-cols-2 gap-6">
         {/* Revenue by aircraft */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-5">
-          <h2 className="font-semibold text-gray-900 mb-4">Revenue by Aircraft</h2>
+        <div className="bg-[var(--color-ivory)] rounded-2xl border border-[var(--color-hairline)] p-5">
+          <h2 className="font-semibold text-[var(--color-ink)] mb-4">Revenue by Aircraft</h2>
           <div className="space-y-4">
             {byAircraft.map((ac) => (
               <div key={ac.reg}>
                 <div className="flex items-center justify-between mb-1">
                   <div>
-                    <p className="text-sm font-medium text-gray-900">{ac.name}</p>
-                    <p className="text-xs text-gray-400 font-mono">{ac.reg} · {ac.flights} flights</p>
+                    <p className="text-sm font-medium text-[var(--color-ink)]">{ac.name}</p>
+                    <p className="text-xs text-[var(--color-subtle)] font-mono">{ac.reg} · {ac.flights} flights</p>
                   </div>
-                  <p className="text-sm font-bold text-gray-900">{formatCurrency(ac.revenue)}</p>
+                  <p className="text-sm font-bold text-[var(--color-ink)]">{formatCurrency(ac.revenue)}</p>
                 </div>
-                <div className="w-full bg-gray-100 rounded-full h-2">
+                <div className="w-full bg-[var(--color-bone)] rounded-full h-2">
                   <div
-                    className="bg-gradient-to-r from-amber-400 to-amber-600 h-2 rounded-full"
+                    className="bg-champagne h-2 rounded-full"
                     style={{ width: `${ac.share}%` }}
                   />
                 </div>
-                <p className="text-[10px] text-gray-400 mt-0.5">{ac.share}% of total</p>
+                <p className="text-[10px] text-[var(--color-subtle)] mt-0.5">{ac.share}% of total</p>
               </div>
             ))}
           </div>
         </div>
 
         {/* Payouts */}
-        <div className="bg-white rounded-2xl border border-gray-200 p-5">
-          <h2 className="font-semibold text-gray-900 mb-4">Payout History</h2>
+        <div className="bg-[var(--color-ivory)] rounded-2xl border border-[var(--color-hairline)] p-5">
+          <h2 className="font-semibold text-[var(--color-ink)] mb-4">Payout History</h2>
           <div className="space-y-3">
             {payouts.map((p) => (
-              <div key={p.id} className="flex items-center justify-between p-3 rounded-xl border border-gray-100">
+              <div key={p.id} className="flex items-center justify-between p-3 rounded-xl border border-[var(--color-hairline)]">
                 <div>
-                  <p className="text-sm font-medium text-gray-900">{p.period}</p>
-                  <p className="text-xs text-gray-400">{p.date} · {p.id}</p>
+                  <p className="text-sm font-medium text-[var(--color-ink)]">{p.period}</p>
+                  <p className="text-xs text-[var(--color-subtle)]">{p.date} · {p.id}</p>
                 </div>
                 <div className="text-right">
-                  <p className="text-sm font-bold text-gray-900">{formatCurrency(p.amount)}</p>
-                  <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${p.status === "pending" ? "bg-yellow-100 text-yellow-700" : "bg-green-100 text-green-700"}`}>
+                  <p className="text-sm font-bold text-[var(--color-ink)]">{formatCurrency(p.amount)}</p>
+                  <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full ${p.status === "pending" ? "bg-champagne/10 text-champagne ring-1 ring-champagne/20" : "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-1 ring-[var(--color-forest)]/20"}`}>
                     {p.status}
                   </span>
                 </div>
