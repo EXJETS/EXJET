@@ -188,9 +188,9 @@ export function LiveTracker({ jet, compact = false }: LiveTrackerProps) {
           </div>
         )}
 
-        {/* Attribution */}
+        {/* Simulated data notice */}
         <div className="absolute bottom-2 right-2 rounded border border-neutral-200 bg-white/80 px-2 py-0.5 font-mono text-[9px] uppercase tracking-widest text-neutral-400 backdrop-blur-md">
-          Data via ADS-B Exchange
+          Simulated Demo Data
         </div>
       </div>
 
