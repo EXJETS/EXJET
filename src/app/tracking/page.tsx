@@ -84,13 +84,13 @@ export default function TrackingPage() {
               <div className="flex items-center gap-2">
                 <Radio className="h-3.5 w-3.5 text-emerald-700" strokeWidth={2} />
                 <p className="font-mono text-[11px] uppercase tracking-widest text-neutral-600">Fleet Live Tracking</p>
-                <span className="inline-flex items-center rounded-full bg-emerald-50 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-emerald-700 ring-1 ring-emerald-200">
-                  ADS-B Exchange
+                <span className="inline-flex items-center rounded-full bg-neutral-100 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-neutral-500 ring-1 ring-neutral-200">
+                  Simulated Data
                 </span>
               </div>
               <h1 className="mt-2 text-[28px] font-semibold tracking-tight text-neutral-950">Global Fleet Map</h1>
               <p className="mt-1 text-[13px] text-neutral-600">
-                Real-time positions of all {aircraft.length} aircraft in our fleet
+                Positions of all {aircraft.length} aircraft in our fleet
               </p>
             </div>
             <div className="flex items-center gap-2">
