@@ -86,7 +86,7 @@ function BookingContent() {
           href="/search"
           className="mt-6 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800"
         >
-          Browse Jets
+          Browse All Jets
         </Link>
       </div>
     );
@@ -134,7 +134,7 @@ function BookingContent() {
                   />
                 </div>
                 {showDepDropdown && filterAirports(depSearch).length > 0 && (
-                  <div className="absolute left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto rounded-xl border border-neutral-200 bg-neutral-950 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+                  <div className="absolute left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto rounded-xl border border-neutral-200 bg-white shadow-[0_8px_30px_-4px_rgba(0,0,0,0.12)] border border-neutral-200">
                     {filterAirports(depSearch).map((a) => (
                       <button
                         key={a.code}
@@ -170,7 +170,7 @@ function BookingContent() {
                   />
                 </div>
                 {showArrDropdown && filterAirports(arrSearch).length > 0 && (
-                  <div className="absolute left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto rounded-xl border border-neutral-200 bg-neutral-950 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.18)] backdrop-blur-xl">
+                  <div className="absolute left-0 right-0 z-50 mt-1 max-h-60 overflow-y-auto rounded-xl border border-neutral-200 bg-white shadow-[0_8px_30px_-4px_rgba(0,0,0,0.12)] border border-neutral-200">
                     {filterAirports(arrSearch).map((a) => (
                       <button
                         key={a.code}

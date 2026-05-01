@@ -359,7 +359,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
   const isHero = variant === "hero";
   const today = new Date().toISOString().split("T")[0];
 
-  const passengersSummary = `${passengers} ${passengers === 1 ? "Guest" : "Guests"}${
+  const passengersSummary = `${passengers} ${passengers === 1 ? "Passenger" : "Passengers"}${
     bags > 0 ? ` · ${bags} bag${bags === 1 ? "" : "s"}` : ""
   }${pets > 0 ? ` · ${pets} pet${pets === 1 ? "" : "s"}` : ""}`;
 
@@ -518,7 +518,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
             <div className="md:min-w-[220px]">
               <StepperField
                 icon={Users}
-                label="Guests"
+                label="Passengers"
                 summary={passengersSummary}
                 items={[
                   {
@@ -589,7 +589,7 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                 <div className="min-w-[200px]">
                   <StepperField
                     icon={Users}
-                    label="Guests"
+                    label="Passengers"
                     summary={passengersSummary}
                     items={[
                       {

@@ -129,7 +129,7 @@ export default function ClientDashboardPage() {
             href="/dashboard/tracking"
             className="inline-flex items-center gap-1.5 text-[12px] font-medium text-neutral-700 transition-colors hover:text-neutral-950"
           >
-            <Radio className="h-3 w-3 text-emerald-700" strokeWidth={2} /> Track Fleet Live
+            <Radio className="h-3 w-3 text-emerald-700" strokeWidth={2} /> Live Tracking
           </Link>
         </div>
         <div className="grid gap-3">

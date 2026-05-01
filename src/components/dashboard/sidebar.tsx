@@ -21,14 +21,14 @@ interface NavItem {
 const navItems: Record<DashboardRole, NavItem[]> = {
   client: [
     { href: "/dashboard",              label: "Overview",         icon: LayoutDashboard },
-    { href: "/dashboard/trips",        label: "My Trips",         icon: Calendar        },
-    { href: "/dashboard/tracking",     label: "Track My Jet",     icon: Radio           },
+    { href: "/dashboard/trips",        label: "Trips",            icon: Calendar        },
+    { href: "/dashboard/tracking",     label: "Tracking",         icon: Radio           },
     { href: "/dashboard/payments",     label: "Payments",         icon: CreditCard      },
     { href: "/dashboard/profile",      label: "Profile",          icon: User            },
   ],
   operator: [
     { href: "/operator",               label: "Overview",         icon: LayoutDashboard },
-    { href: "/operator/fleet",         label: "My Fleet",         icon: Plane           },
+    { href: "/operator/fleet",         label: "Fleet",            icon: Plane           },
     { href: "/operator/bookings",      label: "Bookings",         icon: Calendar,  badge: "3" },
     { href: "/operator/earnings",      label: "Earnings",         icon: DollarSign      },
     { href: "/operator/settings",      label: "Settings",         icon: Settings        },
@@ -139,12 +139,12 @@ export function Sidebar({ role, userName = "John Doe", userInitials = "JD", noti
   return (
     <>
       {/* Desktop sidebar */}
-      <aside className="sticky top-0 hidden h-screen min-h-screen w-56 shrink-0 flex-col border-r border-neutral-200 bg-white lg:flex">
+      <aside className="sticky top-16 hidden h-[calc(100vh-4rem)] w-56 shrink-0 flex-col border-r border-neutral-200 bg-white lg:flex">
         <SidebarContent />
       </aside>
 
       {/* Mobile top bar */}
-      <div className="fixed inset-x-0 top-0 z-40 flex h-14 items-center justify-between border-b border-neutral-200 bg-white px-4 lg:hidden">
+      <div className="fixed inset-x-0 top-16 z-40 flex h-14 items-center justify-between border-b border-neutral-200 bg-white px-4 lg:hidden">
         <Link href="/" className="flex items-center gap-2">
           <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100">
             <Plane className="h-3.5 w-3.5 text-neutral-950" strokeWidth={2} />

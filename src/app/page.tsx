@@ -78,7 +78,7 @@ export default function HomePage() {
           aria-hidden
         />
 
-        <div className="relative mx-auto max-w-7xl px-5 pt-28 pb-20 sm:px-8 lg:pt-40 lg:pb-28">
+        <div className="relative mx-auto max-w-7xl px-5 pt-12 pb-20 sm:px-8 lg:pt-24 lg:pb-28">
           {/* Editorial chapter rule */}
           <div className="mb-10 flex justify-center">
             <span className="chapter-rule">

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { Mail, Lock, Eye, EyeOff, Plane, User, Phone } from "lucide-react";
+import { Mail, Lock, Eye, EyeOff, Plane, User, Phone, AlertCircle } from "lucide-react";
 
 export default function RegisterPage() {
   const [form, setForm] = useState({
@@ -12,18 +12,43 @@ export default function RegisterPage() {
   const [showConfirm, setShowConfirm] = useState(false);
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [errors, setErrors] = useState<Record<string, string>>({});
 
-  const update = (field: string, value: string) =>
+  const update = (field: string, value: string) => {
     setForm((prev) => ({ ...prev, [field]: value }));
+    setErrors((prev) => ({ ...prev, [field]: "" }));
+  };
+
+  const validate = (): boolean => {
+    const next: Record<string, string> = {};
+
+    if (form.password.length < 8) {
+      next.password = "Password must be at least 8 characters.";
+    } else if (!/[A-Z]/.test(form.password)) {
+      next.password = "Password must contain at least one uppercase letter.";
+    } else if (!/[0-9]/.test(form.password)) {
+      next.password = "Password must contain at least one number.";
+    }
+
+    if (form.password !== form.confirmPassword) {
+      next.confirmPassword = "Passwords do not match.";
+    }
+
+    setErrors(next);
+    return Object.keys(next).length === 0;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validate()) return;
     setLoading(true);
     setTimeout(() => setLoading(false), 1500);
   };
 
   const inputCls =
     "w-full rounded-lg border border-neutral-200 bg-neutral-50 py-2.5 pl-10 pr-3 text-[13px] text-neutral-950 placeholder:text-neutral-400 outline-none focus:border-neutral-400";
+  const inputErrCls =
+    "w-full rounded-lg border border-red-300 bg-red-50 py-2.5 pl-10 pr-3 text-[13px] text-neutral-950 placeholder:text-neutral-400 outline-none focus:border-red-400";
   const labelCls = "mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-neutral-600";
 
   return (
@@ -117,9 +142,9 @@ export default function RegisterPage() {
                   type={showPassword ? "text" : "password"}
                   value={form.password}
                   onChange={(e) => update("password", e.target.value)}
-                  placeholder="Min. 8 characters"
+                  placeholder="Min. 8 characters, 1 uppercase, 1 number"
                   required
-                  className={inputCls + " py-3 pr-10"}
+                  className={(errors.password ? inputErrCls : inputCls) + " py-3 pr-10"}
                 />
                 <button
                   type="button"
@@ -129,6 +154,12 @@ export default function RegisterPage() {
                   {showPassword ? <EyeOff className="h-4 w-4" strokeWidth={1.75} /> : <Eye className="h-4 w-4" strokeWidth={1.75} />}
                 </button>
               </div>
+              {errors.password && (
+                <p className="mt-1.5 flex items-center gap-1.5 text-[11px] text-red-600">
+                  <AlertCircle className="h-3 w-3 shrink-0" strokeWidth={2} />
+                  {errors.password}
+                </p>
+              )}
             </div>
 
             <div>
@@ -141,7 +172,7 @@ export default function RegisterPage() {
                   onChange={(e) => update("confirmPassword", e.target.value)}
                   placeholder="Repeat password"
                   required
-                  className={inputCls + " py-3 pr-10"}
+                  className={(errors.confirmPassword ? inputErrCls : inputCls) + " py-3 pr-10"}
                 />
                 <button
                   type="button"
@@ -151,6 +182,12 @@ export default function RegisterPage() {
                   {showConfirm ? <EyeOff className="h-4 w-4" strokeWidth={1.75} /> : <Eye className="h-4 w-4" strokeWidth={1.75} />}
                 </button>
               </div>
+              {errors.confirmPassword && (
+                <p className="mt-1.5 flex items-center gap-1.5 text-[11px] text-red-600">
+                  <AlertCircle className="h-3 w-3 shrink-0" strokeWidth={2} />
+                  {errors.confirmPassword}
+                </p>
+              )}
             </div>
 
             <label className="flex cursor-pointer items-start gap-3">
