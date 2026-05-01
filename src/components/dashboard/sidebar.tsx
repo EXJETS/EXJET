@@ -21,14 +21,14 @@ interface NavItem {
 const navItems: Record<DashboardRole, NavItem[]> = {
   client: [
     { href: "/dashboard",              label: "Overview",         icon: LayoutDashboard },
-    { href: "/dashboard/trips",        label: "My Trips",         icon: Calendar        },
-    { href: "/dashboard/tracking",     label: "Track My Jet",     icon: Radio           },
+    { href: "/dashboard/trips",        label: "Trips",            icon: Calendar        },
+    { href: "/dashboard/tracking",     label: "Tracking",         icon: Radio           },
     { href: "/dashboard/payments",     label: "Payments",         icon: CreditCard      },
     { href: "/dashboard/profile",      label: "Profile",          icon: User            },
   ],
   operator: [
     { href: "/operator",               label: "Overview",         icon: LayoutDashboard },
-    { href: "/operator/fleet",         label: "My Fleet",         icon: Plane           },
+    { href: "/operator/fleet",         label: "Fleet",            icon: Plane           },
     { href: "/operator/bookings",      label: "Bookings",         icon: Calendar,  badge: "3" },
     { href: "/operator/earnings",      label: "Earnings",         icon: DollarSign      },
     { href: "/operator/settings",      label: "Settings",         icon: Settings        },

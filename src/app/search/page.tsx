@@ -196,7 +196,7 @@ function SearchResultsContent() {
                   Step 1 / 2
                 </span>
                 <h1 className="text-[15px] font-medium text-neutral-950">
-                  Choose your aircraft category
+                  Choose your jet category
                 </h1>
               </>
             ) : (
@@ -277,7 +277,7 @@ function SearchResultsContent() {
 
       {/* Mobile Filter Slide-over */}
       {mobileFiltersOpen && (
-        <div className="fixed inset-0 z-50 lg:hidden">
+        <div className="fixed inset-0 z-[60] lg:hidden">
           <div
             className="absolute inset-0 bg-neutral-950/40 backdrop-blur-sm"
             onClick={() => setMobileFiltersOpen(false)}

@@ -105,13 +105,13 @@ export default function OperatorPage() {
         </div>
       </div>
 
-      {/* Pending Requests + Upcoming */}
+      {/* Pending Bookings + Upcoming */}
       <div className="grid lg:grid-cols-2 gap-6">
-        {/* Pending booking requests */}
+        {/* Pending bookings */}
         <div className="bg-white rounded-2xl border border-gray-200 p-5">
           <div className="flex items-center justify-between mb-4">
             <div className="flex items-center gap-2">
-              <h2 className="font-semibold text-gray-900">Pending Requests</h2>
+              <h2 className="font-semibold text-gray-900">Pending Bookings</h2>
               <span className="px-1.5 py-0.5 rounded-full text-[10px] font-bold bg-amber-500 text-neutral-950">{pendingBookings.length}</span>
             </div>
             <Link href="/operator/bookings" className="text-xs text-amber-600 hover:text-amber-700 font-medium">See all</Link>

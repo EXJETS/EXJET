@@ -86,7 +86,7 @@ function BookingContent() {
           href="/search"
           className="mt-6 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800"
         >
-          Browse Jets
+          Browse All Jets
         </Link>
       </div>
     );
