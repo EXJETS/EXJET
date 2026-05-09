@@ -1,0 +1,82 @@
+[
+  {
+    "id": "gr-001",
+    "from": { "city": "New York", "place": "JFK Airport", "code": "JFK" },
+    "to": { "city": "Manhattan", "place": "Midtown", "code": "NYC" },
+    "distanceMiles": 17,
+    "estimatedMinutes": 40,
+    "fromPrice": 95,
+    "popular": true,
+    "demand": "very_high"
+  },
+  {
+    "id": "gr-002",
+    "from": { "city": "Los Angeles", "place": "LAX Airport", "code": "LAX" },
+    "to": { "city": "Beverly Hills", "place": "Rodeo Drive", "code": "BH" },
+    "distanceMiles": 14,
+    "estimatedMinutes": 35,
+    "fromPrice": 115,
+    "popular": true,
+    "demand": "very_high"
+  },
+  {
+    "id": "gr-003",
+    "from": { "city": "Miami", "place": "MIA Airport", "code": "MIA" },
+    "to": { "city": "Miami Beach", "place": "South Beach", "code": "SBH" },
+    "distanceMiles": 10,
+    "estimatedMinutes": 25,
+    "fromPrice": 85,
+    "popular": true,
+    "demand": "high"
+  },
+  {
+    "id": "gr-004",
+    "from": { "city": "Chicago", "place": "O'Hare Airport", "code": "ORD" },
+    "to": { "city": "Chicago", "place": "The Loop", "code": "CHI" },
+    "distanceMiles": 18,
+    "estimatedMinutes": 45,
+    "fromPrice": 110,
+    "popular": true,
+    "demand": "high"
+  },
+  {
+    "id": "gr-005",
+    "from": { "city": "San Francisco", "place": "SFO Airport", "code": "SFO" },
+    "to": { "city": "Palo Alto", "place": "Stanford Research Park", "code": "PAL" },
+    "distanceMiles": 22,
+    "estimatedMinutes": 30,
+    "fromPrice": 135,
+    "popular": true,
+    "demand": "high"
+  },
+  {
+    "id": "gr-006",
+    "from": { "city": "New York", "place": "Teterboro Airport", "code": "TEB" },
+    "to": { "city": "New York", "place": "Manhattan", "code": "NYC" },
+    "distanceMiles": 12,
+    "estimatedMinutes": 30,
+    "fromPrice": 120,
+    "popular": true,
+    "demand": "very_high"
+  },
+  {
+    "id": "gr-007",
+    "from": { "city": "Washington DC", "place": "Dulles Airport", "code": "IAD" },
+    "to": { "city": "Washington DC", "place": "Capitol Hill", "code": "DCA" },
+    "distanceMiles": 27,
+    "estimatedMinutes": 45,
+    "fromPrice": 125,
+    "popular": false,
+    "demand": "high"
+  },
+  {
+    "id": "gr-008",
+    "from": { "city": "Las Vegas", "place": "McCarran Airport", "code": "LAS" },
+    "to": { "city": "Las Vegas", "place": "The Strip", "code": "LVS" },
+    "distanceMiles": 5,
+    "estimatedMinutes": 15,
+    "fromPrice": 75,
+    "popular": false,
+    "demand": "high"
+  }
+]

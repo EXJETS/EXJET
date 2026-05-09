@@ -6,7 +6,8 @@ import { Menu, X, PlaneTakeoff, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/search", label: "Fleet" },
+  { href: "/search", label: "Jets" },
+  { href: "/ground", label: "Ground" },
   { href: "/tracking", label: "Live" },
   { href: "/dashboard", label: "Trips" },
   { href: "/auth/login", label: "Account" },
