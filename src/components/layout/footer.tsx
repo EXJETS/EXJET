@@ -19,6 +19,15 @@ const columns = [
     ],
   },
   {
+    title: "Ground",
+    links: [
+      { label: "Book a Ride", href: "/ground/book" },
+      { label: "Vehicle Fleet", href: "/ground/fleet" },
+      { label: "Track My Ride", href: "/ground/tracking" },
+      { label: "Chauffeur Portal", href: "/ground/chauffeur" },
+    ],
+  },
+  {
     title: "Company",
     links: [
       { label: "About", href: "/about" },
@@ -91,7 +100,7 @@ export function Footer() {
         </div>
 
         {/* Columns */}
-        <div className="grid grid-cols-2 gap-x-8 gap-y-12 pt-14 md:grid-cols-5">
+        <div className="grid grid-cols-2 gap-x-8 gap-y-12 pt-14 md:grid-cols-6">
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="inline-flex items-baseline gap-2">
               <PlaneTakeoff
