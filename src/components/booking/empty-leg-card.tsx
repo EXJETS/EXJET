@@ -3,7 +3,6 @@
 import Link from "next/link";
 import {
   PlaneTakeoff,
-  PlaneLanding,
   Calendar,
   Clock,
   Users,
@@ -36,54 +35,54 @@ export function EmptyLegCard({ leg }: { leg: EmptyLeg }) {
     <Link
       href={`/booking?legId=${leg.id}`}
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-2xl border border-neutral-200",
-        "bg-gradient-to-b from-neutral-50 to-white p-6 transition-all",
-        "hover:border-neutral-300 hover:bg-neutral-100"
+        "group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-hairline)]",
+        "bg-gradient-to-b from-[var(--color-ivory)] to-white p-6 transition-all",
+        "hover:border-champagne hover:shadow-[0_24px_50px_-20px_rgba(184,155,110,0.35)]"
       )}
     >
-      {/* Discount pill — Vercel accent */}
+      {/* Discount pill */}
       <div className="mb-5 flex items-center justify-between">
-        <span className="inline-flex items-center gap-1.5 rounded-full border border-neutral-300 bg-neutral-100 px-2.5 py-1 font-mono text-[11px] text-neutral-800">
-          <Tag className="h-3 w-3" strokeWidth={2} />
+        <span className="inline-flex items-center gap-1.5 rounded-full border border-[var(--color-hairline-strong)] bg-[var(--color-ivory)] px-2.5 py-1 font-mono text-[11px] text-[var(--color-ink-soft)]">
+          <Tag className="h-3 w-3 text-champagne" strokeWidth={2} />
           {leg.discountPct}% OFF
         </span>
-        <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-400">
+        <span className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-subtle)]">
           {leg.aircraft}
         </span>
       </div>
 
-      {/* Route — airport codes, Apple-huge mono */}
+      {/* Route */}
       <div className="flex items-start justify-between gap-3">
         <div className="flex flex-col">
-          <span className="text-[11px] uppercase tracking-widest text-neutral-400">
+          <span className="text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
             {leg.from.city}
           </span>
-          <span className="mt-1 font-mono text-[34px] font-semibold leading-none text-neutral-950">
+          <span className="mt-1 font-serif text-[34px] leading-none text-[var(--color-ink)]">
             {leg.from.code}
           </span>
         </div>
 
         {/* Animated plane rule */}
         <div className="relative flex-1 self-center">
-          <div className="h-px w-full bg-gradient-to-r from-neutral-200 via-neutral-400 to-neutral-200" />
+          <div className="h-px w-full bg-gradient-to-r from-transparent via-champagne/60 to-transparent" />
           <PlaneTakeoff
-            className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 h-4 w-4 text-neutral-600 transition-transform duration-500 group-hover:translate-x-0 group-hover:text-neutral-950"
+            className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 text-champagne transition-transform duration-500 group-hover:translate-x-3"
             strokeWidth={1.75}
           />
         </div>
 
         <div className="flex flex-col items-end">
-          <span className="text-[11px] uppercase tracking-widest text-neutral-400">
+          <span className="text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
             {leg.to.city}
           </span>
-          <span className="mt-1 font-mono text-[34px] font-semibold leading-none text-neutral-950">
+          <span className="mt-1 font-serif text-[34px] leading-none text-[var(--color-ink)]">
             {leg.to.code}
           </span>
         </div>
       </div>
 
       {/* Meta row */}
-      <div className="mt-6 grid grid-cols-3 gap-2 border-t border-neutral-200 pt-5 text-[12px]">
+      <div className="mt-6 grid grid-cols-3 gap-2 border-t border-[var(--color-hairline)] pt-5 text-[12px]">
         <MetaItem icon={Calendar} label={when} />
         <MetaItem icon={Clock} label={leg.departTime} />
         <MetaItem icon={Users} label={`Up to ${leg.capacity}`} />
@@ -92,32 +91,41 @@ export function EmptyLegCard({ leg }: { leg: EmptyLeg }) {
       {/* Price + CTA */}
       <div className="mt-6 flex items-end justify-between">
         <div>
-          <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-400 line-through">
+          <span className="font-mono text-[10px] uppercase tracking-widest text-[var(--color-subtle)] line-through">
             {formatCurrency(leg.retailPrice)}
           </span>
           <div className="mt-0.5 flex items-baseline gap-1.5">
-            <span className="text-[28px] font-semibold tracking-tight text-neutral-950">
+            <span className="font-serif text-[28px] leading-none text-[var(--color-ink)]">
               {formatCurrency(leg.price)}
             </span>
-            <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-500">
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-champagne">
               flat
             </span>
           </div>
         </div>
-        <span className="inline-flex items-center gap-1 rounded-full border border-neutral-300 bg-neutral-100 px-3 py-1.5 text-[12px] font-medium text-neutral-950 transition-colors group-hover:bg-neutral-950 group-hover:text-white">
+        <span className="inline-flex items-center gap-1 rounded-full border border-[var(--color-hairline-strong)] bg-[var(--color-ivory)] px-3 py-1.5 text-[12px] font-medium text-[var(--color-ink)] transition-colors group-hover:bg-[var(--color-ink)] group-hover:text-white">
           Reserve
-          <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" strokeWidth={2.25} />
+          <ArrowRight
+            className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
+            strokeWidth={2.25}
+          />
         </span>
       </div>
     </Link>
   );
 }
 
-function MetaItem({ icon: Icon, label }: { icon: typeof PlaneLanding; label: string }) {
+function MetaItem({
+  icon: Icon,
+  label,
+}: {
+  icon: typeof Calendar;
+  label: string;
+}) {
   return (
-    <div className="flex items-center gap-1.5 text-neutral-700">
-      <Icon className="h-3.5 w-3.5 text-neutral-500" strokeWidth={1.75} />
-      <span>{label}</span>
+    <div className="flex items-center gap-1.5 text-[var(--color-ink-soft)]">
+      <Icon className="h-3.5 w-3.5 text-champagne" strokeWidth={1.75} />
+      <span className="text-[12px]">{label}</span>
     </div>
   );
 }

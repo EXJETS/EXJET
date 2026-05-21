@@ -7,19 +7,11 @@ import { cn } from "@/lib/utils";
 interface CardCarouselProps {
   children: React.ReactNode;
   className?: string;
-  /**
-   * Tailwind width classes applied to each card slot. Controls how many cards are visible at a time.
-   * Default targets ~4 across on desktop with peek of next card.
-   */
   itemClassName?: string;
-  /**
-   * Gap between cards (Tailwind gap class).
-   */
   gap?: string;
-  /**
-   * Show arrow controls (default: true, hidden on touch / when not needed).
-   */
   arrows?: boolean;
+  /** CSS color value for the scroll-edge fade mask. Match to the section background. */
+  fadeFrom?: string;
 }
 
 export function CardCarousel({
@@ -28,6 +20,7 @@ export function CardCarousel({
   itemClassName = "w-[85%] sm:w-[55%] md:w-[40%] lg:w-[27%]",
   gap = "gap-4",
   arrows = true,
+  fadeFrom = "#ffffff",
 }: CardCarouselProps) {
   const scrollerRef = useRef<HTMLDivElement>(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -73,9 +66,9 @@ export function CardCarousel({
             disabled={!canScrollLeft}
             aria-label="Scroll left"
             className={cn(
-              "pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-950 transition-all",
+              "pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-hairline-strong)] bg-white text-[var(--color-ink)] transition-all",
               canScrollLeft
-                ? "hover:border-neutral-400 hover:bg-neutral-100"
+                ? "hover:border-champagne hover:bg-[var(--color-ivory)]"
                 : "cursor-not-allowed opacity-30"
             )}
           >
@@ -87,9 +80,9 @@ export function CardCarousel({
             disabled={!canScrollRight}
             aria-label="Scroll right"
             className={cn(
-              "pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-950 transition-all",
+              "pointer-events-auto flex h-9 w-9 items-center justify-center rounded-full border border-[var(--color-hairline-strong)] bg-white text-[var(--color-ink)] transition-all",
               canScrollRight
-                ? "hover:border-neutral-400 hover:bg-neutral-100"
+                ? "hover:border-champagne hover:bg-[var(--color-ivory)]"
                 : "cursor-not-allowed opacity-30"
             )}
           >
@@ -101,16 +94,18 @@ export function CardCarousel({
       {/* Edge fade masks */}
       <div
         className={cn(
-          "pointer-events-none absolute inset-y-0 left-0 z-[1] w-8 bg-gradient-to-r from-white to-transparent transition-opacity",
+          "pointer-events-none absolute inset-y-0 left-0 z-[1] w-8 transition-opacity",
           canScrollLeft ? "opacity-100" : "opacity-0"
         )}
+        style={{ background: `linear-gradient(to right, ${fadeFrom}, transparent)` }}
         aria-hidden
       />
       <div
         className={cn(
-          "pointer-events-none absolute inset-y-0 right-0 z-[1] w-8 bg-gradient-to-l from-white to-transparent transition-opacity",
+          "pointer-events-none absolute inset-y-0 right-0 z-[1] w-8 transition-opacity",
           canScrollRight ? "opacity-100" : "opacity-0"
         )}
+        style={{ background: `linear-gradient(to left, ${fadeFrom}, transparent)` }}
         aria-hidden
       />
 
