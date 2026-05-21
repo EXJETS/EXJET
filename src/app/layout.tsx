@@ -65,7 +65,7 @@ export const metadata: Metadata = {
       "Reserve a private jet in minutes. A curated worldwide fleet, available 24/7.",
   },
   twitter: {
-    card: "summary_large_image",
+    card: "summary",
     title: "EXJET.com — Global Access, On-Demand.",
     description:
       "Reserve a private jet in minutes. A curated worldwide fleet, available 24/7.",

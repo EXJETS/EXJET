@@ -3,18 +3,16 @@ import {
   PlaneTakeoff,
   ArrowRight,
   ArrowUpRight,
-  Calendar,
   Clock,
-  MapPin,
   ShieldCheck,
 } from "lucide-react";
 import SearchBar from "@/components/search/search-bar";
 import { EmptyLegCard } from "@/components/booking/empty-leg-card";
 import { CardCarousel } from "@/components/ui/card-carousel";
+import { SportsEventsList } from "@/components/sports-events-list";
 import popularRoutes from "@/data/popular-routes.json";
 import emptyLegs from "@/data/empty-legs.json";
 import news from "@/data/news.json";
-import sportsEvents from "@/data/sports-events.json";
 import faq from "@/data/faq.json";
 import { cn, formatCurrency } from "@/lib/utils";
 
@@ -174,7 +172,7 @@ export default function HomePage() {
             ctaLabel="See all routes"
           />
           <div className="mt-16">
-            <CardCarousel itemClassName="w-[80%] sm:w-[48%] md:w-[36%] lg:w-[26%]">
+            <CardCarousel itemClassName="w-[80%] sm:w-[48%] md:w-[36%] lg:w-[26%]" fadeFrom="#faf8f4">
               {popularRoutes.map((r) => (
                 <PopularRouteCard key={r.id} route={r} />
               ))}
@@ -222,7 +220,7 @@ export default function HomePage() {
             description="Fleet additions, safety milestones, and new destinations."
           />
           <div className="mt-16">
-            <CardCarousel itemClassName="w-[80%] sm:w-[48%] md:w-[36%] lg:w-[26%]">
+            <CardCarousel itemClassName="w-[80%] sm:w-[48%] md:w-[36%] lg:w-[26%]" fadeFrom="#faf8f4">
               {news.map((item) => (
                 <NewsCard key={item.id} item={item} />
               ))}
@@ -244,89 +242,7 @@ export default function HomePage() {
             italic="one cabin away"
             description="Curated routes and nearest jet airports for the global sports calendar."
           />
-
-          <div className="mt-12 flex flex-wrap items-center gap-2">
-            {["F1", "NBA", "NFL", "NHL", "FIFA", "Masters"].map((l) => {
-              const count = sportsEvents.filter((e) => e.league === l).length;
-              return (
-                <span
-                  key={l}
-                  className={cn(
-                    "inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] ring-1 ring-inset",
-                    leagueColor(l)
-                  )}
-                >
-                  {l}
-                  <span className="rounded-full bg-[var(--color-ink)]/10 px-1.5 py-0.5 text-[10px] text-[var(--color-ink)]">
-                    {count}
-                  </span>
-                </span>
-              );
-            })}
-          </div>
-
-          <ul className="mt-8 overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white">
-            {sportsEvents.map((event, idx) => (
-              <li
-                key={event.id}
-                className={cn(
-                  "group flex flex-col gap-3 p-6 transition-colors hover:bg-[var(--color-ivory)] sm:flex-row sm:items-center sm:gap-6",
-                  idx !== 0 && "border-t border-[var(--color-hairline)]"
-                )}
-              >
-                <div className="flex w-28 shrink-0 items-center gap-3">
-                  <span
-                    className={cn(
-                      "inline-flex h-7 items-center justify-center rounded-full px-2.5 font-mono text-[10px] uppercase tracking-[0.2em] ring-1 ring-inset",
-                      leagueColor(event.league)
-                    )}
-                  >
-                    {event.league}
-                  </span>
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                    <h3 className="font-serif text-[20px] leading-tight text-[var(--color-ink)]">
-                      {event.event}
-                    </h3>
-                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-subtle)]">
-                      {event.city}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-[12px] text-[var(--color-muted)]">
-                    {event.venue}
-                  </p>
-                </div>
-                <div className="flex flex-wrap items-center gap-4">
-                  <div className="flex items-center gap-1.5 text-[var(--color-ink-soft)]">
-                    <Calendar
-                      className="h-3.5 w-3.5 text-champagne"
-                      strokeWidth={1.75}
-                    />
-                    <span className="text-[12px]">
-                      {formatDateRange(event.date, event.endDate)}
-                    </span>
-                  </div>
-                  <div className="hidden items-center gap-1.5 text-[var(--color-muted)] sm:flex">
-                    <MapPin
-                      className="h-3.5 w-3.5 text-champagne"
-                      strokeWidth={1.75}
-                    />
-                    <span className="font-mono text-[11px] tracking-wide">
-                      {event.airports.slice(0, 3).join(" · ")}
-                    </span>
-                  </div>
-                  <Link
-                    href={`/search?event=${event.id}`}
-                    className="inline-flex items-center gap-1 rounded-full border border-[var(--color-ink)] bg-transparent px-3.5 py-1.5 text-[12px] font-medium text-[var(--color-ink)] transition-colors hover:bg-[var(--color-ink)] hover:text-white"
-                  >
-                    Reserve
-                    <ArrowRight className="h-3 w-3" strokeWidth={2.25} />
-                  </Link>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <SportsEventsList />
         </div>
       </section>
 
@@ -403,7 +319,7 @@ export default function HomePage() {
           </p>
           <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
             <Link
-              href="#popular-routes"
+              href="/search"
               className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:bg-champagne hover:text-white"
             >
               Begin a search
@@ -558,7 +474,7 @@ function PopularRouteCard({
         <div className="relative flex-1 self-center">
           <div className="h-px w-full bg-gradient-to-r from-transparent via-champagne/60 to-transparent" />
           <PlaneTakeoff
-            className="absolute left-1/2 top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 text-champagne transition-transform group-hover:translate-x-0"
+            className="absolute left-1/2 top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 text-champagne transition-transform group-hover:translate-x-3"
             strokeWidth={1.5}
           />
         </div>
@@ -625,47 +541,11 @@ function NewsCard({ item }: { item: (typeof news)[number] }) {
       <p className="mt-3 flex-1 text-[13px] leading-[1.75] text-[var(--color-muted)]">
         {item.excerpt}
       </p>
-      <div className="mt-6 flex items-center justify-between border-t border-[var(--color-hairline)] pt-5">
+      <div className="mt-6 border-t border-[var(--color-hairline)] pt-5">
         <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
           {item.readingTime} read
-        </span>
-        <span className="inline-flex items-center gap-1 text-[12px] font-medium text-[var(--color-ink)] transition-transform group-hover:translate-x-0.5">
-          Read
-          <ArrowUpRight className="h-3 w-3" strokeWidth={2} />
         </span>
       </div>
     </article>
   );
-}
-
-function leagueColor(league: string) {
-  switch (league) {
-    case "F1":
-      return "bg-[var(--color-bordeaux)]/8 text-[var(--color-bordeaux)] ring-[var(--color-bordeaux)]/20";
-    case "NBA":
-      return "bg-amber-50 text-amber-800 ring-amber-200";
-    case "NFL":
-      return "bg-blue-50 text-blue-800 ring-blue-200";
-    case "NHL":
-      return "bg-indigo-50 text-indigo-800 ring-indigo-200";
-    case "FIFA":
-      return "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-[var(--color-forest)]/20";
-    case "Masters":
-      return "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-[var(--color-forest)]/20";
-    default:
-      return "bg-[var(--color-hairline)] text-[var(--color-ink)] ring-[var(--color-hairline-strong)]";
-  }
-}
-
-function formatDateRange(start: string, end: string) {
-  const s = new Date(start);
-  const e = new Date(end);
-  const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
-  if (start === end) {
-    return s.toLocaleDateString("en-US", { ...opts, year: "numeric" });
-  }
-  return `${s.toLocaleDateString("en-US", opts)} – ${e.toLocaleDateString(
-    "en-US",
-    { ...opts, year: "numeric" }
-  )}`;
 }

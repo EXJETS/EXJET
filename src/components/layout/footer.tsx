@@ -21,28 +21,28 @@ const columns = [
   {
     title: "Company",
     links: [
-      { label: "About", href: "/about" },
-      { label: "Careers", href: "/careers" },
-      { label: "Press", href: "/press" },
-      { label: "Contact", href: "/contact" },
+      { label: "About", href: "/" },
+      { label: "Careers", href: "/" },
+      { label: "Press", href: "/" },
+      { label: "Contact", href: "/" },
     ],
   },
   {
     title: "Support",
     links: [
-      { label: "Help Center", href: "/help" },
-      { label: "Safety", href: "/safety" },
-      { label: "FAQ", href: "/faq" },
-      { label: "Status", href: "/status" },
+      { label: "Help Center", href: "/#faq" },
+      { label: "Safety", href: "/#faq" },
+      { label: "FAQ", href: "/#faq" },
+      { label: "Status", href: "/" },
     ],
   },
   {
     title: "Legal",
     links: [
-      { label: "Terms", href: "/terms" },
-      { label: "Privacy", href: "/privacy" },
-      { label: "Cookies", href: "/cookies" },
-      { label: "Refunds", href: "/refunds" },
+      { label: "Terms", href: "/" },
+      { label: "Privacy", href: "/" },
+      { label: "Cookies", href: "/" },
+      { label: "Refunds", href: "/" },
     ],
   },
 ];
