@@ -1,31 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  /* Luminary Air Group — black · white · gold premium palette */
-  --color-background: #000000;
-  --color-foreground: #ffffff;
-  --color-muted: #9a9a9a;
-  --color-subtle: #555555;
-  --color-hairline: rgba(255, 255, 255, 0.08);
-  --color-hairline-strong: rgba(255, 255, 255, 0.14);
+  /* Luminary Air Group — white · gold · black premium palette */
+  --color-background: #ffffff;
+  --color-foreground: #111111;
+  --color-muted: #555555;
+  --color-subtle: #888888;
+  --color-hairline: rgba(0, 0, 0, 0.08);
+  --color-hairline-strong: rgba(0, 0, 0, 0.14);
 
-  /* Dark surfaces */
-  --color-surface: #0d0d0d;
-  --color-surface-raised: #141414;
-  --color-surface-high: #1a1a1a;
+  /* Light surfaces */
+  --color-surface: #f8f8f6;
+  --color-surface-raised: #f2f2ef;
+  --color-surface-high: #ebebea;
 
-  /* Legacy tokens kept for compatibility */
-  --color-ivory: #0d0d0d;
-  --color-ivory-deep: #080808;
-  --color-bone: #1a1a1a;
-  --color-ink: #ffffff;
-  --color-ink-soft: #e0e0e0;
+  /* Legacy tokens */
+  --color-ivory: #f8f8f6;
+  --color-ivory-deep: #f2f2ef;
+  --color-bone: #ebebea;
+  --color-ink: #111111;
+  --color-ink-soft: #333333;
 
   /* Gold — primary brand accent */
   --color-gold: #c9a84c;
   --color-gold-soft: #e8d5a0;
   --color-gold-deep: #9a7a28;
-  --color-gold-bg: rgba(201, 168, 76, 0.07);
+  --color-gold-bg: rgba(201, 168, 76, 0.08);
 
   --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont,
     "Segoe UI", Helvetica, Arial, sans-serif;
@@ -38,7 +38,7 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
-  color-scheme: dark;
+  color-scheme: light;
 }
 
 body {
@@ -47,8 +47,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1, "cv11" 1;
   letter-spacing: -0.011em;
-  background: #000000;
-  color: #ffffff;
+  background: #ffffff;
+  color: #111111;
 }
 
 /* ==========================================================
@@ -99,7 +99,7 @@ body {
   display: inline-block;
   width: 1.75rem;
   height: 1px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(0, 0, 0, 0.18);
 }
 
 /* Card surfaces */
@@ -121,21 +121,21 @@ body {
    Backgrounds & gradients
    ========================================================== */
 .bg-dotgrid {
-  background-image: radial-gradient(rgba(255,255,255,0.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(0,0,0,0.05) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
-/* Hero — black with subtle gold radial glow */
+/* Hero — white with subtle gold radial glow */
 .mesh-hero {
   background-image:
     radial-gradient(
       ellipse 80% 55% at 50% -10%,
-      rgba(201, 168, 76, 0.14),
+      rgba(201, 168, 76, 0.1),
       transparent 65%
     ),
     radial-gradient(
       ellipse 50% 40% at 85% 70%,
-      rgba(201, 168, 76, 0.06),
+      rgba(201, 168, 76, 0.05),
       transparent 55%
     ),
     radial-gradient(
@@ -145,12 +145,12 @@ body {
     );
 }
 
-/* Section divider — darker surface with gold glow */
+/* Section divider */
 .mesh-ink {
   background:
     radial-gradient(
       ellipse 80% 60% at 50% -10%,
-      rgba(201, 168, 76, 0.12),
+      rgba(201, 168, 76, 0.1),
       transparent 65%
     ),
     radial-gradient(
@@ -158,12 +158,12 @@ body {
       rgba(201, 168, 76, 0.06),
       transparent 55%
     ),
-    linear-gradient(180deg, #0d0d0d 0%, #000000 100%);
+    linear-gradient(180deg, #111111 0%, #000000 100%);
 }
 
 /* Gradient text */
 .gradient-text-gold {
-  background: linear-gradient(135deg, #e8d5a0 0%, #c9a84c 50%, #9a7a28 100%);
+  background: linear-gradient(135deg, #9a7a28 0%, #c9a84c 50%, #e8d5a0 100%);
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -171,20 +171,20 @@ body {
 
 /* Glass */
 .glass {
-  background: rgba(255, 255, 255, 0.04);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: saturate(180%) blur(12px);
   -webkit-backdrop-filter: saturate(180%) blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 /* Scrollbar */
 ::-webkit-scrollbar { width: 6px; height: 6px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(255,255,255,0.12);
+  background: rgba(0,0,0,0.15);
   border-radius: 3px;
 }
-::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
+::-webkit-scrollbar-thumb:hover { background: rgba(0,0,0,0.25); }
 
 .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
 .no-scrollbar::-webkit-scrollbar { display: none; }

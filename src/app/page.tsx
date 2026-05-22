@@ -1,578 +1,450 @@
+"use client";
+
+import { useRef } from "react";
 import Link from "next/link";
+import { motion, useInView } from "framer-motion";
 import {
   ArrowRight,
-  ArrowUpRight,
-  Mic2,
   Layers,
-  Wrench,
+  Shield,
+  Star,
+  Award,
+  Plane,
   CheckCircle2,
+  ChevronRight,
+  Phone,
+  Mail,
+  Eye,
+  Wrench,
 } from "lucide-react";
-import caseStudies from "@/data/case-studies.json";
-import blogPosts from "@/data/luminary-blog.json";
-import { cn } from "@/lib/utils";
 
-export default function HomePage() {
-  const orgJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Luminary Air Group",
-    url: "https://luminary.aero",
-    description:
-      "Aircraft interior design, manufacturing, and installation. Cabin insulation, special mission interiors, and VIP completions. Part 21 manufacturer.",
-  };
+const fadeUp = {
+  hidden: { opacity: 0, y: 28 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.75 } },
+};
+const fadeIn = {
+  hidden: { opacity: 0 },
+  visible: { opacity: 1, transition: { duration: 0.8 } },
+};
+const stagger = {
+  visible: { transition: { staggerChildren: 0.1 } },
+};
 
+function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(orgJsonLd) }}
-      />
+    <motion.div ref={ref} variants={stagger} initial="hidden" animate={inView ? "visible" : "hidden"} className={className}>
+      {children}
+    </motion.div>
+  );
+}
+
+const services = [
+  {
+    icon: Layers,
+    title: "Cabin Comfort Systems",
+    description: "Industry-leading acoustic insulation blankets engineered for maximum noise attenuation and thermal performance across all business jet platforms.",
+    href: "/cabin-comfort-systems",
+    stat: "40+ dB",
+    statLabel: "noise reduction",
+  },
+  {
+    icon: Shield,
+    title: "Special Mission Interiors",
+    description: "Purpose-built ISR, Med-Evac, and government aircraft interiors certified under our proprietary ADMI™ platform for demanding operational requirements.",
+    href: "/special-mission-interiors",
+    stat: "100+",
+    statLabel: "mission platforms",
+  },
+  {
+    icon: Star,
+    title: "VIP Completions",
+    description: "Bespoke interior completions for ultra-long-range jets and head-of-state aircraft. Every detail engineered for extraordinary comfort and prestige.",
+    href: "/vip-interiors",
+    stat: "25+",
+    statLabel: "years expertise",
+  },
+];
+
+const stats = [
+  { value: "25+", label: "Years in service" },
+  { value: "500+", label: "Aircraft completed" },
+  { value: "100+", label: "STC approvals" },
+  { value: "40 dB", label: "Avg. noise reduction" },
+];
+
+const capabilities = [
+  { icon: Award, label: "Part 21 Manufacturer" },
+  { icon: CheckCircle2, label: "FAA Certified" },
+  { icon: Shield, label: "ADMI™ Platform" },
+  { icon: Wrench, label: "In-House Engineering" },
+  { icon: Eye, label: "ISR Specialists" },
+  { icon: Plane, label: "Global Installation" },
+];
+
+const clients = [
+  "Boeing", "Gulfstream", "Bombardier", "Cessna", "Dassault", "Embraer",
+  "Beechcraft", "Hawker", "Piper", "Sikorsky",
+];
+
+const testimonials = [
+  {
+    quote: "Luminary's insulation blankets transformed our BBJ cabin — quieter than we thought possible at altitude.",
+    author: "Chief of Completions",
+    org: "Fortune 100 Flight Department",
+  },
+  {
+    quote: "Their ADMI™ platform gave us the configuration flexibility our ISR mission demanded. Delivered on time, on spec.",
+    author: "Program Manager",
+    org: "US Government Agency",
+  },
+  {
+    quote: "From concept to certification, the Luminary team was exceptional. Our VIP clients noticed the difference immediately.",
+    author: "Director of Operations",
+    org: "Charter Management Group",
+  },
+];
+
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-white">
 
       {/* ── HERO ── */}
-      <section className="relative min-h-screen overflow-hidden bg-black">
-        <div className="mesh-hero absolute inset-0" aria-hidden />
-        {/* Subtle grid texture */}
-        <div
-          className="absolute inset-0 opacity-[0.025]"
-          style={{
-            backgroundImage:
-              "linear-gradient(rgba(255,255,255,1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,1) 1px, transparent 1px)",
-            backgroundSize: "80px 80px",
-          }}
-          aria-hidden
-        />
+      <section className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-white pt-16">
+        <div className="pointer-events-none absolute inset-0 bg-dotgrid opacity-60" />
+        <div className="pointer-events-none absolute inset-0 mesh-hero" />
 
-        <div className="relative mx-auto flex min-h-screen max-w-7xl flex-col justify-center px-5 pt-24 pb-20 sm:px-8">
-          {/* Chapter rule */}
-          <div className="mb-12 flex justify-center">
-            <span className="chapter-rule">
-              <span className="text-[var(--color-gold)]">Luminary Air Group</span>
-              <span>Part 21 Manufacturer</span>
-            </span>
-          </div>
+        <div className="relative mx-auto max-w-7xl px-5 py-32 sm:px-8">
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={stagger}
+            className="flex flex-col items-center text-center"
+          >
+            <motion.span variants={fadeUp} className="chapter-rule mb-8">
+              Luminary Air Group · Part 21 Manufacturer
+            </motion.span>
 
-          {/* Headline */}
-          <div className="mx-auto max-w-5xl text-center">
-            <h1 className="display-serif text-white">
-              Experienced.
+            <motion.h1 variants={fadeUp} className="display-serif max-w-5xl text-[#111111]">
+              Aircraft Interiors
               <br />
-              <em className="display-serif-italic" style={{ color: "var(--color-gold)" }}>
-                Reliable. Flexible.
-              </em>
-            </h1>
-            <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.8] text-white/50">
-              Aircraft interior design, manufacturing, and installation.
-              From cabin noise reduction systems to special mission platforms
-              and VIP completions — every interior built with precision,
-              certified to standard.
-            </p>
-          </div>
+              <em className="display-serif-italic text-[#888888]">Engineered to Excel.</em>
+            </motion.h1>
 
-          {/* CTAs */}
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/cabin-comfort-systems"
-              className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-black transition-all hover:bg-[var(--color-gold-soft)]"
-            >
-              Cabin Comfort Systems
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
-            </Link>
-            <Link
-              href="/special-mission-interiors"
-              className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-transparent px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white/70 transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
-            >
-              Mission Interiors
-            </Link>
-            <Link
-              href="/vip-interiors"
-              className="inline-flex items-center gap-2.5 rounded-full border border-white/20 bg-transparent px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white/70 transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
-            >
-              VIP Interiors
-            </Link>
-          </div>
+            <motion.p variants={fadeUp} className="mt-8 max-w-2xl text-[17px] leading-[1.75] text-[#555555]">
+              From acoustic insulation blankets to special mission platforms and VIP completions —
+              Luminary delivers precision-engineered interiors for the world&apos;s most demanding aircraft operations.
+            </motion.p>
 
-          {/* KPI band */}
-          <div className="mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.03] sm:grid-cols-4">
-            <HeroStat label="Experience" value="20+ Years" />
-            <HeroStat label="Certification" value="Part 21" />
-            <HeroStat label="Noise Reduction" value="50–70%" />
-            <HeroStat label="World Record" value="46.7 dB SIL" />
-          </div>
+            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2.5 rounded-full bg-[#111111] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[var(--color-gold)]"
+              >
+                Get a Quote
+                <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+              </Link>
+              <Link
+                href="/cabin-comfort-systems"
+                className="inline-flex items-center gap-2.5 rounded-full border border-black/[0.15] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#333333] transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+              >
+                Explore Products
+              </Link>
+            </motion.div>
+
+            <motion.div
+              variants={fadeUp}
+              className="mt-20 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-black/[0.08] bg-black/[0.08] sm:grid-cols-4"
+            >
+              {stats.map((s) => (
+                <div key={s.label} className="flex flex-col items-center bg-white px-8 py-6">
+                  <span className="font-serif text-[38px] leading-none text-[#111111]">{s.value}</span>
+                  <span className="mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[#888888]">{s.label}</span>
+                </div>
+              ))}
+            </motion.div>
+          </motion.div>
         </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 0.8 }}
+          className="absolute bottom-10 left-1/2 -translate-x-1/2"
+        >
+          <div className="flex flex-col items-center gap-2">
+            <span className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#aaaaaa]">Scroll</span>
+            <motion.div
+              animate={{ y: [0, 6, 0] }}
+              transition={{ repeat: Infinity, duration: 1.5 }}
+              className="h-8 w-[1px] bg-gradient-to-b from-[#aaaaaa] to-transparent"
+            />
+          </div>
+        </motion.div>
       </section>
 
-      {/* ── ABOUT INTRO ── */}
-      <section className="relative border-t border-white/[0.06] bg-[#0d0d0d]">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-24 sm:px-8 md:grid-cols-12 lg:py-32">
-          <div className="md:col-span-5">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-              I &middot; The Craft
-            </span>
-            <h2 className="display-serif-md mt-5 text-white">
-              Aircraft interiors,
-              <br />
-              <em className="display-serif-italic text-white/40">engineered to last.</em>
-            </h2>
-          </div>
-          <div className="md:col-span-7">
-            <p className="text-[15px] leading-[1.85] text-white/50">
-              With decades of experience in aircraft interiors, Luminary Air
-              Group handles all aspects of interior design, engineering,
-              production, installation, and certification. From seats, divans
-              &amp; cabinetry to cabin insulation systems and special mission
-              interiors &mdash; our skilled workmanship ensures high-quality
-              results delivered on time.
-            </p>
-            <div className="mt-10 grid grid-cols-1 gap-x-10 gap-y-5 border-t border-white/[0.06] pt-10 sm:grid-cols-2">
-              <Hallmark title="Part 21 Manufacturer" desc="FAA-certified manufacturing for certified quality on every build." />
-              <Hallmark title="Full Lifecycle" desc="Design, engineering, fabrication, installation, and certification." />
-              <Hallmark title="ADMI Platform" desc="All Day Mission Interior — modular, lightweight, rapid-reconfigure." />
-              <Hallmark title="World Record" desc="Quietest Boeing Business Jet cabin ever measured: 46.7 dB SIL." />
-            </div>
+      {/* ── CLIENT MARQUEE ── */}
+      <div className="border-y border-black/[0.06] bg-[#f8f8f6] py-5">
+        <div className="no-scrollbar flex overflow-x-auto">
+          <div className="animate-marquee flex items-center whitespace-nowrap">
+            {[...clients, ...clients].map((c, i) => (
+              <span key={i} className="inline-flex items-center gap-8 px-8">
+                <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[#aaaaaa]">{c}</span>
+                <span className="h-[3px] w-[3px] rounded-full bg-[#c9a84c] opacity-60" />
+              </span>
+            ))}
           </div>
         </div>
-      </section>
+      </div>
 
       {/* ── SERVICES ── */}
-      <section className="relative border-t border-white/[0.06] bg-black py-24">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeader
-            chapter="II"
-            eyebrow="Our Services"
-            title="Every interior,"
-            italic="purpose-built"
-            description="From acoustic engineering to full mission platform design — three core service lines addressing every aircraft interior need."
-          />
-          <div className="mt-16 grid gap-5 sm:grid-cols-3">
-            <ServiceCard
-              icon={Mic2}
-              number="01"
-              title="Cabin Comfort Systems"
-              description="Innovative, lightweight cabin noise reduction kits tailored to the unique acoustic signature of every aircraft. From single-engine piston to wide-body jet — including the World Record quietest Boeing Business Jet cabin."
-              stat="46.7 dB SIL world record"
-              href="/cabin-comfort-systems"
-            />
-            <ServiceCard
-              icon={Layers}
-              number="02"
-              title="Special Mission Interiors"
-              description="Durable, lightweight, modular mission-specific aircraft interiors under our ADMI brand. Designed for ISR, med-evac, command platforms, and special operations with rapid access behind all interior walls."
-              stat="ADMI&trade; platform"
-              href="/special-mission-interiors"
-            />
-            <ServiceCard
-              icon={Wrench}
-              number="03"
-              title="VIP Interiors"
-              description="Complete interior design, manufacturing, and installation for VIP and corporate aircraft. Custom cabinetry, seating, upholstery, and green completion builds — each crafted with the same precision as every Luminary project."
-              stat="Full green completions"
-              href="/vip-interiors"
-            />
-          </div>
+      <section className="mx-auto max-w-7xl px-5 py-28 sm:px-8">
+        <Section>
+          <motion.span variants={fadeUp} className="chapter-rule">
+            What We Build
+          </motion.span>
+          <motion.h2 variants={fadeUp} className="display-serif-md mt-6 max-w-2xl text-[#111111]">
+            Three Disciplines.
+            <br />
+            <em className="display-serif-italic text-[#888888]">One Standard of Excellence.</em>
+          </motion.h2>
+
+          <motion.div variants={stagger} className="mt-16 grid gap-6 md:grid-cols-3">
+            {services.map((svc) => {
+              const Icon = svc.icon;
+              return (
+                <motion.div
+                  key={svc.title}
+                  variants={fadeUp}
+                  className="group relative overflow-hidden rounded-2xl border border-black/[0.08] bg-white p-8 transition-all hover:border-[var(--color-gold)] hover:shadow-[0_16px_48px_-12px_rgba(201,168,76,0.15)]"
+                >
+                  <div className="mb-6 inline-flex h-12 w-12 items-center justify-center rounded-xl border border-black/[0.08] bg-[#f8f8f6]">
+                    <Icon className="h-5 w-5 text-[var(--color-gold)]" strokeWidth={1.5} />
+                  </div>
+                  <div className="mb-3 flex items-end gap-3">
+                    <span className="font-serif text-[42px] leading-none text-[#111111]">{svc.stat}</span>
+                    <span className="mb-1.5 font-mono text-[10px] uppercase tracking-[0.2em] text-[#aaaaaa]">{svc.statLabel}</span>
+                  </div>
+                  <h3 className="font-serif text-[22px] text-[#111111]">{svc.title}</h3>
+                  <p className="mt-3 text-[14px] leading-[1.8] text-[#555555]">{svc.description}</p>
+                  <Link
+                    href={svc.href}
+                    className="mt-6 inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-gold)] transition-all hover:gap-3"
+                  >
+                    Explore
+                    <ChevronRight className="h-3 w-3" strokeWidth={2} />
+                  </Link>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </Section>
+      </section>
+
+      {/* ── SPLIT: ADMI PLATFORM ── */}
+      <section className="bg-[#f8f8f6]">
+        <div className="mx-auto max-w-7xl px-5 py-28 sm:px-8">
+          <Section className="grid items-center gap-16 lg:grid-cols-2">
+            <motion.div variants={fadeIn} className="relative">
+              <div className="aspect-[4/3] overflow-hidden rounded-2xl border border-black/[0.08] bg-[#ebebea]">
+                <div className="flex h-full flex-col items-center justify-center gap-4 p-12">
+                  <svg width="80" height="50" viewBox="0 0 38 24" fill="none" aria-hidden>
+                    <path d="M2 14 L22 4 L36 8 L22 10 L28 20 L18 16 L8 20 Z" fill="#111111" opacity="0.15" />
+                    <path d="M4 13.5 L34 7.5" stroke="#c9a84c" strokeWidth="2" strokeLinecap="round" />
+                  </svg>
+                  <span className="font-mono text-[11px] uppercase tracking-[0.3em] text-[#aaaaaa]">ADMI™ Platform</span>
+                </div>
+              </div>
+              <div className="absolute -bottom-5 -right-5 rounded-2xl border border-black/[0.08] bg-white p-5 shadow-lg">
+                <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-gold)]">Part 21 Certified</p>
+                <p className="mt-1 font-serif text-[28px] text-[#111111]">25+ yrs</p>
+                <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#888888]">Industry leadership</p>
+              </div>
+            </motion.div>
+
+            <div>
+              <motion.span variants={fadeUp} className="chapter-rule">
+                Our Platform
+              </motion.span>
+              <motion.h2 variants={fadeUp} className="display-serif-md mt-6 text-[#111111]">
+                The ADMI™ Advantage
+              </motion.h2>
+              <motion.p variants={fadeUp} className="mt-6 text-[16px] leading-[1.85] text-[#555555]">
+                Our proprietary Advanced Design & Manufacturing Integration platform enables rapid configuration,
+                certification, and delivery of complex aircraft interior systems. Built on 25 years of Part 21
+                manufacturing experience.
+              </motion.p>
+              <motion.ul variants={stagger} className="mt-8 space-y-4">
+                {[
+                  "Modular design adaptable to any airframe",
+                  "In-house acoustic and thermal engineering",
+                  "Concurrent certification with FAA & EASA",
+                  "Dedicated program management per aircraft",
+                  "Global installation and AOG support",
+                ].map((item) => (
+                  <motion.li key={item} variants={fadeUp} className="flex items-start gap-3">
+                    <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-gold)]" strokeWidth={1.5} />
+                    <span className="text-[14px] leading-relaxed text-[#555555]">{item}</span>
+                  </motion.li>
+                ))}
+              </motion.ul>
+              <motion.div variants={fadeUp} className="mt-10">
+                <Link
+                  href="/about"
+                  className="inline-flex items-center gap-2.5 rounded-full border border-black/[0.15] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#333333] transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+                >
+                  About Luminary
+                  <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+                </Link>
+              </motion.div>
+            </div>
+          </Section>
         </div>
       </section>
 
-      {/* ── PROCESS ── */}
-      <section className="relative border-t border-white/[0.06] bg-[#0d0d0d] py-24">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeader
-            chapter="III"
-            eyebrow="How It Works"
-            title="A proven process,"
-            italic="start to certification"
-            description="Every Luminary project follows a rigorous process — acoustic analysis, custom design, certified manufacturing, and expert installation."
-            align="center"
-          />
-          <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.03] sm:grid-cols-4">
-            <ProcessStep
-              number="01"
-              title="Acoustic Analysis"
-              description="We measure your aircraft's unique noise signature using precision instrumentation — mapping every source and frequency."
-            />
-            <ProcessStep
-              number="02"
-              title="Custom Design"
-              description="A bespoke insulation or interior system engineered specifically for your airframe, using optimal materials and placement."
-            />
-            <ProcessStep
-              number="03"
-              title="Manufacturing"
-              description="Fabricated in-house as a Part 21 manufacturer — every component certified and quality-controlled before it ships."
-            />
-            <ProcessStep
-              number="04"
-              title="Installation"
-              description="Expert installation by experienced technicians, with minimal downtime and full documentation for your maintenance records."
-            />
+      {/* ── CAPABILITIES ── */}
+      <section className="mx-auto max-w-7xl px-5 py-28 sm:px-8">
+        <Section>
+          <div className="flex flex-col items-center text-center">
+            <motion.span variants={fadeUp} className="chapter-rule">
+              Certifications & Capabilities
+            </motion.span>
+            <motion.h2 variants={fadeUp} className="display-serif-md mt-6 text-[#111111]">
+              Built to Certify.
+              <br />
+              <em className="display-serif-italic text-[#888888]">Engineered to Last.</em>
+            </motion.h2>
           </div>
-        </div>
+
+          <motion.div variants={stagger} className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
+            {capabilities.map((cap) => {
+              const Icon = cap.icon;
+              return (
+                <motion.div
+                  key={cap.label}
+                  variants={fadeUp}
+                  className="flex flex-col items-center gap-3 rounded-2xl border border-black/[0.08] bg-[#f8f8f6] p-6 text-center"
+                >
+                  <div className="flex h-10 w-10 items-center justify-center rounded-lg border border-black/[0.08] bg-white">
+                    <Icon className="h-[18px] w-[18px] text-[var(--color-gold)]" strokeWidth={1.5} />
+                  </div>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#555555]">{cap.label}</span>
+                </motion.div>
+              );
+            })}
+          </motion.div>
+        </Section>
       </section>
 
-      {/* ── PERFORMANCE ── */}
-      <section className="relative overflow-hidden bg-black py-24 lg:py-32">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 60% at 50% 0%, rgba(201,168,76,0.08), transparent 65%)",
-          }}
-          aria-hidden
-        />
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-12 md:grid-cols-12">
-            <div className="md:col-span-5">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-                IV &middot; Performance
-              </span>
-              <h2 className="display-serif-md mt-5 text-white">
-                Measured.
+      {/* ── TESTIMONIALS ── */}
+      <section className="bg-[#f8f8f6]">
+        <div className="mx-auto max-w-7xl px-5 py-28 sm:px-8">
+          <Section>
+            <div className="flex flex-col items-center text-center">
+              <motion.span variants={fadeUp} className="chapter-rule">
+                Client Perspectives
+              </motion.span>
+              <motion.h2 variants={fadeUp} className="display-serif-md mt-6 text-[#111111]">
+                Trusted by Flight Departments
                 <br />
-                <em className="display-serif-italic text-[var(--color-gold)]">Documented. Proven.</em>
-              </h2>
-              <p className="mt-6 text-[15px] leading-[1.8] text-white/50">
-                Every installation is measured and documented. Our clients
-                consistently achieve noise reductions of 50&ndash;70% &mdash;
-                and in record-setting cases, significantly more.
-              </p>
+                <em className="display-serif-italic text-[#888888]">Worldwide.</em>
+              </motion.h2>
+            </div>
+
+            <motion.div variants={stagger} className="mt-16 grid gap-6 md:grid-cols-3">
+              {testimonials.map((t) => (
+                <motion.div
+                  key={t.author}
+                  variants={fadeUp}
+                  className="rounded-2xl border border-black/[0.08] bg-white p-8"
+                >
+                  <div className="mb-5 flex gap-1">
+                    {[...Array(5)].map((_, i) => (
+                      <Star key={i} className="h-3.5 w-3.5 fill-[var(--color-gold)] text-[var(--color-gold)]" strokeWidth={0} />
+                    ))}
+                  </div>
+                  <p className="font-serif text-[18px] leading-[1.65] text-[#333333]">
+                    &ldquo;{t.quote}&rdquo;
+                  </p>
+                  <div className="mt-6 border-t border-black/[0.06] pt-5">
+                    <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#333333]">{t.author}</p>
+                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[#aaaaaa]">{t.org}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </Section>
+        </div>
+      </section>
+
+      {/* ── PERFORMANCE CTA ── */}
+      <section className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+        <Section>
+          <motion.div
+            variants={fadeUp}
+            className="overflow-hidden rounded-3xl bg-[#111111] p-12 md:p-16"
+          >
+            <div className="flex flex-col items-start justify-between gap-10 md:flex-row md:items-center">
+              <div>
+                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
+                  Performance History
+                </span>
+                <h2 className="mt-4 font-serif text-[40px] leading-[1.1] text-white sm:text-[52px]">
+                  See the Results.
+                  <br />
+                  <em className="font-normal italic text-white/40">In the Data.</em>
+                </h2>
+                <p className="mt-5 max-w-lg text-[15px] leading-[1.8] text-white/50">
+                  Our performance library documents acoustic and thermal results across
+                  every major business jet platform we&apos;ve treated.
+                </p>
+              </div>
               <Link
                 href="/performance-history"
-                className="mt-8 inline-flex items-center gap-2 text-[13px] font-medium text-[var(--color-gold)] transition-opacity hover:opacity-75"
+                className="inline-flex shrink-0 items-center gap-2.5 rounded-full border border-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-gold)] transition-all hover:bg-[var(--color-gold)] hover:text-black"
               >
-                View performance history
-                <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
+                View Performance Data
+                <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
               </Link>
             </div>
+          </motion.div>
+        </Section>
+      </section>
 
-            <div className="md:col-span-7">
-              <div className="mb-8 rounded-2xl border border-[var(--color-gold)]/20 bg-[var(--color-gold)]/[0.04] p-8 text-center">
-                <div className="font-serif text-[72px] leading-none text-[var(--color-gold)] sm:text-[96px]">
-                  46.7
-                </div>
-                <div className="mt-2 font-mono text-[11px] uppercase tracking-[0.28em] text-white/50">
-                  dB SIL &mdash; World Record
-                </div>
-                <div className="mt-1 text-[12px] text-white/30">
-                  Quietest Boeing Business Jet cabin ever measured
-                </div>
-              </div>
-              <div className="grid grid-cols-3 gap-3">
-                <PerfStat value="50–70%" label="Noise reduction" />
-                <PerfStat value="20+" label="Years experience" />
-                <PerfStat value="Part 21" label="Manufacturer" />
-              </div>
-            </div>
-          </div>
-
-          {/* Case study cards */}
-          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {caseStudies.map((cs) => (
-              <CaseStudyCard key={cs.id} study={cs} />
-            ))}
-          </div>
+      {/* ── CONTACT STRIP ── */}
+      <section className="border-t border-black/[0.06] bg-white">
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+          <Section className="flex flex-col items-center text-center">
+            <motion.span variants={fadeUp} className="chapter-rule">
+              Ready to Begin?
+            </motion.span>
+            <motion.h2 variants={fadeUp} className="display-serif-md mt-6 text-[#111111]">
+              Start Your Project
+            </motion.h2>
+            <motion.p variants={fadeUp} className="mt-5 max-w-xl text-[15px] leading-[1.8] text-[#555555]">
+              Our team is ready to assess your requirements and deliver a precise proposal for your aircraft interior project.
+            </motion.p>
+            <motion.div variants={fadeUp} className="mt-8 flex flex-wrap justify-center gap-4">
+              <a
+                href="mailto:info@luminary.aero"
+                className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[var(--color-gold-deep)]"
+              >
+                <Mail className="h-3.5 w-3.5" strokeWidth={1.5} />
+                Email Us
+              </a>
+              <a
+                href="tel:+18000000000"
+                className="inline-flex items-center gap-2.5 rounded-full border border-black/[0.15] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#333333] transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+              >
+                <Phone className="h-3.5 w-3.5" strokeWidth={1.5} />
+                +1 (800) 000-0000
+              </a>
+            </motion.div>
+          </Section>
         </div>
       </section>
 
-      {/* ── BLOG ── */}
-      <section className="relative border-t border-white/[0.06] bg-[#0d0d0d] py-24">
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeader
-            chapter="V"
-            eyebrow="The Journal"
-            title="Technical insight,"
-            italic="from the engineers"
-            description="Deep dives into acoustic science, insulation engineering, and mission interior design."
-            ctaHref="/blog"
-            ctaLabel="Read all articles"
-          />
-          <div className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-4">
-            {blogPosts.map((post) => (
-              <BlogCard key={post.id} post={post} />
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ── CTA ── */}
-      <section className="relative overflow-hidden bg-black py-28 lg:py-36">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 60% 50% at 50% 100%, rgba(201,168,76,0.07), transparent 65%)",
-          }}
-          aria-hidden
-        />
-        <div className="relative mx-auto max-w-4xl px-5 text-center sm:px-8">
-          <div className="gold-line mx-auto mb-8" />
-          <h2 className="display-serif-md text-white">
-            Transform your
-            <br />
-            <em className="display-serif-italic text-[var(--color-gold)]">aircraft&rsquo;s interior.</em>
-          </h2>
-          <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-white/45">
-            Start with an acoustic consultation or interior brief. Tell us about
-            your aircraft and objectives &mdash; we&rsquo;ll design a solution
-            that meets your budget, timeline, and performance targets.
-          </p>
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-8 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-black transition-all hover:bg-[var(--color-gold-soft)]"
-            >
-              Get a Quote
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.5} />
-            </Link>
-            <Link
-              href="/cabin-comfort-systems"
-              className="inline-flex items-center gap-2.5 rounded-full border border-white/15 bg-transparent px-8 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white/50 transition-all hover:border-white/30 hover:text-white"
-            >
-              Cabin Systems
-            </Link>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-
-/* ── Sub-components ── */
-
-function HeroStat({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex flex-col items-center gap-2 px-5 py-7 text-center">
-      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-        {label}
-      </span>
-      <span className="font-serif text-[22px] leading-none text-white">
-        {value}
-      </span>
-    </div>
-  );
-}
-
-function Hallmark({ title, desc }: { title: string; desc: string }) {
-  return (
-    <div className="flex items-start gap-3">
-      <CheckCircle2
-        className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-gold)]"
-        strokeWidth={1.5}
-      />
-      <div>
-        <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-white">
-          {title}
-        </div>
-        <div className="mt-1 text-[13px] leading-relaxed text-white/40">
-          {desc}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SectionHeader({
-  chapter,
-  eyebrow,
-  title,
-  italic,
-  description,
-  ctaHref,
-  ctaLabel,
-  align = "left",
-}: {
-  chapter: string;
-  eyebrow: string;
-  title: string;
-  italic?: string;
-  description?: string;
-  ctaHref?: string;
-  ctaLabel?: string;
-  align?: "left" | "center";
-}) {
-  return (
-    <div
-      className={cn(
-        "flex flex-col gap-6",
-        align === "center"
-          ? "items-center text-center"
-          : "md:flex-row md:items-end md:justify-between md:gap-12"
-      )}
-    >
-      <div className={cn(align === "center" ? "" : "max-w-2xl")}>
-        <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-          {chapter} &middot; {eyebrow}
-        </span>
-        <h2 className="display-serif-md mt-5 text-white">
-          {title}
-          {italic && (
-            <>
-              {" "}
-              <em className="display-serif-italic text-white/40">{italic}</em>
-            </>
-          )}
-        </h2>
-        {description && (
-          <p
-            className={cn(
-              "mt-4 text-[14px] leading-relaxed text-white/45",
-              align === "center" ? "mx-auto max-w-md" : "max-w-lg"
-            )}
-          >
-            {description}
-          </p>
-        )}
-      </div>
-      {ctaHref && ctaLabel && align !== "center" && (
-        <Link
-          href={ctaHref}
-          className="group inline-flex items-center gap-2 self-start text-[13px] font-medium text-white/50 transition-colors hover:text-[var(--color-gold)] md:self-end"
-        >
-          {ctaLabel}
-          <ArrowUpRight
-            className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            strokeWidth={2}
-          />
-        </Link>
-      )}
-    </div>
-  );
-}
-
-function ServiceCard({
-  icon: Icon,
-  number,
-  title,
-  description,
-  stat,
-  href,
-}: {
-  icon: typeof Mic2;
-  number: string;
-  title: string;
-  description: string;
-  stat: string;
-  href: string;
-}) {
-  return (
-    <Link
-      href={href}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-[#0d0d0d] p-8 transition-all hover:border-[var(--color-gold)]/40 hover:shadow-[0_0_60px_-20px_rgba(201,168,76,0.2)]"
-    >
-      <div className="flex items-start justify-between">
-        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-gold)]/20 bg-[var(--color-gold)]/[0.06] text-[var(--color-gold)]">
-          <Icon className="h-5 w-5" strokeWidth={1.5} />
-        </span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/20">
-          {number}
-        </span>
-      </div>
-      <h3 className="mt-6 font-serif text-[24px] leading-tight text-white">
-        {title}
-      </h3>
-      <p
-        className="mt-4 flex-1 text-[13px] leading-[1.8] text-white/40"
-        dangerouslySetInnerHTML={{ __html: description }}
-      />
-      <div className="mt-6 flex items-end justify-between border-t border-white/[0.06] pt-5">
-        <span
-          className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-gold)]"
-          dangerouslySetInnerHTML={{ __html: stat }}
-        />
-        <span className="inline-flex items-center gap-1 text-[12px] font-medium text-white/30 transition-all group-hover:text-[var(--color-gold)]">
-          Explore
-          <ArrowUpRight className="h-3 w-3" strokeWidth={2} />
-        </span>
-      </div>
-    </Link>
-  );
-}
-
-function ProcessStep({
-  number,
-  title,
-  description,
-}: {
-  number: string;
-  title: string;
-  description: string;
-}) {
-  return (
-    <div className="flex flex-col px-7 py-9">
-      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-        {number}
-      </span>
-      <h3 className="mt-4 font-serif text-[22px] leading-tight text-white">
-        {title}
-      </h3>
-      <p className="mt-3 text-[13px] leading-[1.75] text-white/40">
-        {description}
-      </p>
-    </div>
-  );
-}
-
-function PerfStat({ value, label }: { value: string; label: string }) {
-  return (
-    <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-5 text-center">
-      <div className="font-serif text-[28px] leading-none text-white">{value}</div>
-      <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-white/35">{label}</div>
-    </div>
-  );
-}
-
-function CaseStudyCard({ study }: { study: (typeof caseStudies)[number] }) {
-  return (
-    <div className="rounded-xl border border-white/[0.06] bg-white/[0.02] p-6 transition-colors hover:border-[var(--color-gold)]/25">
-      <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-        {study.category}
-      </span>
-      <h3 className="mt-3 font-serif text-[18px] leading-tight text-white">
-        {study.title}
-      </h3>
-      <p className="mt-1 text-[12px] text-white/35">{study.aircraft}</p>
-      <div className="mt-4 border-t border-white/[0.06] pt-4">
-        <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-gold)]">
-          {study.result}
-        </div>
-        <div className="mt-0.5 text-[11px] text-white/25">{study.year}</div>
-      </div>
-    </div>
-  );
-}
-
-function BlogCard({ post }: { post: (typeof blogPosts)[number] }) {
-  const when = new Date(post.date).toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-  return (
-    <Link
-      href={`/blog/${post.id}`}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-[#111111] p-7 transition-all hover:border-[var(--color-gold)]/30"
-    >
-      <div className="flex items-center justify-between">
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-          {post.category}
-        </span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/25">
-          {when}
-        </span>
-      </div>
-      <h3 className="mt-5 font-serif text-[20px] leading-tight text-white">
-        {post.title}
-      </h3>
-      <p className="mt-3 flex-1 text-[13px] leading-[1.75] text-white/40">
-        {post.excerpt}
-      </p>
-      <div className="mt-6 flex items-center justify-between border-t border-white/[0.06] pt-5">
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/25">
-          {post.readingTime} read
-        </span>
-        <span className="inline-flex items-center gap-1 text-[12px] font-medium text-white/35 transition-all group-hover:text-[var(--color-gold)]">
-          Read
-          <ArrowUpRight className="h-3 w-3" strokeWidth={2} />
-        </span>
-      </div>
-    </Link>
+    </main>
   );
 }

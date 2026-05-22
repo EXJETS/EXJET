@@ -45,19 +45,19 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-white/[0.06] bg-[#080808]">
+    <footer className="relative border-t border-black/[0.06] bg-[#f8f8f6]">
       <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
         {/* Top */}
-        <div className="border-b border-white/[0.06] pb-14">
+        <div className="border-b border-black/[0.06] pb-14">
           <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
             <div>
               <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                 Luminary Air Group · Part 21 Manufacturer
               </span>
-              <h2 className="mt-5 font-serif text-[44px] leading-[1.05] text-white sm:text-[56px]">
+              <h2 className="mt-5 font-serif text-[44px] leading-[1.05] text-[#111111] sm:text-[56px]">
                 Experienced.
                 <br />
-                <em className="font-normal italic text-white/40">
+                <em className="font-normal italic text-[#888888]">
                   Reliable. Flexible.
                 </em>
               </h2>
@@ -65,14 +65,14 @@ export function Footer() {
             <div className="flex flex-col gap-3 text-[13px]">
               <a
                 href="mailto:info@luminary.aero"
-                className="inline-flex items-center gap-2 text-white/40 transition-colors hover:text-[var(--color-gold)]"
+                className="inline-flex items-center gap-2 text-[#555555] transition-colors hover:text-[var(--color-gold)]"
               >
                 <Mail className="h-3.5 w-3.5" strokeWidth={1.5} />
                 info@luminary.aero
               </a>
               <a
                 href="tel:+1-800-000-0000"
-                className="inline-flex items-center gap-2 text-white/40 transition-colors hover:text-[var(--color-gold)]"
+                className="inline-flex items-center gap-2 text-[#555555] transition-colors hover:text-[var(--color-gold)]"
               >
                 <Phone className="h-3.5 w-3.5" strokeWidth={1.5} />
                 +1 (800) 000-0000
@@ -86,12 +86,12 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center gap-2.5">
               <svg width="30" height="19" viewBox="0 0 38 24" fill="none" aria-hidden>
-                <path d="M2 14 L22 4 L36 8 L22 10 L28 20 L18 16 L8 20 Z" fill="white" opacity="0.7" />
+                <path d="M2 14 L22 4 L36 8 L22 10 L28 20 L18 16 L8 20 Z" fill="#111111" opacity="0.7" />
                 <path d="M4 13.5 L34 7.5" stroke="#c9a84c" strokeWidth="2" strokeLinecap="round" />
               </svg>
-              <span className="font-serif text-[17px] tracking-[0.04em] text-white">Lu·mi·nar·y</span>
+              <span className="font-serif text-[17px] tracking-[0.04em] text-[#111111]">Lu·mi·nar·y</span>
             </div>
-            <p className="mt-5 max-w-xs text-[13px] leading-[1.8] text-white/35">
+            <p className="mt-5 max-w-xs text-[13px] leading-[1.8] text-[#888888]">
               Aircraft interior design, manufacturing, and installation. Cabin
               insulation, special mission platforms, and VIP completions.
             </p>
@@ -110,7 +110,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="group inline-flex items-center gap-1.5 text-[13px] text-white/35 transition-colors hover:text-[var(--color-gold)]"
+                      className="group inline-flex items-center gap-1.5 text-[13px] text-[#888888] transition-colors hover:text-[var(--color-gold)]"
                     >
                       {link.label}
                       <ArrowUpRight
@@ -126,11 +126,11 @@ export function Footer() {
         </div>
 
         {/* Bottom */}
-        <div className="mt-20 flex flex-col items-start justify-between gap-4 border-t border-white/[0.06] pt-8 text-[11px] sm:flex-row sm:items-center">
-          <p className="font-mono uppercase tracking-[0.18em] text-white/25">
+        <div className="mt-20 flex flex-col items-start justify-between gap-4 border-t border-black/[0.06] pt-8 text-[11px] sm:flex-row sm:items-center">
+          <p className="font-mono uppercase tracking-[0.18em] text-[#aaaaaa]">
             &copy; {new Date().getFullYear()} Luminary Air Group &middot; All rights reserved.
           </p>
-          <p className="font-mono uppercase tracking-[0.18em] text-white/25">
+          <p className="font-mono uppercase tracking-[0.18em] text-[#aaaaaa]">
             Part 21 Manufacturer &middot; ADMI&trade; Platform
           </p>
         </div>
