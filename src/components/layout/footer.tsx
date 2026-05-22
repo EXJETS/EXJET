@@ -1,111 +1,110 @@
 import Link from "next/link";
-import { ArrowUpRight, Mail, Phone } from "lucide-react";
+import { Mail, Phone, ArrowUpRight } from "lucide-react";
 
 const columns = [
   {
     title: "Cabin Systems",
     links: [
-      { label: "Aircraft Insulation Basics", href: "/cabin-comfort-systems/aircraft-insulation-basics" },
-      { label: "Performance History", href: "/performance-history" },
-      { label: "Acoustic Testing", href: "/cabin-comfort-systems/acoustic-testing" },
+      { label: "Acoustic Engineering", href: "/cabin-comfort-systems" },
       { label: "Insulation Products", href: "/cabin-comfort-systems/insulation-products" },
+      { label: "Insulation Basics", href: "/cabin-comfort-systems/aircraft-insulation-basics" },
+      { label: "Acoustic Testing", href: "/cabin-comfort-systems/acoustic-testing" },
       { label: "Replacement Parts", href: "/cabin-comfort-systems/replacement-parts" },
     ],
   },
   {
     title: "Mission Interiors",
     links: [
-      { label: "ISR", href: "/special-mission-interiors/isr" },
+      { label: "ADMI™ Platform", href: "/special-mission-interiors" },
+      { label: "ISR Configurations", href: "/special-mission-interiors/isr" },
+      { label: "Medical Evacuation", href: "/special-mission-interiors/med-evac" },
       { label: "Interior Treatments", href: "/special-mission-interiors/interior-treatments" },
-      { label: "Upholstery", href: "/special-mission-interiors/upholstery" },
-      { label: "Med-Evac", href: "/special-mission-interiors/med-evac" },
-      { label: "ADMI Replacement Parts", href: "/special-mission-interiors/replacement-parts" },
+      { label: "Replacement Parts", href: "/special-mission-interiors/replacement-parts" },
     ],
   },
   {
     title: "Company",
     links: [
-      { label: "VIP Interiors", href: "/vip-interiors" },
+      { label: "VIP Completions", href: "/vip-interiors" },
+      { label: "Performance Record", href: "/performance-history" },
+      { label: "About Luminary", href: "/about" },
       { label: "Our Team", href: "/about/team" },
-      { label: "News", href: "/news" },
-      { label: "Blog", href: "/blog" },
-      { label: "Government Page", href: "/about/government" },
+      { label: "Government", href: "/about/government" },
     ],
   },
   {
     title: "Resources",
     links: [
       { label: "Downloads & STCs", href: "/about/downloads" },
-      { label: "New Customer Form", href: "/contact" },
+      { label: "Blog & Technical Articles", href: "/blog" },
+      { label: "News", href: "/news" },
+      { label: "New Customer Enquiry", href: "/contact" },
       { label: "Shop", href: "/shop" },
-      { label: "Contact", href: "/contact" },
     ],
   },
 ];
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-black/[0.06] bg-[#f8f8f6]">
-      <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
-        {/* Top */}
-        <div className="border-b border-black/[0.06] pb-14">
-          <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
-            <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-                Luminary Air Group · Part 21 Manufacturer
-              </span>
-              <h2 className="mt-5 font-serif text-[44px] leading-[1.05] text-[#111111] sm:text-[56px]">
-                Experienced.
-                <br />
-                <em className="font-normal italic text-[#888888]">
-                  Reliable. Flexible.
-                </em>
-              </h2>
-            </div>
-            <div className="flex flex-col gap-3 text-[13px]">
-              <a
-                href="mailto:info@luminary.aero"
-                className="inline-flex items-center gap-2 text-[#555555] transition-colors hover:text-[var(--color-gold)]"
-              >
-                <Mail className="h-3.5 w-3.5" strokeWidth={1.5} />
-                info@luminary.aero
-              </a>
-              <a
-                href="tel:+1-800-000-0000"
-                className="inline-flex items-center gap-2 text-[#555555] transition-colors hover:text-[var(--color-gold)]"
-              >
-                <Phone className="h-3.5 w-3.5" strokeWidth={1.5} />
-                +1 (800) 000-0000
-              </a>
-            </div>
-          </div>
-        </div>
+    <footer className="border-t border-black/[0.06] bg-[#f8f8f6]">
+      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
 
-        {/* Columns */}
-        <div className="grid grid-cols-2 gap-x-8 gap-y-12 pt-14 md:grid-cols-5">
-          <div className="col-span-2 md:col-span-1">
+        {/* ── Top bar ── */}
+        <div className="mb-14 flex flex-col items-start justify-between gap-8 border-b border-black/[0.06] pb-14 lg:flex-row lg:items-end">
+          {/* Brand + tagline */}
+          <div>
             <div className="flex items-center gap-2.5">
-              <svg width="30" height="19" viewBox="0 0 38 24" fill="none" aria-hidden>
-                <path d="M2 14 L22 4 L36 8 L22 10 L28 20 L18 16 L8 20 Z" fill="#111111" opacity="0.7" />
+              <svg width="28" height="18" viewBox="0 0 38 24" fill="none" aria-hidden>
+                <path d="M2 14 L22 4 L36 8 L22 10 L28 20 L18 16 L8 20 Z" fill="#111111" opacity="0.65" />
                 <path d="M4 13.5 L34 7.5" stroke="#c9a84c" strokeWidth="2" strokeLinecap="round" />
               </svg>
               <span className="font-serif text-[17px] tracking-[0.04em] text-[#111111]">Lu·mi·nar·y</span>
             </div>
-            <p className="mt-5 max-w-xs text-[13px] leading-[1.8] text-[#888888]">
-              Aircraft interior design, manufacturing, and installation. Cabin
-              insulation, special mission platforms, and VIP completions.
-            </p>
-            <p className="mt-4 font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-              ADMI&trade; Platform
+            <h2 className="mt-5 font-serif text-[38px] leading-[1.05] text-[#111111] sm:text-[46px]">
+              Experienced.
+              <br />
+              <em className="font-normal italic text-[#aaaaaa]">Reliable. Certified.</em>
+            </h2>
+            <p className="mt-4 max-w-sm text-[13px] leading-[1.8] text-[#888888]">
+              FAA Part 21 manufacturer of aircraft interior systems. Acoustic insulation,
+              special mission platforms, and VIP completions — with published performance data.
             </p>
           </div>
 
+          {/* Contact */}
+          <div className="flex flex-col gap-3">
+            <a
+              href="mailto:info@luminary.aero"
+              className="inline-flex items-center gap-2.5 text-[13px] text-[#555555] transition-colors hover:text-[var(--color-gold)]"
+            >
+              <Mail className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
+              info@luminary.aero
+            </a>
+            <a
+              href="tel:+18886242400"
+              className="inline-flex items-center gap-2.5 text-[13px] text-[#555555] transition-colors hover:text-[var(--color-gold)]"
+            >
+              <Phone className="h-3.5 w-3.5 shrink-0" strokeWidth={1.5} />
+              1-888-624-2400
+            </a>
+            <div className="mt-2 flex flex-wrap gap-2">
+              {["FAA Part 21", "EASA", "AS9100D", "ADMI™"].map((c) => (
+                <span key={c} className="rounded-full border border-black/[0.1] bg-white px-3 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-[#888888]">
+                  {c}
+                </span>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* ── Link columns ── */}
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 md:grid-cols-4">
           {columns.map((col) => (
             <div key={col.title}>
-              <h3 className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
+              <h3 className="mb-5 font-mono text-[10px] uppercase tracking-[0.24em] text-[var(--color-gold)]">
                 {col.title}
               </h3>
-              <ul className="mt-5 space-y-3.5">
+              <ul className="space-y-3">
                 {col.links.map((link) => (
                   <li key={link.href}>
                     <Link
@@ -114,7 +113,7 @@ export function Footer() {
                     >
                       {link.label}
                       <ArrowUpRight
-                        className="h-3 w-3 opacity-0 transition-all group-hover:opacity-100"
+                        className="h-2.5 w-2.5 opacity-0 transition-opacity group-hover:opacity-100"
                         strokeWidth={1.5}
                       />
                     </Link>
@@ -125,13 +124,13 @@ export function Footer() {
           ))}
         </div>
 
-        {/* Bottom */}
-        <div className="mt-20 flex flex-col items-start justify-between gap-4 border-t border-black/[0.06] pt-8 text-[11px] sm:flex-row sm:items-center">
-          <p className="font-mono uppercase tracking-[0.18em] text-[#aaaaaa]">
-            &copy; {new Date().getFullYear()} Luminary Air Group &middot; All rights reserved.
+        {/* ── Bottom bar ── */}
+        <div className="mt-16 flex flex-col items-start justify-between gap-3 border-t border-black/[0.06] pt-8 sm:flex-row sm:items-center">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#cccccc]">
+            &copy; {new Date().getFullYear()} Luminary Air Group &middot; All rights reserved
           </p>
-          <p className="font-mono uppercase tracking-[0.18em] text-[#aaaaaa]">
-            Part 21 Manufacturer &middot; ADMI&trade; Platform
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#cccccc]">
+            Part 21 Manufacturer &middot; ADMI™ Platform &middot; luminary.aero
           </p>
         </div>
       </div>

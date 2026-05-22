@@ -1,10 +1,17 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
-import { ArrowRight, ArrowUpRight, CheckCircle2 } from "lucide-react";
+import { motion, useInView } from "framer-motion";
+import {
+  Activity,
+  BarChart3,
+  FileCheck2,
+  BadgeCheck,
+  ArrowRight,
+  ChevronRight,
+  CheckCircle2,
+} from "lucide-react";
 import caseStudies from "@/data/case-studies.json";
 
 const fadeUp = {
@@ -15,378 +22,308 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
 
-export default function PerformanceHistoryPage() {
-  const heroRef = useRef(null);
-  const heroInView = useInView(heroRef, { once: true, margin: "-80px" });
-
-  const recordRef = useRef(null);
-  const recordInView = useInView(recordRef, { once: true, margin: "-80px" });
-
-  const statsRef = useRef(null);
-  const statsInView = useInView(statsRef, { once: true, margin: "-80px" });
-
-  const casesRef = useRef(null);
-  const casesInView = useInView(casesRef, { once: true, margin: "-80px" });
-
-  const methodRef = useRef(null);
-  const methodInView = useInView(methodRef, { once: true, margin: "-80px" });
-
-  const ctaRef = useRef(null);
-  const ctaInView = useInView(ctaRef, { once: true, margin: "-80px" });
-
+function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <>
-      {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(201,168,76,0.06),transparent_60%)]" aria-hidden />
-        <motion.div
-          ref={heroRef}
-          variants={stagger}
-          initial="hidden"
-          animate={heroInView ? "visible" : "hidden"}
-          className="relative mx-auto max-w-7xl px-5 pt-28 pb-24 sm:px-8 lg:pt-44 lg:pb-36"
-        >
-          <motion.div variants={fadeUp} className="mb-10 flex justify-center">
-            <span className="chapter-rule">
-              <span className="text-[#c9a84c]">Performance History</span>
-              <span className="text-[#888888]">Measured · Documented · Proven</span>
-            </span>
-          </motion.div>
+    <motion.div ref={ref} variants={stagger} initial="hidden" animate={inView ? "visible" : "hidden"} className={className}>
+      {children}
+    </motion.div>
+  );
+}
 
-          <div className="mx-auto max-w-5xl text-center">
-            <motion.h1 variants={fadeUp} className="display-serif text-[#111111]">
-              Measured.{" "}
-              <em className="display-serif-italic text-[#c9a84c]">Documented.</em>
-              <br />
-              Proven.
-            </motion.h1>
-            <motion.p
-              variants={fadeUp}
-              className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.75] text-[#555555]"
-            >
-              Every Luminary installation is measured before and after using precision
-              acoustic instrumentation. The results are documented, independently
-              verifiable, and consistently exceptional — from midsize jets to
-              world-record wide-body completions.
-            </motion.p>
-          </div>
+const methodologySteps = [
+  {
+    number: "01",
+    icon: Activity,
+    title: "Calibrated Equipment",
+    description:
+      "All acoustic measurements are conducted using precision instrumentation calibrated to traceable national standards before every campaign. Measurements use the Sound Intensity Level (dB SIL) scale — the industry standard for business aviation cabin characterisation, capturing true acoustic energy independent of the limitations of simple SPL readings.",
+  },
+  {
+    number: "02",
+    icon: BarChart3,
+    title: "Independent Verification",
+    description:
+      "Results are not self-reported estimates. Post-installation measurements are conducted under controlled, repeatable in-flight conditions by independent operators where required, and the raw data is archived with full instrumentation calibration records — independently verifiable on request.",
+  },
+  {
+    number: "03",
+    icon: FileCheck2,
+    title: "Part 21 Data Package",
+    description:
+      "Every measurement campaign produces a complete Part 21 certified data package — pre- and post-installation readings, cabin position documentation, flight condition parameters, instrumentation records, and analysis. Full traceability is maintained throughout and delivered to clients as part of project close-out.",
+  },
+  {
+    number: "04",
+    icon: BadgeCheck,
+    title: "Published Results",
+    description:
+      "Luminary publishes acoustic performance data for every project where client permission is granted. Results are not selectively disclosed — every documented outcome, from midsize jet optimization programmes to world-record wide-body completions, is available to prospective clients as reference data.",
+  },
+];
 
-          <motion.div
-            variants={fadeUp}
-            className="mt-12 flex flex-wrap items-center justify-center gap-3"
-          >
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[#c9a84c] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[#b8963e]"
-            >
-              Discuss your project
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
-            </Link>
-            <Link
-              href="/cabin-comfort-systems"
-              className="inline-flex items-center gap-2 rounded-full border border-black/[0.12] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[#111111] transition-all hover:border-[#c9a84c] hover:text-[#c9a84c]"
-            >
-              Cabin Comfort Systems
-            </Link>
-          </motion.div>
-        </motion.div>
-      </section>
+export default function PerformanceHistoryPage() {
+  return (
+    <main className="min-h-screen">
 
-      {/* ── WORLD RECORD HERO NUMBER ── dark section */}
-      <section className="relative overflow-hidden bg-[#111111] border-t border-black/[0.06]">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.07),transparent_70%)]" aria-hidden />
-        <motion.div
-          ref={recordRef}
-          variants={stagger}
-          initial="hidden"
-          animate={recordInView ? "visible" : "hidden"}
-          className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32"
-        >
-          <div className="mx-auto max-w-3xl text-center">
+      {/* ── HERO (dark) ── */}
+      <section className="relative overflow-hidden bg-[#111111]">
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_55%_at_50%_-10%,rgba(201,168,76,0.1),transparent_65%)]" />
+        <div className="relative mx-auto max-w-7xl px-5 pt-32 pb-24 sm:px-8 lg:pt-48 lg:pb-36">
+          <Section className="flex flex-col items-center text-center">
             <motion.span
               variants={fadeUp}
-              className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#c9a84c]"
+              className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]"
             >
-              World Record
+              Performance Record · Documented Results
+            </motion.span>
+            <motion.h1 variants={fadeUp} className="display-serif mt-6 text-white">
+              The Data
+              <br />
+              <em className="display-serif-italic" style={{ color: "rgba(255,255,255,0.35)" }}>
+                Speaks.
+              </em>
+            </motion.h1>
+            <motion.p variants={fadeUp} className="mt-8 max-w-2xl text-[17px] leading-[1.75] text-white/60">
+              Luminary publishes acoustic performance for every project. Independent measurement. Part 21 certified
+              data. Reproducible results across turboprop, midsize, large cabin, and wide-body aircraft.
+            </motion.p>
+            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center justify-center gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[var(--color-gold-deep)]"
+              >
+                Request a Data Sheet
+                <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+              </Link>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/20 px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white/60 transition-all hover:border-white/40 hover:text-white"
+              >
+                Contact Engineering
+                <ChevronRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+              </Link>
+            </motion.div>
+          </Section>
+        </div>
+      </section>
+
+      {/* ── WORLD RECORD STRIP ── */}
+      <section className="bg-white border-b border-black/[0.06]">
+        <div className="mx-auto max-w-4xl px-5 py-20 sm:px-8 text-center">
+          <Section>
+            <motion.span variants={fadeUp} className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#888888]">
+              World Record Achievement
             </motion.span>
             <motion.div
               variants={fadeUp}
-              className="mt-6 font-serif text-[clamp(5rem,16vw,11rem)] leading-none tracking-tight text-[#c9a84c]"
+              className="display-serif mt-4 text-[var(--color-gold)]"
             >
-              46.7
-              <span className="text-[0.35em] text-white/60"> dB SIL</span>
+              46.7 dB SIL
             </motion.div>
-            <motion.h2
-              variants={fadeUp}
-              className="mt-4 font-serif text-[clamp(1.25rem,3vw,2rem)] font-normal leading-tight text-white"
-            >
-              World&rsquo;s Quietest Boeing Business Jet
-            </motion.h2>
-            <motion.p
-              variants={fadeUp}
-              className="mx-auto mt-6 max-w-2xl text-[15px] leading-[1.8] text-white/70"
-            >
-              Achieved on a privately operated Boeing Business Jet using a bespoke
-              multi-layer acoustic insulation system designed and installed by Luminary
-              Air Group. This result — 46.7 dB Sound Intensity Level — remains the
-              lowest cabin noise floor ever documented for the Boeing Business Jet type.
+            <motion.p variants={fadeUp} className="mt-4 font-mono text-[12px] uppercase tracking-[0.2em] text-[#555555]">
+              Boeing Business Jet · 2018
             </motion.p>
-          </div>
-        </motion.div>
+            <motion.div variants={fadeUp} className="mt-8 mx-auto w-16 h-px bg-[var(--color-gold)] opacity-50" />
+            <motion.p variants={fadeUp} className="mt-8 max-w-2xl mx-auto text-[16px] leading-[1.85] text-[#555555]">
+              The quietest business jet cabin ever independently measured and recorded. Achieved using a bespoke
+              multi-layer acoustic insulation system designed and installed by Luminary Air Group on a privately
+              operated Boeing Business Jet. The result remains unmatched for the type.
+            </motion.p>
+          </Section>
+        </div>
       </section>
 
-      {/* ── ANIMATED STATS BAND ── */}
-      <section className="relative bg-[#f8f8f6] border-t border-black/[0.06]">
-        <motion.div
-          ref={statsRef}
-          variants={stagger}
-          initial="hidden"
-          animate={statsInView ? "visible" : "hidden"}
-          className="mx-auto max-w-7xl px-5 sm:px-8"
-        >
-          <div className="grid grid-cols-2 gap-px overflow-hidden border-x border-black/[0.06] bg-black/[0.04] sm:grid-cols-4">
-            {[
-              { value: "50–70%", label: "Avg. noise reduction" },
-              { value: "20+", label: "Years in aircraft interiors" },
-              { value: "Part 21", label: "Manufacturer" },
-              { value: "Multi-type", label: "Aircraft coverage" },
-            ].map((s) => (
-              <motion.div
-                key={s.label}
-                variants={fadeUp}
-                className="flex flex-col items-center gap-2 bg-white px-5 py-8 text-center"
-              >
-                <span className="font-serif text-[clamp(1.5rem,3.5vw,2.25rem)] leading-none text-[#111111]">
-                  {s.value}
-                </span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c9a84c]">
-                  {s.label}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+      {/* ── STATS BAND ── */}
+      <section className="bg-[#f8f8f6] border-b border-black/[0.06]">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <Section>
+            <motion.div
+              variants={stagger}
+              className="grid grid-cols-2 gap-px overflow-hidden bg-black/[0.06] sm:grid-cols-4"
+            >
+              {[
+                { value: "46.7 dB", label: "World Record SIL" },
+                { value: "57.1 dB", label: "Challenger 604" },
+                { value: "100+", label: "STC Approvals" },
+                { value: "25+ yr", label: "Measurement Record" },
+              ].map((s) => (
+                <motion.div
+                  key={s.label}
+                  variants={fadeUp}
+                  className="flex flex-col items-center gap-2 bg-white px-8 py-8 text-center"
+                >
+                  <span className="font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] leading-none text-[#111111]">
+                    {s.value}
+                  </span>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#888888]">{s.label}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </Section>
+        </div>
       </section>
 
-      {/* ── CASE STUDIES GRID ── */}
-      <section className="relative bg-white py-24 border-t border-black/[0.06]">
-        <motion.div
-          ref={casesRef}
-          variants={stagger}
-          initial="hidden"
-          animate={casesInView ? "visible" : "hidden"}
-          className="mx-auto max-w-7xl px-5 sm:px-8"
-        >
-          <motion.div variants={fadeUp} className="max-w-xl mb-16">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#c9a84c]">
-              I · Case Studies
-            </span>
-            <h2 className="display-serif-md mt-5 text-[#111111]">
-              Documented results,{" "}
-              <em className="display-serif-italic text-[#555555]">aircraft by aircraft.</em>
-            </h2>
-            <p className="mt-4 text-[14px] leading-relaxed text-[#555555]">
-              Each project below represents a fully measured, documented installation
-              with verified pre- and post-installation acoustic data.
-            </p>
-          </motion.div>
+      {/* ── CASE STUDIES ── */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+          <Section>
+            <div className="mb-16">
+              <motion.span variants={fadeUp} className="chapter-rule">
+                Case Studies · All Projects
+              </motion.span>
+              <motion.h2 variants={fadeUp} className="display-serif-md mt-6 max-w-2xl text-[#111111]">
+                Documented Results,
+                <br />
+                <em className="display-serif-italic text-[#888888]">Aircraft by Aircraft.</em>
+              </motion.h2>
+              <motion.p variants={fadeUp} className="mt-5 max-w-xl text-[15px] leading-[1.8] text-[#555555]">
+                Each project below represents a fully measured, Part 21 certified installation with independent
+                pre- and post-installation acoustic data. Results are not estimated or extrapolated.
+              </motion.p>
+            </div>
 
-          <div className="grid gap-6 sm:grid-cols-2">
-            {caseStudies.map((cs) => (
-              <motion.div
-                key={cs.id}
-                variants={fadeUp}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-black/[0.08] bg-white p-8 transition-all hover:border-[#c9a84c] hover:shadow-[0_16px_32px_-8px_rgba(201,168,76,0.10)]"
-              >
-                {/* Header row */}
-                <div className="flex items-start justify-between gap-4">
-                  <span className="inline-block rounded-full border border-[#c9a84c]/30 bg-[rgba(201,168,76,0.07)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-[#c9a84c]">
-                    {cs.category}
-                  </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#888888]">
-                    {cs.year}
-                  </span>
-                </div>
-
-                <h3 className="mt-5 font-serif text-[24px] leading-tight text-[#111111]">
-                  {cs.title}
-                </h3>
-                <p className="mt-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#555555]">
-                  {cs.aircraft}
-                </p>
-
-                {/* Achievement banner */}
-                <div className="mt-5 rounded-lg bg-[#f8f8f6] px-4 py-3">
-                  <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#c9a84c]">
-                    Achievement
+            <motion.div variants={stagger} className="grid gap-6 sm:grid-cols-2">
+              {caseStudies.map((cs) => (
+                <motion.div
+                  key={cs.id}
+                  variants={fadeUp}
+                  className="group flex flex-col overflow-hidden rounded-2xl border border-black/[0.08] bg-white p-8 transition-all hover:border-[var(--color-gold)] hover:shadow-[0_20px_48px_-12px_rgba(201,168,76,0.12)]"
+                >
+                  {/* Header row */}
+                  <div className="flex items-start justify-between gap-4">
+                    <span className="inline-block rounded-full border border-[rgba(201,168,76,0.3)] bg-[rgba(201,168,76,0.07)] px-3 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--color-gold)]">
+                      {cs.category}
+                    </span>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#888888]">{cs.year}</span>
                   </div>
-                  <div className="mt-1 text-[13px] font-medium leading-snug text-[#111111]">
-                    {cs.achievement}
+
+                  {/* Aircraft and result */}
+                  <h3 className="mt-5 display-serif-sm text-[#111111]">{cs.aircraft}</h3>
+                  <div className="mt-3 font-serif text-[clamp(2.5rem,5vw,3.75rem)] leading-none text-[var(--color-gold)]">
+                    {cs.result}
                   </div>
-                </div>
 
-                <p className="mt-5 flex-1 text-[13px] leading-[1.8] text-[#555555]">
-                  {cs.description}
-                </p>
+                  {/* Achievement badge */}
+                  <div className="mt-4 inline-block self-start rounded-lg bg-[#f8f8f6] border border-black/[0.06] px-4 py-2.5">
+                    <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#888888]">Achievement</p>
+                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.15em] text-[#111111] font-medium">
+                      {cs.achievement}
+                    </p>
+                  </div>
 
-                {/* Result footer */}
-                <div className="mt-6 flex items-center justify-between border-t border-black/[0.06] pt-5">
-                  <div>
-                    <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#888888]">
-                      Documented result
+                  {/* Description */}
+                  <p className="mt-5 flex-1 text-[13px] leading-[1.8] text-[#555555]">{cs.description}</p>
+
+                  {/* Footer */}
+                  <div className="mt-7 flex items-center justify-between border-t border-black/[0.06] pt-5">
+                    <div>
+                      <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#aaaaaa]">Operator</p>
+                      <p className="mt-0.5 font-mono text-[10px] uppercase tracking-[0.15em] text-[#555555]">
+                        {cs.operator}
+                      </p>
                     </div>
-                    <div className="mt-0.5 font-serif text-[28px] leading-none text-[#c9a84c]">
-                      {cs.result}
-                    </div>
+                    <CheckCircle2
+                      className="h-5 w-5 text-[rgba(201,168,76,0.4)] transition-colors group-hover:text-[var(--color-gold)]"
+                      strokeWidth={1.5}
+                    />
                   </div>
-                  <CheckCircle2
-                    className="h-5 w-5 text-[#c9a84c]/40 transition-colors group-hover:text-[#c9a84c]"
-                    strokeWidth={1.5}
-                  />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+                </motion.div>
+              ))}
+            </motion.div>
+          </Section>
+        </div>
       </section>
 
       {/* ── METHODOLOGY ── */}
-      <section className="relative bg-[#f8f8f6] py-24 border-t border-black/[0.06]">
-        <motion.div
-          ref={methodRef}
-          variants={stagger}
-          initial="hidden"
-          animate={methodInView ? "visible" : "hidden"}
-          className="mx-auto max-w-7xl px-5 sm:px-8"
-        >
-          <div className="grid gap-12 md:grid-cols-12">
-            <motion.div variants={fadeUp} className="md:col-span-5">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#c9a84c]">
-                II · Methodology
-              </span>
-              <h2 className="display-serif-md mt-5 text-[#111111]">
-                How we{" "}
-                <em className="display-serif-italic text-[#555555]">measure.</em>
-              </h2>
-              <p className="mt-5 text-[14px] leading-[1.85] text-[#555555]">
-                Luminary&rsquo;s performance data is produced through a rigorous,
-                instrument-driven measurement protocol. Results are not estimated
-                or extrapolated — they are measured directly in the aircraft cabin
-                under controlled in-flight conditions.
-              </p>
-              <Link
-                href="/blog"
-                className="mt-6 inline-flex items-center gap-2 text-[13px] font-medium text-[#c9a84c] transition-opacity hover:opacity-80"
-              >
-                Read our acoustic engineering articles
-                <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
-              </Link>
-            </motion.div>
+      <section className="bg-[#f8f8f6] border-t border-black/[0.06]">
+        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+          <Section>
+            <div className="mb-16 flex flex-col items-center text-center">
+              <motion.span variants={fadeUp} className="chapter-rule">
+                Measurement Standard
+              </motion.span>
+              <motion.h2 variants={fadeUp} className="display-serif-md mt-6 text-[#111111]">
+                Our Measurement
+                <br />
+                <em className="display-serif-italic text-[#888888]">Standard.</em>
+              </motion.h2>
+              <motion.p variants={fadeUp} className="mt-5 max-w-xl text-[15px] leading-[1.8] text-[#555555]">
+                Luminary&apos;s performance data is produced through a rigorous, instrument-driven protocol applied
+                consistently across every project. Results are measured — not modelled or extrapolated.
+              </motion.p>
+            </div>
 
-            <motion.div variants={stagger} className="md:col-span-7">
-              <div className="grid gap-4">
-                {[
-                  {
-                    step: "01",
-                    title: "dB SIL Scale",
-                    description:
-                      "All noise measurements use the Sound Intensity Level (dB SIL) scale — the industry standard for cabin acoustic characterisation. SIL measurements capture the true acoustic energy in the cabin, independent of the limitations of simple SPL measurements.",
-                  },
-                  {
-                    step: "02",
-                    title: "Calibrated Acoustic Instrumentation",
-                    description:
-                      "Measurements are taken using calibrated precision instrumentation at defined cabin positions. Equipment is calibrated to traceable national standards before every measurement campaign.",
-                  },
-                  {
-                    step: "03",
-                    title: "Pre- and Post-Installation Comparison",
-                    description:
-                      "Baseline measurements are taken prior to any insulation work under identical flight conditions. Post-installation measurements replicate those conditions exactly, enabling a direct and unambiguous comparison.",
-                  },
-                  {
-                    step: "04",
-                    title: "Full Documentation",
-                    description:
-                      "All measurement data — raw readings, instrumentation calibration records, and analysis — is archived and available to clients. Results are traceable, reproducible, and independently verifiable.",
-                  },
-                ].map((m) => (
+            <motion.div variants={stagger} className="grid gap-5 sm:grid-cols-2">
+              {methodologySteps.map((step) => {
+                const Icon = step.icon;
+                return (
                   <motion.div
-                    key={m.step}
+                    key={step.number}
                     variants={fadeUp}
-                    className="flex gap-5 rounded-xl border border-black/[0.08] bg-white p-6"
+                    className="flex gap-6 rounded-2xl border border-black/[0.08] bg-white p-8 transition-all hover:border-[var(--color-gold)]"
                   >
                     <div className="shrink-0">
-                      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c9a84c]">
-                        {m.step}
-                      </span>
+                      <div className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-black/[0.08] bg-[#f8f8f6]">
+                        <Icon className="h-5 w-5 text-[var(--color-gold)]" strokeWidth={1.5} />
+                      </div>
                     </div>
                     <div>
-                      <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#111111]">
-                        {m.title}
-                      </h3>
-                      <p className="mt-2 text-[13px] leading-[1.75] text-[#555555]">
-                        {m.description}
+                      <p className="font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
+                        Step {step.number}
                       </p>
+                      <h3 className="mt-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#111111]">
+                        {step.title}
+                      </h3>
+                      <p className="mt-3 text-[13px] leading-[1.8] text-[#555555]">{step.description}</p>
                     </div>
                   </motion.div>
-                ))}
-              </div>
+                );
+              })}
             </motion.div>
-          </div>
-        </motion.div>
+          </Section>
+        </div>
       </section>
 
       {/* ── CTA ── */}
-      <section className="relative bg-white py-24 border-t border-black/[0.06]">
-        <motion.div
-          ref={ctaRef}
-          variants={stagger}
-          initial="hidden"
-          animate={ctaInView ? "visible" : "hidden"}
-          className="mx-auto max-w-4xl px-5 text-center sm:px-8"
-        >
-          <motion.span
-            variants={fadeUp}
-            className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[#c9a84c]"
-          >
-            <span className="h-px w-8 bg-[#c9a84c]/50" />
-            What can we achieve for your aircraft
-            <span className="h-px w-8 bg-[#c9a84c]/50" />
-          </motion.span>
-          <motion.h2 variants={fadeUp} className="display-serif-md mt-8 text-[#111111]">
-            Your aircraft.
-            <br />
-            <em className="display-serif-italic text-[#555555]">Your result.</em>
-          </motion.h2>
-          <motion.p
-            variants={fadeUp}
-            className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-[#555555]"
-          >
-            Every aircraft is different. We begin every project with a thorough acoustic
-            survey to understand exactly what is achievable — and we commit to a target
-            before any installation work begins.
-          </motion.p>
-          <motion.div
-            variants={fadeUp}
-            className="mt-10 flex flex-wrap items-center justify-center gap-3"
-          >
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[#c9a84c] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[#b8963e]"
-            >
-              Request an acoustic consultation
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
-            </Link>
-            <Link
-              href="/cabin-comfort-systems"
-              className="inline-flex items-center gap-2 rounded-full border border-black/[0.12] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[#111111] transition-all hover:border-[#c9a84c] hover:text-[#c9a84c]"
-            >
-              Explore cabin systems
-            </Link>
-          </motion.div>
-        </motion.div>
+      <section className="bg-[#111111]">
+        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+          <Section className="flex flex-col items-center text-center">
+            <motion.span variants={fadeUp} className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
+              Commission an Acoustic Survey
+            </motion.span>
+            <motion.h2 variants={fadeUp} className="display-serif-md mt-5 text-white">
+              Your Aircraft.
+              <br />
+              <em className="display-serif-italic" style={{ color: "rgba(255,255,255,0.35)" }}>
+                A Documented Result.
+              </em>
+            </motion.h2>
+            <motion.p variants={fadeUp} className="mt-6 max-w-xl text-[15px] leading-[1.8] text-white/50">
+              Every Luminary project begins with a thorough acoustic survey of your specific airframe. We commit to
+              a projected dB SIL target before any installation work begins — and we publish the result when complete.
+            </motion.p>
+            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap justify-center gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-8 py-4 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[var(--color-gold-deep)]"
+              >
+                Commission an Acoustic Survey
+                <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+              </Link>
+              <Link
+                href="/cabin-comfort-systems"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/20 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.18em] text-white/60 transition-all hover:border-white/40 hover:text-white"
+              >
+                Cabin Comfort Systems
+                <ChevronRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+              </Link>
+            </motion.div>
+          </Section>
+        </div>
       </section>
-    </>
+
+    </main>
   );
 }
