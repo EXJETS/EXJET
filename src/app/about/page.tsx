@@ -103,7 +103,7 @@ export default function AboutPage() {
           className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(201,168,76,0.06),transparent_60%)]"
           aria-hidden
         />
-        <Section className="relative mx-auto max-w-7xl px-5 pt-28 pb-24 sm:px-8 lg:pt-44 lg:pb-36">
+        <Section className="relative mx-auto max-w-7xl px-5 pt-28 pb-24 sm:px-8 lg:pt-44 lg:pb-32">
           <motion.div variants={fadeUp} className="mb-6 flex items-center gap-4">
             <span className="h-px w-8 bg-[var(--color-gold)]" />
             <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
@@ -115,7 +115,7 @@ export default function AboutPage() {
             <motion.h1 variants={fadeUp} className="display-serif text-[#111111]">
               Over Two Decades of Certified
               <br />
-              <em className="display-serif-italic text-[var(--color-gold)]">
+              <em className="display-serif-italic text-[#999999]">
                 Aviation Interior Engineering
               </em>
             </motion.h1>

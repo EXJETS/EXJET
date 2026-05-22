@@ -66,24 +66,24 @@ export default function ContactPage() {
           aria-hidden
         />
         <Section className="relative mx-auto max-w-7xl px-5 pt-28 pb-16 sm:px-8 lg:pt-40 lg:pb-20">
-          <motion.div variants={fadeUp} className="mb-10 flex justify-center">
-            <span className="chapter-rule">
-              <span className="text-[var(--color-gold)]">Contact Luminary Air Group</span>
-              <span className="text-[#888888]">FAA Part 21 Manufacturer</span>
+          <motion.div variants={fadeUp} className="mb-6 flex items-center gap-4">
+            <span className="h-px w-8 bg-[var(--color-gold)]" />
+            <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
+              Contact Luminary Air Group
             </span>
           </motion.div>
 
-          <div className="mx-auto max-w-4xl text-center">
+          <div className="max-w-4xl">
             <motion.h1 variants={fadeUp} className="display-serif text-[#111111]">
               Initiate a
               <br />
-              <em className="display-serif-italic text-[var(--color-gold)]">
+              <em className="display-serif-italic text-[#999999]">
                 Project Enquiry
               </em>
             </motion.h1>
             <motion.p
               variants={fadeUp}
-              className="mx-auto mt-8 max-w-xl text-[15px] leading-[1.8] text-[#555555]"
+              className="mt-8 max-w-xl text-[15px] leading-[1.8] text-[#555555]"
             >
               Our engineering team responds within one business day. Please provide your
               aircraft type, programme scope, and any specific requirements to accelerate
@@ -91,7 +91,7 @@ export default function ContactPage() {
             </motion.p>
           </div>
 
-          <motion.div variants={fadeUp} className="mt-8 flex justify-center">
+          <motion.div variants={fadeUp} className="mt-8 flex">
             <span className="inline-flex items-center gap-2.5 rounded-full border border-[var(--color-gold)]/30 bg-[rgba(201,168,76,0.06)] px-5 py-2.5">
               <Clock className="h-4 w-4 text-[var(--color-gold)]" strokeWidth={1.5} />
               <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">

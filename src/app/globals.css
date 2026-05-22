@@ -82,24 +82,24 @@ body {
   font-weight: 400;
 }
 
-/* Editorial chapter rule */
+/* Section eyebrow label */
 .chapter-rule {
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
   font-family: var(--font-mono);
   font-size: 0.6875rem;
-  letter-spacing: 0.22em;
+  letter-spacing: 0.26em;
   text-transform: uppercase;
-  color: var(--color-muted);
+  color: var(--color-gold);
 }
-.chapter-rule::before,
-.chapter-rule::after {
+.chapter-rule::before {
   content: "";
   display: inline-block;
-  width: 1.75rem;
+  width: 2rem;
   height: 1px;
-  background: rgba(0, 0, 0, 0.18);
+  background: var(--color-gold);
+  opacity: 0.7;
 }
 
 /* Card surfaces */

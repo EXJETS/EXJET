@@ -106,7 +106,7 @@ export default function CabinComfortSystemsPage() {
       <section className="relative overflow-hidden bg-white">
         <div className="pointer-events-none absolute inset-0 bg-dotgrid opacity-50" />
         <div className="pointer-events-none absolute inset-0 mesh-hero" />
-        <div className="relative mx-auto max-w-7xl px-5 pt-32 pb-24 sm:px-8 lg:pt-48 lg:pb-36">
+        <div className="relative mx-auto max-w-7xl px-5 pt-28 pb-20 sm:px-8 lg:pt-36 lg:pb-28">
           <Section className="flex flex-col items-center text-center">
             <motion.span variants={fadeUp} className="chapter-rule mb-8">
               Cabin Comfort Systems · Acoustic Engineering
@@ -124,7 +124,7 @@ export default function CabinComfortSystemsPage() {
             <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2.5 rounded-full bg-[#111111] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[var(--color-gold)]"
+                className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[var(--color-gold-deep)]"
               >
                 Request a Quote
                 <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
@@ -150,7 +150,7 @@ export default function CabinComfortSystemsPage() {
                 { value: "8 Platforms", label: "STC Coverage" },
               ].map((s) => (
                 <div key={s.label} className="flex flex-col items-center gap-2 bg-white px-8 py-6">
-                  <span className="font-serif text-[36px] leading-none text-[#111111]">{s.value}</span>
+                  <span className="font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] leading-none text-[#111111]">{s.value}</span>
                   <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-[#888888]">{s.label}</span>
                 </div>
               ))}
@@ -161,7 +161,7 @@ export default function CabinComfortSystemsPage() {
 
       {/* ── HOW IT WORKS ── */}
       <section className="bg-[#f8f8f6] border-y border-black/[0.06]">
-        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
           <Section>
             <div className="mb-16 flex flex-col items-center text-center">
               <motion.span variants={fadeUp} className="chapter-rule">
@@ -212,7 +212,7 @@ export default function CabinComfortSystemsPage() {
 
       {/* ── PRODUCT CATALOG ── */}
       <section id="product-catalog" className="bg-white">
-        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
           <Section>
             <div className="mb-12 flex flex-col gap-5 md:flex-row md:items-end md:justify-between">
               <div>
@@ -312,7 +312,7 @@ export default function CabinComfortSystemsPage() {
       {/* ── WORLD RECORD DARK SECTION ── */}
       <section className="relative overflow-hidden bg-[#111111]">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_60%_at_50%_-10%,rgba(201,168,76,0.1),transparent_65%)]" />
-        <div className="relative mx-auto max-w-5xl px-5 py-28 sm:px-8 lg:py-36 text-center">
+        <div className="relative mx-auto max-w-5xl px-5 py-20 sm:px-8 lg:py-28 text-center">
           <Section>
             <motion.span variants={fadeUp} className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
               World Record · Boeing Business Jet
@@ -343,7 +343,7 @@ export default function CabinComfortSystemsPage() {
 
       {/* ── WHY LUMINARY ── */}
       <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
           <Section>
             <div className="mb-16 flex flex-col items-center text-center">
               <motion.span variants={fadeUp} className="chapter-rule">

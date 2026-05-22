@@ -107,24 +107,24 @@ export default function SpecialMissionInteriorsPage() {
           aria-hidden
         />
         <Section className="relative mx-auto max-w-7xl px-5 pt-28 pb-24 sm:px-8 lg:pt-44 lg:pb-36">
-          <motion.div variants={fadeUp} className="mb-10 flex justify-center">
-            <span className="chapter-rule">
-              <span className="text-[var(--color-gold)]">Special Mission Interiors</span>
-              <span className="text-[#888888]">ADMI™ Platform</span>
+          <motion.div variants={fadeUp} className="mb-6 flex items-center gap-4">
+            <span className="h-px w-8 bg-[var(--color-gold)]" />
+            <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
+              Special Mission Interiors · ADMI™ Platform
             </span>
           </motion.div>
 
-          <div className="mx-auto max-w-5xl text-center">
+          <div className="max-w-4xl">
             <motion.h1 variants={fadeUp} className="display-serif text-[#111111]">
               Mission-Configured Interiors
               <br />
-              <em className="display-serif-italic text-[var(--color-gold)]">
+              <em className="display-serif-italic text-[#999999]">
                 for Demanding Operations
               </em>
             </motion.h1>
             <motion.p
               variants={fadeUp}
-              className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.8] text-[#555555]"
+              className="mt-8 max-w-2xl text-[15px] leading-[1.8] text-[#555555]"
             >
               Luminary&rsquo;s ADMI™ (Advanced Design &amp; Manufacturing Integration)
               platform delivers certified special mission interiors engineered for sustained
@@ -134,7 +134,7 @@ export default function SpecialMissionInteriorsPage() {
 
           <motion.div
             variants={fadeUp}
-            className="mt-12 flex flex-wrap items-center justify-center gap-3"
+            className="mt-12 flex flex-wrap items-center gap-3"
           >
             <Link
               href="/contact"

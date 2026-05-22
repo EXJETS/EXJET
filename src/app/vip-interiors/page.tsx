@@ -129,10 +129,13 @@ export default function VipInteriorsPage() {
         <div className="pointer-events-none absolute inset-0 bg-dotgrid opacity-50" />
         <div className="pointer-events-none absolute inset-0 mesh-hero" />
         <div className="relative mx-auto max-w-7xl px-5 pt-32 pb-24 sm:px-8 lg:pt-48 lg:pb-36">
-          <Section className="flex flex-col items-center text-center">
-            <motion.span variants={fadeUp} className="chapter-rule mb-8">
-              VIP Completions · Acoustic-First
-            </motion.span>
+          <Section>
+            <motion.div variants={fadeUp} className="mb-6 flex items-center gap-4">
+              <span className="h-px w-8 bg-[var(--color-gold)]" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
+                VIP Completions · Acoustic-First
+              </span>
+            </motion.div>
             <motion.h1 variants={fadeUp} className="display-serif max-w-4xl text-[#111111]">
               Completions Where Silence
               <br />
@@ -143,10 +146,10 @@ export default function VipInteriorsPage() {
               step. Insulation systems are sequenced before trim, before furnishings, before every interior
               decision. The result is a cabin defined by measurable quiet, not approximate comfort.
             </motion.p>
-            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center justify-center gap-4">
+            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2.5 rounded-full bg-[#111111] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[var(--color-gold)]"
+                className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[var(--color-gold-deep)]"
               >
                 Initiate a Project
                 <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />

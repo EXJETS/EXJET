@@ -49,8 +49,9 @@ function formatDate(isoString: string): string {
 export default function BlogPage() {
   const [email, setEmail] = useState("");
 
-  const featured = blogPosts[0] as Post | undefined;
-  const remaining = blogPosts.slice(1) as Post[];
+  const sortedPosts = [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+  const featured = sortedPosts[0] as Post | undefined;
+  const remaining = sortedPosts.slice(1) as Post[];
 
   return (
     <>
@@ -63,8 +64,7 @@ export default function BlogPage() {
         <Section className="relative mx-auto max-w-7xl px-5 pt-28 pb-20 sm:px-8 lg:pt-40 lg:pb-28">
           <motion.div variants={fadeUp} className="mb-10 flex justify-center">
             <span className="chapter-rule">
-              <span className="text-[var(--color-gold)]">Technical Resources</span>
-              <span className="text-[#888888]">Luminary Knowledge Base</span>
+              Technical Resources · Luminary Knowledge Base
             </span>
           </motion.div>
 
@@ -72,7 +72,7 @@ export default function BlogPage() {
             <motion.h1 variants={fadeUp} className="display-serif text-[#111111]">
               Aviation Interior
               <br />
-              <em className="display-serif-italic text-[var(--color-gold)]">
+              <em className="display-serif-italic text-[#999999]">
                 Engineering Insights
               </em>
             </motion.h1>

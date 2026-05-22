@@ -173,7 +173,7 @@ export default function Home() {
             <motion.div variants={fadeUp} className="mt-10 flex flex-wrap items-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2.5 rounded-full bg-[#111111] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-colors hover:bg-[var(--color-gold)]"
+                className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-colors hover:bg-[var(--color-gold-deep)]"
               >
                 Request a Quote
                 <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
@@ -521,7 +521,7 @@ export default function Home() {
             <motion.div variants={fadeUp} className="mt-8 flex flex-wrap justify-center gap-4">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2.5 rounded-full bg-[#111111] px-8 py-4 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-colors hover:bg-[var(--color-gold)]"
+                className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-8 py-4 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-colors hover:bg-[var(--color-gold-deep)]"
               >
                 Initiate an Enquiry
                 <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
