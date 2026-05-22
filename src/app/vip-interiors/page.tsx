@@ -3,18 +3,17 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
-import { cn } from "@/lib/utils";
 import {
+  ArrowRight,
+  CheckCircle2,
   Armchair,
   Layers,
-  PanelTop,
-  Grid,
   Lightbulb,
-  Leaf,
-  Wrench,
-  ShieldCheck,
-  CheckCircle2,
-  ArrowRight,
+  Palette,
+  PanelTop,
+  Shield,
+  Star,
+  ChevronRight,
 } from "lucide-react";
 
 const fadeUp = {
@@ -25,425 +24,314 @@ const stagger = {
   visible: { transition: { staggerChildren: 0.1 } },
 };
 
-export default function VipInteriorsPage() {
-  const heroRef = useRef(null);
-  const heroInView = useInView(heroRef, { once: true, margin: "-80px" });
-
-  const servicesRef = useRef(null);
-  const servicesInView = useInView(servicesRef, { once: true, margin: "-80px" });
-
-  const processRef = useRef(null);
-  const processInView = useInView(processRef, { once: true, margin: "-80px" });
-
-  const qualityRef = useRef(null);
-  const qualityInView = useInView(qualityRef, { once: true, margin: "-80px" });
-
-  const ctaRef = useRef(null);
-  const ctaInView = useInView(ctaRef, { once: true, margin: "-80px" });
-
+function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <>
+    <motion.div ref={ref} variants={stagger} initial="hidden" animate={inView ? "visible" : "hidden"} className={className}>
+      {children}
+    </motion.div>
+  );
+}
+
+const completedProjects = [
+  {
+    aircraft: "Boeing Business Jet",
+    type: "BBJ / 737-800",
+    headline: "Ultra-Long-Range Executive Suite",
+    description: "Full green completion from bare fuselage. Master stateroom, private lounge, 8-seat dining, conference zone, and crew rest — with the world's lowest recorded BBJ cabin noise at 46.7 dB SIL.",
+    highlights: ["46.7 dB SIL — world record", "Full green completion", "Custom bespoke cabinetry", "Gold & walnut finish package"],
+    operator: "Private owner",
+    year: "2018",
+  },
+  {
+    aircraft: "Bombardier Challenger 604",
+    type: "Large Cabin Jet",
+    headline: "Quiet Cabin Green Completion",
+    description: "Turnkey completion from green aircraft. Acoustic performance made a first-principle design input — achieving 57.1 dB SIL, significantly below the 604 production average. Bespoke leather seating and custom millwork throughout.",
+    highlights: ["57.1 dB SIL result", "Below production average by 8 dB", "Bespoke leather & veneer", "Custom lighting system"],
+    operator: "Private operator",
+    year: "2020",
+  },
+  {
+    aircraft: "Dassault Falcon 7X",
+    type: "Ultra-Long-Range Trijet",
+    headline: "Head-of-State Interior Refurbishment",
+    description: "Full interior refurbishment of an existing aircraft for a government head-of-state operation. New acoustic insulation, bespoke seating in hand-stitched leather, custom stone-effect surfaces, and a redesigned forward galley.",
+    highlights: ["Government head-of-state mission", "Full acoustic refit", "Hand-stitched leather throughout", "Redesigned galley & lavatory"],
+    operator: "Government operator",
+    year: "2021",
+  },
+  {
+    aircraft: "Gulfstream G650ER",
+    type: "Ultra-Long-Range",
+    headline: "Premium VIP Retrofit",
+    description: "Interior refresh on an in-service G650ER for a private owner upgrading from factory specification. New seating groupings, redesigned aft cabin lounge, custom credenza, and upgraded cabin management system integration.",
+    highlights: ["Factory → bespoke upgrade", "New aft lounge configuration", "Custom CMS integration", "Upgraded galley & lavatory"],
+    operator: "Private owner",
+    year: "2023",
+  },
+];
+
+const capabilities = [
+  {
+    icon: Armchair,
+    title: "Bespoke Seating",
+    description: "Hand-stitched leather, custom foam profiling, and recline/berthing configurations engineered for ultra-long-range comfort.",
+  },
+  {
+    icon: Layers,
+    title: "Cabinetry & Millwork",
+    description: "In-house CNC fabrication in exotic veneers, high-gloss lacquer, carbon fibre, and stone-effect laminates.",
+  },
+  {
+    icon: Lightbulb,
+    title: "Lighting Systems",
+    description: "Full LED indirect lighting architectures with programmable scenes, mood control, and circadian rhythm support.",
+  },
+  {
+    icon: Palette,
+    title: "Surface Treatments",
+    description: "Fabric, leather, Alcantara, veneer, stone, and custom paint finishing from our in-house design studio.",
+  },
+  {
+    icon: PanelTop,
+    title: "Cabin Management",
+    description: "Integration of leading CMS and IFE platforms — Honeywell, Collins, Panasonic Avionics — with bespoke UI skins.",
+  },
+  {
+    icon: Shield,
+    title: "Full Certification",
+    description: "Every installation certified under our FAA Part 21 / EASA manufacturer approval with supplemental type certificate support.",
+  },
+];
+
+const process = [
+  { step: "01", title: "Client Brief", description: "We begin with the client — not the aircraft. Understanding lifestyle, mission, and aesthetic intent before any engineering begins." },
+  { step: "02", title: "Design Development", description: "Our design team produces concept layouts, material boards, and 3D renders for review and refinement prior to any fabrication." },
+  { step: "03", title: "Engineering & Approval", description: "All designs are engineered to certification standards. We hold the approvals — you don't need a separate DER." },
+  { step: "04", title: "Fabrication & Installation", description: "In-house fabrication, followed by on-aircraft installation at your preferred MRO or our facility. On-time delivery, guaranteed." },
+];
+
+export default function VipInteriorsPage() {
+  return (
+    <main className="min-h-screen bg-white">
+
       {/* ── HERO ── */}
       <section className="relative overflow-hidden bg-white">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(201,168,76,0.06),transparent_60%)]" aria-hidden />
-        <motion.div
-          ref={heroRef}
-          variants={stagger}
-          initial="hidden"
-          animate={heroInView ? "visible" : "hidden"}
-          className="relative mx-auto max-w-7xl px-5 pt-28 pb-24 sm:px-8 lg:pt-44 lg:pb-36"
-        >
-          <motion.div variants={fadeUp} className="mb-10 flex justify-center">
-            <span className="chapter-rule">
-              <span className="text-[#c9a84c]">VIP Interiors</span>
-              <span className="text-[#888888]">Design · Manufacturing · Installation</span>
-            </span>
-          </motion.div>
-
-          <div className="mx-auto max-w-5xl text-center">
-            <motion.h1 variants={fadeUp} className="display-serif text-[#111111]">
-              Every detail,{" "}
-              <em className="display-serif-italic text-[#c9a84c]">perfected.</em>
-            </motion.h1>
-            <motion.p
-              variants={fadeUp}
-              className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.75] text-[#555555]"
-            >
-              Luminary Air Group delivers full-lifecycle VIP and corporate
-              aircraft interiors — from concept and design through manufacturing,
-              installation, and certification. Every surface, material, and
-              system is engineered with precision and built to last.
-            </motion.p>
-          </div>
-
-          <motion.div
-            variants={fadeUp}
-            className="mt-12 flex flex-wrap items-center justify-center gap-3"
-          >
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[#c9a84c] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[#b8963e]"
-            >
-              Start your interior project
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
-            </Link>
-            <Link
-              href="/performance-history"
-              className="inline-flex items-center gap-2 rounded-full border border-black/[0.12] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[#111111] transition-all hover:border-[#c9a84c] hover:text-[#c9a84c]"
-            >
-              View performance history
-            </Link>
-          </motion.div>
-        </motion.div>
-      </section>
-
-      {/* ── SERVICES GRID ── */}
-      <section className="relative bg-[#f8f8f6] py-24 border-t border-black/[0.06]">
-        <motion.div
-          ref={servicesRef}
-          variants={stagger}
-          initial="hidden"
-          animate={servicesInView ? "visible" : "hidden"}
-          className="mx-auto max-w-7xl px-5 sm:px-8"
-        >
-          <motion.div variants={fadeUp} className="mb-12">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#c9a84c]">
-              I · Services
-            </span>
-            <h2 className="display-serif-md mt-5 text-[#111111]">
-              Every interior discipline,
+        <div className="pointer-events-none absolute inset-0 bg-dotgrid opacity-40" />
+        <div className="pointer-events-none absolute inset-0 mesh-hero" />
+        <div className="relative mx-auto max-w-7xl px-5 pt-32 pb-24 sm:px-8 lg:pt-48 lg:pb-36">
+          <Section className="flex flex-col items-center text-center">
+            <motion.span variants={fadeUp} className="chapter-rule mb-8">
+              VIP Completions · Design · Manufacture · Certify
+            </motion.span>
+            <motion.h1 variants={fadeUp} className="display-serif max-w-4xl text-[#111111]">
+              Every Interior
               <br />
-              <em className="display-serif-italic text-[#555555]">under one roof.</em>
-            </h2>
-            <p className="mt-4 max-w-lg text-[14px] leading-relaxed text-[#555555]">
-              From hand-crafted cabinetry to full green completions, our skilled team
-              handles every element of your aircraft interior in-house — with the
-              quality and documentation of a Part 21 manufacturer.
-            </p>
-          </motion.div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {[
-              {
-                icon: Armchair,
-                number: "01",
-                title: "Cabinetry Design & Fabrication",
-                description:
-                  "Custom hardwood and composite cabinetry engineered to your specification. Every unit is designed for the exact airframe geometry, meeting weight budgets and airworthiness requirements without compromise.",
-                badge: "Custom hardwood / composite",
-              },
-              {
-                icon: Layers,
-                number: "02",
-                title: "Seating & Divan Upholstery",
-                description:
-                  "Executive seating, club configurations, and divan builds using premium materials selected for durability, aesthetics, and compliance with airworthiness flammability standards.",
-                badge: "Executive & divan",
-              },
-              {
-                icon: PanelTop,
-                number: "03",
-                title: "Headliner & Sidewall Panels",
-                description:
-                  "Precision-fabricated headliner assemblies and sidewall panels in fabric, leather, or composite finishes. Seamlessly integrated with lighting, ventilation, and PSU systems.",
-                badge: "Headliner · sidewall",
-              },
-              {
-                icon: Grid,
-                number: "04",
-                title: "Flooring Systems",
-                description:
-                  "Full-width flooring in carpet, hardwood, tile, or bespoke material combinations. Each installation is engineered for weight, acoustic properties, and long-term durability in the demanding cabin environment.",
-                badge: "Carpet · hardwood · tile",
-              },
-              {
-                icon: Lightbulb,
-                number: "05",
-                title: "Lighting Systems",
-                description:
-                  "Integrated LED lighting design and installation — ambient, task, and mood lighting architectures that enhance the passenger experience while meeting certification requirements.",
-                badge: "LED ambient & task",
-              },
-              {
-                icon: Leaf,
-                number: "06",
-                title: "Green Completions",
-                description:
-                  "Full interior delivery from a bare airframe. We manage every interior discipline — insulation, structure, panels, seating, cabinetry, and systems — as a single coordinated build.",
-                badge: "Bare airframe to complete",
-              },
-            ].map((card) => (
-              <motion.div
-                key={card.number}
-                variants={fadeUp}
-                className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-black/[0.08] bg-white p-8 transition-all hover:border-[#c9a84c] hover:shadow-[0_16px_32px_-8px_rgba(201,168,76,0.12)]"
+              <em className="display-serif-italic text-[#888888]">Is a Singular Work.</em>
+            </motion.h1>
+            <motion.p variants={fadeUp} className="mt-8 max-w-2xl text-[17px] leading-[1.75] text-[#555555]">
+              We begin with you — your mission, your aesthetic, your aircraft. Then we engineer it to FAA and EASA standards,
+              fabricate it in-house, and install it on time. No subcontractors. No compromises.
+            </motion.p>
+            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap justify-center gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2.5 rounded-full bg-[#111111] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[var(--color-gold)]"
               >
-                <div className="flex items-start justify-between">
-                  <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[rgba(201,168,76,0.07)] text-[#c9a84c]">
-                    <card.icon className="h-5 w-5" strokeWidth={1.5} />
-                  </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#888888]">
-                    {card.number}
-                  </span>
-                </div>
-                <h3 className="mt-6 font-serif text-[22px] leading-tight text-[#111111]">
-                  {card.title}
-                </h3>
-                <p className="mt-4 flex-1 text-[13px] leading-[1.8] text-[#555555]">
-                  {card.description}
-                </p>
-                <div className="mt-6 border-t border-black/[0.06] pt-5">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#c9a84c]">
-                    {card.badge}
-                  </span>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Repairs callout */}
-          <motion.div
-            variants={fadeUp}
-            className="mt-8 flex items-start gap-5 rounded-2xl border border-black/[0.08] bg-white p-7"
-          >
-            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[rgba(201,168,76,0.07)] text-[#c9a84c]">
-              <Wrench className="h-5 w-5" strokeWidth={1.5} />
-            </span>
-            <div>
-              <h3 className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#111111]">
-                Repairs & Modifications
-              </h3>
-              <p className="mt-2 text-[13px] leading-[1.75] text-[#555555]">
-                Existing interior repairs, damage rectification, and modification work
-                are handled with the same precision and documentation standards as new
-                builds. From panel replacement to full refurbishment programmes, we
-                bring worn or damaged interiors back to as-new condition.
-              </p>
-            </div>
-          </motion.div>
-        </motion.div>
+                Start a Project
+                <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+              </Link>
+              <Link
+                href="#portfolio"
+                className="inline-flex items-center gap-2.5 rounded-full border border-black/[0.15] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#333333] transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+              >
+                View Projects
+              </Link>
+            </motion.div>
+          </Section>
+        </div>
       </section>
 
-      {/* ── PROCESS ── 4-step horizontal ── */}
-      <section className="relative bg-white py-24 border-t border-black/[0.06]">
-        <motion.div
-          ref={processRef}
-          variants={stagger}
-          initial="hidden"
-          animate={processInView ? "visible" : "hidden"}
-          className="mx-auto max-w-7xl px-5 sm:px-8"
-        >
-          <motion.div variants={fadeUp} className="mx-auto max-w-2xl text-center mb-16">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#c9a84c]">
-              II · Process
-            </span>
-            <h2 className="display-serif-md mt-5 text-[#111111]">
-              From brief to{" "}
-              <em className="display-serif-italic text-[#555555]">certified completion.</em>
-            </h2>
-            <p className="mx-auto mt-4 max-w-md text-[14px] leading-relaxed text-[#555555]">
-              A disciplined four-stage process ensures every VIP interior project is
-              delivered on time, on spec, and to the highest standard of certified quality.
-            </p>
-          </motion.div>
-
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-black/[0.08] bg-black/[0.04] sm:grid-cols-4">
-            {[
-              {
-                number: "01",
-                title: "Consultation",
-                description:
-                  "A detailed brief — understanding your aircraft, objectives, aesthetic preferences, and operational requirements. A design package is produced before any material is specified.",
-              },
-              {
-                number: "02",
-                title: "Design",
-                description:
-                  "Premium materials selected against your design brief, weight budget, and airworthiness criteria. Every material is qualified for use in the aircraft environment before procurement.",
-              },
-              {
-                number: "03",
-                title: "Fabrication",
-                description:
-                  "In-house fabrication as a Part 21 manufacturer. Every component is built to drawing, quality-inspected, and documented with full traceability before it reaches your aircraft.",
-              },
-              {
-                number: "04",
-                title: "Install",
-                description:
-                  "Expert installation by experienced technicians, followed by full certification documentation. Your maintenance records are updated and every modification is fully traceable.",
-              },
-            ].map((step) => (
-              <motion.div
-                key={step.number}
-                variants={fadeUp}
-                className="flex flex-col bg-white px-7 py-8"
-              >
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#c9a84c]">
-                  {step.number}
-                </span>
-                <h3 className="mt-4 font-serif text-[22px] leading-tight text-[#111111]">
-                  {step.title}
-                </h3>
-                <p className="mt-3 text-[13px] leading-[1.75] text-[#555555]">
-                  {step.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+      {/* ── PHILOSOPHY ── */}
+      <section className="bg-[#f8f8f6] border-y border-black/[0.06]">
+        <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+          <Section className="flex flex-col items-center text-center">
+            <motion.blockquote variants={fadeUp} className="font-serif text-[26px] leading-[1.5] text-[#111111] max-w-3xl sm:text-[32px]">
+              &ldquo;We begin with the client, not the aircraft. The aircraft is the canvas —
+              the client&apos;s life is the brief.&rdquo;
+            </motion.blockquote>
+            <motion.p variants={fadeUp} className="mt-4 font-mono text-[11px] uppercase tracking-[0.22em] text-[#aaaaaa]">
+              Luminary VIP Completions Philosophy
+            </motion.p>
+          </Section>
+        </div>
       </section>
 
-      {/* ── QUALITY / PART 21 ── */}
-      <section className="relative bg-[#111111] py-24 lg:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.05),transparent_70%)]" aria-hidden />
-        <motion.div
-          ref={qualityRef}
-          variants={stagger}
-          initial="hidden"
-          animate={qualityInView ? "visible" : "hidden"}
-          className="relative mx-auto max-w-7xl px-5 sm:px-8"
-        >
-          <div className="grid gap-12 md:grid-cols-12">
-            <motion.div variants={fadeUp} className="md:col-span-6">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#c9a84c]">
-                III · Certified Quality
-              </span>
-              <h2 className="display-serif-md mt-5 text-white">
-                Built to the{" "}
-                <em className="display-serif-italic text-[#c9a84c]">highest standard.</em>
-              </h2>
-              <p className="mt-6 text-[15px] leading-[1.8] text-white/70">
-                As a Part 21 manufacturer, every component Luminary produces carries
-                full FAA certification traceability. Quality is not an aspiration — it
-                is documented, inspected, and signed off at every stage of manufacture
-                and installation.
-              </p>
-              <div className="mt-10 flex flex-col items-start gap-4 rounded-2xl border border-[#c9a84c]/30 bg-[rgba(201,168,76,0.05)] p-7 text-center">
-                <ShieldCheck className="h-10 w-10 text-[#c9a84c]" strokeWidth={1.25} />
+      {/* ── PORTFOLIO ── */}
+      <section id="portfolio" className="mx-auto max-w-7xl px-5 py-28 sm:px-8">
+        <Section>
+          <motion.span variants={fadeUp} className="chapter-rule">
+            Completed Projects
+          </motion.span>
+          <motion.h2 variants={fadeUp} className="display-serif-md mt-6 max-w-2xl text-[#111111]">
+            Interiors That Define
+            <br />
+            <em className="display-serif-italic text-[#888888]">the Standard.</em>
+          </motion.h2>
+
+          <motion.div variants={stagger} className="mt-16 space-y-6">
+            {completedProjects.map((project, idx) => (
+              <motion.div
+                key={project.aircraft}
+                variants={fadeUp}
+                className="group grid gap-8 overflow-hidden rounded-2xl border border-black/[0.08] bg-white p-8 transition-all hover:border-[var(--color-gold)] hover:shadow-[0_20px_60px_-12px_rgba(201,168,76,0.1)] lg:grid-cols-[1fr_2fr]"
+              >
+                {/* Left — aircraft ID */}
+                <div className="flex flex-col justify-between">
+                  <div>
+                    <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-gold)]">{project.type}</span>
+                    <h3 className="mt-2 font-serif text-[30px] leading-[1.1] text-[#111111] sm:text-[36px]">{project.aircraft}</h3>
+                    <p className="mt-3 font-serif text-[18px] italic text-[#888888]">{project.headline}</p>
+                  </div>
+                  <div className="mt-6 flex items-center gap-4 border-t border-black/[0.06] pt-5">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#aaaaaa]">{project.operator}</span>
+                    <span className="h-[1px] flex-1 bg-black/[0.06]" />
+                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#aaaaaa]">{project.year}</span>
+                  </div>
+                </div>
+
+                {/* Right — details */}
                 <div>
-                  <div className="font-serif text-[clamp(1.25rem,3vw,2rem)] leading-none text-[#c9a84c]">
-                    Part 21 Manufacturer
-                  </div>
-                  <p className="mt-3 text-[13px] leading-[1.75] text-white/60">
-                    FAA-certified manufacturing authority covering every component we produce.
-                    Every build is fully documented and traceable.
-                  </p>
+                  <p className="text-[15px] leading-[1.85] text-[#555555]">{project.description}</p>
+                  <ul className="mt-6 grid grid-cols-1 gap-2 sm:grid-cols-2">
+                    {project.highlights.map((h) => (
+                      <li key={h} className="flex items-start gap-2.5">
+                        <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[var(--color-gold)]" strokeWidth={1.5} />
+                        <span className="text-[13px] text-[#555555]">{h}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
-              </div>
-            </motion.div>
-
-            <motion.div variants={stagger} className="md:col-span-6">
-              <div className="grid gap-4">
-                {[
-                  {
-                    title: "Part 21 Manufacturer",
-                    description: "FAA-certified manufacturing authority covering every component we produce.",
-                  },
-                  {
-                    title: "FAA Certified",
-                    description: "All installations are completed to current airworthiness standards with full documentation.",
-                  },
-                  {
-                    title: "Every Component Documented",
-                    description: "Full traceability from raw material through fabrication to aircraft installation.",
-                  },
-                  {
-                    title: "20+ Years Experience",
-                    description: "Two decades of aircraft interiors means we have encountered — and solved — every challenge.",
-                  },
-                ].map((p) => (
-                  <motion.div
-                    key={p.title}
-                    variants={fadeUp}
-                    className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/5 p-5"
-                  >
-                    <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[rgba(201,168,76,0.20)] text-[#c9a84c]">
-                      <CheckCircle2 className="h-3 w-3" strokeWidth={2} />
-                    </span>
-                    <div>
-                      <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-white">
-                        {p.title}
-                      </div>
-                      <div className="mt-1.5 text-[12px] leading-relaxed text-white/60">
-                        {p.description}
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
-
-              <motion.div
-                variants={fadeUp}
-                className="mt-6 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/5"
-              >
-                {[
-                  { value: "Part 21", label: "Manufacturer" },
-                  { value: "FAA", label: "Certified" },
-                  { value: "Full", label: "Documentation" },
-                  { value: "20+", label: "Years experience" },
-                ].map((b) => (
-                  <div key={b.label} className="flex flex-col items-center gap-2 bg-white/[0.04] px-5 py-6 text-center">
-                    <span className="font-serif text-[24px] leading-none text-[#c9a84c]">{b.value}</span>
-                    <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-white/50">{b.label}</span>
-                  </div>
-                ))}
               </motion.div>
+            ))}
+          </motion.div>
+        </Section>
+      </section>
+
+      {/* ── CAPABILITIES ── */}
+      <section className="bg-[#f8f8f6]">
+        <div className="mx-auto max-w-7xl px-5 py-28 sm:px-8">
+          <Section>
+            <div className="flex flex-col items-center text-center">
+              <motion.span variants={fadeUp} className="chapter-rule">
+                In-House Capabilities
+              </motion.span>
+              <motion.h2 variants={fadeUp} className="display-serif-md mt-6 text-[#111111]">
+                Everything Under
+                <br />
+                <em className="display-serif-italic text-[#888888]">One Roof.</em>
+              </motion.h2>
+              <motion.p variants={fadeUp} className="mt-5 max-w-xl text-[15px] leading-[1.8] text-[#555555]">
+                No subcontractors for key disciplines. Our facility houses design, engineering,
+                fabrication, and certification capability to deliver complete VIP interiors with full accountability.
+              </motion.p>
+            </div>
+
+            <motion.div variants={stagger} className="mt-16 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+              {capabilities.map((cap) => {
+                const Icon = cap.icon;
+                return (
+                  <motion.div
+                    key={cap.title}
+                    variants={fadeUp}
+                    className="rounded-2xl border border-black/[0.08] bg-white p-7 transition-all hover:border-[var(--color-gold)]"
+                  >
+                    <div className="mb-5 inline-flex h-11 w-11 items-center justify-center rounded-xl border border-black/[0.08] bg-[#f8f8f6]">
+                      <Icon className="h-5 w-5 text-[var(--color-gold)]" strokeWidth={1.5} />
+                    </div>
+                    <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#111111]">{cap.title}</h3>
+                    <p className="mt-3 text-[13px] leading-[1.8] text-[#555555]">{cap.description}</p>
+                  </motion.div>
+                );
+              })}
             </motion.div>
+          </Section>
+        </div>
+      </section>
+
+      {/* ── PROCESS ── */}
+      <section className="mx-auto max-w-7xl px-5 py-28 sm:px-8">
+        <Section>
+          <div className="flex flex-col items-center text-center">
+            <motion.span variants={fadeUp} className="chapter-rule">
+              How We Work
+            </motion.span>
+            <motion.h2 variants={fadeUp} className="display-serif-md mt-6 text-[#111111]">
+              Four Steps.
+              <br />
+              <em className="display-serif-italic text-[#888888]">One Outcome.</em>
+            </motion.h2>
           </div>
-        </motion.div>
+
+          <motion.div variants={stagger} className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {process.map((p, i) => (
+              <motion.div key={p.step} variants={fadeUp} className="relative">
+                {i < process.length - 1 && (
+                  <div className="absolute top-6 left-[calc(100%+12px)] hidden h-[1px] w-[calc(100%-24px)] bg-black/[0.06] lg:block" />
+                )}
+                <div className="mb-5 inline-flex h-12 w-12 items-center justify-center rounded-full border border-[rgba(201,168,76,0.3)] bg-[rgba(201,168,76,0.07)]">
+                  <span className="font-mono text-[12px] font-medium text-[var(--color-gold)]">{p.step}</span>
+                </div>
+                <h3 className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#111111]">{p.title}</h3>
+                <p className="mt-3 text-[13px] leading-[1.8] text-[#555555]">{p.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </Section>
       </section>
 
       {/* ── CTA ── */}
-      <section className="relative bg-white py-24 border-t border-black/[0.06]">
-        <motion.div
-          ref={ctaRef}
-          variants={stagger}
-          initial="hidden"
-          animate={ctaInView ? "visible" : "hidden"}
-          className="mx-auto max-w-4xl px-5 text-center sm:px-8"
-        >
-          <motion.span
-            variants={fadeUp}
-            className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[#c9a84c]"
-          >
-            <span className="h-px w-8 bg-[#c9a84c]/50" />
-            Ready to get started
-            <span className="h-px w-8 bg-[#c9a84c]/50" />
-          </motion.span>
-          <motion.h2 variants={fadeUp} className="display-serif-md mt-8 text-[#111111]">
-            Start your
-            <br />
-            <em className="display-serif-italic text-[#555555]">interior project.</em>
-          </motion.h2>
-          <motion.p
-            variants={fadeUp}
-            className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-[#555555]"
-          >
-            Tell us about your aircraft, your vision, and your timeline. We&rsquo;ll design
-            a VIP interior that meets your objectives — and deliver it with the certified
-            quality your aircraft deserves.
-          </motion.p>
-          <motion.div
-            variants={fadeUp}
-            className="mt-10 flex flex-wrap items-center justify-center gap-3"
-          >
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[#c9a84c] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[#b8963e]"
-            >
-              Get in touch
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
-            </Link>
-            <Link
-              href="/about"
-              className="inline-flex items-center gap-2 rounded-full border border-black/[0.12] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[#111111] transition-all hover:border-[#c9a84c] hover:text-[#c9a84c]"
-            >
-              About Luminary
-            </Link>
-          </motion.div>
-        </motion.div>
+      <section className="bg-[#111111]">
+        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+          <Section className="flex flex-col items-center text-center">
+            <motion.div variants={fadeUp} className="mb-6 flex gap-1">
+              {[...Array(5)].map((_, i) => (
+                <Star key={i} className="h-4 w-4 fill-[var(--color-gold)] text-[var(--color-gold)]" strokeWidth={0} />
+              ))}
+            </motion.div>
+            <motion.span variants={fadeUp} className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
+              Request a Consultation
+            </motion.span>
+            <motion.h2 variants={fadeUp} className="mt-5 font-serif text-[40px] leading-[1.1] text-white sm:text-[52px]">
+              Your Aircraft.<br />
+              <em className="font-normal italic text-white/40">Your Vision.</em>
+            </motion.h2>
+            <motion.p variants={fadeUp} className="mt-6 max-w-xl text-[15px] leading-[1.8] text-white/50">
+              Every VIP project begins with a conversation. Share your aircraft type, mission requirements, and design intent —
+              we&apos;ll respond within one business day with a tailored consultation.
+            </motion.p>
+            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap justify-center gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-8 py-4 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[var(--color-gold-deep)]"
+              >
+                Start a Consultation
+                <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+              </Link>
+              <Link
+                href="/performance-history"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/20 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.18em] text-white/60 transition-all hover:border-white/40 hover:text-white"
+              >
+                Performance Record
+                <ChevronRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+              </Link>
+            </motion.div>
+          </Section>
+        </div>
       </section>
-    </>
+
+    </main>
   );
 }
