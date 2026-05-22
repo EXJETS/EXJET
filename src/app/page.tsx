@@ -1,57 +1,29 @@
 import Link from "next/link";
 import {
-  PlaneTakeoff,
   ArrowRight,
   ArrowUpRight,
-  Calendar,
-  Clock,
-  MapPin,
   ShieldCheck,
+  Wrench,
+  Layers,
+  Mic2,
+  CheckCircle2,
 } from "lucide-react";
-import SearchBar from "@/components/search/search-bar";
-import { EmptyLegCard } from "@/components/booking/empty-leg-card";
-import { CardCarousel } from "@/components/ui/card-carousel";
-import popularRoutes from "@/data/popular-routes.json";
-import emptyLegs from "@/data/empty-legs.json";
-import news from "@/data/news.json";
-import sportsEvents from "@/data/sports-events.json";
-import faq from "@/data/faq.json";
-import { cn, formatCurrency } from "@/lib/utils";
+import caseStudies from "@/data/case-studies.json";
+import blogPosts from "@/data/luminary-blog.json";
+import { cn } from "@/lib/utils";
 
 export default function HomePage() {
   const organizationJsonLd = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "EXJET",
-    url: "https://exjet.com",
-    logo: "https://exjet.com/icon.svg",
+    name: "Luminary Air Group",
+    url: "https://luminary.aero",
+    description:
+      "Aircraft interior design, manufacturing, and installation. Cabin insulation, special mission interiors, and VIP completions.",
     contactPoint: {
       "@type": "ContactPoint",
-      contactType: "Reservations",
+      contactType: "Customer Service",
       availableLanguage: ["English"],
-      areaServed: "Worldwide",
-    },
-  };
-
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faq.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
-
-  const websiteJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "EXJET",
-    url: "https://exjet.com",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://exjet.com/search?from={from}&to={to}",
-      "query-input": "required name=from required name=to",
     },
   };
 
@@ -61,359 +33,311 @@ export default function HomePage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
       />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
 
-      {/* HERO — Editorial / Cinematic */}
+      {/* ── HERO ── editorial, light background */}
       <section className="relative overflow-hidden">
         <div className="mesh-hero absolute inset-0" aria-hidden />
         <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(184,155,110,0.08),transparent_70%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(181,180,0,0.07),transparent_70%)]"
           aria-hidden
         />
 
-        <div className="relative mx-auto max-w-7xl px-5 pt-28 pb-20 sm:px-8 lg:pt-40 lg:pb-28">
-          {/* Editorial chapter rule */}
+        <div className="relative mx-auto max-w-7xl px-5 pt-28 pb-20 sm:px-8 lg:pt-40 lg:pb-32">
+          {/* Eyebrow */}
           <div className="mb-10 flex justify-center">
             <span className="chapter-rule">
-              <span className="text-champagne">EXJET</span>
-              <span className="text-[var(--color-muted)]">Est. for the modern voyager</span>
+              <span className="text-[var(--color-lime)]">Luminary Air Group</span>
+              <span className="text-[var(--color-muted)]">Part 21 Manufacturer</span>
             </span>
           </div>
 
-          {/* Editorial display headline */}
+          {/* Headline */}
           <div className="mx-auto max-w-5xl text-center">
             <h1 className="display-serif text-[var(--color-ink)]">
-              Global access,
+              Experienced.
               <br />
-              <em className="display-serif-italic text-champagne">on&nbsp;demand.</em>
+              <em className="display-serif-italic" style={{ color: "var(--color-lime)" }}>
+                Reliable. Flexible.
+              </em>
             </h1>
-            <p className="mx-auto mt-8 max-w-xl text-[15px] leading-[1.7] text-[var(--color-muted)]">
-              An invitation to travel without compromise. A curated worldwide
-              fleet, ARGUS Platinum&ndash;audited, confirmed in under four hours.
+            <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.75] text-[var(--color-muted)]">
+              Aircraft interior design, manufacturing, and installation. From
+              cabin insulation systems to special mission platforms and VIP
+              completions — every interior is engineered with precision and
+              delivered with expertise.
             </p>
           </div>
 
-          {/* Search */}
-          <div className="mt-14 flex justify-center">
-            <SearchBar variant="hero" />
+          {/* CTAs */}
+          <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
+            <Link
+              href="/cabin-comfort-systems"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-lime)]"
+            >
+              Cabin Comfort Systems
+              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
+            </Link>
+            <Link
+              href="/special-mission-interiors"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-hairline-strong)] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:border-[var(--color-lime)] hover:text-[var(--color-lime)]"
+            >
+              Mission Interiors
+            </Link>
+            <Link
+              href="/vip-interiors"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-hairline-strong)] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:border-[var(--color-lime)] hover:text-[var(--color-lime)]"
+            >
+              VIP Interiors
+            </Link>
           </div>
 
-          {/* Editorial KPI band */}
+          {/* KPI band */}
           <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-[var(--color-hairline)] sm:grid-cols-4">
-            <HeroStat label="Airports" value="5,000+" />
-            <HeroStat label="Network tails" value="2,400+" />
-            <HeroStat label="Avg. confirm" value="< 4 hr" />
-            <HeroStat label="Safety" value="ARGUS Platinum" />
+            <HeroStat label="Experience" value="20+ Years" />
+            <HeroStat label="Certification" value="Part 21 Mfr" />
+            <HeroStat label="Noise Reduction" value="50–70%" />
+            <HeroStat label="World Record" value="46.7 dB SIL" />
           </div>
         </div>
       </section>
 
-      {/* THE COLLECTION — Editorial intro chapter */}
+      {/* ── ABOUT INTRO ── */}
       <section className="relative border-t border-[var(--color-hairline)] bg-white">
         <div className="mx-auto grid max-w-7xl gap-10 px-5 py-24 sm:px-8 md:grid-cols-12 lg:py-32">
           <div className="md:col-span-5">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-champagne">
-              I · The Collection
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+              I · The Craft
             </span>
             <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
-              A curated fleet,
+              Aircraft interiors,
               <br />
-              <em className="display-serif-italic">without exception.</em>
+              <em className="display-serif-italic">engineered to last.</em>
             </h2>
           </div>
           <div className="md:col-span-7">
             <p className="text-[15px] leading-[1.85] text-[var(--color-muted)]">
-              Every aircraft on EXJET is hand-selected from operators that
-              meet ARGUS Platinum and Wyvern Wingman standards. From light
-              jets for the morning meeting to ultra-long-range cabins crossing
-              continents overnight &mdash; each tail is vetted, each crew
-              dual-rated, each cabin appointed.
+              With decades of experience in aircraft interiors, Luminary Air
+              Group handles all aspects of interior design, engineering,
+              production, installation, and certification. From seats, divans
+              &amp; cabinetry to cabin insulation systems and special mission
+              interiors — our skilled workmanship ensures high-quality results
+              delivered on time.
             </p>
             <div className="mt-8 grid grid-cols-1 gap-x-10 gap-y-5 border-t border-[var(--color-hairline)] pt-8 sm:grid-cols-2">
               <Hallmark
-                title="ARGUS Platinum"
-                desc="The aviation industry's highest independent safety rating."
+                title="Part 21 Manufacturer"
+                desc="FAA-certified manufacturing for certified quality on every build."
               />
               <Hallmark
-                title="24/7 Concierge"
-                desc="Live trip specialists, never automated phone trees."
+                title="Full Lifecycle"
+                desc="Design, engineering, fabrication, installation, and certification."
               />
               <Hallmark
-                title="Five categories"
-                desc="Light · Midsize · Super Midsize · Heavy · Ultra Long."
+                title="ADMI Platform"
+                desc="All Day Mission Interior — modular, lightweight, rapid-reconfigure."
               />
               <Hallmark
-                title="No membership"
-                desc="Pay per flight. No initiation, no monthly minimums."
+                title="World Record"
+                desc="Quietest Boeing Business Jet cabin ever measured: 46.7 dB SIL."
               />
             </div>
           </div>
         </div>
       </section>
 
-      {/* POPULAR ROUTES */}
-      <section
-        id="popular-routes"
-        className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24"
-      >
+      {/* ── SERVICES ── */}
+      <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeader
             chapter="II"
-            eyebrow="Most-flown corridors"
-            title="Popular routes,"
-            italic="this week"
-            description="Live pricing on the journeys our members request most."
-            ctaHref="/search"
-            ctaLabel="See all routes"
+            eyebrow="Our Services"
+            title="Every interior,"
+            italic="purpose-built"
+            description="From acoustic engineering to full mission platform design, our three core service lines address every aircraft interior need."
           />
-          <div className="mt-16">
-            <CardCarousel itemClassName="w-[80%] sm:w-[48%] md:w-[36%] lg:w-[26%]">
-              {popularRoutes.map((r) => (
-                <PopularRouteCard key={r.id} route={r} />
-              ))}
-            </CardCarousel>
+          <div className="mt-16 grid gap-6 sm:grid-cols-3">
+            <ServiceCard
+              icon={Mic2}
+              number="01"
+              title="Cabin Comfort Systems"
+              description="Innovative, lightweight cabin noise reduction kits tailored to the unique acoustic signature of every aircraft — from the smallest single-engine to the largest wide-body jet. We hold the World Record for the quietest Boeing Business Jet cabin."
+              stat="46.7 dB SIL world record"
+              href="/cabin-comfort-systems"
+            />
+            <ServiceCard
+              icon={Layers}
+              number="02"
+              title="Special Mission Interiors"
+              description="Durable, lightweight, and modular mission-specific aircraft interiors under our ADMI (All Day Mission Interior) brand. Designed for ISR, med-evac, command platforms, and special operations — reducing weight while providing rapid access behind all interior walls."
+              stat="ADMI™ platform"
+              href="/special-mission-interiors"
+            />
+            <ServiceCard
+              icon={Wrench}
+              number="03"
+              title="VIP Interiors"
+              description="Complete interior design, manufacturing, and installation for VIP and corporate aircraft. Cabinetry, seating, upholstery, and green completion builds — each crafted with the same precision and certified quality that defines every Luminary project."
+              stat="Full green completions"
+              href="/vip-interiors"
+            />
           </div>
         </div>
       </section>
 
-      {/* EMPTY LEGS */}
-      <section
-        id="empty-legs"
-        className="relative border-t border-[var(--color-hairline)] bg-white py-24"
-      >
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeader
-            chapter="III"
-            eyebrow="Repositioning at concierge fares"
-            title="Empty legs,"
-            italic="up to 75% off"
-            description="Fixed-price one-way charter on returning aircraft. Live inventory across our network."
-            ctaHref="/search?category=empty-legs"
-            ctaLabel="Browse all empty legs"
-          />
-          <div className="mt-16">
-            <CardCarousel itemClassName="w-[88%] sm:w-[60%] md:w-[48%] lg:w-[42%]">
-              {emptyLegs.map((leg) => (
-                <EmptyLegCard key={leg.id} leg={leg} />
-              ))}
-            </CardCarousel>
-          </div>
-        </div>
-      </section>
-
-      {/* NEWS & UPDATES */}
-      <section
-        id="news"
-        className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24"
-      >
+      {/* ── PROCESS ── */}
+      <section className="relative border-t border-[var(--color-hairline)] bg-white py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeader
-            chapter="IV"
-            eyebrow="The journal"
-            title="News &"
-            italic="dispatches"
-            description="Fleet additions, safety milestones, and new destinations."
+            chapter="III"
+            eyebrow="How It Works"
+            title="A proven process,"
+            italic="from first measure to final cert"
+            description="Every Luminary project follows a rigorous process — acoustic analysis, custom design, certified manufacturing, and expert installation."
+            align="center"
           />
-          <div className="mt-16">
-            <CardCarousel itemClassName="w-[80%] sm:w-[48%] md:w-[36%] lg:w-[26%]">
-              {news.map((item) => (
-                <NewsCard key={item.id} item={item} />
-              ))}
-            </CardCarousel>
+          <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-[var(--color-hairline)] sm:grid-cols-4">
+            <ProcessStep
+              number="01"
+              title="Acoustic Analysis"
+              description="We measure your aircraft's unique noise signature using precision instrumentation — mapping every source and frequency."
+            />
+            <ProcessStep
+              number="02"
+              title="Custom Design"
+              description="A bespoke insulation or interior system engineered specifically for your airframe, using the optimal materials and placement."
+            />
+            <ProcessStep
+              number="03"
+              title="Manufacturing"
+              description="Fabricated in-house as a Part 21 manufacturer — every component certified and quality-controlled before it ships."
+            />
+            <ProcessStep
+              number="04"
+              title="Installation"
+              description="Expert installation by experienced technicians, with minimal downtime and full documentation for your maintenance records."
+            />
           </div>
         </div>
       </section>
 
-      {/* SPORTS & EVENTS CALENDAR */}
-      <section
-        id="events"
-        className="relative border-t border-[var(--color-hairline)] bg-white py-24"
-      >
+      {/* ── PERFORMANCE ── dark ink section */}
+      <section className="relative overflow-hidden">
+        <div className="mesh-ink absolute inset-0" aria-hidden />
+        <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
+          <div className="grid gap-10 md:grid-cols-12">
+            <div className="md:col-span-6">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+                IV · Performance
+              </span>
+              <h2 className="display-serif-md mt-5 text-white">
+                Results that
+                <br />
+                <em className="display-serif-italic text-[var(--color-lime)]">
+                  speak for themselves.
+                </em>
+              </h2>
+              <p className="mt-6 text-[15px] leading-[1.8] text-white/70">
+                Every installation is measured and documented. Our clients
+                consistently achieve noise reductions of 50–70% — and in
+                record-setting cases, significantly more.
+              </p>
+              <Link
+                href="/performance-history"
+                className="mt-8 inline-flex items-center gap-2 text-[13px] font-medium text-[var(--color-lime)] transition-opacity hover:opacity-80"
+              >
+                View performance history
+                <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
+              </Link>
+            </div>
+
+            <div className="md:col-span-6">
+              <div className="grid grid-cols-2 gap-4">
+                <PerfStat
+                  value="46.7 dB"
+                  label="World Record BBJ SIL"
+                  sub="Boeing Business Jet"
+                />
+                <PerfStat
+                  value="50–70%"
+                  label="Noise reduction"
+                  sub="Across all aircraft types"
+                />
+                <PerfStat
+                  value="20+"
+                  label="Years of expertise"
+                  sub="Aircraft interiors"
+                />
+                <PerfStat
+                  value="Part 21"
+                  label="Manufacturer"
+                  sub="FAA certified"
+                />
+              </div>
+            </div>
+          </div>
+
+          {/* Case study highlights */}
+          <div className="mt-16 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {caseStudies.map((cs) => (
+              <CaseStudyCard key={cs.id} study={cs} />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── BLOG ── */}
+      <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <SectionHeader
             chapter="V"
-            eyebrow="The season"
-            title="Every championship,"
-            italic="one cabin away"
-            description="Curated routes and nearest jet airports for the global sports calendar."
+            eyebrow="The Journal"
+            title="Technical insight,"
+            italic="straight from the engineers"
+            description="Deep dives into acoustic science, insulation engineering, and mission interior design."
+            ctaHref="/blog"
+            ctaLabel="Read all articles"
           />
-
-          <div className="mt-12 flex flex-wrap items-center gap-2">
-            {["F1", "NBA", "NFL", "NHL", "FIFA", "Masters"].map((l) => {
-              const count = sportsEvents.filter((e) => e.league === l).length;
-              return (
-                <span
-                  key={l}
-                  className={cn(
-                    "inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] ring-1 ring-inset",
-                    leagueColor(l)
-                  )}
-                >
-                  {l}
-                  <span className="rounded-full bg-[var(--color-ink)]/10 px-1.5 py-0.5 text-[10px] text-[var(--color-ink)]">
-                    {count}
-                  </span>
-                </span>
-              );
-            })}
-          </div>
-
-          <ul className="mt-8 overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white">
-            {sportsEvents.map((event, idx) => (
-              <li
-                key={event.id}
-                className={cn(
-                  "group flex flex-col gap-3 p-6 transition-colors hover:bg-[var(--color-ivory)] sm:flex-row sm:items-center sm:gap-6",
-                  idx !== 0 && "border-t border-[var(--color-hairline)]"
-                )}
-              >
-                <div className="flex w-28 shrink-0 items-center gap-3">
-                  <span
-                    className={cn(
-                      "inline-flex h-7 items-center justify-center rounded-full px-2.5 font-mono text-[10px] uppercase tracking-[0.2em] ring-1 ring-inset",
-                      leagueColor(event.league)
-                    )}
-                  >
-                    {event.league}
-                  </span>
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                    <h3 className="font-serif text-[20px] leading-tight text-[var(--color-ink)]">
-                      {event.event}
-                    </h3>
-                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-subtle)]">
-                      {event.city}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-[12px] text-[var(--color-muted)]">
-                    {event.venue}
-                  </p>
-                </div>
-                <div className="flex flex-wrap items-center gap-4">
-                  <div className="flex items-center gap-1.5 text-[var(--color-ink-soft)]">
-                    <Calendar
-                      className="h-3.5 w-3.5 text-champagne"
-                      strokeWidth={1.75}
-                    />
-                    <span className="text-[12px]">
-                      {formatDateRange(event.date, event.endDate)}
-                    </span>
-                  </div>
-                  <div className="hidden items-center gap-1.5 text-[var(--color-muted)] sm:flex">
-                    <MapPin
-                      className="h-3.5 w-3.5 text-champagne"
-                      strokeWidth={1.75}
-                    />
-                    <span className="font-mono text-[11px] tracking-wide">
-                      {event.airports.slice(0, 3).join(" · ")}
-                    </span>
-                  </div>
-                  <Link
-                    href={`/search?event=${event.id}`}
-                    className="inline-flex items-center gap-1 rounded-full border border-[var(--color-ink)] bg-transparent px-3.5 py-1.5 text-[12px] font-medium text-[var(--color-ink)] transition-colors hover:bg-[var(--color-ink)] hover:text-white"
-                  >
-                    Reserve
-                    <ArrowRight className="h-3 w-3" strokeWidth={2.25} />
-                  </Link>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section
-        id="faq"
-        className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24"
-      >
-        <div className="mx-auto max-w-4xl px-5 sm:px-8">
-          <SectionHeader
-            chapter="VI"
-            eyebrow="Before you fly"
-            title="Frequently"
-            italic="asked"
-            description="Everything you need to know before chartering your first journey."
-            align="center"
-          />
-          <div className="mt-16 overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white">
-            {faq.map((item, idx) => (
-              <details
-                key={idx}
-                className={cn(
-                  "group",
-                  idx !== 0 && "border-t border-[var(--color-hairline)]"
-                )}
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-7 py-6 transition-colors hover:bg-[var(--color-ivory)]">
-                  <h3 className="font-serif text-[19px] leading-tight text-[var(--color-ink)]">
-                    {item.q}
-                  </h3>
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[var(--color-hairline-strong)] text-[var(--color-muted)] transition-all group-open:rotate-45 group-open:border-champagne group-open:bg-champagne group-open:text-white">
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="h-3 w-3"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <line x1="12" y1="5" x2="12" y2="19" />
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                  </span>
-                </summary>
-                <div className="px-7 pb-6">
-                  <p className="text-[14px] leading-[1.85] text-[var(--color-muted)]">
-                    {item.a}
-                  </p>
-                </div>
-              </details>
+          <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+            {blogPosts.map((post) => (
+              <BlogCard key={post.id} post={post} />
             ))}
           </div>
         </div>
       </section>
 
-      {/* CLOSING — Editorial CTA on ink */}
-      <section className="relative overflow-hidden">
-        <div className="mesh-ink absolute inset-0" aria-hidden />
-        <div className="relative mx-auto max-w-5xl px-5 py-32 text-center sm:px-8 lg:py-40">
-          <div className="flex justify-center">
-            <span className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-champagne">
-              <span className="h-px w-8 bg-champagne/60" />
-              Ready when you are
-              <span className="h-px w-8 bg-champagne/60" />
-            </span>
-          </div>
-          <h2 className="display-serif mt-8 text-white">
-            The world,
+      {/* ── CTA ── */}
+      <section className="relative border-t border-[var(--color-hairline)] bg-white py-24">
+        <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
+          <span className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+            <span className="h-px w-8 bg-[var(--color-lime)]/60" />
+            Ready to get started
+            <span className="h-px w-8 bg-[var(--color-lime)]/60" />
+          </span>
+          <h2 className="display-serif-md mt-8 text-[var(--color-ink)]">
+            Transform your
             <br />
-            <em className="display-serif-italic text-champagne">on your schedule.</em>
+            <em className="display-serif-italic text-[var(--color-muted)]">
+              aircraft&rsquo;s interior.
+            </em>
           </h2>
-          <p className="mx-auto mt-8 max-w-xl text-[15px] leading-[1.8] text-white/70">
-            Choose a route, select an aircraft, confirm in minutes.
-            No membership. No waiting list.
+          <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-[var(--color-muted)]">
+            Start with an acoustic consultation or interior brief. Tell us
+            about your aircraft and objectives — we&rsquo;ll design a solution
+            that meets your budget, timeline, and performance targets.
           </p>
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
+          <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Link
-              href="#popular-routes"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:bg-champagne hover:text-white"
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-lime)]"
             >
-              Begin a search
+              Get a Quote
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
             </Link>
             <Link
-              href="#empty-legs"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-transparent px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:border-white hover:bg-white/10"
+              href="/cabin-comfort-systems"
+              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-hairline-strong)] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:border-[var(--color-lime)] hover:text-[var(--color-lime)]"
             >
-              View empty legs
+              Explore Cabin Systems
             </Link>
           </div>
         </div>
@@ -422,12 +346,12 @@ export default function HomePage() {
   );
 }
 
-/* -------- Helpers -------- */
+/* ── Sub-components ── */
 
 function HeroStat({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex flex-col items-center gap-2 bg-[var(--color-ivory)] px-5 py-7 text-center">
-      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-champagne">
+      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
         {label}
       </span>
       <span className="font-serif text-[22px] leading-none text-[var(--color-ink)]">
@@ -440,8 +364,8 @@ function HeroStat({ label, value }: { label: string; value: string }) {
 function Hallmark({ title, desc }: { title: string; desc: string }) {
   return (
     <div className="flex items-start gap-3">
-      <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-champagne/10 text-champagne">
-        <ShieldCheck className="h-3 w-3" strokeWidth={2} />
+      <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-lime)]/10 text-[var(--color-lime)]">
+        <CheckCircle2 className="h-3 w-3" strokeWidth={2} />
       </span>
       <div>
         <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink)]">
@@ -484,7 +408,7 @@ function SectionHeader({
       )}
     >
       <div className={cn(align === "center" ? "" : "max-w-2xl")}>
-        <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-champagne">
+        <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
           {chapter} · {eyebrow}
         </span>
         <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
@@ -512,7 +436,7 @@ function SectionHeader({
       {ctaHref && ctaLabel && align !== "center" && (
         <Link
           href={ctaHref}
-          className="group inline-flex items-center gap-2 self-start text-[13px] font-medium text-[var(--color-ink)] transition-colors hover:text-champagne md:self-end"
+          className="group inline-flex items-center gap-2 self-start text-[13px] font-medium text-[var(--color-ink)] transition-colors hover:text-[var(--color-lime)] md:self-end"
         >
           {ctaLabel}
           <ArrowUpRight
@@ -525,77 +449,48 @@ function SectionHeader({
   );
 }
 
-function PopularRouteCard({
-  route,
+function ServiceCard({
+  icon: Icon,
+  number,
+  title,
+  description,
+  stat,
+  href,
 }: {
-  route: (typeof popularRoutes)[number];
+  icon: typeof Mic2;
+  number: string;
+  title: string;
+  description: string;
+  stat: string;
+  href: string;
 }) {
   return (
     <Link
-      href={`/search?from=${route.from.code}&to=${route.to.code}`}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white p-7 transition-all hover:border-champagne hover:shadow-[0_24px_50px_-20px_rgba(184,155,110,0.35)]"
+      href={href}
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white p-8 transition-all hover:border-[var(--color-lime)] hover:shadow-[0_24px_50px_-20px_rgba(181,180,0,0.2)]"
     >
-      <div className="flex items-center justify-between">
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-champagne">
-          Route
+      <div className="flex items-start justify-between">
+        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-lime-bg)] text-[var(--color-lime)]">
+          <Icon className="h-5 w-5" strokeWidth={1.5} />
         </span>
-        {route.demand === "very_high" && (
-          <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-bordeaux)]">
-            In demand
-          </span>
-        )}
+        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
+          {number}
+        </span>
       </div>
 
-      <div className="mt-7 flex items-start justify-between gap-2">
-        <div>
-          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
-            {route.from.city}
-          </div>
-          <div className="mt-1 font-serif text-[34px] leading-none text-[var(--color-ink)]">
-            {route.from.code}
-          </div>
-        </div>
-        <div className="relative flex-1 self-center">
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-champagne/60 to-transparent" />
-          <PlaneTakeoff
-            className="absolute left-1/2 top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 text-champagne transition-transform group-hover:translate-x-0"
-            strokeWidth={1.5}
-          />
-        </div>
-        <div className="text-right">
-          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
-            {route.to.city}
-          </div>
-          <div className="mt-1 font-serif text-[34px] leading-none text-[var(--color-ink)]">
-            {route.to.code}
-          </div>
-        </div>
-      </div>
+      <h3 className="mt-6 font-serif text-[24px] leading-tight text-[var(--color-ink)]">
+        {title}
+      </h3>
+      <p className="mt-4 flex-1 text-[13px] leading-[1.8] text-[var(--color-muted)]">
+        {description}
+      </p>
 
-      <div className="mt-7 flex items-center gap-4 border-t border-[var(--color-hairline)] pt-5 text-[11px] text-[var(--color-muted)]">
-        <div className="flex items-center gap-1.5">
-          <Clock className="h-3 w-3 text-champagne" strokeWidth={1.75} />
-          {route.flightTime}
-        </div>
-        <div className="font-mono text-[var(--color-subtle)]">
-          {route.distanceNm} nm
-        </div>
-        <div className="ml-auto font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
-          {route.recommended}
-        </div>
-      </div>
-
-      <div className="mt-auto flex items-end justify-between border-t border-[var(--color-hairline)] pt-5">
-        <div>
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-champagne">
-            From
-          </span>
-          <div className="font-serif text-[24px] leading-none text-[var(--color-ink)]">
-            {formatCurrency(route.fromPrice)}
-          </div>
-        </div>
+      <div className="mt-6 flex items-end justify-between border-t border-[var(--color-hairline)] pt-5">
+        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-lime)]">
+          {stat}
+        </span>
         <span className="inline-flex items-center gap-1 text-[12px] font-medium text-[var(--color-ink)] transition-transform group-hover:translate-x-0.5">
-          Quote
+          Explore
           <ArrowUpRight className="h-3 w-3" strokeWidth={2} />
         </span>
       </div>
@@ -603,69 +498,114 @@ function PopularRouteCard({
   );
 }
 
-function NewsCard({ item }: { item: (typeof news)[number] }) {
-  const when = new Date(item.date).toLocaleDateString("en-US", {
+function ProcessStep({
+  number,
+  title,
+  description,
+}: {
+  number: string;
+  title: string;
+  description: string;
+}) {
+  return (
+    <div className="flex flex-col bg-[var(--color-ivory)] px-7 py-8">
+      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+        {number}
+      </span>
+      <h3 className="mt-4 font-serif text-[22px] leading-tight text-[var(--color-ink)]">
+        {title}
+      </h3>
+      <p className="mt-3 text-[13px] leading-[1.75] text-[var(--color-muted)]">
+        {description}
+      </p>
+    </div>
+  );
+}
+
+function PerfStat({
+  value,
+  label,
+  sub,
+}: {
+  value: string;
+  label: string;
+  sub: string;
+}) {
+  return (
+    <div className="rounded-xl border border-white/10 bg-white/5 p-6">
+      <div className="font-serif text-[36px] leading-none text-[var(--color-lime)]">
+        {value}
+      </div>
+      <div className="mt-2 font-mono text-[10px] uppercase tracking-[0.2em] text-white">
+        {label}
+      </div>
+      <div className="mt-1 text-[12px] text-white/50">{sub}</div>
+    </div>
+  );
+}
+
+function CaseStudyCard({
+  study,
+}: {
+  study: (typeof caseStudies)[number];
+}) {
+  return (
+    <div className="rounded-xl border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10">
+      <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+        {study.category}
+      </span>
+      <h3 className="mt-3 font-serif text-[18px] leading-tight text-white">
+        {study.title}
+      </h3>
+      <p className="mt-2 text-[12px] text-white/60">{study.aircraft}</p>
+      <div className="mt-4 border-t border-white/10 pt-4">
+        <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-lime)]">
+          {study.result}
+        </div>
+        <div className="mt-0.5 text-[11px] text-white/50">{study.year}</div>
+      </div>
+    </div>
+  );
+}
+
+function BlogCard({
+  post,
+}: {
+  post: (typeof blogPosts)[number];
+}) {
+  const when = new Date(post.date).toLocaleDateString("en-US", {
     month: "long",
     day: "numeric",
     year: "numeric",
   });
   return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white p-7 transition-all hover:border-champagne hover:shadow-[0_24px_50px_-20px_rgba(184,155,110,0.25)]">
+    <Link
+      href={`/blog/${post.id}`}
+      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white p-7 transition-all hover:border-[var(--color-lime)] hover:shadow-[0_24px_50px_-20px_rgba(181,180,0,0.15)]"
+    >
       <div className="flex items-center justify-between">
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-champagne">
-          {item.category}
+        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+          {post.category}
         </span>
         <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-subtle)]">
           {when}
         </span>
       </div>
-      <h3 className="mt-6 font-serif text-[22px] leading-tight text-[var(--color-ink)]">
-        {item.title}
+      <h3 className="mt-5 font-serif text-[20px] leading-tight text-[var(--color-ink)]">
+        {post.title}
       </h3>
       <p className="mt-3 flex-1 text-[13px] leading-[1.75] text-[var(--color-muted)]">
-        {item.excerpt}
+        {post.excerpt}
       </p>
       <div className="mt-6 flex items-center justify-between border-t border-[var(--color-hairline)] pt-5">
         <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
-          {item.readingTime} read
+          {post.readingTime} read
         </span>
         <span className="inline-flex items-center gap-1 text-[12px] font-medium text-[var(--color-ink)] transition-transform group-hover:translate-x-0.5">
           Read
           <ArrowUpRight className="h-3 w-3" strokeWidth={2} />
         </span>
       </div>
-    </article>
+    </Link>
   );
-}
-
-function leagueColor(league: string) {
-  switch (league) {
-    case "F1":
-      return "bg-[var(--color-bordeaux)]/8 text-[var(--color-bordeaux)] ring-[var(--color-bordeaux)]/20";
-    case "NBA":
-      return "bg-amber-50 text-amber-800 ring-amber-200";
-    case "NFL":
-      return "bg-blue-50 text-blue-800 ring-blue-200";
-    case "NHL":
-      return "bg-indigo-50 text-indigo-800 ring-indigo-200";
-    case "FIFA":
-      return "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-[var(--color-forest)]/20";
-    case "Masters":
-      return "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-[var(--color-forest)]/20";
-    default:
-      return "bg-[var(--color-hairline)] text-[var(--color-ink)] ring-[var(--color-hairline-strong)]";
-  }
-}
-
-function formatDateRange(start: string, end: string) {
-  const s = new Date(start);
-  const e = new Date(end);
-  const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
-  if (start === end) {
-    return s.toLocaleDateString("en-US", { ...opts, year: "numeric" });
-  }
-  return `${s.toLocaleDateString("en-US", opts)} – ${e.toLocaleDateString(
-    "en-US",
-    { ...opts, year: "numeric" }
-  )}`;
 }

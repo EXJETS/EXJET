@@ -1,0 +1,46 @@
+[
+  {
+    "id": "bbj-world-record",
+    "title": "World Record Quietest Boeing Business Jet",
+    "aircraft": "Boeing Business Jet (BBJ)",
+    "operator": "Private Operator",
+    "result": "46.7 dB SIL",
+    "achievement": "World's Quietest BBJ — Guinness-Class Result",
+    "description": "Luminary Air Group designed and installed a full bespoke acoustic insulation system for a privately operated Boeing Business Jet, achieving a cabin Sound Intensity Level of 46.7 dB SIL — the quietest ever recorded for the type. The project combined precision acoustic imaging of the airframe with a multi-layer custom insulation kit engineered to address the specific resonance signatures of the 737 fuselage. The result stands as the definitive benchmark for what is acoustically achievable in a wide-body business jet cabin.",
+    "year": 2018,
+    "category": "Wide Body"
+  },
+  {
+    "id": "citation-x-acoustic",
+    "title": "Citation X Acoustic Optimization Program",
+    "aircraft": "Cessna Citation X",
+    "operator": "Corporate Flight Department",
+    "result": "54.2 dB SIL",
+    "achievement": "Best-in-Class Noise Floor for Citation X",
+    "description": "A corporate flight department operating a Citation X sought to address persistent mid-frequency cabin noise complaints from executive passengers on transcontinental missions. Luminary conducted a full acoustic survey using calibrated imaging equipment, identifying primary ingress points at the wing-root transition and aft pressure bulkhead. The resulting custom insulation kit reduced in-flight cabin noise by over 60%, delivering a measurably quieter cruise environment without meaningful impact to useful load.",
+    "year": 2021,
+    "category": "Midsize Jet"
+  },
+  {
+    "id": "king-air-350-admi",
+    "title": "King Air 350 ADMI Special Mission Interior",
+    "aircraft": "Beechcraft King Air 350",
+    "operator": "Government Operator",
+    "result": "Full ADMI Interior",
+    "achievement": "All Day Mission Interior for Extended ISR Operations",
+    "description": "A government operator required a King Air 350 reconfigured for extended Intelligence, Surveillance, and Reconnaissance missions demanding 10+ hour crew endurance. Luminary delivered a full All Day Mission Interior (ADMI) build incorporating ergonomic mission crew seating, integrated equipment mounting architecture, optimized cable management, and acoustic treatment suited to the operational noise profile of the PT6A powerplant. The completed aircraft set a new internal benchmark for crew comfort and operational effectiveness on long-duration ISR sorties.",
+    "year": 2022,
+    "category": "Turboprop"
+  },
+  {
+    "id": "challenger-604-green",
+    "title": "Challenger 604 Green Completion & Acoustic Fit-Out",
+    "aircraft": "Bombardier Challenger 604",
+    "operator": "Private Operator",
+    "result": "57.1 dB SIL",
+    "achievement": "Quiet Cabin from Green Aircraft — Turnkey Completion",
+    "description": "Luminary Air Group completed a green (bare fuselage) Challenger 604 from scratch for a private owner who specified acoustic performance as the primary cabin metric from the outset. By integrating the insulation engineering process into the initial completion design rather than retrofitting an existing interior, the team achieved a final cabin noise level significantly below the Challenger 604 production average. The project demonstrates the acoustic advantage available when noise control is treated as a first-principle design input rather than an afterthought.",
+    "year": 2020,
+    "category": "Large Cabin"
+  }
+]

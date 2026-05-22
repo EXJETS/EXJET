@@ -1,27 +1,30 @@
 import type { MetadataRoute } from "next";
-import jetsData from "@/data/jets.json";
+import blogPosts from "@/data/luminary-blog.json";
 
-const BASE = "https://exjet.com";
+const BASE = "https://luminary.aero";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   const staticRoutes: MetadataRoute.Sitemap = [
     { url: `${BASE}/`, lastModified: now, changeFrequency: "weekly", priority: 1 },
-    { url: `${BASE}/search`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
-    { url: `${BASE}/tracking`, lastModified: now, changeFrequency: "daily", priority: 0.6 },
-    { url: `${BASE}/auth/login`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
-    { url: `${BASE}/auth/register`, lastModified: now, changeFrequency: "yearly", priority: 0.3 },
+    { url: `${BASE}/cabin-comfort-systems`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE}/cabin-comfort-systems/aircraft-insulation-basics`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/cabin-comfort-systems/insulation-products`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${BASE}/performance-history`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/special-mission-interiors`, lastModified: now, changeFrequency: "monthly", priority: 0.9 },
+    { url: `${BASE}/vip-interiors`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${BASE}/about`, lastModified: now, changeFrequency: "yearly", priority: 0.6 },
+    { url: `${BASE}/blog`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
+    { url: `${BASE}/contact`, lastModified: now, changeFrequency: "yearly", priority: 0.6 },
   ];
 
-  const jetRoutes: MetadataRoute.Sitemap = (
-    jetsData as unknown as { id: string }[]
-  ).map((jet) => ({
-    url: `${BASE}/jets/${jet.id}`,
-    lastModified: now,
-    changeFrequency: "weekly",
-    priority: 0.7,
+  const blogRoutes: MetadataRoute.Sitemap = blogPosts.map((post) => ({
+    url: `${BASE}/blog/${post.id}`,
+    lastModified: new Date(post.date),
+    changeFrequency: "monthly" as const,
+    priority: 0.6,
   }));
 
-  return [...staticRoutes, ...jetRoutes];
+  return [...staticRoutes, ...blogRoutes];
 }

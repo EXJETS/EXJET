@@ -15,35 +15,35 @@ const cormorant = Cormorant_Garamond({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://exjet.com"),
+  metadataBase: new URL("https://luminary.aero"),
   title: {
-    default: "EXJET.com — Global Access, On-Demand.",
-    template: "%s · EXJET.com",
+    default: "Luminary Air Group — Aircraft Interior Design, Manufacturing & Installation",
+    template: "%s · Luminary Air Group",
   },
   description:
-    "Global Access, On-Demand. Reserve a private jet in minutes across 5,000+ airports worldwide — curated fleet, ARGUS Platinum safety, 24/7 concierge. Empty legs, popular routes, and live sports-calendar flights.",
-  applicationName: "EXJET",
+    "Experienced. Reliable. Flexible. Luminary Air Group specializes in aircraft interior design, manufacturing, and installation — including cabin comfort systems, special mission interiors (ADMI), and VIP completions. Part 21 manufacturer.",
+  applicationName: "Luminary Air Group",
   keywords: [
-    "private jet",
-    "private jet charter",
-    "jet charter",
-    "private aviation",
-    "empty legs",
-    "empty leg flights",
-    "on demand private jet",
-    "F1 grand prix jet",
-    "super bowl private jet",
-    "masters private jet",
-    "world cup private jet",
-    "teterboro to los angeles",
-    "van nuys jet",
-    "EXJET",
-    "exjet.com",
+    "aircraft interior",
+    "aircraft insulation",
+    "cabin noise reduction",
+    "cabin comfort systems",
+    "special mission interior",
+    "ADMI",
+    "All Day Mission Interior",
+    "VIP interior",
+    "aircraft completion",
+    "aircraft cabinetry",
+    "cabin acoustic",
+    "BBJ interior",
+    "King Air interior",
+    "Luminary Air Group",
+    "Part 21 manufacturer",
   ],
-  category: "travel",
-  authors: [{ name: "EXJET" }],
-  creator: "EXJET",
-  publisher: "EXJET",
+  category: "aviation",
+  authors: [{ name: "Luminary Air Group" }],
+  creator: "Luminary Air Group",
+  publisher: "Luminary Air Group",
   robots: {
     index: true,
     follow: true,
@@ -58,17 +58,17 @@ export const metadata: Metadata = {
   alternates: { canonical: "/" },
   openGraph: {
     type: "website",
-    url: "https://exjet.com",
-    siteName: "EXJET",
-    title: "EXJET.com — Global Access, On-Demand.",
+    url: "https://luminary.aero",
+    siteName: "Luminary Air Group",
+    title: "Luminary Air Group — Aircraft Interior Design, Manufacturing & Installation",
     description:
-      "Reserve a private jet in minutes. A curated worldwide fleet, available 24/7.",
+      "Experienced. Reliable. Flexible. Aircraft interiors — from cabin insulation to special mission platforms.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "EXJET.com — Global Access, On-Demand.",
+    title: "Luminary Air Group — Aircraft Interior Design, Manufacturing & Installation",
     description:
-      "Reserve a private jet in minutes. A curated worldwide fleet, available 24/7.",
+      "Experienced. Reliable. Flexible. Aircraft interiors — from cabin insulation to special mission platforms.",
   },
 };
 
@@ -82,7 +82,7 @@ export default function RootLayout({
       lang="en"
       className={`${GeistSans.variable} ${GeistMono.variable} ${cormorant.variable}`}
     >
-      <body className="min-h-screen bg-ivory text-ink antialiased">
+      <body className="min-h-screen bg-white text-[var(--color-ink)] antialiased">
         <Navbar />
         <main>{children}</main>
         <Footer />

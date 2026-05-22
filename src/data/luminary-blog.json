@@ -1,0 +1,34 @@
+[
+  {
+    "id": "what-is-a-quiet-aircraft-cabin",
+    "title": "What is a Quiet Aircraft Cabin?",
+    "date": "2024-09-18T00:00:00.000Z",
+    "category": "Acoustics",
+    "excerpt": "Not all quiet cabins are equal — and the number on the spec sheet rarely tells the full story. We break down what Sound Intensity Level actually means and why 3 dB is the difference between a good cabin and an exceptional one.",
+    "readingTime": "5 min"
+  },
+  {
+    "id": "confidence-in-targeted-noise-levels",
+    "title": "How Much Confidence Do We Have in Achieving Targeted Noise Levels?",
+    "date": "2024-11-04T00:00:00.000Z",
+    "category": "Engineering",
+    "excerpt": "Predicting cabin acoustic outcomes before installation is as much a discipline as it is a science. We explain the acoustic imaging and modelling process that lets Luminary Air Group commit to a target noise level before a single insulation panel is cut.",
+    "readingTime": "6 min"
+  },
+  {
+    "id": "aircraft-insulation-basics",
+    "title": "Aircraft Insulation Basics",
+    "date": "2025-01-22T00:00:00.000Z",
+    "category": "Education",
+    "excerpt": "There is more inside a business aircraft wall panel than most operators realize, and the difference between a stock insulation blanket and an engineered kit can be 10 dB or more. This primer covers the materials, layering logic, and certification considerations behind a modern acoustic insulation system.",
+    "readingTime": "7 min"
+  },
+  {
+    "id": "designing-admi-mission-interiors",
+    "title": "Designing ADMI Mission Interiors for Demanding Environments",
+    "date": "2025-03-10T00:00:00.000Z",
+    "category": "Special Mission",
+    "excerpt": "An All Day Mission Interior is not simply a reconfigured cabin — it is a human-factors engineering problem that must balance crew endurance, equipment density, acoustic environment, and airworthiness across missions that can exceed 12 hours. We walk through the design principles behind Luminary's ADMI platform.",
+    "readingTime": "8 min"
+  }
+]
