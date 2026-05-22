@@ -236,8 +236,68 @@ export default function PerformanceHistoryPage() {
         </div>
       </section>
 
-      {/* ── METHODOLOGY ── */}
+      {/* ── MILITARY & GOVERNMENT PROGRAMS ── */}
       <section className="bg-[#f8f8f6] border-t border-black/[0.06]">
+        <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
+          <Section>
+            <div className="mb-14">
+              <motion.div variants={fadeUp} className="mb-4 flex items-center gap-4">
+                <span className="h-px w-8 bg-[var(--color-gold)]" />
+                <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
+                  Military &amp; Government Programs
+                </span>
+              </motion.div>
+              <motion.h2 variants={fadeUp} className="display-serif-md max-w-2xl text-[#111111]">
+                Government programmes,
+                <br />
+                <em className="display-serif-italic text-[#888888]">classified and unclassified.</em>
+              </motion.h2>
+              <motion.p variants={fadeUp} className="mt-5 max-w-xl text-[15px] leading-[1.8] text-[#555555]">
+                Luminary has built a strong relationship over the last two decades with the DoD and its largest
+                vendors. Government aircraft interior work has been part of Luminary&apos;s programme portfolio
+                since our inception in 1998.
+              </motion.p>
+            </div>
+
+            <motion.div variants={stagger} className="space-y-5">
+              {[
+                {
+                  label: "Boeing Business Jet Fleet",
+                  badge: "50+ Aircraft",
+                  body: "Luminary has the most experience of any provider in wide-body thermal and acoustical treatments. More than 50 Boeing Business Jets treated with the Flight Environments Cabin Comfort System since market entry. A 2021 multi-aircraft contract awarded directly by Boeing to design, fabricate, and install insulation kits for VVIP aircraft operated by one of their customers.",
+                },
+                {
+                  label: "Presidential Fleet · E-4B",
+                  badge: "All Aircraft Completed",
+                  body: "Luminary has completed the interiors of all E-4B aircraft — designing and flight-testing the quietest conference room in the sky for a Boeing 747. Every member of Luminary's staff considers this programme a singular point of professional pride.",
+                },
+                {
+                  label: "KC-135 · Boom Pod Acoustic Treatment",
+                  badge: "Air Force Programme",
+                  body: "Challenged by the Air Force to reduce cabin sound levels and refurbish interior panels, with particular attention to the Boom Pod area. Data acquired through acoustic and thermal flight tests allowed Luminary to develop a system that significantly reduced cabin sound levels and substantially improved the Boom Pod Operator's working environment. Luminary was recognised for its success and now offers systems for both the aircraft cabin and the Boom Pod.",
+                },
+              ].map((prog) => (
+                <motion.div
+                  key={prog.label}
+                  variants={fadeUp}
+                  className="flex flex-col gap-5 rounded-2xl border border-black/[0.08] bg-white p-8 sm:flex-row sm:items-start"
+                >
+                  <div className="shrink-0 sm:w-64">
+                    <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#111111]">{prog.label}</p>
+                    <span className="mt-2 inline-block rounded-full border border-[rgba(201,168,76,0.3)] bg-[rgba(201,168,76,0.07)] px-3 py-1 font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--color-gold)]">
+                      {prog.badge}
+                    </span>
+                  </div>
+                  <p className="flex-1 text-[14px] leading-[1.8] text-[#555555]">{prog.body}</p>
+                </motion.div>
+              ))}
+            </motion.div>
+          </Section>
+        </div>
+      </section>
+
+      {/* ── METHODOLOGY ── */}
+      <section className="bg-white border-t border-black/[0.06]">
         <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
           <Section>
             <div className="mb-16 flex flex-col items-center text-center">

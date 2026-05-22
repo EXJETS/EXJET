@@ -2,33 +2,97 @@
   {
     "id": "what-is-a-quiet-aircraft-cabin",
     "title": "What is a Quiet Aircraft Cabin?",
-    "date": "2024-09-18T00:00:00.000Z",
+    "date": "2016-10-04",
     "category": "Acoustics",
-    "excerpt": "Not all quiet cabins are equal — and the number on the spec sheet rarely tells the full story. We break down what Sound Intensity Level actually means and why 3 dB is the difference between a good cabin and an exceptional one.",
+    "excerpt": "Cabin sound levels vary greatly between aircraft types. Understanding dB SIL and what the numbers actually mean for passenger comfort — and why consistency across the cabin matters as much as the headline figure.",
+    "readingTime": "5 min"
+  },
+  {
+    "id": "noise-stress-fatigue",
+    "title": "Noise, Stress and Fatigue",
+    "date": "2016-07-25",
+    "category": "Acoustics",
+    "excerpt": "The relationship between in-flight noise exposure and post-flight fatigue is well-documented. Here's why cabin sound levels matter beyond mere comfort — and what a properly insulated aircraft does for crew and passenger endurance.",
+    "readingTime": "4 min"
+  },
+  {
+    "id": "active-vs-passive-noise-cancellation",
+    "title": "Active vs. Passive Noise Cancellation",
+    "date": "2017-01-18",
+    "category": "Engineering",
+    "excerpt": "Active noise cancellation addresses only low-frequency bands in a limited area. A properly engineered passive system delivers consistent levels throughout the aircraft, requires no power, and no pre-flight programming.",
     "readingTime": "5 min"
   },
   {
     "id": "confidence-in-targeted-noise-levels",
     "title": "How Much Confidence Do We Have in Achieving Targeted Noise Levels?",
-    "date": "2024-11-04T00:00:00.000Z",
+    "date": "2017-04-21",
     "category": "Engineering",
-    "excerpt": "Predicting cabin acoustic outcomes before installation is as much a discipline as it is a science. We explain the acoustic imaging and modelling process that lets Luminary Air Group commit to a target noise level before a single insulation panel is cut.",
+    "excerpt": "Aircraft owners often ask how well a cabin insulation project will perform before the work begins. Here's what acoustic experience, imaging technology, and a comprehensive noise reduction plan can — and cannot — predict.",
     "readingTime": "6 min"
+  },
+  {
+    "id": "noise-reduction-plan",
+    "title": "Using a Noise Reduction Plan to Limit Uncertainty",
+    "date": "2017-09-12",
+    "category": "Engineering",
+    "excerpt": "A holistic approach — treating interior, ECS, and insulation simultaneously — consistently outperforms piecemeal treatments. We explain why, and what the data says about untreated noise sources masking each other.",
+    "readingTime": "7 min"
   },
   {
     "id": "aircraft-insulation-basics",
     "title": "Aircraft Insulation Basics",
-    "date": "2025-01-22T00:00:00.000Z",
+    "date": "2025-01-22",
     "category": "Education",
-    "excerpt": "There is more inside a business aircraft wall panel than most operators realize, and the difference between a stock insulation blanket and an engineered kit can be 10 dB or more. This primer covers the materials, layering logic, and certification considerations behind a modern acoustic insulation system.",
+    "excerpt": "There is more inside a business aircraft wall panel than most operators realize. This primer covers the materials, layering logic, dBA vs. dB SIL metrics, and certification considerations behind a modern acoustic insulation system.",
     "readingTime": "7 min"
   },
   {
     "id": "designing-admi-mission-interiors",
     "title": "Designing ADMI Mission Interiors for Demanding Environments",
-    "date": "2025-03-10T00:00:00.000Z",
+    "date": "2025-03-10",
     "category": "Special Mission",
-    "excerpt": "An All Day Mission Interior is not simply a reconfigured cabin — it is a human-factors engineering problem that must balance crew endurance, equipment density, acoustic environment, and airworthiness across missions that can exceed 12 hours. We walk through the design principles behind Luminary's ADMI platform.",
+    "excerpt": "An All Day Mission Interior is not simply a reconfigured cabin — it is a human-factors engineering problem that must balance crew endurance, equipment density, acoustic environment, and airworthiness across 12-hour missions.",
     "readingTime": "8 min"
+  },
+  {
+    "id": "luminary-vip-capabilities",
+    "title": "Luminary Air Group Adds VIP Interior Capabilities",
+    "date": "2017-01-19",
+    "category": "News",
+    "excerpt": "Luminary welcomes a new cabinet shop in Richmond Hill, GA — expanding capability to full VIP cabinetry fabrication, green aircraft completions, and installations across all Boeing, Airbus, and Gulfstream platforms.",
+    "readingTime": "2 min"
+  },
+  {
+    "id": "gulfstream-supplier-approval",
+    "title": "Luminary Receives Supplier Approval from Gulfstream",
+    "date": "2017-02-10",
+    "category": "News",
+    "excerpt": "Gulfstream Aerospace Corporation has granted Luminary Air Group supplier approval for materials, parts, and services for thermal and acoustic insulation treatments — a testament to Luminary's quality processes.",
+    "readingTime": "2 min"
+  },
+  {
+    "id": "faa-pma-approval",
+    "title": "FAA Issues Quality Manual Approval and PMA to Luminary Air Group",
+    "date": "2017-02-17",
+    "category": "News",
+    "excerpt": "The FAA has completed its review of Luminary Air Group's quality system and confirmed the company meets 14 CFR airworthiness requirements. Parts Manufacturer Approval (PMA) has been granted.",
+    "readingTime": "1 min"
+  },
+  {
+    "id": "boeing-vvip-contract",
+    "title": "Luminary Receives Multi-Aircraft Award for VVIP Insulation from Boeing",
+    "date": "2021-06-04",
+    "category": "News",
+    "excerpt": "Luminary Air Group was awarded a multi-aircraft contract by Boeing to design, build, and install thermal/acoustic insulation systems on VVIP aircraft operated by one of Boeing's customers.",
+    "readingTime": "1 min"
+  },
+  {
+    "id": "teledyne-aces-distributor",
+    "title": "Luminary Appointed Distributor of Teledyne ACES® Cabin Air Monitor",
+    "date": "2022-10-13",
+    "category": "News",
+    "excerpt": "Luminary Air Group has been appointed by Teledyne Controls as a distributor of ACES® — a real-time cabin air quality monitoring system designed for the business aviation market.",
+    "readingTime": "2 min"
   }
 ]
