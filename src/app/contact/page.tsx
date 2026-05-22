@@ -40,8 +40,8 @@ export default function ContactPage() {
           {/* Eyebrow */}
           <div className="mb-10 flex justify-center">
             <span className="chapter-rule">
-              <span className="text-[var(--color-lime)]">Get in Touch</span>
-              <span className="text-[var(--color-muted)]">
+              <span className="text-[var(--color-gold)]">Get in Touch</span>
+              <span className="text-white/50">
                 Part 21 Manufacturer · Luminary Air Group
               </span>
             </span>
@@ -49,13 +49,13 @@ export default function ContactPage() {
 
           {/* Headline */}
           <div className="mx-auto max-w-4xl text-center">
-            <h1 className="display-serif text-[var(--color-ink)]">
+            <h1 className="display-serif text-white">
               Start your{" "}
-              <em className="display-serif-italic text-[var(--color-lime)]">
+              <em className="display-serif-italic text-[var(--color-gold)]">
                 project.
               </em>
             </h1>
-            <p className="mx-auto mt-8 max-w-xl text-[15px] leading-[1.75] text-[var(--color-muted)]">
+            <p className="mx-auto mt-8 max-w-xl text-[15px] leading-[1.75] text-white/50">
               Tell us about your aircraft and your objectives. We&rsquo;ll
               respond with an initial consultation and, where appropriate,
               a custom proposal tailored to your airframe and requirements.
@@ -65,22 +65,22 @@ export default function ContactPage() {
       </section>
 
       {/* ── TWO-COLUMN LAYOUT ─────────────────────────────────────────── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-white py-20">
+      <section className="relative border-t border-white/[0.07] bg-black py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-16 lg:grid-cols-12">
             {/* ── LEFT: form ─────────────────────────────────────── */}
             <div className="lg:col-span-7">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                 I · Inquiry Form
               </span>
-              <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
+              <h2 className="display-serif-md mt-5 text-white">
                 Tell us about
                 <br />
-                <em className="display-serif-italic text-[var(--color-muted)]">
+                <em className="display-serif-italic text-white/50">
                   your aircraft.
                 </em>
               </h2>
-              <p className="mt-4 text-[14px] leading-relaxed text-[var(--color-muted)]">
+              <p className="mt-4 text-[14px] leading-relaxed text-white/50">
                 Use the form below to submit an inquiry. We review every
                 message and respond personally within one business day.
               </p>
@@ -88,7 +88,7 @@ export default function ContactPage() {
               {/* Contact email */}
               <a
                 href="mailto:info@luminary.aero"
-                className="mt-6 inline-flex items-center gap-2 text-[13px] font-medium text-[var(--color-lime)] transition-opacity hover:opacity-75"
+                className="mt-6 inline-flex items-center gap-2 text-[13px] font-medium text-[var(--color-gold)] transition-opacity hover:opacity-75"
               >
                 <Mail className="h-4 w-4" strokeWidth={1.75} />
                 info@luminary.aero
@@ -139,10 +139,10 @@ export default function ContactPage() {
                 <div className="flex flex-col gap-1.5">
                   <label
                     htmlFor="message"
-                    className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink)]"
+                    className="font-mono text-[10px] uppercase tracking-[0.22em] text-white"
                   >
                     Message{" "}
-                    <span className="text-[var(--color-lime)]">*</span>
+                    <span className="text-[var(--color-gold)]">*</span>
                   </label>
                   <textarea
                     id="message"
@@ -150,7 +150,7 @@ export default function ContactPage() {
                     rows={6}
                     placeholder="Describe your project — aircraft type, scope of work, timeline, and any specific objectives or constraints."
                     required
-                    className="w-full resize-none rounded-xl border border-[var(--color-hairline-strong)] bg-[var(--color-ivory)] px-4 py-3.5 text-[14px] leading-relaxed text-[var(--color-ink)] placeholder-[var(--color-subtle)] outline-none transition-colors focus:border-[var(--color-lime)] focus:ring-0"
+                    className="w-full resize-none rounded-xl border border-white/[0.12] bg-[#0d0d0d] px-4 py-3.5 text-[14px] leading-relaxed text-white placeholder-[var(--color-subtle)] outline-none transition-colors focus:border-[var(--color-gold)] focus:ring-0"
                   />
                 </div>
 
@@ -158,7 +158,7 @@ export default function ContactPage() {
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-8 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-lime)] hover:text-[var(--color-ink)]"
+                    className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-8 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-gold-soft)] hover:text-white"
                   >
                     Submit inquiry
                     <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
@@ -166,7 +166,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* Disclaimer */}
-                <p className="pt-1 font-mono text-[10px] leading-relaxed text-[var(--color-subtle)]">
+                <p className="pt-1 font-mono text-[10px] leading-relaxed text-white/30">
                   Your information is used solely to respond to your inquiry
                   and will not be shared with third parties.
                 </p>
@@ -177,15 +177,15 @@ export default function ContactPage() {
             <div className="lg:col-span-5">
               <div className="sticky top-24 space-y-6">
                 {/* What to expect */}
-                <div className="rounded-2xl border border-[var(--color-hairline)] bg-[var(--color-ivory)] p-8">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+                <div className="rounded-2xl border border-white/[0.07] bg-[#0d0d0d] p-8">
+                  <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                     II · What to expect
                   </span>
-                  <h3 className="mt-5 font-serif text-[26px] leading-tight text-[var(--color-ink)]">
+                  <h3 className="mt-5 font-serif text-[26px] leading-tight text-white">
                     How the process{" "}
                     <em className="display-serif-italic">works.</em>
                   </h3>
-                  <p className="mt-3 text-[13px] leading-[1.75] text-[var(--color-muted)]">
+                  <p className="mt-3 text-[13px] leading-[1.75] text-white/50">
                     From your first message to a completed proposal — every
                     step is handled personally by our team.
                   </p>
@@ -197,14 +197,14 @@ export default function ContactPage() {
                       title="Submit your inquiry"
                       description="Use the form or email us directly. Tell us about your aircraft, the scope you have in mind, and any timeline constraints."
                     />
-                    <div className="ml-5 h-px w-8 bg-[var(--color-lime)]/40" />
+                    <div className="ml-5 h-px w-8 bg-[var(--color-gold)]/40" />
                     <ProcessItem
                       number="02"
                       icon={CheckCircle2}
                       title="Acoustic or interior consultation"
                       description="We review your inquiry and follow up with a personal consultation — either on-site or remotely — to fully understand your aircraft and objectives."
                     />
-                    <div className="ml-5 h-px w-8 bg-[var(--color-lime)]/40" />
+                    <div className="ml-5 h-px w-8 bg-[var(--color-gold)]/40" />
                     <ProcessItem
                       number="03"
                       icon={FileText}
@@ -215,16 +215,16 @@ export default function ContactPage() {
                 </div>
 
                 {/* Part 21 + STCs callout */}
-                <div className="rounded-2xl border border-[var(--color-hairline)] bg-white p-7">
+                <div className="rounded-2xl border border-white/[0.07] bg-black p-7">
                   <div className="flex items-start gap-4">
-                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-lime-bg)] text-[var(--color-lime)]">
+                    <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold-bg)] text-[var(--color-gold)]">
                       <ShieldCheck className="h-5 w-5" strokeWidth={1.5} />
                     </span>
                     <div>
-                      <h4 className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink)]">
+                      <h4 className="font-mono text-[11px] uppercase tracking-[0.22em] text-white">
                         Part 21 Manufacturer
                       </h4>
-                      <p className="mt-2 text-[13px] leading-[1.7] text-[var(--color-muted)]">
+                      <p className="mt-2 text-[13px] leading-[1.7] text-white/50">
                         Every component Luminary produces carries full FAA
                         certification traceability. Our Part 21 manufacturing
                         authority is the foundation of the quality standard we
@@ -232,11 +232,11 @@ export default function ContactPage() {
                       </p>
                     </div>
                   </div>
-                  <div className="mt-5 border-t border-[var(--color-hairline)] pt-5">
-                    <h4 className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink)]">
+                  <div className="mt-5 border-t border-white/[0.07] pt-5">
+                    <h4 className="font-mono text-[11px] uppercase tracking-[0.22em] text-white">
                       Downloads &amp; STCs
                     </h4>
-                    <p className="mt-2 text-[13px] leading-[1.7] text-[var(--color-muted)]">
+                    <p className="mt-2 text-[13px] leading-[1.7] text-white/50">
                       Supporting documentation, Supplemental Type Certificates,
                       and technical data are available on request. Mention your
                       aircraft type in your inquiry and we will include relevant
@@ -272,11 +272,11 @@ function FormField({
     <div className="flex flex-col gap-1.5">
       <label
         htmlFor={name}
-        className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-ink)]"
+        className="font-mono text-[10px] uppercase tracking-[0.22em] text-white"
       >
         {label}
         {required && (
-          <span className="ml-1 text-[var(--color-lime)]">*</span>
+          <span className="ml-1 text-[var(--color-gold)]">*</span>
         )}
       </label>
       <input
@@ -285,7 +285,7 @@ function FormField({
         type={type}
         placeholder={placeholder}
         required={required}
-        className="rounded-xl border border-[var(--color-hairline-strong)] bg-[var(--color-ivory)] px-4 py-3.5 text-[14px] text-[var(--color-ink)] placeholder-[var(--color-subtle)] outline-none transition-colors focus:border-[var(--color-lime)] focus:ring-0"
+        className="rounded-xl border border-white/[0.12] bg-[#0d0d0d] px-4 py-3.5 text-[14px] text-white placeholder-[var(--color-subtle)] outline-none transition-colors focus:border-[var(--color-gold)] focus:ring-0"
       />
     </div>
   );
@@ -305,20 +305,20 @@ function ProcessItem({
   return (
     <div className="flex gap-4">
       <div className="shrink-0">
-        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-lime)]/30 bg-[var(--color-lime-bg)] text-[var(--color-lime)]">
+        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-gold)]/30 bg-[var(--color-gold-bg)] text-[var(--color-gold)]">
           <Icon className="h-4 w-4" strokeWidth={1.75} />
         </span>
       </div>
       <div>
         <div className="flex items-center gap-2">
-          <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
+          <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-white/30">
             {number}
           </span>
-          <h4 className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink)]">
+          <h4 className="font-mono text-[11px] uppercase tracking-[0.18em] text-white">
             {title}
           </h4>
         </div>
-        <p className="mt-1.5 text-[13px] leading-[1.7] text-[var(--color-muted)]">
+        <p className="mt-1.5 text-[13px] leading-[1.7] text-white/50">
           {description}
         </p>
       </div>

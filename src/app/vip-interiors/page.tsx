@@ -44,8 +44,8 @@ export default function VipInteriorsPage() {
           {/* Eyebrow */}
           <div className="mb-10 flex justify-center">
             <span className="chapter-rule">
-              <span className="text-[var(--color-lime)]">VIP Interiors</span>
-              <span className="text-[var(--color-muted)]">
+              <span className="text-[var(--color-gold)]">VIP Interiors</span>
+              <span className="text-white/50">
                 Design · Manufacturing · Installation
               </span>
             </span>
@@ -53,13 +53,13 @@ export default function VipInteriorsPage() {
 
           {/* Headline */}
           <div className="mx-auto max-w-5xl text-center">
-            <h1 className="display-serif text-[var(--color-ink)]">
+            <h1 className="display-serif text-white">
               Every detail,{" "}
-              <em className="display-serif-italic text-[var(--color-lime)]">
+              <em className="display-serif-italic text-[var(--color-gold)]">
                 perfected.
               </em>
             </h1>
-            <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.75] text-[var(--color-muted)]">
+            <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.75] text-white/50">
               Luminary Air Group delivers full-lifecycle VIP and corporate
               aircraft interiors — from concept and design through
               manufacturing, installation, and certification. Every surface,
@@ -72,14 +72,14 @@ export default function VipInteriorsPage() {
           <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-gold-soft)]"
             >
               Start your interior project
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
             </Link>
             <Link
               href="/performance-history"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-hairline-strong)] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:border-[var(--color-lime)] hover:text-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-transparent px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
             >
               View performance history
             </Link>
@@ -88,21 +88,21 @@ export default function VipInteriorsPage() {
       </section>
 
       {/* ── SERVICES GRID ─────────────────────────────────────────────── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24">
+      <section className="relative border-t border-white/[0.07] bg-[#0d0d0d] py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
             <div className="max-w-xl">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                 I · Services
               </span>
-              <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
+              <h2 className="display-serif-md mt-5 text-white">
                 Every interior discipline,
                 <br />
-                <em className="display-serif-italic text-[var(--color-muted)]">
+                <em className="display-serif-italic text-white/50">
                   under one roof.
                 </em>
               </h2>
-              <p className="mt-4 max-w-lg text-[14px] leading-relaxed text-[var(--color-muted)]">
+              <p className="mt-4 max-w-lg text-[14px] leading-relaxed text-white/50">
                 From hand-crafted cabinetry to full green completions, our
                 skilled team handles every element of your aircraft interior
                 in-house — with the quality and documentation of a Part 21
@@ -157,15 +157,15 @@ export default function VipInteriorsPage() {
           </div>
 
           {/* Repairs callout */}
-          <div className="mt-8 flex items-start gap-5 rounded-2xl border border-[var(--color-hairline)] bg-white p-7">
-            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-lime-bg)] text-[var(--color-lime)]">
+          <div className="mt-8 flex items-start gap-5 rounded-2xl border border-white/[0.07] bg-black p-7">
+            <span className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold-bg)] text-[var(--color-gold)]">
               <Wrench className="h-5 w-5" strokeWidth={1.5} />
             </span>
             <div>
-              <h3 className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-ink)]">
+              <h3 className="font-mono text-[11px] uppercase tracking-[0.22em] text-white">
                 Repairs & Modifications
               </h3>
-              <p className="mt-2 text-[13px] leading-[1.75] text-[var(--color-muted)]">
+              <p className="mt-2 text-[13px] leading-[1.75] text-white/50">
                 Existing interior repairs, damage rectification, and
                 modification work are handled with the same precision and
                 documentation standards as new builds. From panel replacement
@@ -178,26 +178,26 @@ export default function VipInteriorsPage() {
       </section>
 
       {/* ── PROCESS ───────────────────────────────────────────────────── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-white py-24">
+      <section className="relative border-t border-white/[0.07] bg-black py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
               II · Process
             </span>
-            <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
+            <h2 className="display-serif-md mt-5 text-white">
               From brief to{" "}
-              <em className="display-serif-italic text-[var(--color-muted)]">
+              <em className="display-serif-italic text-white/50">
                 certified completion.
               </em>
             </h2>
-            <p className="mx-auto mt-4 max-w-md text-[14px] leading-relaxed text-[var(--color-muted)]">
+            <p className="mx-auto mt-4 max-w-md text-[14px] leading-relaxed text-white/50">
               A disciplined four-stage process ensures every VIP interior
               project is delivered on time, on spec, and to the highest
               standard of certified quality.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-[var(--color-hairline)] sm:grid-cols-4">
+          <div className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-[var(--color-hairline)] sm:grid-cols-4">
             <ProcessStep
               number="01"
               title="Consultation & Design"
@@ -228,12 +228,12 @@ export default function VipInteriorsPage() {
         <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-6">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                 III · Certified Quality
               </span>
               <h2 className="display-serif-md mt-5 text-white">
                 Built to the{" "}
-                <em className="display-serif-italic text-[var(--color-lime)]">
+                <em className="display-serif-italic text-[var(--color-gold)]">
                   highest standard.
                 </em>
               </h2>
@@ -268,7 +268,7 @@ export default function VipInteriorsPage() {
           </div>
 
           {/* Certification badge row */}
-          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-white/10 sm:grid-cols-4">
+          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/10 bg-black/10 sm:grid-cols-4">
             <CertBadge value="Part 21" label="Manufacturer" />
             <CertBadge value="FAA" label="Certified" />
             <CertBadge value="Full" label="Documentation" />
@@ -278,21 +278,21 @@ export default function VipInteriorsPage() {
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────────────── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-white py-24">
+      <section className="relative border-t border-white/[0.07] bg-black py-24">
         <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
-          <span className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
-            <span className="h-px w-8 bg-[var(--color-lime)]/60" />
+          <span className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
+            <span className="h-px w-8 bg-[var(--color-gold)]/60" />
             Ready to get started
-            <span className="h-px w-8 bg-[var(--color-lime)]/60" />
+            <span className="h-px w-8 bg-[var(--color-gold)]/60" />
           </span>
-          <h2 className="display-serif-md mt-8 text-[var(--color-ink)]">
+          <h2 className="display-serif-md mt-8 text-white">
             Start your
             <br />
-            <em className="display-serif-italic text-[var(--color-muted)]">
+            <em className="display-serif-italic text-white/50">
               interior project.
             </em>
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-[var(--color-muted)]">
+          <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-white/50">
             Tell us about your aircraft, your vision, and your timeline.
             We&rsquo;ll design a VIP interior that meets your objectives —
             and deliver it with the certified quality your aircraft deserves.
@@ -300,14 +300,14 @@ export default function VipInteriorsPage() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-gold-soft)]"
             >
               Get in touch
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
             </Link>
             <Link
               href="/about"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-hairline-strong)] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:border-[var(--color-lime)] hover:text-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-transparent px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
             >
               About Luminary
             </Link>
@@ -334,25 +334,25 @@ function ServiceCard({
   badge: string;
 }) {
   return (
-    <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white p-8 transition-all hover:border-[var(--color-lime)] hover:shadow-[0_24px_50px_-20px_rgba(181,180,0,0.2)]">
+    <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-black p-8 transition-all hover:border-[var(--color-gold)] hover:shadow-[0_24px_50px_-20px_rgba(181,180,0,0.2)]">
       <div className="flex items-start justify-between">
-        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-lime-bg)] text-[var(--color-lime)]">
+        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-gold-bg)] text-[var(--color-gold)]">
           <Icon className="h-5 w-5" strokeWidth={1.5} />
         </span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
+        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/30">
           {number}
         </span>
       </div>
 
-      <h3 className="mt-6 font-serif text-[24px] leading-tight text-[var(--color-ink)]">
+      <h3 className="mt-6 font-serif text-[24px] leading-tight text-white">
         {title}
       </h3>
-      <p className="mt-4 flex-1 text-[13px] leading-[1.8] text-[var(--color-muted)]">
+      <p className="mt-4 flex-1 text-[13px] leading-[1.8] text-white/50">
         {description}
       </p>
 
-      <div className="mt-6 border-t border-[var(--color-hairline)] pt-5">
-        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-lime)]">
+      <div className="mt-6 border-t border-white/[0.07] pt-5">
+        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-gold)]">
           {badge}
         </span>
       </div>
@@ -370,14 +370,14 @@ function ProcessStep({
   description: string;
 }) {
   return (
-    <div className="flex flex-col bg-[var(--color-ivory)] px-7 py-8">
-      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+    <div className="flex flex-col bg-[#0d0d0d] px-7 py-8">
+      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
         {number}
       </span>
-      <h3 className="mt-4 font-serif text-[22px] leading-tight text-[var(--color-ink)]">
+      <h3 className="mt-4 font-serif text-[22px] leading-tight text-white">
         {title}
       </h3>
-      <p className="mt-3 text-[13px] leading-[1.75] text-[var(--color-muted)]">
+      <p className="mt-3 text-[13px] leading-[1.75] text-white/50">
         {description}
       </p>
     </div>
@@ -392,8 +392,8 @@ function QualityPillar({
   description: string;
 }) {
   return (
-    <div className="flex items-start gap-3 rounded-xl border border-white/10 bg-white/5 p-5">
-      <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-lime)]/20 text-[var(--color-lime)]">
+    <div className="flex items-start gap-3 rounded-xl border border-white/10 bg-black/5 p-5">
+      <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold)]/20 text-[var(--color-gold)]">
         <CheckCircle2 className="h-3 w-3" strokeWidth={2} />
       </span>
       <div>
@@ -410,8 +410,8 @@ function QualityPillar({
 
 function CertBadge({ value, label }: { value: string; label: string }) {
   return (
-    <div className="flex flex-col items-center gap-2 bg-white/5 px-5 py-7 text-center">
-      <span className="font-serif text-[28px] leading-none text-[var(--color-lime)]">
+    <div className="flex flex-col items-center gap-2 bg-black/5 px-5 py-7 text-center">
+      <span className="font-serif text-[28px] leading-none text-[var(--color-gold)]">
         {value}
       </span>
       <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/60">

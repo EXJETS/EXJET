@@ -34,10 +34,10 @@ export default function PerformanceHistoryPage() {
           {/* Eyebrow */}
           <div className="mb-10 flex justify-center">
             <span className="chapter-rule">
-              <span className="text-[var(--color-lime)]">
+              <span className="text-[var(--color-gold)]">
                 Performance History
               </span>
-              <span className="text-[var(--color-muted)]">
+              <span className="text-white/50">
                 Measured · Documented · Proven
               </span>
             </span>
@@ -45,15 +45,15 @@ export default function PerformanceHistoryPage() {
 
           {/* Headline */}
           <div className="mx-auto max-w-5xl text-center">
-            <h1 className="display-serif text-[var(--color-ink)]">
+            <h1 className="display-serif text-white">
               Measured.{" "}
-              <em className="display-serif-italic text-[var(--color-lime)]">
+              <em className="display-serif-italic text-[var(--color-gold)]">
                 Documented.
               </em>
               <br />
               Proven.
             </h1>
-            <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.75] text-[var(--color-muted)]">
+            <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.75] text-white/50">
               Every Luminary installation is measured before and after using
               precision acoustic instrumentation. The results are documented,
               independently verifiable, and consistently exceptional — from
@@ -65,14 +65,14 @@ export default function PerformanceHistoryPage() {
           <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-gold-soft)]"
             >
               Discuss your project
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
             </Link>
             <Link
               href="/cabin-comfort-systems"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-hairline-strong)] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:border-[var(--color-lime)] hover:text-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-transparent px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
             >
               Cabin Comfort Systems
             </Link>
@@ -81,14 +81,14 @@ export default function PerformanceHistoryPage() {
       </section>
 
       {/* ── WORLD RECORD HERO CALLOUT ─────────────────────────────────── */}
-      <section className="relative overflow-hidden border-t border-[var(--color-hairline)]">
+      <section className="relative overflow-hidden border-t border-white/[0.07]">
         <div className="mesh-ink absolute inset-0" aria-hidden />
         <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
           <div className="mx-auto max-w-3xl text-center">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
               World Record
             </span>
-            <div className="mt-6 font-serif text-[clamp(5rem,14vw,11rem)] leading-none tracking-tight text-[var(--color-lime)]">
+            <div className="mt-6 font-serif text-[clamp(5rem,14vw,11rem)] leading-none tracking-tight text-[var(--color-gold)]">
               46.7
               <span className="text-[0.35em] text-white/70"> dB SIL</span>
             </div>
@@ -109,9 +109,9 @@ export default function PerformanceHistoryPage() {
       </section>
 
       {/* ── STATS BAND ───────────────────────────────────────────────── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)]">
+      <section className="relative border-t border-white/[0.07] bg-[#0d0d0d]">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid grid-cols-2 gap-px overflow-hidden border-x border-[var(--color-hairline)] bg-[var(--color-hairline)] sm:grid-cols-4">
+          <div className="grid grid-cols-2 gap-px overflow-hidden border-x border-white/[0.07] bg-[var(--color-hairline)] sm:grid-cols-4">
             <StatBand value="50–70%" label="Avg. noise reduction" />
             <StatBand value="20+" label="Years in aircraft interiors" />
             <StatBand value="Part 21" label="Manufacturer" />
@@ -121,19 +121,19 @@ export default function PerformanceHistoryPage() {
       </section>
 
       {/* ── CASE STUDIES GRID ─────────────────────────────────────────── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-white py-24">
+      <section className="relative border-t border-white/[0.07] bg-black py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="max-w-xl">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
               I · Case Studies
             </span>
-            <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
+            <h2 className="display-serif-md mt-5 text-white">
               Documented results,{" "}
-              <em className="display-serif-italic text-[var(--color-muted)]">
+              <em className="display-serif-italic text-white/50">
                 aircraft by aircraft.
               </em>
             </h2>
-            <p className="mt-4 text-[14px] leading-relaxed text-[var(--color-muted)]">
+            <p className="mt-4 text-[14px] leading-relaxed text-white/50">
               Each project below represents a fully measured, documented
               installation with verified pre- and post-installation acoustic
               data.
@@ -149,20 +149,20 @@ export default function PerformanceHistoryPage() {
       </section>
 
       {/* ── METHODOLOGY ───────────────────────────────────────────────── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24">
+      <section className="relative border-t border-white/[0.07] bg-[#0d0d0d] py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-5">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                 II · Methodology
               </span>
-              <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
+              <h2 className="display-serif-md mt-5 text-white">
                 How we{" "}
-                <em className="display-serif-italic text-[var(--color-muted)]">
+                <em className="display-serif-italic text-white/50">
                   measure.
                 </em>
               </h2>
-              <p className="mt-5 text-[14px] leading-[1.85] text-[var(--color-muted)]">
+              <p className="mt-5 text-[14px] leading-[1.85] text-white/50">
                 Luminary&rsquo;s performance data is produced through a
                 rigorous, instrument-driven measurement protocol. Results are
                 not estimated or extrapolated — they are measured directly
@@ -170,7 +170,7 @@ export default function PerformanceHistoryPage() {
               </p>
               <Link
                 href="/blog"
-                className="mt-6 inline-flex items-center gap-2 text-[13px] font-medium text-[var(--color-lime)] transition-opacity hover:opacity-80"
+                className="mt-6 inline-flex items-center gap-2 text-[13px] font-medium text-[var(--color-gold)] transition-opacity hover:opacity-80"
               >
                 Read our acoustic engineering articles
                 <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
@@ -206,21 +206,21 @@ export default function PerformanceHistoryPage() {
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────────────── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-white py-24">
+      <section className="relative border-t border-white/[0.07] bg-black py-24">
         <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
-          <span className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
-            <span className="h-px w-8 bg-[var(--color-lime)]/60" />
+          <span className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
+            <span className="h-px w-8 bg-[var(--color-gold)]/60" />
             What can we achieve for your aircraft
-            <span className="h-px w-8 bg-[var(--color-lime)]/60" />
+            <span className="h-px w-8 bg-[var(--color-gold)]/60" />
           </span>
-          <h2 className="display-serif-md mt-8 text-[var(--color-ink)]">
+          <h2 className="display-serif-md mt-8 text-white">
             Your aircraft.
             <br />
-            <em className="display-serif-italic text-[var(--color-muted)]">
+            <em className="display-serif-italic text-white/50">
               Your result.
             </em>
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-[var(--color-muted)]">
+          <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-white/50">
             Every aircraft is different. We begin every project with a
             thorough acoustic survey to understand exactly what is achievable
             — and we commit to a target before any installation work begins.
@@ -228,14 +228,14 @@ export default function PerformanceHistoryPage() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-gold-soft)]"
             >
               Request an acoustic consultation
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
             </Link>
             <Link
               href="/cabin-comfort-systems"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-hairline-strong)] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:border-[var(--color-lime)] hover:text-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-transparent px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
             >
               Explore cabin systems
             </Link>
@@ -250,11 +250,11 @@ export default function PerformanceHistoryPage() {
 
 function StatBand({ value, label }: { value: string; label: string }) {
   return (
-    <div className="flex flex-col items-center gap-2 bg-[var(--color-ivory)] px-5 py-8 text-center">
-      <span className="font-serif text-[clamp(1.5rem,3.5vw,2.25rem)] leading-none text-[var(--color-ink)]">
+    <div className="flex flex-col items-center gap-2 bg-[#0d0d0d] px-5 py-8 text-center">
+      <span className="font-serif text-[clamp(1.5rem,3.5vw,2.25rem)] leading-none text-white">
         {value}
       </span>
-      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
         {label}
       </span>
     </div>
@@ -267,52 +267,52 @@ function CaseStudyCard({
   study: (typeof caseStudies)[number];
 }) {
   return (
-    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white p-8 transition-all hover:border-[var(--color-lime)] hover:shadow-[0_24px_50px_-20px_rgba(181,180,0,0.15)]">
+    <div className="group relative flex flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-black p-8 transition-all hover:border-[var(--color-gold)] hover:shadow-[0_24px_50px_-20px_rgba(181,180,0,0.15)]">
       {/* Header row */}
       <div className="flex items-start justify-between gap-4">
-        <span className="inline-block rounded-full border border-[var(--color-lime)]/30 bg-[var(--color-lime-bg)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+        <span className="inline-block rounded-full border border-[var(--color-gold)]/30 bg-[var(--color-gold-bg)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
           {study.category}
         </span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-subtle)]">
+        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/30">
           {study.year}
         </span>
       </div>
 
       {/* Title & aircraft */}
-      <h3 className="mt-5 font-serif text-[24px] leading-tight text-[var(--color-ink)]">
+      <h3 className="mt-5 font-serif text-[24px] leading-tight text-white">
         {study.title}
       </h3>
-      <p className="mt-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-muted)]">
+      <p className="mt-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white/50">
         {study.aircraft}
       </p>
 
       {/* Achievement banner */}
-      <div className="mt-5 rounded-lg bg-[var(--color-ivory)] px-4 py-3">
-        <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-lime)]">
+      <div className="mt-5 rounded-lg bg-[#0d0d0d] px-4 py-3">
+        <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-gold)]">
           Achievement
         </div>
-        <div className="mt-1 text-[13px] font-medium leading-snug text-[var(--color-ink)]">
+        <div className="mt-1 text-[13px] font-medium leading-snug text-white">
           {study.achievement}
         </div>
       </div>
 
       {/* Description */}
-      <p className="mt-5 flex-1 text-[13px] leading-[1.8] text-[var(--color-muted)]">
+      <p className="mt-5 flex-1 text-[13px] leading-[1.8] text-white/50">
         {study.description}
       </p>
 
       {/* Result footer */}
-      <div className="mt-6 flex items-center justify-between border-t border-[var(--color-hairline)] pt-5">
+      <div className="mt-6 flex items-center justify-between border-t border-white/[0.07] pt-5">
         <div>
-          <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-subtle)]">
+          <div className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/30">
             Documented result
           </div>
-          <div className="mt-0.5 font-serif text-[28px] leading-none text-[var(--color-lime)]">
+          <div className="mt-0.5 font-serif text-[28px] leading-none text-[var(--color-gold)]">
             {study.result}
           </div>
         </div>
         <CheckCircle2
-          className="h-5 w-5 text-[var(--color-lime)]/50 transition-colors group-hover:text-[var(--color-lime)]"
+          className="h-5 w-5 text-[var(--color-gold)]/50 transition-colors group-hover:text-[var(--color-gold)]"
           strokeWidth={1.5}
         />
       </div>
@@ -330,17 +330,17 @@ function MethodologyStep({
   description: string;
 }) {
   return (
-    <div className="flex gap-5 rounded-xl border border-[var(--color-hairline)] bg-white p-6">
+    <div className="flex gap-5 rounded-xl border border-white/[0.07] bg-black p-6">
       <div className="shrink-0">
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
           {step}
         </span>
       </div>
       <div>
-        <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink)]">
+        <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-white">
           {title}
         </h3>
-        <p className="mt-2 text-[13px] leading-[1.75] text-[var(--color-muted)]">
+        <p className="mt-2 text-[13px] leading-[1.75] text-white/50">
           {description}
         </p>
       </div>

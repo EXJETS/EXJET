@@ -33,21 +33,21 @@ export default function CabinComfortSystemsPage() {
           {/* Eyebrow */}
           <div className="mb-10 flex justify-center">
             <span className="chapter-rule">
-              <span className="text-[var(--color-lime)]">Cabin Comfort Systems</span>
-              <span className="text-[var(--color-muted)]">Acoustic Engineering</span>
+              <span className="text-[var(--color-gold)]">Cabin Comfort Systems</span>
+              <span className="text-white/50">Acoustic Engineering</span>
             </span>
           </div>
 
           {/* Headline */}
           <div className="mx-auto max-w-5xl text-center">
-            <h1 className="display-serif text-[var(--color-ink)]">
+            <h1 className="display-serif text-white">
               The science
               <br />
-              <em className="display-serif-italic" style={{ color: "var(--color-lime)" }}>
+              <em className="display-serif-italic" style={{ color: "var(--color-gold)" }}>
                 of silence.
               </em>
             </h1>
-            <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.8] text-[var(--color-muted)]">
+            <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.8] text-white/50">
               Custom noise-reduction kits tailored to every aircraft&rsquo;s unique
               acoustic signature — using precision imaging, advanced materials, and
               certified manufacturing to deliver measurably quieter cabins from
@@ -59,21 +59,21 @@ export default function CabinComfortSystemsPage() {
           <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-gold-soft)]"
             >
               Request a Consultation
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
             </Link>
             <Link
               href="/performance-history"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-hairline-strong)] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:border-[var(--color-lime)] hover:text-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-transparent px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
             >
               View Performance History
             </Link>
           </div>
 
           {/* KPI band */}
-          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-[var(--color-hairline)] sm:grid-cols-4">
+          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-[var(--color-hairline)] sm:grid-cols-4">
             <HeroStat label="Noise Reduction" value="50–70%" />
             <HeroStat label="World Record" value="46.7 dB SIL" />
             <HeroStat label="Certification" value="Part 21 Mfr" />
@@ -83,26 +83,26 @@ export default function CabinComfortSystemsPage() {
       </section>
 
       {/* ── HOW IT WORKS ── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-white py-24">
+      <section className="relative border-t border-white/[0.07] bg-black py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                 I · How It Works
               </span>
-              <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
+              <h2 className="display-serif-md mt-5 text-white">
                 Four steps to a
                 <br />
-                <em className="display-serif-italic text-[var(--color-muted)]">quieter cabin.</em>
+                <em className="display-serif-italic text-white/50">quieter cabin.</em>
               </h2>
             </div>
-            <p className="max-w-md text-[14px] leading-relaxed text-[var(--color-muted)] md:text-right">
+            <p className="max-w-md text-[14px] leading-relaxed text-white/50 md:text-right">
               Every CCS project begins with measurement and ends with a certified,
               installed system proven on your specific airframe.
             </p>
           </div>
 
-          <div className="grid gap-px overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-[var(--color-hairline)] sm:grid-cols-2 lg:grid-cols-4">
+          <div className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-[var(--color-hairline)] sm:grid-cols-2 lg:grid-cols-4">
             <ProcessStep
               number="01"
               title="Acoustic Imaging"
@@ -128,16 +128,16 @@ export default function CabinComfortSystemsPage() {
       </section>
 
       {/* ── WHY IT WORKS ── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24">
+      <section className="relative border-t border-white/[0.07] bg-[#0d0d0d] py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="mb-16 text-center">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
               II · Why It Works
             </span>
-            <h2 className="display-serif-md mx-auto mt-5 text-[var(--color-ink)]">
+            <h2 className="display-serif-md mx-auto mt-5 text-white">
               Engineering that
               <br />
-              <em className="display-serif-italic text-[var(--color-muted)]">earns its results.</em>
+              <em className="display-serif-italic text-white/50">earns its results.</em>
             </h2>
           </div>
 
@@ -165,19 +165,19 @@ export default function CabinComfortSystemsPage() {
       </section>
 
       {/* ── PRODUCTS GRID ── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-white py-24">
+      <section className="relative border-t border-white/[0.07] bg-black py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                 III · Aircraft Coverage
               </span>
-              <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
+              <h2 className="display-serif-md mt-5 text-white">
                 From piston to
                 <br />
-                <em className="display-serif-italic text-[var(--color-muted)]">wide-body.</em>
+                <em className="display-serif-italic text-white/50">wide-body.</em>
               </h2>
-              <p className="mt-4 max-w-lg text-[14px] leading-relaxed text-[var(--color-muted)]">
+              <p className="mt-4 max-w-lg text-[14px] leading-relaxed text-white/50">
                 CCS kits are available for a wide range of business and
                 mission aircraft — each one engineered from an acoustic survey
                 of that specific airframe, not adapted from a generic template.
@@ -185,7 +185,7 @@ export default function CabinComfortSystemsPage() {
             </div>
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-2 self-start text-[13px] font-medium text-[var(--color-ink)] transition-colors hover:text-[var(--color-lime)] md:self-end"
+              className="group inline-flex items-center gap-2 self-start text-[13px] font-medium text-white transition-colors hover:text-[var(--color-gold)] md:self-end"
             >
               Request a kit for your aircraft
               <ArrowUpRight
@@ -211,14 +211,14 @@ export default function CabinComfortSystemsPage() {
             {/* Eyebrow */}
             <div className="flex justify-center">
               <span className="chapter-rule" style={{ color: "rgba(255,255,255,0.4)" }}>
-                <span className="text-[var(--color-lime)]">World Record</span>
+                <span className="text-[var(--color-gold)]">World Record</span>
                 <span style={{ color: "rgba(255,255,255,0.4)" }}>Boeing Business Jet</span>
               </span>
             </div>
 
             {/* Big number */}
             <div className="mt-12 text-center">
-              <div className="font-serif text-[clamp(5rem,15vw,11rem)] leading-none text-[var(--color-lime)]">
+              <div className="font-serif text-[clamp(5rem,15vw,11rem)] leading-none text-[var(--color-gold)]">
                 46.7
               </div>
               <div className="mt-2 font-mono text-[13px] uppercase tracking-[0.3em] text-white/60">
@@ -232,7 +232,7 @@ export default function CabinComfortSystemsPage() {
                 <h2 className="display-serif-md text-white">
                   The quietest BBJ
                   <br />
-                  <em className="display-serif-italic text-[var(--color-lime)]">
+                  <em className="display-serif-italic text-[var(--color-gold)]">
                     ever independently measured.
                   </em>
                 </h2>
@@ -262,7 +262,7 @@ export default function CabinComfortSystemsPage() {
                 "Replicated across the BBJ fleet",
               ].map((item) => (
                 <div key={item} className="flex items-start gap-3">
-                  <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[var(--color-lime)]/15 text-[var(--color-lime)]">
+                  <span className="mt-0.5 flex h-4 w-4 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold)]/15 text-[var(--color-gold)]">
                     <CheckCircle2 className="h-2.5 w-2.5" strokeWidth={2.5} />
                   </span>
                   <span className="text-[13px] leading-relaxed text-white/70">{item}</span>
@@ -274,19 +274,19 @@ export default function CabinComfortSystemsPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24">
+      <section className="relative border-t border-white/[0.07] bg-[#0d0d0d] py-24">
         <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
-          <span className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
-            <span className="h-px w-8 bg-[var(--color-lime)]/60" />
+          <span className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
+            <span className="h-px w-8 bg-[var(--color-gold)]/60" />
             Get Started
-            <span className="h-px w-8 bg-[var(--color-lime)]/60" />
+            <span className="h-px w-8 bg-[var(--color-gold)]/60" />
           </span>
-          <h2 className="display-serif-md mt-8 text-[var(--color-ink)]">
+          <h2 className="display-serif-md mt-8 text-white">
             Request an acoustic
             <br />
-            <em className="display-serif-italic text-[var(--color-muted)]">consultation.</em>
+            <em className="display-serif-italic text-white/50">consultation.</em>
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-[var(--color-muted)]">
+          <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-white/50">
             Tell us your aircraft type and noise objectives — we&rsquo;ll design a
             CCS solution with a projected acoustic result, weight impact, and
             programme timeline before any commitment is required.
@@ -294,14 +294,14 @@ export default function CabinComfortSystemsPage() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-gold-soft)]"
             >
               Start a Consultation
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
             </Link>
             <Link
               href="/performance-history"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-hairline-strong)] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:border-[var(--color-lime)] hover:text-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-transparent px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
             >
               Performance History
             </Link>
@@ -316,11 +316,11 @@ export default function CabinComfortSystemsPage() {
 
 function HeroStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex flex-col items-center gap-2 bg-[var(--color-ivory)] px-5 py-7 text-center">
-      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+    <div className="flex flex-col items-center gap-2 bg-[#0d0d0d] px-5 py-7 text-center">
+      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
         {label}
       </span>
-      <span className="font-serif text-[22px] leading-none text-[var(--color-ink)]">
+      <span className="font-serif text-[22px] leading-none text-white">
         {value}
       </span>
     </div>
@@ -337,14 +337,14 @@ function ProcessStep({
   description: string;
 }) {
   return (
-    <div className="flex flex-col bg-[var(--color-ivory)] px-7 py-8">
-      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+    <div className="flex flex-col bg-[#0d0d0d] px-7 py-8">
+      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
         {number}
       </span>
-      <h3 className="mt-4 font-serif text-[22px] leading-tight text-[var(--color-ink)]">
+      <h3 className="mt-4 font-serif text-[22px] leading-tight text-white">
         {title}
       </h3>
-      <p className="mt-3 flex-1 text-[13px] leading-[1.75] text-[var(--color-muted)]">
+      <p className="mt-3 flex-1 text-[13px] leading-[1.75] text-white/50">
         {description}
       </p>
     </div>
@@ -363,18 +363,18 @@ function FeatureBlock({
   stat: string;
 }) {
   return (
-    <div className="relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white p-8">
-      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-lime-bg)] text-[var(--color-lime)]">
+    <div className="relative flex flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-black p-8">
+      <span className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-[var(--color-gold-bg)] text-[var(--color-gold)]">
         <Icon className="h-5 w-5" strokeWidth={1.5} />
       </span>
-      <h3 className="mt-6 font-serif text-[24px] leading-tight text-[var(--color-ink)]">
+      <h3 className="mt-6 font-serif text-[24px] leading-tight text-white">
         {title}
       </h3>
-      <p className="mt-4 flex-1 text-[13px] leading-[1.8] text-[var(--color-muted)]">
+      <p className="mt-4 flex-1 text-[13px] leading-[1.8] text-white/50">
         {description}
       </p>
-      <div className="mt-6 border-t border-[var(--color-hairline)] pt-5">
-        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-lime)]">
+      <div className="mt-6 border-t border-white/[0.07] pt-5">
+        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-gold)]">
           {stat}
         </span>
       </div>
@@ -388,36 +388,36 @@ function ProductCard({
   product: (typeof insulationProducts)[number];
 }) {
   return (
-    <div className="group flex flex-col overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-[var(--color-ivory)] p-6 transition-all hover:border-[var(--color-lime)] hover:shadow-[0_24px_50px_-20px_rgba(181,180,0,0.15)]">
+    <div className="group flex flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-[#0d0d0d] p-6 transition-all hover:border-[var(--color-gold)] hover:shadow-[0_24px_50px_-20px_rgba(181,180,0,0.15)]">
       {/* Category + result */}
       <div className="flex items-center justify-between">
-        <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+        <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
           {product.category}
         </span>
-        <span className="inline-flex items-center gap-1 rounded-full border border-[var(--color-hairline-strong)] bg-white px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-[var(--color-muted)]">
-          <Zap className="h-2.5 w-2.5 text-[var(--color-lime)]" strokeWidth={2.5} />
+        <span className="inline-flex items-center gap-1 rounded-full border border-white/[0.12] bg-black px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.16em] text-white/50">
+          <Zap className="h-2.5 w-2.5 text-[var(--color-gold)]" strokeWidth={2.5} />
           {product.typicalResult}
         </span>
       </div>
 
       {/* Aircraft name */}
-      <h3 className="mt-4 font-serif text-[20px] leading-tight text-[var(--color-ink)]">
+      <h3 className="mt-4 font-serif text-[20px] leading-tight text-white">
         {product.aircraft}
       </h3>
 
       {/* Description */}
-      <p className="mt-3 flex-1 text-[12px] leading-[1.75] text-[var(--color-muted)] line-clamp-4">
+      <p className="mt-3 flex-1 text-[12px] leading-[1.75] text-white/50 line-clamp-4">
         {product.description}
       </p>
 
       {/* Footer */}
-      <div className="mt-5 flex items-center justify-between border-t border-[var(--color-hairline)] pt-4">
-        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--color-subtle)]">
+      <div className="mt-5 flex items-center justify-between border-t border-white/[0.07] pt-4">
+        <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-white/30">
           {product.weight}
         </span>
         <Link
           href="/contact"
-          className="inline-flex items-center gap-1 text-[11px] font-medium text-[var(--color-ink)] transition-colors hover:text-[var(--color-lime)]"
+          className="inline-flex items-center gap-1 text-[11px] font-medium text-white transition-colors hover:text-[var(--color-gold)]"
         >
           Enquire
           <ArrowUpRight className="h-3 w-3" strokeWidth={2} />
@@ -436,7 +436,7 @@ function RecordStat({
 }) {
   return (
     <div>
-      <div className="font-serif text-[28px] leading-none text-[var(--color-lime)]">
+      <div className="font-serif text-[28px] leading-none text-[var(--color-gold)]">
         {value}
       </div>
       <div className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/50">

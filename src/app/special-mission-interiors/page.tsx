@@ -97,21 +97,21 @@ export default function SpecialMissionInteriorsPage() {
           {/* Eyebrow */}
           <div className="mb-10 flex justify-center">
             <span className="chapter-rule">
-              <span className="text-[var(--color-lime)]">Special Mission Interiors</span>
-              <span className="text-[var(--color-muted)]">ADMI Platform</span>
+              <span className="text-[var(--color-gold)]">Special Mission Interiors</span>
+              <span className="text-white/50">ADMI Platform</span>
             </span>
           </div>
 
           {/* Headline */}
           <div className="mx-auto max-w-5xl text-center">
-            <h1 className="display-serif text-[var(--color-ink)]">
+            <h1 className="display-serif text-white">
               Built for
               <br />
-              <em className="display-serif-italic" style={{ color: "var(--color-lime)" }}>
+              <em className="display-serif-italic" style={{ color: "var(--color-gold)" }}>
                 the mission.
               </em>
             </h1>
-            <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.8] text-[var(--color-muted)]">
+            <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.8] text-white/50">
               The ADMI — All Day Mission Interior — is Luminary&rsquo;s purpose-built
               platform for mission-specific aircraft interiors. Durable, lightweight,
               and modular by design; engineered to form around your equipment and
@@ -123,21 +123,21 @@ export default function SpecialMissionInteriorsPage() {
           <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-gold-soft)]"
             >
               Discuss Your Mission
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
             </Link>
             <Link
               href="/vip-interiors"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-hairline-strong)] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:border-[var(--color-lime)] hover:text-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-transparent px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
             >
               VIP Interiors
             </Link>
           </div>
 
           {/* KPI band */}
-          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-[var(--color-hairline)] sm:grid-cols-4">
+          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-[var(--color-hairline)] sm:grid-cols-4">
             <HeroStat label="Platform" value="ADMI™" />
             <HeroStat label="Weight vs VIP" value="Reduced" />
             <HeroStat label="Access" value="Full Rapid" />
@@ -147,32 +147,32 @@ export default function SpecialMissionInteriorsPage() {
       </section>
 
       {/* ── ADMI INTRO ── 2-column */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-white py-24">
+      <section className="relative border-t border-white/[0.07] bg-black py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-12 md:grid-cols-12 lg:gap-16">
             {/* Left — description */}
             <div className="md:col-span-6">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                 I · The ADMI Platform
               </span>
-              <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
+              <h2 className="display-serif-md mt-5 text-white">
                 All Day Mission
                 <br />
-                <em className="display-serif-italic text-[var(--color-muted)]">Interior.</em>
+                <em className="display-serif-italic text-white/50">Interior.</em>
               </h2>
-              <p className="mt-6 text-[15px] leading-[1.85] text-[var(--color-muted)]">
+              <p className="mt-6 text-[15px] leading-[1.85] text-white/50">
                 The ADMI is Luminary&rsquo;s proprietary mission interior platform —
                 engineered from first principles around the demands of sustained
                 operational use rather than adapted from a VIP design intent.
               </p>
-              <p className="mt-4 text-[15px] leading-[1.85] text-[var(--color-muted)]">
+              <p className="mt-4 text-[15px] leading-[1.85] text-white/50">
                 Where VIP interiors prioritise aesthetics and passenger comfort,
                 ADMI prioritises weight reduction, modular reconfiguration, equipment
                 integration, and rapid access behind every interior surface. The result
                 is an interior that weighs less, adapts faster, and costs less to
                 maintain through its operational life.
               </p>
-              <p className="mt-4 text-[15px] leading-[1.85] text-[var(--color-muted)]">
+              <p className="mt-4 text-[15px] leading-[1.85] text-white/50">
                 ADMI builds are available as green aircraft completions or as
                 retrofit projects on existing platforms — with full design support,
                 Part 21 certified manufacturing, and installation services provided
@@ -180,7 +180,7 @@ export default function SpecialMissionInteriorsPage() {
               </p>
               <Link
                 href="/contact"
-                className="group mt-8 inline-flex items-center gap-2 text-[13px] font-medium text-[var(--color-ink)] transition-colors hover:text-[var(--color-lime)]"
+                className="group mt-8 inline-flex items-center gap-2 text-[13px] font-medium text-white transition-colors hover:text-[var(--color-gold)]"
               >
                 Request an ADMI briefing
                 <ArrowUpRight
@@ -192,7 +192,7 @@ export default function SpecialMissionInteriorsPage() {
 
             {/* Right — hallmarks */}
             <div className="md:col-span-6">
-              <div className="grid gap-px overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-[var(--color-hairline)]">
+              <div className="grid gap-px overflow-hidden rounded-2xl border border-white/[0.07] bg-[var(--color-hairline)]">
                 <Hallmark
                   icon={Zap}
                   title="Lightweight"
@@ -220,22 +220,22 @@ export default function SpecialMissionInteriorsPage() {
       </section>
 
       {/* ── MISSION TYPES ── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24">
+      <section className="relative border-t border-white/[0.07] bg-[#0d0d0d] py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="mb-16 flex flex-col gap-6 md:flex-row md:items-end md:justify-between">
             <div className="max-w-2xl">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                 II · Mission Types
               </span>
-              <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
+              <h2 className="display-serif-md mt-5 text-white">
                 Interiors for every
                 <br />
-                <em className="display-serif-italic text-[var(--color-muted)]">
+                <em className="display-serif-italic text-white/50">
                   operational role.
                 </em>
               </h2>
             </div>
-            <p className="max-w-sm text-[14px] leading-relaxed text-[var(--color-muted)] md:text-right">
+            <p className="max-w-sm text-[14px] leading-relaxed text-white/50 md:text-right">
               Each mission type demands a different interior configuration.
               ADMI&rsquo;s modularity makes it the platform of choice across roles.
             </p>
@@ -254,27 +254,27 @@ export default function SpecialMissionInteriorsPage() {
       </section>
 
       {/* ── SERVICES ── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-white py-24">
+      <section className="relative border-t border-white/[0.07] bg-black py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-12 md:grid-cols-12 lg:gap-16">
             {/* Header column */}
             <div className="md:col-span-5">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                 III · Services
               </span>
-              <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
+              <h2 className="display-serif-md mt-5 text-white">
                 Everything your
                 <br />
-                <em className="display-serif-italic text-[var(--color-muted)]">
+                <em className="display-serif-italic text-white/50">
                   mission needs.
                 </em>
               </h2>
-              <p className="mt-6 text-[15px] leading-[1.85] text-[var(--color-muted)]">
+              <p className="mt-6 text-[15px] leading-[1.85] text-white/50">
                 Luminary provides a complete special mission interior service —
                 from initial design consultation through certified manufacture,
                 installation, and in-service support.
               </p>
-              <div className="mt-8 grid grid-cols-2 gap-4 border-t border-[var(--color-hairline)] pt-8">
+              <div className="mt-8 grid grid-cols-2 gap-4 border-t border-white/[0.07] pt-8">
                 <ServiceStat value="Part 21" label="Certified mfr" />
                 <ServiceStat value="20+" label="Years expertise" />
                 <ServiceStat value="ADMI™" label="Proprietary platform" />
@@ -300,16 +300,16 @@ export default function SpecialMissionInteriorsPage() {
         <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
           <div className="mx-auto max-w-3xl text-center">
             {/* Eyebrow */}
-            <span className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
-              <span className="h-px w-8 bg-[var(--color-lime)]/50" />
+            <span className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
+              <span className="h-px w-8 bg-[var(--color-gold)]/50" />
               ADMI · Special Mission Interiors
-              <span className="h-px w-8 bg-[var(--color-lime)]/50" />
+              <span className="h-px w-8 bg-[var(--color-gold)]/50" />
             </span>
 
             <h2 className="display-serif-md mt-8 text-white">
               Discuss your mission
               <br />
-              <em className="display-serif-italic text-[var(--color-lime)]">requirements.</em>
+              <em className="display-serif-italic text-[var(--color-gold)]">requirements.</em>
             </h2>
 
             <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.85] text-white/70">
@@ -331,7 +331,7 @@ export default function SpecialMissionInteriorsPage() {
               ].map((item) => (
                 <div key={item} className="flex items-center gap-2">
                   <CheckCircle2
-                    className="h-3.5 w-3.5 shrink-0 text-[var(--color-lime)]"
+                    className="h-3.5 w-3.5 shrink-0 text-[var(--color-gold)]"
                     strokeWidth={2}
                   />
                   <span className="text-[13px] text-white/70">{item}</span>
@@ -343,14 +343,14 @@ export default function SpecialMissionInteriorsPage() {
             <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/contact"
-                className="inline-flex items-center gap-2 rounded-full bg-[var(--color-lime)] px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:bg-white"
+                className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-black"
               >
                 Discuss Your Mission
                 <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
               </Link>
               <Link
                 href="/cabin-comfort-systems"
-                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-transparent px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:border-white/50 hover:bg-white/5"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-transparent px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:border-white/50 hover:bg-black/5"
               >
                 Cabin Comfort Systems
               </Link>
@@ -366,11 +366,11 @@ export default function SpecialMissionInteriorsPage() {
 
 function HeroStat({ label, value }: { label: string; value: string }) {
   return (
-    <div className="flex flex-col items-center gap-2 bg-[var(--color-ivory)] px-5 py-7 text-center">
-      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+    <div className="flex flex-col items-center gap-2 bg-[#0d0d0d] px-5 py-7 text-center">
+      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
         {label}
       </span>
-      <span className="font-serif text-[22px] leading-none text-[var(--color-ink)]">
+      <span className="font-serif text-[22px] leading-none text-white">
         {value}
       </span>
     </div>
@@ -387,15 +387,15 @@ function Hallmark({
   description: string;
 }) {
   return (
-    <div className="flex gap-5 bg-[var(--color-ivory)] px-7 py-7">
-      <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-lime-bg)] text-[var(--color-lime)]">
+    <div className="flex gap-5 bg-[#0d0d0d] px-7 py-7">
+      <span className="mt-0.5 inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold-bg)] text-[var(--color-gold)]">
         <Icon className="h-4 w-4" strokeWidth={1.75} />
       </span>
       <div>
-        <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink)]">
+        <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-white">
           {title}
         </div>
-        <p className="mt-2 text-[13px] leading-[1.75] text-[var(--color-muted)]">
+        <p className="mt-2 text-[13px] leading-[1.75] text-white/50">
           {description}
         </p>
       </div>
@@ -414,23 +414,23 @@ function MissionCard({
   return (
     <div
       className={cn(
-        "group relative flex flex-col overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white p-7 transition-all hover:border-[var(--color-lime)] hover:shadow-[0_24px_50px_-20px_rgba(181,180,0,0.15)]",
+        "group relative flex flex-col overflow-hidden rounded-2xl border border-white/[0.07] bg-black p-7 transition-all hover:border-[var(--color-gold)] hover:shadow-[0_24px_50px_-20px_rgba(181,180,0,0.15)]",
         isLast && "sm:col-span-2 lg:col-span-1"
       )}
     >
-      <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+      <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
         {mission.abbr}
       </span>
-      <h3 className="mt-3 font-serif text-[22px] leading-tight text-[var(--color-ink)]">
+      <h3 className="mt-3 font-serif text-[22px] leading-tight text-white">
         {mission.title}
       </h3>
-      <p className="mt-3 flex-1 text-[13px] leading-[1.75] text-[var(--color-muted)]">
+      <p className="mt-3 flex-1 text-[13px] leading-[1.75] text-white/50">
         {mission.description}
       </p>
-      <div className="mt-5 border-t border-[var(--color-hairline)] pt-4">
+      <div className="mt-5 border-t border-white/[0.07] pt-4">
         <Link
           href="/contact"
-          className="inline-flex items-center gap-1.5 text-[12px] font-medium text-[var(--color-ink)] transition-colors hover:text-[var(--color-lime)]"
+          className="inline-flex items-center gap-1.5 text-[12px] font-medium text-white transition-colors hover:text-[var(--color-gold)]"
         >
           Discuss this mission type
           <ArrowUpRight className="h-3 w-3" strokeWidth={2} />
@@ -447,14 +447,14 @@ function ServiceRow({
 }) {
   return (
     <div className="group flex items-start gap-5 py-6">
-      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-lime)]/10 text-[var(--color-lime)]">
+      <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-[var(--color-gold)]/10 text-[var(--color-gold)]">
         <CheckCircle2 className="h-3 w-3" strokeWidth={2} />
       </span>
       <div className="flex-1">
-        <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink)]">
+        <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-white">
           {service.label}
         </div>
-        <p className="mt-1.5 text-[13px] leading-[1.7] text-[var(--color-muted)]">
+        <p className="mt-1.5 text-[13px] leading-[1.7] text-white/50">
           {service.desc}
         </p>
       </div>
@@ -465,10 +465,10 @@ function ServiceRow({
 function ServiceStat({ value, label }: { value: string; label: string }) {
   return (
     <div>
-      <div className="font-serif text-[28px] leading-none text-[var(--color-ink)]">
+      <div className="font-serif text-[28px] leading-none text-white">
         {value}
       </div>
-      <div className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--color-subtle)]">
+      <div className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/30">
         {label}
       </div>
     </div>

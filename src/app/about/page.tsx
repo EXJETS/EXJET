@@ -33,8 +33,8 @@ export default function AboutPage() {
           {/* Eyebrow */}
           <div className="mb-10 flex justify-center">
             <span className="chapter-rule">
-              <span className="text-[var(--color-lime)]">About Luminary</span>
-              <span className="text-[var(--color-muted)]">
+              <span className="text-[var(--color-gold)]">About Luminary</span>
+              <span className="text-white/50">
                 Experienced · Reliable · Flexible
               </span>
             </span>
@@ -42,13 +42,13 @@ export default function AboutPage() {
 
           {/* Headline */}
           <div className="mx-auto max-w-5xl text-center">
-            <h1 className="display-serif text-[var(--color-ink)]">
+            <h1 className="display-serif text-white">
               Built on{" "}
-              <em className="display-serif-italic text-[var(--color-lime)]">
+              <em className="display-serif-italic text-[var(--color-gold)]">
                 expertise.
               </em>
             </h1>
-            <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.75] text-[var(--color-muted)]">
+            <p className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.75] text-white/50">
               Luminary Air Group is a Part 21 aircraft interior manufacturer
               with more than two decades of experience designing, building,
               and installing aircraft interiors. Our team combines engineering
@@ -62,7 +62,7 @@ export default function AboutPage() {
             {["Experienced", "Reliable", "Flexible"].map((word) => (
               <span
                 key={word}
-                className="inline-block rounded-full border border-[var(--color-lime)]/40 bg-[var(--color-lime-bg)] px-5 py-2 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]"
+                className="inline-block rounded-full border border-[var(--color-gold)]/40 bg-[var(--color-gold-bg)] px-5 py-2 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]"
               >
                 {word}
               </span>
@@ -72,45 +72,45 @@ export default function AboutPage() {
       </section>
 
       {/* ── COMPANY STORY ─────────────────────────────────────────────── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-white py-24">
+      <section className="relative border-t border-white/[0.07] bg-black py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-12 md:grid-cols-12">
             {/* Left — large serif display */}
             <div className="md:col-span-5">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                 I · The Company
               </span>
-              <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
+              <h2 className="display-serif-md mt-5 text-white">
                 20 years of
                 <br />
-                <em className="display-serif-italic text-[var(--color-muted)]">
+                <em className="display-serif-italic text-white/50">
                   aircraft interiors.
                 </em>
               </h2>
-              <div className="mt-8 flex items-center gap-4 border-t border-[var(--color-hairline)] pt-8">
+              <div className="mt-8 flex items-center gap-4 border-t border-white/[0.07] pt-8">
                 <div className="text-center">
-                  <div className="font-serif text-[40px] leading-none text-[var(--color-lime)]">
+                  <div className="font-serif text-[40px] leading-none text-[var(--color-gold)]">
                     20+
                   </div>
-                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-muted)]">
+                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-white/50">
                     Years
                   </div>
                 </div>
                 <div className="h-10 w-px bg-[var(--color-hairline)]" />
                 <div className="text-center">
-                  <div className="font-serif text-[40px] leading-none text-[var(--color-lime)]">
+                  <div className="font-serif text-[40px] leading-none text-[var(--color-gold)]">
                     P21
                   </div>
-                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-muted)]">
+                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-white/50">
                     Manufacturer
                   </div>
                 </div>
                 <div className="h-10 w-px bg-[var(--color-hairline)]" />
                 <div className="text-center">
-                  <div className="font-serif text-[40px] leading-none text-[var(--color-lime)]">
+                  <div className="font-serif text-[40px] leading-none text-[var(--color-gold)]">
                     WR
                   </div>
-                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-muted)]">
+                  <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-white/50">
                     World record
                   </div>
                 </div>
@@ -119,7 +119,7 @@ export default function AboutPage() {
 
             {/* Right — copy */}
             <div className="md:col-span-7">
-              <div className="space-y-5 text-[15px] leading-[1.85] text-[var(--color-muted)]">
+              <div className="space-y-5 text-[15px] leading-[1.85] text-white/50">
                 <p>
                   Luminary Air Group was founded on a simple conviction: that
                   aircraft interiors deserve the same level of engineering
@@ -152,21 +152,21 @@ export default function AboutPage() {
       </section>
 
       {/* ── DAVE LUMGAIR BIO ──────────────────────────────────────────── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24">
+      <section className="relative border-t border-white/[0.07] bg-[#0d0d0d] py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-12 md:grid-cols-12">
             {/* Aside / accent panel */}
             <div className="md:col-span-4">
-              <div className="sticky top-24 rounded-2xl border border-[var(--color-hairline)] bg-white p-8">
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+              <div className="sticky top-24 rounded-2xl border border-white/[0.07] bg-black p-8">
+                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                   Founder &amp; Owner
                 </span>
-                <h3 className="mt-4 font-serif text-[32px] leading-tight text-[var(--color-ink)]">
+                <h3 className="mt-4 font-serif text-[32px] leading-tight text-white">
                   Dave
                   <br />
                   Lumgair
                 </h3>
-                <div className="mt-6 space-y-3 border-t border-[var(--color-hairline)] pt-6">
+                <div className="mt-6 space-y-3 border-t border-white/[0.07] pt-6">
                   <BioFact label="Flight hours" value="11,000+" />
                   <BioFact label="Role" value="Pilot & Engineer" />
                   <BioFact label="Certification" value="Part 21 Mfr" />
@@ -177,18 +177,18 @@ export default function AboutPage() {
 
             {/* Main bio copy */}
             <div className="md:col-span-8">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                 II · Leadership
               </span>
-              <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
+              <h2 className="display-serif-md mt-5 text-white">
                 The pilot&rsquo;s perspective meets
                 <br />
-                <em className="display-serif-italic text-[var(--color-muted)]">
+                <em className="display-serif-italic text-white/50">
                   engineering precision.
                 </em>
               </h2>
 
-              <div className="mt-8 space-y-5 text-[15px] leading-[1.85] text-[var(--color-muted)]">
+              <div className="mt-8 space-y-5 text-[15px] leading-[1.85] text-white/50">
                 <p>
                   Dave Lumgair founded Luminary Air Group having logged more
                   than 11,000 flight hours across a wide range of aircraft
@@ -217,13 +217,13 @@ export default function AboutPage() {
                 </p>
               </div>
 
-              <blockquote className="mt-8 border-l-2 border-[var(--color-lime)] pl-6">
-                <p className="font-serif text-[20px] italic leading-relaxed text-[var(--color-ink)]">
+              <blockquote className="mt-8 border-l-2 border-[var(--color-gold)] pl-6">
+                <p className="font-serif text-[20px] italic leading-relaxed text-white">
                   &ldquo;When you&rsquo;ve flown the aircraft yourself, you
                   know exactly what the crew and passengers need from the
                   interior — and nothing less is acceptable.&rdquo;
                 </p>
-                <cite className="mt-3 block font-mono text-[11px] not-italic uppercase tracking-[0.22em] text-[var(--color-muted)]">
+                <cite className="mt-3 block font-mono text-[11px] not-italic uppercase tracking-[0.22em] text-white/50">
                   Dave Lumgair, Founder
                 </cite>
               </blockquote>
@@ -233,16 +233,16 @@ export default function AboutPage() {
       </section>
 
       {/* ── VALUES ────────────────────────────────────────────────────── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-white py-24">
+      <section className="relative border-t border-white/[0.07] bg-black py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="mx-auto max-w-2xl text-center">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
               III · Values
             </span>
-            <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
+            <h2 className="display-serif-md mt-5 text-white">
               What we stand for,
               <br />
-              <em className="display-serif-italic text-[var(--color-muted)]">
+              <em className="display-serif-italic text-white/50">
                 on every build.
               </em>
             </h2>
@@ -279,13 +279,13 @@ export default function AboutPage() {
         <div className="relative mx-auto max-w-7xl px-5 py-24 sm:px-8 lg:py-32">
           <div className="grid gap-12 md:grid-cols-12">
             <div className="md:col-span-6">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                 IV · Capabilities
               </span>
               <h2 className="display-serif-md mt-5 text-white">
                 Full lifecycle.
                 <br />
-                <em className="display-serif-italic text-[var(--color-lime)]">
+                <em className="display-serif-italic text-[var(--color-gold)]">
                   One team.
                 </em>
               </h2>
@@ -310,10 +310,10 @@ export default function AboutPage() {
                 ].map((cap) => (
                   <div
                     key={cap}
-                    className="flex items-center gap-3 rounded-lg border border-white/10 bg-white/5 px-5 py-3.5"
+                    className="flex items-center gap-3 rounded-lg border border-white/10 bg-black/5 px-5 py-3.5"
                   >
                     <CheckCircle2
-                      className="h-4 w-4 shrink-0 text-[var(--color-lime)]"
+                      className="h-4 w-4 shrink-0 text-[var(--color-gold)]"
                       strokeWidth={1.75}
                     />
                     <span className="text-[14px] text-white/80">{cap}</span>
@@ -324,13 +324,13 @@ export default function AboutPage() {
           </div>
 
           {/* Part 21 badge */}
-          <div className="mt-16 flex flex-col items-center gap-5 rounded-2xl border border-[var(--color-lime)]/30 bg-[var(--color-lime)]/5 px-8 py-10 text-center">
+          <div className="mt-16 flex flex-col items-center gap-5 rounded-2xl border border-[var(--color-gold)]/30 bg-[var(--color-gold)]/5 px-8 py-10 text-center">
             <ShieldCheck
-              className="h-10 w-10 text-[var(--color-lime)]"
+              className="h-10 w-10 text-[var(--color-gold)]"
               strokeWidth={1.25}
             />
             <div>
-              <div className="font-serif text-[clamp(1.5rem,4vw,3rem)] leading-none text-[var(--color-lime)]">
+              <div className="font-serif text-[clamp(1.5rem,4vw,3rem)] leading-none text-[var(--color-gold)]">
                 Part 21 Manufacturer
               </div>
               <p className="mx-auto mt-4 max-w-lg text-[14px] leading-[1.75] text-white/60">
@@ -345,21 +345,21 @@ export default function AboutPage() {
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────────────── */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-white py-24">
+      <section className="relative border-t border-white/[0.07] bg-black py-24">
         <div className="mx-auto max-w-4xl px-5 text-center sm:px-8">
-          <span className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
-            <span className="h-px w-8 bg-[var(--color-lime)]/60" />
+          <span className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
+            <span className="h-px w-8 bg-[var(--color-gold)]/60" />
             Work with us
-            <span className="h-px w-8 bg-[var(--color-lime)]/60" />
+            <span className="h-px w-8 bg-[var(--color-gold)]/60" />
           </span>
-          <h2 className="display-serif-md mt-8 text-[var(--color-ink)]">
+          <h2 className="display-serif-md mt-8 text-white">
             Let&rsquo;s discuss
             <br />
-            <em className="display-serif-italic text-[var(--color-muted)]">
+            <em className="display-serif-italic text-white/50">
               your next project.
             </em>
           </h2>
-          <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-[var(--color-muted)]">
+          <p className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.8] text-white/50">
             Whether you&rsquo;re planning a full green completion, an acoustic
             upgrade, or a special mission interior — tell us about your
             aircraft and your objectives.
@@ -367,14 +367,14 @@ export default function AboutPage() {
           <div className="mt-10 flex flex-wrap items-center justify-center gap-3">
             <Link
               href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:bg-[var(--color-gold-soft)]"
             >
               Get in touch
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
             </Link>
             <Link
               href="/performance-history"
-              className="inline-flex items-center gap-2 rounded-full border border-[var(--color-hairline-strong)] bg-transparent px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:border-[var(--color-lime)] hover:text-[var(--color-lime)]"
+              className="inline-flex items-center gap-2 rounded-full border border-white/[0.12] bg-transparent px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
             >
               View performance history
             </Link>
@@ -390,10 +390,10 @@ export default function AboutPage() {
 function BioFact({ label, value }: { label: string; value: string }) {
   return (
     <div className="flex items-center justify-between">
-      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-subtle)]">
+      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/30">
         {label}
       </span>
-      <span className="font-mono text-[11px] font-medium text-[var(--color-ink)]">
+      <span className="font-mono text-[11px] font-medium text-white">
         {value}
       </span>
     </div>
@@ -410,14 +410,14 @@ function ValuePillar({
   description: string;
 }) {
   return (
-    <div className="flex flex-col rounded-2xl border border-[var(--color-hairline)] bg-[var(--color-ivory)] p-8">
-      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-lime)]">
+    <div className="flex flex-col rounded-2xl border border-white/[0.07] bg-[#0d0d0d] p-8">
+      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
         {number}
       </span>
-      <h3 className="mt-4 font-serif text-[26px] leading-tight text-[var(--color-ink)]">
+      <h3 className="mt-4 font-serif text-[26px] leading-tight text-white">
         {title}
       </h3>
-      <p className="mt-3 flex-1 text-[13px] leading-[1.75] text-[var(--color-muted)]">
+      <p className="mt-3 flex-1 text-[13px] leading-[1.75] text-white/50">
         {description}
       </p>
     </div>
