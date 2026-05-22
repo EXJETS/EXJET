@@ -88,19 +88,19 @@ const certs = [
 ];
 
 const aircraft = [
-  { label: "Boeing BBJ", sub: "737 / 777 / 787" },
-  { label: "Gulfstream", sub: "G-IV / G-V / G650" },
-  { label: "Bombardier", sub: "Challenger / Global" },
-  { label: "Cessna", sub: "Citation Series" },
-  { label: "Dassault", sub: "Falcon Series" },
-  { label: "Beechcraft", sub: "King Air Series" },
-  { label: "Embraer", sub: "Legacy / Lineage" },
-  { label: "Sikorsky", sub: "S-76 / S-92" },
+  { label: "Boeing BBJ", sub: "Wide Body" },
+  { label: "Gulfstream G550", sub: "Large Cabin" },
+  { label: "Challenger 300", sub: "Large Cabin" },
+  { label: "Challenger 604", sub: "Large Cabin" },
+  { label: "Citation XLS+", sub: "Midsize Jet" },
+  { label: "Phenom 300", sub: "Light Jet" },
+  { label: "King Air 350", sub: "Turboprop" },
+  { label: "Pilatus PC-12", sub: "Turboprop" },
 ];
 
 const clients = [
-  "Boeing", "Gulfstream", "Bombardier", "Cessna", "Dassault", "Embraer",
-  "Beechcraft", "Hawker", "Piper", "Sikorsky",
+  "Boeing", "Gulfstream", "Bombardier", "Cessna", "Embraer",
+  "Beechcraft", "Pilatus", "Hawker", "Piper", "Bell",
 ];
 
 const testimonials = [
