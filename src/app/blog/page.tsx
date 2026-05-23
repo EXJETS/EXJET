@@ -1,9 +1,8 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef, useState } from "react";
+import { useState } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Calendar, BookOpen, Mail } from "lucide-react";
 import blogPosts from "@/data/luminary-blog.json";
 
 const fadeUp = {
@@ -21,14 +20,12 @@ function Section({
   children: React.ReactNode;
   className?: string;
 }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
     <motion.div
-      ref={ref}
-      variants={stagger}
       initial="hidden"
-      animate={inView ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, margin: "-60px" }}
+      variants={stagger}
       className={className}
     >
       {children}
@@ -47,8 +44,6 @@ function formatDate(isoString: string): string {
 }
 
 export default function BlogPage() {
-  const [email, setEmail] = useState("");
-
   const sortedPosts = [...blogPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
   const featured = sortedPosts[0] as Post | undefined;
   const remaining = sortedPosts.slice(1) as Post[];
@@ -56,243 +51,159 @@ export default function BlogPage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-white">
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(201,168,76,0.06),transparent_60%)]"
-          aria-hidden
+      <section className="relative overflow-hidden" style={{ minHeight: "52vh" }}>
+        <img
+          src="https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?w=1800&q=85&fit=crop"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
         />
-        <Section className="relative mx-auto max-w-7xl px-5 pt-28 pb-20 sm:px-8 lg:pt-40 lg:pb-28">
-          <motion.div variants={fadeUp} className="mb-10 flex justify-center">
-            <span className="chapter-rule">
-              Technical Resources · Luminary Knowledge Base
-            </span>
-          </motion.div>
-
-          <div className="mx-auto max-w-4xl text-center">
-            <motion.h1 variants={fadeUp} className="display-serif text-[#111111]">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
+        <div className="relative mx-auto max-w-7xl px-5 pt-40 pb-20 sm:px-8 lg:pt-52 lg:pb-28">
+          <Section>
+            <motion.div variants={fadeUp} className="mb-4 flex items-center gap-4">
+              <span className="h-px w-8 bg-[var(--color-gold)]" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
+                Technical Resources · Luminary Knowledge Base
+              </span>
+            </motion.div>
+            <motion.h1 variants={fadeUp} className="display-serif text-white">
               Aviation Interior
               <br />
-              <em className="display-serif-italic text-[#999999]">
-                Engineering Insights
-              </em>
+              <em className="display-serif-italic text-white/60">Engineering Insights</em>
             </motion.h1>
             <motion.p
               variants={fadeUp}
-              className="mx-auto mt-8 max-w-2xl text-[15px] leading-[1.8] text-[#555555]"
+              className="mt-6 max-w-2xl text-[15px] leading-[1.8] text-white/70"
             >
               Technical articles from Luminary&rsquo;s engineering and certification teams
               — acoustic science, mission interior design, and regulatory compliance.
             </motion.p>
-          </div>
-
-          <motion.div
-            variants={fadeUp}
-            className="mt-10 flex flex-wrap items-center justify-center gap-2"
-          >
-            {Array.from(new Set(blogPosts.map((p) => p.category))).map((cat) => (
-              <span
-                key={cat}
-                className="inline-block rounded-full border border-[var(--color-gold)]/30 bg-[rgba(201,168,76,0.07)] px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]"
-              >
-                {cat}
-              </span>
-            ))}
-          </motion.div>
-        </Section>
+            <motion.div
+              variants={fadeUp}
+              className="mt-8 flex flex-wrap items-center gap-2"
+            >
+              {Array.from(new Set(blogPosts.map((p) => p.category))).map((cat) => (
+                <span
+                  key={cat}
+                  className="inline-block border border-white/20 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-white/70"
+                >
+                  {cat}
+                </span>
+              ))}
+            </motion.div>
+          </Section>
+        </div>
       </section>
 
       {/* ── FEATURED ARTICLE ── */}
-      {featured && (
-        <section className="relative border-t border-black/[0.06] bg-white py-16">
-          <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-            <motion.div variants={fadeUp} className="mb-8">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-                I · Featured Article
-              </span>
+      <section className="bg-white border-t border-black/[0.06]">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
+          <Section>
+            <motion.div variants={fadeUp} className="mb-10">
+              <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">Featured Article</span>
             </motion.div>
-
-            <motion.div variants={fadeUp}>
-              <Link
-                href={`/blog/${featured.id}`}
-                className="group relative flex flex-col overflow-hidden rounded-2xl border border-black/[0.08] bg-white p-8 transition-all hover:border-[var(--color-gold)] hover:shadow-[0_16px_40px_-8px_rgba(201,168,76,0.10)] lg:flex-row lg:gap-10 lg:p-10"
-              >
-                {/* Gold left border accent */}
-                <div className="absolute left-0 top-0 h-full w-1 rounded-l-2xl bg-[var(--color-gold)]" />
-
-                <div className="flex flex-1 flex-col pl-2">
-                  <div className="flex items-center gap-4">
-                    <span className="inline-block rounded-full border border-[var(--color-gold)]/30 bg-[rgba(201,168,76,0.07)] px-3 py-1 font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-                      {featured.category}
-                    </span>
-                    <span className="flex items-center gap-1.5 font-mono text-[10px] uppercase tracking-[0.18em] text-[#888888]">
-                      <Calendar className="h-3 w-3" strokeWidth={1.5} />
-                      {formatDate(featured.date)}
-                    </span>
+            {featured && (
+              <Link href={`/blog/${featured.id}`} className="group block border-t border-black/[0.07] py-10">
+                <div className="flex items-start justify-between gap-8">
+                  <div className="flex-1">
+                    <div className="mb-4 flex items-center gap-6">
+                      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">{featured.category}</span>
+                      <span className="font-mono text-[10px] text-[#aaaaaa]">{formatDate(featured.date)}</span>
+                    </div>
+                    <h2 className="font-serif leading-tight text-[#111111]" style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}>{featured.title}</h2>
+                    <p className="mt-4 max-w-2xl text-[14px] leading-[1.85] text-[#555555]">{featured.excerpt}</p>
                   </div>
-
-                  <h2 className="mt-5 font-serif text-[clamp(1.5rem,3vw,2.5rem)] leading-tight text-[#111111]">
-                    {featured.title}
-                  </h2>
-                  <p className="mt-4 max-w-2xl flex-1 text-[14px] leading-[1.85] text-[#555555]">
-                    {featured.excerpt}
-                  </p>
-
-                  <div className="mt-8 flex items-center justify-between border-t border-black/[0.06] pt-5">
-                    {(featured as Post & { author?: string }).author && (
-                      <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#888888]">
-                        {(featured as Post & { author?: string }).author}
-                      </span>
-                    )}
-                    <span className="inline-flex items-center gap-1.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-gold)] transition-transform group-hover:translate-x-0.5">
-                      Read Article
-                      <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
-                    </span>
-                  </div>
+                  <span className="shrink-0 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-gold)] group-hover:underline hidden sm:block">Read →</span>
                 </div>
               </Link>
-            </motion.div>
+            )}
+            <div className="border-t border-black/[0.07]" />
           </Section>
-        </section>
-      )}
+        </div>
+      </section>
 
-      {/* ── ARTICLE GRID ── */}
+      {/* ── ALL ARTICLES ── */}
       {remaining.length > 0 && (
-        <section className="relative border-t border-black/[0.06] bg-[#f8f8f6] py-16">
-          <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-            <motion.div variants={fadeUp} className="mb-10">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-                II · All Articles
-              </span>
-              <h2 className="display-serif-sm mt-3 text-[#111111]">
-                Technical{" "}
-                <em className="display-serif-italic text-[#555555]">reading.</em>
-              </h2>
-            </motion.div>
-
-            <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {remaining.map((post) => (
-                <motion.div key={post.id} variants={fadeUp}>
-                  <ArticleCard post={post} />
-                </motion.div>
-              ))}
-            </div>
-          </Section>
+        <section className="bg-[#f4f3f0]">
+          <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
+            <Section>
+              <motion.div variants={fadeUp} className="mb-10">
+                <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">All Articles</span>
+                <h2 className="display-serif-md mt-3 text-[#111111]">Technical reading.</h2>
+              </motion.div>
+              <motion.div variants={stagger} className="divide-y divide-black/[0.07]">
+                {remaining.map((post) => (
+                  <motion.div key={post.id} variants={fadeUp}>
+                    <Link href={`/blog/${post.id}`} className="group block py-8">
+                      <div className="grid gap-4 sm:grid-cols-[140px_1fr] sm:gap-10">
+                        <span className="font-mono text-[10px] text-[#aaaaaa]">{formatDate(post.date)}</span>
+                        <div>
+                          <span className="mb-2 block font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">{post.category}</span>
+                          <h3 className="font-serif leading-tight text-[#111111]" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.4rem)" }}>{post.title}</h3>
+                          <p className="mt-2 text-[13px] leading-[1.8] text-[#555555]">{post.excerpt}</p>
+                        </div>
+                      </div>
+                    </Link>
+                  </motion.div>
+                ))}
+                <div className="border-b border-black/[0.07]" />
+              </motion.div>
+            </Section>
+          </div>
         </section>
       )}
 
-      {/* ── NEWSLETTER ── */}
-      <section className="relative overflow-hidden border-t border-black/[0.06] bg-[#f8f8f6] py-24">
+      {/* ── DARK CTA ── */}
+      <section className="relative overflow-hidden bg-[#0f0f0f] py-24">
         <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.04),transparent_70%)]"
+          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.05),transparent_70%)]"
           aria-hidden
         />
-        <Section className="relative mx-auto max-w-2xl px-5 text-center sm:px-8">
-          <motion.div
-            variants={fadeUp}
-            className="mx-auto mb-4 flex justify-center"
-          >
-            <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-black/[0.08] bg-white">
-              <BookOpen className="h-5 w-5 text-[var(--color-gold)]" strokeWidth={1.5} />
-            </span>
-          </motion.div>
+        <Section className="relative mx-auto max-w-3xl px-5 text-center sm:px-8">
           <motion.span
             variants={fadeUp}
-            className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]"
+            className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]"
           >
-            III · Stay Current
+            <span className="h-px w-8 bg-[var(--color-gold)]/50" />
+            Luminary Air Group
+            <span className="h-px w-8 bg-[var(--color-gold)]/50" />
           </motion.span>
-          <motion.h2 variants={fadeUp} className="display-serif-md mt-5 text-[#111111]">
-            Stay Current on Regulatory &amp;
+
+          <motion.h2 variants={fadeUp} className="display-serif-md mt-8 text-white">
+            Want to discuss a
             <br />
-            <em className="display-serif-italic text-[#555555]">Technical Updates</em>
+            <em className="display-serif-italic text-[var(--color-gold)]">technical requirement?</em>
           </motion.h2>
+
           <motion.p
             variants={fadeUp}
-            className="mx-auto mt-6 max-w-lg text-[15px] leading-[1.8] text-[#555555]"
+            className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.85] text-white/70"
           >
-            Receive notifications when Luminary publishes new performance data, STC
-            approvals, or technical guidance. No marketing — engineering signal only.
+            Our engineering team is available to discuss your programme requirements,
+            acoustic testing needs, or certification questions.
           </motion.p>
 
-          <motion.form
+          <motion.div
             variants={fadeUp}
-            onSubmit={(e) => e.preventDefault()}
-            className="mt-10 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center sm:justify-center"
+            className="mt-10 flex flex-wrap items-center justify-center gap-3"
           >
-            <div className="relative flex-1 sm:max-w-xs">
-              <Mail className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-[#888888]" strokeWidth={1.5} />
-              <input
-                type="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="engineering@operator.aero"
-                required
-                aria-label="Email address"
-                className="w-full rounded-xl border border-black/[0.1] bg-white py-3 pl-10 pr-4 text-[14px] text-[#111111] placeholder:text-[#aaaaaa] focus:border-[var(--color-gold)] focus:outline-none transition-colors"
-              />
-            </div>
-            <button
-              type="submit"
-              className="inline-flex items-center justify-center gap-2 rounded-xl bg-[var(--color-gold)] px-6 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[#b8963e]"
+            <Link
+              href="/contact"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[#b8963e]"
             >
-              Subscribe
-            </button>
-          </motion.form>
-
-          <motion.p
-            variants={fadeUp}
-            className="mt-4 font-mono text-[10px] uppercase tracking-[0.18em] text-[#888888]"
-          >
-            No spam. Unsubscribe anytime.
-          </motion.p>
+              Contact Engineering
+            </Link>
+            <Link
+              href="/cabin-comfort-systems"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-transparent px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:border-white/50"
+            >
+              Cabin Comfort Systems
+            </Link>
+          </motion.div>
         </Section>
       </section>
+
     </>
-  );
-}
-
-/* ── Article Card Sub-component ── */
-
-function ArticleCard({ post }: { post: Post }) {
-  type PostWithAuthor = Post & { author?: string };
-  const p = post as PostWithAuthor;
-  return (
-    <Link
-      href={`/blog/${post.id}`}
-      className="group flex h-full flex-col rounded-2xl border border-black/[0.08] bg-white p-7 transition-all hover:border-[var(--color-gold)] hover:shadow-[0_12px_24px_-6px_rgba(201,168,76,0.10)]"
-    >
-      <div className="flex items-center justify-between gap-3">
-        <span className="inline-block rounded-full border border-[var(--color-gold)]/30 bg-[rgba(201,168,76,0.07)] px-3 py-1 font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-          {post.category}
-        </span>
-        <span className="flex shrink-0 items-center gap-1 font-mono text-[9px] uppercase tracking-[0.18em] text-[#888888]">
-          <Calendar className="h-2.5 w-2.5" strokeWidth={1.5} />
-          {formatDate(post.date)}
-        </span>
-      </div>
-
-      <h3 className="mt-5 line-clamp-2 font-serif text-[20px] leading-tight text-[#111111]">
-        {post.title}
-      </h3>
-      <p className="mt-3 line-clamp-2 flex-1 text-[13px] leading-[1.8] text-[#555555]">
-        {post.excerpt}
-      </p>
-
-      <div className="mt-6 flex items-center justify-between border-t border-black/[0.06] pt-4">
-        {p.author ? (
-          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#888888]">
-            {p.author}
-          </span>
-        ) : (
-          <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#888888]">
-            Luminary Engineering
-          </span>
-        )}
-        <span className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-gold)] transition-transform group-hover:translate-x-0.5">
-          Read
-          <ArrowRight className="h-3 w-3" strokeWidth={1.5} />
-        </span>
-      </div>
-    </Link>
   );
 }

@@ -1,33 +1,22 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
-import { ArrowRight, Mail } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
-const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } },
-};
+const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
-function Section({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <motion.div
-      ref={ref}
-      variants={stagger}
       initial="hidden"
-      animate={inView ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, margin: "-60px" }}
+      variants={stagger}
       className={className}
     >
       {children}
@@ -84,133 +73,98 @@ export default function NewsPage() {
   return (
     <>
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-white">
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(201,168,76,0.06),transparent_60%)]"
-          aria-hidden
+      <section className="relative overflow-hidden" style={{ minHeight: "52vh" }}>
+        <img
+          src="https://images.unsplash.com/photo-1585771724684-38269d6639fd?w=1800&q=85&fit=crop"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
         />
-        <Section className="relative mx-auto max-w-7xl px-5 pt-28 pb-24 sm:px-8 lg:pt-44 lg:pb-36">
-          <motion.div variants={fadeUp} className="mb-4 flex items-center gap-4">
-            <span className="h-px w-8 bg-[var(--color-gold)]" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
-              News &amp; Press
-            </span>
-          </motion.div>
-
-          <div className="max-w-4xl">
-            <motion.h1 variants={fadeUp} className="display-serif text-[#111111]">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
+        <div className="relative mx-auto max-w-7xl px-5 pb-12 pt-28 sm:px-8 lg:pb-16 lg:pt-36">
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-3xl">
+            <motion.div variants={fadeUp} className="mb-6 flex items-center gap-4">
+              <span className="h-px w-8 bg-[var(--color-gold)]" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
+                News &amp; Press
+              </span>
+            </motion.div>
+            <motion.h1 variants={fadeUp} className="display-serif text-white">
               Luminary Air Group
               <br />
-              <em className="display-serif-italic text-[var(--color-gold)]">News</em>
+              <em className="display-serif-italic text-white/40">News &amp; Announcements.</em>
             </motion.h1>
-            <motion.p
-              variants={fadeUp}
-              className="mt-8 max-w-2xl text-[15px] leading-[1.8] text-[#555555]"
-            >
+            <motion.p variants={fadeUp} className="mt-7 max-w-xl text-[15px] leading-[1.9] text-white/65">
               Company announcements, programme awards, regulatory milestones, and
               industry partnerships from Luminary Air Group.
             </motion.p>
-          </div>
-        </Section>
+          </motion.div>
+        </div>
       </section>
 
-      {/* ── NEWS GRID ── */}
-      <section className="relative border-t border-black/[0.06] bg-[#f8f8f6] py-24">
-        <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <motion.div variants={fadeUp} className="mb-12">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-              I · Press Releases &amp; Announcements
-            </span>
-          </motion.div>
-
-          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-            {news.map((item) => (
-              <motion.div key={item.title} variants={fadeUp}>
-                <Link
-                  href="/blog"
-                  className="group flex h-full flex-col rounded-2xl border border-black/[0.08] bg-white p-7 transition-all hover:border-[var(--color-gold)] hover:shadow-[0_12px_24px_-6px_rgba(201,168,76,0.10)]"
+      {/* ── NEWS ROWS ── */}
+      <section className="bg-white">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
+          <Section>
+            <motion.div variants={fadeUp} className="mb-10">
+              <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
+                Press Releases &amp; Announcements
+              </span>
+            </motion.div>
+            <motion.div variants={stagger} className="divide-y divide-black/[0.07]">
+              {news.map((item) => (
+                <motion.div
+                  key={item.title}
+                  variants={fadeUp}
+                  className="grid gap-4 py-8 sm:grid-cols-[120px_1fr] sm:gap-10"
                 >
-                  {/* Date */}
-                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
+                  <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#888888]">
                     {item.date}
                   </span>
-
-                  {/* Title */}
-                  <h2 className="mt-4 line-clamp-3 font-serif text-[20px] leading-tight text-[#111111]">
-                    {item.title}
-                  </h2>
-
-                  {/* Excerpt */}
-                  <p className="mt-3 flex-1 text-[13px] leading-[1.8] text-[#555555]">
-                    {item.excerpt}
-                  </p>
-
-                  {/* Footer */}
-                  <div className="mt-6 flex items-center justify-between border-t border-black/[0.06] pt-4">
-                    <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#888888]">
-                      Luminary Air Group
-                    </span>
-                    <span className="inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-gold)] transition-transform group-hover:translate-x-0.5">
-                      Read More
-                      <ArrowRight className="h-3 w-3" strokeWidth={1.5} />
-                    </span>
+                  <div>
+                    <h2
+                      className="font-serif leading-tight text-[#111111]"
+                      style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.4rem)" }}
+                    >
+                      {item.title}
+                    </h2>
+                    <p className="mt-3 text-[14px] leading-[1.85] text-[#555555]">{item.excerpt}</p>
                   </div>
-                </Link>
-              </motion.div>
-            ))}
-          </div>
-        </Section>
+                </motion.div>
+              ))}
+              <div className="border-b border-black/[0.07]" />
+            </motion.div>
+          </Section>
+        </div>
       </section>
 
-      {/* ── SUBSCRIBE CTA ── */}
-      <section className="relative overflow-hidden border-t border-black/[0.06] bg-white py-24">
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.04),transparent_70%)]"
-          aria-hidden
-        />
-        <Section className="relative mx-auto max-w-3xl px-5 text-center sm:px-8">
-          <motion.div variants={fadeUp} className="mb-4 flex items-center justify-center gap-4">
-            <span className="h-px w-8 bg-[var(--color-gold)]" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
-              II · Stay Informed
-            </span>
-            <span className="h-px w-8 bg-[var(--color-gold)]" />
-          </motion.div>
-
-          <motion.h2 variants={fadeUp} className="display-serif-md text-[#111111]">
-            Subscribe to
-            <br />
-            <em className="display-serif-italic text-[#555555]">programme updates.</em>
-          </motion.h2>
-
-          <motion.p
-            variants={fadeUp}
-            className="mx-auto mt-6 max-w-lg text-[15px] leading-[1.8] text-[#555555]"
-          >
-            Receive notifications when Luminary publishes new STC approvals, programme
-            awards, or technical announcements — no marketing, no noise.
-          </motion.p>
-
-          <motion.div
-            variants={fadeUp}
-            className="mt-10 flex flex-wrap items-center justify-center gap-3"
-          >
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[#b8963e]"
-            >
-              Subscribe to Updates
-              <Mail className="h-3.5 w-3.5" strokeWidth={1.5} />
-            </Link>
-            <Link
-              href="/blog"
-              className="inline-flex items-center gap-2 rounded-full border border-black/[0.12] bg-transparent px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#111111] transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
-            >
-              Technical Articles
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
-            </Link>
-          </motion.div>
-        </Section>
+      {/* ── DARK CTA ── */}
+      <section className="border-t border-white/[0.04] bg-[#0f0f0f]">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
+          <Section className="flex flex-col items-start">
+            <motion.h2 variants={fadeUp} className="display-serif-md text-white">
+              Stay informed on programme updates
+            </motion.h2>
+            <motion.p variants={fadeUp} className="mt-5 max-w-lg text-[15px] leading-[1.85] text-white/65">
+              Receive notifications when Luminary publishes new STC approvals, programme
+              awards, or technical announcements — no marketing, no noise.
+            </motion.p>
+            <motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-4">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-black transition-all hover:bg-[var(--color-gold-deep)]"
+              >
+                Contact Us <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+              </Link>
+              <Link
+                href="/blog"
+                className="inline-flex items-center gap-2 rounded-full border border-white/20 px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white/70 transition-all hover:border-white/50 hover:text-white"
+              >
+                Technical Articles
+              </Link>
+            </motion.div>
+          </Section>
+        </div>
       </section>
     </>
   );
