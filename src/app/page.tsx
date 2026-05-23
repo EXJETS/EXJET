@@ -1,671 +1,393 @@
+"use client";
+
 import Link from "next/link";
-import {
-  PlaneTakeoff,
-  ArrowRight,
-  ArrowUpRight,
-  Calendar,
-  Clock,
-  MapPin,
-  ShieldCheck,
-} from "lucide-react";
-import SearchBar from "@/components/search/search-bar";
-import { EmptyLegCard } from "@/components/booking/empty-leg-card";
-import { CardCarousel } from "@/components/ui/card-carousel";
-import popularRoutes from "@/data/popular-routes.json";
-import emptyLegs from "@/data/empty-legs.json";
-import news from "@/data/news.json";
-import sportsEvents from "@/data/sports-events.json";
-import faq from "@/data/faq.json";
-import { cn, formatCurrency } from "@/lib/utils";
+import { motion } from "framer-motion";
+import { ArrowRight, ChevronRight, Download } from "lucide-react";
+import caseStudies from "@/data/case-studies.json";
 
-export default function HomePage() {
-  const organizationJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "EXJET",
-    url: "https://exjet.com",
-    logo: "https://exjet.com/icon.svg",
-    contactPoint: {
-      "@type": "ContactPoint",
-      contactType: "Reservations",
-      availableLanguage: ["English"],
-      areaServed: "Worldwide",
-    },
-  };
+const fadeUp = {
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+};
+const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faq.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
-  };
-
-  const websiteJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "EXJET",
-    url: "https://exjet.com",
-    potentialAction: {
-      "@type": "SearchAction",
-      target: "https://exjet.com/search?from={from}&to={to}",
-      "query-input": "required name=from required name=to",
-    },
-  };
-
+function Reveal({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
-    <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteJsonLd) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
-      />
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-60px" }}
+      variants={stagger}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+}
 
-      {/* HERO — Editorial / Cinematic */}
-      <section className="relative overflow-hidden">
-        <div className="mesh-hero absolute inset-0" aria-hidden />
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,rgba(184,155,110,0.08),transparent_70%)]"
-          aria-hidden
+const services = [
+  {
+    label: "Cabin Comfort Systems",
+    headline: "Acoustic attenuation engineered to specification",
+    body: "Custom insulation blanket systems, airframe-specific acoustic engineering, and Part 21 certified data packages issued on every project.",
+    metric: "46.7 dB SIL",
+    href: "/cabin-comfort-systems",
+  },
+  {
+    label: "Special Mission Interiors",
+    headline: "ADMI™ platform for mission-critical operations",
+    body: "Certified ISR, Med-Evac, C2, and government interior systems designed for sustained crew effectiveness on extended missions.",
+    metric: "ADMI™",
+    href: "/special-mission-interiors",
+  },
+  {
+    label: "VIP Completions",
+    headline: "Acoustic-first completions. Measurable results.",
+    body: "Green aircraft and retrofit completions where acoustic performance is the primary engineering input — not an afterthought.",
+    metric: "Part 21",
+    href: "/vip-interiors",
+  },
+];
+
+const platforms = [
+  "Boeing BBJ", "Gulfstream G550", "Challenger 604",
+  "Challenger 300", "Citation XLS+", "Phenom 300", "King Air 350", "Pilatus PC-12",
+];
+
+export default function Home() {
+  return (
+    <main className="min-h-screen bg-white">
+
+      {/* ══════ HERO ══════ */}
+      <section className="relative flex min-h-screen flex-col justify-end overflow-hidden">
+        <img
+          src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=2400&q=85&fit=crop"
+          alt="Aircraft in flight"
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
         />
+        <div className="absolute inset-0 bg-gradient-to-t from-black via-black/55 to-black/20" />
+        <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-black/40 to-transparent" />
 
-        <div className="relative mx-auto max-w-7xl px-5 pt-28 pb-20 sm:px-8 lg:pt-40 lg:pb-28">
-          {/* Editorial chapter rule */}
-          <div className="mb-10 flex justify-center">
-            <span className="chapter-rule">
-              <span className="text-champagne">EXJET</span>
-              <span className="text-[var(--color-muted)]">Est. for the modern voyager</span>
-            </span>
-          </div>
-
-          {/* Editorial display headline */}
-          <div className="mx-auto max-w-5xl text-center">
-            <h1 className="display-serif text-[var(--color-ink)]">
-              Global access,
+        <div className="relative mx-auto w-full max-w-7xl px-5 pb-14 sm:px-8 lg:pb-20">
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-3xl">
+            <motion.div variants={fadeUp} className="mb-6 flex items-center gap-4">
+              <span className="h-px w-8 bg-[var(--color-gold)]" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
+                Luminary Air Group · Part 21 Manufacturer
+              </span>
+            </motion.div>
+            <motion.h1 variants={fadeUp} className="display-serif text-white">
+              Aircraft Interior Systems.
               <br />
-              <em className="display-serif-italic text-champagne">on&nbsp;demand.</em>
-            </h1>
-            <p className="mx-auto mt-8 max-w-xl text-[15px] leading-[1.7] text-[var(--color-muted)]">
-              An invitation to travel without compromise. A curated worldwide
-              fleet, ARGUS Platinum&ndash;audited, confirmed in under four hours.
-            </p>
-          </div>
-
-          {/* Search */}
-          <div className="mt-14 flex justify-center">
-            <SearchBar variant="hero" />
-          </div>
-
-          {/* Editorial KPI band */}
-          <div className="mt-16 grid grid-cols-2 gap-px overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-[var(--color-hairline)] sm:grid-cols-4">
-            <HeroStat label="Airports" value="5,000+" />
-            <HeroStat label="Network tails" value="2,400+" />
-            <HeroStat label="Avg. confirm" value="< 4 hr" />
-            <HeroStat label="Safety" value="ARGUS Platinum" />
-          </div>
-        </div>
-      </section>
-
-      {/* THE COLLECTION — Editorial intro chapter */}
-      <section className="relative border-t border-[var(--color-hairline)] bg-white">
-        <div className="mx-auto grid max-w-7xl gap-10 px-5 py-24 sm:px-8 md:grid-cols-12 lg:py-32">
-          <div className="md:col-span-5">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-champagne">
-              I · The Collection
-            </span>
-            <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
-              A curated fleet,
-              <br />
-              <em className="display-serif-italic">without exception.</em>
-            </h2>
-          </div>
-          <div className="md:col-span-7">
-            <p className="text-[15px] leading-[1.85] text-[var(--color-muted)]">
-              Every aircraft on EXJET is hand-selected from operators that
-              meet ARGUS Platinum and Wyvern Wingman standards. From light
-              jets for the morning meeting to ultra-long-range cabins crossing
-              continents overnight &mdash; each tail is vetted, each crew
-              dual-rated, each cabin appointed.
-            </p>
-            <div className="mt-8 grid grid-cols-1 gap-x-10 gap-y-5 border-t border-[var(--color-hairline)] pt-8 sm:grid-cols-2">
-              <Hallmark
-                title="ARGUS Platinum"
-                desc="The aviation industry's highest independent safety rating."
-              />
-              <Hallmark
-                title="24/7 Concierge"
-                desc="Live trip specialists, never automated phone trees."
-              />
-              <Hallmark
-                title="Five categories"
-                desc="Light · Midsize · Super Midsize · Heavy · Ultra Long."
-              />
-              <Hallmark
-                title="No membership"
-                desc="Pay per flight. No initiation, no monthly minimums."
-              />
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* POPULAR ROUTES */}
-      <section
-        id="popular-routes"
-        className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24"
-      >
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeader
-            chapter="II"
-            eyebrow="Most-flown corridors"
-            title="Popular routes,"
-            italic="this week"
-            description="Live pricing on the journeys our members request most."
-            ctaHref="/search"
-            ctaLabel="See all routes"
-          />
-          <div className="mt-16">
-            <CardCarousel itemClassName="w-[80%] sm:w-[48%] md:w-[36%] lg:w-[26%]">
-              {popularRoutes.map((r) => (
-                <PopularRouteCard key={r.id} route={r} />
-              ))}
-            </CardCarousel>
-          </div>
-        </div>
-      </section>
-
-      {/* EMPTY LEGS */}
-      <section
-        id="empty-legs"
-        className="relative border-t border-[var(--color-hairline)] bg-white py-24"
-      >
-        <div className="relative mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeader
-            chapter="III"
-            eyebrow="Repositioning at concierge fares"
-            title="Empty legs,"
-            italic="up to 75% off"
-            description="Fixed-price one-way charter on returning aircraft. Live inventory across our network."
-            ctaHref="/search?category=empty-legs"
-            ctaLabel="Browse all empty legs"
-          />
-          <div className="mt-16">
-            <CardCarousel itemClassName="w-[88%] sm:w-[60%] md:w-[48%] lg:w-[42%]">
-              {emptyLegs.map((leg) => (
-                <EmptyLegCard key={leg.id} leg={leg} />
-              ))}
-            </CardCarousel>
-          </div>
-        </div>
-      </section>
-
-      {/* NEWS & UPDATES */}
-      <section
-        id="news"
-        className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24"
-      >
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeader
-            chapter="IV"
-            eyebrow="The journal"
-            title="News &"
-            italic="dispatches"
-            description="Fleet additions, safety milestones, and new destinations."
-          />
-          <div className="mt-16">
-            <CardCarousel itemClassName="w-[80%] sm:w-[48%] md:w-[36%] lg:w-[26%]">
-              {news.map((item) => (
-                <NewsCard key={item.id} item={item} />
-              ))}
-            </CardCarousel>
-          </div>
-        </div>
-      </section>
-
-      {/* SPORTS & EVENTS CALENDAR */}
-      <section
-        id="events"
-        className="relative border-t border-[var(--color-hairline)] bg-white py-24"
-      >
-        <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <SectionHeader
-            chapter="V"
-            eyebrow="The season"
-            title="Every championship,"
-            italic="one cabin away"
-            description="Curated routes and nearest jet airports for the global sports calendar."
-          />
-
-          <div className="mt-12 flex flex-wrap items-center gap-2">
-            {["F1", "NBA", "NFL", "NHL", "FIFA", "Masters"].map((l) => {
-              const count = sportsEvents.filter((e) => e.league === l).length;
-              return (
-                <span
-                  key={l}
-                  className={cn(
-                    "inline-flex items-center gap-2 rounded-full px-3 py-1 font-mono text-[11px] uppercase tracking-[0.2em] ring-1 ring-inset",
-                    leagueColor(l)
-                  )}
-                >
-                  {l}
-                  <span className="rounded-full bg-[var(--color-ink)]/10 px-1.5 py-0.5 text-[10px] text-[var(--color-ink)]">
-                    {count}
-                  </span>
-                </span>
-              );
-            })}
-          </div>
-
-          <ul className="mt-8 overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white">
-            {sportsEvents.map((event, idx) => (
-              <li
-                key={event.id}
-                className={cn(
-                  "group flex flex-col gap-3 p-6 transition-colors hover:bg-[var(--color-ivory)] sm:flex-row sm:items-center sm:gap-6",
-                  idx !== 0 && "border-t border-[var(--color-hairline)]"
-                )}
-              >
-                <div className="flex w-28 shrink-0 items-center gap-3">
-                  <span
-                    className={cn(
-                      "inline-flex h-7 items-center justify-center rounded-full px-2.5 font-mono text-[10px] uppercase tracking-[0.2em] ring-1 ring-inset",
-                      leagueColor(event.league)
-                    )}
-                  >
-                    {event.league}
-                  </span>
-                </div>
-                <div className="min-w-0 flex-1">
-                  <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1">
-                    <h3 className="font-serif text-[20px] leading-tight text-[var(--color-ink)]">
-                      {event.event}
-                    </h3>
-                    <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-subtle)]">
-                      {event.city}
-                    </span>
-                  </div>
-                  <p className="mt-1 text-[12px] text-[var(--color-muted)]">
-                    {event.venue}
-                  </p>
-                </div>
-                <div className="flex flex-wrap items-center gap-4">
-                  <div className="flex items-center gap-1.5 text-[var(--color-ink-soft)]">
-                    <Calendar
-                      className="h-3.5 w-3.5 text-champagne"
-                      strokeWidth={1.75}
-                    />
-                    <span className="text-[12px]">
-                      {formatDateRange(event.date, event.endDate)}
-                    </span>
-                  </div>
-                  <div className="hidden items-center gap-1.5 text-[var(--color-muted)] sm:flex">
-                    <MapPin
-                      className="h-3.5 w-3.5 text-champagne"
-                      strokeWidth={1.75}
-                    />
-                    <span className="font-mono text-[11px] tracking-wide">
-                      {event.airports.slice(0, 3).join(" · ")}
-                    </span>
-                  </div>
-                  <Link
-                    href={`/search?event=${event.id}`}
-                    className="inline-flex items-center gap-1 rounded-full border border-[var(--color-ink)] bg-transparent px-3.5 py-1.5 text-[12px] font-medium text-[var(--color-ink)] transition-colors hover:bg-[var(--color-ink)] hover:text-white"
-                  >
-                    Reserve
-                    <ArrowRight className="h-3 w-3" strokeWidth={2.25} />
-                  </Link>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      {/* FAQ */}
-      <section
-        id="faq"
-        className="relative border-t border-[var(--color-hairline)] bg-[var(--color-ivory)] py-24"
-      >
-        <div className="mx-auto max-w-4xl px-5 sm:px-8">
-          <SectionHeader
-            chapter="VI"
-            eyebrow="Before you fly"
-            title="Frequently"
-            italic="asked"
-            description="Everything you need to know before chartering your first journey."
-            align="center"
-          />
-          <div className="mt-16 overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white">
-            {faq.map((item, idx) => (
-              <details
-                key={idx}
-                className={cn(
-                  "group",
-                  idx !== 0 && "border-t border-[var(--color-hairline)]"
-                )}
-              >
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-7 py-6 transition-colors hover:bg-[var(--color-ivory)]">
-                  <h3 className="font-serif text-[19px] leading-tight text-[var(--color-ink)]">
-                    {item.q}
-                  </h3>
-                  <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-full border border-[var(--color-hairline-strong)] text-[var(--color-muted)] transition-all group-open:rotate-45 group-open:border-champagne group-open:bg-champagne group-open:text-white">
-                    <svg
-                      viewBox="0 0 24 24"
-                      className="h-3 w-3"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                    >
-                      <line x1="12" y1="5" x2="12" y2="19" />
-                      <line x1="5" y1="12" x2="19" y2="12" />
-                    </svg>
-                  </span>
-                </summary>
-                <div className="px-7 pb-6">
-                  <p className="text-[14px] leading-[1.85] text-[var(--color-muted)]">
-                    {item.a}
-                  </p>
-                </div>
-              </details>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CLOSING — Editorial CTA on ink */}
-      <section className="relative overflow-hidden">
-        <div className="mesh-ink absolute inset-0" aria-hidden />
-        <div className="relative mx-auto max-w-5xl px-5 py-32 text-center sm:px-8 lg:py-40">
-          <div className="flex justify-center">
-            <span className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-champagne">
-              <span className="h-px w-8 bg-champagne/60" />
-              Ready when you are
-              <span className="h-px w-8 bg-champagne/60" />
-            </span>
-          </div>
-          <h2 className="display-serif mt-8 text-white">
-            The world,
-            <br />
-            <em className="display-serif-italic text-champagne">on your schedule.</em>
-          </h2>
-          <p className="mx-auto mt-8 max-w-xl text-[15px] leading-[1.8] text-white/70">
-            Choose a route, select an aircraft, confirm in minutes.
-            No membership. No waiting list.
-          </p>
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-3">
-            <Link
-              href="#popular-routes"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3.5 text-[13px] font-medium text-[var(--color-ink)] transition-all hover:bg-champagne hover:text-white"
-            >
-              Begin a search
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
-            </Link>
-            <Link
-              href="#empty-legs"
-              className="inline-flex items-center gap-2 rounded-full border border-white/30 bg-transparent px-7 py-3.5 text-[13px] font-medium text-white transition-all hover:border-white hover:bg-white/10"
-            >
-              View empty legs
-            </Link>
-          </div>
-        </div>
-      </section>
-    </>
-  );
-}
-
-/* -------- Helpers -------- */
-
-function HeroStat({ label, value }: { label: string; value: string }) {
-  return (
-    <div className="flex flex-col items-center gap-2 bg-[var(--color-ivory)] px-5 py-7 text-center">
-      <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-champagne">
-        {label}
-      </span>
-      <span className="font-serif text-[22px] leading-none text-[var(--color-ink)]">
-        {value}
-      </span>
-    </div>
-  );
-}
-
-function Hallmark({ title, desc }: { title: string; desc: string }) {
-  return (
-    <div className="flex items-start gap-3">
-      <span className="mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-champagne/10 text-champagne">
-        <ShieldCheck className="h-3 w-3" strokeWidth={2} />
-      </span>
-      <div>
-        <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink)]">
-          {title}
-        </div>
-        <div className="mt-1 text-[13px] leading-relaxed text-[var(--color-muted)]">
-          {desc}
-        </div>
-      </div>
-    </div>
-  );
-}
-
-function SectionHeader({
-  chapter,
-  eyebrow,
-  title,
-  italic,
-  description,
-  ctaHref,
-  ctaLabel,
-  align = "left",
-}: {
-  chapter: string;
-  eyebrow: string;
-  title: string;
-  italic?: string;
-  description?: string;
-  ctaHref?: string;
-  ctaLabel?: string;
-  align?: "left" | "center";
-}) {
-  return (
-    <div
-      className={cn(
-        "flex flex-col gap-6",
-        align === "center"
-          ? "items-center text-center"
-          : "md:flex-row md:items-end md:justify-between md:gap-12"
-      )}
-    >
-      <div className={cn(align === "center" ? "" : "max-w-2xl")}>
-        <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-champagne">
-          {chapter} · {eyebrow}
-        </span>
-        <h2 className="display-serif-md mt-5 text-[var(--color-ink)]">
-          {title}
-          {italic && (
-            <>
-              {" "}
-              <em className="display-serif-italic text-[var(--color-muted)]">
-                {italic}
+              <em className="display-serif-italic" style={{ color: "rgba(255,255,255,0.38)" }}>
+                Engineered. Certified. Delivered.
               </em>
-            </>
-          )}
-        </h2>
-        {description && (
-          <p
-            className={cn(
-              "mt-4 text-[14px] leading-relaxed text-[var(--color-muted)]",
-              align === "center" ? "mx-auto max-w-md" : "max-w-lg"
-            )}
+            </motion.h1>
+            <motion.p variants={fadeUp} className="mt-7 max-w-xl text-[15px] leading-[1.9] text-white/60">
+              Luminary designs, manufactures, and certifies acoustic insulation systems, special
+              mission interiors, and VIP completions — with our own Part 21 approvals and published
+              performance data for every project.
+            </motion.p>
+            <motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-3">
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-black transition-all hover:bg-[var(--color-gold-deep)]"
+              >
+                Request a Quote <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+              </Link>
+              <Link
+                href="/about/downloads"
+                className="inline-flex items-center gap-2.5 rounded-full border border-white/25 px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white/70 transition-all hover:border-white/50 hover:text-white"
+              >
+                <Download className="h-3.5 w-3.5" strokeWidth={1.5} />
+                STCs &amp; Downloads
+              </Link>
+            </motion.div>
+          </motion.div>
+
+          {/* Stats */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.5, duration: 0.65 }}
+            className="mt-12 grid grid-cols-2 gap-px sm:grid-cols-4"
           >
-            {description}
-          </p>
-        )}
+            {[
+              { n: "46.7 dB", l: "World Record SIL" },
+              { n: "100+", l: "STC Approvals" },
+              { n: "25 yr", l: "Operational History" },
+              { n: "Part 21", l: "FAA Manufacturer" },
+            ].map((s) => (
+              <div key={s.l} className="border border-white/[0.1] bg-white/[0.05] px-5 py-5 backdrop-blur-sm">
+                <div className="font-serif text-[26px] leading-none text-white">{s.n}</div>
+                <div className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">{s.l}</div>
+              </div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ══════ CERT BAR ══════ */}
+      <div className="border-b border-black/[0.07] bg-[#f4f3f0]">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="flex flex-wrap items-center divide-x divide-black/[0.06]">
+            {["FAA Part 21 Manufacturer", "EASA Approved", "AS9100D", "FAA ODA", "ADMI™ Platform"].map((c) => (
+              <div key={c} className="px-5 py-4 first:pl-0">
+                <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#777777]">{c}</span>
+              </div>
+            ))}
+          </div>
+        </div>
       </div>
-      {ctaHref && ctaLabel && align !== "center" && (
-        <Link
-          href={ctaHref}
-          className="group inline-flex items-center gap-2 self-start text-[13px] font-medium text-[var(--color-ink)] transition-colors hover:text-champagne md:self-end"
-        >
-          {ctaLabel}
-          <ArrowUpRight
-            className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
-            strokeWidth={2}
-          />
-        </Link>
-      )}
-    </div>
+
+      {/* ══════ SERVICES ══════ */}
+      <section className="py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <Reveal className="mb-12">
+            <motion.div variants={fadeUp}>
+              <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Capabilities</p>
+              <h2 className="display-serif-md text-[#111111]">
+                Three disciplines.
+                <br />
+                <em className="display-serif-italic text-[#999999]">One certified manufacturer.</em>
+              </h2>
+            </motion.div>
+          </Reveal>
+
+          <Reveal>
+            {services.map((svc, i) => (
+              <motion.div key={svc.label} variants={fadeUp} className="group border-t border-black/[0.07]">
+                <Link href={svc.href} className="flex items-start gap-6 py-10 sm:gap-10 lg:gap-16">
+                  <span className="hidden shrink-0 pt-1 font-mono text-[11px] text-[#d8d8d8] sm:block">
+                    {String(i + 1).padStart(2, "0")}
+                  </span>
+                  <div className="min-w-0 flex-1">
+                    <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.24em] text-[var(--color-gold)]">
+                      {svc.label}
+                    </p>
+                    <h3 className="font-serif leading-[1.15] text-[#111111]" style={{ fontSize: "clamp(1.5rem, 2.5vw, 2.1rem)" }}>
+                      {svc.headline}
+                    </h3>
+                    <p className="mt-4 max-w-2xl text-[14px] leading-[1.9] text-[#666666]">{svc.body}</p>
+                    <div className="mt-7 inline-flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[#bbbbbb] transition-all duration-300 group-hover:gap-3 group-hover:text-[var(--color-gold)]">
+                      Explore <ArrowRight className="h-3 w-3" strokeWidth={1.5} />
+                    </div>
+                  </div>
+                  <div className="hidden shrink-0 text-right lg:flex lg:flex-col lg:items-end lg:justify-between lg:self-stretch">
+                    <span className="font-serif leading-none text-[#e0ddd8]" style={{ fontSize: "clamp(1.25rem, 2vw, 2rem)" }}>
+                      {svc.metric}
+                    </span>
+                  </div>
+                </Link>
+              </motion.div>
+            ))}
+            <div className="border-t border-black/[0.07]" />
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════ WORLD RECORD ══════ */}
+      <section className="bg-[#0f0f0f] py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <Reveal className="grid items-center gap-12 lg:grid-cols-2 lg:gap-20">
+            <motion.div variants={fadeUp}>
+              <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Performance Record</p>
+              <div className="font-serif leading-none text-white" style={{ fontSize: "clamp(4rem, 9vw, 8rem)" }}>
+                46.7
+              </div>
+              <div className="mt-1 font-serif leading-none text-white/35" style={{ fontSize: "clamp(2rem, 4.5vw, 4rem)" }}>
+                dB SIL
+              </div>
+              <p className="mt-5 font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
+                World Record · Boeing Business Jet · FAA Part 21 Certified
+              </p>
+            </motion.div>
+            <motion.div variants={fadeUp}>
+              <p className="text-[15px] leading-[1.95] text-white/70">
+                Luminary achieved the world record for cabin sound attenuation on a Boeing Business Jet,
+                verified by independent acoustic measurement under FAA Part 21 certification protocol.
+                Every Luminary project produces a certified data package with pre- and post-installation
+                dB SIL measurements — published, independent, and reproducible.
+              </p>
+              <div className="mt-10 h-px w-full bg-white/[0.08]" />
+              <div className="mt-8 grid grid-cols-3 gap-6">
+                {[
+                  { n: "100+", l: "STCs Held" },
+                  { n: "25 yr", l: "In Service" },
+                  { n: "8", l: "Platforms" },
+                ].map((s) => (
+                  <div key={s.l}>
+                    <div className="font-serif text-[30px] leading-none text-white">{s.n}</div>
+                    <div className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.18em] text-white/35">{s.l}</div>
+                  </div>
+                ))}
+              </div>
+              <Link
+                href="/performance-history"
+                className="mt-10 inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-gold)] transition-all hover:gap-4"
+              >
+                View Performance Library <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+              </Link>
+            </motion.div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════ PLATFORMS ══════ */}
+      <section className="border-y border-black/[0.06] bg-[#f4f3f0] py-7">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <Reveal className="flex flex-wrap items-baseline gap-x-2 gap-y-2">
+            <motion.span variants={fadeUp} className="mr-4 font-mono text-[10px] uppercase tracking-[0.22em] text-[#aaaaaa]">
+              Approved platforms
+            </motion.span>
+            {platforms.map((p, i) => (
+              <motion.span key={p} variants={fadeUp} className="font-mono text-[11px] text-[#444444]">
+                {p}{i < platforms.length - 1 && <span className="mx-2 text-[#cccccc]">·</span>}
+              </motion.span>
+            ))}
+            <motion.span variants={fadeUp} className="ml-auto font-mono text-[10px] text-[var(--color-gold)]">
+              <Link href="/cabin-comfort-systems" className="hover:underline">Full catalog →</Link>
+            </motion.span>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════ CASE STUDIES ══════ */}
+      <section className="py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <Reveal>
+            <div className="mb-12 flex items-end justify-between gap-8">
+              <motion.div variants={fadeUp}>
+                <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Project Record</p>
+                <h2 className="display-serif-md text-[#111111]">
+                  Documented results.
+                  <br />
+                  <em className="display-serif-italic text-[#999999]">Every project.</em>
+                </h2>
+              </motion.div>
+              <motion.div variants={fadeUp}>
+                <Link
+                  href="/performance-history"
+                  className="hidden shrink-0 items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-gold)] transition-all hover:gap-3 sm:inline-flex"
+                >
+                  Full Library <ChevronRight className="h-3 w-3" strokeWidth={2} />
+                </Link>
+              </motion.div>
+            </div>
+
+            <motion.div variants={stagger}>
+              {caseStudies.map((s) => (
+                <motion.div key={s.id} variants={fadeUp} className="border-t border-black/[0.07] py-9">
+                  <div className="mb-4 flex items-center justify-between gap-4">
+                    <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#888888]">
+                      {s.aircraft} · {s.category}
+                    </span>
+                    <span className="shrink-0 font-mono text-[10px] text-[#cccccc]">{s.year}</span>
+                  </div>
+                  <div className="flex flex-col gap-3 sm:flex-row sm:items-baseline sm:gap-10">
+                    <span
+                      className="shrink-0 font-serif leading-none text-[#111111]"
+                      style={{ fontSize: "clamp(2.25rem, 4.5vw, 3.5rem)" }}
+                    >
+                      {s.result}
+                    </span>
+                    <p className="font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--color-gold)]">
+                      {s.achievement}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+              <div className="border-t border-black/[0.07]" />
+            </motion.div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════ WHY LUMINARY ══════ */}
+      <section className="border-t border-black/[0.06] bg-[#f4f3f0] py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <Reveal className="grid gap-14 lg:grid-cols-2 lg:gap-20">
+            <motion.div variants={fadeUp}>
+              <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">The Manufacturer Advantage</p>
+              <h2 className="display-serif-md text-[#111111]">
+                Not a reseller.
+                <br />
+                <em className="display-serif-italic text-[#999999]">The manufacturer.</em>
+              </h2>
+              <p className="mt-7 text-[15px] leading-[1.95] text-[#555555]">
+                Luminary designs, fabricates, and certifies every system under our own Part 21 approval.
+                No subcontracted manufacturing. No third-party DER. Full configuration control
+                from drawing release to delivery — and published acoustic data for every project.
+              </p>
+              <Link
+                href="/about"
+                className="mt-8 inline-flex items-center gap-2.5 rounded-full border border-black/[0.15] bg-white px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#333333] transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
+              >
+                About Luminary <ChevronRight className="h-3 w-3" strokeWidth={2} />
+              </Link>
+            </motion.div>
+
+            <motion.div variants={stagger}>
+              {[
+                { n: "01", title: "Airframe-Specific Engineering", body: "Every insulation system developed from acoustic survey data for your specific airframe — not adapted from a generic template." },
+                { n: "02", title: "Full Certification Authority", body: "FAA Part 21, EASA, ODA delegation, and 100+ STCs across 8 approved platforms. No third-party DER required." },
+                { n: "03", title: "Published Performance Data", body: "Before-and-after dB SIL measurement on every project. Part 21 certified data packages issued to the operator." },
+                { n: "04", title: "In-House Manufacturing", body: "Design, fabrication, and installation under one roof. No subcontracted manufacturing. Full configuration control." },
+              ].map((d) => (
+                <motion.div key={d.n} variants={fadeUp} className="grid grid-cols-[40px_1fr] gap-5 border-t border-black/[0.09] py-7">
+                  <span className="pt-0.5 font-mono text-[10px] text-[#cccccc]">{d.n}</span>
+                  <div>
+                    <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#111111]">{d.title}</h3>
+                    <p className="mt-3 text-[14px] leading-[1.9] text-[#666666]">{d.body}</p>
+                  </div>
+                </motion.div>
+              ))}
+              <div className="border-t border-black/[0.09]" />
+            </motion.div>
+          </Reveal>
+        </div>
+      </section>
+
+      {/* ══════ CTA ══════ */}
+      <section className="bg-[#0f0f0f] py-16 lg:py-24">
+        <div className="mx-auto max-w-7xl px-5 sm:px-8">
+          <Reveal className="mx-auto max-w-2xl text-center">
+            <motion.div variants={fadeUp}>
+              <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">Ready to Start</p>
+              <h2 className="display-serif-md text-white">
+                Specify your requirement.
+                <br />
+                <em className="display-serif-italic" style={{ color: "rgba(255,255,255,0.3)" }}>
+                  We&apos;ll engineer the solution.
+                </em>
+              </h2>
+              <p className="mx-auto mt-7 max-w-md text-[15px] leading-[1.9] text-white/60">
+                Provide your aircraft type and programme scope. Our engineering team responds
+                within one business day with a written brief: scope, timeline, and certification path.
+              </p>
+              <div className="mt-10 flex flex-wrap justify-center gap-4">
+                <Link
+                  href="/contact"
+                  className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-8 py-4 font-mono text-[11px] uppercase tracking-[0.18em] text-black transition-all hover:bg-[var(--color-gold-deep)]"
+                >
+                  Initiate an Enquiry <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+                </Link>
+                <a
+                  href="mailto:info@luminary.aero"
+                  className="inline-flex items-center gap-2.5 rounded-full border border-white/15 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.18em] text-white/60 transition-all hover:border-white/30 hover:text-white"
+                >
+                  info@luminary.aero
+                </a>
+              </div>
+              <p className="mt-6 font-mono text-[10px] uppercase tracking-[0.2em] text-white/25">
+                Response within 1 business day · 1-888-624-2400
+              </p>
+            </motion.div>
+          </Reveal>
+        </div>
+      </section>
+
+    </main>
   );
-}
-
-function PopularRouteCard({
-  route,
-}: {
-  route: (typeof popularRoutes)[number];
-}) {
-  return (
-    <Link
-      href={`/search?from=${route.from.code}&to=${route.to.code}`}
-      className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white p-7 transition-all hover:border-champagne hover:shadow-[0_24px_50px_-20px_rgba(184,155,110,0.35)]"
-    >
-      <div className="flex items-center justify-between">
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-champagne">
-          Route
-        </span>
-        {route.demand === "very_high" && (
-          <span className="font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-bordeaux)]">
-            In demand
-          </span>
-        )}
-      </div>
-
-      <div className="mt-7 flex items-start justify-between gap-2">
-        <div>
-          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
-            {route.from.city}
-          </div>
-          <div className="mt-1 font-serif text-[34px] leading-none text-[var(--color-ink)]">
-            {route.from.code}
-          </div>
-        </div>
-        <div className="relative flex-1 self-center">
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-champagne/60 to-transparent" />
-          <PlaneTakeoff
-            className="absolute left-1/2 top-1/2 h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 text-champagne transition-transform group-hover:translate-x-0"
-            strokeWidth={1.5}
-          />
-        </div>
-        <div className="text-right">
-          <div className="text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
-            {route.to.city}
-          </div>
-          <div className="mt-1 font-serif text-[34px] leading-none text-[var(--color-ink)]">
-            {route.to.code}
-          </div>
-        </div>
-      </div>
-
-      <div className="mt-7 flex items-center gap-4 border-t border-[var(--color-hairline)] pt-5 text-[11px] text-[var(--color-muted)]">
-        <div className="flex items-center gap-1.5">
-          <Clock className="h-3 w-3 text-champagne" strokeWidth={1.75} />
-          {route.flightTime}
-        </div>
-        <div className="font-mono text-[var(--color-subtle)]">
-          {route.distanceNm} nm
-        </div>
-        <div className="ml-auto font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
-          {route.recommended}
-        </div>
-      </div>
-
-      <div className="mt-auto flex items-end justify-between border-t border-[var(--color-hairline)] pt-5">
-        <div>
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-champagne">
-            From
-          </span>
-          <div className="font-serif text-[24px] leading-none text-[var(--color-ink)]">
-            {formatCurrency(route.fromPrice)}
-          </div>
-        </div>
-        <span className="inline-flex items-center gap-1 text-[12px] font-medium text-[var(--color-ink)] transition-transform group-hover:translate-x-0.5">
-          Quote
-          <ArrowUpRight className="h-3 w-3" strokeWidth={2} />
-        </span>
-      </div>
-    </Link>
-  );
-}
-
-function NewsCard({ item }: { item: (typeof news)[number] }) {
-  const when = new Date(item.date).toLocaleDateString("en-US", {
-    month: "long",
-    day: "numeric",
-    year: "numeric",
-  });
-  return (
-    <article className="group relative flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--color-hairline)] bg-white p-7 transition-all hover:border-champagne hover:shadow-[0_24px_50px_-20px_rgba(184,155,110,0.25)]">
-      <div className="flex items-center justify-between">
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-champagne">
-          {item.category}
-        </span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-subtle)]">
-          {when}
-        </span>
-      </div>
-      <h3 className="mt-6 font-serif text-[22px] leading-tight text-[var(--color-ink)]">
-        {item.title}
-      </h3>
-      <p className="mt-3 flex-1 text-[13px] leading-[1.75] text-[var(--color-muted)]">
-        {item.excerpt}
-      </p>
-      <div className="mt-6 flex items-center justify-between border-t border-[var(--color-hairline)] pt-5">
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
-          {item.readingTime} read
-        </span>
-        <span className="inline-flex items-center gap-1 text-[12px] font-medium text-[var(--color-ink)] transition-transform group-hover:translate-x-0.5">
-          Read
-          <ArrowUpRight className="h-3 w-3" strokeWidth={2} />
-        </span>
-      </div>
-    </article>
-  );
-}
-
-function leagueColor(league: string) {
-  switch (league) {
-    case "F1":
-      return "bg-[var(--color-bordeaux)]/8 text-[var(--color-bordeaux)] ring-[var(--color-bordeaux)]/20";
-    case "NBA":
-      return "bg-amber-50 text-amber-800 ring-amber-200";
-    case "NFL":
-      return "bg-blue-50 text-blue-800 ring-blue-200";
-    case "NHL":
-      return "bg-indigo-50 text-indigo-800 ring-indigo-200";
-    case "FIFA":
-      return "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-[var(--color-forest)]/20";
-    case "Masters":
-      return "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-[var(--color-forest)]/20";
-    default:
-      return "bg-[var(--color-hairline)] text-[var(--color-ink)] ring-[var(--color-hairline-strong)]";
-  }
-}
-
-function formatDateRange(start: string, end: string) {
-  const s = new Date(start);
-  const e = new Date(end);
-  const opts: Intl.DateTimeFormatOptions = { month: "short", day: "numeric" };
-  if (start === end) {
-    return s.toLocaleDateString("en-US", { ...opts, year: "numeric" });
-  }
-  return `${s.toLocaleDateString("en-US", opts)} – ${e.toLocaleDateString(
-    "en-US",
-    { ...opts, year: "numeric" }
-  )}`;
 }

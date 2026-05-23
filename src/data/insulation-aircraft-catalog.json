@@ -1,0 +1,139 @@
+[
+  {
+    "manufacturer": "Aero Commander",
+    "models": [
+      { "model": "Commander 690 / 840", "description": "Insulation System", "partNo": "0231-690" }
+    ]
+  },
+  {
+    "manufacturer": "Airbus",
+    "models": [
+      { "model": "A340-200", "description": "Insulation System", "partNo": "1001-501" }
+    ]
+  },
+  {
+    "manufacturer": "Beechcraft (Raytheon)",
+    "models": [
+      { "model": "58 Baron", "description": "Insulation System", "partNo": "0102-501" },
+      { "model": "58 Baron", "description": "Insulation System", "partNo": "0102-601" },
+      { "model": "Hawker (Beechjet) 400", "description": "Insulation System", "partNo": "0214-501" },
+      { "model": "Hawker (Beechjet) 400", "description": "Insulation System", "partNo": "0214-503" },
+      { "model": "Hawker 700", "description": "Insulation System", "partNo": "0426-505" },
+      { "model": "Hawker 800", "description": "Insulation System", "partNo": "0426-504" },
+      { "model": "Hawker 800", "description": "Insulation System", "partNo": "0426-501" },
+      { "model": "Hawker 800XP", "description": "Insulation System", "partNo": "0426-503" },
+      { "model": "King Air 90", "description": "Insulation System", "partNo": "0210-501" },
+      { "model": "King Air 100", "description": "Insulation System", "partNo": "0212-501" },
+      { "model": "King Air 200", "description": "Insulation System", "partNo": "0212-506" },
+      { "model": "King Air 200", "description": "Insulation System", "partNo": "0212-516" },
+      { "model": "King Air 300", "description": "Insulation System", "partNo": "0212-501" },
+      { "model": "King Air 300/B300(350)", "description": "Insulation System", "partNo": "0212-502" },
+      { "model": "King Air B300(350)", "description": "Insulation System", "partNo": "0212-507" },
+      { "model": "RA-390 Premier", "description": "Insulation System", "partNo": "0219-501" }
+    ]
+  },
+  {
+    "manufacturer": "Boeing (McDonnell-Douglas)",
+    "models": [
+      { "model": "727-100", "description": "Insulation System", "partNo": "0207-100" },
+      { "model": "727-200", "description": "Insulation System", "partNo": "0207-200" },
+      { "model": "737-700 BBJ", "description": "Insulation System", "partNo": "0401-506" },
+      { "model": "737-700 BBJ", "description": "Insulation System", "partNo": "0401-508" },
+      { "model": "737-700 BBJ", "description": "Insulation System", "partNo": "0401-509" },
+      { "model": "737-700 BBJ", "description": "Insulation System", "partNo": "0401-512" },
+      { "model": "737-700 BBJ", "description": "Insulation System", "partNo": "0401-513" },
+      { "model": "737-700 BBJ", "description": "Insulation System", "partNo": "0401-514" },
+      { "model": "737-700 BBJ", "description": "Insulation System", "partNo": "0401-515" },
+      { "model": "737-800 BBJ2", "description": "Insulation System", "partNo": "0401-507" },
+      { "model": "737-800 BBJ2", "description": "Insulation System", "partNo": "0401-510" },
+      { "model": "747SP", "description": "Insulation System", "partNo": "0420-747" },
+      { "model": "747-400", "description": "Insulation System", "partNo": "" },
+      { "model": "Douglas MD-80", "description": "Insulation System", "partNo": "0201" },
+      { "model": "Douglas MD-87", "description": "Insulation System", "partNo": "0203" },
+      { "model": "Douglas DC-9-15", "description": "Insulation System", "partNo": "0200" }
+    ]
+  },
+  {
+    "manufacturer": "Bombardier",
+    "models": [
+      { "model": "CRJ-200ER", "description": "Insulation System", "partNo": "0463-504" },
+      { "model": "Challenger CL-600", "description": "Insulation System", "partNo": "0463-503" }
+    ]
+  },
+  {
+    "manufacturer": "Cessna",
+    "models": [
+      { "model": "421 Golden Eagle", "description": "Insulation System", "partNo": "0151-501" },
+      { "model": "441 Conquest II", "description": "Insulation System", "partNo": "0152-502" },
+      { "model": "Citation II / S550", "description": "Insulation System", "partNo": "0221-501" },
+      { "model": "Citation II / S550", "description": "Insulation System", "partNo": "0221-502" },
+      { "model": "Citation III", "description": "Insulation System", "partNo": "0223-502" }
+    ]
+  },
+  {
+    "manufacturer": "Dassault",
+    "models": [
+      { "model": "Falcon 10", "description": "Insulation System", "partNo": "0301-501" },
+      { "model": "Falcon 10", "description": "Skin Damp Kit", "partNo": "" },
+      { "model": "Falcon 20", "description": "Insulation System", "partNo": "0300-501" },
+      { "model": "Falcon 50", "description": "Insulation System", "partNo": "0407-502" },
+      { "model": "Falcon 900", "description": "Insulation System", "partNo": "0406-602" }
+    ]
+  },
+  {
+    "manufacturer": "Fairchild-Dornier",
+    "models": [
+      { "model": "Dornier 328Jet", "description": "Insulation System", "partNo": "0374-328" }
+    ]
+  },
+  {
+    "manufacturer": "Gulfstream",
+    "models": [
+      { "model": "Gulfstream 100 (IAI Astra SPX)", "description": "Skin Damping System", "partNo": "0471-502" },
+      { "model": "Gulfstream 100 (IAI Astra SPX)", "description": "Insulation System", "partNo": "0471-503" },
+      { "model": "Gulfstream II, IIB", "description": "Insulation System", "partNo": "0251-504" },
+      { "model": "Gulfstream II, IIB", "description": "MLI Floor Barrier Blanket", "partNo": "0251-102" },
+      { "model": "Gulfstream III", "description": "Insulation System", "partNo": "0251-503" },
+      { "model": "Gulfstream III", "description": "MLI Floor Barrier Blanket", "partNo": "0251-103" },
+      { "model": "Gulfstream IV, IV-SP", "description": "Insulation System", "partNo": "0251-505" },
+      { "model": "Gulfstream IV, IV-SP", "description": "MLI Floor Barrier Blanket", "partNo": "0251-104" }
+    ]
+  },
+  {
+    "manufacturer": "Helicopters",
+    "models": [
+      { "model": "Bell 407", "description": "Insulation System", "partNo": "0905-407" },
+      { "model": "Bell 430", "description": "Insulation System", "partNo": "0903-430" },
+      { "model": "Sikorsky S-76", "description": "Insulation System", "partNo": "0413-076" }
+    ]
+  },
+  {
+    "manufacturer": "Israel Aircraft Industries",
+    "models": [
+      { "model": "Astra SPX (Gulfstream 100)", "description": "Skin Damping System", "partNo": "0471-502" },
+      { "model": "Astra SPX (Gulfstream 100)", "description": "Insulation System", "partNo": "0471-503" },
+      { "model": "Galaxy (Gulfstream 200)", "description": "Insulation System", "partNo": "0472-200" }
+    ]
+  },
+  {
+    "manufacturer": "Learjet",
+    "models": [
+      { "model": "Lear 25", "description": "Insulation System", "partNo": "280-501" },
+      { "model": "Lear 31", "description": "Insulation System", "partNo": "280-502" }
+    ]
+  },
+  {
+    "manufacturer": "Lockheed",
+    "models": [
+      { "model": "L1329 Jetstar I / II", "description": "Insulation System", "partNo": "0480-1329" }
+    ]
+  },
+  {
+    "manufacturer": "Pilatus",
+    "models": [
+      { "model": "PC-12", "description": "Insulation System", "partNo": "0311-501" },
+      { "model": "PC-12", "description": "Insulation System", "partNo": "0311-502" },
+      { "model": "PC-12", "description": "Insulation System", "partNo": "0311-506" }
+    ]
+  }
+]

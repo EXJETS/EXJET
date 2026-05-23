@@ -6,10 +6,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: "/",
-        disallow: ["/admin/", "/operator/", "/dashboard/"],
+        disallow: ["/admin/", "/api/"],
       },
     ],
-    sitemap: "https://exjet.com/sitemap.xml",
-    host: "https://exjet.com",
+    sitemap: "https://luminary.aero/sitemap.xml",
+    host: "https://luminary.aero",
   };
 }

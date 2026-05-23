@@ -1,0 +1,66 @@
+[
+  {
+    "id": "king-air-350",
+    "aircraft": "Beechcraft King Air 350",
+    "category": "Turboprop",
+    "typicalResult": "56–60 dB SIL",
+    "weight": "Minimal added weight",
+    "description": "Custom multi-layer insulation kit engineered around the PT6A twin-turboprop noise profile, addressing the dominant low-frequency and tonal content that makes the King Air cabin one of the more challenging acoustic environments in regional business aviation."
+  },
+  {
+    "id": "pilatus-pc-12",
+    "aircraft": "Pilatus PC-12",
+    "category": "Turboprop",
+    "typicalResult": "57–61 dB SIL",
+    "weight": "Minimal added weight",
+    "description": "Purpose-designed insulation system for the PC-12's single-engine fuselage, targeting the propeller-synchronous noise bands and structural transmission paths unique to this airframe to deliver a cabin acoustic environment well below production standard."
+  },
+  {
+    "id": "embraer-phenom-300",
+    "aircraft": "Embraer Phenom 300",
+    "category": "Light Jet",
+    "typicalResult": "55–59 dB SIL",
+    "weight": "Minimal added weight",
+    "description": "Precision-fitted acoustic kit for the Phenom 300 that works within the aircraft's tight panel tolerances to replace or supplement OEM insulation blankets, achieving measurable noise reductions without modification to the aircraft's interior trim or certification basis."
+  },
+  {
+    "id": "cessna-citation-xls",
+    "aircraft": "Cessna Citation XLS+",
+    "category": "Midsize Jet",
+    "typicalResult": "54–58 dB SIL",
+    "weight": "Minimal added weight",
+    "description": "Engineered insulation package for the Citation XLS+ that addresses the mid-cabin noise peaks caused by the aft-mounted Williams FJ44 installations, delivering a noticeably quieter forward and mid-cabin cruise environment on transcontinental sectors."
+  },
+  {
+    "id": "challenger-300",
+    "aircraft": "Bombardier Challenger 300",
+    "category": "Large Cabin",
+    "typicalResult": "52–56 dB SIL",
+    "weight": "Minimal added weight",
+    "description": "Bespoke acoustic insulation system for the Challenger 300 developed from a full acoustic imaging survey of the airframe, targeting the specific fuselage resonance and engine inlet noise signatures that limit production-standard cabin noise performance on this platform."
+  },
+  {
+    "id": "challenger-604",
+    "aircraft": "Bombardier Challenger 604",
+    "category": "Large Cabin",
+    "typicalResult": "55–59 dB SIL",
+    "weight": "Minimal added weight",
+    "description": "Custom insulation kit for the Challenger 604 proven in both green completion and retrofit applications, leveraging Luminary's completed 604 project data to deliver predictable and repeatable acoustic outcomes across the cabin at cruise altitude."
+  },
+  {
+    "id": "gulfstream-g550",
+    "aircraft": "Gulfstream G550",
+    "category": "Large Cabin",
+    "typicalResult": "50–54 dB SIL",
+    "weight": "Minimal added weight",
+    "description": "High-performance acoustic insulation system for the G550 designed to push the ultra-long-range cabin beyond its already competitive OEM noise floor, with particular attention to the aft fuselage and tail-cone transmission paths that influence passenger comfort on transatlantic sectors."
+  },
+  {
+    "id": "boeing-bbj",
+    "aircraft": "Boeing Business Jet (BBJ)",
+    "category": "Wide Body",
+    "typicalResult": "46–50 dB SIL",
+    "weight": "Minimal added weight",
+    "description": "World record-proven insulation technology for the Boeing Business Jet platform, delivering the most acoustically refined cabin in business aviation as demonstrated by Luminary's 46.7 dB SIL result — the quietest BBJ ever independently measured."
+  }
+]
