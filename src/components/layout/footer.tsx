@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { Mail, Phone, ArrowUpRight } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
 const columns = [
   {
@@ -46,7 +46,7 @@ const columns = [
 
 export function Footer() {
   return (
-    <footer className="border-t border-black/[0.06] bg-[#f8f8f6]">
+    <footer className="border-t border-black/[0.06] bg-[#f4f3f0]">
       <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
 
         {/* ── Top bar ── */}
@@ -63,7 +63,7 @@ export function Footer() {
             <h2 className="mt-5 font-serif text-[38px] leading-[1.05] text-[#111111] sm:text-[46px]">
               Experienced.
               <br />
-              <em className="font-normal italic text-[#aaaaaa]">Reliable. Certified.</em>
+              <em className="font-normal italic text-[#bbbbbb]">Reliable. Certified.</em>
             </h2>
             <p className="mt-4 max-w-sm text-[13px] leading-[1.8] text-[#888888]">
               FAA Part 21 manufacturer of aircraft interior systems. Acoustic insulation,
@@ -109,13 +109,9 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="group inline-flex items-center gap-1.5 text-[13px] text-[#888888] transition-colors hover:text-[var(--color-gold)]"
+                      className="text-[13px] text-[#888888] transition-colors hover:text-[var(--color-gold)]"
                     >
                       {link.label}
-                      <ArrowUpRight
-                        className="h-2.5 w-2.5 opacity-0 transition-opacity group-hover:opacity-100"
-                        strokeWidth={1.5}
-                      />
                     </Link>
                   </li>
                 ))}

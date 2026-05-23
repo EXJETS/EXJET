@@ -2,23 +2,13 @@
 
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import Link from "next/link";
-import {
-  Clock,
-  Mail,
-  Phone,
-  CheckCircle2,
-  ArrowRight,
-  ChevronRight,
-  Download,
-} from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
 };
 const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.12 } },
 };
 
 function Section({
@@ -44,10 +34,10 @@ function Section({
 }
 
 const inputClass =
-  "w-full rounded-xl border border-black/[0.1] bg-white px-4 py-3 text-[14px] text-[#111111] placeholder:text-[#aaaaaa] focus:border-[var(--color-gold)] focus:outline-none transition-colors";
+  "w-full border border-black/[0.12] bg-white px-4 py-3.5 text-[14px] text-[#111111] placeholder:text-[#aaaaaa] focus:border-[var(--color-gold)] focus:outline-none transition-colors";
 
 const labelClass =
-  "block font-mono text-[10px] uppercase tracking-[0.22em] text-[#555555] mb-1.5";
+  "block font-mono text-[10px] uppercase tracking-[0.22em] text-[#555555] mb-2";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -59,146 +49,97 @@ export default function ContactPage() {
 
   return (
     <>
-      {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-white">
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(201,168,76,0.06),transparent_60%)]"
-          aria-hidden
+      {/* ── SECTION 1: HERO ── */}
+      <section className="relative overflow-hidden" style={{ minHeight: "65vh" }}>
+        <img
+          src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1800&q=85&fit=crop"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
         />
-        <Section className="relative mx-auto max-w-7xl px-5 pt-28 pb-16 sm:px-8 lg:pt-40 lg:pb-20">
-          <motion.div variants={fadeUp} className="mb-6 flex items-center gap-4">
-            <span className="h-px w-8 bg-[var(--color-gold)]" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
-              Contact Luminary Air Group
-            </span>
-          </motion.div>
-
-          <div className="max-w-4xl">
-            <motion.h1 variants={fadeUp} className="display-serif text-[#111111]">
-              Initiate a
-              <br />
-              <em className="display-serif-italic text-[#999999]">
-                Project Enquiry
-              </em>
-            </motion.h1>
-            <motion.p
-              variants={fadeUp}
-              className="mt-8 max-w-xl text-[15px] leading-[1.8] text-[#555555]"
-            >
-              Our engineering team responds within one business day. Please provide your
-              aircraft type, programme scope, and any specific requirements to accelerate
-              our response.
-            </motion.p>
-          </div>
-
-          <motion.div variants={fadeUp} className="mt-8 flex">
-            <span className="inline-flex items-center gap-2.5 rounded-full border border-[var(--color-gold)]/30 bg-[rgba(201,168,76,0.06)] px-5 py-2.5">
-              <Clock className="h-4 w-4 text-[var(--color-gold)]" strokeWidth={1.5} />
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-                Response within 1 business day
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
+        <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-40 sm:px-8 lg:pb-28 lg:pt-52">
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-3xl">
+            <motion.div variants={fadeUp} className="mb-6 flex items-center gap-4">
+              <span className="h-px w-8 bg-[var(--color-gold)]" />
+              <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
+                Contact Luminary Air Group
               </span>
-            </span>
+            </motion.div>
+            <motion.h1 variants={fadeUp} className="display-serif text-white">
+              Project Enquiry.
+              <br />
+              <em className="display-serif-italic text-white/40">We respond within one business day.</em>
+            </motion.h1>
+            <motion.p variants={fadeUp} className="mt-8 max-w-2xl text-[16px] leading-[1.9] text-white/55">
+              Provide your aircraft type and programme scope. Our engineering team will respond with a written brief
+              including scope, timeline, and certification path.
+            </motion.p>
           </motion.div>
-        </Section>
+        </div>
       </section>
 
-      {/* ── TWO-COLUMN LAYOUT ── */}
-      <section className="relative border-t border-black/[0.06] bg-[#f8f8f6] py-20">
+      {/* ── SECTION 2: FORM + INFO ── */}
+      <section className="bg-white py-24">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-12 lg:grid-cols-3">
+          <div className="grid gap-14 lg:grid-cols-5">
 
-            {/* ── LEFT: Form (col-span-2) ── */}
-            <motion.div variants={fadeUp} className="lg:col-span-2">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-                I · Project Enquiry Form
-              </span>
-              <h2 className="display-serif-md mt-5 text-[#111111]">
-                Tell us about
-                <br />
-                <em className="display-serif-italic text-[#555555]">your programme.</em>
-              </h2>
-              <p className="mt-4 text-[14px] leading-relaxed text-[#555555]">
-                Use the form below to submit a project enquiry. Include your aircraft
-                type, programme scope, and timeline. Every enquiry is reviewed by our
-                engineering team before response.
-              </p>
-
+            {/* LEFT: Form (~60%) */}
+            <motion.div variants={fadeUp} className="lg:col-span-3">
               {submitted ? (
-                <div className="mt-10 flex flex-col items-center gap-4 rounded-2xl border border-[var(--color-gold)]/40 bg-white p-10 text-center">
-                  <span className="inline-flex h-14 w-14 items-center justify-center rounded-full bg-[rgba(201,168,76,0.10)]">
-                    <CheckCircle2 className="h-7 w-7 text-[var(--color-gold)]" strokeWidth={1.5} />
-                  </span>
-                  <h3 className="font-serif text-[26px] leading-tight text-[#111111]">
+                <div className="flex flex-col gap-6 border border-[var(--color-gold)]/30 bg-[rgba(201,168,76,0.04)] p-12">
+                  <p className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
                     Enquiry Received
-                  </h3>
-                  <p className="max-w-sm text-[14px] leading-relaxed text-[#555555]">
-                    Thank you. Our engineering team will review your programme scope and
-                    respond within one business day.
+                  </p>
+                  <p className="font-serif text-[22px] leading-tight text-[#111111]">
+                    Your enquiry has been received. We will respond within one business day.
                   </p>
                 </div>
               ) : (
-                <form
-                  onSubmit={handleSubmit}
-                  className="mt-10 space-y-5"
-                  noValidate
-                >
-                  {/* Name + Organisation */}
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="name" className={labelClass}>
-                        Name <span className="text-[var(--color-gold)]">*</span>
-                      </label>
-                      <input
-                        id="name"
-                        name="name"
-                        type="text"
-                        placeholder="Your name"
-                        required
-                        className={inputClass}
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="organisation" className={labelClass}>
-                        Organisation / Company <span className="text-[var(--color-gold)]">*</span>
-                      </label>
-                      <input
-                        id="organisation"
-                        name="organisation"
-                        type="text"
-                        placeholder="Operator, MRO, or agency"
-                        required
-                        className={inputClass}
-                      />
-                    </div>
+                <form onSubmit={handleSubmit} noValidate className="space-y-6">
+                  {/* Full Name */}
+                  <div>
+                    <label htmlFor="name" className={labelClass}>
+                      Full Name <span className="text-[var(--color-gold)]">*</span>
+                    </label>
+                    <input
+                      id="name"
+                      name="name"
+                      type="text"
+                      placeholder="Your full name"
+                      required
+                      className={inputClass}
+                    />
                   </div>
 
-                  {/* Email + Phone */}
-                  <div className="grid gap-5 sm:grid-cols-2">
-                    <div>
-                      <label htmlFor="email" className={labelClass}>
-                        Email <span className="text-[var(--color-gold)]">*</span>
-                      </label>
-                      <input
-                        id="email"
-                        name="email"
-                        type="email"
-                        placeholder="programme@operator.aero"
-                        required
-                        className={inputClass}
-                      />
-                    </div>
-                    <div>
-                      <label htmlFor="phone" className={labelClass}>
-                        Phone
-                      </label>
-                      <input
-                        id="phone"
-                        name="phone"
-                        type="tel"
-                        placeholder="+1 (000) 000-0000"
-                        className={inputClass}
-                      />
-                    </div>
+                  {/* Company */}
+                  <div>
+                    <label htmlFor="company" className={labelClass}>
+                      Company / Organisation <span className="text-[var(--color-gold)]">*</span>
+                    </label>
+                    <input
+                      id="company"
+                      name="company"
+                      type="text"
+                      placeholder="Operator, MRO, programme manager, or agency"
+                      required
+                      className={inputClass}
+                    />
+                  </div>
+
+                  {/* Email */}
+                  <div>
+                    <label htmlFor="email" className={labelClass}>
+                      Email Address <span className="text-[var(--color-gold)]">*</span>
+                    </label>
+                    <input
+                      id="email"
+                      name="email"
+                      type="email"
+                      placeholder="programme@operator.aero"
+                      required
+                      className={inputClass}
+                    />
                   </div>
 
                   {/* Aircraft Type */}
@@ -215,218 +156,147 @@ export default function ContactPage() {
                     />
                   </div>
 
-                  {/* Service Required */}
+                  {/* Programme Scope */}
                   <div>
-                    <label htmlFor="service_required" className={labelClass}>
-                      Service Required
-                    </label>
-                    <select
-                      id="service_required"
-                      name="service_required"
-                      className={`${inputClass} cursor-pointer`}
-                    >
-                      <option value="">Select a service...</option>
-                      <option value="acoustic-insulation">Acoustic Insulation Systems</option>
-                      <option value="special-mission">Special Mission Interior</option>
-                      <option value="vip-completion">VIP Completion</option>
-                      <option value="replacement-parts">Replacement Parts</option>
-                      <option value="technical-consultation">Technical Consultation</option>
-                      <option value="other">Other</option>
-                    </select>
-                  </div>
-
-                  {/* Project Description */}
-                  <div>
-                    <label htmlFor="description" className={labelClass}>
-                      Project Description
+                    <label htmlFor="scope" className={labelClass}>
+                      Programme Scope
                     </label>
                     <textarea
-                      id="description"
-                      name="description"
+                      id="scope"
+                      name="scope"
                       rows={5}
-                      placeholder="Describe your programme scope — aircraft configuration, mission type, timeline, acoustic targets, or certification requirements. The more detail you provide, the more specific our response can be."
+                      placeholder="Describe your programme scope — acoustic targets, mission type, timeline, certification requirements, or any specific configuration details."
                       className={`${inputClass} resize-none leading-relaxed`}
                     />
+                  </div>
+
+                  {/* How did you hear */}
+                  <div>
+                    <label htmlFor="source" className={labelClass}>
+                      How did you hear about us?
+                    </label>
+                    <select
+                      id="source"
+                      name="source"
+                      className={`${inputClass} cursor-pointer`}
+                    >
+                      <option value="">Select an option...</option>
+                      <option value="google">Google</option>
+                      <option value="referral">Referral</option>
+                      <option value="trade-show">Trade show</option>
+                      <option value="existing-customer">Existing customer</option>
+                      <option value="other">Other</option>
+                    </select>
                   </div>
 
                   {/* Submit */}
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#111111] px-8 py-4 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[var(--color-gold)]"
+                      className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[var(--color-gold)] px-8 py-4 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[#b8963e]"
                     >
-                      Submit Enquiry
-                      <ArrowRight className="h-4 w-4" strokeWidth={1.5} />
+                      Send Enquiry
                     </button>
                   </div>
-
-                  <p className="font-mono text-[9px] uppercase leading-relaxed tracking-[0.18em] text-[#888888]">
-                    Your information is used solely to respond to your enquiry and is not
-                    shared with third parties.
-                  </p>
                 </form>
               )}
             </motion.div>
 
-            {/* ── RIGHT: Info card (col-span-1) ── */}
-            <motion.div variants={fadeUp} className="lg:col-span-1">
-              <div className="sticky top-24 space-y-5">
+            {/* RIGHT: Contact info (~40%) */}
+            <motion.div variants={fadeUp} className="lg:col-span-2">
+              <div className="sticky top-24 space-y-0 border border-black/[0.09]">
+                {/* Direct Contact */}
+                <div className="border-b border-black/[0.09] px-8 py-8">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
+                    Direct Contact
+                  </p>
+                  <div className="mt-6 space-y-4">
+                    <a
+                      href="tel:+18886242400"
+                      className="block text-[15px] text-[#111111] transition-colors hover:text-[var(--color-gold)]"
+                    >
+                      1-888-624-2400
+                    </a>
+                    <a
+                      href="mailto:info@luminary.aero"
+                      className="block text-[15px] text-[#111111] transition-colors hover:text-[var(--color-gold)]"
+                    >
+                      info@luminary.aero
+                    </a>
+                    <p className="text-[14px] leading-[1.6] text-[#555555]">
+                      18321 Parkway<br />Melfa, VA 23410
+                    </p>
+                    <a
+                      href="https://www.linkedin.com/company/luminary-air-group"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-[14px] text-[#555555] transition-colors hover:text-[var(--color-gold)]"
+                    >
+                      linkedin.com/company/luminary-air-group
+                    </a>
+                  </div>
+                </div>
 
-                {/* What happens next */}
-                <div className="rounded-2xl border border-black/[0.08] bg-white p-8">
-                  <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-                    What happens next
-                  </span>
+                {/* What to expect */}
+                <div className="px-8 py-8">
+                  <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
+                    What to expect
+                  </p>
                   <div className="mt-6 space-y-6">
                     {[
                       {
-                        step: "1",
-                        title: "Engineering Review",
-                        body: "We assess your aircraft type and programme scope within 1 business day — identifying applicable certifications and configuration options.",
+                        num: "1",
+                        label: "Receive written brief",
+                        desc: "1 business day",
                       },
                       {
-                        step: "2",
-                        title: "Programme Brief",
-                        body: "We provide a written scope with timeline, certification path, and applicable ADMI™ platform details — specific to your airframe.",
+                        num: "2",
+                        label: "Engineering scoping call",
+                        desc: "Review aircraft and programme requirements",
                       },
                       {
-                        step: "3",
-                        title: "Project Kickoff",
-                        body: "Formal engagement with a dedicated programme manager, configuration control documentation, and defined deliverables.",
+                        num: "3",
+                        label: "Proposal & timeline",
+                        desc: "Scope, certification path, and cost",
                       },
-                    ].map((s, i) => (
-                      <div key={s.step} className="flex gap-4">
+                    ].map((step, i, arr) => (
+                      <div key={step.num} className="flex gap-5">
                         <div className="flex flex-col items-center">
-                          <span className="inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-[rgba(201,168,76,0.10)] font-mono text-[11px] text-[var(--color-gold)]">
-                            {s.step}
+                          <span className="font-mono text-[11px] text-[var(--color-gold)] shrink-0">
+                            {step.num}
                           </span>
-                          {i < 2 && (
-                            <div className="mt-1 w-px flex-1 bg-black/[0.06]" style={{ minHeight: "1.5rem" }} />
+                          {i < arr.length - 1 && (
+                            <div className="mt-2 w-px flex-1 bg-black/[0.08]" style={{ minHeight: "1.5rem" }} />
                           )}
                         </div>
-                        <div className="pb-2">
-                          <div className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#111111]">
-                            {s.title}
-                          </div>
-                          <p className="mt-1.5 text-[13px] leading-[1.7] text-[#555555]">
-                            {s.body}
+                        <div className="pb-1">
+                          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#111111]">
+                            {step.label}
                           </p>
+                          <p className="mt-1 text-[13px] leading-[1.6] text-[#888888]">{step.desc}</p>
                         </div>
                       </div>
                     ))}
                   </div>
                 </div>
-
-                {/* Direct contact */}
-                <div className="rounded-2xl border border-black/[0.08] bg-white px-7 py-6 space-y-4">
-                  <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-                    Direct Contact
-                  </span>
-                  <a
-                    href="mailto:info@luminary.aero"
-                    className="flex items-center gap-3 text-[14px] text-[#111111] transition-colors hover:text-[var(--color-gold)]"
-                  >
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-black/[0.08] bg-[#f8f8f6]">
-                      <Mail className="h-3.5 w-3.5 text-[var(--color-gold)]" strokeWidth={1.5} />
-                    </span>
-                    info@luminary.aero
-                  </a>
-                  <a
-                    href="tel:+18886242400"
-                    className="flex items-center gap-3 text-[14px] text-[#111111] transition-colors hover:text-[var(--color-gold)]"
-                  >
-                    <span className="inline-flex h-8 w-8 items-center justify-center rounded-lg border border-black/[0.08] bg-[#f8f8f6]">
-                      <Phone className="h-3.5 w-3.5 text-[var(--color-gold)]" strokeWidth={1.5} />
-                    </span>
-                    1-888-624-2400
-                  </a>
-                </div>
-
-                {/* Credential badges */}
-                <div className="grid grid-cols-2 gap-3">
-                  <div className="flex items-center justify-center rounded-xl border border-[var(--color-gold)]/30 bg-[rgba(201,168,76,0.05)] px-4 py-4 text-center">
-                    <div>
-                      <div className="font-serif text-[15px] leading-none text-[var(--color-gold)]">
-                        Part 21
-                      </div>
-                      <div className="mt-1 font-mono text-[8px] uppercase tracking-[0.18em] text-[#888888]">
-                        Manufacturer
-                      </div>
-                    </div>
-                  </div>
-                  <div className="flex items-center justify-center rounded-xl border border-[var(--color-gold)]/30 bg-[rgba(201,168,76,0.05)] px-4 py-4 text-center">
-                    <div>
-                      <div className="font-serif text-[15px] leading-none text-[var(--color-gold)]">
-                        ADMI™
-                      </div>
-                      <div className="mt-1 font-mono text-[8px] uppercase tracking-[0.18em] text-[#888888]">
-                        Platform
-                      </div>
-                    </div>
-                  </div>
-                </div>
               </div>
             </motion.div>
+
           </div>
         </Section>
       </section>
 
-      {/* ── BOTTOM STRIP ── */}
-      <section className="relative border-t border-black/[0.06] bg-[#f8f8f6] py-14">
+      {/* ── SECTION 3: AOG DARK CTA ── */}
+      <section className="bg-[#0f0f0f] py-20">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-5 sm:grid-cols-2">
-            <motion.div
-              variants={fadeUp}
-              className="flex items-start gap-5 rounded-2xl border border-black/[0.08] bg-white px-7 py-6"
-            >
-              <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-black/[0.08] bg-[#f8f8f6]">
-                <CheckCircle2 className="h-5 w-5 text-[var(--color-gold)]" strokeWidth={1.5} />
-              </span>
-              <div>
-                <h4 className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#111111]">
-                  Replacement Parts
-                </h4>
-                <p className="mt-2 text-[13px] leading-[1.7] text-[#555555]">
-                  For ADMI™ replacement parts and insulation kit re-orders, reference
-                  your original part numbers in your enquiry and our parts team will
-                  prepare a same-day quotation.
-                </p>
-                <Link
-                  href="/contact"
-                  className="mt-3 inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-gold)] hover:underline"
-                >
-                  Submit a Parts Enquiry
-                  <ChevronRight className="h-3 w-3" strokeWidth={1.5} />
-                </Link>
-              </div>
-            </motion.div>
-
-            <motion.div
-              variants={fadeUp}
-              className="flex items-start gap-5 rounded-2xl border border-black/[0.08] bg-white px-7 py-6"
-            >
-              <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-black/[0.08] bg-[#f8f8f6]">
-                <Download className="h-5 w-5 text-[var(--color-gold)]" strokeWidth={1.5} />
-              </span>
-              <div>
-                <h4 className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#111111]">
-                  Downloads
-                </h4>
-                <p className="mt-2 text-[13px] leading-[1.7] text-[#555555]">
-                  STCs, data sheets, and product documentation are available in our
-                  resources section. Specify your aircraft type and applicable service
-                  in your enquiry to receive targeted documentation.
-                </p>
-                <Link
-                  href="/blog"
-                  className="mt-3 inline-flex items-center gap-1 font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-gold)] hover:underline"
-                >
-                  Browse Technical Resources
-                  <ChevronRight className="h-3 w-3" strokeWidth={1.5} />
-                </Link>
-              </div>
-            </motion.div>
-          </div>
+          <motion.div variants={fadeUp} className="text-center">
+            <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
+              AOG Support
+            </p>
+            <p className="mt-5 font-serif text-[clamp(1.25rem,2vw,1.5rem)] text-white/75">
+              AOG support line &middot; 1-888-624-2400 &middot; Priority response for aircraft on ground.
+            </p>
+          </motion.div>
         </Section>
       </section>
     </>

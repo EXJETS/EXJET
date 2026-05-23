@@ -3,14 +3,13 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import Link from "next/link";
-import { BarChart3, BadgeCheck, Shield, FileCheck2, ArrowRight, Mail, MapPin, Phone, Linkedin } from "lucide-react";
 
 const fadeUp = {
   hidden: { opacity: 0, y: 24 },
   visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
 };
 const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } },
+  visible: { transition: { staggerChildren: 0.12 } },
 };
 
 function Section({
@@ -34,33 +33,6 @@ function Section({
     </motion.div>
   );
 }
-
-const values = [
-  {
-    icon: BarChart3,
-    title: "Measurement-Driven",
-    description:
-      "Every acoustic outcome, weight target, and configuration specification is defined in writing before build commencement. Post-installation data is documented and issued to the operator — performance is verified, not estimated.",
-  },
-  {
-    icon: BadgeCheck,
-    title: "Certified at Every Stage",
-    description:
-      "FAA Part 21 manufacturer approval governs every production step from raw material receipt to final airframe installation. Regulatory traceability is not an administrative add-on — it is the manufacturing process.",
-  },
-  {
-    icon: Shield,
-    title: "Mission-Ready Reliability",
-    description:
-      "Luminary interiors are engineered for the demands of operational service — not just delivery-day presentation. Material selection, fastener systems, and access architecture are specified for service life, not aesthetics.",
-  },
-  {
-    icon: FileCheck2,
-    title: "Operational Transparency",
-    description:
-      "Programme managers and fleet operators receive complete documentation packages: scope records, configuration control logs, certification data, and maintenance instructions — enabling informed in-service decision-making.",
-  },
-];
 
 const certifications = [
   { label: "FAA Part 21", sub: "Manufacturer Approval" },
@@ -97,199 +69,111 @@ const team = [
 export default function AboutPage() {
   return (
     <>
-      {/* ── HERO ── */}
-      <section className="relative overflow-hidden bg-white">
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(201,168,76,0.06),transparent_60%)]"
-          aria-hidden
+      {/* ── SECTION 1: HERO ── */}
+      <section className="relative overflow-hidden" style={{ minHeight: "65vh" }}>
+        <img
+          src="https://images.unsplash.com/photo-1569728723197-a2d6db1cb9a9?w=1800&q=85&fit=crop"
+          alt=""
+          className="absolute inset-0 h-full w-full object-cover"
+          loading="eager"
         />
-        <Section className="relative mx-auto max-w-7xl px-5 pt-28 pb-24 sm:px-8 lg:pt-44 lg:pb-32">
-          <motion.div variants={fadeUp} className="mb-6 flex items-center gap-4">
-            <span className="h-px w-8 bg-[var(--color-gold)]" />
-            <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
-              About Luminary Air Group
-            </span>
-          </motion.div>
-
-          <div className="max-w-4xl">
-            <motion.h1 variants={fadeUp} className="display-serif text-[#111111]">
-              Over Two Decades of Certified
-              <br />
-              <em className="display-serif-italic text-[#999999]">
-                Aviation Interior Engineering
-              </em>
-            </motion.h1>
-            <motion.p
-              variants={fadeUp}
-              className="mt-8 max-w-2xl text-[15px] leading-[1.8] text-[#555555]"
-            >
-              Luminary Air Group is your partner for aircraft insulation, interiors, seating,
-              and program management — operating as a FAA Part 21 approved manufacturer from
-              Accomack County Airport in Virginia.
-            </motion.p>
-          </div>
-
-          <motion.div
-            variants={fadeUp}
-            className="mt-12 flex flex-wrap items-center gap-3"
-          >
-            <Link
-              href="/performance-history"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[#b8963e]"
-            >
-              Our Performance Record
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
-            </Link>
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full border border-black/[0.12] bg-transparent px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#111111] transition-all hover:border-[var(--color-gold)] hover:text-[var(--color-gold)]"
-            >
-              Contact the Team
-            </Link>
-          </motion.div>
-        </Section>
-      </section>
-
-      {/* ── CREDENTIAL STRIP ── */}
-      <section className="relative border-t border-black/[0.06] bg-[#f8f8f6]">
-        <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid grid-cols-2 gap-px overflow-hidden border-x border-black/[0.06] bg-black/[0.04] sm:grid-cols-4">
-            {[
-              { value: "FAA Part 21", label: "Manufacturer", sub: "Approved authority" },
-              { value: "EASA", label: "Certified", sub: "European authority" },
-              { value: "AS9100D", label: "Quality System", sub: "Aerospace standard" },
-              { value: "25+ Years", label: "Operational History", sub: "Founded in service" },
-            ].map((c) => (
-              <motion.div
-                key={c.label}
-                variants={fadeUp}
-                className="flex flex-col items-center justify-center gap-1.5 bg-white px-6 py-10 text-center"
-              >
-                <span className="font-serif text-[clamp(1.25rem,2.5vw,2rem)] leading-none text-[var(--color-gold)]">
-                  {c.value}
-                </span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#111111]">
-                  {c.label}
-                </span>
-                <span className="font-mono text-[9px] uppercase tracking-[0.18em] text-[#888888]">
-                  {c.sub}
-                </span>
-              </motion.div>
-            ))}
-          </div>
-        </Section>
-      </section>
-
-      {/* ── COMPANY STORY ── */}
-      <section className="relative border-t border-black/[0.06] bg-white py-24">
-        <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-16 md:grid-cols-12">
-            {/* Left */}
-            <motion.div variants={fadeUp} className="md:col-span-5">
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-                I · The Company
-              </span>
-              <h2 className="display-serif-md mt-5 text-[#111111]">
-                Precision Engineering.
-                <br />
-                <em className="display-serif-italic text-[#555555]">Certified Results.</em>
-              </h2>
-            </motion.div>
-
-            {/* Right */}
-            <motion.div variants={stagger} className="md:col-span-7">
-              <div className="space-y-5 text-[15px] leading-[1.85] text-[#555555]">
-                <motion.p variants={fadeUp}>
-                  Luminary Air Group was founded on the principle that aircraft acoustic
-                  performance could be predicted, targeted, and verified — not estimated.
-                  From the first build, the company applied measurement science to insulation
-                  engineering, establishing a methodology that has since been formalised
-                  into the ADMI™ platform and applied across hundreds of aircraft programmes.
-                </motion.p>
-                <motion.p variants={fadeUp}>
-                  The development of the ADMI™ (Advanced Design &amp; Manufacturing
-                  Integration) platform marked Luminary&rsquo;s formal expansion into special
-                  mission aircraft interiors. Recognising that mission platforms required a
-                  purpose-built architecture rather than a reconfigured VIP approach, the
-                  company invested in modular structural systems, configuration control
-                  documentation, and multi-role reconfiguration methodology — all under
-                  FAA Part 21 manufacturer approval.
-                </motion.p>
-                <motion.p variants={fadeUp}>
-                  Today, Luminary serves government operators, programme managers, and fleet
-                  operators requiring documented performance outcomes, certified manufacturing
-                  traceability, and in-service modification support. Every programme —
-                  whether an acoustic insulation upgrade, a green aircraft completion, or
-                  a multi-role mission interior — is delivered with the same commitment
-                  to written targets, verified results, and full certification documentation.
-                </motion.p>
-              </div>
-
-              {/* Dave quote callout */}
-              <motion.div
-                variants={fadeUp}
-                className="mt-10 rounded-2xl border border-[var(--color-gold)]/40 bg-[#f8f8f6] p-8 shadow-[0_0_0_1px_rgba(201,168,76,0.08),0_8px_24px_-4px_rgba(201,168,76,0.06)]"
-              >
-                <blockquote>
-                  <p className="font-serif text-[19px] italic leading-relaxed text-[#111111]">
-                    &ldquo;Acoustic engineering taught us to measure first and build second.
-                    That discipline — commit to a target, engineer to achieve it, document
-                    the result — is the foundation of everything we deliver.&rdquo;
-                  </p>
-                  <cite className="mt-4 block font-mono text-[10px] not-italic uppercase tracking-[0.22em] text-[#888888]">
-                    David Lumgair · Managing Partner, Luminary Air Group
-                  </cite>
-                </blockquote>
-              </motion.div>
-            </motion.div>
-          </div>
-        </Section>
-      </section>
-
-      {/* ── OUR TEAM ── */}
-      <section className="relative border-t border-black/[0.06] bg-[#f8f8f6] py-24">
-        <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <motion.div variants={fadeUp} className="mb-16">
-            <div className="mb-4 flex items-center gap-4">
+        <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
+        <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-40 sm:px-8 lg:pb-28 lg:pt-52">
+          <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-3xl">
+            <motion.div variants={fadeUp} className="mb-6 flex items-center gap-4">
               <span className="h-px w-8 bg-[var(--color-gold)]" />
-              <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
-                II · Our Team
+              <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
+                About Luminary Air Group
               </span>
-            </div>
-            <h2 className="display-serif-md max-w-xl text-[#111111]">
-              Managed by experienced
+            </motion.div>
+            <motion.h1 variants={fadeUp} className="display-serif text-white">
+              Aviation Interior
               <br />
-              <em className="display-serif-italic text-[#555555]">aviation professionals.</em>
-            </h2>
+              <em className="display-serif-italic text-white/40">Engineering &amp; Manufacturing.</em>
+            </motion.h1>
+            <motion.p variants={fadeUp} className="mt-8 max-w-2xl text-[16px] leading-[1.9] text-white/55">
+              Luminary Air Group is a FAA Part 21 certified manufacturer of aircraft interior systems — acoustic
+              insulation, special mission platforms, and VIP completions — with headquarters at Accomack County
+              Airport, Melfa, Virginia.
+            </motion.p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* ── SECTION 2: STORY SPLIT ── */}
+      <section className="bg-white py-24">
+        <Section className="mx-auto max-w-7xl px-5 sm:px-8">
+          <div className="grid gap-16 lg:grid-cols-2">
+            {/* Left */}
+            <motion.div variants={fadeUp}>
+              <blockquote className="font-serif text-[clamp(1.4rem,2.2vw,1.875rem)] leading-[1.35] text-[#111111]">
+                &ldquo;We don&rsquo;t estimate performance. We measure it, certify it, and publish it.&rdquo;
+              </blockquote>
+              <p className="mt-10 text-[15px] leading-[1.85] text-[#555555]">
+                Founded over two decades ago on Virginia&rsquo;s Eastern Shore, Luminary Air Group has grown from a
+                boutique interior specialist into a full Part 21 certified manufacturer — holding our own STCs,
+                operating under our own ODA authority, and delivering every project with a certified acoustic data
+                package.
+              </p>
+            </motion.div>
+
+            {/* Right: numbered stats */}
+            <motion.div variants={stagger} className="divide-y divide-black/[0.07]">
+              {[
+                { num: "01", stat: "25+ years in aviation interior manufacturing" },
+                { num: "02", stat: "100+ Supplemental Type Certificates held" },
+                { num: "03", stat: "FAA Part 21 & EASA certified manufacturer" },
+                { num: "04", stat: "31 certification programmes led by founding team" },
+              ].map((item) => (
+                <motion.div
+                  key={item.num}
+                  variants={fadeUp}
+                  className="flex items-baseline gap-8 py-6"
+                >
+                  <span className="w-8 shrink-0 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
+                    {item.num}
+                  </span>
+                  <span className="text-[15px] leading-[1.6] text-[#111111]">{item.stat}</span>
+                </motion.div>
+              ))}
+            </motion.div>
+          </div>
+        </Section>
+      </section>
+
+      {/* ── SECTION 3: TEAM ── */}
+      <section className="bg-[#f4f3f0] py-24">
+        <Section className="mx-auto max-w-7xl px-5 sm:px-8">
+          <motion.div variants={fadeUp} className="mb-14">
+            <h2 className="display-serif-md text-[#111111]">Leadership</h2>
           </motion.div>
 
-          <div className="space-y-12">
+          <div className="grid gap-8 lg:grid-cols-2">
             {team.map((member) => (
               <motion.div
                 key={member.name}
                 variants={fadeUp}
-                className="rounded-2xl border border-black/[0.08] bg-white p-8 shadow-[0_2px_12px_-2px_rgba(0,0,0,0.04)] lg:p-12"
+                className="flex flex-col bg-white p-10"
               >
-                <div className="grid gap-10 lg:grid-cols-12">
-                  {/* Name / title */}
-                  <div className="lg:col-span-3">
-                    <h3 className="font-serif text-[26px] leading-tight text-[#111111]">
-                      {member.name}
-                    </h3>
-                    <p className="mt-1.5 font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-                      {member.title}
-                    </p>
-                    <p className="mt-5 font-mono text-[10px] leading-[1.7] text-[#888888]">
-                      {member.highlight}
-                    </p>
-                  </div>
+                <div className="mb-6 border-b border-black/[0.08] pb-6">
+                  <h3 className="font-serif text-[28px] leading-tight text-[#111111]">
+                    {member.name}
+                  </h3>
+                  <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
+                    {member.title}
+                  </p>
+                </div>
 
-                  {/* Bio */}
-                  <div className="space-y-4 text-[14px] leading-[1.85] text-[#555555] lg:col-span-9">
-                    {member.bio.map((para, i) => (
-                      <p key={i}>{para}</p>
-                    ))}
-                  </div>
+                <div className="flex-1 space-y-4 text-[14px] leading-[1.85] text-[#555555]">
+                  {member.bio.map((para, i) => (
+                    <p key={i}>{para}</p>
+                  ))}
+                </div>
+
+                <div className="mt-8 border-t border-black/[0.07] pt-6">
+                  <span className="inline-block rounded-full border border-[var(--color-gold)]/30 bg-[rgba(201,168,76,0.06)] px-4 py-2 font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--color-gold)]">
+                    {member.highlight}
+                  </span>
                 </div>
               </motion.div>
             ))}
@@ -297,67 +181,20 @@ export default function AboutPage() {
         </Section>
       </section>
 
-      {/* ── VALUES ── */}
-      <section className="relative border-t border-black/[0.06] bg-white py-24">
+      {/* ── SECTION 4: CERTIFICATIONS ── */}
+      <section className="bg-white py-24">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <motion.div variants={fadeUp} className="mx-auto mb-14 max-w-2xl text-center">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-              III · Our Approach
-            </span>
-            <h2 className="display-serif-md mt-5 text-[#111111]">
-              What drives every
-              <br />
-              <em className="display-serif-italic text-[#555555]">programme we accept.</em>
-            </h2>
-          </motion.div>
-
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-            {values.map((v) => (
-              <motion.div
-                key={v.title}
-                variants={fadeUp}
-                className="flex flex-col rounded-2xl border border-black/[0.08] bg-white p-8 transition-all hover:border-[var(--color-gold)] hover:shadow-[0_12px_24px_-6px_rgba(201,168,76,0.10)]"
-              >
-                <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl border border-black/[0.08] bg-[#f8f8f6]">
-                  <v.icon className="h-5 w-5 text-[var(--color-gold)]" strokeWidth={1.5} />
-                </span>
-                <h3 className="mt-5 font-mono text-[11px] uppercase tracking-[0.18em] text-[#111111]">
-                  {v.title}
-                </h3>
-                <p className="mt-3 flex-1 text-[13px] leading-[1.75] text-[#555555]">
-                  {v.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </Section>
-      </section>
-
-      {/* ── CERTIFICATIONS ── */}
-      <section className="relative border-t border-black/[0.06] bg-[#f8f8f6] py-24">
-        <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <motion.div variants={fadeUp} className="mb-12 text-center">
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-              IV · Approvals &amp; Quality Standards
-            </span>
-            <h2 className="display-serif-md mt-5 text-[#111111]">
-              Certifications &amp;
-              <br />
-              <em className="display-serif-italic text-[#555555]">regulatory approvals.</em>
-            </h2>
-          </motion.div>
-
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {certifications.map((cert) => (
               <motion.div
                 key={cert.label}
                 variants={fadeUp}
-                className="flex flex-col items-center justify-center rounded-2xl border border-black/[0.08] bg-white px-4 py-7 text-center transition-all hover:border-[var(--color-gold)]/40"
+                className="flex flex-col items-center justify-center border border-black/[0.09] px-4 py-8 text-center transition-all hover:border-[var(--color-gold)]/40"
               >
-                <span className="font-serif text-[22px] leading-none text-[var(--color-gold)]">
+                <span className="font-serif text-[20px] leading-none text-[var(--color-gold)]">
                   {cert.label}
                 </span>
-                <span className="mt-2 font-mono text-[9px] uppercase tracking-[0.18em] text-[#888888]">
+                <span className="mt-2.5 font-mono text-[9px] uppercase tracking-[0.18em] text-[#888888]">
                   {cert.sub}
                 </span>
               </motion.div>
@@ -366,140 +203,57 @@ export default function AboutPage() {
         </Section>
       </section>
 
-      {/* ── HEADQUARTERS ── */}
-      <section className="relative border-t border-black/[0.06] bg-white py-24">
+      {/* ── SECTION 5: CONTACT / HQ ── */}
+      <section className="bg-[#0f0f0f] py-24">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-12 lg:grid-cols-2">
+          <div className="grid gap-16 lg:grid-cols-2">
+            {/* Left */}
             <motion.div variants={fadeUp}>
-              <div className="mb-4 flex items-center gap-4">
+              <div className="mb-6 flex items-center gap-4">
                 <span className="h-px w-8 bg-[var(--color-gold)]" />
                 <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
-                  V · Headquarters
+                  Headquarters
                 </span>
               </div>
-              <h2 className="display-serif-md text-[#111111]">
-                Find us at
-                <br />
-                <em className="display-serif-italic text-[#555555]">Accomack County Airport.</em>
+              <h2 className="display-serif-md text-white">
+                Headquartered at Accomack County Airport
               </h2>
-              <p className="mt-6 text-[15px] leading-[1.8] text-[#555555]">
-                Luminary Air Group operates from Accomack County Airport on the Eastern Shore
-                of Virginia — providing direct airfield access for aircraft delivery, test
-                flights, and on-aircraft installation programmes.
-              </p>
-
-              <div className="mt-8 space-y-4">
-                <div className="flex items-start gap-3">
-                  <MapPin className="mt-0.5 h-4 w-4 shrink-0 text-[var(--color-gold)]" strokeWidth={1.5} />
-                  <div>
-                    <p className="text-[14px] font-medium text-[#111111]">Luminary Air Group, LLC</p>
-                    <p className="mt-0.5 text-[14px] text-[#555555]">18321 Parkway</p>
-                    <p className="text-[14px] text-[#555555]">Melfa, VA 23410</p>
-                  </div>
-                </div>
-                <a
-                  href="mailto:info@luminary.aero"
-                  className="flex items-center gap-3 text-[14px] text-[#555555] transition-colors hover:text-[var(--color-gold)]"
-                >
-                  <Mail className="h-4 w-4 shrink-0 text-[var(--color-gold)]" strokeWidth={1.5} />
-                  info@luminary.aero
-                </a>
+              <div className="mt-8 space-y-5 text-[15px] leading-[1.8] text-white/55">
+                <p>18321 Parkway, Melfa, VA 23410</p>
                 <a
                   href="tel:+18886242400"
-                  className="flex items-center gap-3 text-[14px] text-[#555555] transition-colors hover:text-[var(--color-gold)]"
+                  className="block transition-colors hover:text-[var(--color-gold)]"
                 >
-                  <Phone className="h-4 w-4 shrink-0 text-[var(--color-gold)]" strokeWidth={1.5} />
                   1-888-624-2400
                 </a>
                 <a
-                  href="https://www.linkedin.com/company/luminary-air-group"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 text-[14px] text-[#555555] transition-colors hover:text-[var(--color-gold)]"
+                  href="mailto:info@luminary.aero"
+                  className="block transition-colors hover:text-[var(--color-gold)]"
                 >
-                  <Linkedin className="h-4 w-4 shrink-0 text-[var(--color-gold)]" strokeWidth={1.5} />
-                  Follow us on LinkedIn
+                  info@luminary.aero
                 </a>
               </div>
             </motion.div>
 
-            <motion.div
-              variants={fadeUp}
-              className="flex items-start justify-center lg:justify-end"
-            >
-              <div className="w-full max-w-md rounded-2xl border border-black/[0.08] bg-[#f8f8f6] p-8">
-                <h3 className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
-                  Programme Enquiries
-                </h3>
-                <p className="mt-3 text-[14px] leading-[1.75] text-[#555555]">
-                  For new programme enquiries, STC questions, acoustic data requests, or
-                  replacement parts — our team responds within one business day.
-                </p>
+            {/* Right: CTA */}
+            <motion.div variants={fadeUp} className="flex flex-col justify-center">
+              <p className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
+                Programme Enquiries
+              </p>
+              <p className="mt-5 text-[18px] leading-[1.7] text-white/70">
+                Our engineering team responds within one business day with a written brief including scope,
+                timeline, and certification path.
+              </p>
+              <div className="mt-8">
                 <Link
                   href="/contact"
-                  className="mt-6 inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-6 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[#b8963e]"
+                  className="inline-flex items-center gap-3 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[#b8963e]"
                 >
-                  New Customer Enquiry
-                  <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
+                  Start a programme enquiry
                 </Link>
               </div>
             </motion.div>
           </div>
-        </Section>
-      </section>
-
-      {/* ── DARK CTA ── */}
-      <section className="relative overflow-hidden bg-[#111111] py-24 lg:py-32">
-        <div
-          className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,rgba(201,168,76,0.05),transparent_70%)]"
-          aria-hidden
-        />
-        <Section className="relative mx-auto max-w-3xl px-5 text-center sm:px-8">
-          <motion.span
-            variants={fadeUp}
-            className="inline-flex items-center gap-3 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]"
-          >
-            <span className="h-px w-8 bg-[var(--color-gold)]/50" />
-            Luminary Air Group
-            <span className="h-px w-8 bg-[var(--color-gold)]/50" />
-          </motion.span>
-
-          <motion.h2 variants={fadeUp} className="display-serif-md mt-8 text-white">
-            Work with a manufacturer that
-            <br />
-            <em className="display-serif-italic text-[var(--color-gold)]">
-              publishes its results.
-            </em>
-          </motion.h2>
-
-          <motion.p
-            variants={fadeUp}
-            className="mx-auto mt-6 max-w-xl text-[15px] leading-[1.85] text-white/70"
-          >
-            Every programme Luminary delivers is documented — from initial acoustic
-            prediction through post-installation verification. Our engineering team is
-            available to discuss your aircraft, scope, and certification requirements.
-          </motion.p>
-
-          <motion.div
-            variants={fadeUp}
-            className="mt-10 flex flex-wrap items-center justify-center gap-3"
-          >
-            <Link
-              href="/contact"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[#b8963e]"
-            >
-              Contact the Engineering Team
-              <Mail className="h-3.5 w-3.5" strokeWidth={1.5} />
-            </Link>
-            <Link
-              href="/performance-history"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 bg-transparent px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:border-white/50"
-            >
-              View Performance History
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.5} />
-            </Link>
-          </motion.div>
         </Section>
       </section>
     </>
