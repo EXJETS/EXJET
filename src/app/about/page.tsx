@@ -70,7 +70,7 @@ export default function AboutPage() {
   return (
     <>
       {/* ── SECTION 1: HERO ── */}
-      <section className="relative overflow-hidden" style={{ minHeight: "65vh" }}>
+      <section className="relative overflow-hidden" style={{ minHeight: "52vh" }}>
         <img
           src="https://images.unsplash.com/photo-1569728723197-a2d6db1cb9a9?w=1800&q=85&fit=crop"
           alt=""
@@ -78,7 +78,7 @@ export default function AboutPage() {
           loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
-        <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-40 sm:px-8 lg:pb-28 lg:pt-52">
+        <div className="relative mx-auto max-w-7xl px-5 pb-12 pt-28 sm:px-8 lg:pb-16 lg:pt-36">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-3xl">
             <motion.div variants={fadeUp} className="mb-6 flex items-center gap-4">
               <span className="h-px w-8 bg-[var(--color-gold)]" />
@@ -101,7 +101,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── SECTION 2: STORY SPLIT ── */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-12">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-16 lg:grid-cols-2">
             {/* Left */}
@@ -142,9 +142,9 @@ export default function AboutPage() {
       </section>
 
       {/* ── SECTION 3: TEAM ── */}
-      <section className="bg-[#f4f3f0] py-24">
+      <section className="bg-[#f4f3f0] py-12">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <motion.div variants={fadeUp} className="mb-14">
+          <motion.div variants={fadeUp} className="mb-8">
             <h2 className="display-serif-md text-[#111111]">Leadership</h2>
           </motion.div>
 
@@ -182,7 +182,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── SECTION 4: CERTIFICATIONS ── */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-12">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {certifications.map((cert) => (
@@ -204,7 +204,7 @@ export default function AboutPage() {
       </section>
 
       {/* ── SECTION 5: CONTACT / HQ ── */}
-      <section className="bg-[#0f0f0f] py-24">
+      <section className="bg-[#0f0f0f] py-12">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-16 lg:grid-cols-2">
             {/* Left */}

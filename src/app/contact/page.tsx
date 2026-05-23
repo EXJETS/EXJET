@@ -49,7 +49,7 @@ export default function ContactPage() {
   return (
     <>
       {/* ── SECTION 1: HERO ── */}
-      <section className="relative overflow-hidden" style={{ minHeight: "65vh" }}>
+      <section className="relative overflow-hidden" style={{ minHeight: "52vh" }}>
         <img
           src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?w=1800&q=85&fit=crop"
           alt=""
@@ -57,7 +57,7 @@ export default function ContactPage() {
           loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
-        <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-40 sm:px-8 lg:pb-28 lg:pt-52">
+        <div className="relative mx-auto max-w-7xl px-5 pb-12 pt-28 sm:px-8 lg:pb-16 lg:pt-36">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-3xl">
             <motion.div variants={fadeUp} className="mb-6 flex items-center gap-4">
               <span className="h-px w-8 bg-[var(--color-gold)]" />
@@ -65,10 +65,10 @@ export default function ContactPage() {
                 Contact Luminary Air Group
               </span>
             </motion.div>
-            <motion.h1 variants={fadeUp} className="display-serif text-white">
+            <motion.h1 variants={fadeUp} className="font-serif text-white" style={{ fontSize: "clamp(2rem, 4vw, 3.5rem)", lineHeight: "1.1", letterSpacing: "-0.02em" }}>
               Project Enquiry.
               <br />
-              <em className="display-serif-italic text-white/40">We respond within one business day.</em>
+              <span style={{ fontSize: "clamp(1.5rem, 3vw, 2.5rem)" }}><em className="display-serif-italic text-white/40">We respond within one business day.</em></span>
             </motion.h1>
             <motion.p variants={fadeUp} className="mt-8 max-w-2xl text-[16px] leading-[1.9] text-white/55">
               Provide your aircraft type and programme scope. Our engineering team will respond with a written brief
@@ -79,7 +79,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── SECTION 2: FORM + INFO ── */}
-      <section className="bg-white py-24">
+      <section className="bg-white py-12">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-14 lg:grid-cols-5">
 
@@ -205,7 +205,7 @@ export default function ContactPage() {
             <motion.div variants={fadeUp} className="lg:col-span-2">
               <div className="sticky top-24 border border-black/[0.09]">
                 {/* Direct Contact */}
-                <div className="border-b border-black/[0.09] px-8 py-8">
+                <div className="border-b border-black/[0.09] px-6 py-6">
                   <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
                     Direct Contact
                   </p>
@@ -237,7 +237,7 @@ export default function ContactPage() {
                 </div>
 
                 {/* What to expect */}
-                <div className="px-8 py-8">
+                <div className="px-6 py-6">
                   <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
                     What to expect
                   </p>
@@ -286,7 +286,7 @@ export default function ContactPage() {
       </section>
 
       {/* ── SECTION 3: AOG DARK CTA ── */}
-      <section className="bg-[#0f0f0f] py-20">
+      <section className="bg-[#0f0f0f] py-10">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
           <motion.div variants={fadeUp} className="text-center">
             <p className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">

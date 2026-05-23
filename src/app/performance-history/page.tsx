@@ -70,7 +70,7 @@ export default function PerformanceHistoryPage() {
   return (
     <>
       {/* ── SECTION 1: HERO ── */}
-      <section className="relative overflow-hidden" style={{ minHeight: "65vh" }}>
+      <section className="relative overflow-hidden" style={{ minHeight: "52vh" }}>
         <img
           src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1800&q=85&fit=crop"
           alt=""
@@ -78,7 +78,7 @@ export default function PerformanceHistoryPage() {
           loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
-        <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-40 sm:px-8 lg:pb-28 lg:pt-52">
+        <div className="relative mx-auto max-w-7xl px-5 pb-12 pt-28 sm:px-8 lg:pb-16 lg:pt-36">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-3xl">
             <motion.div variants={fadeUp} className="mb-6 flex items-center gap-4">
               <span className="h-px w-8 bg-[var(--color-gold)]" />
@@ -100,14 +100,14 @@ export default function PerformanceHistoryPage() {
       </section>
 
       {/* ── SECTION 2: WORLD RECORD CALLOUT ── */}
-      <section className="bg-[#0f0f0f] py-28">
+      <section className="bg-[#0f0f0f] py-14">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
             {/* Giant number */}
             <motion.div variants={fadeUp}>
               <span
                 className="block font-serif leading-none text-[var(--color-gold)]"
-                style={{ fontSize: "clamp(5rem, 12vw, 9rem)" }}
+                style={{ fontSize: "clamp(3.5rem, 7vw, 6rem)" }}
               >
                 46.7 dB SIL
               </span>
@@ -132,9 +132,9 @@ export default function PerformanceHistoryPage() {
       </section>
 
       {/* ── SECTION 3: CASE STUDIES ── */}
-      <section className="bg-white py-28">
+      <section className="bg-white py-14">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <motion.div variants={fadeUp} className="mb-16">
+          <motion.div variants={fadeUp} className="mb-10">
             <h2 className="display-serif-md text-[#111111]">
               Case Studies
             </h2>
@@ -216,9 +216,9 @@ export default function PerformanceHistoryPage() {
       </section>
 
       {/* ── SECTION 4: MILITARY PROGRAMMES ── */}
-      <section className="bg-[#f4f3f0] py-28">
+      <section className="bg-[#f4f3f0] py-14">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <motion.div variants={fadeUp} className="mb-14">
+          <motion.div variants={fadeUp} className="mb-8">
             <h2 className="display-serif-md text-[#111111]">
               Government &amp; Military Programmes
             </h2>
@@ -242,7 +242,7 @@ export default function PerformanceHistoryPage() {
       </section>
 
       {/* ── SECTION 5: MEASUREMENT METHODOLOGY ── */}
-      <section className="bg-white py-28">
+      <section className="bg-white py-14">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
           <div className="grid gap-16 lg:grid-cols-2 lg:items-start">
             {/* Left: editorial header */}

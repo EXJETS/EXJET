@@ -72,7 +72,7 @@ export default function VipInteriorsPage() {
     <main className="min-h-screen bg-white">
 
       {/* ── HERO ── */}
-      <section className="relative overflow-hidden" style={{ minHeight: "70vh" }}>
+      <section className="relative overflow-hidden" style={{ minHeight: "52vh" }}>
         <img
           src="https://images.unsplash.com/photo-1474302771737-d1729c1a2318?w=1800&q=85&fit=crop"
           alt="VIP aircraft interior"
@@ -80,7 +80,7 @@ export default function VipInteriorsPage() {
           loading="eager"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/50 to-black/20" />
-        <div className="relative mx-auto max-w-7xl px-5 pb-20 pt-40 sm:px-8 lg:pb-28 lg:pt-52">
+        <div className="relative mx-auto max-w-7xl px-5 pb-12 pt-28 sm:px-8 lg:pb-16 lg:pt-36">
           <motion.div initial="hidden" animate="visible" variants={stagger} className="max-w-3xl">
             <motion.div variants={fadeUp} className="mb-6 flex items-center gap-4">
               <span className="h-px w-8 bg-[var(--color-gold)]" />
@@ -111,9 +111,9 @@ export default function VipInteriorsPage() {
 
       {/* ── PORTFOLIO ── */}
       <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
+        <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:py-16">
           <Section>
-            <motion.h2 variants={fadeUp} className="display-serif-md mb-14 text-[#111111]">
+            <motion.h2 variants={fadeUp} className="display-serif-md mb-8 text-[#111111]">
               Completed programmes
             </motion.h2>
 
@@ -157,9 +157,9 @@ export default function VipInteriorsPage() {
 
       {/* ── PROCESS ── */}
       <section className="bg-[#f4f3f0]">
-        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8 lg:py-28">
+        <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:py-16">
           <Section>
-            <motion.div variants={fadeUp} className="mb-14">
+            <motion.div variants={fadeUp} className="mb-8">
               <h2 className="display-serif-md text-[#111111]">How every completion is delivered</h2>
             </motion.div>
 
@@ -182,7 +182,7 @@ export default function VipInteriorsPage() {
 
       {/* ── DARK CTA ── */}
       <section className="bg-[#0f0f0f]">
-        <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+        <div className="mx-auto max-w-7xl px-5 py-10 sm:px-8">
           <Section className="flex flex-col items-start">
             <motion.h2 variants={fadeUp} className="display-serif-md text-white">
               Commission a VIP completion
