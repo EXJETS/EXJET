@@ -47,10 +47,10 @@ const columns = [
 export function Footer() {
   return (
     <footer className="border-t border-black/[0.06] bg-[#f4f3f0]">
-      <div className="mx-auto max-w-7xl px-5 py-20 sm:px-8">
+      <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
 
         {/* ── Top bar ── */}
-        <div className="mb-14 flex flex-col items-start justify-between gap-8 border-b border-black/[0.06] pb-14 lg:flex-row lg:items-end">
+        <div className="mb-10 flex flex-col items-start justify-between gap-8 border-b border-black/[0.06] pb-10 lg:flex-row lg:items-end">
           {/* Brand + tagline */}
           <div>
             <div className="flex items-center gap-2.5">
@@ -60,7 +60,7 @@ export function Footer() {
               </svg>
               <span className="font-serif text-[17px] tracking-[0.04em] text-[#111111]">Lu·mi·nar·y</span>
             </div>
-            <h2 className="mt-5 font-serif text-[38px] leading-[1.05] text-[#111111] sm:text-[46px]">
+            <h2 className="mt-4 font-serif text-[28px] leading-[1.1] text-[#111111] sm:text-[34px]">
               Experienced.
               <br />
               <em className="font-normal italic text-[#bbbbbb]">Reliable. Certified.</em>
@@ -121,7 +121,7 @@ export function Footer() {
         </div>
 
         {/* ── Bottom bar ── */}
-        <div className="mt-16 flex flex-col items-start justify-between gap-3 border-t border-black/[0.06] pt-8 sm:flex-row sm:items-center">
+        <div className="mt-10 flex flex-col items-start justify-between gap-3 border-t border-black/[0.06] pt-6 sm:flex-row sm:items-center">
           <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#cccccc]">
             &copy; {new Date().getFullYear()} Luminary Air Group &middot; All rights reserved
           </p>

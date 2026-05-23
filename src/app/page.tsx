@@ -163,9 +163,9 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           SERVICES — full-width editorial rows
       ═══════════════════════════════════════════ */}
-      <section className="py-24 lg:py-32">
+      <section className="py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <Reveal className="mb-12">
+          <Reveal className="mb-10">
             <motion.div variants={fadeUp} className="flex items-end justify-between gap-6">
               <div>
                 <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Capabilities</p>
@@ -182,7 +182,7 @@ export default function Home() {
             {services.map((svc, i) => (
               <motion.div key={svc.label} variants={fadeUp} className="group border-t border-black/[0.07]">
                 <Link href={svc.href} className="grid items-stretch lg:grid-cols-[1fr_420px]">
-                  <div className="flex flex-col justify-between py-10 lg:pr-16">
+                  <div className="flex flex-col justify-between py-8 lg:pr-12">
                     <div>
                       <span className="font-mono text-[11px] text-[#dddddd]">{String(i + 1).padStart(2, "0")}</span>
                       <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.24em] text-[var(--color-gold)]">{svc.label}</p>
@@ -212,7 +212,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           WORLD RECORD — dark editorial callout
       ═══════════════════════════════════════════ */}
-      <section className="bg-[#0f0f0f] py-24 lg:py-36">
+      <section className="bg-[#0f0f0f] py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal className="grid items-center gap-16 lg:grid-cols-[1fr_1fr]">
             <motion.div variants={fadeUp}>
@@ -282,10 +282,10 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           CASE STUDIES
       ═══════════════════════════════════════════ */}
-      <section className="py-24 lg:py-32">
+      <section className="py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal>
-            <div className="mb-14 flex items-end justify-between gap-8">
+            <div className="mb-10 flex items-end justify-between gap-8">
               <motion.div variants={fadeUp}>
                 <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Project Record</p>
                 <h2 className="display-serif-md text-[#111111]">
@@ -335,7 +335,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           WHY LUMINARY — editorial 2-col, no icon boxes
       ═══════════════════════════════════════════ */}
-      <section className="border-t border-black/[0.06] bg-[#f4f3f0] py-24 lg:py-32">
+      <section className="border-t border-black/[0.06] bg-[#f4f3f0] py-16 lg:py-20">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal className="grid gap-16 lg:grid-cols-2 lg:gap-24">
             <motion.div variants={fadeUp}>
@@ -382,7 +382,7 @@ export default function Home() {
       {/* ═══════════════════════════════════════════
           CONTACT CTA — dark, single focus
       ═══════════════════════════════════════════ */}
-      <section className="bg-[#0f0f0f] py-24 lg:py-32">
+      <section className="bg-[#0f0f0f] py-16 lg:py-24">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Reveal className="mx-auto max-w-3xl text-center">
             <motion.div variants={fadeUp}>
