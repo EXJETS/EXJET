@@ -161,11 +161,11 @@ export default function Home() {
       </div>
 
       {/* ═══════════════════════════════════════════
-          SERVICES — 3 photo cards
+          SERVICES — full-width editorial rows
       ═══════════════════════════════════════════ */}
       <section className="py-24 lg:py-32">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <Reveal className="mb-14">
+          <Reveal className="mb-12">
             <motion.div variants={fadeUp} className="flex items-end justify-between gap-6">
               <div>
                 <p className="mb-3 font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Capabilities</p>
@@ -175,42 +175,36 @@ export default function Home() {
                   <em className="display-serif-italic text-[#999999]">One certified manufacturer.</em>
                 </h2>
               </div>
-              <Link
-                href="/contact"
-                className="hidden shrink-0 items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-[#555555] transition-all hover:text-[#111111] hover:gap-3 sm:inline-flex"
-              >
-                Get a Quote <ChevronRight className="h-3 w-3" strokeWidth={2} />
-              </Link>
             </motion.div>
           </Reveal>
 
-          <Reveal className="grid gap-4 lg:grid-cols-3">
-            {services.map((svc) => (
-              <motion.div key={svc.label} variants={fadeUp} className="group">
-                <Link href={svc.href} className="block">
-                  <div className="relative overflow-hidden rounded-2xl" style={{ aspectRatio: "4/5" }}>
+          <Reveal>
+            {services.map((svc, i) => (
+              <motion.div key={svc.label} variants={fadeUp} className="group border-t border-black/[0.07]">
+                <Link href={svc.href} className="grid items-stretch lg:grid-cols-[1fr_420px]">
+                  <div className="flex flex-col justify-between py-10 lg:pr-16">
+                    <div>
+                      <span className="font-mono text-[11px] text-[#dddddd]">{String(i + 1).padStart(2, "0")}</span>
+                      <p className="mt-4 font-mono text-[11px] uppercase tracking-[0.24em] text-[var(--color-gold)]">{svc.label}</p>
+                      <h3 className="mt-3 font-serif text-[30px] leading-[1.1] text-[#111111] lg:text-[36px]">{svc.headline}</h3>
+                      <p className="mt-4 max-w-lg text-[14px] leading-[1.9] text-[#666666]">{svc.body}</p>
+                    </div>
+                    <div className="mt-8 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.2em] text-[#bbbbbb] transition-all duration-300 group-hover:gap-3 group-hover:text-[var(--color-gold)]">
+                      Explore <ArrowRight className="h-3 w-3" strokeWidth={1.5} />
+                    </div>
+                  </div>
+                  <div className="relative hidden overflow-hidden lg:block" style={{ minHeight: "300px" }}>
                     <img
                       src={svc.img}
                       alt={svc.label}
-                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                      className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-[1.03]"
                       loading="lazy"
                     />
-                    <div className="photo-card-overlay absolute inset-0" />
-                    <div className="absolute inset-x-0 bottom-0 p-7">
-                      <p className="mb-2 font-mono text-[9px] uppercase tracking-[0.22em] text-[var(--color-gold)]">{svc.label}</p>
-                      <h3 className="font-serif text-[24px] leading-[1.2] text-white">{svc.headline}</h3>
-                      <p className="mt-3 text-[13px] leading-[1.75] text-white/60">{svc.body}</p>
-                      <div className="mt-6 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-white/50 transition-all duration-300 group-hover:gap-3 group-hover:text-[var(--color-gold)]">
-                        Explore <ArrowRight className="h-3 w-3" strokeWidth={1.5} />
-                      </div>
-                    </div>
-                    <div className="absolute right-5 top-5 rounded-full border border-white/20 bg-black/40 px-3 py-1.5 backdrop-blur-sm">
-                      <span className="font-mono text-[9px] uppercase tracking-[0.16em] text-white/70">{svc.metric}</span>
-                    </div>
                   </div>
                 </Link>
               </motion.div>
             ))}
+            <div className="border-t border-black/[0.07]" />
           </Reveal>
         </div>
       </section>
@@ -265,36 +259,22 @@ export default function Home() {
       </section>
 
       {/* ═══════════════════════════════════════════
-          PLATFORMS — minimal strip
+          PLATFORMS — flat text strip
       ═══════════════════════════════════════════ */}
-      <section className="border-b border-black/[0.06] py-16">
+      <section className="border-y border-black/[0.06] bg-[#f4f3f0] py-10">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <Reveal>
-            <div className="mb-8 flex items-center justify-between">
-              <motion.p variants={fadeUp} className="font-mono text-[11px] uppercase tracking-[0.26em] text-[#aaaaaa]">
-                STC Coverage · Approved Platforms
-              </motion.p>
-              <motion.div variants={fadeUp}>
-                <Link
-                  href="/cabin-comfort-systems"
-                  className="font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-gold)] hover:underline"
-                >
-                  Full Catalog →
-                </Link>
-              </motion.div>
-            </div>
-            <motion.div variants={stagger} className="grid grid-cols-2 gap-2 sm:grid-cols-4 lg:grid-cols-8">
-              {platforms.map((p) => (
-                <motion.div
-                  key={p.model}
-                  variants={fadeUp}
-                  className="rounded-xl border border-black/[0.07] bg-[#f4f3f0] px-3 py-4 text-center transition-colors hover:border-[var(--color-gold)]"
-                >
-                  <p className="font-mono text-[10px] font-medium uppercase tracking-[0.12em] text-[#222222]">{p.model}</p>
-                  <p className="mt-0.5 font-mono text-[8px] uppercase tracking-[0.1em] text-[#aaaaaa]">{p.type}</p>
-                </motion.div>
-              ))}
-            </motion.div>
+          <Reveal className="flex flex-wrap items-baseline gap-x-2 gap-y-1">
+            <motion.span variants={fadeUp} className="mr-4 font-mono text-[10px] uppercase tracking-[0.22em] text-[#aaaaaa]">
+              Approved platforms
+            </motion.span>
+            {platforms.map((p, i) => (
+              <motion.span key={p.model} variants={fadeUp} className="font-mono text-[11px] text-[#333333]">
+                {p.model}{i < platforms.length - 1 && <span className="mx-2 text-[#cccccc]">·</span>}
+              </motion.span>
+            ))}
+            <motion.span variants={fadeUp} className="ml-auto font-mono text-[10px] text-[var(--color-gold)]">
+              <Link href="/cabin-comfort-systems" className="hover:underline">Full catalog →</Link>
+            </motion.span>
           </Reveal>
         </div>
       </section>
@@ -324,26 +304,29 @@ export default function Home() {
               </motion.div>
             </div>
 
-            <motion.div variants={stagger} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {caseStudies.map((s, i) => (
+            <motion.div variants={stagger}>
+              {caseStudies.map((s) => (
                 <motion.div
                   key={s.id}
                   variants={fadeUp}
-                  className={`flex flex-col rounded-2xl p-7 ${i === 0 ? "bg-[#0f0f0f]" : "border border-black/[0.08] bg-white"}`}
+                  className="grid grid-cols-[100px_1fr] gap-8 border-t border-black/[0.07] py-8 sm:grid-cols-[120px_1fr_160px]"
                 >
-                  <div className={`mb-4 inline-block self-start rounded-full px-3 py-1 ${i === 0 ? "border border-[rgba(201,168,76,0.3)] bg-[rgba(201,168,76,0.12)]" : "border border-black/[0.08] bg-[#f4f3f0]"}`}>
-                    <span className={`font-mono text-[9px] uppercase tracking-[0.2em] ${i === 0 ? "text-[var(--color-gold)]" : "text-[#888888]"}`}>{s.category}</span>
+                  <div>
+                    <div className="font-serif text-[44px] leading-none text-[#111111]">{s.result}</div>
+                    <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.18em] text-[var(--color-gold)]">{s.achievement}</p>
                   </div>
-                  <span className={`font-mono text-[10px] uppercase tracking-[0.16em] ${i === 0 ? "text-white/35" : "text-[#aaaaaa]"}`}>{s.aircraft}</span>
-                  <div className={`mt-2 font-serif text-[44px] leading-none tracking-tight ${i === 0 ? "text-white" : "text-[#111111]"}`}>{s.result}</div>
-                  <p className={`mt-1 font-mono text-[9px] uppercase tracking-[0.15em] ${i === 0 ? "text-[var(--color-gold)]" : "text-[var(--color-gold)]"}`}>{s.achievement}</p>
-                  <p className={`mt-4 flex-1 text-[12px] leading-[1.85] line-clamp-3 ${i === 0 ? "text-white/40" : "text-[#888888]"}`}>{s.description}</p>
-                  <div className={`mt-5 flex items-center justify-between border-t pt-4 ${i === 0 ? "border-white/[0.07]" : "border-black/[0.05]"}`}>
-                    <span className={`font-mono text-[9px] uppercase tracking-[0.18em] ${i === 0 ? "text-white/25" : "text-[#aaaaaa]"}`}>{s.year}</span>
-                    <span className={`font-mono text-[9px] uppercase tracking-[0.14em] ${i === 0 ? "text-white/25" : "text-[#aaaaaa]"}`}>{s.operator}</span>
+                  <div>
+                    <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#aaaaaa]">{s.aircraft}</p>
+                    <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-[#888888]">{s.category}</p>
+                    <p className="mt-3 text-[13px] leading-[1.85] text-[#666666]">{s.description}</p>
+                  </div>
+                  <div className="hidden text-right sm:block">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[#cccccc]">{s.year}</p>
+                    <p className="mt-1 font-mono text-[9px] uppercase tracking-[0.14em] text-[#cccccc]">{s.operator}</p>
                   </div>
                 </motion.div>
               ))}
+              <div className="border-t border-black/[0.07]" />
             </motion.div>
           </Reveal>
         </div>
@@ -375,19 +358,22 @@ export default function Home() {
               </Link>
             </motion.div>
 
-            <motion.div variants={stagger} className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+            <motion.div variants={stagger}>
               {[
                 { n: "01", title: "Airframe-Specific Engineering", body: "Every insulation system developed from acoustic survey data for your specific airframe — not adapted from a generic template." },
                 { n: "02", title: "Full Certification Authority", body: "FAA Part 21, EASA, ODA delegation, and 100+ STCs across 8 approved platforms. No third-party DER required." },
                 { n: "03", title: "Published Performance Data", body: "Before-and-after dB SIL measurement on every project. Part 21 certified data packages issued to the operator." },
                 { n: "04", title: "In-House Manufacturing", body: "Design, fabrication, and installation under one roof. No subcontracted manufacturing. Full configuration control." },
               ].map((d) => (
-                <motion.div key={d.n} variants={fadeUp} className="rounded-xl border border-black/[0.07] bg-white p-6">
-                  <span className="font-mono text-[11px] text-[#cccccc]">{d.n}</span>
-                  <h3 className="mt-3 font-mono text-[11px] uppercase tracking-[0.16em] text-[#111111]">{d.title}</h3>
-                  <p className="mt-3 text-[13px] leading-[1.85] text-[#666666]">{d.body}</p>
+                <motion.div key={d.n} variants={fadeUp} className="grid grid-cols-[48px_1fr] gap-6 border-t border-black/[0.09] py-7">
+                  <span className="pt-0.5 font-mono text-[11px] text-[#cccccc]">{d.n}</span>
+                  <div>
+                    <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#111111]">{d.title}</h3>
+                    <p className="mt-3 text-[14px] leading-[1.9] text-[#666666]">{d.body}</p>
+                  </div>
                 </motion.div>
               ))}
+              <div className="border-t border-black/[0.09]" />
             </motion.div>
           </Reveal>
         </div>
