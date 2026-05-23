@@ -1,33 +1,22 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65 } },
 };
-const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } },
-};
+const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
-function Section({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <motion.div
-      ref={ref}
-      variants={stagger}
       initial="hidden"
-      animate={inView ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, margin: "-60px" }}
+      variants={stagger}
       className={className}
     >
       {children}
@@ -88,11 +77,11 @@ export default function SpecialMissionInteriorsPage() {
               <br />
               <em className="display-serif-italic text-white/40">Engineered for demanding operations.</em>
             </motion.h1>
-            <motion.p variants={fadeUp} className="mt-8 max-w-2xl text-[16px] leading-[1.9] text-white/55">
+            <motion.p variants={fadeUp} className="mt-7 max-w-2xl text-[15px] leading-[1.9] text-white/65">
               The Advanced Deployable Mission Interior — Luminary&apos;s proprietary platform for certified ISR,
               Med-Evac, Command &amp; Control, and government aircraft interior systems.
             </motion.p>
-            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-4">
+            <motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-4">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-black transition-all hover:bg-[var(--color-gold-deep)]"
@@ -106,10 +95,9 @@ export default function SpecialMissionInteriorsPage() {
 
       {/* ── MISSION TYPES ── */}
       <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:py-16">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
           <Section>
-            <div className="grid gap-16 lg:grid-cols-12">
-              {/* Left */}
+            <div className="grid gap-12 lg:grid-cols-12">
               <motion.div variants={fadeUp} className="lg:col-span-4">
                 <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
                   Mission configurations
@@ -120,17 +108,16 @@ export default function SpecialMissionInteriorsPage() {
                 </h2>
               </motion.div>
 
-              {/* Right */}
               <motion.div variants={stagger} className="lg:col-span-8">
-                <div className="divide-y divide-black/[0.06]">
+                <div className="divide-y divide-black/[0.07]">
                   {missionTypes.map((m) => (
                     <motion.div key={m.number} variants={fadeUp} className="flex gap-6 py-7">
-                      <span className="font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-gold)] shrink-0 pt-0.5">
+                      <span className="shrink-0 pt-0.5 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-gold)]">
                         {m.number}
                       </span>
                       <div>
                         <h3 className="text-[15px] font-medium leading-snug text-[#111111]">{m.title}</h3>
-                        <p className="mt-2 text-[13px] leading-[1.8] text-[#555555]">{m.description}</p>
+                        <p className="mt-2 text-[13px] leading-[1.85] text-[#555555]">{m.description}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -142,33 +129,37 @@ export default function SpecialMissionInteriorsPage() {
       </section>
 
       {/* ── ADMI™ PLATFORM ── */}
-      <section id="admi-platform" className="bg-[#0f0f0f]">
-        <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:py-16">
+      <section className="bg-[#0f0f0f]">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
           <Section>
-            <motion.div variants={fadeUp} className="max-w-4xl">
+            <motion.div variants={fadeUp} className="max-w-3xl">
               <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
                 The ADMI™ Platform
               </span>
-              <p className="mt-8 font-serif text-[clamp(1.3rem,2.5vw,1.9rem)] leading-[1.55] text-white/80">
+              <p className="mt-7 font-serif leading-[1.5] text-white/85" style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.85rem)" }}>
                 The ADMI™ platform is Luminary&apos;s answer to the demand for rapidly reconfigurable,
                 certified mission interior systems — engineered for sustained crew effectiveness,
                 not just initial installation.
               </p>
             </motion.div>
 
-            <motion.div variants={stagger} className="mt-16 grid gap-px overflow-hidden rounded-2xl border border-white/[0.06] bg-white/[0.04] sm:grid-cols-3">
+            <motion.div variants={stagger} className="mt-14 grid gap-6 sm:grid-cols-3">
               {[
                 { value: "FAA Part 21", label: "Manufacturer Approval" },
                 { value: "Field Reconfigurable", label: "Multi-role capable" },
                 { value: "STC Backed", label: "Certified data package" },
               ].map((s) => (
-                <motion.div key={s.label} variants={fadeUp} className="flex flex-col gap-2 bg-[#0f0f0f] px-10 py-10">
-                  <span className="font-serif text-[clamp(1.5rem,3vw,2.2rem)] leading-none text-[var(--color-gold)]">
+                <motion.div
+                  key={s.label}
+                  variants={fadeUp}
+                  className="border border-white/[0.08] px-8 py-8"
+                >
+                  <span className="font-serif leading-none text-[var(--color-gold)]" style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)" }}>
                     {s.value}
                   </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">
+                  <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-white/50">
                     {s.label}
-                  </span>
+                  </p>
                 </motion.div>
               ))}
             </motion.div>
@@ -177,17 +168,17 @@ export default function SpecialMissionInteriorsPage() {
       </section>
 
       {/* ── DARK CTA ── */}
-      <section className="bg-[#0f0f0f] border-t border-white/[0.04]">
-        <div className="mx-auto max-w-7xl px-5 py-10 sm:px-8">
+      <section className="border-t border-white/[0.04] bg-[#0f0f0f]">
+        <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
           <Section className="flex flex-col items-start">
             <motion.h2 variants={fadeUp} className="display-serif-md text-white">
               Specify your mission requirement
             </motion.h2>
-            <motion.p variants={fadeUp} className="mt-6 max-w-xl text-[15px] leading-[1.8] text-white/50">
+            <motion.p variants={fadeUp} className="mt-5 max-w-xl text-[15px] leading-[1.85] text-white/65">
               Provide your aircraft type, programme scope, and timeline. Our engineering team will prepare
               a written programme brief addressing configuration, weight targets, and ADMI™ platform applicability.
             </motion.p>
-            <motion.div variants={fadeUp} className="mt-10">
+            <motion.div variants={fadeUp} className="mt-9">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-black transition-all hover:bg-[var(--color-gold-deep)]"

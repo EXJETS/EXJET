@@ -1,32 +1,21 @@
 "use client";
 
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
+import { motion } from "framer-motion";
 import Link from "next/link";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65 } },
 };
-const stagger = {
-  visible: { transition: { staggerChildren: 0.12 } },
-};
+const stagger = { visible: { transition: { staggerChildren: 0.12 } } };
 
-function Section({
-  children,
-  className = "",
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
     <motion.div
-      ref={ref}
-      variants={stagger}
       initial="hidden"
-      animate={inView ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, margin: "-60px" }}
+      variants={stagger}
       className={className}
     >
       {children}
@@ -69,7 +58,7 @@ const team = [
 export default function AboutPage() {
   return (
     <>
-      {/* ── SECTION 1: HERO ── */}
+      {/* ── HERO ── */}
       <section className="relative overflow-hidden" style={{ minHeight: "52vh" }}>
         <img
           src="https://images.unsplash.com/photo-1569728723197-a2d6db1cb9a9?w=1800&q=85&fit=crop"
@@ -91,7 +80,7 @@ export default function AboutPage() {
               <br />
               <em className="display-serif-italic text-white/40">Engineering &amp; Manufacturing.</em>
             </motion.h1>
-            <motion.p variants={fadeUp} className="mt-8 max-w-2xl text-[16px] leading-[1.9] text-white/55">
+            <motion.p variants={fadeUp} className="mt-7 max-w-2xl text-[15px] leading-[1.9] text-white/65">
               Luminary Air Group is a FAA Part 21 certified manufacturer of aircraft interior systems — acoustic
               insulation, special mission platforms, and VIP completions — with headquarters at Accomack County
               Airport, Melfa, Virginia.
@@ -100,16 +89,15 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* ── SECTION 2: STORY SPLIT ── */}
-      <section className="bg-white py-12">
+      {/* ── STORY ── */}
+      <section className="bg-white py-14 lg:py-20">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-16 lg:grid-cols-2">
-            {/* Left */}
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
             <motion.div variants={fadeUp}>
-              <blockquote className="font-serif text-[clamp(1.4rem,2.2vw,1.875rem)] leading-[1.35] text-[#111111]">
+              <blockquote className="font-serif leading-[1.35] text-[#111111]" style={{ fontSize: "clamp(1.35rem, 2.2vw, 1.75rem)" }}>
                 &ldquo;We don&rsquo;t estimate performance. We measure it, certify it, and publish it.&rdquo;
               </blockquote>
-              <p className="mt-10 text-[15px] leading-[1.85] text-[#555555]">
+              <p className="mt-8 text-[15px] leading-[1.85] text-[#555555]">
                 Founded over two decades ago on Virginia&rsquo;s Eastern Shore, Luminary Air Group has grown from a
                 boutique interior specialist into a full Part 21 certified manufacturer — holding our own STCs,
                 operating under our own ODA authority, and delivering every project with a certified acoustic data
@@ -117,7 +105,6 @@ export default function AboutPage() {
               </p>
             </motion.div>
 
-            {/* Right: numbered stats */}
             <motion.div variants={stagger} className="divide-y divide-black/[0.07]">
               {[
                 { num: "01", stat: "25+ years in aviation interior manufacturing" },
@@ -125,12 +112,8 @@ export default function AboutPage() {
                 { num: "03", stat: "FAA Part 21 & EASA certified manufacturer" },
                 { num: "04", stat: "31 certification programmes led by founding team" },
               ].map((item) => (
-                <motion.div
-                  key={item.num}
-                  variants={fadeUp}
-                  className="flex items-baseline gap-8 py-6"
-                >
-                  <span className="w-8 shrink-0 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
+                <motion.div key={item.num} variants={fadeUp} className="flex items-baseline gap-7 py-6">
+                  <span className="w-7 shrink-0 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                     {item.num}
                   </span>
                   <span className="text-[15px] leading-[1.6] text-[#111111]">{item.stat}</span>
@@ -141,22 +124,23 @@ export default function AboutPage() {
         </Section>
       </section>
 
-      {/* ── SECTION 3: TEAM ── */}
-      <section className="bg-[#f4f3f0] py-12">
+      {/* ── TEAM ── */}
+      <section className="bg-[#f4f3f0] py-14 lg:py-20">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <motion.div variants={fadeUp} className="mb-8">
-            <h2 className="display-serif-md text-[#111111]">Leadership</h2>
+          <motion.div variants={fadeUp} className="mb-10">
+            <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Leadership</span>
+            <h2 className="display-serif-md mt-3 text-[#111111]">Founding team</h2>
           </motion.div>
 
-          <div className="grid gap-8 lg:grid-cols-2">
+          <div className="grid gap-6 lg:grid-cols-2">
             {team.map((member) => (
               <motion.div
                 key={member.name}
                 variants={fadeUp}
-                className="flex flex-col bg-white p-10"
+                className="flex flex-col bg-white p-8 lg:p-10"
               >
                 <div className="mb-6 border-b border-black/[0.08] pb-6">
-                  <h3 className="font-serif text-[28px] leading-tight text-[#111111]">
+                  <h3 className="font-serif text-[26px] leading-tight text-[#111111]">
                     {member.name}
                   </h3>
                   <p className="mt-2 font-mono text-[10px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
@@ -170,8 +154,8 @@ export default function AboutPage() {
                   ))}
                 </div>
 
-                <div className="mt-8 border-t border-black/[0.07] pt-6">
-                  <span className="inline-block rounded-full border border-[var(--color-gold)]/30 bg-[rgba(201,168,76,0.06)] px-4 py-2 font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--color-gold)]">
+                <div className="mt-7 border-t border-black/[0.07] pt-5">
+                  <span className="font-mono text-[9px] uppercase tracking-[0.2em] text-[var(--color-gold)]">
                     {member.highlight}
                   </span>
                 </div>
@@ -181,9 +165,13 @@ export default function AboutPage() {
         </Section>
       </section>
 
-      {/* ── SECTION 4: CERTIFICATIONS ── */}
-      <section className="bg-white py-12">
+      {/* ── CERTIFICATIONS ── */}
+      <section className="bg-white py-14 lg:py-20">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
+          <motion.div variants={fadeUp} className="mb-10">
+            <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Credentials</span>
+            <h2 className="display-serif-md mt-3 text-[#111111]">Certifications &amp; approvals</h2>
+          </motion.div>
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:grid-cols-6">
             {certifications.map((cert) => (
               <motion.div
@@ -191,7 +179,7 @@ export default function AboutPage() {
                 variants={fadeUp}
                 className="flex flex-col items-center justify-center border border-black/[0.09] px-4 py-8 text-center transition-all hover:border-[var(--color-gold)]/40"
               >
-                <span className="font-serif text-[20px] leading-none text-[var(--color-gold)]">
+                <span className="font-serif text-[18px] leading-snug text-[var(--color-gold)]">
                   {cert.label}
                 </span>
                 <span className="mt-2.5 font-mono text-[9px] uppercase tracking-[0.18em] text-[#888888]">
@@ -203,11 +191,10 @@ export default function AboutPage() {
         </Section>
       </section>
 
-      {/* ── SECTION 5: CONTACT / HQ ── */}
-      <section className="bg-[#0f0f0f] py-12">
+      {/* ── HQ / CONTACT ── */}
+      <section className="bg-[#0f0f0f] py-14 lg:py-20">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-16 lg:grid-cols-2">
-            {/* Left */}
+          <div className="grid gap-12 lg:grid-cols-2 lg:gap-20">
             <motion.div variants={fadeUp}>
               <div className="mb-6 flex items-center gap-4">
                 <span className="h-px w-8 bg-[var(--color-gold)]" />
@@ -216,9 +203,9 @@ export default function AboutPage() {
                 </span>
               </div>
               <h2 className="display-serif-md text-white">
-                Headquartered at Accomack County Airport
+                Accomack County Airport
               </h2>
-              <div className="mt-8 space-y-5 text-[15px] leading-[1.8] text-white/55">
+              <div className="mt-7 space-y-4 text-[15px] leading-[1.8] text-white/70">
                 <p>18321 Parkway, Melfa, VA 23410</p>
                 <a
                   href="tel:+18886242400"
@@ -235,19 +222,18 @@ export default function AboutPage() {
               </div>
             </motion.div>
 
-            {/* Right: CTA */}
             <motion.div variants={fadeUp} className="flex flex-col justify-center">
               <p className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
                 Programme Enquiries
               </p>
-              <p className="mt-5 text-[18px] leading-[1.7] text-white/70">
+              <p className="mt-5 text-[16px] leading-[1.75] text-white/70">
                 Our engineering team responds within one business day with a written brief including scope,
                 timeline, and certification path.
               </p>
               <div className="mt-8">
                 <Link
                   href="/contact"
-                  className="inline-flex items-center gap-3 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-all hover:bg-[#b8963e]"
+                  className="inline-flex items-center gap-3 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-black transition-all hover:bg-[#b8963e]"
                 >
                   Start a programme enquiry
                 </Link>

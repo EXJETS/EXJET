@@ -1,30 +1,30 @@
 "use client";
 
-import { useRef } from "react";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import insulationProducts from "@/data/insulation-products.json";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65 } },
 };
-const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } },
-};
+const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
 function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <motion.div ref={ref} variants={stagger} initial="hidden" animate={inView ? "visible" : "hidden"} className={className}>
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-60px" }}
+      variants={stagger}
+      className={className}
+    >
       {children}
     </motion.div>
   );
 }
 
-// Suppress unused var warning — insulationProducts is intentionally kept for future catalog
 void insulationProducts;
 
 export default function CabinComfortSystemsPage() {
@@ -53,11 +53,11 @@ export default function CabinComfortSystemsPage() {
               <br />
               <em className="display-serif-italic text-white/40">Precision-manufactured. Certified.</em>
             </motion.h1>
-            <motion.p variants={fadeUp} className="mt-8 max-w-2xl text-[16px] leading-[1.9] text-white/55">
+            <motion.p variants={fadeUp} className="mt-7 max-w-2xl text-[15px] leading-[1.9] text-white/65">
               Luminary designs and manufactures aircraft insulation systems from acoustic survey to certified
               installation. Custom-built for your airframe under our own Part 21 approval.
             </motion.p>
-            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-4">
+            <motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-4">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-black transition-all hover:bg-[var(--color-gold-deep)]"
@@ -70,7 +70,7 @@ export default function CabinComfortSystemsPage() {
       </section>
 
       {/* ── KPI STRIP ── */}
-      <section className="bg-[#f4f3f0] border-b border-black/[0.06]">
+      <section className="border-b border-black/[0.06] bg-[#f4f3f0]">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
           <Section className="grid grid-cols-2 gap-px overflow-hidden sm:grid-cols-4">
             {[
@@ -79,8 +79,8 @@ export default function CabinComfortSystemsPage() {
               { value: "25 yr", label: "In Service" },
               { value: "Part 21", label: "Certified Manufacturer" },
             ].map((s) => (
-              <motion.div key={s.label} variants={fadeUp} className="flex flex-col gap-2 px-8 py-10">
-                <span className="font-serif text-[clamp(1.75rem,3.5vw,2.5rem)] leading-none text-[#111111]">
+              <motion.div key={s.label} variants={fadeUp} className="flex flex-col gap-2 px-6 py-10 sm:px-8">
+                <span className="font-serif leading-none text-[#111111]" style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)" }}>
                   {s.value}
                 </span>
                 <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-[#888888]">
@@ -94,13 +94,13 @@ export default function CabinComfortSystemsPage() {
 
       {/* ── HOW IT WORKS ── */}
       <section className="bg-[#0f0f0f]">
-        <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:py-16">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
           <Section>
-            <motion.div variants={fadeUp} className="mb-7">
+            <motion.div variants={fadeUp} className="mb-10">
               <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
                 Process
               </span>
-              <h2 className="display-serif-md mt-5 text-white">
+              <h2 className="display-serif-md mt-4 text-white">
                 From survey to certification
               </h2>
             </motion.div>
@@ -126,14 +126,14 @@ export default function CabinComfortSystemsPage() {
                     "A Part 21 data package with pre/post installation measurements is issued with every project.",
                 },
               ].map((step) => (
-                <motion.div key={step.number} variants={fadeUp} className="border-t border-white/10 pt-8">
-                  <span className="font-serif text-[clamp(3rem,6vw,4.5rem)] leading-none text-[var(--color-gold)] opacity-60">
+                <motion.div key={step.number} variants={fadeUp} className="border-t border-white/[0.1] pt-8">
+                  <span className="font-serif leading-none text-[var(--color-gold)] opacity-60" style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
                     {step.number}
                   </span>
-                  <h3 className="mt-4 font-mono text-[12px] uppercase tracking-[0.22em] text-white">
+                  <h3 className="mt-5 font-mono text-[12px] uppercase tracking-[0.22em] text-white">
                     {step.title}
                   </h3>
-                  <p className="mt-3 text-[14px] leading-[1.85] text-white/50">{step.description}</p>
+                  <p className="mt-3 text-[14px] leading-[1.85] text-white/70">{step.description}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -143,14 +143,15 @@ export default function CabinComfortSystemsPage() {
 
       {/* ── PRODUCT CATALOG ── */}
       <section id="product-catalog" className="bg-white">
-        <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:py-16">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
           <Section>
-            <div className="mb-7 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-              <div>
-                <motion.h2 variants={fadeUp} className="display-serif-md text-[#111111]">
-                  Insulation Products
-                </motion.h2>
-              </div>
+            <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
+              <motion.div variants={fadeUp}>
+                <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Products</span>
+                <h2 className="display-serif-md mt-3 text-[#111111]">
+                  Insulation Systems
+                </h2>
+              </motion.div>
               <motion.div variants={fadeUp} className="shrink-0">
                 <Link
                   href="/cabin-comfort-systems/insulation-products"
@@ -161,7 +162,7 @@ export default function CabinComfortSystemsPage() {
               </motion.div>
             </div>
 
-            <motion.div variants={stagger} className="grid gap-px overflow-hidden rounded-2xl border border-black/[0.08] bg-black/[0.06] sm:grid-cols-2">
+            <motion.div variants={stagger} className="grid gap-5 sm:grid-cols-2">
               {[
                 {
                   title: "Broadband Blankets",
@@ -187,9 +188,9 @@ export default function CabinComfortSystemsPage() {
                 <motion.div
                   key={product.title}
                   variants={fadeUp}
-                  className="flex flex-col bg-white px-10 py-10"
+                  className="border border-black/[0.09] bg-[#f8f8f6] px-8 py-9"
                 >
-                  <h3 className="font-serif text-[clamp(1.4rem,2.5vw,1.9rem)] leading-tight text-[#111111]">
+                  <h3 className="font-serif text-[clamp(1.25rem,2.2vw,1.6rem)] leading-tight text-[#111111]">
                     {product.title}
                   </h3>
                   <p className="mt-4 text-[14px] leading-[1.85] text-[#555555]">{product.description}</p>
@@ -202,16 +203,16 @@ export default function CabinComfortSystemsPage() {
 
       {/* ── DARK CTA ── */}
       <section className="bg-[#0f0f0f]">
-        <div className="mx-auto max-w-7xl px-5 py-10 sm:px-8">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
           <Section className="flex flex-col items-start">
             <motion.h2 variants={fadeUp} className="display-serif-md text-white">
               Start your acoustic programme
             </motion.h2>
-            <motion.p variants={fadeUp} className="mt-6 max-w-xl text-[15px] leading-[1.8] text-white/50">
+            <motion.p variants={fadeUp} className="mt-5 max-w-xl text-[15px] leading-[1.85] text-white/65">
               Provide your aircraft type and noise objectives. We will return a scoped proposal with projected
               acoustic result, programme timeline, and Part 21 certification path.
             </motion.p>
-            <motion.div variants={fadeUp} className="mt-10">
+            <motion.div variants={fadeUp} className="mt-9">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-black transition-all hover:bg-[var(--color-gold-deep)]"

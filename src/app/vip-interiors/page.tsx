@@ -1,23 +1,24 @@
 "use client";
 
-import { useRef } from "react";
 import Link from "next/link";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65 } },
 };
-const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } },
-};
+const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
 function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
-    <motion.div ref={ref} variants={stagger} initial="hidden" animate={inView ? "visible" : "hidden"} className={className}>
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, margin: "-60px" }}
+      variants={stagger}
+      className={className}
+    >
       {children}
     </motion.div>
   );
@@ -30,7 +31,7 @@ const portfolio = [
     photoAlt: "Aircraft cabin interior",
     title: "World Record Acoustic Completion",
     description:
-      "The only BBJ completion to achieve 46.7 dB SIL — the world record for cabin sound attenuation. Full Luminary acoustic insulation system, Part 21 certified data package issued.",
+      "The only BBJ completion to achieve 46.7 dB SIL — the world record for cabin sound attenuation. Full Luminary acoustic insulation system, Part 21 certified data package issued.",
     year: "2019",
   },
   {
@@ -39,7 +40,7 @@ const portfolio = [
     photoAlt: "Aircraft exterior",
     title: "Green Aircraft Acoustic Completion",
     description:
-      "Complete acoustic survey, custom insulation fabrication, and Part 21 certified installation for a green aircraft delivery. Post-installation dB SIL data issued to operator.",
+      "Complete acoustic survey, custom insulation fabrication, and Part 21 certified installation for a green aircraft delivery. Post-installation dB SIL data issued to operator.",
     year: "2020",
   },
 ];
@@ -93,11 +94,11 @@ export default function VipInteriorsPage() {
               <br />
               <em className="display-serif-italic text-white/40">Where performance is the brief.</em>
             </motion.h1>
-            <motion.p variants={fadeUp} className="mt-8 max-w-2xl text-[16px] leading-[1.9] text-white/55">
+            <motion.p variants={fadeUp} className="mt-7 max-w-2xl text-[15px] leading-[1.9] text-white/65">
               Luminary approaches every VIP completion with acoustic performance as the primary engineering input
               — not an afterthought. The result is a cabin that performs to specification, documented and certified.
             </motion.p>
-            <motion.div variants={fadeUp} className="mt-10 flex flex-wrap gap-4">
+            <motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-4">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-black transition-all hover:bg-[var(--color-gold-deep)]"
@@ -111,25 +112,25 @@ export default function VipInteriorsPage() {
 
       {/* ── PORTFOLIO ── */}
       <section className="bg-white">
-        <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:py-16">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
           <Section>
-            <motion.h2 variants={fadeUp} className="display-serif-md mb-8 text-[#111111]">
-              Completed programmes
-            </motion.h2>
+            <motion.div variants={fadeUp} className="mb-10">
+              <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Completed programmes</span>
+              <h2 className="display-serif-md mt-3 text-[#111111]">Documented results</h2>
+            </motion.div>
 
-            <motion.div variants={stagger} className="flex flex-col gap-8">
+            <motion.div variants={stagger} className="flex flex-col gap-6">
               {portfolio.map((project) => (
                 <motion.div
                   key={project.aircraft}
                   variants={fadeUp}
-                  className="grid overflow-hidden rounded-2xl border border-black/[0.08] lg:grid-cols-[1fr_1.6fr]"
+                  className="grid overflow-hidden border border-black/[0.08] lg:grid-cols-[1fr_1.6fr]"
                 >
-                  {/* Photo */}
-                  <div className="relative min-h-[260px] lg:min-h-[320px]">
+                  <div className="relative min-h-[240px] bg-[#d8d4ce] lg:min-h-[300px]">
                     <img
                       src={project.photoUrl}
                       alt={project.photoAlt}
-                      className="w-full h-full object-cover"
+                      className="h-full w-full object-cover"
                       loading="lazy"
                     />
                     <div className="absolute inset-0 bg-black/30" />
@@ -137,16 +138,14 @@ export default function VipInteriorsPage() {
                       <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/60">
                         Completed {project.year}
                       </span>
-                      <p className="mt-1 font-serif text-[1.25rem] text-white leading-snug">{project.aircraft}</p>
+                      <p className="mt-1 font-serif text-[1.2rem] leading-snug text-white">{project.aircraft}</p>
                     </div>
                   </div>
-
-                  {/* Text */}
-                  <div className="flex flex-col justify-center bg-white px-10 py-12">
-                    <h3 className="font-serif text-[clamp(1.3rem,2.2vw,1.75rem)] leading-tight text-[#111111]">
+                  <div className="flex flex-col justify-center bg-white px-8 py-10 lg:px-12">
+                    <h3 className="font-serif leading-tight text-[#111111]" style={{ fontSize: "clamp(1.2rem, 2vw, 1.65rem)" }}>
                       {project.title}
                     </h3>
-                    <p className="mt-5 text-[15px] leading-[1.85] text-[#555555]">{project.description}</p>
+                    <p className="mt-5 text-[14px] leading-[1.85] text-[#555555]">{project.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -157,19 +156,20 @@ export default function VipInteriorsPage() {
 
       {/* ── PROCESS ── */}
       <section className="bg-[#f4f3f0]">
-        <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8 lg:py-16">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
           <Section>
-            <motion.div variants={fadeUp} className="mb-8">
-              <h2 className="display-serif-md text-[#111111]">How every completion is delivered</h2>
+            <motion.div variants={fadeUp} className="mb-10">
+              <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Delivery Process</span>
+              <h2 className="display-serif-md mt-3 text-[#111111]">How every completion is delivered</h2>
             </motion.div>
 
             <motion.div variants={stagger} className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
               {processSteps.map((step) => (
                 <motion.div key={step.number} variants={fadeUp} className="border-t border-black/[0.1] pt-8">
-                  <span className="font-serif text-[clamp(3rem,6vw,4.5rem)] leading-none text-[var(--color-gold)] opacity-50">
+                  <span className="font-serif leading-none text-[var(--color-gold)] opacity-50" style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
                     {step.number}
                   </span>
-                  <h3 className="mt-4 font-mono text-[12px] uppercase tracking-[0.22em] text-[#111111]">
+                  <h3 className="mt-5 font-mono text-[12px] uppercase tracking-[0.22em] text-[#111111]">
                     {step.title}
                   </h3>
                   <p className="mt-3 text-[14px] leading-[1.85] text-[#555555]">{step.description}</p>
@@ -182,16 +182,16 @@ export default function VipInteriorsPage() {
 
       {/* ── DARK CTA ── */}
       <section className="bg-[#0f0f0f]">
-        <div className="mx-auto max-w-7xl px-5 py-10 sm:px-8">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
           <Section className="flex flex-col items-start">
             <motion.h2 variants={fadeUp} className="display-serif-md text-white">
               Commission a VIP completion
             </motion.h2>
-            <motion.p variants={fadeUp} className="mt-6 max-w-xl text-[15px] leading-[1.8] text-white/50">
+            <motion.p variants={fadeUp} className="mt-5 max-w-xl text-[15px] leading-[1.85] text-white/65">
               Specify your aircraft type and target noise floor. Luminary will respond with a scoped proposal,
               projected dB SIL outcome, and programme timeline — before any commitment is required.
             </motion.p>
-            <motion.div variants={fadeUp} className="mt-10">
+            <motion.div variants={fadeUp} className="mt-9">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-black transition-all hover:bg-[var(--color-gold-deep)]"

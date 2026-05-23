@@ -1,26 +1,21 @@
 "use client";
 
-import { useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import caseStudies from "@/data/case-studies.json";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 24 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.7 } },
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.65 } },
 };
-const stagger = {
-  visible: { transition: { staggerChildren: 0.1 } },
-};
+const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
 
 function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
-  const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
   return (
     <motion.div
-      ref={ref}
-      variants={stagger}
       initial="hidden"
-      animate={inView ? "visible" : "hidden"}
+      whileInView="visible"
+      viewport={{ once: true, margin: "-60px" }}
+      variants={stagger}
       className={className}
     >
       {children}
@@ -69,7 +64,7 @@ const methodologyPoints = [
 export default function PerformanceHistoryPage() {
   return (
     <>
-      {/* ── SECTION 1: HERO ── */}
+      {/* ── HERO ── */}
       <section className="relative overflow-hidden" style={{ minHeight: "52vh" }}>
         <img
           src="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=1800&q=85&fit=crop"
@@ -91,7 +86,7 @@ export default function PerformanceHistoryPage() {
               <br />
               <em className="display-serif-italic text-white/40">Every project. Every number.</em>
             </motion.h1>
-            <motion.p variants={fadeUp} className="mt-8 max-w-2xl text-[16px] leading-[1.9] text-white/55">
+            <motion.p variants={fadeUp} className="mt-7 max-w-2xl text-[15px] leading-[1.9] text-white/65">
               Luminary publishes acoustic measurement data for every project we complete. Pre- and post-installation
               dB SIL verification under FAA Part 21 certification protocol.
             </motion.p>
@@ -99,26 +94,24 @@ export default function PerformanceHistoryPage() {
         </div>
       </section>
 
-      {/* ── SECTION 2: WORLD RECORD CALLOUT ── */}
-      <section className="bg-[#0f0f0f] py-14">
+      {/* ── WORLD RECORD ── */}
+      <section className="bg-[#0f0f0f] py-14 lg:py-20">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-16 lg:grid-cols-2 lg:items-center">
-            {/* Giant number */}
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center lg:gap-20">
             <motion.div variants={fadeUp}>
               <span
                 className="block font-serif leading-none text-[var(--color-gold)]"
-                style={{ fontSize: "clamp(3.5rem, 7vw, 6rem)" }}
+                style={{ fontSize: "clamp(3rem, 7vw, 5.5rem)" }}
               >
                 46.7 dB SIL
               </span>
-              <p className="mt-6 font-mono text-[11px] uppercase tracking-[0.26em] text-white/40">
+              <p className="mt-5 font-mono text-[11px] uppercase tracking-[0.26em] text-white/50">
                 World Record &middot; Boeing Business Jet &middot; FAA Part 21 Certified
               </p>
             </motion.div>
 
-            {/* Explanation */}
             <motion.div variants={fadeUp}>
-              <p className="text-[16px] leading-[1.9] text-white/60">
+              <p className="text-[15px] leading-[1.9] text-white/70">
                 The quietest business jet cabin ever independently measured and certified. Achieved using a bespoke
                 multi-layer acoustic insulation system designed and installed by Luminary Air Group on a privately
                 operated Boeing Business Jet. Pre- and post-installation measurements were conducted under controlled
@@ -131,32 +124,30 @@ export default function PerformanceHistoryPage() {
         </Section>
       </section>
 
-      {/* ── SECTION 3: CASE STUDIES ── */}
-      <section className="bg-white py-14">
+      {/* ── CASE STUDIES ── */}
+      <section className="bg-white py-14 lg:py-20">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
           <motion.div variants={fadeUp} className="mb-10">
-            <h2 className="display-serif-md text-[#111111]">
+            <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Project record</span>
+            <h2 className="display-serif-md mt-3 text-[#111111]">
               Case Studies
             </h2>
-            <p className="mt-5 max-w-xl text-[15px] leading-[1.8] text-[#555555]">
+            <p className="mt-4 max-w-xl text-[15px] leading-[1.8] text-[#555555]">
               Each project represents a fully measured, Part 21 certified installation with independent pre- and
               post-installation acoustic data. Results are not estimated or extrapolated.
             </p>
           </motion.div>
 
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-5 sm:grid-cols-2">
             {caseStudies.map((cs, index) => (
               <motion.div
                 key={cs.id}
                 variants={fadeUp}
-                className={`flex flex-col overflow-hidden p-8 ${
-                  index === 0
-                    ? "bg-[#0f0f0f]"
-                    : "border border-black/[0.09] bg-white"
+                className={`flex flex-col p-8 ${
+                  index === 0 ? "bg-[#0f0f0f]" : "border border-black/[0.09] bg-[#f8f8f6]"
                 }`}
               >
-                {/* Header row */}
-                <div className="flex items-start justify-between gap-4">
+                <div className="mb-5 flex items-start justify-between gap-4">
                   <span
                     className={`inline-block rounded-full px-3 py-1 font-mono text-[9px] uppercase tracking-[0.2em] ${
                       index === 0
@@ -166,47 +157,27 @@ export default function PerformanceHistoryPage() {
                   >
                     {cs.category}
                   </span>
-                  <span
-                    className={`font-mono text-[10px] uppercase tracking-[0.18em] ${
-                      index === 0 ? "text-white/30" : "text-[#888888]"
-                    }`}
-                  >
+                  <span className={`font-mono text-[10px] ${index === 0 ? "text-white/30" : "text-[#aaaaaa]"}`}>
                     {cs.year}
                   </span>
                 </div>
 
-                {/* Aircraft */}
-                <h3
-                  className={`mt-5 font-serif text-[20px] leading-tight ${
-                    index === 0 ? "text-white" : "text-[#111111]"
-                  }`}
-                >
+                <h3 className={`font-serif text-[19px] leading-tight ${index === 0 ? "text-white" : "text-[#111111]"}`}>
                   {cs.aircraft}
                 </h3>
 
-                {/* Big result */}
                 <div
                   className="mt-3 font-serif leading-none text-[var(--color-gold)]"
-                  style={{ fontSize: "clamp(2.5rem,5vw,3.75rem)" }}
+                  style={{ fontSize: "clamp(2rem, 4.5vw, 3.25rem)" }}
                 >
                   {cs.result}
                 </div>
 
-                {/* Achievement label */}
-                <p
-                  className={`mt-4 font-mono text-[9px] uppercase tracking-[0.18em] ${
-                    index === 0 ? "text-white/40" : "text-[#888888]"
-                  }`}
-                >
+                <p className={`mt-3 font-mono text-[9px] uppercase tracking-[0.18em] ${index === 0 ? "text-white/45" : "text-[#888888]"}`}>
                   {cs.achievement}
                 </p>
 
-                {/* Description */}
-                <p
-                  className={`mt-5 flex-1 text-[13px] leading-[1.8] ${
-                    index === 0 ? "text-white/55" : "text-[#555555]"
-                  }`}
-                >
+                <p className={`mt-5 flex-1 text-[13px] leading-[1.8] ${index === 0 ? "text-white/65" : "text-[#555555]"}`}>
                   {cs.description}
                 </p>
               </motion.div>
@@ -215,21 +186,22 @@ export default function PerformanceHistoryPage() {
         </Section>
       </section>
 
-      {/* ── SECTION 4: MILITARY PROGRAMMES ── */}
-      <section className="bg-[#f4f3f0] py-14">
+      {/* ── MILITARY PROGRAMMES ── */}
+      <section className="bg-[#f4f3f0] py-14 lg:py-20">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <motion.div variants={fadeUp} className="mb-8">
-            <h2 className="display-serif-md text-[#111111]">
+          <motion.div variants={fadeUp} className="mb-10">
+            <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Government</span>
+            <h2 className="display-serif-md mt-3 text-[#111111]">
               Government &amp; Military Programmes
             </h2>
           </motion.div>
 
-          <div className="grid gap-8 lg:grid-cols-3">
+          <div className="grid gap-5 lg:grid-cols-3">
             {militaryProgrammes.map((prog) => (
               <motion.div
                 key={prog.label}
                 variants={fadeUp}
-                className="flex flex-col gap-5 border-t-2 border-[var(--color-gold)] bg-white px-8 py-10"
+                className="flex flex-col gap-4 border-t-2 border-[var(--color-gold)] bg-white px-7 py-9"
               >
                 <p className="font-mono text-[11px] uppercase tracking-[0.2em] text-[#111111]">
                   {prog.label}
@@ -241,14 +213,14 @@ export default function PerformanceHistoryPage() {
         </Section>
       </section>
 
-      {/* ── SECTION 5: MEASUREMENT METHODOLOGY ── */}
-      <section className="bg-white py-14">
+      {/* ── METHODOLOGY ── */}
+      <section className="bg-white py-14 lg:py-20">
         <Section className="mx-auto max-w-7xl px-5 sm:px-8">
-          <div className="grid gap-16 lg:grid-cols-2 lg:items-start">
-            {/* Left: editorial header */}
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-start lg:gap-20">
             <motion.div variants={fadeUp}>
-              <h2 className="display-serif-md text-[#111111]">How we measure</h2>
-              <p className="mt-8 text-[15px] leading-[1.85] text-[#555555]">
+              <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Methodology</span>
+              <h2 className="display-serif-md mt-3 text-[#111111]">How we measure</h2>
+              <p className="mt-7 text-[15px] leading-[1.85] text-[#555555]">
                 Luminary&rsquo;s performance data is produced through a rigorous, instrument-driven protocol applied
                 consistently across every project and every aircraft type. We do not model outcomes or extrapolate
                 from prior results. Every number published is a direct measurement from a certified in-flight
@@ -257,21 +229,15 @@ export default function PerformanceHistoryPage() {
               <p className="mt-5 text-[15px] leading-[1.85] text-[#555555]">
                 The dB SIL (Sound Intensity Level) scale is used throughout — the industry standard for business
                 aviation cabin characterisation, capturing true acoustic energy rather than the directional
-                limitations of simple SPL readings. All equipment is calibrated to traceable national standards
-                before each campaign.
+                limitations of simple SPL readings.
               </p>
             </motion.div>
 
-            {/* Right: numbered methodology list */}
             <motion.div variants={stagger} className="divide-y divide-black/[0.07]">
               {methodologyPoints.map((point) => (
-                <motion.div
-                  key={point.num}
-                  variants={fadeUp}
-                  className="py-8 first:pt-0 last:pb-0"
-                >
+                <motion.div key={point.num} variants={fadeUp} className="py-7 first:pt-0 last:pb-0">
                   <div className="flex items-baseline gap-6">
-                    <span className="w-8 shrink-0 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
+                    <span className="w-7 shrink-0 font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-gold)]">
                       {point.num}
                     </span>
                     <div>
