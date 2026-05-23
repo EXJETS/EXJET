@@ -5,10 +5,10 @@ import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65 } },
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
-const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
+const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
 function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
@@ -26,27 +26,27 @@ function Section({ children, className = "" }: { children: React.ReactNode; clas
 
 const missionTypes = [
   {
-    number: "1",
+    number: "01",
     title: "Intelligence, Surveillance & Reconnaissance (ISR)",
     description: "Console integration, sensor rack provisions, and data management station layouts engineered to drawing from the first build.",
   },
   {
-    number: "2",
+    number: "02",
     title: "Medical Evacuation (Med-Evac)",
     description: "Certified litter mounts, medical equipment stations, oxygen distribution, and rapid role-change to standard passenger configuration.",
   },
   {
-    number: "3",
+    number: "03",
     title: "Command & Control (C2)",
     description: "Communication rack integration, mission console furniture, and cabling management structured around installed electronics.",
   },
   {
-    number: "4",
+    number: "04",
     title: "Special Operations Support",
     description: "Ruggedised finishes, secure storage, and rapid-reconfigure architecture optimised for mission turnaround.",
   },
   {
-    number: "5",
+    number: "05",
     title: "Government & Head-of-State Transport",
     description: "Discreet functional cabin environments with full technical access and modularity for sustained multi-year service.",
   },
@@ -77,11 +77,11 @@ export default function SpecialMissionInteriorsPage() {
               <br />
               <em className="display-serif-italic text-white/40">Engineered for demanding operations.</em>
             </motion.h1>
-            <motion.p variants={fadeUp} className="mt-7 max-w-2xl text-[15px] leading-[1.9] text-white/65">
+            <motion.p variants={fadeUp} className="mt-7 max-w-xl text-[15px] leading-[1.9] text-white/65">
               The Advanced Deployable Mission Interior — Luminary&apos;s proprietary platform for certified ISR,
               Med-Evac, Command &amp; Control, and government aircraft interior systems.
             </motion.p>
-            <motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-4">
+            <motion.div variants={fadeUp} className="mt-9">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-black transition-all hover:bg-[var(--color-gold-deep)]"
@@ -103,7 +103,8 @@ export default function SpecialMissionInteriorsPage() {
                   Mission configurations
                 </span>
                 <h2 className="display-serif-md mt-5 text-[#111111]">
-                  Five operational categories.{" "}
+                  Five operational categories.
+                  <br />
                   <em className="display-serif-italic text-[#999999]">One certified manufacturer.</em>
                 </h2>
               </motion.div>
@@ -111,13 +112,13 @@ export default function SpecialMissionInteriorsPage() {
               <motion.div variants={stagger} className="lg:col-span-8">
                 <div className="divide-y divide-black/[0.07]">
                   {missionTypes.map((m) => (
-                    <motion.div key={m.number} variants={fadeUp} className="flex gap-6 py-7">
-                      <span className="shrink-0 pt-0.5 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-gold)]">
+                    <motion.div key={m.number} variants={fadeUp} className="grid grid-cols-[48px_1fr] gap-5 py-7">
+                      <span className="pt-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-gold)]">
                         {m.number}
                       </span>
                       <div>
-                        <h3 className="text-[15px] font-medium leading-snug text-[#111111]">{m.title}</h3>
-                        <p className="mt-2 text-[13px] leading-[1.85] text-[#555555]">{m.description}</p>
+                        <h3 className="font-mono text-[11px] uppercase tracking-[0.18em] text-[#111111]">{m.title}</h3>
+                        <p className="mt-2.5 text-[14px] leading-[1.85] text-[#555555]">{m.description}</p>
                       </div>
                     </motion.div>
                   ))}
@@ -136,30 +137,28 @@ export default function SpecialMissionInteriorsPage() {
               <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
                 The ADMI™ Platform
               </span>
-              <p className="mt-7 font-serif leading-[1.5] text-white/85" style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.85rem)" }}>
+              <p className="mt-7 font-serif leading-[1.5] text-white/85" style={{ fontSize: "clamp(1.2rem, 2.5vw, 1.8rem)" }}>
                 The ADMI™ platform is Luminary&apos;s answer to the demand for rapidly reconfigurable,
                 certified mission interior systems — engineered for sustained crew effectiveness,
                 not just initial installation.
               </p>
             </motion.div>
 
-            <motion.div variants={stagger} className="mt-14 grid gap-6 sm:grid-cols-3">
+            <motion.div variants={stagger} className="mt-14 divide-y divide-white/[0.07]">
               {[
                 { value: "FAA Part 21", label: "Manufacturer Approval" },
                 { value: "Field Reconfigurable", label: "Multi-role capable" },
-                { value: "STC Backed", label: "Certified data package" },
+                { value: "STC Backed", label: "Certified data package issued with every project" },
               ].map((s) => (
                 <motion.div
                   key={s.label}
                   variants={fadeUp}
-                  className="border border-white/[0.08] px-8 py-8"
+                  className="flex flex-col gap-2 py-7 sm:flex-row sm:items-baseline sm:gap-10"
                 >
-                  <span className="font-serif leading-none text-[var(--color-gold)]" style={{ fontSize: "clamp(1.25rem, 2.5vw, 1.75rem)" }}>
+                  <span className="shrink-0 font-serif leading-none text-[var(--color-gold)]" style={{ fontSize: "clamp(1.25rem, 2vw, 1.75rem)" }}>
                     {s.value}
                   </span>
-                  <p className="mt-3 font-mono text-[10px] uppercase tracking-[0.2em] text-white/50">
-                    {s.label}
-                  </p>
+                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/50">{s.label}</span>
                 </motion.div>
               ))}
             </motion.div>
@@ -169,12 +168,12 @@ export default function SpecialMissionInteriorsPage() {
 
       {/* ── DARK CTA ── */}
       <section className="border-t border-white/[0.04] bg-[#0f0f0f]">
-        <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
+        <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
           <Section className="flex flex-col items-start">
             <motion.h2 variants={fadeUp} className="display-serif-md text-white">
               Specify your mission requirement
             </motion.h2>
-            <motion.p variants={fadeUp} className="mt-5 max-w-xl text-[15px] leading-[1.85] text-white/65">
+            <motion.p variants={fadeUp} className="mt-5 max-w-lg text-[15px] leading-[1.85] text-white/65">
               Provide your aircraft type, programme scope, and timeline. Our engineering team will prepare
               a written programme brief addressing configuration, weight targets, and ADMI™ platform applicability.
             </motion.p>

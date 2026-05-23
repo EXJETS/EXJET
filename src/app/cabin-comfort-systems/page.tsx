@@ -5,11 +5,13 @@ import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import insulationProducts from "@/data/insulation-products.json";
 
+void insulationProducts;
+
 const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.65 } },
+  hidden: { opacity: 0, y: 18 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
 };
-const stagger = { visible: { transition: { staggerChildren: 0.1 } } };
+const stagger = { visible: { transition: { staggerChildren: 0.08 } } };
 
 function Section({ children, className = "" }: { children: React.ReactNode; className?: string }) {
   return (
@@ -25,7 +27,28 @@ function Section({ children, className = "" }: { children: React.ReactNode; clas
   );
 }
 
-void insulationProducts;
+const products = [
+  {
+    title: "Broadband Blankets",
+    description:
+      "Primary insulation systems using mass-loaded vinyl and acoustic fibre combinations. Engineered per airframe-specific acoustic survey data.",
+  },
+  {
+    title: "Septum Layer Systems",
+    description:
+      "Barrier-septum constructions for targeted frequency attenuation. Specified where standard broadband blankets require supplemental treatment.",
+  },
+  {
+    title: "Trim Panel Backing",
+    description:
+      "Secondary insulation bonded to trim panel reverse faces. Provides additional mass-law attenuation without modifying primary structure.",
+  },
+  {
+    title: "Specialty Materials",
+    description:
+      "Fire-blocking, EMI-shielding, and vibration-damping materials for platforms with non-standard operational requirements.",
+  },
+];
 
 export default function CabinComfortSystemsPage() {
   return (
@@ -53,11 +76,11 @@ export default function CabinComfortSystemsPage() {
               <br />
               <em className="display-serif-italic text-white/40">Precision-manufactured. Certified.</em>
             </motion.h1>
-            <motion.p variants={fadeUp} className="mt-7 max-w-2xl text-[15px] leading-[1.9] text-white/65">
+            <motion.p variants={fadeUp} className="mt-7 max-w-xl text-[15px] leading-[1.9] text-white/65">
               Luminary designs and manufactures aircraft insulation systems from acoustic survey to certified
-              installation. Custom-built for your airframe under our own Part 21 approval.
+              installation — custom-built for your airframe under our own Part 21 approval.
             </motion.p>
-            <motion.div variants={fadeUp} className="mt-9 flex flex-wrap gap-4">
+            <motion.div variants={fadeUp} className="mt-9">
               <Link
                 href="/contact"
                 className="inline-flex items-center gap-2.5 rounded-full bg-[var(--color-gold)] px-7 py-3.5 font-mono text-[11px] uppercase tracking-[0.18em] text-black transition-all hover:bg-[var(--color-gold-deep)]"
@@ -72,7 +95,7 @@ export default function CabinComfortSystemsPage() {
       {/* ── KPI STRIP ── */}
       <section className="border-b border-black/[0.06] bg-[#f4f3f0]">
         <div className="mx-auto max-w-7xl px-5 sm:px-8">
-          <Section className="grid grid-cols-2 gap-px overflow-hidden sm:grid-cols-4">
+          <Section className="grid grid-cols-2 divide-x divide-black/[0.06] sm:grid-cols-4">
             {[
               { value: "46.7 dB SIL", label: "World Record" },
               { value: "100+", label: "STCs Held" },
@@ -80,10 +103,10 @@ export default function CabinComfortSystemsPage() {
               { value: "Part 21", label: "Certified Manufacturer" },
             ].map((s) => (
               <motion.div key={s.label} variants={fadeUp} className="flex flex-col gap-2 px-6 py-10 sm:px-8">
-                <span className="font-serif leading-none text-[#111111]" style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)" }}>
+                <span className="font-serif leading-none text-[#111111]" style={{ fontSize: "clamp(1.4rem, 2.8vw, 2.1rem)" }}>
                   {s.value}
                 </span>
-                <span className="mt-1 font-mono text-[10px] uppercase tracking-[0.2em] text-[#888888]">
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#888888]">
                   {s.label}
                 </span>
               </motion.div>
@@ -96,44 +119,38 @@ export default function CabinComfortSystemsPage() {
       <section className="bg-[#0f0f0f]">
         <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
           <Section>
-            <motion.div variants={fadeUp} className="mb-10">
-              <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">
-                Process
-              </span>
-              <h2 className="display-serif-md mt-4 text-white">
-                From survey to certification
-              </h2>
+            <motion.div variants={fadeUp} className="mb-12">
+              <span className="font-mono text-[11px] uppercase tracking-[0.28em] text-[var(--color-gold)]">Process</span>
+              <h2 className="display-serif-md mt-4 text-white">From survey to certification</h2>
             </motion.div>
-
-            <motion.div variants={stagger} className="grid gap-8 sm:grid-cols-3">
+            <motion.div variants={stagger} className="grid gap-0 sm:grid-cols-3">
               {[
                 {
                   number: "01",
                   title: "Acoustic Survey",
-                  description:
-                    "We conduct an on-aircraft acoustic measurement to establish baseline dB SIL levels and identify attenuation targets.",
+                  description: "On-aircraft acoustic measurement to establish baseline dB SIL levels and identify attenuation targets.",
                 },
                 {
                   number: "02",
                   title: "Engineering & Fabrication",
-                  description:
-                    "Insulation blanket systems are designed to specification and manufactured in-house under Part 21 quality control.",
+                  description: "Insulation blanket systems designed to specification and manufactured in-house under Part 21 quality control.",
                 },
                 {
                   number: "03",
                   title: "Certification & Delivery",
-                  description:
-                    "A Part 21 data package with pre/post installation measurements is issued with every project.",
+                  description: "A Part 21 data package with pre/post installation measurements is issued with every project.",
                 },
               ].map((step) => (
-                <motion.div key={step.number} variants={fadeUp} className="border-t border-white/[0.1] pt-8">
-                  <span className="font-serif leading-none text-[var(--color-gold)] opacity-60" style={{ fontSize: "clamp(2.5rem, 5vw, 4rem)" }}>
+                <motion.div
+                  key={step.number}
+                  variants={fadeUp}
+                  className="border-t border-white/[0.08] py-10 sm:border-t-0 sm:border-l sm:px-8 sm:first:border-l-0 sm:first:pl-0"
+                >
+                  <span className="block font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-gold)] opacity-80">
                     {step.number}
                   </span>
-                  <h3 className="mt-5 font-mono text-[12px] uppercase tracking-[0.22em] text-white">
-                    {step.title}
-                  </h3>
-                  <p className="mt-3 text-[14px] leading-[1.85] text-white/70">{step.description}</p>
+                  <h3 className="mt-5 font-mono text-[12px] uppercase tracking-[0.22em] text-white">{step.title}</h3>
+                  <p className="mt-3 text-[14px] leading-[1.85] text-white/65">{step.description}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -142,17 +159,15 @@ export default function CabinComfortSystemsPage() {
       </section>
 
       {/* ── PRODUCT CATALOG ── */}
-      <section id="product-catalog" className="bg-white">
+      <section className="bg-white">
         <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8 lg:py-20">
           <Section>
             <div className="mb-10 flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
               <motion.div variants={fadeUp}>
                 <span className="font-mono text-[11px] uppercase tracking-[0.26em] text-[var(--color-gold)]">Products</span>
-                <h2 className="display-serif-md mt-3 text-[#111111]">
-                  Insulation Systems
-                </h2>
+                <h2 className="display-serif-md mt-3 text-[#111111]">Insulation Systems</h2>
               </motion.div>
-              <motion.div variants={fadeUp} className="shrink-0">
+              <motion.div variants={fadeUp}>
                 <Link
                   href="/cabin-comfort-systems/insulation-products"
                   className="inline-flex items-center gap-2 font-mono text-[11px] uppercase tracking-[0.2em] text-[var(--color-gold)] transition-all hover:gap-3"
@@ -162,38 +177,17 @@ export default function CabinComfortSystemsPage() {
               </motion.div>
             </div>
 
-            <motion.div variants={stagger} className="grid gap-5 sm:grid-cols-2">
-              {[
-                {
-                  title: "Broadband Blankets",
-                  description:
-                    "Primary insulation systems using mass-loaded vinyl and acoustic fibre combinations. Engineered per airframe-specific acoustic survey data.",
-                },
-                {
-                  title: "Septum Layer Systems",
-                  description:
-                    "Barrier-septum constructions for targeted frequency attenuation. Specified where standard broadband blankets require supplemental treatment.",
-                },
-                {
-                  title: "Trim Panel Backing",
-                  description:
-                    "Secondary insulation bonded to trim panel reverse faces. Provides additional mass-law attenuation without modifying primary structure.",
-                },
-                {
-                  title: "Specialty Materials",
-                  description:
-                    "Fire-blocking, EMI-shielding, and vibration-damping materials for platforms with non-standard operational requirements.",
-                },
-              ].map((product) => (
+            <motion.div variants={stagger} className="divide-y divide-black/[0.07]">
+              {products.map((product) => (
                 <motion.div
                   key={product.title}
                   variants={fadeUp}
-                  className="border border-black/[0.09] bg-[#f8f8f6] px-8 py-9"
+                  className="grid gap-6 py-9 sm:grid-cols-[220px_1fr] sm:gap-12"
                 >
-                  <h3 className="font-serif text-[clamp(1.25rem,2.2vw,1.6rem)] leading-tight text-[#111111]">
+                  <h3 className="font-serif text-[#111111]" style={{ fontSize: "clamp(1.1rem, 1.8vw, 1.4rem)" }}>
                     {product.title}
                   </h3>
-                  <p className="mt-4 text-[14px] leading-[1.85] text-[#555555]">{product.description}</p>
+                  <p className="text-[14px] leading-[1.9] text-[#555555]">{product.description}</p>
                 </motion.div>
               ))}
             </motion.div>
@@ -208,7 +202,7 @@ export default function CabinComfortSystemsPage() {
             <motion.h2 variants={fadeUp} className="display-serif-md text-white">
               Start your acoustic programme
             </motion.h2>
-            <motion.p variants={fadeUp} className="mt-5 max-w-xl text-[15px] leading-[1.85] text-white/65">
+            <motion.p variants={fadeUp} className="mt-5 max-w-lg text-[15px] leading-[1.85] text-white/65">
               Provide your aircraft type and noise objectives. We will return a scoped proposal with projected
               acoustic result, programme timeline, and Part 21 certification path.
             </motion.p>
