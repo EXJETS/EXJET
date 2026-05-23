@@ -36,8 +36,7 @@ function Section({
 const inputClass =
   "w-full border border-black/[0.12] bg-white px-4 py-3.5 text-[14px] text-[#111111] placeholder:text-[#aaaaaa] focus:border-[var(--color-gold)] focus:outline-none transition-colors";
 
-const labelClass =
-  "block font-mono text-[10px] uppercase tracking-[0.22em] text-[#555555] mb-2";
+const labelClass = "block font-mono text-[10px] uppercase tracking-[0.22em] text-[#555555] mb-2";
 
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
@@ -204,7 +203,7 @@ export default function ContactPage() {
 
             {/* RIGHT: Contact info (~40%) */}
             <motion.div variants={fadeUp} className="lg:col-span-2">
-              <div className="sticky top-24 space-y-0 border border-black/[0.09]">
+              <div className="sticky top-24 border border-black/[0.09]">
                 {/* Direct Contact */}
                 <div className="border-b border-black/[0.09] px-8 py-8">
                   <p className="font-mono text-[10px] uppercase tracking-[0.26em] text-[var(--color-gold)]">
@@ -262,7 +261,7 @@ export default function ContactPage() {
                     ].map((step, i, arr) => (
                       <div key={step.num} className="flex gap-5">
                         <div className="flex flex-col items-center">
-                          <span className="font-mono text-[11px] text-[var(--color-gold)] shrink-0">
+                          <span className="shrink-0 font-mono text-[11px] text-[var(--color-gold)]">
                             {step.num}
                           </span>
                           {i < arr.length - 1 && (
