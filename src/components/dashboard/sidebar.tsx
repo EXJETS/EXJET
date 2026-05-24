@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
   Plane, LayoutDashboard, Calendar, DollarSign, Settings, Users,
-  BarChart3, Building2, Menu, X, Bell, Radio, CreditCard, LogOut, User,
+  BarChart3, Building2, Menu, X, Bell, Radio, CreditCard, LogOut, User, Tag,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -29,6 +29,7 @@ const navItems: Record<DashboardRole, NavItem[]> = {
   operator: [
     { href: "/operator",               label: "Overview",         icon: LayoutDashboard },
     { href: "/operator/fleet",         label: "My Fleet",         icon: Plane           },
+    { href: "/operator/empty-legs",    label: "Empty Legs",       icon: Tag             },
     { href: "/operator/bookings",      label: "Bookings",         icon: Calendar,  badge: "3" },
     { href: "/operator/earnings",      label: "Earnings",         icon: DollarSign      },
     { href: "/operator/settings",      label: "Settings",         icon: Settings        },

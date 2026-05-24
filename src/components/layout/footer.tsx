@@ -13,7 +13,7 @@ const columns = [
     title: "Book",
     links: [
       { label: "Charter a Jet", href: "/search" },
-      { label: "Empty Legs", href: "/search?mode=empty" },
+      { label: "Empty Legs", href: "/empty-legs" },
       { label: "Browse Fleet", href: "/jets" },
       { label: "Live Tracking", href: "/tracking" },
     ],

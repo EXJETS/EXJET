@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 
 const navLinks = [
   { href: "/search", label: "Fleet" },
+  { href: "/empty-legs", label: "Empty Legs" },
   { href: "/tracking", label: "Live" },
   { href: "/dashboard", label: "Trips" },
   { href: "/auth/login", label: "Account" },
