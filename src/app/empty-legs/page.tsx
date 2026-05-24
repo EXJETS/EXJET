@@ -11,7 +11,6 @@ import {
   Clock,
   Users,
   ArrowUpRight,
-  Tag,
 } from "lucide-react";
 import emptyLegsData from "@/data/empty-legs.json";
 import { cn, formatCurrency } from "@/lib/utils";
@@ -101,15 +100,10 @@ export default function EmptyLegsPage() {
         <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-32 sm:px-8">
           <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <div className="mb-4 flex items-center gap-2.5">
-                <span className="relative flex h-2 w-2">
-                  <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-green-400 opacity-75" />
-                  <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
-                </span>
-                <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/60">
-                  Live Inventory
-                </span>
-              </div>
+              <div>
+              <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.28em] text-[#1a5fa8]">
+                Repositioning Flights
+              </p>
               <h1
                 className="font-serif font-semibold uppercase text-white"
                 style={{
@@ -118,47 +112,41 @@ export default function EmptyLegsPage() {
                   letterSpacing: "-0.02em",
                 }}
               >
-                Live Empty Leg
+                Available
                 <br />
-                Inventory
+                Departures
               </h1>
             </div>
-            <div className="flex flex-col items-end gap-2">
-              <span className="inline-flex items-center rounded-full border border-[var(--color-champagne)]/40 bg-[var(--color-champagne)]/15 px-4 py-2 font-mono text-[12px] uppercase tracking-[0.18em] text-[var(--color-champagne)]">
-                {allLegs.length} legs available
-              </span>
-              <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/35">
-                Up to 75% off charter rate
-              </span>
+            <div className="text-right">
+              <p
+                className="font-serif font-semibold uppercase leading-none text-white"
+                style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}
+              >
+                {allLegs.length}
+              </p>
+              <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
+                Flights available
+              </p>
             </div>
           </div>
 
           {/* Stats strip */}
-          <div className="mt-12 grid grid-cols-3 gap-px overflow-hidden rounded-xl border border-white/10 bg-white/10">
-            <div className="flex flex-col items-center gap-1.5 bg-white/5 px-6 py-6 text-center">
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
-                Available Now
-              </span>
-              <span className="font-serif text-[2rem] font-semibold leading-none text-white">
-                {allLegs.length}
-              </span>
-            </div>
-            <div className="flex flex-col items-center gap-1.5 bg-white/5 px-6 py-6 text-center">
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
-                Avg. Saving
-              </span>
-              <span className="font-serif text-[2rem] font-semibold leading-none text-white">
-                61%
-              </span>
-            </div>
-            <div className="flex flex-col items-center gap-1.5 bg-white/5 px-6 py-6 text-center">
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
-                Destinations
-              </span>
-              <span className="font-serif text-[2rem] font-semibold leading-none text-white">
-                Global
-              </span>
-            </div>
+          <div className="mt-12 flex flex-wrap gap-x-12 gap-y-4 border-t border-white/10 pt-10">
+            {[
+              ["5,000+", "Airports served"],
+              ["2,400+", "Aircraft on fleet"],
+              ["< 4 hrs", "Avg. confirmation"],
+              ["ARGUS Platinum", "Safety standard"],
+            ].map(([val, label]) => (
+              <div key={label} className="flex items-baseline gap-2.5">
+                <span className="font-serif text-[1.25rem] font-semibold uppercase leading-none tracking-tight text-white">
+                  {val}
+                </span>
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/35">
+                  {label}
+                </span>
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -359,9 +347,8 @@ function EmptyLegCardFull({ leg }: { leg: EmptyLeg & { category?: string } }) {
     >
       {/* Header */}
       <div className="mb-6 flex items-center justify-between">
-        <span className="inline-flex items-center gap-1.5 rounded border border-[var(--color-champagne)]/30 bg-[var(--color-champagne)]/10 px-2.5 py-1 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-champagne)]">
-          <Tag className="h-3 w-3" strokeWidth={2} />
-          {leg.discountPct}% off
+        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-champagne)]">
+          Repositioning
         </span>
         <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
           {leg.aircraft}
