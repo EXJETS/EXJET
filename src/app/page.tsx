@@ -641,17 +641,17 @@ function NewsCard({ item }: { item: (typeof news)[number] }) {
 function leagueColor(league: string) {
   switch (league) {
     case "F1":
-      return "bg-[var(--color-bordeaux)]/8 text-[var(--color-bordeaux)] ring-[var(--color-bordeaux)]/20";
+      return "bg-[var(--color-ink)]/6 text-[var(--color-ink)] ring-[var(--color-ink)]/15";
     case "NBA":
-      return "bg-amber-50 text-amber-800 ring-amber-200";
+      return "bg-[var(--color-champagne)]/8 text-[var(--color-champagne)] ring-[var(--color-champagne)]/20";
     case "NFL":
-      return "bg-blue-50 text-blue-800 ring-blue-200";
+      return "bg-[var(--color-ink-soft)]/8 text-[var(--color-ink-soft)] ring-[var(--color-ink-soft)]/20";
     case "NHL":
-      return "bg-indigo-50 text-indigo-800 ring-indigo-200";
+      return "bg-[var(--color-champagne-soft)]/10 text-[var(--color-ink)] ring-[var(--color-champagne-soft)]/25";
     case "FIFA":
-      return "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-[var(--color-forest)]/20";
+      return "bg-[var(--color-champagne)]/8 text-[var(--color-champagne)] ring-[var(--color-champagne)]/20";
     case "Masters":
-      return "bg-[var(--color-forest)]/10 text-[var(--color-forest)] ring-[var(--color-forest)]/20";
+      return "bg-[var(--color-ink)]/5 text-[var(--color-ink)] ring-[var(--color-ink)]/12";
     default:
       return "bg-[var(--color-hairline)] text-[var(--color-ink)] ring-[var(--color-hairline-strong)]";
   }

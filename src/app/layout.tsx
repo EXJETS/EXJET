@@ -1,16 +1,23 @@
 import type { Metadata } from "next";
-import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
-import { Cormorant_Garamond } from "next/font/google";
+import { Barlow, Barlow_Condensed } from "next/font/google";
 import { Navbar } from "@/components/layout/navbar";
 import { Footer } from "@/components/layout/footer";
 import "./globals.css";
 
-const cormorant = Cormorant_Garamond({
+const barlow = Barlow({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600"],
+  style: ["normal", "italic"],
+  variable: "--font-barlow",
+  display: "swap",
+});
+
+const barlowCondensed = Barlow_Condensed({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   style: ["normal", "italic"],
-  variable: "--font-serif",
+  variable: "--font-barlow-condensed",
   display: "swap",
 });
 
@@ -80,9 +87,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${GeistSans.variable} ${GeistMono.variable} ${cormorant.variable}`}
+      className={`${barlow.variable} ${barlowCondensed.variable} ${GeistMono.variable}`}
     >
-      <body className="min-h-screen bg-ivory text-ink antialiased">
+      <body className="min-h-screen bg-white text-[var(--color-ink)] antialiased">
         <Navbar />
         <main>{children}</main>
         <Footer />
