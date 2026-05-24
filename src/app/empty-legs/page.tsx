@@ -11,14 +11,11 @@ import {
   Calendar,
   Clock,
   Users,
+  SlidersHorizontal,
 } from "lucide-react";
 import emptyLegsData from "@/data/empty-legs.json";
 import { cn, formatCurrency } from "@/lib/utils";
 import type { EmptyLeg } from "@/components/booking/empty-leg-card";
-
-const NAVY = "#07101e";
-const GOLD = "#c4a052";
-const CREAM = "#f0ebe0";
 
 const allLegs = emptyLegsData as EmptyLeg[];
 
@@ -33,8 +30,8 @@ const CATEGORIES = [
 
 const SORT_OPTIONS = [
   { value: "date_asc", label: "Soonest Departure" },
-  { value: "price_asc", label: "Price: Low to High" },
-  { value: "price_desc", label: "Price: High to Low" },
+  { value: "price_asc", label: "Lowest Price" },
+  { value: "price_desc", label: "Highest Price" },
 ];
 
 export default function EmptyLegsPage() {
@@ -85,151 +82,122 @@ export default function EmptyLegsPage() {
   }, [categoryFilter, fromFilter, toFilter, sortBy]);
 
   return (
-    <div className="min-h-screen" style={{ backgroundColor: CREAM }}>
+    <div className="min-h-screen bg-[#f7f8fa]">
+
+      {/* ── ANNOUNCEMENT BAR ─────────────────────────────────────────── */}
+      <div className="bg-[#07101e] px-4 py-2.5 text-center">
+        <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-white/50">
+          Confirmed within 4 hours &nbsp;·&nbsp; 5,000+ airports worldwide &nbsp;·&nbsp; ARGUS Platinum safety
+        </p>
+      </div>
 
       {/* ── HERO ─────────────────────────────────────────────────────── */}
-      <section style={{ backgroundColor: NAVY }}>
-        <div className="mx-auto max-w-7xl px-8 pb-20 pt-36 sm:px-14 lg:pt-44">
-          <div className="flex flex-wrap items-end justify-between gap-8">
+      <section className="bg-[#07101e] px-6 pb-16 pt-28 sm:px-8 lg:pt-32">
+        <div className="mx-auto max-w-7xl">
+          <div className="flex flex-wrap items-end justify-between gap-6">
             <div>
-              <div className="mb-5 flex items-center gap-4">
-                <div className="h-px w-10 shrink-0" style={{ backgroundColor: GOLD }} />
-                <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/40">
-                  Repositioning Flights
-                </span>
-              </div>
+              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.3em] text-[#c4a052]">
+                Available Now
+              </p>
               <h1
-                className="font-serif font-bold uppercase leading-[0.88] text-white"
-                style={{ fontSize: "clamp(3.5rem, 9vw, 9rem)", letterSpacing: "-0.03em" }}
+                className="font-serif font-bold uppercase leading-[0.92] text-white"
+                style={{ fontSize: "clamp(2.5rem, 7vw, 6rem)", letterSpacing: "-0.03em" }}
               >
-                Available
+                Repositioning
                 <br />
-                <em className="not-italic" style={{ color: GOLD }}>Now</em>
-                <br />
-                Departures
+                Flights
               </h1>
+              <p className="mt-4 max-w-md text-[14px] leading-[1.75] text-white/45">
+                Aircraft repositioning to fill empty legs — book at a fraction of
+                the charter rate with no membership required.
+              </p>
             </div>
-
-            <div>
+            <div className="rounded-2xl border border-white/10 bg-white/5 px-8 py-6 text-center">
               <p
                 className="font-serif font-bold uppercase leading-none text-white"
-                style={{ fontSize: "clamp(3rem, 6vw, 5rem)", letterSpacing: "-0.03em" }}
+                style={{ fontSize: "3.5rem", letterSpacing: "-0.03em" }}
               >
                 {allLegs.length}
               </p>
-              <p
-                className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em]"
-                style={{ color: "rgba(255,255,255,0.30)" }}
-              >
+              <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.25em] text-white/35">
                 Flights listed
               </p>
             </div>
           </div>
-
-          {/* Stats row */}
-          <div
-            className="mt-16 flex flex-wrap gap-x-12 gap-y-4 border-t pt-10"
-            style={{ borderColor: "rgba(255,255,255,0.10)" }}
-          >
-            {[
-              ["5,000+", "Airports"],
-              ["2,400+", "Aircraft"],
-              ["< 4 hrs", "Avg. confirmation"],
-              ["ARGUS Platinum", "Safety standard"],
-            ].map(([val, lbl]) => (
-              <div key={lbl} className="flex items-baseline gap-2.5">
-                <span
-                  className="font-serif font-bold uppercase leading-none text-white"
-                  style={{ fontSize: "1.25rem", letterSpacing: "-0.02em" }}
-                >
-                  {val}
-                </span>
-                <span
-                  className="font-mono text-[9px] uppercase tracking-[0.22em]"
-                  style={{ color: "rgba(255,255,255,0.30)" }}
-                >
-                  {lbl}
-                </span>
-              </div>
-            ))}
-          </div>
         </div>
       </section>
 
-      {/* ── FILTER BAR ───────────────────────────────────────────────── */}
-      <div
-        className="sticky top-16 z-30 border-b bg-white"
-        style={{ borderColor: "rgba(7,16,30,0.10)" }}
-      >
-        <div className="mx-auto max-w-7xl px-8 py-3 sm:px-14">
+      {/* ── FILTERS ──────────────────────────────────────────────────── */}
+      <div className="sticky top-16 z-30 border-b border-[#07101e]/08 bg-white shadow-sm">
+        <div className="mx-auto max-w-7xl px-6 py-3 sm:px-8">
           <div className="flex flex-wrap items-center gap-3">
+            <SlidersHorizontal className="h-3.5 w-3.5 shrink-0 text-[#07101e]/35" strokeWidth={1.75} />
 
             {/* From */}
-            <div
-              className="flex items-center gap-2 border px-4 py-2.5"
-              style={{ borderColor: "rgba(7,16,30,0.12)" }}
-            >
-              <PlaneTakeoff
-                className="h-3.5 w-3.5 shrink-0"
-                style={{ color: GOLD }}
-                strokeWidth={1.75}
-              />
+            <div className="flex items-center gap-2 rounded-lg border border-[#07101e]/10 bg-[#f7f8fa] px-3 py-2">
+              <PlaneTakeoff className="h-3.5 w-3.5 shrink-0 text-[#c4a052]" strokeWidth={1.75} />
               <input
                 type="text"
-                placeholder="Departing from"
+                placeholder="From city"
                 value={fromFilter}
                 onChange={(e) => setFromFilter(e.target.value)}
-                className="w-32 bg-transparent font-mono text-[11px] uppercase tracking-[0.18em] outline-none placeholder:text-neutral-400"
-                style={{ color: NAVY }}
+                className="w-24 bg-transparent font-mono text-[11px] uppercase tracking-[0.15em] text-[#07101e] outline-none placeholder:text-[#07101e]/35"
               />
               {fromFilter && (
                 <button onClick={() => setFromFilter("")} type="button">
-                  <X className="h-3 w-3 text-neutral-400 hover:text-neutral-700" strokeWidth={2} />
+                  <X className="h-3 w-3 text-[#07101e]/35 hover:text-[#07101e]" strokeWidth={2} />
                 </button>
               )}
             </div>
 
             {/* To */}
-            <div
-              className="flex items-center gap-2 border px-4 py-2.5"
-              style={{ borderColor: "rgba(7,16,30,0.12)" }}
-            >
-              <PlaneTakeoff
-                className="h-3.5 w-3.5 shrink-0 rotate-90"
-                style={{ color: GOLD }}
-                strokeWidth={1.75}
-              />
+            <div className="flex items-center gap-2 rounded-lg border border-[#07101e]/10 bg-[#f7f8fa] px-3 py-2">
+              <PlaneTakeoff className="h-3.5 w-3.5 shrink-0 rotate-90 text-[#c4a052]" strokeWidth={1.75} />
               <input
                 type="text"
-                placeholder="Arriving to"
+                placeholder="To city"
                 value={toFilter}
                 onChange={(e) => setToFilter(e.target.value)}
-                className="w-32 bg-transparent font-mono text-[11px] uppercase tracking-[0.18em] outline-none placeholder:text-neutral-400"
-                style={{ color: NAVY }}
+                className="w-24 bg-transparent font-mono text-[11px] uppercase tracking-[0.15em] text-[#07101e] outline-none placeholder:text-[#07101e]/35"
               />
               {toFilter && (
                 <button onClick={() => setToFilter("")} type="button">
-                  <X className="h-3 w-3 text-neutral-400 hover:text-neutral-700" strokeWidth={2} />
+                  <X className="h-3 w-3 text-[#07101e]/35 hover:text-[#07101e]" strokeWidth={2} />
                 </button>
               )}
             </div>
 
-            {/* Category */}
-            <div className="relative">
+            {/* Category pills */}
+            <div className="hidden items-center gap-2 lg:flex">
+              {CATEGORIES.map((c) => (
+                <button
+                  key={c.value}
+                  type="button"
+                  onClick={() => setCategoryFilter(c.value)}
+                  className={cn(
+                    "rounded-full px-3 py-1.5 font-mono text-[10px] uppercase tracking-[0.18em] transition-all",
+                    categoryFilter === c.value
+                      ? "bg-[#07101e] text-white"
+                      : "border border-[#07101e]/10 text-[#07101e]/55 hover:border-[#07101e]/25"
+                  )}
+                >
+                  {c.label}
+                </button>
+              ))}
+            </div>
+
+            {/* Category select (mobile) */}
+            <div className="relative lg:hidden">
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="appearance-none border bg-white px-4 py-2.5 pr-8 font-mono text-[11px] uppercase tracking-[0.18em] outline-none"
-                style={{ borderColor: "rgba(7,16,30,0.12)", color: NAVY }}
+                className="appearance-none rounded-lg border border-[#07101e]/10 bg-[#f7f8fa] py-2 pl-3 pr-7 font-mono text-[11px] uppercase tracking-[0.15em] text-[#07101e] outline-none"
               >
                 {CATEGORIES.map((c) => (
                   <option key={c.value} value={c.value}>{c.label}</option>
                 ))}
               </select>
-              <ChevronDown
-                className="pointer-events-none absolute right-2.5 top-1/2 h-3 w-3 -translate-y-1/2 text-neutral-400"
-                strokeWidth={2}
-              />
+              <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-[#07101e]/40" strokeWidth={2} />
             </div>
 
             {/* Sort */}
@@ -237,62 +205,46 @@ export default function EmptyLegsPage() {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="appearance-none border bg-white px-4 py-2.5 pr-8 font-mono text-[11px] uppercase tracking-[0.18em] outline-none"
-                style={{ borderColor: "rgba(7,16,30,0.12)", color: NAVY }}
+                className="appearance-none rounded-lg border border-[#07101e]/10 bg-[#f7f8fa] py-2 pl-3 pr-7 font-mono text-[11px] uppercase tracking-[0.15em] text-[#07101e] outline-none"
               >
                 {SORT_OPTIONS.map((s) => (
                   <option key={s.value} value={s.value}>{s.label}</option>
                 ))}
               </select>
-              <ChevronDown
-                className="pointer-events-none absolute right-2.5 top-1/2 h-3 w-3 -translate-y-1/2 text-neutral-400"
-                strokeWidth={2}
-              />
+              <ChevronDown className="pointer-events-none absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-[#07101e]/40" strokeWidth={2} />
             </div>
 
-            <span
-              className="font-mono text-[10px] uppercase tracking-[0.22em]"
-              style={{ color: "rgba(7,16,30,0.38)" }}
-            >
-              {filtered.length} {filtered.length === 1 ? "leg" : "legs"}
+            <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#07101e]/35">
+              {filtered.length} {filtered.length === 1 ? "result" : "results"}
             </span>
           </div>
         </div>
       </div>
 
-      {/* ── CARDS ─────────────────────────────────────────────────────── */}
-      <div className="mx-auto max-w-7xl px-8 py-16 sm:px-14">
+      {/* ── RESULTS ──────────────────────────────────────────────────── */}
+      <div className="mx-auto max-w-7xl px-6 py-12 sm:px-8">
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center py-32 text-center">
-            <PlaneTakeoff
-              className="h-10 w-10"
-              style={{ color: "rgba(7,16,30,0.18)" }}
-              strokeWidth={1}
-            />
+            <PlaneTakeoff className="h-10 w-10 text-[#07101e]/15" strokeWidth={1} />
             <h2
-              className="mt-8 font-serif font-bold uppercase leading-none"
-              style={{ fontSize: "2rem", letterSpacing: "-0.02em", color: NAVY }}
+              className="mt-8 font-serif font-bold uppercase leading-none text-[#07101e]"
+              style={{ fontSize: "2rem", letterSpacing: "-0.025em" }}
             >
               No flights found
             </h2>
-            <p
-              className="mt-4 text-[14px]"
-              style={{ color: "rgba(7,16,30,0.45)" }}
-            >
-              Adjust your filters or check back — inventory updates daily.
+            <p className="mt-3 text-[14px] text-[#07101e]/45">
+              Try adjusting your filters — inventory updates daily.
             </p>
             <button
               onClick={() => { setCategoryFilter("all"); setFromFilter(""); setToFilter(""); }}
               type="button"
-              className="mt-8 inline-flex items-center gap-2 border px-6 py-3 font-mono text-[11px] uppercase tracking-[0.18em] transition-all hover:opacity-70"
-              style={{ borderColor: NAVY, color: NAVY }}
+              className="mt-8 rounded-lg border border-[#07101e]/15 px-6 py-3 font-mono text-[11px] uppercase tracking-[0.18em] text-[#07101e]/55 transition-all hover:border-[#07101e] hover:text-[#07101e]"
             >
               Clear filters
-              <X className="h-3.5 w-3.5" strokeWidth={2} />
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-px sm:grid-cols-2" style={{ backgroundColor: "rgba(7,16,30,0.08)" }}>
+          <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
             {filtered.map((leg) => (
               <FlightCard
                 key={leg.id}
@@ -303,33 +255,28 @@ export default function EmptyLegsPage() {
         )}
 
         {/* Operator CTA */}
-        <div
-          className="mt-20 px-10 py-14 lg:px-16"
-          style={{ backgroundColor: NAVY }}
-        >
+        <div className="mt-16 rounded-2xl bg-[#07101e] p-10 sm:p-14">
           <div className="flex flex-wrap items-center justify-between gap-8">
             <div>
-              <div className="mb-4 h-px w-10" style={{ backgroundColor: GOLD }} />
+              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-[#c4a052]">
+                For Operators
+              </p>
               <h2
                 className="font-serif font-bold uppercase leading-tight text-white"
-                style={{ fontSize: "clamp(1.75rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}
+                style={{ fontSize: "clamp(1.75rem, 4vw, 3rem)", letterSpacing: "-0.025em" }}
               >
                 Have an empty leg
                 <br />
                 to fill?
               </h2>
-              <p
-                className="mt-4 max-w-sm text-[14px] leading-[1.85]"
-                style={{ color: "rgba(255,255,255,0.45)" }}
-              >
-                List repositioning flights on EXJET and reach qualified
-                charter clients. No commission on cancelled legs.
+              <p className="mt-3 max-w-sm text-[13px] leading-[1.8] text-white/45">
+                List repositioning flights and reach thousands of qualified charter
+                clients. No commission on cancelled legs.
               </p>
             </div>
             <Link
               href="/operator/empty-legs"
-              className="inline-flex items-center gap-2.5 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.22em] transition-opacity hover:opacity-85"
-              style={{ backgroundColor: GOLD, color: "#07101e" }}
+              className="inline-flex items-center gap-2 rounded-lg bg-[#c4a052] px-7 py-4 font-mono text-[11px] uppercase tracking-[0.22em] text-[#07101e] transition-opacity hover:opacity-88 shrink-0"
             >
               Post an empty leg
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
@@ -352,113 +299,66 @@ function FlightCard({ leg }: { leg: EmptyLeg & { category?: string } }) {
   return (
     <Link
       href={`/booking?legId=${leg.id}`}
-      className="group flex flex-col justify-between bg-white p-8 transition-colors hover:bg-[#faf8f4]"
+      className="group rounded-xl border border-[#07101e]/08 bg-white p-6 shadow-sm transition-all hover:border-[#c4a052]/40 hover:shadow-md"
     >
       {/* Header */}
-      <div className="mb-10 flex items-center justify-between">
-        <span
-          className="font-mono text-[10px] uppercase tracking-[0.28em]"
-          style={{ color: GOLD }}
-        >
-          Repositioning
-        </span>
-        <span
-          className="font-mono text-[10px] uppercase tracking-widest"
-          style={{ color: "rgba(7,16,30,0.38)" }}
-        >
+      <div className="mb-5 flex items-start justify-between">
+        <div className="flex items-baseline gap-2">
+          <span
+            className="font-serif font-bold uppercase leading-none text-[#07101e]"
+            style={{ fontSize: "2rem", letterSpacing: "-0.025em" }}
+          >
+            {leg.from.code}
+          </span>
+          <span className="font-mono text-[11px] text-[#c4a052]">→</span>
+          <span
+            className="font-serif font-bold uppercase leading-none text-[#07101e]"
+            style={{ fontSize: "2rem", letterSpacing: "-0.025em" }}
+          >
+            {leg.to.code}
+          </span>
+        </div>
+        <span className="rounded-full bg-[#f4f7fc] px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.2em] text-[#07101e]/50">
           {leg.aircraft}
         </span>
       </div>
 
-      {/* IATA route */}
-      <div className="flex items-start justify-between gap-4">
-        <div>
-          <p
-            className="font-mono text-[10px] uppercase tracking-widest"
-            style={{ color: "rgba(7,16,30,0.38)" }}
-          >
-            {leg.from.city}
-          </p>
-          <p
-            className="mt-1 font-serif font-bold uppercase leading-none"
-            style={{ fontSize: "3rem", letterSpacing: "-0.025em", color: NAVY }}
-          >
-            {leg.from.code}
-          </p>
-        </div>
+      {/* Cities */}
+      <p className="mb-4 font-mono text-[10px] uppercase tracking-widest text-[#07101e]/40">
+        {leg.from.city} to {leg.to.city}
+      </p>
 
-        <div className="relative mt-7 flex-1 self-center">
-          <div
-            className="h-px w-full"
-            style={{ backgroundColor: `${GOLD}40` }}
-          />
-          <PlaneTakeoff
-            className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 group-hover:translate-x-1"
-            style={{ color: GOLD }}
-            strokeWidth={1.5}
-          />
-        </div>
-
-        <div className="text-right">
-          <p
-            className="font-mono text-[10px] uppercase tracking-widest"
-            style={{ color: "rgba(7,16,30,0.38)" }}
-          >
-            {leg.to.city}
-          </p>
-          <p
-            className="mt-1 font-serif font-bold uppercase leading-none"
-            style={{ fontSize: "3rem", letterSpacing: "-0.025em", color: NAVY }}
-          >
-            {leg.to.code}
-          </p>
-        </div>
-      </div>
-
-      {/* Meta strip */}
-      <div
-        className="mt-8 flex gap-6 border-t pt-6"
-        style={{ borderColor: "rgba(7,16,30,0.08)" }}
-      >
+      {/* Meta */}
+      <div className="mb-5 flex flex-wrap gap-x-4 gap-y-1.5">
         <div className="flex items-center gap-1.5">
-          <Calendar className="h-3.5 w-3.5 shrink-0" style={{ color: GOLD }} strokeWidth={1.75} />
-          <span className="text-[12px]" style={{ color: "rgba(7,16,30,0.50)" }}>{when}</span>
+          <Calendar className="h-3.5 w-3.5 text-[#c4a052]" strokeWidth={1.75} />
+          <span className="font-mono text-[10px] uppercase tracking-widest text-[#07101e]/45">{when}</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <Clock className="h-3.5 w-3.5 shrink-0" style={{ color: GOLD }} strokeWidth={1.75} />
-          <span className="text-[12px]" style={{ color: "rgba(7,16,30,0.50)" }}>{leg.departTime}</span>
+          <Clock className="h-3.5 w-3.5 text-[#c4a052]" strokeWidth={1.75} />
+          <span className="font-mono text-[10px] uppercase tracking-widest text-[#07101e]/45">{leg.departTime}</span>
         </div>
         <div className="flex items-center gap-1.5">
-          <Users className="h-3.5 w-3.5 shrink-0" style={{ color: GOLD }} strokeWidth={1.75} />
-          <span className="text-[12px]" style={{ color: "rgba(7,16,30,0.50)" }}>{leg.capacity} seats</span>
+          <Users className="h-3.5 w-3.5 text-[#c4a052]" strokeWidth={1.75} />
+          <span className="font-mono text-[10px] uppercase tracking-widest text-[#07101e]/45">{leg.capacity} seats</span>
         </div>
       </div>
 
       {/* Price + CTA */}
-      <div
-        className="mt-6 flex items-end justify-between border-t pt-6"
-        style={{ borderColor: "rgba(7,16,30,0.08)" }}
-      >
+      <div className="flex items-end justify-between border-t border-[#07101e]/06 pt-5">
         <div>
-          <p
-            className="font-mono text-[10px] line-through"
-            style={{ color: "rgba(7,16,30,0.28)" }}
-          >
+          <p className="font-mono text-[9px] uppercase tracking-widest text-[#07101e]/28 line-through">
             {formatCurrency(leg.retailPrice)}
           </p>
           <p
-            className="mt-0.5 font-serif font-bold uppercase leading-none"
-            style={{ fontSize: "1.85rem", letterSpacing: "-0.025em", color: NAVY }}
+            className="font-serif font-bold uppercase leading-none text-[#07101e]"
+            style={{ fontSize: "1.5rem", letterSpacing: "-0.02em" }}
           >
             {formatCurrency(leg.price)}
           </p>
         </div>
-        <span
-          className="inline-flex items-center gap-1.5 border px-5 py-2.5 font-mono text-[10px] uppercase tracking-[0.18em] transition-all group-hover:opacity-70"
-          style={{ borderColor: NAVY, color: NAVY }}
-        >
+        <span className="rounded-lg bg-[#07101e] px-4 py-2.5 font-mono text-[10px] uppercase tracking-[0.18em] text-white transition-colors group-hover:bg-[#c4a052] group-hover:text-[#07101e]">
           Reserve
-          <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
         </span>
       </div>
     </Link>
