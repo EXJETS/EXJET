@@ -11,7 +11,6 @@ const navLinks = [
 const legalLinks = [
   { label: "Terms of Service", href: "/terms" },
   { label: "Privacy Policy", href: "/privacy" },
-  { label: "Cookie Policy", href: "/cookies" },
   { label: "Safety Standards", href: "/safety" },
   { label: "Contact", href: "/contact" },
 ];
@@ -19,14 +18,14 @@ const legalLinks = [
 export function Footer() {
   return (
     <footer className="border-t border-white/10 bg-[#0a1628]">
-      <div className="mx-auto max-w-7xl px-5 py-16 sm:px-8">
+      <div className="mx-auto max-w-7xl px-5 py-14 sm:px-8">
         {/* 3-column layout */}
-        <div className="grid grid-cols-1 gap-12 md:grid-cols-3">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-3">
           {/* Column 1: Brand */}
           <div>
             <Link
               href="/"
-              className="font-serif text-[24px] uppercase tracking-[0.12em] text-white"
+              className="font-serif text-[22px] font-bold uppercase tracking-[0.18em] text-white"
             >
               EXJET
             </Link>
@@ -36,7 +35,7 @@ export function Footer() {
             </p>
             <div className="mt-6 flex items-center gap-2">
               <span className="inline-block h-2 w-2 rounded-full bg-green-400" />
-              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/50">
+              <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
                 24/7 Concierge Available
               </span>
             </div>
@@ -49,10 +48,10 @@ export function Footer() {
             </h3>
             <ul className="mt-5 space-y-3">
               {navLinks.map((link) => (
-                <li key={link.href}>
+                <li key={`${link.href}-${link.label}`}>
                   <Link
                     href={link.href}
-                    className="text-[13px] text-white/60 transition-colors hover:text-white"
+                    className="text-[13px] text-white/60 transition-colors hover:text-[var(--color-champagne)]"
                   >
                     {link.label}
                   </Link>
@@ -71,22 +70,33 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[13px] text-white/60 transition-colors hover:text-white"
+                    className="text-[13px] text-white/60 transition-colors hover:text-[var(--color-champagne)]"
                   >
                     {link.label}
                   </Link>
                 </li>
               ))}
             </ul>
+            <div className="mt-8">
+              <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
+                Reservations
+              </p>
+              <a
+                href="mailto:fly@exjet.com"
+                className="mt-1 block text-[13px] text-white/60 transition-colors hover:text-[var(--color-champagne)]"
+              >
+                fly@exjet.com
+              </a>
+            </div>
           </div>
         </div>
 
         {/* Bottom bar */}
-        <div className="mt-14 flex flex-col items-start justify-between gap-3 border-t border-white/10 pt-8 sm:flex-row sm:items-center">
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/30">
+        <div className="mt-12 flex flex-col items-start justify-between gap-3 border-t border-white/10 pt-6 sm:flex-row sm:items-center">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/25">
             &copy; {new Date().getFullYear()} EXJET. All rights reserved.
           </p>
-          <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-white/30">
+          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-white/25">
             ARGUS Platinum &middot; Wyvern Wingman
           </p>
         </div>

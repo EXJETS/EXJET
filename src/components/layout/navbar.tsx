@@ -21,18 +21,18 @@ export function Navbar() {
         {/* Wordmark */}
         <Link
           href="/"
-          className="font-serif text-[22px] uppercase tracking-[0.12em] text-white"
+          className="font-serif text-[22px] font-bold uppercase tracking-[0.18em] text-white"
         >
           EXJET
         </Link>
 
-        {/* Desktop nav links */}
+        {/* Desktop nav links — center */}
         <ul className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/70 transition-colors hover:text-white"
+                className="font-mono text-[11px] uppercase tracking-[0.22em] text-white/60 transition-colors hover:text-white"
               >
                 {link.label}
               </Link>
@@ -50,7 +50,7 @@ export function Navbar() {
           </Link>
           <Link
             href="/search"
-            className="rounded bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#0a1628] transition-colors hover:bg-[var(--color-champagne)] hover:text-white"
+            className="rounded bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#0a1628] transition-colors hover:bg-white/90"
           >
             Reserve Now
           </Link>
@@ -74,7 +74,7 @@ export function Navbar() {
           mobileOpen ? "max-h-96" : "max-h-0"
         )}
       >
-        <div className="space-y-1 px-5 py-4">
+        <div className="space-y-1 bg-[#0a1628] px-5 py-4">
           {navLinks.map((link) => (
             <Link
               key={link.href}
@@ -85,7 +85,7 @@ export function Navbar() {
               {link.label}
             </Link>
           ))}
-          <div className="mt-4 flex flex-col gap-2">
+          <div className="mt-4 flex flex-col gap-2 pb-2">
             <Link
               href="/auth/login"
               onClick={() => setMobileOpen(false)}
