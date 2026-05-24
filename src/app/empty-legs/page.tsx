@@ -7,14 +7,18 @@ import {
   X,
   ChevronDown,
   ArrowRight,
+  ArrowUpRight,
   Calendar,
   Clock,
   Users,
-  ArrowUpRight,
 } from "lucide-react";
 import emptyLegsData from "@/data/empty-legs.json";
 import { cn, formatCurrency } from "@/lib/utils";
 import type { EmptyLeg } from "@/components/booking/empty-leg-card";
+
+const NAVY = "#07101e";
+const GOLD = "#c4a052";
+const CREAM = "#f0ebe0";
 
 const allLegs = emptyLegsData as EmptyLeg[];
 
@@ -31,7 +35,6 @@ const SORT_OPTIONS = [
   { value: "date_asc", label: "Soonest Departure" },
   { value: "price_asc", label: "Price: Low to High" },
   { value: "price_desc", label: "Price: High to Low" },
-  { value: "discount_desc", label: "Biggest Discount" },
 ];
 
 export default function EmptyLegsPage() {
@@ -73,8 +76,6 @@ export default function EmptyLegsPage() {
           return a.price - b.price;
         case "price_desc":
           return b.price - a.price;
-        case "discount_desc":
-          return b.discountPct - a.discountPct;
         default:
           return new Date(a.date).getTime() - new Date(b.date).getTime();
       }
@@ -84,66 +85,70 @@ export default function EmptyLegsPage() {
   }, [categoryFilter, fromFilter, toFilter, sortBy]);
 
   return (
-    <div className="min-h-screen bg-[var(--color-ivory)]">
-      {/* ============================================================
-          HERO — Full-width navy banner
-          ============================================================ */}
-      <section className="relative overflow-hidden bg-[var(--color-ink)]">
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 80% 60% at 50% -20%, rgba(26,95,168,0.30), transparent 60%)",
-          }}
-          aria-hidden
-        />
-        <div className="relative mx-auto max-w-7xl px-5 pb-16 pt-32 sm:px-8">
-          <div className="flex flex-wrap items-end justify-between gap-6">
+    <div className="min-h-screen" style={{ backgroundColor: CREAM }}>
+
+      {/* ── HERO ─────────────────────────────────────────────────────── */}
+      <section style={{ backgroundColor: NAVY }}>
+        <div className="mx-auto max-w-7xl px-8 pb-20 pt-36 sm:px-14 lg:pt-44">
+          <div className="flex flex-wrap items-end justify-between gap-8">
             <div>
-              <div>
-              <p className="mb-5 font-mono text-[11px] uppercase tracking-[0.28em] text-[#1a5fa8]">
-                Repositioning Flights
-              </p>
+              <div className="mb-5 flex items-center gap-4">
+                <div className="h-px w-10 shrink-0" style={{ backgroundColor: GOLD }} />
+                <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/40">
+                  Repositioning Flights
+                </span>
+              </div>
               <h1
-                className="font-serif font-semibold uppercase text-white"
-                style={{
-                  fontSize: "clamp(2.5rem, 7vw, 6rem)",
-                  lineHeight: "0.94",
-                  letterSpacing: "-0.02em",
-                }}
+                className="font-serif font-bold uppercase leading-[0.88] text-white"
+                style={{ fontSize: "clamp(3.5rem, 9vw, 9rem)", letterSpacing: "-0.03em" }}
               >
                 Available
+                <br />
+                <em className="not-italic" style={{ color: GOLD }}>Now</em>
                 <br />
                 Departures
               </h1>
             </div>
-            <div className="text-right">
+
+            <div>
               <p
-                className="font-serif font-semibold uppercase leading-none text-white"
-                style={{ fontSize: "clamp(2rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}
+                className="font-serif font-bold uppercase leading-none text-white"
+                style={{ fontSize: "clamp(3rem, 6vw, 5rem)", letterSpacing: "-0.03em" }}
               >
                 {allLegs.length}
               </p>
-              <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
-                Flights available
+              <p
+                className="mt-1 font-mono text-[10px] uppercase tracking-[0.3em]"
+                style={{ color: "rgba(255,255,255,0.30)" }}
+              >
+                Flights listed
               </p>
             </div>
           </div>
 
-          {/* Stats strip */}
-          <div className="mt-12 flex flex-wrap gap-x-12 gap-y-4 border-t border-white/10 pt-10">
+          {/* Stats row */}
+          <div
+            className="mt-16 flex flex-wrap gap-x-12 gap-y-4 border-t pt-10"
+            style={{ borderColor: "rgba(255,255,255,0.10)" }}
+          >
             {[
-              ["5,000+", "Airports served"],
-              ["2,400+", "Aircraft on fleet"],
+              ["5,000+", "Airports"],
+              ["2,400+", "Aircraft"],
               ["< 4 hrs", "Avg. confirmation"],
               ["ARGUS Platinum", "Safety standard"],
-            ].map(([val, label]) => (
-              <div key={label} className="flex items-baseline gap-2.5">
-                <span className="font-serif text-[1.25rem] font-semibold uppercase leading-none tracking-tight text-white">
+            ].map(([val, lbl]) => (
+              <div key={lbl} className="flex items-baseline gap-2.5">
+                <span
+                  className="font-serif font-bold uppercase leading-none text-white"
+                  style={{ fontSize: "1.25rem", letterSpacing: "-0.02em" }}
+                >
                   {val}
                 </span>
-                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/35">
-                  {label}
+                <span
+                  className="font-mono text-[9px] uppercase tracking-[0.22em]"
+                  style={{ color: "rgba(255,255,255,0.30)" }}
+                >
+                  {lbl}
                 </span>
               </div>
             ))}
@@ -151,16 +156,22 @@ export default function EmptyLegsPage() {
         </div>
       </section>
 
-      {/* ============================================================
-          FILTER BAR — White, sticky
-          ============================================================ */}
-      <div className="sticky top-16 z-30 border-b border-[var(--color-hairline)] bg-white shadow-sm">
-        <div className="mx-auto max-w-7xl px-5 py-3 sm:px-8">
+      {/* ── FILTER BAR ───────────────────────────────────────────────── */}
+      <div
+        className="sticky top-16 z-30 border-b bg-white"
+        style={{ borderColor: "rgba(7,16,30,0.10)" }}
+      >
+        <div className="mx-auto max-w-7xl px-8 py-3 sm:px-14">
           <div className="flex flex-wrap items-center gap-3">
+
             {/* From */}
-            <div className="flex items-center gap-2 rounded-lg border border-[var(--color-hairline)] bg-[var(--color-ivory)] px-4 py-2.5">
+            <div
+              className="flex items-center gap-2 border px-4 py-2.5"
+              style={{ borderColor: "rgba(7,16,30,0.12)" }}
+            >
               <PlaneTakeoff
-                className="h-3.5 w-3.5 shrink-0 text-[var(--color-champagne)]"
+                className="h-3.5 w-3.5 shrink-0"
+                style={{ color: GOLD }}
                 strokeWidth={1.75}
               />
               <input
@@ -168,22 +179,24 @@ export default function EmptyLegsPage() {
                 placeholder="Departing from"
                 value={fromFilter}
                 onChange={(e) => setFromFilter(e.target.value)}
-                className="w-32 bg-transparent font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink)] outline-none placeholder:text-[var(--color-subtle)]"
+                className="w-32 bg-transparent font-mono text-[11px] uppercase tracking-[0.18em] outline-none placeholder:text-neutral-400"
+                style={{ color: NAVY }}
               />
               {fromFilter && (
                 <button onClick={() => setFromFilter("")} type="button">
-                  <X
-                    className="h-3 w-3 text-[var(--color-subtle)] hover:text-[var(--color-ink)]"
-                    strokeWidth={2}
-                  />
+                  <X className="h-3 w-3 text-neutral-400 hover:text-neutral-700" strokeWidth={2} />
                 </button>
               )}
             </div>
 
             {/* To */}
-            <div className="flex items-center gap-2 rounded-lg border border-[var(--color-hairline)] bg-[var(--color-ivory)] px-4 py-2.5">
+            <div
+              className="flex items-center gap-2 border px-4 py-2.5"
+              style={{ borderColor: "rgba(7,16,30,0.12)" }}
+            >
               <PlaneTakeoff
-                className="h-3.5 w-3.5 shrink-0 rotate-90 text-[var(--color-champagne)]"
+                className="h-3.5 w-3.5 shrink-0 rotate-90"
+                style={{ color: GOLD }}
                 strokeWidth={1.75}
               />
               <input
@@ -191,14 +204,12 @@ export default function EmptyLegsPage() {
                 placeholder="Arriving to"
                 value={toFilter}
                 onChange={(e) => setToFilter(e.target.value)}
-                className="w-32 bg-transparent font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink)] outline-none placeholder:text-[var(--color-subtle)]"
+                className="w-32 bg-transparent font-mono text-[11px] uppercase tracking-[0.18em] outline-none placeholder:text-neutral-400"
+                style={{ color: NAVY }}
               />
               {toFilter && (
                 <button onClick={() => setToFilter("")} type="button">
-                  <X
-                    className="h-3 w-3 text-[var(--color-subtle)] hover:text-[var(--color-ink)]"
-                    strokeWidth={2}
-                  />
+                  <X className="h-3 w-3 text-neutral-400 hover:text-neutral-700" strokeWidth={2} />
                 </button>
               )}
             </div>
@@ -208,80 +219,82 @@ export default function EmptyLegsPage() {
               <select
                 value={categoryFilter}
                 onChange={(e) => setCategoryFilter(e.target.value)}
-                className="appearance-none rounded-lg border border-[var(--color-hairline)] bg-[var(--color-ivory)] px-4 py-2.5 pr-8 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink)] outline-none"
+                className="appearance-none border bg-white px-4 py-2.5 pr-8 font-mono text-[11px] uppercase tracking-[0.18em] outline-none"
+                style={{ borderColor: "rgba(7,16,30,0.12)", color: NAVY }}
               >
                 {CATEGORIES.map((c) => (
-                  <option key={c.value} value={c.value}>
-                    {c.label}
-                  </option>
+                  <option key={c.value} value={c.value}>{c.label}</option>
                 ))}
               </select>
               <ChevronDown
-                className="pointer-events-none absolute right-2.5 top-1/2 h-3 w-3 -translate-y-1/2 text-[var(--color-subtle)]"
+                className="pointer-events-none absolute right-2.5 top-1/2 h-3 w-3 -translate-y-1/2 text-neutral-400"
                 strokeWidth={2}
               />
             </div>
 
-            {/* Sort — pushed right */}
+            {/* Sort */}
             <div className="relative ml-auto">
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="appearance-none rounded-lg border border-[var(--color-hairline)] bg-[var(--color-ivory)] px-4 py-2.5 pr-8 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink)] outline-none"
+                className="appearance-none border bg-white px-4 py-2.5 pr-8 font-mono text-[11px] uppercase tracking-[0.18em] outline-none"
+                style={{ borderColor: "rgba(7,16,30,0.12)", color: NAVY }}
               >
                 {SORT_OPTIONS.map((s) => (
-                  <option key={s.value} value={s.value}>
-                    {s.label}
-                  </option>
+                  <option key={s.value} value={s.value}>{s.label}</option>
                 ))}
               </select>
               <ChevronDown
-                className="pointer-events-none absolute right-2.5 top-1/2 h-3 w-3 -translate-y-1/2 text-[var(--color-subtle)]"
+                className="pointer-events-none absolute right-2.5 top-1/2 h-3 w-3 -translate-y-1/2 text-neutral-400"
                 strokeWidth={2}
               />
             </div>
 
-            {/* Count */}
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-muted)]">
+            <span
+              className="font-mono text-[10px] uppercase tracking-[0.22em]"
+              style={{ color: "rgba(7,16,30,0.38)" }}
+            >
               {filtered.length} {filtered.length === 1 ? "leg" : "legs"}
             </span>
           </div>
         </div>
       </div>
 
-      {/* ============================================================
-          GRID
-          ============================================================ */}
-      <div className="mx-auto max-w-7xl px-5 py-12 sm:px-8">
+      {/* ── CARDS ─────────────────────────────────────────────────────── */}
+      <div className="mx-auto max-w-7xl px-8 py-16 sm:px-14">
         {filtered.length === 0 ? (
           <div className="flex flex-col items-center py-32 text-center">
             <PlaneTakeoff
-              className="h-10 w-10 text-[var(--color-bone)]"
+              className="h-10 w-10"
+              style={{ color: "rgba(7,16,30,0.18)" }}
               strokeWidth={1}
             />
-            <h2 className="mt-6 font-serif text-[1.75rem] font-semibold uppercase leading-none tracking-tight text-[var(--color-ink)]">
-              No empty legs found
+            <h2
+              className="mt-8 font-serif font-bold uppercase leading-none"
+              style={{ fontSize: "2rem", letterSpacing: "-0.02em", color: NAVY }}
+            >
+              No flights found
             </h2>
-            <p className="mt-3 text-[14px] text-[var(--color-muted)]">
-              Try adjusting your filters or check back — inventory updates daily.
+            <p
+              className="mt-4 text-[14px]"
+              style={{ color: "rgba(7,16,30,0.45)" }}
+            >
+              Adjust your filters or check back — inventory updates daily.
             </p>
             <button
-              onClick={() => {
-                setCategoryFilter("all");
-                setFromFilter("");
-                setToFilter("");
-              }}
+              onClick={() => { setCategoryFilter("all"); setFromFilter(""); setToFilter(""); }}
               type="button"
-              className="mt-8 inline-flex items-center gap-2 rounded border border-[var(--color-ink)] px-6 py-3 font-mono text-[12px] uppercase tracking-[0.18em] text-[var(--color-ink)] transition-colors hover:bg-[var(--color-ink)] hover:text-white"
+              className="mt-8 inline-flex items-center gap-2 border px-6 py-3 font-mono text-[11px] uppercase tracking-[0.18em] transition-all hover:opacity-70"
+              style={{ borderColor: NAVY, color: NAVY }}
             >
               Clear filters
               <X className="h-3.5 w-3.5" strokeWidth={2} />
             </button>
           </div>
         ) : (
-          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
+          <div className="grid grid-cols-1 gap-px sm:grid-cols-2" style={{ backgroundColor: "rgba(7,16,30,0.08)" }}>
             {filtered.map((leg) => (
-              <EmptyLegCardFull
+              <FlightCard
                 key={leg.id}
                 leg={leg as EmptyLeg & { category?: string }}
               />
@@ -290,34 +303,33 @@ export default function EmptyLegsPage() {
         )}
 
         {/* Operator CTA */}
-        <div className="mt-20 overflow-hidden rounded-xl border border-[var(--color-hairline)] bg-[var(--color-ink)]">
-          <div
-            className="relative px-8 py-14 text-center md:px-16"
-            style={{
-              backgroundImage:
-                "radial-gradient(ellipse 80% 60% at 50% -20%, rgba(26,95,168,0.30), transparent 60%)",
-            }}
-          >
-            <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-champagne)]">
-              For Operators
-            </span>
-            <h2
-              className="mt-5 font-serif font-semibold uppercase text-white"
-              style={{
-                fontSize: "clamp(1.75rem, 4vw, 3rem)",
-                lineHeight: "0.98",
-                letterSpacing: "-0.015em",
-              }}
-            >
-              Have an empty leg to fill?
-            </h2>
-            <p className="mx-auto mt-5 max-w-lg text-[14px] leading-[1.8] text-white/60">
-              List your repositioning flights on EXJET and reach thousands of
-              qualified charter clients. No commission on cancelled legs.
-            </p>
+        <div
+          className="mt-20 px-10 py-14 lg:px-16"
+          style={{ backgroundColor: NAVY }}
+        >
+          <div className="flex flex-wrap items-center justify-between gap-8">
+            <div>
+              <div className="mb-4 h-px w-10" style={{ backgroundColor: GOLD }} />
+              <h2
+                className="font-serif font-bold uppercase leading-tight text-white"
+                style={{ fontSize: "clamp(1.75rem, 4vw, 3rem)", letterSpacing: "-0.02em" }}
+              >
+                Have an empty leg
+                <br />
+                to fill?
+              </h2>
+              <p
+                className="mt-4 max-w-sm text-[14px] leading-[1.85]"
+                style={{ color: "rgba(255,255,255,0.45)" }}
+              >
+                List repositioning flights on EXJET and reach qualified
+                charter clients. No commission on cancelled legs.
+              </p>
+            </div>
             <Link
               href="/operator/empty-legs"
-              className="mt-8 inline-flex items-center gap-2 rounded bg-white px-7 py-3.5 font-mono text-[12px] uppercase tracking-[0.18em] text-[var(--color-ink)] transition-colors hover:bg-white/90"
+              className="inline-flex items-center gap-2.5 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.22em] transition-opacity hover:opacity-85"
+              style={{ backgroundColor: GOLD, color: "#07101e" }}
             >
               Post an empty leg
               <ArrowRight className="h-3.5 w-3.5" strokeWidth={2.25} />
@@ -329,11 +341,8 @@ export default function EmptyLegsPage() {
   );
 }
 
-/* ------------------------------------------------------------------ */
-/* Full card                                                            */
-/* ------------------------------------------------------------------ */
-
-function EmptyLegCardFull({ leg }: { leg: EmptyLeg & { category?: string } }) {
+/* ─── Flight card ─────────────────────────────────────────────────────── */
+function FlightCard({ leg }: { leg: EmptyLeg & { category?: string } }) {
   const when = new Date(leg.date).toLocaleDateString("en-US", {
     weekday: "short",
     month: "short",
@@ -343,86 +352,111 @@ function EmptyLegCardFull({ leg }: { leg: EmptyLeg & { category?: string } }) {
   return (
     <Link
       href={`/booking?legId=${leg.id}`}
-      className="group relative flex flex-col overflow-hidden rounded-xl border border-[var(--color-hairline)] bg-white p-7 transition-all duration-200 hover:border-[var(--color-champagne)] hover:shadow-[0_20px_50px_-16px_rgba(26,95,168,0.25)]"
+      className="group flex flex-col justify-between bg-white p-8 transition-colors hover:bg-[#faf8f4]"
     >
       {/* Header */}
-      <div className="mb-6 flex items-center justify-between">
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-champagne)]">
+      <div className="mb-10 flex items-center justify-between">
+        <span
+          className="font-mono text-[10px] uppercase tracking-[0.28em]"
+          style={{ color: GOLD }}
+        >
           Repositioning
         </span>
-        <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
+        <span
+          className="font-mono text-[10px] uppercase tracking-widest"
+          style={{ color: "rgba(7,16,30,0.38)" }}
+        >
           {leg.aircraft}
         </span>
       </div>
 
-      {/* Route */}
-      <div className="flex items-start justify-between gap-3">
+      {/* IATA route */}
+      <div className="flex items-start justify-between gap-4">
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
+          <p
+            className="font-mono text-[10px] uppercase tracking-widest"
+            style={{ color: "rgba(7,16,30,0.38)" }}
+          >
             {leg.from.city}
           </p>
-          <p className="mt-1 font-serif text-[2.5rem] font-semibold leading-none text-[var(--color-ink)]">
+          <p
+            className="mt-1 font-serif font-bold uppercase leading-none"
+            style={{ fontSize: "3rem", letterSpacing: "-0.025em", color: NAVY }}
+          >
             {leg.from.code}
           </p>
         </div>
-        <div className="relative mt-6 flex-1 self-center">
-          <div className="h-px w-full bg-gradient-to-r from-transparent via-[var(--color-champagne)]/50 to-transparent" />
+
+        <div className="relative mt-7 flex-1 self-center">
+          <div
+            className="h-px w-full"
+            style={{ backgroundColor: `${GOLD}40` }}
+          />
           <PlaneTakeoff
-            className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 text-[var(--color-champagne)] transition-transform duration-500 group-hover:translate-x-0"
+            className="absolute left-1/2 top-1/2 h-4 w-4 -translate-x-1/2 -translate-y-1/2 transition-transform duration-500 group-hover:translate-x-1"
+            style={{ color: GOLD }}
             strokeWidth={1.5}
           />
         </div>
+
         <div className="text-right">
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
+          <p
+            className="font-mono text-[10px] uppercase tracking-widest"
+            style={{ color: "rgba(7,16,30,0.38)" }}
+          >
             {leg.to.city}
           </p>
-          <p className="mt-1 font-serif text-[2.5rem] font-semibold leading-none text-[var(--color-ink)]">
+          <p
+            className="mt-1 font-serif font-bold uppercase leading-none"
+            style={{ fontSize: "3rem", letterSpacing: "-0.025em", color: NAVY }}
+          >
             {leg.to.code}
           </p>
         </div>
       </div>
 
-      {/* Meta */}
-      <div className="mt-6 grid grid-cols-3 gap-2 border-t border-[var(--color-hairline)] pt-5">
-        <div className="flex items-center gap-1.5 text-[var(--color-muted)]">
-          <Calendar
-            className="h-3.5 w-3.5 shrink-0 text-[var(--color-champagne)]"
-            strokeWidth={1.75}
-          />
-          <span className="text-[12px]">{when}</span>
+      {/* Meta strip */}
+      <div
+        className="mt-8 flex gap-6 border-t pt-6"
+        style={{ borderColor: "rgba(7,16,30,0.08)" }}
+      >
+        <div className="flex items-center gap-1.5">
+          <Calendar className="h-3.5 w-3.5 shrink-0" style={{ color: GOLD }} strokeWidth={1.75} />
+          <span className="text-[12px]" style={{ color: "rgba(7,16,30,0.50)" }}>{when}</span>
         </div>
-        <div className="flex items-center gap-1.5 text-[var(--color-muted)]">
-          <Clock
-            className="h-3.5 w-3.5 shrink-0 text-[var(--color-champagne)]"
-            strokeWidth={1.75}
-          />
-          <span className="text-[12px]">{leg.departTime}</span>
+        <div className="flex items-center gap-1.5">
+          <Clock className="h-3.5 w-3.5 shrink-0" style={{ color: GOLD }} strokeWidth={1.75} />
+          <span className="text-[12px]" style={{ color: "rgba(7,16,30,0.50)" }}>{leg.departTime}</span>
         </div>
-        <div className="flex items-center gap-1.5 text-[var(--color-muted)]">
-          <Users
-            className="h-3.5 w-3.5 shrink-0 text-[var(--color-champagne)]"
-            strokeWidth={1.75}
-          />
-          <span className="text-[12px]">{leg.capacity} seats</span>
+        <div className="flex items-center gap-1.5">
+          <Users className="h-3.5 w-3.5 shrink-0" style={{ color: GOLD }} strokeWidth={1.75} />
+          <span className="text-[12px]" style={{ color: "rgba(7,16,30,0.50)" }}>{leg.capacity} seats</span>
         </div>
       </div>
 
-      {/* Price */}
-      <div className="mt-5 flex items-end justify-between border-t border-[var(--color-hairline)] pt-5">
+      {/* Price + CTA */}
+      <div
+        className="mt-6 flex items-end justify-between border-t pt-6"
+        style={{ borderColor: "rgba(7,16,30,0.08)" }}
+      >
         <div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-subtle)] line-through">
+          <p
+            className="font-mono text-[10px] line-through"
+            style={{ color: "rgba(7,16,30,0.28)" }}
+          >
             {formatCurrency(leg.retailPrice)}
           </p>
-          <div className="mt-0.5 flex items-baseline gap-1.5">
-            <span className="font-serif text-[1.75rem] font-semibold leading-none text-[var(--color-ink)]">
-              {formatCurrency(leg.price)}
-            </span>
-            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-[var(--color-champagne)]">
-              flat
-            </span>
-          </div>
+          <p
+            className="mt-0.5 font-serif font-bold uppercase leading-none"
+            style={{ fontSize: "1.85rem", letterSpacing: "-0.025em", color: NAVY }}
+          >
+            {formatCurrency(leg.price)}
+          </p>
         </div>
-        <span className="inline-flex items-center gap-1.5 rounded border border-[var(--color-ink)] px-4 py-2.5 font-mono text-[11px] uppercase tracking-[0.18em] text-[var(--color-ink)] transition-all group-hover:border-[var(--color-champagne)] group-hover:bg-[var(--color-champagne)] group-hover:text-white">
+        <span
+          className="inline-flex items-center gap-1.5 border px-5 py-2.5 font-mono text-[10px] uppercase tracking-[0.18em] transition-all group-hover:opacity-70"
+          style={{ borderColor: NAVY, color: NAVY }}
+        >
           Reserve
           <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={2} />
         </span>

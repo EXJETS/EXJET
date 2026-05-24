@@ -43,7 +43,7 @@ export function Footer() {
 
           {/* Column 2: Navigation */}
           <div>
-            <h3 className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-champagne)]">
+            <h3 className="font-mono text-[10px] uppercase tracking-[0.22em]" style={{ color: "#c4a052" }}>
               Book
             </h3>
             <ul className="mt-5 space-y-3">
@@ -51,7 +51,7 @@ export function Footer() {
                 <li key={`${link.href}-${link.label}`}>
                   <Link
                     href={link.href}
-                    className="text-[13px] text-white/60 transition-colors hover:text-[var(--color-champagne)]"
+                    className="text-[13px] text-white/60 transition-colors hover:text-[#c4a052]"
                   >
                     {link.label}
                   </Link>
@@ -62,7 +62,7 @@ export function Footer() {
 
           {/* Column 3: Legal / Contact */}
           <div>
-            <h3 className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-champagne)]">
+            <h3 className="font-mono text-[10px] uppercase tracking-[0.22em]" style={{ color: "#c4a052" }}>
               Legal &amp; Support
             </h3>
             <ul className="mt-5 space-y-3">
@@ -70,7 +70,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={link.href}
-                    className="text-[13px] text-white/60 transition-colors hover:text-[var(--color-champagne)]"
+                    className="text-[13px] text-white/60 transition-colors hover:text-[#c4a052]"
                   >
                     {link.label}
                   </Link>

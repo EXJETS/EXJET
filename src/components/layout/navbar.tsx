@@ -50,7 +50,8 @@ export function Navbar() {
           </Link>
           <Link
             href="/search"
-            className="rounded bg-white px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#0a1628] transition-colors hover:bg-white/90"
+            className="px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#07101e] transition-opacity hover:opacity-85"
+            style={{ backgroundColor: "#c4a052" }}
           >
             Reserve Now
           </Link>
@@ -96,7 +97,8 @@ export function Navbar() {
             <Link
               href="/search"
               onClick={() => setMobileOpen(false)}
-              className="block rounded bg-white px-4 py-3 text-center font-mono text-[12px] uppercase tracking-[0.18em] text-[#0a1628]"
+              className="block px-4 py-3 text-center font-mono text-[12px] uppercase tracking-[0.18em] text-[#07101e]"
+              style={{ backgroundColor: "#c4a052" }}
             >
               Reserve Now
             </Link>

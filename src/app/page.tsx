@@ -6,6 +6,10 @@ import emptyLegs from "@/data/empty-legs.json";
 import faq from "@/data/faq.json";
 import { formatCurrency } from "@/lib/utils";
 
+const NAVY = "#07101e";
+const GOLD = "#c4a052";
+const CREAM = "#f0ebe0";
+
 export default function HomePage() {
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -24,79 +28,128 @@ export default function HomePage() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
-      {/* ── HERO ──────────────────────────────────────────────────────── */}
-      <section className="relative flex min-h-screen flex-col bg-[#07101e]">
-        {/* Subtle radial glow */}
+      {/* ── HERO — left/right split ────────────────────────────────────── */}
+      <section className="flex min-h-screen flex-col lg:flex-row">
+
+        {/* LEFT: Navy editorial panel */}
         <div
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background:
-              "radial-gradient(ellipse 70% 55% at 50% 0%, rgba(26,95,168,0.18) 0%, transparent 65%)",
-          }}
-          aria-hidden
-        />
+          className="relative flex flex-1 flex-col px-8 pb-14 pt-36 lg:px-16 lg:pb-20 lg:pt-44"
+          style={{ backgroundColor: NAVY }}
+        >
+          {/* Gold rule + eyebrow */}
+          <div className="flex items-center gap-4">
+            <div className="h-px w-10 shrink-0" style={{ backgroundColor: GOLD }} />
+            <span className="font-mono text-[10px] uppercase tracking-[0.35em] text-white/40">
+              Global Private Aviation
+            </span>
+          </div>
 
-        <div className="relative mx-auto flex w-full max-w-7xl flex-1 flex-col px-6 pb-12 pt-36 sm:px-8 lg:pt-44">
           {/* Headline */}
-          <div className="max-w-4xl">
-            <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-white/40">
-              EXJET &mdash; Global Private Aviation
-            </p>
-            <h1
-              className="font-serif font-semibold uppercase text-white"
-              style={{
-                fontSize: "clamp(3.5rem, 9vw, 9rem)",
-                lineHeight: 0.9,
-                letterSpacing: "-0.025em",
-              }}
+          <h1
+            className="mt-10 font-serif font-bold uppercase leading-[0.88] text-white"
+            style={{ fontSize: "clamp(4.5rem, 11vw, 11rem)", letterSpacing: "-0.03em" }}
+          >
+            Fly
+            <br />
+            <em
+              className="not-italic"
+              style={{ color: GOLD }}
             >
-              The world,
-              <br />
-              <span className="text-white/30">on your</span>
-              <br />
-              schedule.
-            </h1>
-          </div>
+              Any
+            </em>
+            <br />
+            where.
+          </h1>
 
-          {/* Search */}
-          <div className="mt-14 w-full max-w-5xl rounded-xl border border-white/10 bg-white/95 p-4 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.7)] backdrop-blur">
-            <SearchBar variant="hero" />
-          </div>
+          {/* Body */}
+          <p className="mt-10 max-w-sm text-[14px] leading-[1.85] text-white/50">
+            Private jet charter confirmed in under four hours. 5,000+ airports,
+            2,400+ aircraft. No membership required. ARGUS Platinum safety on
+            every flight.
+          </p>
 
-          {/* Footer stats — understated */}
-          <div className="mt-auto pt-20">
-            <div className="flex flex-wrap items-center gap-x-10 gap-y-3 border-t border-white/10 pt-8">
+          {/* Bottom stats */}
+          <div className="mt-auto pt-24">
+            <div
+              className="grid grid-cols-3 gap-6 border-t pt-8"
+              style={{ borderColor: "rgba(255,255,255,0.10)" }}
+            >
               {[
-                ["5,000+", "Airports worldwide"],
-                ["2,400+", "Aircraft available"],
-                ["< 4 hrs", "Average confirmation"],
-                ["ARGUS Platinum", "Safety standard"],
-              ].map(([val, label]) => (
-                <div key={label} className="flex items-baseline gap-2.5">
-                  <span className="font-serif text-[1.35rem] font-semibold uppercase leading-none tracking-tight text-white">
+                ["5,000+", "Airports"],
+                ["2,400+", "Aircraft"],
+                ["< 4 hrs", "Confirmation"],
+              ].map(([val, lbl]) => (
+                <div key={lbl}>
+                  <p
+                    className="font-serif font-bold uppercase leading-none text-white"
+                    style={{ fontSize: "1.5rem", letterSpacing: "-0.02em" }}
+                  >
                     {val}
-                  </span>
-                  <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/35">
-                    {label}
-                  </span>
+                  </p>
+                  <p
+                    className="mt-1.5 font-mono text-[9px] uppercase tracking-[0.25em]"
+                    style={{ color: "rgba(255,255,255,0.30)" }}
+                  >
+                    {lbl}
+                  </p>
                 </div>
               ))}
             </div>
           </div>
         </div>
+
+        {/* RIGHT: White search panel */}
+        <div
+          className="flex w-full flex-col justify-center border-t px-8 py-14 lg:w-[500px] lg:border-l lg:border-t-0 lg:px-12 lg:py-0"
+          style={{ borderColor: "rgba(255,255,255,0.10)", backgroundColor: "#ffffff" }}
+        >
+          <p
+            className="mb-8 font-mono text-[10px] uppercase tracking-[0.3em]"
+            style={{ color: "rgba(7,16,30,0.40)" }}
+          >
+            Plan your charter
+          </p>
+          <SearchBar variant="hero" />
+          <div className="mt-8 flex items-center gap-3">
+            <div className="h-px flex-1" style={{ backgroundColor: "rgba(7,16,30,0.08)" }} />
+            <Link
+              href="/empty-legs"
+              className="font-mono text-[10px] uppercase tracking-[0.25em] transition-colors hover:opacity-70"
+              style={{ color: "rgba(7,16,30,0.40)" }}
+            >
+              Browse repositioning flights
+            </Link>
+          </div>
+        </div>
       </section>
 
-      {/* ── REPOSITIONING FLIGHTS ──────────────────────────────────────── */}
-      <section className="border-b border-[#e8eef6] bg-white py-24">
-        <div className="mx-auto max-w-7xl px-6 sm:px-8">
-          <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
+      {/* ── REPOSITIONING FLIGHTS ─────────────────────────────────────── */}
+      <section style={{ backgroundColor: CREAM }}>
+        <div className="mx-auto max-w-7xl px-8 py-24 sm:px-14">
+
+          {/* Header */}
+          <div className="mb-16 flex flex-wrap items-end justify-between gap-8">
             <div>
-              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-[#1a5fa8]">
-                Available Now
-              </p>
+              {/* Decorative large number */}
+              <span
+                className="block font-serif font-bold uppercase leading-none select-none"
+                style={{
+                  fontSize: "clamp(5rem, 12vw, 10rem)",
+                  letterSpacing: "-0.04em",
+                  color: "rgba(7,16,30,0.07)",
+                  marginBottom: "-0.45em",
+                }}
+                aria-hidden
+              >
+                06
+              </span>
               <h2
-                className="font-serif font-semibold uppercase leading-none text-[#07101e]"
-                style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)", letterSpacing: "-0.02em" }}
+                className="relative font-serif font-bold uppercase leading-none"
+                style={{
+                  fontSize: "clamp(2rem, 5vw, 4rem)",
+                  letterSpacing: "-0.025em",
+                  color: NAVY,
+                }}
               >
                 Repositioning
                 <br />
@@ -105,16 +158,17 @@ export default function HomePage() {
             </div>
             <Link
               href="/empty-legs"
-              className="inline-flex items-center gap-2 border-b border-[#07101e]/20 pb-0.5 font-mono text-[11px] uppercase tracking-[0.22em] text-[#07101e] transition-colors hover:border-[#1a5fa8] hover:text-[#1a5fa8]"
+              className="group inline-flex items-center gap-2.5 font-mono text-[11px] uppercase tracking-[0.25em] transition-opacity hover:opacity-60"
+              style={{ color: NAVY }}
             >
-              View all departures
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
+              All departures
+              <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" strokeWidth={2} />
             </Link>
           </div>
 
-          {/* Clean list — not cards */}
-          <div className="divide-y divide-[#e8eef6]">
-            {emptyLegs.slice(0, 6).map((leg) => {
+          {/* Rows */}
+          <div>
+            {emptyLegs.slice(0, 6).map((leg, i) => {
               const date = new Date(leg.date).toLocaleDateString("en-US", {
                 weekday: "short",
                 month: "short",
@@ -124,218 +178,274 @@ export default function HomePage() {
                 <Link
                   key={leg.id}
                   href={`/booking?legId=${leg.id}`}
-                  className="group flex flex-col gap-4 py-6 transition-colors hover:bg-[#f5f7fa] sm:flex-row sm:items-center sm:gap-8"
+                  className="group block border-t py-7 transition-all hover:bg-white/60"
+                  style={{ borderColor: "rgba(7,16,30,0.10)" }}
                 >
-                  {/* Route */}
-                  <div className="flex items-baseline gap-3 sm:w-56">
+                  <div className="flex flex-wrap items-center gap-5">
+                    {/* Index */}
                     <span
-                      className="font-serif font-semibold uppercase leading-none text-[#07101e]"
-                      style={{ fontSize: "1.6rem", letterSpacing: "-0.01em" }}
+                      className="hidden w-6 font-mono text-[10px] lg:block"
+                      style={{ color: "rgba(7,16,30,0.22)" }}
                     >
-                      {leg.from.code}
+                      {String(i + 1).padStart(2, "0")}
                     </span>
-                    <span className="font-mono text-[10px] text-[#7a90a8]">→</span>
+
+                    {/* IATA codes */}
+                    <div className="flex items-baseline gap-3 lg:w-52">
+                      <span
+                        className="font-serif font-bold uppercase leading-none"
+                        style={{ fontSize: "2.1rem", letterSpacing: "-0.02em", color: NAVY }}
+                      >
+                        {leg.from.code}
+                      </span>
+                      <span className="font-mono text-[11px]" style={{ color: GOLD }}>
+                        ——
+                      </span>
+                      <span
+                        className="font-serif font-bold uppercase leading-none"
+                        style={{ fontSize: "2.1rem", letterSpacing: "-0.02em", color: NAVY }}
+                      >
+                        {leg.to.code}
+                      </span>
+                    </div>
+
+                    {/* Cities */}
                     <span
-                      className="font-serif font-semibold uppercase leading-none text-[#07101e]"
-                      style={{ fontSize: "1.6rem", letterSpacing: "-0.01em" }}
+                      className="hidden font-mono text-[11px] uppercase tracking-widest sm:block"
+                      style={{ color: "rgba(7,16,30,0.40)" }}
                     >
-                      {leg.to.code}
+                      {leg.from.city} to {leg.to.city}
                     </span>
-                  </div>
 
-                  {/* Cities */}
-                  <div className="hidden text-[13px] text-[#4a6080] sm:block sm:w-48">
-                    {leg.from.city} &rarr; {leg.to.city}
-                  </div>
+                    <div className="flex-1" />
 
-                  {/* Meta */}
-                  <div className="flex flex-wrap items-center gap-6 text-[12px] text-[#7a90a8]">
-                    <span className="font-mono uppercase tracking-widest">{date}</span>
-                    <span className="font-mono uppercase tracking-widest">{leg.departTime}</span>
-                    <span className="font-mono uppercase tracking-widest">{leg.aircraft}</span>
-                    <span className="font-mono uppercase tracking-widest">
-                      {leg.capacity} seats
-                    </span>
-                  </div>
+                    {/* Meta */}
+                    <div className="hidden items-center gap-7 lg:flex">
+                      {[date, leg.departTime, leg.aircraft, `${leg.capacity} seats`].map(
+                        (m) => (
+                          <span
+                            key={m}
+                            className="font-mono text-[10px] uppercase tracking-widest"
+                            style={{ color: "rgba(7,16,30,0.38)" }}
+                          >
+                            {m}
+                          </span>
+                        )
+                      )}
+                    </div>
 
-                  {/* Price */}
-                  <div className="ml-auto flex items-center gap-5 text-right">
-                    <div>
-                      <p className="font-mono text-[10px] uppercase tracking-widest text-[#7a90a8] line-through">
+                    {/* Price */}
+                    <div className="flex items-baseline gap-3">
+                      <span
+                        className="font-mono text-[10px] line-through"
+                        style={{ color: "rgba(7,16,30,0.28)" }}
+                      >
                         {formatCurrency(leg.retailPrice)}
-                      </p>
-                      <p
-                        className="font-serif font-semibold uppercase leading-none text-[#07101e]"
-                        style={{ fontSize: "1.4rem", letterSpacing: "-0.01em" }}
+                      </span>
+                      <span
+                        className="font-serif font-bold uppercase leading-none"
+                        style={{ fontSize: "1.5rem", letterSpacing: "-0.02em", color: NAVY }}
                       >
                         {formatCurrency(leg.price)}
-                      </p>
+                      </span>
                     </div>
+
                     <ArrowUpRight
-                      className="h-5 w-5 text-[#1a5fa8] opacity-0 transition-opacity group-hover:opacity-100"
+                      className="h-5 w-5 opacity-0 transition-opacity group-hover:opacity-100"
+                      style={{ color: GOLD }}
                       strokeWidth={1.75}
                     />
                   </div>
                 </Link>
               );
             })}
+            <div
+              className="border-t"
+              style={{ borderColor: "rgba(7,16,30,0.10)" }}
+            />
           </div>
         </div>
       </section>
 
       {/* ── THE FLEET ─────────────────────────────────────────────────── */}
-      <section className="bg-[#07101e] py-24">
-        <div className="mx-auto max-w-7xl px-6 sm:px-8">
-          <div className="mb-14 flex flex-wrap items-end justify-between gap-6">
+      <section style={{ backgroundColor: "#0d0d0d" }}>
+        <div className="mx-auto max-w-7xl px-8 py-24 sm:px-14">
+
+          <div className="mb-14 flex flex-wrap items-end justify-between gap-8">
             <div>
-              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-[#1a5fa8]">
-                Aircraft
-              </p>
+              <div className="mb-5 h-px w-12" style={{ backgroundColor: GOLD }} />
               <h2
-                className="font-serif font-semibold uppercase leading-none text-white"
-                style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)", letterSpacing: "-0.02em" }}
+                className="font-serif font-bold uppercase leading-none text-white"
+                style={{ fontSize: "clamp(2rem, 5vw, 4rem)", letterSpacing: "-0.025em" }}
               >
-                The Fleet
+                Aircraft
+                <br />
+                Categories
               </h2>
             </div>
             <Link
               href="/search"
-              className="inline-flex items-center gap-2 border-b border-white/20 pb-0.5 font-mono text-[11px] uppercase tracking-[0.22em] text-white/60 transition-colors hover:border-white hover:text-white"
+              className="font-mono text-[11px] uppercase tracking-[0.25em] text-white/35 transition-colors hover:text-white"
             >
-              Browse all aircraft
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
+              Browse all →
             </Link>
           </div>
 
-          <div className="divide-y divide-white/8">
+          <div>
             {fleetCategories.map((cat, i) => (
               <Link
                 key={cat.slug}
                 href={`/search?category=${cat.slug}`}
-                className="group flex flex-col gap-4 py-7 transition-colors hover:bg-white/4 sm:flex-row sm:items-center sm:gap-12"
+                className="group flex flex-wrap items-center gap-6 border-t py-8 transition-all duration-200 hover:pl-4"
+                style={{ borderColor: "rgba(255,255,255,0.07)" }}
               >
-                <span className="w-8 font-mono text-[11px] text-white/25">
-                  0{i + 1}
+                <span
+                  className="font-mono text-[10px]"
+                  style={{ color: GOLD, width: "1.5rem" }}
+                >
+                  {String(i + 1).padStart(2, "0")}
                 </span>
-                <div className="sm:w-52">
-                  <p
-                    className="font-serif font-semibold uppercase leading-none text-white"
-                    style={{ fontSize: "1.5rem", letterSpacing: "-0.01em" }}
-                  >
-                    {cat.name}
-                  </p>
+
+                <span
+                  className="font-serif font-bold uppercase leading-none text-white lg:w-72"
+                  style={{ fontSize: "clamp(1.5rem, 3vw, 2.25rem)", letterSpacing: "-0.02em" }}
+                >
+                  {cat.name}
+                </span>
+
+                <div className="flex flex-wrap gap-x-8 gap-y-2">
+                  {[cat.pax, `${cat.range} nm range`, `${cat.speed} kts`].map((s) => (
+                    <span
+                      key={s}
+                      className="font-mono text-[10px] uppercase tracking-widest"
+                      style={{ color: "rgba(255,255,255,0.32)" }}
+                    >
+                      {s}
+                    </span>
+                  ))}
                 </div>
-                <div className="flex flex-wrap gap-x-10 gap-y-2 text-[12px] text-white/40">
-                  <span className="font-mono uppercase tracking-widest">
-                    {cat.pax}
-                  </span>
-                  <span className="font-mono uppercase tracking-widest">
-                    {cat.range} nm range
-                  </span>
-                  <span className="font-mono uppercase tracking-widest">
-                    {cat.speed} kts
-                  </span>
-                </div>
-                <div className="ml-auto flex items-center gap-4">
+
+                <div className="ml-auto flex items-center gap-5">
                   <div className="text-right">
-                    <p className="font-mono text-[10px] uppercase tracking-widest text-white/30">
+                    <p
+                      className="font-mono text-[9px] uppercase tracking-widest"
+                      style={{ color: "rgba(255,255,255,0.28)" }}
+                    >
                       From
                     </p>
                     <p
-                      className="font-serif font-semibold uppercase leading-none text-white"
-                      style={{ fontSize: "1.25rem", letterSpacing: "-0.01em" }}
+                      className="font-serif font-bold uppercase leading-none text-white"
+                      style={{ fontSize: "1.35rem", letterSpacing: "-0.02em" }}
                     >
                       {cat.from}
-                      <span className="ml-1 font-mono text-[11px] font-normal text-white/40">/hr</span>
+                      <span
+                        className="ml-1 font-mono text-[10px] font-normal"
+                        style={{ color: "rgba(255,255,255,0.32)" }}
+                      >
+                        /hr
+                      </span>
                     </p>
                   </div>
                   <ArrowUpRight
-                    className="h-5 w-5 text-[#1a5fa8] opacity-0 transition-opacity group-hover:opacity-100"
+                    className="h-5 w-5 opacity-0 transition-opacity group-hover:opacity-100"
+                    style={{ color: GOLD }}
                     strokeWidth={1.75}
                   />
                 </div>
               </Link>
             ))}
+            <div
+              className="border-t"
+              style={{ borderColor: "rgba(255,255,255,0.07)" }}
+            />
           </div>
         </div>
       </section>
 
-      {/* ── POPULAR ROUTES ────────────────────────────────────────────── */}
-      <section className="border-b border-[#e8eef6] bg-[#f5f7fa] py-24">
-        <div className="mx-auto max-w-7xl px-6 sm:px-8">
-          <div className="mb-12 flex flex-wrap items-end justify-between gap-6">
-            <div>
-              <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-[#1a5fa8]">
-                Routes
-              </p>
+      {/* ── POPULAR CORRIDORS — card grid ────────────────────────────── */}
+      <section style={{ backgroundColor: "#ffffff" }}>
+        <div className="mx-auto max-w-7xl px-8 py-24 sm:px-14">
+
+          <div className="mb-14">
+            <div className="mb-5 h-px w-12" style={{ backgroundColor: GOLD }} />
+            <div className="flex flex-wrap items-end justify-between gap-6">
               <h2
-                className="font-serif font-semibold uppercase leading-none text-[#07101e]"
-                style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)", letterSpacing: "-0.02em" }}
+                className="font-serif font-bold uppercase leading-none"
+                style={{ fontSize: "clamp(2rem, 5vw, 4rem)", letterSpacing: "-0.025em", color: NAVY }}
               >
                 Popular
                 <br />
                 Corridors
               </h2>
+              <Link
+                href="/search"
+                className="font-mono text-[11px] uppercase tracking-[0.25em] transition-opacity hover:opacity-50"
+                style={{ color: NAVY }}
+              >
+                All routes →
+              </Link>
             </div>
-            <Link
-              href="/search"
-              className="inline-flex items-center gap-2 border-b border-[#07101e]/20 pb-0.5 font-mono text-[11px] uppercase tracking-[0.22em] text-[#07101e] transition-colors hover:border-[#1a5fa8] hover:text-[#1a5fa8]"
-            >
-              All routes
-              <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
-            </Link>
           </div>
 
-          {/* Table header */}
-          <div className="mb-2 grid grid-cols-12 gap-4 border-b border-[#d5e0ee] pb-3 font-mono text-[10px] uppercase tracking-[0.22em] text-[#7a90a8]">
-            <div className="col-span-5">Route</div>
-            <div className="col-span-2 hidden sm:block">Flight time</div>
-            <div className="col-span-2 hidden sm:block">Category</div>
-            <div className="col-span-2 text-right sm:col-span-3">Charter from</div>
-          </div>
-
-          <div className="divide-y divide-[#e8eef6]">
+          {/* Gap-px card grid */}
+          <div
+            className="grid grid-cols-1 gap-px sm:grid-cols-2 lg:grid-cols-3"
+            style={{ backgroundColor: "rgba(7,16,30,0.08)" }}
+          >
             {popularRoutes.map((route) => (
               <Link
                 key={route.id}
                 href={`/search?from=${route.from.code}&to=${route.to.code}`}
-                className="group grid grid-cols-12 items-center gap-4 py-5 transition-colors hover:bg-white"
+                className="group flex flex-col justify-between bg-white p-8 transition-colors hover:bg-[#f0ebe0]"
               >
-                <div className="col-span-7 flex items-baseline gap-2 sm:col-span-5">
+                {/* Route codes */}
+                <div className="flex items-baseline gap-3 mb-10">
                   <span
-                    className="font-serif font-semibold uppercase leading-none text-[#07101e]"
-                    style={{ fontSize: "1.35rem", letterSpacing: "-0.01em" }}
+                    className="font-serif font-bold uppercase leading-none"
+                    style={{ fontSize: "2.25rem", letterSpacing: "-0.025em", color: NAVY }}
                   >
                     {route.from.code}
                   </span>
-                  <span className="font-mono text-[10px] text-[#7a90a8]">→</span>
+                  <span className="font-mono text-[13px]" style={{ color: GOLD }}>
+                    →
+                  </span>
                   <span
-                    className="font-serif font-semibold uppercase leading-none text-[#07101e]"
-                    style={{ fontSize: "1.35rem", letterSpacing: "-0.01em" }}
+                    className="font-serif font-bold uppercase leading-none"
+                    style={{ fontSize: "2.25rem", letterSpacing: "-0.025em", color: NAVY }}
                   >
                     {route.to.code}
                   </span>
-                  <span className="hidden text-[12px] text-[#4a6080] sm:block">
-                    {route.from.city} &rarr; {route.to.city}
-                  </span>
                 </div>
-                <div className="col-span-2 hidden font-mono text-[12px] text-[#7a90a8] sm:block">
-                  {route.flightTime}
-                </div>
-                <div className="col-span-2 hidden font-mono text-[12px] uppercase tracking-widest text-[#7a90a8] sm:block">
-                  {route.recommended}
-                </div>
-                <div className="col-span-5 flex items-center justify-end gap-4 sm:col-span-3">
-                  <span
-                    className="font-serif font-semibold uppercase leading-none text-[#07101e]"
-                    style={{ fontSize: "1.2rem", letterSpacing: "-0.01em" }}
+
+                {/* Footer */}
+                <div>
+                  <p
+                    className="font-mono text-[10px] uppercase tracking-widest mb-4"
+                    style={{ color: "rgba(7,16,30,0.40)" }}
                   >
-                    {formatCurrency(route.fromPrice)}
-                  </span>
-                  <ArrowUpRight
-                    className="hidden h-4 w-4 text-[#1a5fa8] opacity-0 transition-opacity group-hover:opacity-100 sm:block"
-                    strokeWidth={1.75}
-                  />
+                    {route.from.city} — {route.to.city}
+                  </p>
+                  <div className="flex items-center justify-between">
+                    <span
+                      className="font-mono text-[10px] uppercase tracking-widest"
+                      style={{ color: "rgba(7,16,30,0.38)" }}
+                    >
+                      {route.flightTime}
+                    </span>
+                    <div className="flex items-center gap-2">
+                      <span
+                        className="font-serif font-bold uppercase leading-none"
+                        style={{ fontSize: "1.35rem", letterSpacing: "-0.02em", color: NAVY }}
+                      >
+                        {formatCurrency(route.fromPrice)}
+                      </span>
+                      <ArrowUpRight
+                        className="h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100"
+                        style={{ color: GOLD }}
+                        strokeWidth={1.75}
+                      />
+                    </div>
+                  </div>
                 </div>
               </Link>
             ))}
@@ -343,49 +453,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── STANDARDS ─────────────────────────────────────────────────── */}
-      <section className="bg-white py-24">
-        <div className="mx-auto max-w-7xl px-6 sm:px-8">
-          <div className="mb-14">
-            <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-[#1a5fa8]">
-              Safety &amp; Standards
-            </p>
+      {/* ── OUR STANDARDS ─────────────────────────────────────────────── */}
+      <section style={{ backgroundColor: NAVY }}>
+        <div className="mx-auto max-w-7xl px-8 py-24 sm:px-14">
+
+          <div className="mb-16">
+            <div className="mb-5 h-px w-12" style={{ backgroundColor: GOLD }} />
             <h2
-              className="font-serif font-semibold uppercase leading-none text-[#07101e]"
-              style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)", letterSpacing: "-0.02em" }}
+              className="font-serif font-bold uppercase leading-none text-white"
+              style={{ fontSize: "clamp(2rem, 5vw, 4rem)", letterSpacing: "-0.025em" }}
             >
-              Our Commitment
+              Our Standards
             </h2>
           </div>
 
-          <div className="grid grid-cols-1 gap-px bg-[#e8eef6] sm:grid-cols-2 lg:grid-cols-4">
-            {[
-              {
-                title: "ARGUS Platinum",
-                body: "Every operator holds ARGUS Platinum certification — the industry's highest independent safety rating.",
-              },
-              {
-                title: "Wyvern Wingman",
-                body: "All aircraft and crews are Wyvern Wingman audited. Dual-rated captains on every flight.",
-              },
-              {
-                title: "24/7 Trip Support",
-                body: "A dedicated aviation specialist manages every booking from enquiry through landing.",
-              },
-              {
-                title: "No Membership",
-                body: "Access the full fleet with a single booking. No initiation fee, no monthly minimums, no blackout dates.",
-              },
-            ].map((item) => (
-              <div key={item.title} className="bg-white px-8 py-10">
+          <div className="grid grid-cols-1 gap-0 border-t sm:grid-cols-2 lg:grid-cols-4"
+            style={{ borderColor: "rgba(255,255,255,0.10)" }}
+          >
+            {standards.map((s) => (
+              <div
+                key={s.title}
+                className="border-b py-10 lg:border-b-0 lg:border-r lg:px-8 lg:py-0 lg:first:pl-0 lg:last:border-r-0"
+                style={{ borderColor: "rgba(255,255,255,0.10)" }}
+              >
                 <p
-                  className="font-serif font-semibold uppercase leading-tight text-[#07101e]"
-                  style={{ fontSize: "1.25rem", letterSpacing: "-0.01em" }}
+                  className="font-serif font-bold uppercase leading-tight text-white"
+                  style={{ fontSize: "1.15rem", letterSpacing: "-0.01em" }}
                 >
-                  {item.title}
+                  {s.title}
                 </p>
-                <p className="mt-4 text-[13px] leading-[1.85] text-[#4a6080]">
-                  {item.body}
+                <p
+                  className="mt-4 text-[13px] leading-[1.85]"
+                  style={{ color: "rgba(255,255,255,0.42)" }}
+                >
+                  {s.body}
                 </p>
               </div>
             ))}
@@ -394,77 +495,116 @@ export default function HomePage() {
       </section>
 
       {/* ── FAQ ───────────────────────────────────────────────────────── */}
-      <section className="border-t border-[#e8eef6] bg-[#f5f7fa] py-24">
-        <div className="mx-auto max-w-4xl px-6 sm:px-8">
+      <section style={{ backgroundColor: CREAM }}>
+        <div className="mx-auto max-w-3xl px-8 py-24 sm:px-14">
+
           <div className="mb-12">
-            <p className="mb-3 font-mono text-[10px] uppercase tracking-[0.28em] text-[#1a5fa8]">
-              Information
-            </p>
+            <div className="mb-5 h-px w-12" style={{ backgroundColor: GOLD }} />
             <h2
-              className="font-serif font-semibold uppercase leading-none text-[#07101e]"
-              style={{ fontSize: "clamp(2rem, 4.5vw, 3.5rem)", letterSpacing: "-0.02em" }}
+              className="font-serif font-bold uppercase leading-none"
+              style={{ fontSize: "clamp(2rem, 5vw, 4rem)", letterSpacing: "-0.025em", color: NAVY }}
             >
-              Frequently
+              Common
               <br />
-              Asked
+              Questions
             </h2>
           </div>
 
-          <div className="divide-y divide-[#e8eef6]">
+          <div>
             {faq.map((item, i) => (
-              <details key={i} className="group">
-                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6 transition-colors hover:text-[#1a5fa8]">
-                  <span className="text-[15px] font-medium text-[#07101e] group-hover:text-[#1a5fa8]">
+              <details
+                key={i}
+                className="group border-t"
+                style={{ borderColor: "rgba(7,16,30,0.10)" }}
+              >
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-6 py-6">
+                  <span
+                    className="text-[15px] font-medium leading-snug"
+                    style={{ color: NAVY }}
+                  >
                     {item.q}
                   </span>
-                  <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-[#d5e0ee] text-[#4a6080] transition-all group-open:rotate-45 group-open:border-[#1a5fa8] group-open:text-[#1a5fa8]">
-                    <svg viewBox="0 0 24 24" className="h-3 w-3" fill="none" stroke="currentColor" strokeWidth="2">
+                  <span
+                    className="flex h-6 w-6 shrink-0 items-center justify-center border transition-transform group-open:rotate-45"
+                    style={{ borderColor: "rgba(7,16,30,0.18)", color: NAVY }}
+                  >
+                    <svg
+                      viewBox="0 0 24 24"
+                      className="h-3 w-3"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
                       <line x1="12" y1="5" x2="12" y2="19" />
                       <line x1="5" y1="12" x2="19" y2="12" />
                     </svg>
                   </span>
                 </summary>
-                <div className="pb-6 text-[13px] leading-[1.9] text-[#4a6080]">
+                <div
+                  className="pb-7 text-[13px] leading-[1.9]"
+                  style={{ color: "rgba(7,16,30,0.52)" }}
+                >
                   {item.a}
                 </div>
               </details>
             ))}
+            <div
+              className="border-t"
+              style={{ borderColor: "rgba(7,16,30,0.10)" }}
+            />
           </div>
         </div>
       </section>
 
       {/* ── CTA ───────────────────────────────────────────────────────── */}
-      <section className="bg-[#07101e] py-32">
-        <div className="mx-auto max-w-4xl px-6 text-center sm:px-8">
-          <p className="mb-6 font-mono text-[11px] uppercase tracking-[0.3em] text-white/35">
-            Ready to Depart
-          </p>
-          <h2
-            className="font-serif font-semibold uppercase leading-none text-white"
-            style={{ fontSize: "clamp(3rem, 8vw, 7rem)", letterSpacing: "-0.025em" }}
-          >
-            Request
-            <br />
-            a Quote
-          </h2>
-          <p className="mx-auto mt-8 max-w-md text-[14px] leading-[1.85] text-white/45">
-            Enter your route and receive aircraft options with confirmed pricing
-            within four hours. No obligation.
-          </p>
-          <div className="mt-12 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/search"
-              className="inline-flex items-center gap-2.5 rounded-none border border-white bg-white px-8 py-4 font-mono text-[11px] uppercase tracking-[0.22em] text-[#07101e] transition-all hover:bg-[#1a5fa8] hover:border-[#1a5fa8] hover:text-white"
-            >
-              Search Aircraft
-              <ArrowRight className="h-4 w-4" strokeWidth={2} />
-            </Link>
-            <Link
-              href="/empty-legs"
-              className="inline-flex items-center gap-2.5 rounded-none border border-white/20 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.22em] text-white/70 transition-all hover:border-white hover:text-white"
-            >
-              Repositioning Flights
-            </Link>
+      <section style={{ backgroundColor: "#0d0d0d" }}>
+        <div className="mx-auto max-w-7xl px-8 py-32 sm:px-14">
+          <div className="flex flex-col gap-16 lg:flex-row lg:items-end lg:justify-between">
+
+            {/* Big word */}
+            <div>
+              <h2
+                className="font-serif font-bold uppercase text-white"
+                style={{
+                  fontSize: "clamp(5rem, 16vw, 16rem)",
+                  letterSpacing: "-0.04em",
+                  lineHeight: 0.85,
+                }}
+              >
+                De
+                <br />
+                part.
+              </h2>
+            </div>
+
+            {/* Right: copy + actions */}
+            <div className="max-w-sm">
+              <div className="mb-6 h-px w-12" style={{ backgroundColor: GOLD }} />
+              <p
+                className="text-[14px] leading-[1.85]"
+                style={{ color: "rgba(255,255,255,0.45)" }}
+              >
+                Enter your route and receive aircraft options with confirmed
+                pricing within four hours. No obligation. No membership required.
+              </p>
+              <div className="mt-10 flex flex-col gap-3">
+                <Link
+                  href="/search"
+                  className="inline-flex items-center justify-center gap-2 px-8 py-4 font-mono text-[11px] uppercase tracking-[0.22em] transition-opacity hover:opacity-85"
+                  style={{ backgroundColor: GOLD, color: "#0d0d0d" }}
+                >
+                  Search Aircraft
+                  <ArrowRight className="h-4 w-4" strokeWidth={2} />
+                </Link>
+                <Link
+                  href="/empty-legs"
+                  className="inline-flex items-center justify-center gap-2 border px-8 py-4 font-mono text-[11px] uppercase tracking-[0.22em] text-white/60 transition-all hover:border-white/60 hover:text-white"
+                  style={{ borderColor: "rgba(255,255,255,0.18)" }}
+                >
+                  Repositioning Flights
+                </Link>
+              </div>
+            </div>
           </div>
         </div>
       </section>
@@ -472,11 +612,30 @@ export default function HomePage() {
   );
 }
 
-/* ─── Fleet data ───────────────────────────────────────────────────────── */
+/* ─── Data ───────────────────────────────────────────────────────────── */
 const fleetCategories = [
-  { slug: "light",         name: "Light Jet",         pax: "4–7 passengers",  range: "1,500", speed: "430", from: "$3,200" },
-  { slug: "midsize",       name: "Midsize",            pax: "7–9 passengers",  range: "2,800", speed: "460", from: "$5,500" },
-  { slug: "super_midsize", name: "Super Midsize",      pax: "8–12 passengers", range: "3,500", speed: "480", from: "$7,800" },
-  { slug: "heavy",         name: "Heavy Jet",          pax: "12–16 passengers",range: "4,500", speed: "500", from: "$10,500"},
-  { slug: "ultra_long",    name: "Ultra Long Range",   pax: "14–19 passengers",range: "7,500", speed: "520", from: "$16,000"},
+  { slug: "light",         name: "Light Jet",       pax: "4–7 pax",  range: "1,500", speed: "430", from: "$3,200"  },
+  { slug: "midsize",       name: "Midsize",          pax: "7–9 pax",  range: "2,800", speed: "460", from: "$5,500"  },
+  { slug: "super_midsize", name: "Super Midsize",    pax: "8–12 pax", range: "3,500", speed: "480", from: "$7,800"  },
+  { slug: "heavy",         name: "Heavy Jet",        pax: "12–16 pax",range: "4,500", speed: "500", from: "$10,500" },
+  { slug: "ultra_long",    name: "Ultra Long Range", pax: "14–19 pax",range: "7,500", speed: "520", from: "$16,000" },
+];
+
+const standards = [
+  {
+    title: "ARGUS Platinum",
+    body: "Every operator holds ARGUS Platinum certification — the industry's highest independent safety rating.",
+  },
+  {
+    title: "Wyvern Wingman",
+    body: "All aircraft and crews are Wyvern Wingman audited. Dual-rated captains on every flight.",
+  },
+  {
+    title: "24/7 Trip Support",
+    body: "A dedicated aviation specialist manages every booking from enquiry through landing.",
+  },
+  {
+    title: "No Membership",
+    body: "Access the full fleet with a single booking. No initiation fee, no monthly minimums.",
+  },
 ];
