@@ -49,7 +49,7 @@ export function JetGrid({ jets, dark = false }: JetGridProps) {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
       {jets.map((jet) => (
-        <JetCard key={jet.id} jet={jet} dark={dark} />
+        <JetCard key={jet.id} jet={jet} />
       ))}
     </div>
   );
