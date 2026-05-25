@@ -1,64 +1,39 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import { Menu, X, PlaneTakeoff, ArrowRight } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
-  { href: "/search", label: "Fleet" },
-  { href: "/tracking", label: "Live" },
-  { href: "/dashboard", label: "Trips" },
-  { href: "/auth/login", label: "Account" },
+  { href: "/search", label: "Browse Fleet" },
+  { href: "/empty-legs", label: "Empty Legs" },
+  { href: "/tracking", label: "Live Tracking" },
+  { href: "/dashboard", label: "My Trips" },
 ];
 
 export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 24);
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
-    <header
-      className={cn(
-        "fixed inset-x-0 top-0 z-50 transition-all duration-300",
-        scrolled || mobileOpen
-          ? "border-b border-[var(--color-hairline)] bg-[var(--color-ivory)]/85 backdrop-blur-xl"
-          : "bg-transparent"
-      )}
-    >
+    <header className="fixed inset-x-0 top-0 z-50 border-b border-[#07101e]/10 bg-white shadow-sm">
       <nav className="mx-auto flex h-16 max-w-7xl items-center justify-between px-5 sm:px-8">
-        {/* Wordmark — editorial serif */}
+
+        {/* Wordmark */}
         <Link
           href="/"
-          className="group flex items-baseline gap-2.5 text-[var(--color-ink)]"
+          className="font-serif text-[21px] font-bold uppercase tracking-[0.18em] text-[#07101e]"
         >
-          <span className="flex h-7 w-7 items-center justify-center rounded-full border border-[var(--color-hairline-strong)] bg-transparent transition-colors group-hover:border-champagne">
-            <PlaneTakeoff
-              className="h-3 w-3 text-[var(--color-ink)] transition-colors group-hover:text-champagne"
-              strokeWidth={1.75}
-            />
-          </span>
-          <span className="font-serif text-[22px] leading-none tracking-[0.06em]">
-            EXJET
-          </span>
-          <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[var(--color-subtle)]">
-            est.
-          </span>
+          EXJET
         </Link>
 
-        {/* Desktop nav — uppercase mono */}
-        <ul className="hidden items-center gap-9 md:flex">
+        {/* Desktop nav links */}
+        <ul className="hidden items-center gap-8 md:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="font-mono text-[11px] uppercase tracking-[0.22em] text-[var(--color-muted)] transition-colors hover:text-[var(--color-ink)]"
+                className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#07101e]/55 transition-colors hover:text-[#07101e]"
               >
                 {link.label}
               </Link>
@@ -66,24 +41,26 @@ export function Navbar() {
           ))}
         </ul>
 
-        {/* CTA — premium ink pill */}
-        <div className="hidden md:flex">
+        {/* Desktop CTAs */}
+        <div className="hidden items-center gap-3 md:flex">
+          <Link
+            href="/auth/login"
+            className="rounded-lg border border-[#07101e]/20 px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-[#07101e]/70 transition-colors hover:border-[#07101e] hover:text-[#07101e]"
+          >
+            Sign In
+          </Link>
           <Link
             href="/search"
-            className="group inline-flex items-center gap-2 rounded-full bg-[var(--color-ink)] px-5 py-2 text-[12px] font-medium text-white transition-all hover:bg-champagne"
+            className="rounded-lg bg-[#07101e] px-4 py-2 font-mono text-[11px] uppercase tracking-[0.18em] text-white transition-opacity hover:opacity-85"
           >
-            <span className="font-mono uppercase tracking-[0.18em]">Reserve</span>
-            <ArrowRight
-              className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
-              strokeWidth={2}
-            />
+            Reserve Now
           </Link>
         </div>
 
-        {/* Mobile button */}
+        {/* Mobile hamburger */}
         <button
           type="button"
-          className="inline-flex items-center justify-center rounded-md p-2 text-[var(--color-ink)] md:hidden"
+          className="inline-flex items-center justify-center rounded-lg p-2 text-[#07101e] md:hidden"
           onClick={() => setMobileOpen(!mobileOpen)}
           aria-label={mobileOpen ? "Close menu" : "Open menu"}
         >
@@ -91,32 +68,40 @@ export function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile sheet */}
+      {/* Mobile menu */}
       <div
         className={cn(
-          "overflow-hidden border-t border-[var(--color-hairline)] transition-all duration-300 md:hidden",
+          "overflow-hidden border-t border-[#07101e]/08 bg-white transition-all duration-300 md:hidden",
           mobileOpen ? "max-h-96" : "max-h-0"
         )}
       >
-        <div className="space-y-1 px-5 py-4">
+        <div className="space-y-0.5 px-5 py-3">
           {navLinks.map((link) => (
             <Link
               key={link.href}
               href={link.href}
               onClick={() => setMobileOpen(false)}
-              className="block rounded-lg px-3 py-3 font-mono text-[12px] uppercase tracking-[0.22em] text-[var(--color-ink-soft)] transition-colors hover:bg-[var(--color-ivory-deep)] hover:text-[var(--color-ink)]"
+              className="block rounded-lg px-3 py-3 font-mono text-[12px] uppercase tracking-[0.22em] text-[#07101e]/60 transition-colors hover:bg-[#f7f8fa] hover:text-[#07101e]"
             >
               {link.label}
             </Link>
           ))}
-          <Link
-            href="/search"
-            onClick={() => setMobileOpen(false)}
-            className="mt-2 flex items-center justify-center gap-2 rounded-full bg-[var(--color-ink)] px-5 py-3 font-mono text-[12px] uppercase tracking-[0.22em] text-white"
-          >
-            Reserve
-            <ArrowRight className="h-4 w-4" strokeWidth={2} />
-          </Link>
+          <div className="mt-3 flex flex-col gap-2 pb-2">
+            <Link
+              href="/auth/login"
+              onClick={() => setMobileOpen(false)}
+              className="block rounded-lg border border-[#07101e]/15 px-4 py-3 text-center font-mono text-[12px] uppercase tracking-[0.18em] text-[#07101e]/70"
+            >
+              Sign In
+            </Link>
+            <Link
+              href="/search"
+              onClick={() => setMobileOpen(false)}
+              className="block rounded-lg bg-[#07101e] px-4 py-3 text-center font-mono text-[12px] uppercase tracking-[0.18em] text-white"
+            >
+              Reserve Now
+            </Link>
+          </div>
         </div>
       </div>
     </header>
