@@ -1,5 +1,15 @@
 import Link from "next/link";
-import { ArrowRight, ChevronRight, Shield, Zap, Clock } from "lucide-react";
+import {
+  Globe,
+  Airplane,
+  Clock,
+  Headset,
+  ShieldCheck,
+  Lightning,
+  Tag,
+  ArrowRight,
+  CaretRight,
+} from "@phosphor-icons/react/dist/ssr";
 import popularRoutesData from "@/data/popular-routes.json";
 import emptyLegsData from "@/data/empty-legs.json";
 import { HeroSearch } from "@/components/booking/hero-search";
@@ -50,17 +60,42 @@ const fleetClasses = [
   },
 ];
 
+const heroStats = [
+  { Icon: Globe, n: "5,000+", label: "Airports" },
+  { Icon: Airplane, n: "2,400+", label: "Aircraft" },
+  { Icon: Clock, n: "<4 hr", label: "Confirmation" },
+  { Icon: Headset, n: "24/7", label: "Concierge" },
+];
+
+const pillars = [
+  {
+    Icon: ShieldCheck,
+    title: "ARGUS Platinum Safety",
+    body: "Every aircraft and operator is vetted against the highest safety standards in private aviation — no exceptions.",
+  },
+  {
+    Icon: Lightning,
+    title: "Confirmed in Under 4 Hours",
+    body: "Submit a request and receive full confirmation, pricing, and crew details in hours — not days.",
+  },
+  {
+    Icon: Headset,
+    title: "24/7 Dedicated Concierge",
+    body: "Your personal aviation advisor is available around the clock for every request, change, and question.",
+  },
+];
+
 export default function HomePage() {
   return (
     <div className="overflow-x-hidden">
+
       {/* ── HERO ─────────────────────────────────────────────────── */}
       <section className="mesh-ink relative min-h-screen flex flex-col items-center justify-center px-4 pt-28 pb-20">
-        {/* top accent line */}
+        {/* top accent drip */}
         <div
           className="absolute top-0 left-1/2 -translate-x-1/2 w-px h-28 pointer-events-none"
           style={{
-            background:
-              "linear-gradient(to bottom, transparent, rgba(184,155,110,0.35))",
+            background: "linear-gradient(to bottom, transparent, rgba(184,155,110,0.35))",
           }}
         />
 
@@ -77,13 +112,11 @@ export default function HomePage() {
             <h1 className="display-serif leading-none" style={{ color: "#faf8f4" }}>
               Global Access,
               <br />
-              <em className="display-serif-italic gradient-text-champagne">
-                On Demand.
-              </em>
+              <em className="display-serif-italic gradient-text-champagne">On Demand.</em>
             </h1>
           </div>
 
-          {/* subtitle */}
+          {/* sub */}
           <p
             className="animate-fade-in-up animate-delay-200 text-lg leading-relaxed max-w-xl mx-auto mb-10"
             style={{ color: "rgba(250,248,244,0.55)" }}
@@ -93,30 +126,20 @@ export default function HomePage() {
           </p>
 
           {/* search */}
-          <div className="animate-fade-in-up animate-delay-300 mb-12">
+          <div className="animate-fade-in-up animate-delay-300 mb-14">
             <HeroSearch />
           </div>
 
           {/* stats */}
           <div className="animate-fade-in-up animate-delay-400 grid grid-cols-2 md:grid-cols-4 gap-6 max-w-2xl mx-auto">
-            {[
-              { n: "5,000+", label: "Airports" },
-              { n: "2,400+", label: "Aircraft" },
-              { n: "<4 hr", label: "Confirmation" },
-              { n: "24/7", label: "Concierge" },
-            ].map((s) => (
-              <div key={s.label} className="text-center">
-                <div
-                  className="font-serif text-2xl"
-                  style={{ color: "rgba(250,248,244,0.9)" }}
-                >
-                  {s.n}
+            {heroStats.map(({ Icon, n, label }) => (
+              <div key={label} className="flex flex-col items-center gap-2">
+                <Icon weight="thin" size={22} style={{ color: "rgba(184,155,110,0.6)" }} />
+                <div className="font-serif text-2xl" style={{ color: "rgba(250,248,244,0.9)" }}>
+                  {n}
                 </div>
-                <div
-                  className="eyebrow-mono mt-1 text-xs"
-                  style={{ color: "rgba(250,248,244,0.35)" }}
-                >
-                  {s.label}
+                <div className="eyebrow-mono text-xs" style={{ color: "rgba(250,248,244,0.35)" }}>
+                  {label}
                 </div>
               </div>
             ))}
@@ -131,29 +154,24 @@ export default function HomePage() {
           <div className="eyebrow-mono text-xs">Scroll</div>
           <div
             className="w-px h-8"
-            style={{
-              background:
-                "linear-gradient(to bottom, rgba(250,248,244,0.25), transparent)",
-            }}
+            style={{ background: "linear-gradient(to bottom, rgba(250,248,244,0.25), transparent)" }}
           />
         </div>
       </section>
 
       {/* ── POPULAR ROUTES ───────────────────────────────────────── */}
-      <section className="bg-ivory py-24 px-4">
+      <section className="bg-ivory py-28 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-end justify-between mb-12">
+          <div className="flex items-end justify-between mb-14">
             <div>
               <div className="chapter-rule mb-4">Popular Routes</div>
-              <h2 className="display-serif-md text-ink">
-                Most-booked corridors
-              </h2>
+              <h2 className="display-serif-md text-ink">Most-booked corridors</h2>
             </div>
             <Link
               href="/search"
               className="hidden md:flex items-center gap-1.5 text-sm text-muted hover:text-ink transition-colors"
             >
-              View all <ChevronRight className="w-4 h-4" />
+              View all <CaretRight weight="bold" size={14} />
             </Link>
           </div>
 
@@ -174,15 +192,10 @@ export default function HomePage() {
                     </div>
                   </div>
 
-                  <div className="flex flex-col items-center gap-1">
-                    <div
-                      className="w-14 h-px"
-                      style={{ background: "rgba(26,23,20,0.12)" }}
-                    />
-                    <div className="text-champagne text-xs">✦</div>
-                    <div className="eyebrow-mono text-xs text-muted">
-                      {route.flightTime}
-                    </div>
+                  <div className="flex flex-col items-center gap-1.5">
+                    <div className="w-10 h-px" style={{ background: "rgba(26,23,20,0.10)" }} />
+                    <Airplane weight="thin" size={14} className="text-champagne" />
+                    <div className="eyebrow-mono text-xs text-muted">{route.flightTime}</div>
                   </div>
 
                   <div className="text-right">
@@ -209,7 +222,11 @@ export default function HomePage() {
                     <span className="eyebrow-mono text-xs text-muted bg-bone px-2.5 py-1 rounded-full">
                       {route.recommended}
                     </span>
-                    <ArrowRight className="w-4 h-4 text-muted group-hover:text-champagne group-hover:translate-x-0.5 transition-all" />
+                    <ArrowRight
+                      weight="regular"
+                      size={16}
+                      className="text-muted group-hover:text-champagne group-hover:translate-x-0.5 transition-all"
+                    />
                   </div>
                 </div>
               </Link>
@@ -219,13 +236,10 @@ export default function HomePage() {
       </section>
 
       {/* ── FLEET CLASSES ────────────────────────────────────────── */}
-      <section className="bg-ink py-24 px-4">
+      <section className="bg-ink py-28 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="mb-12">
-            <div
-              className="chapter-rule mb-4"
-              style={{ color: "rgba(184,155,110,0.55)" }}
-            >
+          <div className="mb-14">
+            <div className="chapter-rule mb-4" style={{ color: "rgba(184,155,110,0.55)" }}>
               The Fleet
             </div>
             <h2 className="display-serif-md" style={{ color: "#faf8f4" }}>
@@ -238,12 +252,17 @@ export default function HomePage() {
               <Link
                 key={cls.name}
                 href={`/search?category=${cls.slug}`}
-                className="group relative rounded-2xl p-6 flex flex-col justify-between min-h-[210px] transition-all duration-300 overflow-hidden"
+                className="group relative rounded-2xl p-6 flex flex-col justify-between min-h-[220px] transition-all duration-300 overflow-hidden"
                 style={{
                   background: "rgba(255,255,255,0.04)",
                   border: "1px solid rgba(250,248,244,0.08)",
                 }}
               >
+                {/* watermark */}
+                <div className="absolute -bottom-3 -right-3 pointer-events-none opacity-[0.06]">
+                  <Airplane weight="thin" size={84} style={{ color: "#faf8f4" }} />
+                </div>
+
                 <div>
                   <div
                     className="eyebrow-mono text-xs mb-3"
@@ -251,10 +270,7 @@ export default function HomePage() {
                   >
                     Class {String.fromCharCode(65 + i)}
                   </div>
-                  <div
-                    className="font-serif text-3xl leading-none"
-                    style={{ color: "#faf8f4" }}
-                  >
+                  <div className="font-serif text-3xl leading-none" style={{ color: "#faf8f4" }}>
                     {cls.name}
                   </div>
                 </div>
@@ -273,13 +289,12 @@ export default function HomePage() {
                   >
                     {cls.example}
                   </div>
-                  <div className="text-sm font-medium text-champagne pt-1">
-                    {cls.price}
+                  <div className="flex items-center justify-between pt-1">
+                    <div className="text-sm font-medium text-champagne">{cls.price}</div>
+                    <div className="opacity-0 group-hover:opacity-100 transition-opacity">
+                      <ArrowRight weight="bold" size={14} className="text-champagne" />
+                    </div>
                   </div>
-                </div>
-
-                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <ArrowRight className="w-4 h-4 text-champagne" />
                 </div>
               </Link>
             ))}
@@ -288,16 +303,14 @@ export default function HomePage() {
       </section>
 
       {/* ── EMPTY LEGS ───────────────────────────────────────────── */}
-      <section className="bg-bone py-24 px-4">
+      <section className="bg-bone py-28 px-4">
         <div className="max-w-6xl mx-auto">
-          <div className="flex items-end justify-between mb-12">
+          <div className="flex items-end justify-between mb-14">
             <div>
               <div className="chapter-rule mb-4">Empty Legs</div>
               <h2 className="display-serif-md text-ink">
                 Private jet,{" "}
-                <em className="display-serif-italic gradient-text-champagne">
-                  up to 75% off.
-                </em>
+                <em className="display-serif-italic gradient-text-champagne">up to 75% off.</em>
               </h2>
               <p className="text-muted text-sm mt-3 max-w-md leading-relaxed">
                 Repositioning flights at significant discounts. Available on a
@@ -308,7 +321,7 @@ export default function HomePage() {
               href="/empty-legs"
               className="hidden md:flex items-center gap-1.5 text-sm text-muted hover:text-ink transition-colors"
             >
-              View all <ChevronRight className="w-4 h-4" />
+              View all <CaretRight weight="bold" size={14} />
             </Link>
           </div>
 
@@ -319,7 +332,7 @@ export default function HomePage() {
                 className="surface rounded-2xl p-6 hover:shadow-lg transition-all cursor-pointer"
               >
                 <div className="flex items-start justify-between mb-6">
-                  <div className="flex items-center gap-5">
+                  <div className="flex items-center gap-4">
                     <div>
                       <div className="font-serif text-4xl text-ink leading-none">
                         {leg.from.code}
@@ -328,7 +341,7 @@ export default function HomePage() {
                         {leg.from.city}
                       </div>
                     </div>
-                    <div className="text-champagne text-xl mt-1">→</div>
+                    <ArrowRight weight="bold" size={16} className="text-champagne mt-1 shrink-0" />
                     <div>
                       <div className="font-serif text-4xl text-ink leading-none">
                         {leg.to.code}
@@ -338,15 +351,14 @@ export default function HomePage() {
                       </div>
                     </div>
                   </div>
-                  <span
-                    className="eyebrow-mono text-xs px-2.5 py-1 rounded-full"
-                    style={{
-                      background: "rgba(44,58,44,0.12)",
-                      color: "#2c3a2c",
-                    }}
+
+                  <div
+                    className="flex items-center gap-1.5 px-2.5 py-1 rounded-full shrink-0"
+                    style={{ background: "rgba(184,155,110,0.12)", color: "#7a5f38" }}
                   >
-                    −{leg.discountPct}%
-                  </span>
+                    <Tag weight="bold" size={11} />
+                    <span className="eyebrow-mono text-xs">−{leg.discountPct}%</span>
+                  </div>
                 </div>
 
                 <div
@@ -382,45 +394,25 @@ export default function HomePage() {
 
       {/* ── WHY EXJET ────────────────────────────────────────────── */}
       <section
-        className="bg-ivory py-24 px-4"
+        className="bg-ivory py-28 px-4"
         style={{ borderTop: "1px solid rgba(26,23,20,0.07)" }}
       >
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
             <div className="chapter-rule justify-center mb-4">Why EXJET</div>
-            <h2 className="display-serif-md text-ink">
-              Built for discerning travelers
-            </h2>
+            <h2 className="display-serif-md text-ink">Built for discerning travelers</h2>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
-            {[
-              {
-                Icon: Shield,
-                title: "ARGUS Platinum Safety",
-                body: "Every aircraft and operator is vetted against the highest safety standards in private aviation — no exceptions.",
-              },
-              {
-                Icon: Zap,
-                title: "Confirmed in Under 4 Hours",
-                body: "Submit a request and receive full confirmation, pricing, and crew details in hours — not days.",
-              },
-              {
-                Icon: Clock,
-                title: "24/7 Dedicated Concierge",
-                body: "Your personal aviation advisor is available around the clock for every request, change, and question.",
-              },
-            ].map(({ Icon, title, body }) => (
-              <div key={title} className="text-center">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+            {pillars.map(({ Icon, title, body }) => (
+              <div key={title} className="flex flex-col items-center text-center">
                 <div
-                  className="w-12 h-12 rounded-2xl flex items-center justify-center mx-auto mb-5"
+                  className="w-16 h-16 rounded-2xl flex items-center justify-center mb-6"
                   style={{ background: "#ece5d8" }}
                 >
-                  <Icon className="w-5 h-5 text-champagne" />
+                  <Icon weight="thin" size={28} className="text-champagne" />
                 </div>
-                <h3 className="text-base font-semibold text-ink mb-3">
-                  {title}
-                </h3>
+                <h3 className="text-base font-semibold text-ink mb-3">{title}</h3>
                 <p className="text-muted text-sm leading-relaxed">{body}</p>
               </div>
             ))}
@@ -443,34 +435,32 @@ export default function HomePage() {
           >
             Your runway
             <br />
-            <em className="display-serif-italic gradient-text-champagne">
-              awaits.
-            </em>
+            <em className="display-serif-italic gradient-text-champagne">awaits.</em>
           </h2>
           <p
             className="text-lg mb-12 max-w-md mx-auto leading-relaxed"
             style={{ color: "rgba(250,248,244,0.45)" }}
           >
-            Begin a search or explore our empty legs to find your next private
-            flight.
+            Begin a search or explore our empty legs to find your next private flight.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/search"
               className="inline-flex items-center gap-2 bg-champagne hover:bg-champagne-soft text-ink font-medium rounded-full px-8 py-4 text-sm transition-colors"
             >
-              Begin a search <ArrowRight className="w-4 h-4" />
+              Begin a search <ArrowRight weight="bold" size={16} />
             </Link>
             <Link
               href="/empty-legs"
               className="inline-flex items-center gap-2 font-medium rounded-full px-8 py-4 text-sm transition-colors"
               style={{ color: "rgba(250,248,244,0.55)" }}
             >
-              View empty legs <ChevronRight className="w-4 h-4" />
+              View empty legs <CaretRight weight="bold" size={16} />
             </Link>
           </div>
         </div>
       </section>
+
     </div>
   );
 }

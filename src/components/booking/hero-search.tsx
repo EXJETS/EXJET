@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { MapPin, Calendar, Users, ArrowRight } from "lucide-react";
+import { MapPin, CalendarBlank, Users, ArrowRight } from "@phosphor-icons/react";
 
 type TripType = "one-way" | "round-trip" | "multi-leg";
 
@@ -46,10 +46,13 @@ export function HeroSearch() {
         ))}
       </div>
 
-      {/* inputs */}
+      {/* search bar */}
       <div className="glass rounded-2xl p-2 flex flex-col sm:flex-row gap-2">
         <div className="relative flex-1">
-          <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ivory/30 pointer-events-none" />
+          <MapPin
+            weight="regular"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ivory/30 pointer-events-none"
+          />
           <input
             value={from}
             onChange={(e) => setFrom(e.target.value)}
@@ -61,7 +64,10 @@ export function HeroSearch() {
         <div className="w-px bg-ivory/10 hidden sm:block self-stretch" />
 
         <div className="relative flex-1">
-          <MapPin className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ivory/30 pointer-events-none" />
+          <MapPin
+            weight="regular"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ivory/30 pointer-events-none"
+          />
           <input
             value={to}
             onChange={(e) => setTo(e.target.value)}
@@ -73,7 +79,10 @@ export function HeroSearch() {
         <div className="w-px bg-ivory/10 hidden sm:block self-stretch" />
 
         <div className="relative">
-          <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ivory/30 pointer-events-none" />
+          <CalendarBlank
+            weight="regular"
+            className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-ivory/30 pointer-events-none"
+          />
           <input
             type="date"
             value={date}
@@ -85,7 +94,7 @@ export function HeroSearch() {
         <div className="w-px bg-ivory/10 hidden sm:block self-stretch" />
 
         <div className="relative flex items-center gap-2 px-3 py-3">
-          <Users className="w-4 h-4 text-ivory/30" />
+          <Users weight="regular" className="w-4 h-4 text-ivory/30" />
           <button
             type="button"
             onClick={() => setPax(Math.max(1, pax - 1))}
@@ -107,7 +116,7 @@ export function HeroSearch() {
           type="submit"
           className="flex items-center justify-center gap-2 bg-champagne hover:bg-champagne-soft text-ink font-medium rounded-xl px-6 py-3 text-sm transition-colors whitespace-nowrap"
         >
-          Search <ArrowRight className="w-4 h-4" />
+          Search <ArrowRight weight="bold" className="w-4 h-4" />
         </button>
       </div>
     </form>
