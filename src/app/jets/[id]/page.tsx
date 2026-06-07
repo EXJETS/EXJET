@@ -38,15 +38,15 @@ export default async function JetDetailPage({
 
   if (!jet) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-white px-4 text-neutral-950">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-[#f2f2f7] px-4 text-[#0a1628]">
         <Plane className="mb-6 h-14 w-14 text-neutral-300" strokeWidth={1.25} />
-        <h1 className="text-[28px] font-semibold tracking-tight text-neutral-950">Jet Not Found</h1>
+        <h1 className="text-[28px] font-semibold tracking-tight text-[#0a1628]">Jet Not Found</h1>
         <p className="mt-2 max-w-md text-center text-[14px] text-neutral-600">
           The aircraft you are looking for does not exist or is no longer available.
         </p>
         <Link
           href="/search"
-          className="mt-8 inline-flex items-center gap-2 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800"
+          className="mt-8 inline-flex items-center gap-2 rounded-full bg-[#0d1f3c] px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-[#1a3461]"
         >
           <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2} />
           Browse All Jets
@@ -58,12 +58,12 @@ export default async function JetDetailPage({
   const averageRating = (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1);
 
   return (
-    <div className="min-h-screen bg-white text-neutral-950">
+    <div className="min-h-screen bg-[#f2f2f7] text-[#0a1628]">
       {/* Back Nav */}
       <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
         <Link
           href="/search"
-          className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] text-neutral-700 transition-colors hover:bg-neutral-100 hover:text-neutral-950"
+          className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-[12px] text-neutral-600 transition-colors hover:bg-neutral-100 hover:text-[#0a1628]"
         >
           <ArrowLeft className="h-3.5 w-3.5" strokeWidth={2} />
           Back to all jets
@@ -85,12 +85,12 @@ export default async function JetDetailPage({
                   {getCategoryLabel(jet.category)}
                 </span>
                 <div className="flex items-center gap-1.5 text-[12px] text-neutral-600">
-                  <Star className="h-3.5 w-3.5 fill-white text-neutral-950" />
-                  <span className="font-medium text-neutral-950">{averageRating}</span>
+                  <Star className="h-3.5 w-3.5 fill-[#0d1f3c] text-[#0d1f3c]" />
+                  <span className="font-medium text-[#0a1628]">{averageRating}</span>
                   <span className="text-neutral-400">({reviews.length} reviews)</span>
                 </div>
               </div>
-              <h1 className="text-[32px] font-semibold tracking-tight text-neutral-950 sm:text-[40px]">{jet.name}</h1>
+              <h1 className="text-[32px] font-semibold tracking-tight text-[#0a1628] sm:text-[40px]">{jet.name}</h1>
               <p className="mt-1 text-[14px] text-neutral-500">{jet.manufacturer} · {jet.yearBuilt}</p>
             </div>
 
@@ -144,7 +144,7 @@ export default async function JetDetailPage({
               {/* Price */}
               <div className="mb-4">
                 <div className="flex items-baseline gap-1">
-                  <span className="text-[28px] font-semibold tracking-tight text-neutral-950">
+                  <span className="text-[28px] font-semibold tracking-tight text-[#0a1628]">
                     {formatCurrency(jet.hourlyRate)}
                   </span>
                   <span className="text-[13px] text-neutral-500">/ hr</span>
@@ -160,13 +160,13 @@ export default async function JetDetailPage({
                       key={i}
                       className={`h-3.5 w-3.5 ${
                         i < Math.round(Number(averageRating))
-                          ? "fill-white text-neutral-950"
+                          ? "fill-[#0d1f3c] text-[#0d1f3c]"
                           : "text-neutral-300"
                       }`}
                     />
                   ))}
                 </div>
-                <span className="text-[12px] font-medium text-neutral-950">{averageRating}</span>
+                <span className="text-[12px] font-medium text-[#0a1628]">{averageRating}</span>
                 <span className="text-[12px] text-neutral-400">({reviews.length} reviews)</span>
               </div>
 
@@ -178,7 +178,7 @@ export default async function JetDetailPage({
               {/* Book Button */}
               <Link
                 href={`/booking?jet=${jet.id}`}
-                className="block w-full rounded-full bg-neutral-950 px-6 py-3 text-center text-[13px] font-medium text-white transition-colors hover:bg-neutral-800"
+                className="block w-full rounded-full bg-[#0d1f3c] px-6 py-3 text-center text-[13px] font-medium text-white transition-colors hover:bg-[#1a3461]"
               >
                 Book This Jet
               </Link>
@@ -192,30 +192,30 @@ export default async function JetDetailPage({
                 <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">Estimated trip cost</p>
                 <div className="flex justify-between text-[13px]">
                   <span className="text-neutral-600">2hr flight</span>
-                  <span className="font-medium text-neutral-950">{formatCurrency(jet.hourlyRate * 2)}</span>
+                  <span className="font-medium text-[#0a1628]">{formatCurrency(jet.hourlyRate * 2)}</span>
                 </div>
                 <div className="flex justify-between text-[13px]">
                   <span className="text-neutral-600">4hr flight</span>
-                  <span className="font-medium text-neutral-950">{formatCurrency(jet.hourlyRate * 4)}</span>
+                  <span className="font-medium text-[#0a1628]">{formatCurrency(jet.hourlyRate * 4)}</span>
                 </div>
                 <div className="flex justify-between text-[13px]">
                   <span className="text-neutral-600">8hr flight</span>
-                  <span className="font-medium text-neutral-950">{formatCurrency(jet.hourlyRate * 8)}</span>
+                  <span className="font-medium text-[#0a1628]">{formatCurrency(jet.hourlyRate * 8)}</span>
                 </div>
               </div>
 
               {/* Trust Badges */}
               <div className="mt-6 space-y-2.5 border-t border-neutral-200 pt-6">
                 <div className="flex items-center gap-2 text-[12px] text-neutral-600">
-                  <Shield className="h-3.5 w-3.5 text-emerald-700" strokeWidth={1.75} />
+                  <Shield className="h-3.5 w-3.5 text-[#0d1f3c]" strokeWidth={1.75} />
                   <span>Verified &amp; safety inspected</span>
                 </div>
                 <div className="flex items-center gap-2 text-[12px] text-neutral-600">
-                  <Award className="h-3.5 w-3.5 text-emerald-700" strokeWidth={1.75} />
+                  <Award className="h-3.5 w-3.5 text-[#0d1f3c]" strokeWidth={1.75} />
                   <span>Premium concierge service</span>
                 </div>
                 <div className="flex items-center gap-2 text-[12px] text-neutral-600">
-                  <Clock className="h-3.5 w-3.5 text-emerald-700" strokeWidth={1.75} />
+                  <Clock className="h-3.5 w-3.5 text-[#0d1f3c]" strokeWidth={1.75} />
                   <span>Free cancellation up to 48h</span>
                 </div>
               </div>
@@ -226,8 +226,8 @@ export default async function JetDetailPage({
         {/* Reviews Section */}
         <div className="mt-12 border-t border-neutral-200 pt-12">
           <div className="mb-8 flex items-center gap-3">
-            <Star className="h-5 w-5 fill-white text-neutral-950" />
-            <h2 className="text-[24px] font-semibold tracking-tight text-neutral-950">
+            <Star className="h-5 w-5 fill-[#0d1f3c] text-[#0d1f3c]" />
+            <h2 className="text-[24px] font-semibold tracking-tight text-[#0a1628]">
               {averageRating} · {reviews.length} reviews
             </h2>
           </div>
@@ -235,11 +235,11 @@ export default async function JetDetailPage({
             {reviews.map((review) => (
               <div key={review.id} className="rounded-2xl border border-neutral-200 bg-white p-5 backdrop-blur-xl">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-neutral-100 text-[12px] font-semibold text-neutral-950">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full border border-neutral-200 bg-neutral-100 text-[12px] font-semibold text-[#0a1628]">
                     {review.avatar}
                   </div>
                   <div>
-                    <p className="text-[13px] font-semibold text-neutral-950">{review.name}</p>
+                    <p className="text-[13px] font-semibold text-[#0a1628]">{review.name}</p>
                     <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">{review.date}</p>
                   </div>
                 </div>
@@ -248,7 +248,7 @@ export default async function JetDetailPage({
                     <Star
                       key={i}
                       className={`h-3 w-3 ${
-                        i < review.rating ? "fill-white text-neutral-950" : "text-neutral-300"
+                        i < review.rating ? "fill-[#0d1f3c] text-[#0d1f3c]" : "text-neutral-300"
                       }`}
                     />
                   ))}
@@ -269,9 +269,9 @@ function Highlight({ icon, value, label }: { icon: React.ReactNode; value: strin
     <div className="rounded-xl border border-neutral-200 bg-white p-3">
       <div className="flex items-center gap-2">
         {icon}
-        <p className="text-[13px] font-semibold text-neutral-950">{value}</p>
+        <p className="text-[13px] font-semibold text-[#0a1628]">{value}</p>
       </div>
-      <p className="mt-1 font-mono text-[10px] uppercase tracking-widest text-neutral-400">{label}</p>
+      <p className="mt-1 font-mono text-[10px] uppercase tracking-[0.15em] text-neutral-400">{label}</p>
     </div>
   );
 }

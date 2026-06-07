@@ -78,7 +78,7 @@ function BookingContent() {
 
   if (!jet) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-white px-4 text-[#0a1628]">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-[#f2f2f7] px-4 text-[#0a1628]">
         <Plane className="mb-4 h-12 w-12 text-neutral-300" strokeWidth={1.25} />
         <h2 className="text-[20px] font-semibold tracking-tight text-[#0a1628]">No aircraft selected</h2>
         <p className="mt-2 text-[13px] text-neutral-600">Please select a jet from our fleet first.</p>
@@ -280,7 +280,7 @@ export default function BookingPage() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-screen items-center justify-center bg-white">
+        <div className="flex min-h-screen items-center justify-center bg-[#f2f2f7]">
           <Plane className="h-6 w-6 animate-pulse text-neutral-400" strokeWidth={1.75} />
         </div>
       }
