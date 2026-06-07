@@ -35,11 +35,11 @@ const DEAL_GRADIENTS = [
 ];
 
 const AIRCRAFT_CLASSES = [
-  { label: "Light Jet",       seats: "4–8 seats",   from: 3200,  href: "/search?category=light" },
-  { label: "Midsize Jet",     seats: "7–9 seats",   from: 5600,  href: "/search?category=midsize" },
-  { label: "Super Midsize",   seats: "7–9 seats",   from: 8500,  href: "/search?category=super_midsize" },
-  { label: "Heavy Jet",       seats: "10–19 seats", from: 11000, href: "/search?category=heavy" },
-  { label: "Ultra Long Range",seats: "13–19 seats", from: 15000, href: "/search?category=ultra_long" },
+  { label: "Light Jet",        seats: "4–8 seats",   from: 6500,  href: "/search?category=light" },
+  { label: "Midsize Jet",      seats: "7–9 seats",   from: 7500,  href: "/search?category=midsize" },
+  { label: "Super Midsize",    seats: "7–9 seats",   from: 8500,  href: "/search?category=super_midsize" },
+  { label: "Heavy Jet",        seats: "10–19 seats", from: 9500,  href: "/search?category=heavy" },
+  { label: "Ultra Long Range", seats: "13–19 seats", from: 13500, href: "/search?category=ultra_long" },
 ];
 
 const TRUST_PILLARS = [
