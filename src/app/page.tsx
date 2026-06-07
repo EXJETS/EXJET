@@ -9,6 +9,10 @@ import {
   Globe,
   Headphones,
   Users,
+  PawPrint,
+  Baby,
+  ChefHat,
+  Car,
 } from "lucide-react";
 import SearchBar from "@/components/search/search-bar";
 import emptyLegs from "@/data/empty-legs.json";
@@ -61,7 +65,7 @@ export default function HomePage() {
           </div>
 
           <h1 className="mb-2 text-[clamp(2rem,7vw,2.75rem)] font-semibold leading-[1.1] tracking-tight text-[#0a1628]">
-            Book Your<br />Private Jet
+            Global Access,<br />On-Demand.
           </h1>
           <p className="mb-7 text-[14px] leading-relaxed text-neutral-500">
             5,000+ airports worldwide. Confirmed quotes in under two hours.
@@ -263,15 +267,17 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
             {[
-              { title: "EXJET Pet",       sub: "Pets travel in the cabin — no cargo holds, no compromise.", icon: "🐾" },
-              { title: "EXJET Kids",      sub: "Family-first cabins with curated children's menus on board.", icon: "✈️" },
-              { title: "Private Dining",  sub: "Michelin-quality catering sourced from your destination.", icon: "🍽" },
-              { title: "Ground Concierge",sub: "Transfers, hotel bookings, yacht charters — all arranged.", icon: "🚘" },
-            ].map((exp) => (
-              <div key={exp.title} className="rounded-2xl border border-neutral-100 bg-[#f2f2f7] p-5">
-                <span className="text-[24px]">{exp.icon}</span>
-                <p className="mt-3 text-[14px] font-semibold text-[#0a1628]">{exp.title}</p>
-                <p className="mt-1 text-[12px] leading-relaxed text-neutral-500">{exp.sub}</p>
+              { title: "EXJET Pet",        sub: "Pets travel in the cabin — no cargo holds, no compromise.",  icon: PawPrint },
+              { title: "EXJET Kids",       sub: "Family-first cabins with curated children's menus on board.", icon: Baby },
+              { title: "Private Dining",   sub: "Michelin-quality catering sourced from your destination.",    icon: ChefHat },
+              { title: "Ground Concierge", sub: "Transfers, hotel bookings, yacht charters — all arranged.",   icon: Car },
+            ].map(({ title, sub, icon: Icon }) => (
+              <div key={title} className="rounded-2xl border border-neutral-100 bg-[#f2f2f7] p-5">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-white">
+                  <Icon className="h-[18px] w-[18px] text-[#0d1f3c]" strokeWidth={1.5} />
+                </div>
+                <p className="mt-3 text-[14px] font-semibold text-[#0a1628]">{title}</p>
+                <p className="mt-1 text-[12px] leading-relaxed text-neutral-500">{sub}</p>
               </div>
             ))}
           </div>
