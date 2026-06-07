@@ -120,34 +120,27 @@ export default function MembershipPage() {
   return (
     <div className="flex flex-col">
       {/* ══════════ HERO ══════════ */}
-      <section
-        className="px-4 pt-28 pb-16"
-        style={{ background: "linear-gradient(180deg, #0a1628 0%, #0d1f3c 100%)" }}
-      >
+      <section className="bg-[#f2f2f7] px-4 pt-28 pb-16">
         <div className="mx-auto max-w-2xl text-center">
-          <div className="mb-5 flex justify-center">
-            <svg width="22" height="20" viewBox="0 0 22 20" fill="none">
-              <path d="M11 1L21 19H1L11 1Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinejoin="round" />
-              <path d="M11 7L16 19H6L11 7Z" fill="white" fillOpacity="0.35" />
-            </svg>
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1.5 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-500">
+              EXJET Card — Membership Program
+            </span>
           </div>
-          <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[rgba(255,255,255,0.45)]">
-            EXJET Card — Membership Program
-          </p>
-          <h1 className="mt-4 font-serif text-[clamp(2.2rem,6vw,3.8rem)] font-normal leading-[1.05] text-white">
+          <h1 className="mt-4 text-[clamp(2.2rem,6vw,3.5rem)] font-semibold leading-[1.05] tracking-tight text-[#0a1628]">
             Fly on terms that respect
             <br />
-            <em className="italic text-[rgba(255,255,255,0.5)]">your time.</em>
+            your time.
           </h1>
-          <p className="mt-5 text-[15px] leading-relaxed text-[rgba(255,255,255,0.55)]">
+          <p className="mt-5 text-[15px] leading-relaxed text-neutral-500">
             Fixed rates. Transparent pricing. Guaranteed access. The first private aviation card that shows
             you exactly what the operator charges — and exactly what we earn.
           </p>
           <div className="mt-8 flex flex-wrap items-center justify-center gap-x-6 gap-y-3">
             {["Fully refundable deposit", "No blackout dates", "No hidden fees", "No expiration"].map((f) => (
               <div key={f} className="flex items-center gap-1.5">
-                <Check className="h-3.5 w-3.5 text-white" strokeWidth={2.5} />
-                <span className="text-[13px] text-[rgba(255,255,255,0.7)]">{f}</span>
+                <Check className="h-3.5 w-3.5 text-[#0d1f3c]" strokeWidth={2.5} />
+                <span className="text-[13px] text-neutral-600">{f}</span>
               </div>
             ))}
           </div>
@@ -364,36 +357,35 @@ export default function MembershipPage() {
       </section>
 
       {/* ══════════ CLOSING CTA ══════════ */}
-      <section
-        className="px-4 py-16"
-        style={{ background: "linear-gradient(180deg, #0a1628 0%, #0d1f3c 100%)" }}
-      >
-        <div className="mx-auto max-w-md text-center">
-          <div className="mb-5 flex justify-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(255,255,255,0.1)]">
-              <Plane className="h-6 w-6 text-white" strokeWidth={1.5} />
+      <section className="bg-[#f2f2f7] px-4 py-10">
+        <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">
+          <div className="overflow-hidden rounded-3xl bg-[#0d1f3c] px-8 py-12 text-center">
+            <div className="mb-4 flex justify-center">
+              <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(255,255,255,0.1)]">
+                <Plane className="h-6 w-6 text-white" strokeWidth={1.5} />
+              </div>
             </div>
-          </div>
-          <h2 className="font-serif text-[clamp(1.8rem,4vw,2.5rem)] font-normal leading-tight text-white">
-            Ready to apply?
-          </h2>
-          <p className="mt-3 text-[14px] text-[rgba(255,255,255,0.5)]">
-            Speak with a senior aviation advisor. We&apos;ll match you to the right card for your travel frequency.
-          </p>
-          <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
-            <Link
-              href="/auth/register"
-              className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-[14px] font-medium text-[#0d1f3c] shadow-[0_4px_20px_rgba(0,0,0,0.3)] transition-opacity hover:opacity-90"
-            >
-              Apply for a card
-              <ArrowRight className="h-4 w-4" />
-            </Link>
-            <Link
-              href="/search"
-              className="inline-flex items-center gap-2 rounded-full border border-[rgba(255,255,255,0.25)] px-7 py-3 text-[14px] font-medium text-white transition-colors hover:bg-[rgba(255,255,255,0.08)]"
-            >
-              Browse fleet first
-            </Link>
+            <h2 className="text-[clamp(1.8rem,4vw,2.5rem)] font-semibold tracking-tight text-white">
+              Ready to apply?
+            </h2>
+            <p className="mt-3 text-[14px] text-[rgba(255,255,255,0.5)]">
+              Speak with a senior aviation advisor. We&apos;ll match you to the right card for your travel frequency.
+            </p>
+            <div className="mt-8 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
+              <Link
+                href="/auth/register"
+                className="inline-flex items-center gap-2 rounded-full bg-white px-7 py-3 text-[14px] font-medium text-[#0d1f3c] transition-opacity hover:opacity-90"
+              >
+                Apply for a card
+                <ArrowRight className="h-4 w-4" />
+              </Link>
+              <Link
+                href="/search"
+                className="inline-flex items-center gap-2 rounded-full border border-[rgba(255,255,255,0.25)] px-7 py-3 text-[14px] font-medium text-white transition-colors hover:bg-[rgba(255,255,255,0.08)]"
+              >
+                Browse fleet first
+              </Link>
+            </div>
           </div>
         </div>
       </section>

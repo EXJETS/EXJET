@@ -24,29 +24,26 @@ export default function RegisterPage() {
   const labelCls = "mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-neutral-500";
 
   return (
-    <div
-      className="flex min-h-screen flex-col items-center justify-center px-4 py-12"
-      style={{ background: "linear-gradient(180deg, #0a1628 0%, #0d1f3c 100%)" }}
-    >
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[#f2f2f7] px-4 py-12">
       {/* Logo */}
       <div className="mb-8 flex flex-col items-center gap-3">
         <Link href="/" className="inline-flex items-center gap-2">
-          <svg width="20" height="18" viewBox="0 0 22 20" fill="none">
-            <path d="M11 1L21 19H1L11 1Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinejoin="round" />
-            <path d="M11 7L16 19H6L11 7Z" fill="white" fillOpacity="0.35" />
+          <svg width="22" height="20" viewBox="0 0 22 20" fill="none">
+            <path d="M11 1L21 19H1L11 1Z" fill="none" stroke="#0d1f3c" strokeWidth="1.8" strokeLinejoin="round" />
+            <path d="M11 7L16 19H6L11 7Z" fill="#0d1f3c" fillOpacity="0.4" />
           </svg>
-          <span className="font-mono text-[15px] font-semibold tracking-[0.12em] text-white">EXJET</span>
+          <span className="font-mono text-[15px] font-semibold tracking-[0.12em] text-[#0d1f3c]">EXJET</span>
         </Link>
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[rgba(255,255,255,0.45)]">
+        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-400">
           Create Account
         </p>
-        <h1 className="font-serif text-[2rem] font-normal leading-tight text-white">
+        <h1 className="text-[2rem] font-semibold leading-tight tracking-tight text-[#0a1628]">
           Fly private, on demand.
         </h1>
       </div>
 
       {/* Card */}
-      <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-[0_32px_80px_rgba(0,0,0,0.5)]">
+      <div className="w-full max-w-md rounded-2xl border border-neutral-200 bg-white p-8 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
         <form onSubmit={handleSubmit} className="space-y-4">
           <div className="grid grid-cols-2 gap-3">
             <div>

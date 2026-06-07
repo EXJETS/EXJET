@@ -269,45 +269,33 @@ export default function AircraftSalesPage() {
   return (
     <div className="flex flex-col">
       {/* ══════════════════════════════════════════════
-          HERO — dark midnight navy
+          HERO
       ══════════════════════════════════════════════ */}
-      <section
-        className="px-4 pb-10 pt-24"
-        style={{
-          background:
-            "linear-gradient(180deg, #0a1628 0%, #0d1f3c 60%, #0f2347 100%)",
-        }}
-      >
+      <section className="bg-[#f2f2f7] px-4 pb-10 pt-24">
         <div className="mx-auto max-w-2xl lg:max-w-7xl">
           {/* Breadcrumb */}
-          <nav className="mb-8 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-[rgba(255,255,255,0.4)]">
-            <Link href="/" className="hover:text-white transition-colors">
+          <nav className="mb-8 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-400">
+            <Link href="/" className="hover:text-[#0a1628] transition-colors">
               Home
             </Link>
-            <span className="text-[rgba(255,255,255,0.25)]">›</span>
-            <span className="text-[rgba(255,255,255,0.7)]">Aircraft Sales</span>
+            <span className="text-neutral-300">›</span>
+            <span className="text-neutral-600">Aircraft Sales</span>
           </nav>
 
           {/* Eyebrow */}
-          <div className="mb-5 flex items-center gap-4">
-            <div className="h-px w-8 bg-[rgba(255,255,255,0.3)]" />
-            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[rgba(255,255,255,0.5)]">
+          <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1.5 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
+            <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-500">
               IADA Registered Brokerage
             </span>
-            <div className="h-px flex-1 bg-[rgba(255,255,255,0.1)]" />
           </div>
 
           {/* Headline */}
-          <h1 className="font-serif text-[clamp(2.5rem,7vw,5rem)] font-normal leading-[1.05] text-white">
-            Aircraft Sales &
-            <br />
-            <span className="italic text-[rgba(255,255,255,0.45)]">
-              Leasing.
-            </span>
+          <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-semibold leading-[1.05] tracking-tight text-[#0a1628]">
+            Aircraft Sales &<br />Leasing.
           </h1>
 
           {/* Subtext */}
-          <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-[rgba(255,255,255,0.55)]">
+          <p className="mt-5 max-w-lg text-[15px] leading-relaxed text-neutral-500">
             Pre-owned aircraft and dry leases represented by EXJET. Full log
             review, pre-purchase inspection coordination, title, and escrow
             services included.
@@ -316,16 +304,16 @@ export default function AircraftSalesPage() {
           {/* Stats */}
           <div className="mt-8 grid grid-cols-3 gap-3 max-w-lg">
             {[
-              { value: String(activeCount), label: "Active\nListings" },
+              { value: String(activeCount), label: "Active Listings" },
               { value: "IADA", label: "Registered" },
               { value: "112", label: "Transactions" },
             ].map((stat) => (
               <div
                 key={stat.value}
-                className="rounded-xl border border-[rgba(255,255,255,0.1)] bg-[rgba(255,255,255,0.05)] px-4 py-4"
+                className="rounded-xl border border-neutral-200 bg-white px-4 py-4 shadow-[0_1px_4px_rgba(0,0,0,0.04)]"
               >
-                <p className="text-[22px] font-bold text-white">{stat.value}</p>
-                <p className="mt-0.5 font-mono text-[10px] uppercase leading-snug tracking-[0.15em] text-[rgba(255,255,255,0.45)]">
+                <p className="text-[22px] font-semibold text-[#0a1628]">{stat.value}</p>
+                <p className="mt-0.5 font-mono text-[10px] uppercase leading-snug tracking-[0.15em] text-neutral-400">
                   {stat.label}
                 </p>
               </div>

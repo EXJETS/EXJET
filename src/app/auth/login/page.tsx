@@ -4,16 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { Mail, Lock, Eye, EyeOff } from "lucide-react";
 
-const NAV_LOGO = (
-  <Link href="/" className="inline-flex items-center gap-2">
-    <svg width="20" height="18" viewBox="0 0 22 20" fill="none">
-      <path d="M11 1L21 19H1L11 1Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinejoin="round" />
-      <path d="M11 7L16 19H6L11 7Z" fill="white" fillOpacity="0.35" />
-    </svg>
-    <span className="font-mono text-[15px] font-semibold tracking-[0.12em] text-white">EXJET</span>
-  </Link>
-);
-
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -30,23 +20,26 @@ export default function LoginPage() {
     "w-full rounded-lg border border-neutral-200 bg-neutral-50 py-3 pl-10 pr-4 text-[13px] text-[#0a1628] placeholder:text-neutral-400 outline-none focus:border-[#0d1f3c]";
 
   return (
-    <div
-      className="flex min-h-screen flex-col items-center justify-center px-4 py-12"
-      style={{ background: "linear-gradient(180deg, #0a1628 0%, #0d1f3c 100%)" }}
-    >
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[#f2f2f7] px-4 py-12">
       {/* Logo */}
       <div className="mb-8 flex flex-col items-center gap-3">
-        {NAV_LOGO}
-        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[rgba(255,255,255,0.45)]">
+        <Link href="/" className="inline-flex items-center gap-2">
+          <svg width="22" height="20" viewBox="0 0 22 20" fill="none">
+            <path d="M11 1L21 19H1L11 1Z" fill="none" stroke="#0d1f3c" strokeWidth="1.8" strokeLinejoin="round" />
+            <path d="M11 7L16 19H6L11 7Z" fill="#0d1f3c" fillOpacity="0.4" />
+          </svg>
+          <span className="font-mono text-[15px] font-semibold tracking-[0.12em] text-[#0d1f3c]">EXJET</span>
+        </Link>
+        <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-neutral-400">
           Member Sign In
         </p>
-        <h1 className="font-serif text-[2rem] font-normal leading-tight text-white">
+        <h1 className="text-[2rem] font-semibold leading-tight tracking-tight text-[#0a1628]">
           Welcome back.
         </h1>
       </div>
 
       {/* Card */}
-      <div className="w-full max-w-md rounded-2xl bg-white p-8 shadow-[0_32px_80px_rgba(0,0,0,0.5)]">
+      <div className="w-full max-w-md rounded-2xl border border-neutral-200 bg-white p-8 shadow-[0_4px_24px_rgba(0,0,0,0.06)]">
         {/* Social */}
         <div className="mb-6 grid grid-cols-2 gap-3">
           <button className="flex items-center justify-center gap-2 rounded-full border border-neutral-200 bg-neutral-50 px-4 py-2.5 text-[12px] font-medium text-[#0a1628] transition-colors hover:bg-neutral-100">

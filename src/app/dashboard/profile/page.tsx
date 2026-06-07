@@ -15,12 +15,12 @@ export default function ProfilePage() {
   const update = (field: string, value: string) => setForm((prev) => ({ ...prev, [field]: value }));
 
   const inputCls =
-    "w-full rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2.5 text-[13px] text-neutral-950 placeholder:text-neutral-400 outline-none focus:border-neutral-400";
+    "w-full rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2.5 text-[13px] text-[#0a1628] placeholder:text-neutral-400 outline-none focus:border-[#0d1f3c]";
   const dateCls = inputCls + "";
   const labelCls = "mb-1 block font-mono text-[10px] uppercase tracking-widest text-neutral-600";
 
   return (
-    <div className="min-h-screen bg-white text-neutral-950">
+    <div className="min-h-screen bg-[#f2f2f7] text-[#0a1628]">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
         <Link
           href="/dashboard"
@@ -30,11 +30,11 @@ export default function ProfilePage() {
         </Link>
 
         <div className="mb-8 flex items-center gap-4">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full border border-neutral-200 bg-neutral-100 text-[20px] font-semibold text-neutral-950">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full border border-neutral-200 bg-white text-[20px] font-semibold text-[#0a1628]">
             {form.firstName[0]}{form.lastName[0]}
           </div>
           <div>
-            <h1 className="text-[28px] font-semibold tracking-tight text-neutral-950">{form.firstName} {form.lastName}</h1>
+            <h1 className="text-[28px] font-semibold tracking-tight text-[#0a1628]">{form.firstName} {form.lastName}</h1>
             <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">EXJET Premium Member</p>
           </div>
         </div>
@@ -147,7 +147,7 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        <button className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98]">
+        <button className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#0d1f3c] px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-[#1a3461] active:scale-[0.98]">
           <Save className="h-3.5 w-3.5" strokeWidth={2} /> Save Changes
         </button>
       </div>
