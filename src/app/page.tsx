@@ -339,45 +339,23 @@ export default function HomePage() {
       ══════════════════════════════════════════════ */}
       <section className="bg-[#f2f2f7] px-4 py-10">
         <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">
-          <div className="mb-5">
-            <h2 className="text-[17px] font-semibold text-[var(--color-ink)]">
-              Choose your aircraft
-            </h2>
-            <p className="mt-1 text-[13px] text-neutral-500">
-              From city hops to intercontinental missions
-            </p>
-          </div>
+          <h2 className="mb-4 text-[17px] font-semibold text-[var(--color-ink)]">
+            Choose your aircraft
+          </h2>
 
-          <div className="no-scrollbar -mx-4 flex gap-3 overflow-x-auto px-4 pb-2 sm:mx-0 sm:px-0 lg:grid lg:grid-cols-5 lg:overflow-visible">
+          <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
             {AIRCRAFT_CLASSES.map((cls) => (
               <Link
                 key={cls.category}
                 href="/search"
-                className="shrink-0 w-[160px] sm:w-[180px] lg:w-auto rounded-2xl border border-neutral-200 bg-white p-4 transition-shadow hover:shadow-md"
+                className="shrink-0 flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2.5 transition-colors hover:border-[#0d1f3c] hover:bg-[#0d1f3c] hover:text-white group"
               >
-                <span className="inline-block rounded-lg bg-[#f2f2f7] px-2.5 py-1 text-[11px] font-semibold text-[var(--color-ink)]">
+                <span className="text-[13px] font-medium text-[var(--color-ink)] group-hover:text-white whitespace-nowrap">
                   {cls.category}
                 </span>
-                <p className="mt-3 text-[12px] leading-relaxed text-neutral-400">
-                  {cls.example}
-                </p>
-                <div className="mt-3 space-y-1">
-                  <p className="text-[11px] text-neutral-400">
-                    <span className="font-medium text-neutral-600">
-                      {cls.seats}
-                    </span>{" "}
-                    seats
-                  </p>
-                  <p className="text-[11px] text-neutral-400">
-                    <span className="font-medium text-neutral-600">
-                      {cls.range}
-                    </span>{" "}
-                    range
-                  </p>
-                </div>
-                <p className="mt-3 border-t border-neutral-100 pt-3 text-[13px] font-semibold text-[var(--color-ink)]">
+                <span className="text-[11px] text-neutral-400 group-hover:text-[rgba(255,255,255,0.6)] whitespace-nowrap">
                   from ${fmt(cls.from)}/hr
-                </p>
+                </span>
               </Link>
             ))}
           </div>
