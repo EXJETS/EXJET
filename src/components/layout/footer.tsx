@@ -15,7 +15,7 @@ const columns = [
       { label: "Charter a Jet", href: "/search" },
       { label: "Empty Legs", href: "/search?mode=empty" },
       { label: "Browse Fleet", href: "/jets" },
-      { label: "Live Tracking", href: "/tracking" },
+      { label: "Aircraft Sales", href: "/aircraft-sales" },
     ],
   },
   {
@@ -62,7 +62,7 @@ export function Footer() {
         <div className="border-b border-[var(--color-hairline)] pb-14">
           <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
             <div>
-              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-champagne">
+              <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#0d1f3c]">
                 EXJET · Global Access, On-Demand.
               </span>
               <h2 className="mt-5 font-serif text-[44px] leading-[1.05] text-[var(--color-ink)] sm:text-[56px]">
@@ -81,7 +81,7 @@ export function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label={label}
-                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-hairline-strong)] bg-transparent text-[var(--color-ink-soft)] transition-colors hover:border-champagne hover:text-champagne"
+                  className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--color-hairline-strong)] bg-transparent text-[var(--color-ink-soft)] transition-colors hover:border-[#0d1f3c] hover:text-[#0d1f3c]"
                 >
                   <Icon className="h-3.5 w-3.5" strokeWidth={1.75} />
                 </a>
@@ -95,7 +95,7 @@ export function Footer() {
           <div className="col-span-2 md:col-span-1">
             <Link href="/" className="inline-flex items-baseline gap-2">
               <PlaneTakeoff
-                className="h-3.5 w-3.5 text-champagne"
+                className="h-3.5 w-3.5 text-[#0d1f3c]"
                 strokeWidth={1.75}
               />
               <span className="font-serif text-[22px] tracking-[0.06em] text-[var(--color-ink)]">
@@ -110,7 +110,7 @@ export function Footer() {
 
           {columns.map((col) => (
             <div key={col.title}>
-              <h3 className="font-mono text-[10px] uppercase tracking-[0.22em] text-champagne">
+              <h3 className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#0d1f3c]">
                 {col.title}
               </h3>
               <ul className="mt-5 space-y-3.5">
@@ -118,7 +118,7 @@ export function Footer() {
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className="group inline-flex items-center gap-1.5 text-[13px] text-[var(--color-ink-soft)] transition-colors hover:text-champagne"
+                      className="group inline-flex items-center gap-1.5 text-[13px] text-[var(--color-ink-soft)] transition-colors hover:text-[#0d1f3c]"
                     >
                       {link.label}
                       <ArrowUpRight

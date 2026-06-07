@@ -9,7 +9,6 @@ const navLinks = [
   { href: "/search", label: "Charter" },
   { href: "/search?category=empty-legs", label: "Empty Legs" },
   { href: "/aircraft-sales", label: "Aircraft Sales" },
-  { href: "/tracking", label: "Live Tracking" },
   { href: "/dashboard", label: "My Trips" },
 ];
 

@@ -139,7 +139,7 @@ function SearchResultsContent() {
   const backHref = hrefBase;
 
   return (
-    <div className="min-h-screen bg-white text-neutral-950">
+    <div className="min-h-screen bg-[#f2f2f7] text-[#0a1628]">
       {/* Compact Search Bar */}
       <div className="border-b border-neutral-200 bg-white/80 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
@@ -155,7 +155,7 @@ function SearchResultsContent() {
               <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-400">
                 Route
               </span>
-              <span className="font-medium text-neutral-950">
+              <span className="font-medium text-[#0a1628]">
                 {fromAirport ? `${fromAirport.city} (${fromAirport.code})` : urlFrom}
                 {" → "}
                 {toAirport ? `${toAirport.city} (${toAirport.code})` : urlTo}
@@ -166,7 +166,7 @@ function SearchResultsContent() {
                 <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-400">
                   Distance
                 </span>
-                <span className="font-medium text-neutral-950">
+                <span className="font-medium text-[#0a1628]">
                   {distanceNm.toLocaleString()} nm
                 </span>
                 <span className="font-mono text-[11px] text-neutral-400">
@@ -179,7 +179,7 @@ function SearchResultsContent() {
                 <span className="font-mono text-[11px] uppercase tracking-widest text-neutral-400">
                   Date
                 </span>
-                <span className="font-medium text-neutral-950">{urlDate}</span>
+                <span className="font-medium text-[#0a1628]">{urlDate}</span>
               </div>
             )}
           </div>
@@ -195,7 +195,7 @@ function SearchResultsContent() {
                 <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
                   Step 1 / 2
                 </span>
-                <h1 className="text-[15px] font-medium text-neutral-950">
+                <h1 className="text-[15px] font-medium text-[#0a1628]">
                   Choose your aircraft category
                 </h1>
               </>
@@ -203,7 +203,7 @@ function SearchResultsContent() {
               <>
                 <Link
                   href={backHref}
-                  className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-[12px] font-medium text-neutral-700 transition-colors hover:border-neutral-300 hover:text-neutral-950"
+                  className="inline-flex items-center gap-1.5 rounded-full border border-neutral-200 bg-neutral-50 px-3 py-1.5 text-[12px] font-medium text-neutral-700 transition-colors hover:border-neutral-300 hover:text-[#0a1628]"
                 >
                   <ArrowLeft className="h-3 w-3" strokeWidth={2} />
                   Categories
@@ -211,8 +211,8 @@ function SearchResultsContent() {
                 <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
                   {getCategoryLabel(selectedCategory)}
                 </span>
-                <h1 className="text-[14px] font-medium text-neutral-950">
-                  <span className="text-neutral-950">{filteredJets.length}</span>{" "}
+                <h1 className="text-[14px] font-medium text-[#0a1628]">
+                  <span className="text-[#0a1628]">{filteredJets.length}</span>{" "}
                   <span className="text-neutral-600">
                     {filteredJets.length === 1 ? "aircraft" : "aircraft"} available
                   </span>
@@ -226,7 +226,7 @@ function SearchResultsContent() {
               <select
                 value={sortBy ?? "price_asc"}
                 onChange={(e) => setSortBy(e.target.value)}
-                className="hidden rounded-full border border-neutral-200 bg-neutral-50 px-4 py-2 text-[12px] text-neutral-950 outline-none transition-colors hover:border-neutral-300 focus:border-neutral-400 md:block"
+                className="hidden rounded-full border border-neutral-200 bg-neutral-50 px-4 py-2 text-[12px] text-[#0a1628] outline-none transition-colors hover:border-neutral-300 focus:border-neutral-400 md:block"
               >
                 <option value="price_asc">Price: Low to High</option>
                 <option value="price_desc">Price: High to Low</option>
@@ -237,7 +237,7 @@ function SearchResultsContent() {
 
               <button
                 onClick={() => setMobileFiltersOpen(true)}
-                className="flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-4 py-2 text-[12px] font-medium text-neutral-950 transition-colors hover:border-neutral-400 hover:bg-neutral-100 lg:hidden"
+                className="flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-4 py-2 text-[12px] font-medium text-[#0a1628] transition-colors hover:border-neutral-400 hover:bg-neutral-100 lg:hidden"
               >
                 <SlidersHorizontal className="h-3.5 w-3.5" strokeWidth={1.75} />
                 Filters
@@ -251,7 +251,7 @@ function SearchResultsContent() {
             {distanceNm && (
               <p className="mb-6 max-w-2xl text-[13px] text-neutral-600">
                 We&apos;ve highlighted the categories best suited for your{" "}
-                <span className="font-medium text-neutral-950">
+                <span className="font-medium text-[#0a1628]">
                   {distanceNm.toLocaleString()} nm
                 </span>{" "}
                 flight. You can still pick any category — pricing and availability shown live.
@@ -279,7 +279,7 @@ function SearchResultsContent() {
       {mobileFiltersOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div
-            className="absolute inset-0 bg-neutral-950/40 backdrop-blur-sm"
+            className="absolute inset-0 bg-[#0d1f3c]/40 backdrop-blur-sm"
             onClick={() => setMobileFiltersOpen(false)}
           />
           <div className="absolute inset-y-0 right-0 flex w-full max-w-sm">
@@ -299,7 +299,7 @@ export default function SearchPage() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-screen items-center justify-center bg-white">
+        <div className="flex min-h-screen items-center justify-center bg-[#f2f2f7]">
           <div className="flex items-center gap-3 text-neutral-500">
             <Plane className="h-5 w-5 animate-pulse" strokeWidth={1.5} />
             <span className="font-mono text-[11px] uppercase tracking-widest">

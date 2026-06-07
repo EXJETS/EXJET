@@ -43,12 +43,12 @@ export default function ClientDashboardPage() {
       <div className="mb-6 flex items-center justify-between gap-4">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-widest text-neutral-600">Overview</p>
-          <h1 className="mt-2 text-[28px] font-semibold tracking-tight text-neutral-950">Welcome back, John</h1>
+          <h1 className="mt-2 text-[28px] font-semibold tracking-tight text-[#0a1628]">Welcome back, John</h1>
           <p className="mt-1 text-[13px] text-neutral-500">4 jets available near Teterboro · Updated just now</p>
         </div>
         <Link
           href="/search"
-          className="inline-flex items-center gap-2 rounded-full bg-neutral-950 px-5 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98]"
+          className="inline-flex items-center gap-2 rounded-full bg-[#0d1f3c] px-5 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-[#1a3461] active:scale-[0.98]"
         >
           <Plane className="h-3.5 w-3.5" strokeWidth={2} /> Book a Flight
         </Link>
@@ -85,7 +85,7 @@ export default function ClientDashboardPage() {
               <p className="font-mono text-[11px] uppercase tracking-widest text-neutral-600">Jets Near You</p>
               <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">· Teterboro</span>
             </div>
-            <Link href="/search" className="inline-flex items-center gap-1 text-[12px] font-medium text-neutral-700 transition-colors hover:text-neutral-950">
+            <Link href="/search" className="inline-flex items-center gap-1 text-[12px] font-medium text-neutral-700 transition-colors hover:text-[#0a1628]">
               See all <ArrowRight className="h-3 w-3" strokeWidth={2} />
             </Link>
           </div>
@@ -100,13 +100,13 @@ export default function ClientDashboardPage() {
                   <Plane className="h-4 w-4 text-neutral-800" strokeWidth={1.75} />
                 </div>
                 <div className="min-w-0 flex-1">
-                  <p className="truncate text-[13px] font-semibold text-neutral-950">{j.name}</p>
+                  <p className="truncate text-[13px] font-semibold text-[#0a1628]">{j.name}</p>
                   <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
                     {j.airport} · {j.distance}
                   </p>
                 </div>
                 <div className="shrink-0 text-right">
-                  <p className="text-[12px] font-semibold text-neutral-950">
+                  <p className="text-[12px] font-semibold text-[#0a1628]">
                     {formatCurrency(j.hourlyRate)}
                     <span className="font-normal text-neutral-400">/hr</span>
                   </p>
@@ -127,7 +127,7 @@ export default function ClientDashboardPage() {
           <p className="font-mono text-[11px] uppercase tracking-widest text-neutral-600">Upcoming Trips</p>
           <Link
             href="/dashboard/tracking"
-            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-neutral-700 transition-colors hover:text-neutral-950"
+            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-neutral-700 transition-colors hover:text-[#0a1628]"
           >
             <Radio className="h-3 w-3 text-emerald-700" strokeWidth={2} /> Track Fleet Live
           </Link>
@@ -144,7 +144,7 @@ export default function ClientDashboardPage() {
                   <Plane className="h-5 w-5 text-neutral-800" strokeWidth={1.75} />
                 </div>
                 <div>
-                  <h3 className="text-[14px] font-semibold tracking-tight text-neutral-950">{trip.jet}</h3>
+                  <h3 className="text-[14px] font-semibold tracking-tight text-[#0a1628]">{trip.jet}</h3>
                   <div className="mt-1 flex items-center gap-2 text-[12px] text-neutral-600">
                     <span>{trip.from} ({trip.fromCode})</span>
                     <ArrowRight className="h-3 w-3 text-neutral-400" strokeWidth={2} />
@@ -157,7 +157,7 @@ export default function ClientDashboardPage() {
                   <p className="text-[12px] text-neutral-600">
                     {new Date(trip.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
                   </p>
-                  <p className="mt-0.5 text-[13px] font-semibold text-neutral-950">{formatCurrency(trip.price)}</p>
+                  <p className="mt-0.5 text-[13px] font-semibold text-[#0a1628]">{formatCurrency(trip.price)}</p>
                 </div>
                 <StatusBadge status={trip.status} />
               </div>
@@ -181,7 +181,7 @@ export default function ClientDashboardPage() {
               <div className="flex items-center gap-3">
                 <Plane className="h-3.5 w-3.5 text-neutral-400" strokeWidth={1.75} />
                 <div>
-                  <p className="text-[13px] font-medium text-neutral-950">{trip.jet}</p>
+                  <p className="text-[13px] font-medium text-[#0a1628]">{trip.jet}</p>
                   <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
                     {trip.from} → {trip.to} · {new Date(trip.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
                   </p>
