@@ -108,7 +108,7 @@ export default function HomePage() {
           aria-hidden
           className="pointer-events-none absolute inset-x-0 top-14 flex justify-center"
         >
-          <div className="h-64 w-64 rounded-full bg-[#b89b6e] opacity-[0.08] blur-[80px]" />
+          <div className="h-64 w-64 rounded-full bg-[#0d1f3c] opacity-[0.07] blur-[80px]" />
         </div>
 
         {/* Aircraft icon */}
@@ -148,7 +148,7 @@ export default function HomePage() {
         <div className="mx-auto grid max-w-md grid-cols-1 gap-3 sm:max-w-2xl sm:grid-cols-2">
           {/* EXJET Program */}
           <div className="mesh-ink relative overflow-hidden rounded-3xl p-5 text-white">
-            <span className="mb-2 inline-block rounded-full border border-[rgba(184,155,110,0.5)] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-[var(--color-champagne-soft)]">
+            <span className="mb-2 inline-block rounded-full border border-[rgba(255,255,255,0.3)] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-[rgba(255,255,255,0.65)]">
               EXJET Program
             </span>
             <h2 className="font-serif text-[1.5rem] leading-tight">
@@ -200,7 +200,7 @@ export default function HomePage() {
       ══════════════════════════════════════════════ */}
       <section className="bg-[#f2f2f7] px-4 pb-6">
         <div className="mx-auto max-w-md sm:max-w-2xl">
-          <div className="flex items-center justify-between rounded-2xl border border-[rgba(184,155,110,0.25)] bg-[rgba(184,155,110,0.12)] px-4 py-3.5">
+          <div className="flex items-center justify-between rounded-2xl border border-[rgba(13,31,60,0.15)] bg-[rgba(13,31,60,0.06)] px-4 py-3.5">
             <div className="flex items-center gap-3">
               <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-champagne)]">
                 <BellRing className="h-4 w-4 text-white" />
@@ -493,7 +493,7 @@ export default function HomePage() {
       <section className="mesh-ink px-4 py-16">
         <div className="mx-auto max-w-md text-center">
           <div className="mb-4 flex justify-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(184,155,110,0.2)]">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(255,255,255,0.12)]">
               <PlaneTakeoff
                 className="h-6 w-6 text-[var(--color-champagne)]"
                 strokeWidth={1.5}
@@ -509,7 +509,7 @@ export default function HomePage() {
           <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Link
               href="/search"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-champagne)] px-6 py-3 text-[14px] font-medium text-white shadow-[0_4px_20px_rgba(184,155,110,0.45)] transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-navy)] px-6 py-3 text-[14px] font-medium text-white shadow-[0_4px_20px_rgba(13,31,60,0.5)] transition-opacity hover:opacity-90"
             >
               Search flights
               <ArrowRight className="h-4 w-4" />

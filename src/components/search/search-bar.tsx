@@ -156,7 +156,7 @@ function MultiLegRow({
   return (
     <div className="overflow-hidden rounded-2xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
       <div className="flex items-center gap-2 border-b border-neutral-100 px-4 py-2">
-        <span className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-champagne)]">
+        <span className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-navy)]">
           Leg {index + 1}
         </span>
         {onRemove && (
@@ -275,18 +275,18 @@ export default function SearchBar({ variant = "hero" }: { variant?: "hero" | "co
             className={cn(
               "flex items-center gap-2 pb-3 text-[14px] font-medium transition-all",
               mode === m
-                ? "border-b-2 border-[var(--color-champagne)] text-[var(--color-ink)]"
+                ? "border-b-2 border-[var(--color-navy)] text-[var(--color-ink)]"
                 : "text-neutral-400 hover:text-neutral-600"
             )}
           >
             {m === "charter" ? (
               <PlaneTakeoff
-                className={cn("h-4 w-4", mode === m ? "text-[var(--color-champagne)]" : "")}
+                className={cn("h-4 w-4", mode === m ? "text-[var(--color-navy)]" : "")}
                 strokeWidth={1.75}
               />
             ) : (
               <Sofa
-                className={cn("h-4 w-4", mode === m ? "text-[var(--color-champagne)]" : "")}
+                className={cn("h-4 w-4", mode === m ? "text-[var(--color-navy)]" : "")}
                 strokeWidth={1.75}
               />
             )}
@@ -537,7 +537,7 @@ export default function SearchBar({ variant = "hero" }: { variant?: "hero" | "co
         {/* Search button */}
         <button
           type="submit"
-          className="w-full rounded-2xl bg-[var(--color-champagne)] py-4 text-[16px] font-semibold text-white shadow-[0_4px_20px_rgba(184,155,110,0.45)] transition-all hover:bg-[#a68850] active:scale-[0.99]"
+          className="w-full rounded-2xl bg-[var(--color-navy)] py-4 text-[16px] font-semibold text-white shadow-[0_4px_20px_rgba(13,31,60,0.4)] transition-all hover:bg-[var(--color-navy-light)] active:scale-[0.99]"
         >
           Search
         </button>

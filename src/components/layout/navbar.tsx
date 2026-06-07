@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 const navLinks = [
   { href: "/search", label: "Charter" },
   { href: "/search?category=empty-legs", label: "Empty Legs" },
+  { href: "/aircraft-sales", label: "Aircraft Sales" },
   { href: "/tracking", label: "Live Tracking" },
   { href: "/dashboard", label: "My Trips" },
 ];
@@ -20,7 +21,7 @@ export function Navbar() {
       <nav className="mx-auto flex h-14 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         {/* Wordmark */}
         <Link href="/" className="flex items-center gap-2 shrink-0">
-          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[var(--color-champagne)]">
+          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#0d1f3c]">
             <PlaneTakeoff className="h-3.5 w-3.5 text-white" strokeWidth={2} />
           </div>
           <span className="font-serif text-[20px] leading-none tracking-[0.06em] text-[var(--color-ink)]">
@@ -29,12 +30,12 @@ export function Navbar() {
         </Link>
 
         {/* Desktop nav */}
-        <ul className="hidden items-center gap-8 md:flex">
+        <ul className="hidden items-center gap-7 md:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
-                className="text-[14px] text-neutral-500 transition-colors hover:text-neutral-900"
+                className="text-[13px] text-neutral-500 transition-colors hover:text-neutral-900"
               >
                 {link.label}
               </Link>
@@ -46,13 +47,13 @@ export function Navbar() {
         <div className="hidden items-center gap-3 md:flex">
           <Link
             href="/auth/login"
-            className="text-[14px] font-medium text-neutral-600 hover:text-neutral-900 transition-colors"
+            className="text-[13px] font-medium text-neutral-600 hover:text-neutral-900 transition-colors"
           >
             Sign in
           </Link>
           <Link
             href="/auth/register"
-            className="inline-flex items-center rounded-full bg-[var(--color-ink)] px-5 py-2 text-[13px] font-medium text-white hover:bg-[var(--color-champagne)] transition-colors"
+            className="inline-flex items-center rounded-full bg-[#0d1f3c] px-5 py-2 text-[13px] font-medium text-white hover:bg-[#1a3461] transition-colors"
           >
             Reserve
           </Link>
@@ -73,7 +74,7 @@ export function Navbar() {
       <div
         className={cn(
           "overflow-hidden border-t border-neutral-100 transition-all duration-200 md:hidden",
-          mobileOpen ? "max-h-80" : "max-h-0"
+          mobileOpen ? "max-h-96" : "max-h-0"
         )}
       >
         <div className="space-y-1 bg-white px-4 py-3">
@@ -98,7 +99,7 @@ export function Navbar() {
             <Link
               href="/auth/register"
               onClick={() => setMobileOpen(false)}
-              className="flex-1 rounded-full bg-[var(--color-champagne)] py-2.5 text-center text-[14px] font-medium text-white"
+              className="flex-1 rounded-full bg-[#0d1f3c] py-2.5 text-center text-[14px] font-medium text-white"
             >
               Reserve
             </Link>
