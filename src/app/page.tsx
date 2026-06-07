@@ -1,25 +1,21 @@
 import Link from "next/link";
+import type { Metadata } from "next";
 import {
-  PlaneTakeoff,
-  ArrowRight,
-  BellRing,
-  ChevronRight,
-  Shield,
-  Clock,
-  Globe,
-  Headphones,
-  Users,
-  PawPrint,
-  Baby,
-  ChefHat,
-  Car,
+  PlaneTakeoff, ArrowRight, BellRing, ChevronRight,
+  Shield, Clock, Globe, Headphones, Users,
+  PawPrint, Baby, ChefHat, Car, CheckCircle2, Plus, Minus,
 } from "lucide-react";
 import SearchBar from "@/components/search/search-bar";
 import emptyLegs from "@/data/empty-legs.json";
 
-function fmt(n: number) {
-  return n.toLocaleString("en-US");
-}
+export const metadata: Metadata = {
+  title: "Private Jet Charter, Jet Card & Aircraft Sales",
+  description:
+    "Book a private jet from $6,500/hr — no blackout dates, no hidden fees, ARGUS-certified operators. Jet cards, empty legs, and aircraft sales across 5,000+ airports worldwide.",
+  alternates: { canonical: "/" },
+};
+
+function fmt(n: number) { return n.toLocaleString("en-US"); }
 function fmtDate(iso: string) {
   const d = new Date(iso + "T12:00:00Z");
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
@@ -35,18 +31,37 @@ const DEAL_GRADIENTS = [
 ];
 
 const AIRCRAFT_CLASSES = [
-  { label: "Light Jet",        seats: "4–8 seats",   from: 6500,  href: "/search?category=light" },
-  { label: "Midsize Jet",      seats: "7–9 seats",   from: 7500,  href: "/search?category=midsize" },
-  { label: "Super Midsize",    seats: "7–9 seats",   from: 8500,  href: "/search?category=super_midsize" },
-  { label: "Heavy Jet",        seats: "10–19 seats", from: 9500,  href: "/search?category=heavy" },
-  { label: "Ultra Long Range", seats: "13–19 seats", from: 13500, href: "/search?category=ultra_long" },
+  { label: "Light Jet",        seats: "4–8 seats",   from: 6500,  market: 8320,  href: "/search?category=light" },
+  { label: "Midsize Jet",      seats: "7–9 seats",   from: 7500,  market: 9577,  href: "/search?category=midsize" },
+  { label: "Super Midsize",    seats: "7–9 seats",   from: 8500,  market: 12317, href: "/search?category=super_midsize" },
+  { label: "Heavy Jet",        seats: "10–19 seats", from: 9500,  market: 15264, href: "/search?category=heavy" },
+  { label: "Ultra Long Range", seats: "13–19 seats", from: 13500, market: 19208, href: "/search?category=ultra_long" },
 ];
 
 const TRUST_PILLARS = [
-  { icon: Shield,     label: "ARGUS Platinum",  sub: "Every operator certified" },
-  { icon: Globe,      label: "5,000+ Airports", sub: "Worldwide access" },
-  { icon: Clock,      label: "<2 hr Quote",     sub: "Standard requests" },
-  { icon: Headphones, label: "24/7 Concierge",  sub: "Dedicated team" },
+  { icon: Shield,     label: "ARGUS Platinum",     sub: "Every operator independently certified" },
+  { icon: Globe,      label: "5,000+ Airports",    sub: "Access across 6 continents" },
+  { icon: Clock,      label: "Quoted in <2 hrs",   sub: "Confirmed by DocuSign" },
+  { icon: Headphones, label: "24/7 Concierge",     sub: "Senior aviation advisors" },
+];
+
+const FAQS = [
+  {
+    q: "How much does a private jet charter cost?",
+    a: "EXJET charter rates start at $6,500/hr for a Light Jet, $7,500/hr for Midsize, $8,500/hr for Super Midsize, $9,500/hr for Heavy, and $13,500/hr for Ultra Long Range — significantly below the industry average jet card rate of $8,320–$19,208/hr depending on category.",
+  },
+  {
+    q: "What is an empty leg flight?",
+    a: "An empty leg (also called a deadhead flight) is a private jet flying without passengers to reposition for its next charter. EXJET purchases these repositioning flights and lists them at 50–75% off retail price — offering the same aircraft and crew at a fraction of the cost.",
+  },
+  {
+    q: "What is the EXJET Card?",
+    a: "The EXJET Card is our deposit-based jet card program. You pre-fund a balance starting from $100,000, then fly at fixed wholesale rates with no blackout dates, no hidden fees, and no expiration on funds. Unlike traditional jet cards, we show you the operator's cost and our management fee separately.",
+  },
+  {
+    q: "How quickly can I book a private jet?",
+    a: "Most charter requests receive a confirmed quote within two hours. With proper notice (24–48 hours), aircraft availability is guaranteed for EXJET Card holders. For same-day requests, contact our 24/7 concierge team directly.",
+  },
 ];
 
 export default function HomePage() {
@@ -68,10 +83,10 @@ export default function HomePage() {
             Global Access,<br />On-Demand.
           </h1>
           <p className="mb-7 text-[14px] leading-relaxed text-neutral-500">
-            5,000+ airports worldwide. Confirmed quotes in under two hours.
+            Book a private jet from $6,500/hr — no blackout dates, no hidden fees,
+            ARGUS-certified operators across 5,000+ airports worldwide.
           </p>
 
-          {/* Search form on light gray bg — white cards float naturally */}
           <SearchBar />
         </div>
 
@@ -101,20 +116,20 @@ export default function HomePage() {
             {[
               {
                 label: "Charter a Flight",
-                sub: "One-way, round-trip, or multi-leg. Quoted in under two hours.",
+                sub: "On-demand private jet charter. One-way, round-trip, or multi-leg. Confirmed quotes in under two hours.",
                 href: "/search",
                 cta: "Search now",
               },
               {
                 label: "The EXJET Card",
-                sub: "Deposit-based access from $100K. Fixed rates, guaranteed availability.",
+                sub: "Deposit-based jet card from $100K. Fixed wholesale rates, no blackout dates, no hidden fees. Fully refundable.",
                 href: "/membership",
                 cta: "Learn more",
                 featured: true,
               },
               {
                 label: "Empty Leg Flights",
-                sub: "Save 50–75% on repositioning flights. Limited availability.",
+                sub: "Save 50–75% on repositioning flights. Same aircraft, same crew — at a fraction of the charter price.",
                 href: "/search?category=empty-legs",
                 cta: "See deals",
               },
@@ -152,7 +167,7 @@ export default function HomePage() {
           <div className="mb-5 flex items-center justify-between">
             <div>
               <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-400">Empty Legs</p>
-              <h2 className="mt-1 text-[17px] font-semibold text-[#0a1628]">Jet Deals</h2>
+              <h2 className="mt-1 text-[17px] font-semibold text-[#0a1628]">Jet Deals — Up to 75% Off</h2>
             </div>
             <div className="flex items-center gap-4">
               <Link
@@ -207,32 +222,41 @@ export default function HomePage() {
       {/* ══ 4. AIRCRAFT CLASSES ══════════════════════════ */}
       <section className="bg-white px-4 py-10">
         <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">
-          <div className="mb-5">
+          <div className="mb-2">
             <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-400">Fleet</p>
             <h2 className="mt-1 text-[17px] font-semibold text-[#0a1628]">Choose your aircraft</h2>
           </div>
+          <p className="mb-5 text-[12px] text-neutral-400">
+            EXJET rates are 20–50% below the industry average jet card rate (Q4 2025 avg: $8,320–$19,208/hr by class).
+          </p>
           <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-5">
-            {AIRCRAFT_CLASSES.map((cls) => (
-              <Link
-                key={cls.label}
-                href={cls.href}
-                className="group flex flex-col justify-between rounded-2xl border border-neutral-200 bg-[#f2f2f7] p-4 transition-all hover:border-[#0d1f3c] hover:bg-[#0d1f3c]"
-              >
-                <div>
-                  <p className="text-[14px] font-semibold text-[#0a1628] group-hover:text-white">{cls.label}</p>
-                  <div className="mt-1.5 flex items-center gap-1.5">
-                    <Users className="h-3 w-3 text-neutral-400 group-hover:text-[rgba(255,255,255,0.5)]" strokeWidth={1.75} />
-                    <span className="text-[12px] text-neutral-500 group-hover:text-[rgba(255,255,255,0.6)]">{cls.seats}</span>
+            {AIRCRAFT_CLASSES.map((cls) => {
+              const savings = Math.round(((cls.market - cls.from) / cls.market) * 100);
+              return (
+                <Link
+                  key={cls.label}
+                  href={cls.href}
+                  className="group flex flex-col justify-between rounded-2xl border border-neutral-200 bg-[#f2f2f7] p-4 transition-all hover:border-[#0d1f3c] hover:bg-[#0d1f3c]"
+                >
+                  <div>
+                    <p className="text-[14px] font-semibold text-[#0a1628] group-hover:text-white">{cls.label}</p>
+                    <div className="mt-1.5 flex items-center gap-1.5">
+                      <Users className="h-3 w-3 text-neutral-400 group-hover:text-[rgba(255,255,255,0.5)]" strokeWidth={1.75} />
+                      <span className="text-[12px] text-neutral-500 group-hover:text-[rgba(255,255,255,0.6)]">{cls.seats}</span>
+                    </div>
                   </div>
-                </div>
-                <div className="mt-4 pt-3 border-t border-neutral-200 group-hover:border-[rgba(255,255,255,0.15)]">
-                  <p className="font-mono text-[9px] uppercase tracking-widest text-neutral-400 group-hover:text-[rgba(255,255,255,0.4)]">From</p>
-                  <p className="text-[13px] font-semibold text-[#0a1628] group-hover:text-white">
-                    ${fmt(cls.from)}<span className="text-[11px] font-normal">/hr</span>
-                  </p>
-                </div>
-              </Link>
-            ))}
+                  <div className="mt-4 border-t border-neutral-200 pt-3 group-hover:border-[rgba(255,255,255,0.15)]">
+                    <p className="font-mono text-[9px] uppercase tracking-widest text-neutral-400 group-hover:text-[rgba(255,255,255,0.4)]">From</p>
+                    <p className="text-[13px] font-semibold text-[#0a1628] group-hover:text-white">
+                      ${fmt(cls.from)}<span className="text-[11px] font-normal">/hr</span>
+                    </p>
+                    <p className="mt-0.5 font-mono text-[9px] text-emerald-600 group-hover:text-emerald-400">
+                      Save ~{savings}% vs avg
+                    </p>
+                  </div>
+                </Link>
+              );
+            })}
           </div>
         </div>
       </section>
@@ -255,6 +279,26 @@ export default function HomePage() {
               </div>
             ))}
           </div>
+
+          {/* Competitive advantage callout */}
+          <div className="mt-4 rounded-2xl border border-neutral-200 bg-white p-5">
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
+              {[
+                { label: "No blackout dates", sub: "365 days/year including holidays" },
+                { label: "No peak day surcharges", sub: "Fixed rate every single day" },
+                { label: "No hidden fees", sub: "Operator cost shown on every quote" },
+                { label: "Funds never expire", sub: "Fully refundable jet card deposit" },
+              ].map((item) => (
+                <div key={item.label} className="flex items-start gap-2">
+                  <CheckCircle2 className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#0d1f3c]" strokeWidth={2} />
+                  <div>
+                    <p className="text-[12px] font-semibold text-[#0a1628]">{item.label}</p>
+                    <p className="mt-0.5 text-[11px] text-neutral-500">{item.sub}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -267,7 +311,7 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
             {[
-              { title: "EXJET Pet",        sub: "Pets travel in the cabin — no cargo holds, no compromise.",  icon: PawPrint },
+              { title: "EXJET Pet",        sub: "Pets travel in the cabin — no cargo holds, no compromise.",   icon: PawPrint },
               { title: "EXJET Kids",       sub: "Family-first cabins with curated children's menus on board.", icon: Baby },
               { title: "Private Dining",   sub: "Michelin-quality catering sourced from your destination.",    icon: ChefHat },
               { title: "Ground Concierge", sub: "Transfers, hotel bookings, yacht charters — all arranged.",   icon: Car },
@@ -284,8 +328,37 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ══ 7. CLOSING CTA ═══════════════════════════════ */}
-      <section className="bg-[#f2f2f7] px-4 py-10">
+      {/* ══ 7. FAQ ═══════════════════════════════════════ */}
+      <section id="faq" className="bg-[#f2f2f7] px-4 py-10">
+        <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-3xl">
+          <div className="mb-5">
+            <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-400">Common Questions</p>
+            <h2 className="mt-1 text-[17px] font-semibold text-[#0a1628]">Private jet FAQs</h2>
+          </div>
+          <div className="divide-y divide-neutral-200 overflow-hidden rounded-2xl border border-neutral-200 bg-white">
+            {FAQS.map((faq) => (
+              <details key={faq.q} className="group">
+                <summary className="flex cursor-pointer list-none items-center justify-between gap-4 px-5 py-4 text-[13px] font-medium text-[#0a1628]">
+                  {faq.q}
+                  <Plus className="h-4 w-4 shrink-0 text-neutral-400 transition-transform group-open:rotate-45" strokeWidth={2} />
+                </summary>
+                <div className="border-t border-neutral-100 px-5 pb-4 pt-3 text-[13px] leading-relaxed text-neutral-600">
+                  {faq.a}
+                </div>
+              </details>
+            ))}
+          </div>
+          <p className="mt-4 text-center text-[12px] text-neutral-400">
+            More questions?{" "}
+            <Link href="/auth/register" className="text-[#0d1f3c] hover:underline">
+              Speak with a concierge →
+            </Link>
+          </p>
+        </div>
+      </section>
+
+      {/* ══ 8. CLOSING CTA ═══════════════════════════════ */}
+      <section className="bg-white px-4 py-10">
         <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">
           <div className="overflow-hidden rounded-3xl bg-[#0d1f3c] px-8 py-12 text-center">
             <div className="mb-4 flex justify-center">

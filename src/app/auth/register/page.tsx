@@ -104,9 +104,9 @@ export default function RegisterPage() {
             <input type="checkbox" checked={agreedToTerms} onChange={(e) => setAgreedToTerms(e.target.checked)} className="mt-0.5 h-4 w-4 rounded border-neutral-300 accent-[#0d1f3c]" />
             <span className="text-[12px] text-neutral-500">
               I agree to EXJET&apos;s{" "}
-              <Link href="#" className="text-[#0d1f3c] hover:underline">Terms of Service</Link>
+              <Link href="/terms" className="text-[#0d1f3c] hover:underline">Terms of Service</Link>
               {" "}and{" "}
-              <Link href="#" className="text-[#0d1f3c] hover:underline">Privacy Policy</Link>
+              <Link href="/privacy" className="text-[#0d1f3c] hover:underline">Privacy Policy</Link>
             </span>
           </label>
 

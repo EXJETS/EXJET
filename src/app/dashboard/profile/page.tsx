@@ -2,9 +2,21 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, User, Save, Plane } from "lucide-react";
+import { ArrowLeft, User, Save, Plane, CheckCircle2 } from "lucide-react";
 
 export default function ProfilePage() {
+  const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = () => {
+    setSaving(true);
+    setTimeout(() => {
+      setSaving(false);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    }, 900);
+  };
+
   const [form, setForm] = useState({
     firstName: "John", lastName: "Doe", email: "john.doe@example.com",
     phone: "+1 (555) 123-4567", dob: "1985-06-15",
@@ -147,8 +159,22 @@ export default function ProfilePage() {
           </div>
         </div>
 
-        <button className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#0d1f3c] px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-[#1a3461] active:scale-[0.98]">
-          <Save className="h-3.5 w-3.5" strokeWidth={2} /> Save Changes
+        {saved && (
+          <div className="mb-4 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-3">
+            <CheckCircle2 className="h-4 w-4 shrink-0 text-[#0d1f3c]" strokeWidth={2} />
+            <p className="text-[13px] text-neutral-700">Profile saved successfully.</p>
+          </div>
+        )}
+        <button
+          onClick={handleSave}
+          disabled={saving}
+          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#0d1f3c] px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-[#1a3461] active:scale-[0.98] disabled:opacity-60"
+        >
+          {saving ? (
+            <>Saving…</>
+          ) : (
+            <><Save className="h-3.5 w-3.5" strokeWidth={2} /> Save Changes</>
+          )}
         </button>
       </div>
     </div>

@@ -12,8 +12,8 @@ const columns = [
     title: "Book",
     links: [
       { label: "Charter a Jet", href: "/search" },
-      { label: "Empty Legs", href: "/search?mode=empty" },
-      { label: "Browse Fleet", href: "/jets" },
+      { label: "Empty Legs", href: "/search?category=empty-legs" },
+      { label: "Browse Fleet", href: "/search" },
       { label: "Aircraft Sales", href: "/aircraft-sales" },
       { label: "Membership", href: "/membership" },
     ],
@@ -22,18 +22,18 @@ const columns = [
     title: "Company",
     links: [
       { label: "About", href: "/about" },
-      { label: "Careers", href: "/careers" },
-      { label: "Press", href: "/press" },
+      { label: "Careers", href: "/about" },
+      { label: "Press", href: "/about" },
       { label: "Contact", href: "/contact" },
     ],
   },
   {
     title: "Support",
     links: [
-      { label: "Help Center", href: "/help" },
-      { label: "Safety", href: "/safety" },
-      { label: "FAQ", href: "/faq" },
-      { label: "Status", href: "/status" },
+      { label: "Help Center", href: "/contact" },
+      { label: "Safety", href: "/about" },
+      { label: "FAQ", href: "/#faq" },
+      { label: "Contact", href: "/contact" },
     ],
   },
   {
@@ -41,8 +41,8 @@ const columns = [
     links: [
       { label: "Terms", href: "/terms" },
       { label: "Privacy", href: "/privacy" },
-      { label: "Cookies", href: "/cookies" },
-      { label: "Refunds", href: "/refunds" },
+      { label: "Cookies", href: "/privacy" },
+      { label: "Refunds", href: "/terms" },
     ],
   },
 ];

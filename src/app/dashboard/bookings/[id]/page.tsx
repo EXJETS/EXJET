@@ -1,13 +1,18 @@
+"use client";
+
+import { use, useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, Plane, MapPin, Calendar, Users, Download, Phone, X } from "lucide-react";
+import { ArrowLeft, Plane, MapPin, Calendar, Users, Download, Phone, X, CheckCircle2 } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 
-export default async function BookingDetailPage({
+export default function BookingDetailPage({
   params,
 }: {
   params: Promise<{ id: string }>;
 }) {
-  const { id } = await params;
+  const { id } = use(params);
+  const [cancelConfirm, setCancelConfirm] = useState(false);
+  const [cancelled, setCancelled] = useState(false);
 
   const booking = {
     id,
@@ -20,7 +25,7 @@ export default async function BookingDetailPage({
     date: "2026-04-15",
     returnDate: "2026-04-20",
     passengers: 4,
-    status: "confirmed",
+    status: cancelled ? "cancelled" : "confirmed",
     basePrice: 46000,
     fuelSurcharge: 6900,
     taxes: 4497,
@@ -31,6 +36,13 @@ export default async function BookingDetailPage({
       { name: "Alex Smith", email: "alex@example.com", passport: "US1122334" },
       { name: "Sarah Johnson", email: "sarah@example.com", passport: "US4433221" },
     ],
+  };
+
+  const handleDownload = () => window.print();
+
+  const handleCancel = () => {
+    setCancelled(true);
+    setCancelConfirm(false);
   };
 
   return (
@@ -55,7 +67,11 @@ export default async function BookingDetailPage({
                 <p className="text-[12px] text-neutral-500">{booking.manufacturer} · {booking.category}</p>
               </div>
             </div>
-            <span className="inline-flex items-center rounded-full bg-emerald-50 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest text-emerald-700 ring-1 ring-emerald-200">
+            <span className={`inline-flex items-center rounded-full px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-widest ring-1 ${
+              cancelled
+                ? "bg-red-50 text-red-700 ring-red-200"
+                : "bg-emerald-50 text-emerald-700 ring-emerald-200"
+            }`}>
               {booking.status}
             </span>
           </div>
@@ -133,17 +149,62 @@ export default async function BookingDetailPage({
           </div>
         </div>
 
+        {/* Cancel confirm modal */}
+        {cancelConfirm && (
+          <div className="mb-6 rounded-2xl border border-red-200 bg-red-50 p-5">
+            <p className="text-[14px] font-semibold text-red-900">Cancel this booking?</p>
+            <p className="mt-1 text-[13px] text-red-700">
+              Free cancellation applies up to 48 hours before departure. This action cannot be undone.
+            </p>
+            <div className="mt-4 flex gap-3">
+              <button
+                onClick={handleCancel}
+                className="inline-flex items-center gap-2 rounded-full bg-red-600 px-5 py-2.5 text-[12px] font-medium text-white hover:bg-red-700"
+              >
+                <X className="h-3.5 w-3.5" strokeWidth={2} /> Yes, cancel booking
+              </button>
+              <button
+                onClick={() => setCancelConfirm(false)}
+                className="inline-flex items-center rounded-full border border-neutral-300 bg-white px-5 py-2.5 text-[12px] font-medium text-[#0a1628] hover:bg-neutral-100"
+              >
+                Keep booking
+              </button>
+            </div>
+          </div>
+        )}
+
+        {/* Cancelled success */}
+        {cancelled && (
+          <div className="mb-6 flex items-center gap-3 rounded-2xl border border-neutral-200 bg-white p-5">
+            <CheckCircle2 className="h-5 w-5 shrink-0 text-[#0d1f3c]" strokeWidth={1.75} />
+            <p className="text-[13px] text-neutral-700">
+              Booking cancelled. A refund of <span className="font-semibold">{formatCurrency(booking.total)}</span> will be processed within 5–7 business days.
+            </p>
+          </div>
+        )}
+
         {/* Actions */}
         <div className="flex flex-wrap gap-3">
-          <button className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-5 py-2.5 text-[12px] font-medium text-[#0a1628] transition-colors hover:border-neutral-400 hover:bg-neutral-100">
+          <button
+            onClick={handleDownload}
+            className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-5 py-2.5 text-[12px] font-medium text-[#0a1628] transition-colors hover:border-neutral-400 hover:bg-neutral-100"
+          >
             <Download className="h-3.5 w-3.5" strokeWidth={1.75} /> Download Itinerary
           </button>
-          <button className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-5 py-2.5 text-[12px] font-medium text-[#0a1628] transition-colors hover:border-neutral-400 hover:bg-neutral-100">
+          <a
+            href="tel:+18883995387"
+            className="inline-flex items-center gap-2 rounded-full border border-neutral-300 bg-neutral-50 px-5 py-2.5 text-[12px] font-medium text-[#0a1628] transition-colors hover:border-neutral-400 hover:bg-neutral-100"
+          >
             <Phone className="h-3.5 w-3.5" strokeWidth={1.75} /> Contact Support
-          </button>
-          <button className="inline-flex items-center gap-2 rounded-full bg-red-50 px-5 py-2.5 text-[12px] font-medium text-red-700 ring-1 ring-red-200 transition-colors hover:bg-red-500/15">
-            <X className="h-3.5 w-3.5" strokeWidth={1.75} /> Cancel Booking
-          </button>
+          </a>
+          {!cancelled && (
+            <button
+              onClick={() => setCancelConfirm(true)}
+              className="inline-flex items-center gap-2 rounded-full bg-red-50 px-5 py-2.5 text-[12px] font-medium text-red-700 ring-1 ring-red-200 transition-colors hover:bg-red-500/15"
+            >
+              <X className="h-3.5 w-3.5" strokeWidth={1.75} /> Cancel Booking
+            </button>
+          )}
         </div>
       </div>
     </div>
