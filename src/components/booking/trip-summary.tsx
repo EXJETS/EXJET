@@ -25,7 +25,7 @@ export default function TripSummary() {
           <Plane className="h-5 w-5 text-neutral-800" strokeWidth={1.75} />
         </div>
         <div className="min-w-0">
-          <p className="truncate text-[14px] font-semibold tracking-tight text-neutral-950">{jet.name}</p>
+          <p className="truncate text-[14px] font-semibold tracking-tight text-[#0a1628]">{jet.name}</p>
           <p className="text-[12px] text-neutral-500">{getCategoryLabel(jet.category)}</p>
         </div>
       </div>
@@ -35,16 +35,16 @@ export default function TripSummary() {
         <div className="space-y-2 border-b border-neutral-200 py-4">
           {departureAirport && (
             <div className="flex items-center gap-2 text-[13px]">
-              <MapPin className="h-3.5 w-3.5 text-emerald-600" strokeWidth={2} />
+              <MapPin className="h-3.5 w-3.5 text-[#0d1f3c]" strokeWidth={1.75} />
               <span className="text-neutral-500">From</span>
-              <span className="font-medium text-neutral-950">{departureAirport.city} ({departureAirport.code})</span>
+              <span className="font-medium text-[#0a1628]">{departureAirport.city} ({departureAirport.code})</span>
             </div>
           )}
           {arrivalAirport && (
             <div className="flex items-center gap-2 text-[13px]">
-              <MapPin className="h-3.5 w-3.5 text-red-600" strokeWidth={2} />
+              <MapPin className="h-3.5 w-3.5 text-neutral-400" strokeWidth={1.75} />
               <span className="text-neutral-500">To</span>
-              <span className="font-medium text-neutral-950">{arrivalAirport.city} ({arrivalAirport.code})</span>
+              <span className="font-medium text-[#0a1628]">{arrivalAirport.city} ({arrivalAirport.code})</span>
             </div>
           )}
         </div>
@@ -56,7 +56,7 @@ export default function TripSummary() {
           <div className="flex items-center gap-2 text-[13px]">
             <Calendar className="h-3.5 w-3.5 text-neutral-400" strokeWidth={1.75} />
             <span className="text-neutral-500">Departure</span>
-            <span className="font-medium text-neutral-950">
+            <span className="font-medium text-[#0a1628]">
               {new Date(departureDate).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })}
             </span>
           </div>
@@ -65,7 +65,7 @@ export default function TripSummary() {
           <div className="flex items-center gap-2 text-[13px]">
             <Calendar className="h-3.5 w-3.5 text-neutral-400" strokeWidth={1.75} />
             <span className="text-neutral-500">Return</span>
-            <span className="font-medium text-neutral-950">
+            <span className="font-medium text-[#0a1628]">
               {new Date(returnDate).toLocaleDateString("en-US", { weekday: "short", month: "short", day: "numeric" })}
             </span>
           </div>
@@ -73,7 +73,7 @@ export default function TripSummary() {
         <div className="flex items-center gap-2 text-[13px]">
           <Users className="h-3.5 w-3.5 text-neutral-400" strokeWidth={1.75} />
           <span className="text-neutral-500">Passengers</span>
-          <span className="font-medium text-neutral-950">{passengerCount}</span>
+          <span className="font-medium text-[#0a1628]">{passengerCount}</span>
         </div>
       </div>
 
@@ -85,19 +85,19 @@ export default function TripSummary() {
         </div>
         <div className="flex justify-between text-[13px]">
           <span className="text-neutral-600">Base charter price</span>
-          <span className="text-neutral-950">{formatCurrency(basePrice)}</span>
+          <span className="text-[#0a1628]">{formatCurrency(basePrice)}</span>
         </div>
         <div className="flex justify-between text-[13px]">
           <span className="text-neutral-600">Fuel surcharge (15%)</span>
-          <span className="text-neutral-950">{formatCurrency(fuelSurcharge)}</span>
+          <span className="text-[#0a1628]">{formatCurrency(fuelSurcharge)}</span>
         </div>
         <div className="flex justify-between text-[13px]">
           <span className="text-neutral-600">Taxes &amp; fees (8.5%)</span>
-          <span className="text-neutral-950">{formatCurrency(taxes)}</span>
+          <span className="text-[#0a1628]">{formatCurrency(taxes)}</span>
         </div>
         <div className="mt-3 flex items-baseline justify-between border-t border-neutral-200 pt-3">
-          <span className="text-[14px] font-semibold text-neutral-950">Total</span>
-          <span className="text-[18px] font-semibold tracking-tight text-neutral-950">{formatCurrency(total)}</span>
+          <span className="text-[14px] font-semibold text-[#0a1628]">Total</span>
+          <span className="text-[18px] font-semibold tracking-tight text-[#0a1628]">{formatCurrency(total)}</span>
         </div>
       </div>
     </div>

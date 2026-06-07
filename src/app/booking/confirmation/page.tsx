@@ -13,12 +13,12 @@ export default function ConfirmationPage() {
 
   if (!jet) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-white text-[#0a1628]">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-[#f2f2f7] text-[#0a1628]">
         <Plane className="mb-4 h-12 w-12 text-neutral-300" strokeWidth={1.25} />
         <h2 className="text-[20px] font-semibold tracking-tight">No booking found</h2>
         <Link
           href="/search"
-          className="mt-6 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-[#0a1628] hover:bg-[#1a3461]"
+          className="mt-6 rounded-full bg-[#0d1f3c] px-6 py-3 text-[13px] font-medium text-white hover:bg-[#1a3461]"
         >
           Browse Jets
         </Link>
@@ -63,12 +63,12 @@ export default function ConfirmationPage() {
 
           <div className="grid grid-cols-1 gap-4 py-5 sm:grid-cols-2">
             <InfoLine
-              icon={<MapPin className="h-4 w-4 text-emerald-700" strokeWidth={2} />}
+              icon={<MapPin className="h-4 w-4 text-[#0d1f3c]" strokeWidth={1.75} />}
               label="From"
               value={`${departureAirport?.city} (${departureAirport?.code})`}
             />
             <InfoLine
-              icon={<MapPin className="h-4 w-4 text-red-700" strokeWidth={2} />}
+              icon={<MapPin className="h-4 w-4 text-neutral-400" strokeWidth={1.75} />}
               label="To"
               value={`${arrivalAirport?.city} (${arrivalAirport?.code})`}
             />

@@ -122,7 +122,7 @@ function BookingContent() {
               <div className="relative">
                 <label className={labelCls}>Departure Airport</label>
                 <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-emerald-700" strokeWidth={2} />
+                  <MapPin className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-[#0d1f3c]" strokeWidth={1.75} />
                   <input
                     type="text"
                     placeholder="Search departure city or airport..."
@@ -158,7 +158,7 @@ function BookingContent() {
               <div className="relative">
                 <label className={labelCls}>Arrival Airport</label>
                 <div className="relative">
-                  <MapPin className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-red-700" strokeWidth={2} />
+                  <MapPin className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" strokeWidth={1.75} />
                   <input
                     type="text"
                     placeholder="Search arrival city or airport..."

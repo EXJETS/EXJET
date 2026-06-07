@@ -1,14 +1,13 @@
 @import "tailwindcss";
 
 @theme {
-  /* Premium ivory + ink + champagne palette
-     (Gulfstream / Rolls-Royce / Mercedes editorial) */
-  --color-background: #faf8f4;   /* ivory canvas */
-  --color-foreground: #1a1714;   /* warm ink */
-  --color-muted: #6b6157;        /* warm muted */
-  --color-subtle: #8a8079;       /* subtle warm */
-  --color-hairline: rgba(26, 23, 20, 0.10);
-  --color-hairline-strong: rgba(26, 23, 20, 0.18);
+  /* EXJET brand — midnight navy + silver + white */
+  --color-background: #f2f2f7;   /* silver canvas */
+  --color-foreground: #0a1628;   /* midnight navy */
+  --color-muted: #6b7280;        /* neutral muted */
+  --color-subtle: #9ca3af;       /* neutral subtle */
+  --color-hairline: rgba(10, 22, 40, 0.10);
+  --color-hairline-strong: rgba(10, 22, 40, 0.18);
 
   --color-ivory: #f2f2f7;
   --color-ivory-deep: #e8e8ed;
@@ -49,7 +48,7 @@ body {
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1, "cv11" 1;
   letter-spacing: -0.011em;
   background: #f2f2f7;
-  color: #1a1714;
+  color: #0a1628;
 }
 
 /* ==========================================================
@@ -186,17 +185,12 @@ body {
 .mesh-hero {
   background-image: radial-gradient(
       ellipse 80% 50% at 50% -20%,
-      rgba(184, 155, 110, 0.18),
+      rgba(13, 31, 60, 0.15),
       transparent 60%
     ),
     radial-gradient(
       ellipse 60% 50% at 80% 60%,
-      rgba(184, 155, 110, 0.10),
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse 60% 50% at 20% 50%,
-      rgba(26, 23, 20, 0.04),
+      rgba(26, 52, 97, 0.10),
       transparent 50%
     );
 }
@@ -247,11 +241,11 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-.gradient-text-champagne {
+.gradient-text-navy {
   background: linear-gradient(
     180deg,
-    #b89b6e 0%,
-    #8b6f44 100%
+    #0d1f3c 0%,
+    #1a3461 100%
   );
   -webkit-background-clip: text;
   background-clip: text;

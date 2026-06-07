@@ -19,12 +19,12 @@ export default function ReviewPage() {
 
   if (!jet) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-white text-[#0a1628]">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-[#f2f2f7] text-[#0a1628]">
         <Plane className="mb-4 h-12 w-12 text-neutral-300" strokeWidth={1.25} />
         <h2 className="text-[20px] font-semibold tracking-tight">Start from the beginning</h2>
         <Link
           href="/search"
-          className="mt-6 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-[#0a1628] hover:bg-[#1a3461]"
+          className="mt-6 rounded-full bg-[#0d1f3c] px-6 py-3 text-[13px] font-medium text-white hover:bg-[#1a3461]"
         >
           Browse Jets
         </Link>
@@ -64,12 +64,12 @@ export default function ReviewPage() {
                 </div>
                 <div className="flex flex-wrap items-center gap-6 pl-[52px]">
                   <div className="flex items-center gap-2">
-                    <MapPin className="h-3.5 w-3.5 text-emerald-700" strokeWidth={2} />
+                    <MapPin className="h-3.5 w-3.5 text-[#0d1f3c]" strokeWidth={1.75} />
                     <span className="text-[13px] text-neutral-800">{departureAirport?.city} ({departureAirport?.code})</span>
                   </div>
                   <span className="text-neutral-400">→</span>
                   <div className="flex items-center gap-2">
-                    <MapPin className="h-3.5 w-3.5 text-red-700" strokeWidth={2} />
+                    <MapPin className="h-3.5 w-3.5 text-neutral-400" strokeWidth={1.75} />
                     <span className="text-[13px] text-neutral-800">{arrivalAirport?.city} ({arrivalAirport?.code})</span>
                   </div>
                 </div>

@@ -86,7 +86,7 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
             className={cn(
               "absolute right-4 top-4 flex h-8 w-8 items-center justify-center rounded-full border transition-all duration-300",
               dark
-                ? "border-neutral-300 bg-neutral-300 text-neutral-950 backdrop-blur-md"
+                ? "border-neutral-300 bg-neutral-300 text-[#0a1628] backdrop-blur-md"
                 : "border-neutral-300 bg-white/80 text-neutral-800",
               hovered ? "opacity-100 translate-x-0 -translate-y-0" : "opacity-0 translate-x-1 translate-y-1"
             )}
@@ -102,7 +102,7 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
               <h3
                 className={cn(
                   "truncate text-[15px] font-semibold tracking-tight",
-                  dark ? "text-neutral-950" : "text-neutral-950"
+                  dark ? "text-[#0a1628]" : "text-[#0a1628]"
                 )}
               >
                 {jet.name}
@@ -118,11 +118,11 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
             </div>
             {jet.rating && (
               <div className="flex shrink-0 items-center gap-1">
-                <Star className="h-3.5 w-3.5 fill-white text-neutral-950" />
+                <Star className="h-3.5 w-3.5 fill-[#0d1f3c] text-[#0d1f3c]" />
                 <span
                   className={cn(
                     "text-[12px] font-medium",
-                    dark ? "text-neutral-950" : "text-neutral-900"
+                    dark ? "text-[#0a1628]" : "text-neutral-900"
                   )}
                 >
                   {jet.rating.toFixed(1)}
@@ -181,7 +181,7 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
               <span
                 className={cn(
                   "text-[18px] font-semibold tracking-tight",
-                  dark ? "text-neutral-950" : "text-neutral-950"
+                  dark ? "text-[#0a1628]" : "text-[#0a1628]"
                 )}
               >
                 {formatCurrency(jet.hourlyRate)}
@@ -198,7 +198,7 @@ export function JetCard({ jet, dark = false }: JetCardProps) {
             <span
               className={cn(
                 "inline-flex items-center gap-1 text-[12px] font-medium transition-transform",
-                dark ? "text-neutral-950" : "text-neutral-900",
+                dark ? "text-[#0a1628]" : "text-neutral-900",
                 hovered && "translate-x-0.5"
               )}
             >

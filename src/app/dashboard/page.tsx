@@ -3,7 +3,7 @@
 import Link from "next/link";
 import {
   Plane, Navigation, Star, MapPin, ArrowRight,
-  Radio, CreditCard,
+  CreditCard,
 } from "lucide-react";
 import { StatCard } from "@/components/dashboard/stat-card";
 import { StatusBadge } from "@/components/dashboard/status-badge";
@@ -73,7 +73,7 @@ export default function ClientDashboardPage() {
             </span>
           </div>
           <div className="h-28">
-            <MiniChart data={spendData} color="#ffffff" height={112} />
+            <MiniChart data={spendData} color="#0d1f3c" height={112} />
           </div>
         </div>
 
@@ -126,10 +126,10 @@ export default function ClientDashboardPage() {
         <div className="mb-4 flex items-center justify-between">
           <p className="font-mono text-[11px] uppercase tracking-widest text-neutral-600">Upcoming Trips</p>
           <Link
-            href="/dashboard/tracking"
+            href="/search"
             className="inline-flex items-center gap-1.5 text-[12px] font-medium text-neutral-700 transition-colors hover:text-[#0a1628]"
           >
-            <Radio className="h-3 w-3 text-emerald-700" strokeWidth={2} /> Track Fleet Live
+            View all
           </Link>
         </div>
         <div className="grid gap-3">
