@@ -275,7 +275,7 @@ export default function SearchBar({ variant = "hero" }: { variant?: "hero" | "co
             className={cn(
               "flex items-center gap-2 pb-3 text-[14px] font-medium transition-all",
               mode === m
-                ? "border-b-2 border-[var(--color-navy)] text-[var(--color-ink)]"
+                ? "border-b-2 border-[#0d1f3c] text-[#0a1628]"
                 : "text-neutral-400 hover:text-neutral-600"
             )}
           >

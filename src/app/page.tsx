@@ -25,53 +25,23 @@ function fmtDate(iso: string) {
   return d.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 }
 
-/* ── gradient palette for deal cards ─────────────────── */
+/* ── navy gradient palette for deal cards ─────────────── */
 const DEAL_GRADIENTS = [
-  "from-[#1a1714] to-[#3b3028]",
-  "from-[#0d1b2a] to-[#162235]",
-  "from-[#1a1424] to-[#2e1f3e]",
-  "from-[#0e1e18] to-[#1a3228]",
-  "from-[#1e1208] to-[#332011]",
-  "from-[#111827] to-[#1f2d3d]",
+  "from-[#0a1628] to-[#0d1f3c]",
+  "from-[#0d1f3c] to-[#162a50]",
+  "from-[#091522] to-[#0f2040]",
+  "from-[#0a1e35] to-[#112644]",
+  "from-[#0c1b30] to-[#1a3461]",
+  "from-[#071220] to-[#0d2540]",
 ];
 
 /* ── aircraft classes ─────────────────────────────────── */
 const AIRCRAFT_CLASSES = [
-  {
-    category: "Light",
-    example: "Phenom 300E / Citation CJ4",
-    seats: "6–8",
-    range: "2,000 nm",
-    from: 3200,
-  },
-  {
-    category: "Midsize",
-    example: "Citation XLS+ / Hawker 900XP",
-    seats: "7–9",
-    range: "2,800 nm",
-    from: 5600,
-  },
-  {
-    category: "Super Midsize",
-    example: "Challenger 350 / Citation Longitude",
-    seats: "8–10",
-    range: "3,400 nm",
-    from: 8500,
-  },
-  {
-    category: "Heavy",
-    example: "Gulfstream G450 / Challenger 605",
-    seats: "12–14",
-    range: "4,800 nm",
-    from: 11000,
-  },
-  {
-    category: "Ultra Long",
-    example: "Global 7500 / G650ER",
-    seats: "13–19",
-    range: "7,700 nm",
-    from: 15000,
-  },
+  { category: "Light", from: 3200 },
+  { category: "Midsize", from: 5600 },
+  { category: "Super Midsize", from: 8500 },
+  { category: "Heavy", from: 11000 },
+  { category: "Ultra Long", from: 15000 },
 ];
 
 /* ── trust pillars ────────────────────────────────────── */
@@ -100,44 +70,63 @@ export default function HomePage() {
   return (
     <div className="flex flex-col">
       {/* ══════════════════════════════════════════════
-          HERO
+          HERO — dark midnight navy (matches original EXJET)
       ══════════════════════════════════════════════ */}
-      <section className="relative bg-[#f2f2f7] px-4 pb-10 pt-20">
-        {/* champagne glow */}
-        <div
-          aria-hidden
-          className="pointer-events-none absolute inset-x-0 top-14 flex justify-center"
-        >
-          <div className="h-64 w-64 rounded-full bg-[#0d1f3c] opacity-[0.07] blur-[80px]" />
-        </div>
+      <section
+        className="px-4 pt-20 pb-12"
+        style={{
+          background:
+            "linear-gradient(180deg, #0a1628 0%, #0d1f3c 70%, #0f2347 100%)",
+        }}
+      >
+        <div className="mx-auto max-w-md">
+          {/* Eyebrow */}
+          <div className="mb-6 flex items-center gap-3">
+            <div className="h-px w-8 bg-[rgba(255,255,255,0.35)]" />
+            <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-[rgba(255,255,255,0.5)]">
+              Private Aviation
+            </span>
+          </div>
 
-        {/* Aircraft icon */}
-        <div className="relative mx-auto mb-6 flex max-w-7xl items-center justify-center">
-          <div className="flex h-28 w-28 items-center justify-center rounded-full bg-white shadow-[0_8px_40px_rgba(0,0,0,0.10)]">
-            <PlaneTakeoff
-              className="h-12 w-12 text-[var(--color-champagne)]"
-              strokeWidth={1.5}
-            />
+          {/* Headline */}
+          <h1 className="mb-4 font-serif text-[clamp(2.6rem,8vw,4.5rem)] font-normal leading-[1.05] text-white">
+            Global Access,
+            <br />
+            <span className="italic text-[rgba(255,255,255,0.45)]">
+              On-Demand.
+            </span>
+          </h1>
+
+          {/* Subtext */}
+          <p className="mb-8 text-[15px] leading-relaxed text-[rgba(255,255,255,0.55)]">
+            Private aviation across 5,000+ airports worldwide. Confirmed
+            quotes in under two hours.
+          </p>
+
+          {/* Search card — white on dark */}
+          <div className="overflow-hidden rounded-2xl bg-white shadow-[0_24px_80px_rgba(0,0,0,0.5)]">
+            <SearchBar />
           </div>
         </div>
 
-        {/* Headline */}
-        <div className="mx-auto mb-8 max-w-xl text-center">
-          <h1 className="font-serif text-[clamp(2.2rem,6vw,3.5rem)] font-normal leading-[1.05] tracking-[-0.02em] text-[var(--color-ink)]">
-            Private jets,
-            <br />
-            <span className="italic text-[var(--color-champagne)]">
-              on demand.
-            </span>
-          </h1>
-          <p className="mt-3 text-[15px] text-neutral-500">
-            5,000+ airports · confirmed in hours · ARGUS Platinum fleet
-          </p>
-        </div>
-
-        {/* Search widget */}
-        <div className="mx-auto max-w-md">
-          <SearchBar />
+        {/* Stats row — still dark bg */}
+        <div className="mx-auto mt-10 max-w-md border-t border-[rgba(255,255,255,0.1)] pt-8">
+          <div className="grid grid-cols-3 gap-4">
+            {[
+              { value: "4,500+", label: "Aircraft\non Platform" },
+              { value: "5,000+", label: "Airports\nWorldwide" },
+              { value: "24/7", label: "Concierge\nSupport" },
+            ].map((s) => (
+              <div key={s.value}>
+                <p className="text-[clamp(1.4rem,4vw,2rem)] font-light text-white">
+                  {s.value}
+                </p>
+                <p className="mt-0.5 font-mono text-[9px] uppercase leading-snug tracking-[0.15em] text-[rgba(255,255,255,0.4)]">
+                  {s.label}
+                </p>
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -147,20 +136,26 @@ export default function HomePage() {
       <section className="bg-[#f2f2f7] px-4 py-6">
         <div className="mx-auto grid max-w-md grid-cols-1 gap-3 sm:max-w-2xl sm:grid-cols-2">
           {/* EXJET Program */}
-          <div className="mesh-ink relative overflow-hidden rounded-3xl p-5 text-white">
-            <span className="mb-2 inline-block rounded-full border border-[rgba(255,255,255,0.3)] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-[rgba(255,255,255,0.65)]">
+          <div
+            className="relative overflow-hidden rounded-3xl p-5 text-white"
+            style={{
+              background:
+                "linear-gradient(135deg, #0a1628 0%, #1a3461 100%)",
+            }}
+          >
+            <span className="mb-2 inline-block rounded-full border border-[rgba(255,255,255,0.2)] px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-[rgba(255,255,255,0.55)]">
               EXJET Program
             </span>
             <h2 className="font-serif text-[1.5rem] leading-tight">
               Fly without limits.
             </h2>
-            <p className="mt-2 text-[13px] leading-relaxed text-neutral-400">
+            <p className="mt-2 text-[13px] leading-relaxed text-[rgba(255,255,255,0.55)]">
               Guaranteed availability, fixed hourly rates, and a dedicated
               aviation advisor — every flight.
             </p>
             <Link
               href="/auth/register"
-              className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-[var(--color-champagne)] px-4 py-2 text-[12px] font-medium text-white transition-opacity hover:opacity-80"
+              className="mt-4 inline-flex items-center gap-1.5 rounded-full bg-white px-4 py-2 text-[12px] font-medium text-[#0d1f3c] transition-opacity hover:opacity-80"
             >
               Enquire
               <ArrowRight className="h-3.5 w-3.5" />
@@ -168,25 +163,23 @@ export default function HomePage() {
           </div>
 
           {/* Featured route */}
-          <div className="relative overflow-hidden rounded-3xl bg-[var(--color-ink)] p-5 text-white">
-            <span className="mb-2 inline-block rounded-full border border-white/20 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
+          <div className="relative overflow-hidden rounded-3xl border border-neutral-200 bg-white p-5">
+            <span className="mb-2 inline-block rounded-full border border-neutral-200 px-2.5 py-0.5 font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">
               Popular Route
             </span>
-            <h2 className="font-serif text-[1.5rem] leading-tight">
+            <h2 className="font-serif text-[1.5rem] leading-tight text-[#0a1628]">
               New York ↔ Miami
             </h2>
             <p className="mt-1 text-[13px] text-neutral-400">
               Teterboro · Opa-Locka · 2h 55m
             </p>
-            <p className="mt-3 text-[22px] font-semibold">
+            <p className="mt-3 text-[22px] font-semibold text-[#0a1628]">
               From{" "}
-              <span className="text-[var(--color-champagne-soft)]">
-                $18,900
-              </span>
+              <span className="text-[#1a3461]">$18,900</span>
             </p>
             <Link
               href="/search"
-              className="mt-3 inline-flex items-center gap-1.5 rounded-full border border-white/25 px-4 py-2 text-[12px] font-medium text-white transition-colors hover:bg-white/10"
+              className="mt-3 inline-flex items-center gap-1.5 rounded-full bg-[#0d1f3c] px-4 py-2 text-[12px] font-medium text-white transition-colors hover:bg-[#1a3461]"
             >
               Book now
               <ArrowRight className="h-3.5 w-3.5" />
@@ -200,13 +193,13 @@ export default function HomePage() {
       ══════════════════════════════════════════════ */}
       <section className="bg-[#f2f2f7] px-4 pb-6">
         <div className="mx-auto max-w-md sm:max-w-2xl">
-          <div className="flex items-center justify-between rounded-2xl border border-[rgba(13,31,60,0.15)] bg-[rgba(13,31,60,0.06)] px-4 py-3.5">
+          <div className="flex items-center justify-between rounded-2xl border border-[rgba(13,31,60,0.12)] bg-[rgba(13,31,60,0.05)] px-4 py-3.5">
             <div className="flex items-center gap-3">
-              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[var(--color-champagne)]">
+              <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#0d1f3c]">
                 <BellRing className="h-4 w-4 text-white" />
               </div>
               <div>
-                <p className="text-[13px] font-medium text-[var(--color-ink)]">
+                <p className="text-[13px] font-medium text-[#0a1628]">
                   Empty leg alerts
                 </p>
                 <p className="text-[12px] text-neutral-500">
@@ -216,7 +209,7 @@ export default function HomePage() {
             </div>
             <Link
               href="/auth/register"
-              className="shrink-0 rounded-full bg-[var(--color-champagne)] px-3.5 py-1.5 text-[12px] font-medium text-white transition-opacity hover:opacity-80"
+              className="shrink-0 rounded-full bg-[#0d1f3c] px-3.5 py-1.5 text-[12px] font-medium text-white transition-opacity hover:opacity-80"
             >
               Get alerts
             </Link>
@@ -230,12 +223,12 @@ export default function HomePage() {
       <section className="bg-[#f2f2f7] px-4 pb-10">
         <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">
           <div className="mb-4 flex items-center justify-between">
-            <h2 className="text-[17px] font-semibold text-[var(--color-ink)]">
+            <h2 className="text-[17px] font-semibold text-[#0a1628]">
               Jet Deals
             </h2>
             <Link
               href="/search?category=empty-legs"
-              className="flex items-center gap-0.5 text-[13px] text-[var(--color-champagne)] hover:underline"
+              className="flex items-center gap-0.5 text-[13px] text-[#0d1f3c] hover:underline"
             >
               See all
               <ChevronRight className="h-4 w-4" />
@@ -249,7 +242,7 @@ export default function HomePage() {
                 href="/search?category=empty-legs"
                 className={`shrink-0 w-[220px] sm:w-[240px] lg:w-auto rounded-3xl bg-gradient-to-br ${DEAL_GRADIENTS[i % DEAL_GRADIENTS.length]} p-5 text-white transition-transform hover:scale-[1.02]`}
               >
-                <span className="mb-3 inline-block rounded-full bg-[var(--color-champagne)] px-2.5 py-0.5 text-[10px] font-semibold text-white">
+                <span className="mb-3 inline-block rounded-full bg-[rgba(255,255,255,0.15)] px-2.5 py-0.5 text-[10px] font-semibold text-white">
                   -{leg.discountPct}%
                 </span>
                 <div className="mb-3">
@@ -257,20 +250,20 @@ export default function HomePage() {
                     <span className="text-[15px] font-semibold">
                       {leg.from.city}
                     </span>
-                    <PlaneTakeoff className="h-3.5 w-3.5 text-neutral-400" />
+                    <PlaneTakeoff className="h-3.5 w-3.5 text-[rgba(255,255,255,0.4)]" />
                     <span className="text-[15px] font-semibold">
                       {leg.to.city}
                     </span>
                   </div>
-                  <p className="mt-0.5 text-[11px] text-neutral-400">
+                  <p className="mt-0.5 text-[11px] text-[rgba(255,255,255,0.45)]">
                     {leg.from.code} → {leg.to.code}
                   </p>
                 </div>
-                <p className="text-[12px] text-neutral-400">
+                <p className="text-[12px] text-[rgba(255,255,255,0.5)]">
                   {leg.aircraft} · {fmtDate(leg.date)} · {leg.departTime}
                 </p>
-                <div className="mt-3 border-t border-white/10 pt-3">
-                  <p className="text-[11px] text-neutral-500 line-through">
+                <div className="mt-3 border-t border-[rgba(255,255,255,0.1)] pt-3">
+                  <p className="text-[11px] text-[rgba(255,255,255,0.35)] line-through">
                     ${fmt(leg.retailPrice)}
                   </p>
                   <p className="text-[20px] font-bold">${fmt(leg.price)}</p>
@@ -287,12 +280,12 @@ export default function HomePage() {
       <section className="bg-white px-4 py-10">
         <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">
           <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-[17px] font-semibold text-[var(--color-ink)]">
+            <h2 className="text-[17px] font-semibold text-[#0a1628]">
               Popular Routes
             </h2>
             <Link
               href="/search"
-              className="flex items-center gap-0.5 text-[13px] text-[var(--color-champagne)] hover:underline"
+              className="flex items-center gap-0.5 text-[13px] text-[#0d1f3c] hover:underline"
             >
               All routes
               <ChevronRight className="h-4 w-4" />
@@ -309,12 +302,12 @@ export default function HomePage() {
                 <div className="flex items-center gap-3">
                   <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-[#f2f2f7]">
                     <PlaneTakeoff
-                      className="h-4 w-4 text-neutral-400"
+                      className="h-4 w-4 text-[#0d1f3c]"
                       strokeWidth={1.5}
                     />
                   </div>
                   <div>
-                    <p className="text-[14px] font-medium text-[var(--color-ink)]">
+                    <p className="text-[14px] font-medium text-[#0a1628]">
                       {route.from.city} → {route.to.city}
                     </p>
                     <p className="text-[12px] text-neutral-400">
@@ -323,7 +316,7 @@ export default function HomePage() {
                   </div>
                 </div>
                 <div className="flex items-center gap-2">
-                  <p className="text-[14px] font-semibold text-[var(--color-ink)]">
+                  <p className="text-[14px] font-semibold text-[#0a1628]">
                     ${fmt(route.fromPrice)}
                   </p>
                   <ChevronRight className="h-4 w-4 text-neutral-300" />
@@ -339,21 +332,20 @@ export default function HomePage() {
       ══════════════════════════════════════════════ */}
       <section className="bg-[#f2f2f7] px-4 py-10">
         <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">
-          <h2 className="mb-4 text-[17px] font-semibold text-[var(--color-ink)]">
+          <h2 className="mb-4 text-[17px] font-semibold text-[#0a1628]">
             Choose your aircraft
           </h2>
-
           <div className="no-scrollbar -mx-4 flex gap-2 overflow-x-auto px-4 pb-1 sm:mx-0 sm:flex-wrap sm:px-0">
             {AIRCRAFT_CLASSES.map((cls) => (
               <Link
                 key={cls.category}
                 href="/search"
-                className="shrink-0 flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2.5 transition-colors hover:border-[#0d1f3c] hover:bg-[#0d1f3c] hover:text-white group"
+                className="group shrink-0 flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-4 py-2.5 transition-colors hover:border-[#0d1f3c] hover:bg-[#0d1f3c]"
               >
-                <span className="text-[13px] font-medium text-[var(--color-ink)] group-hover:text-white whitespace-nowrap">
+                <span className="whitespace-nowrap text-[13px] font-medium text-[#0a1628] group-hover:text-white">
                   {cls.category}
                 </span>
-                <span className="text-[11px] text-neutral-400 group-hover:text-[rgba(255,255,255,0.6)] whitespace-nowrap">
+                <span className="whitespace-nowrap text-[11px] text-neutral-400 group-hover:text-[rgba(255,255,255,0.6)]">
                   from ${fmt(cls.from)}/hr
                 </span>
               </Link>
@@ -367,7 +359,7 @@ export default function HomePage() {
       ══════════════════════════════════════════════ */}
       <section className="bg-white px-4 py-10">
         <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">
-          <h2 className="mb-6 text-[17px] font-semibold text-[var(--color-ink)]">
+          <h2 className="mb-6 text-[17px] font-semibold text-[#0a1628]">
             Why EXJET
           </h2>
           <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
@@ -378,11 +370,11 @@ export default function HomePage() {
               >
                 <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-white">
                   <Icon
-                    className="h-[18px] w-[18px] text-[var(--color-champagne)]"
+                    className="h-[18px] w-[18px] text-[#0d1f3c]"
                     strokeWidth={1.5}
                   />
                 </div>
-                <p className="text-[14px] font-semibold text-[var(--color-ink)]">
+                <p className="text-[14px] font-semibold text-[#0a1628]">
                   {label}
                 </p>
                 <p className="mt-0.5 text-[12px] text-neutral-500">{sub}</p>
@@ -398,12 +390,12 @@ export default function HomePage() {
       <section className="bg-[#f2f2f7] px-4 py-10">
         <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">
           <div className="mb-5 flex items-center justify-between">
-            <h2 className="text-[17px] font-semibold text-[var(--color-ink)]">
+            <h2 className="text-[17px] font-semibold text-[#0a1628]">
               Upcoming Events
             </h2>
             <Link
               href="/search"
-              className="flex items-center gap-0.5 text-[13px] text-[var(--color-champagne)] hover:underline"
+              className="flex items-center gap-0.5 text-[13px] text-[#0d1f3c] hover:underline"
             >
               Plan a trip
               <ChevronRight className="h-4 w-4" />
@@ -424,7 +416,7 @@ export default function HomePage() {
                     {event.league}
                   </span>
                   <div>
-                    <p className="text-[14px] font-medium text-[var(--color-ink)]">
+                    <p className="text-[14px] font-medium text-[#0a1628]">
                       {event.event}
                     </p>
                     <p className="text-[12px] text-neutral-400">
@@ -444,14 +436,17 @@ export default function HomePage() {
       ══════════════════════════════════════════════ */}
       <section className="bg-white px-4 py-10">
         <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-3xl">
-          <h2 className="mb-6 text-[17px] font-semibold text-[var(--color-ink)]">
+          <h2 className="mb-6 text-[17px] font-semibold text-[#0a1628]">
             Frequently asked
           </h2>
           <div className="overflow-hidden rounded-2xl border border-neutral-100">
             {faqData.map((item, i) => (
-              <details key={i} className="group border-b border-neutral-100 bg-white last:border-b-0">
+              <details
+                key={i}
+                className="group border-b border-neutral-100 bg-white last:border-b-0"
+              >
                 <summary className="flex cursor-pointer list-none items-center justify-between px-5 py-4 hover:bg-neutral-50">
-                  <span className="pr-4 text-[14px] font-medium text-[var(--color-ink)]">
+                  <span className="pr-4 text-[14px] font-medium text-[#0a1628]">
                     {item.q}
                   </span>
                   <ChevronDown className="h-4 w-4 shrink-0 text-neutral-400 transition-transform group-open:rotate-180" />
@@ -466,14 +461,20 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════════════════════════════════════
-          CLOSING CTA
+          CLOSING CTA — dark navy
       ══════════════════════════════════════════════ */}
-      <section className="mesh-ink px-4 py-16">
+      <section
+        className="px-4 py-16"
+        style={{
+          background:
+            "linear-gradient(180deg, #0a1628 0%, #0d1f3c 100%)",
+        }}
+      >
         <div className="mx-auto max-w-md text-center">
           <div className="mb-4 flex justify-center">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(255,255,255,0.12)]">
+            <div className="flex h-12 w-12 items-center justify-center rounded-full bg-[rgba(255,255,255,0.1)]">
               <PlaneTakeoff
-                className="h-6 w-6 text-[var(--color-champagne)]"
+                className="h-6 w-6 text-white"
                 strokeWidth={1.5}
               />
             </div>
@@ -481,20 +482,20 @@ export default function HomePage() {
           <h2 className="font-serif text-[clamp(2rem,5vw,3rem)] font-normal leading-tight text-white">
             Ready to depart?
           </h2>
-          <p className="mt-3 text-[14px] text-neutral-400">
+          <p className="mt-3 text-[14px] text-[rgba(255,255,255,0.5)]">
             Reserve your aircraft in minutes — available 24/7 worldwide.
           </p>
           <div className="mt-6 flex flex-col items-center gap-3 sm:flex-row sm:justify-center">
             <Link
               href="/search"
-              className="inline-flex items-center gap-2 rounded-full bg-[var(--color-navy)] px-6 py-3 text-[14px] font-medium text-white shadow-[0_4px_20px_rgba(13,31,60,0.5)] transition-opacity hover:opacity-90"
+              className="inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-[14px] font-medium text-[#0d1f3c] shadow-[0_4px_20px_rgba(0,0,0,0.3)] transition-opacity hover:opacity-90"
             >
               Search flights
               <ArrowRight className="h-4 w-4" />
             </Link>
             <Link
               href="/auth/register"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-6 py-3 text-[14px] font-medium text-white transition-colors hover:bg-white/10"
+              className="inline-flex items-center gap-2 rounded-full border border-[rgba(255,255,255,0.25)] px-6 py-3 text-[14px] font-medium text-white transition-colors hover:bg-[rgba(255,255,255,0.08)]"
             >
               Create account
             </Link>
