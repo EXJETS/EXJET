@@ -37,11 +37,14 @@ const DEAL_GRADIENTS = [
 
 /* ── aircraft classes ─────────────────────────────────── */
 const AIRCRAFT_CLASSES = [
+  { category: "Turboprop", from: 1800 },
+  { category: "Very Light", from: 2200 },
   { category: "Light", from: 3200 },
   { category: "Midsize", from: 5600 },
   { category: "Super Midsize", from: 8500 },
   { category: "Heavy", from: 11000 },
-  { category: "Ultra Long", from: 15000 },
+  { category: "Ultra Long Range", from: 15000 },
+  { category: "VIP Airliner", from: 22000 },
 ];
 
 /* ── trust pillars ────────────────────────────────────── */
@@ -128,6 +131,26 @@ export default function HomePage() {
             ))}
           </div>
         </div>
+
+        {/* Trust certifications */}
+        <div className="mx-auto mt-6 max-w-md border-t border-[rgba(255,255,255,0.1)] pt-6">
+          <div className="grid grid-cols-2 gap-x-6 gap-y-4 sm:grid-cols-4">
+            {[
+              { label: "ARGUS Gold", sub: "Certified operators" },
+              { label: "Quoted <2 hrs", sub: "Guaranteed" },
+              { label: "No ferry fees", sub: "Flight time only" },
+              { label: "BBB A+", sub: "Accredited" },
+            ].map((t) => (
+              <div key={t.label} className="flex items-start gap-2">
+                <div className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-[rgba(255,255,255,0.3)]" />
+                <div>
+                  <p className="text-[11px] font-semibold text-[rgba(255,255,255,0.85)]">{t.label}</p>
+                  <p className="text-[9px] uppercase tracking-[0.1em] text-[rgba(255,255,255,0.4)]">{t.sub}</p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
       </section>
 
       {/* ══════════════════════════════════════════════
@@ -184,6 +207,56 @@ export default function HomePage() {
               Book now
               <ArrowRight className="h-3.5 w-3.5" />
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          SERVICE PILLARS
+      ══════════════════════════════════════════════ */}
+      <section className="bg-[#f2f2f7] px-4 pb-6">
+        <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">
+          <div className="grid grid-cols-1 gap-3 sm:grid-cols-3">
+            {[
+              {
+                label: "Charter a Flight",
+                sub: "One-way, round-trip, or multi-leg — quoted in under two hours.",
+                href: "/search",
+                cta: "Search now",
+              },
+              {
+                label: "The EXJET Card",
+                sub: "Deposit-based access from $100K. Fixed rates, guaranteed availability.",
+                href: "/membership",
+                cta: "Learn more",
+                featured: true,
+              },
+              {
+                label: "Empty Leg Flights",
+                sub: "Save 50–75% on repositioning flights. Limited availability.",
+                href: "/search?category=empty-legs",
+                cta: "See deals",
+              },
+            ].map((p) => (
+              <Link
+                key={p.label}
+                href={p.href}
+                className={`group flex flex-col justify-between rounded-2xl border p-5 transition-colors ${
+                  p.featured
+                    ? "border-[#0d1f3c] bg-[#0d1f3c] text-white"
+                    : "border-neutral-200 bg-white text-[#0a1628] hover:border-[#0d1f3c]"
+                }`}
+              >
+                <div>
+                  <p className={`text-[15px] font-semibold ${p.featured ? "text-white" : "text-[#0a1628]"}`}>{p.label}</p>
+                  <p className={`mt-1.5 text-[13px] leading-relaxed ${p.featured ? "text-[rgba(255,255,255,0.6)]" : "text-neutral-500"}`}>{p.sub}</p>
+                </div>
+                <div className={`mt-4 inline-flex items-center gap-1.5 text-[12px] font-medium ${p.featured ? "text-white" : "text-[#0d1f3c]"}`}>
+                  {p.cta}
+                  <ArrowRight className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5" />
+                </div>
+              </Link>
+            ))}
           </div>
         </div>
       </section>
@@ -378,6 +451,53 @@ export default function HomePage() {
                   {label}
                 </p>
                 <p className="mt-0.5 text-[12px] text-neutral-500">{sub}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ══════════════════════════════════════════════
+          PRIVATE EXPERIENCES
+      ══════════════════════════════════════════════ */}
+      <section className="bg-[#f2f2f7] px-4 py-10">
+        <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">
+          <div className="mb-5 flex items-center justify-between">
+            <div>
+              <p className="font-mono text-[10px] uppercase tracking-[0.2em] text-neutral-400">Curated Add-Ons</p>
+              <h2 className="mt-1 text-[17px] font-semibold text-[#0a1628]">Private Experiences</h2>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
+            {[
+              {
+                title: "EXJET Pet",
+                sub: "Fly with your pets. No cargo holds — they travel in the cabin with you.",
+                icon: "🐾",
+              },
+              {
+                title: "EXJET Kids",
+                sub: "Family-first cabins. Curated children's menus and activities on board.",
+                icon: "✈️",
+              },
+              {
+                title: "Private Dining",
+                sub: "Michelin-quality catering sourced from your destination city.",
+                icon: "🍽",
+              },
+              {
+                title: "Ground Concierge",
+                sub: "Limousine transfers, hotel bookings, yacht charters — seamlessly arranged.",
+                icon: "🚘",
+              },
+            ].map((exp) => (
+              <div
+                key={exp.title}
+                className="rounded-2xl border border-neutral-200 bg-white p-5"
+              >
+                <span className="text-[24px]">{exp.icon}</span>
+                <p className="mt-3 text-[14px] font-semibold text-[#0a1628]">{exp.title}</p>
+                <p className="mt-1 text-[12px] leading-relaxed text-neutral-500">{exp.sub}</p>
               </div>
             ))}
           </div>

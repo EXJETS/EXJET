@@ -15,6 +15,7 @@ const columns = [
       { label: "Empty Legs", href: "/search?mode=empty" },
       { label: "Browse Fleet", href: "/jets" },
       { label: "Aircraft Sales", href: "/aircraft-sales" },
+      { label: "Membership", href: "/membership" },
     ],
   },
   {
