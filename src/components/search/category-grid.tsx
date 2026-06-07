@@ -56,13 +56,20 @@ const CATEGORY_META: CategoryMeta[] = [
 
 const allJets = jetsData as Jet[];
 
+const PAX_OVERRIDES: Record<JetCategory, [number, number]> = {
+  light:        [4,  8],
+  midsize:      [7,  9],
+  super_midsize:[7,  9],
+  heavy:        [10, 19],
+  ultra_long:   [13, 19],
+};
+
 function aggregate(category: JetCategory) {
   const jets = allJets.filter((j) => j.category === category);
   if (!jets.length) {
     return null;
   }
-  const passengersMin = Math.min(...jets.map((j) => j.passengers));
-  const passengersMax = Math.max(...jets.map((j) => j.passengers));
+  const [passengersMin, passengersMax] = PAX_OVERRIDES[category];
   const rangeMin = Math.min(...jets.map((j) => j.range));
   const rangeMax = Math.max(...jets.map((j) => j.range));
   const speedAvg = Math.round(
