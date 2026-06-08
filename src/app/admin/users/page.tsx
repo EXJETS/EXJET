@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Search, Users, UserCheck, Ban, Mail } from "lucide-react";
 import { StatCard } from "@/components/dashboard/stat-card";
 import { formatCurrency } from "@/lib/utils";
@@ -45,7 +45,7 @@ export default function AdminUsersPage() {
       <div className="flex items-center gap-3 mb-4">
         <div className="relative flex-1 max-w-sm">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-          <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
+          <input type="text" value={search} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
             placeholder="Search users..."
             className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none" />
         </div>

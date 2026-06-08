@@ -13,12 +13,12 @@ export default function ConfirmationPage() {
 
   if (!jet) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-white text-neutral-950">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-[#f5f0eb] text-[#0a1628]">
         <Plane className="mb-4 h-12 w-12 text-neutral-300" strokeWidth={1.25} />
         <h2 className="text-[20px] font-semibold tracking-tight">No booking found</h2>
         <Link
           href="/search"
-          className="mt-6 rounded-full bg-white px-6 py-3 text-[13px] font-medium text-neutral-950 hover:bg-neutral-800"
+          className="mt-6 rounded-full bg-[#0d1f3c] px-6 py-3 text-[13px] font-medium text-white hover:bg-[#1a3461]"
         >
           Browse Jets
         </Link>
@@ -30,22 +30,22 @@ export default function ConfirmationPage() {
   const total = Math.round(basePrice * 1.235);
 
   return (
-    <div className="min-h-screen bg-white text-neutral-950">
-      <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
+    <div className="min-h-screen bg-[#f5f0eb] text-[#0a1628]">
+      <div className="mx-auto max-w-3xl px-4 pt-20 pb-8 sm:px-6 lg:px-8">
         <BookingStepper currentStep={4} />
 
         <div className="mt-8 text-center">
           {/* Success Icon */}
-          <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-emerald-50 ring-1 ring-emerald-200">
-            <CheckCircle className="h-8 w-8 text-emerald-700" strokeWidth={1.75} />
+          <div className="mb-6 inline-flex h-20 w-20 items-center justify-center rounded-full bg-[rgba(13,31,60,0.08)] ring-1 ring-[rgba(13,31,60,0.2)]">
+            <CheckCircle className="h-8 w-8 text-[#0d1f3c]" strokeWidth={1.75} />
           </div>
 
-          <p className="font-mono text-[11px] uppercase tracking-widest text-emerald-700">Cleared for takeoff</p>
-          <h1 className="mt-3 text-[32px] font-semibold tracking-tight text-neutral-950">Booking Confirmed</h1>
+          <p className="font-mono text-[11px] uppercase tracking-widest text-[#0d1f3c]">Confirmed for departure</p>
+          <h1 className="mt-3 text-[32px] font-semibold tracking-tight text-[#0a1628]">Booking Confirmed</h1>
           <p className="mt-2 text-[14px] text-neutral-600">Your private jet charter has been successfully booked.</p>
           <p className="mt-3 text-[12px] text-neutral-500">
             Booking Reference:{" "}
-            <span className="font-mono font-semibold text-neutral-950">{bookingRef}</span>
+            <span className="font-mono font-semibold text-[#0a1628]">{bookingRef}</span>
           </p>
         </div>
 
@@ -56,19 +56,19 @@ export default function ConfirmationPage() {
               <Plane className="h-6 w-6 text-neutral-800" strokeWidth={1.75} />
             </div>
             <div>
-              <h3 className="text-[16px] font-semibold tracking-tight text-neutral-950">{jet.name}</h3>
+              <h3 className="text-[16px] font-semibold tracking-tight text-[#0a1628]">{jet.name}</h3>
               <p className="text-[12px] text-neutral-500">{jet.manufacturer} · {getCategoryLabel(jet.category)}</p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 gap-4 py-5 sm:grid-cols-2">
             <InfoLine
-              icon={<MapPin className="h-4 w-4 text-emerald-700" strokeWidth={2} />}
+              icon={<MapPin className="h-4 w-4 text-[#0d1f3c]" strokeWidth={1.75} />}
               label="From"
               value={`${departureAirport?.city} (${departureAirport?.code})`}
             />
             <InfoLine
-              icon={<MapPin className="h-4 w-4 text-red-700" strokeWidth={2} />}
+              icon={<MapPin className="h-4 w-4 text-neutral-400" strokeWidth={1.75} />}
               label="To"
               value={`${arrivalAirport?.city} (${arrivalAirport?.code})`}
             />
@@ -90,7 +90,7 @@ export default function ConfirmationPage() {
 
           <div className="flex items-baseline justify-between border-t border-neutral-200 pt-4">
             <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">Total Paid</span>
-            <span className="text-[24px] font-semibold tracking-tight text-neutral-950">{formatCurrency(total)}</span>
+            <span className="text-[24px] font-semibold tracking-tight text-[#0a1628]">{formatCurrency(total)}</span>
           </div>
         </div>
 
@@ -105,7 +105,7 @@ export default function ConfirmationPage() {
             ].map((text, i) => (
               <div key={i} className="flex items-start gap-3">
                 <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-neutral-100">
-                  <span className="font-mono text-[10px] font-semibold text-neutral-950">{i + 1}</span>
+                  <span className="font-mono text-[10px] font-semibold text-[#0a1628]">{i + 1}</span>
                 </div>
                 <p className="text-[13px] leading-relaxed text-neutral-700">{text}</p>
               </div>
@@ -117,13 +117,13 @@ export default function ConfirmationPage() {
         <div className="mt-6 flex flex-col gap-3 sm:flex-row">
           <Link
             href="/dashboard"
-            className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98]"
+            className="inline-flex flex-1 items-center justify-center gap-2 rounded-full bg-[#0d1f3c] px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-[#1a3461] active:scale-[0.98]"
           >
             View Dashboard <ArrowRight className="h-3.5 w-3.5" strokeWidth={2} />
           </Link>
           <Link
             href="/search"
-            className="inline-flex flex-1 items-center justify-center rounded-full border border-neutral-300 bg-neutral-50 px-6 py-3 text-[13px] font-medium text-neutral-950 transition-colors hover:border-neutral-400 hover:bg-neutral-100"
+            className="inline-flex flex-1 items-center justify-center rounded-full border border-neutral-300 bg-neutral-50 px-6 py-3 text-[13px] font-medium text-[#0a1628] transition-colors hover:border-neutral-400 hover:bg-neutral-100"
           >
             Book Another Flight
           </Link>
@@ -139,7 +139,7 @@ function InfoLine({ icon, label, value }: { icon: React.ReactNode; label: string
       {icon}
       <div>
         <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">{label}</p>
-        <p className="mt-0.5 text-[13px] font-medium text-neutral-950">{value}</p>
+        <p className="mt-0.5 text-[13px] font-medium text-[#0a1628]">{value}</p>
       </div>
     </div>
   );

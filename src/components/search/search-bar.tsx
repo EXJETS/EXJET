@@ -3,35 +3,23 @@
 import { useState, useRef, useEffect, useCallback } from "react";
 import { useRouter } from "next/navigation";
 import {
-  MapPin,
-  Calendar,
-  Users,
-  Search,
-  ArrowLeftRight,
-  ChevronDown,
-  Plane,
-  Minus,
-  Plus,
-  Clock,
-  Trash2,
+  MapPin, Calendar, Users, ArrowUpDown, PlaneTakeoff,
+  Minus, Plus, Clock, Trash2, Sofa,
 } from "lucide-react";
 import airports from "@/data/airports.json";
 import { useSearchStore, type TripType } from "@/stores/search-store";
 import type { Airport } from "@/types";
 import { cn } from "@/lib/utils";
 
-interface SearchBarProps {
-  variant?: "hero" | "compact";
-}
-
 const typedAirports = airports as Airport[];
 
 const TRIP_TYPES: { value: TripType; label: string }[] = [
-  { value: "one_way", label: "One way" },
+  { value: "one_way", label: "One-way" },
   { value: "round_trip", label: "Round trip" },
-  { value: "multi_leg", label: "Multi leg" },
+  { value: "multi_leg", label: "Multi-city" },
 ];
 
+/* ── Airport dropdown ─────────────────────────────── */
 function AirportDropdown({
   query,
   onSelect,
@@ -39,21 +27,18 @@ function AirportDropdown({
   inputRef,
 }: {
   query: string;
-  onSelect: (airport: Airport) => void;
+  onSelect: (a: Airport) => void;
   visible: boolean;
   inputRef: React.RefObject<HTMLDivElement | null>;
 }) {
-  const [position, setPosition] = useState<"below" | "above">("below");
-
+  const [pos, setPos] = useState<"below" | "above">("below");
   useEffect(() => {
     if (!visible || !inputRef.current) return;
     const rect = inputRef.current.getBoundingClientRect();
-    const spaceBelow = window.innerHeight - rect.bottom;
-    setPosition(spaceBelow < 280 ? "above" : "below");
+    setPos(window.innerHeight - rect.bottom < 280 ? "above" : "below");
   }, [visible, inputRef]);
 
   if (!visible || query.length < 1) return null;
-
   const q = query.toLowerCase().trim();
   const filtered = typedAirports.filter(
     (a) =>
@@ -62,40 +47,33 @@ function AirportDropdown({
       a.name.toLowerCase().includes(q) ||
       a.country.toLowerCase().includes(q)
   );
-
-  if (filtered.length === 0) return null;
+  if (!filtered.length) return null;
 
   return (
     <div
       className={cn(
-        "absolute left-0 right-0 z-50 overflow-hidden rounded-xl border border-neutral-200 bg-white shadow-[0_20px_50px_-10px_rgba(0,0,0,0.18)] backdrop-blur-xl",
-        "max-h-[280px] overflow-y-auto",
-        position === "below" ? "top-full mt-2" : "bottom-full mb-2"
+        "absolute left-0 right-0 z-50 max-h-[280px] overflow-y-auto rounded-xl border border-neutral-200 bg-white shadow-[0_16px_48px_rgba(0,0,0,0.14)]",
+        pos === "below" ? "top-full mt-1" : "bottom-full mb-1"
       )}
     >
-      {filtered.slice(0, 8).map((airport) => (
+      {filtered.slice(0, 8).map((a) => (
         <button
-          key={airport.code}
+          key={a.code}
           type="button"
           onMouseDown={(e) => {
             e.preventDefault();
-            onSelect(airport);
+            onSelect(a);
           }}
-          className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-neutral-100"
+          className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-neutral-50"
         >
-          <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-md border border-neutral-200 bg-neutral-100 text-neutral-700">
-            <Plane className="h-4 w-4" strokeWidth={1.75} />
-          </div>
-          <div className="min-w-0 flex-1">
-            <div className="flex items-center gap-2">
-              <span className="font-mono text-[13px] font-semibold tracking-wide text-neutral-950">
-                {airport.code}
-              </span>
-              <span className="truncate text-[13px] text-neutral-600">
-                {airport.city}, {airport.country}
-              </span>
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg bg-neutral-100 font-mono text-[11px] font-semibold text-neutral-700">
+            {a.code}
+          </span>
+          <div className="min-w-0">
+            <div className="truncate text-[13px] font-medium text-neutral-900">
+              {a.city}, {a.country}
             </div>
-            <p className="truncate text-[11px] text-neutral-400">{airport.name}</p>
+            <div className="truncate text-[11px] text-neutral-500">{a.name}</div>
           </div>
         </button>
       ))}
@@ -103,8 +81,8 @@ function AirportDropdown({
   );
 }
 
-/* ---------- Reusable: airport input cell ---------- */
-function AirportField({
+/* ── Airport row field ────────────────────────────── */
+function AirportRowField({
   label,
   placeholder,
   value,
@@ -119,37 +97,30 @@ function AirportField({
 }) {
   const [open, setOpen] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
-    function handle(e: MouseEvent) {
+    const handle = (e: MouseEvent) => {
       if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    }
+    };
     document.addEventListener("mousedown", handle);
     return () => document.removeEventListener("mousedown", handle);
   }, []);
 
   return (
-    <div
-      ref={ref}
-      className="relative flex flex-1 items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-neutral-50"
-    >
-      <MapPin className="h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.75} />
-      <div className="min-w-0 flex-1">
-        <label className="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
-          {label}
-        </label>
-        <input
-          type="text"
-          placeholder={placeholder}
-          value={value}
-          onChange={(e) => {
-            onChange(e.target.value);
-            setOpen(true);
-          }}
-          onFocus={() => setOpen(true)}
-          className="w-full bg-transparent text-[14px] font-medium text-neutral-950 outline-none placeholder:text-neutral-400"
-        />
-      </div>
+    <div ref={ref} className="relative px-4 py-3.5">
+      <label className="mb-0.5 block text-[11px] font-medium uppercase tracking-wider text-neutral-400">
+        {label}
+      </label>
+      <input
+        type="text"
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => {
+          onChange(e.target.value);
+          setOpen(true);
+        }}
+        onFocus={() => setOpen(true)}
+        className="w-full bg-transparent text-[15px] font-medium text-neutral-900 outline-none placeholder:text-neutral-300"
+      />
       <AirportDropdown
         query={value}
         onSelect={(a) => {
@@ -163,157 +134,104 @@ function AirportField({
   );
 }
 
-/* ---------- Reusable: stepper popover ---------- */
-function StepperField({
-  icon: Icon,
-  label,
-  summary,
-  items,
+/* ── Multi-leg row ────────────────────────────────── */
+function MultiLegRow({
+  index,
+  leg,
+  onUpdate,
+  onRemove,
+  today,
 }: {
-  icon: typeof Users;
-  label: string;
-  summary: string;
-  items: {
-    key: string;
-    title: string;
-    subtitle?: string;
-    value: number;
-    min: number;
-    max: number;
-    onChange: (v: number) => void;
-  }[];
+  index: number;
+  leg: { from: string; to: string; fromCode: string; toCode: string; date: string; time: string };
+  onUpdate: (patch: Partial<typeof leg>) => void;
+  onRemove?: () => void;
+  today: string;
 }) {
-  const [open, setOpen] = useState(false);
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    function handle(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false);
-    }
-    document.addEventListener("mousedown", handle);
-    return () => document.removeEventListener("mousedown", handle);
-  }, []);
+  const [fromQ, setFromQ] = useState(leg.from);
+  const [toQ, setToQ] = useState(leg.to);
+  useEffect(() => setFromQ(leg.from), [leg.from]);
+  useEffect(() => setToQ(leg.to), [leg.to]);
 
   return (
-    <div ref={ref} className="relative">
-      <button
-        type="button"
-        onClick={() => setOpen(!open)}
-        className="flex w-full items-center gap-3 rounded-xl px-4 py-3 text-left transition-colors hover:bg-neutral-50"
-      >
-        <Icon className="h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.75} />
-        <div className="min-w-0 flex-1">
-          <span className="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
-            {label}
-          </span>
-          <span className="block text-[14px] font-medium text-neutral-950">
-            {summary}
-          </span>
+    <div className="overflow-hidden rounded-2xl bg-white shadow-[0_2px_12px_rgba(0,0,0,0.06)]">
+      <div className="flex items-center gap-2 border-b border-neutral-100 px-4 py-2">
+        <span className="font-mono text-[11px] uppercase tracking-widest text-[var(--color-navy)]">
+          Leg {index + 1}
+        </span>
+        {onRemove && (
+          <button
+            type="button"
+            onClick={onRemove}
+            className="ml-auto text-neutral-400 hover:text-neutral-700"
+          >
+            <Trash2 className="h-3.5 w-3.5" strokeWidth={1.75} />
+          </button>
+        )}
+      </div>
+      <AirportRowField
+        label="From"
+        placeholder="Departure city"
+        value={fromQ}
+        onChange={(v) => { setFromQ(v); if (!v) onUpdate({ from: "", fromCode: "" }); }}
+        onSelect={(a) => { onUpdate({ from: `${a.city} (${a.code})`, fromCode: a.code }); setFromQ(`${a.city} (${a.code})`); }}
+      />
+      <div className="border-t border-neutral-100" />
+      <AirportRowField
+        label="To"
+        placeholder="Arrival city"
+        value={toQ}
+        onChange={(v) => { setToQ(v); if (!v) onUpdate({ to: "", toCode: "" }); }}
+        onSelect={(a) => { onUpdate({ to: `${a.city} (${a.code})`, toCode: a.code }); setToQ(`${a.city} (${a.code})`); }}
+      />
+      <div className="border-t border-neutral-100 px-4 py-3.5 flex items-center gap-3">
+        <Clock className="h-4 w-4 text-neutral-400" strokeWidth={1.75} />
+        <div className="flex flex-1 gap-2">
+          <input
+            type="date"
+            min={today}
+            value={leg.date}
+            onChange={(e) => onUpdate({ date: e.target.value })}
+            className="flex-1 bg-transparent text-[14px] font-medium text-neutral-900 outline-none"
+          />
+          <input
+            type="time"
+            value={leg.time}
+            onChange={(e) => onUpdate({ time: e.target.value })}
+            className="w-[78px] bg-transparent text-[14px] font-medium text-neutral-900 outline-none"
+          />
         </div>
-        <ChevronDown
-          className={cn(
-            "h-3.5 w-3.5 shrink-0 text-neutral-400 transition-transform",
-            open && "rotate-180"
-          )}
-          strokeWidth={2}
-        />
-      </button>
-
-      {open && (
-        <div className="absolute left-0 right-0 top-full z-50 mt-2 rounded-xl border border-neutral-200 bg-white p-2 shadow-[0_20px_50px_-10px_rgba(0,0,0,0.18)] backdrop-blur-xl">
-          {items.map((it) => (
-            <div
-              key={it.key}
-              className="flex items-center justify-between gap-4 rounded-lg px-3 py-2.5"
-            >
-              <div className="min-w-0">
-                <div className="text-[13px] font-medium text-neutral-950">
-                  {it.title}
-                </div>
-                {it.subtitle && (
-                  <div className="text-[11px] text-neutral-500">{it.subtitle}</div>
-                )}
-              </div>
-              <div className="flex items-center gap-3">
-                <button
-                  type="button"
-                  onClick={() => it.onChange(Math.max(it.min, it.value - 1))}
-                  disabled={it.value <= it.min}
-                  className={cn(
-                    "flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 text-neutral-950 transition-colors",
-                    it.value <= it.min
-                      ? "cursor-not-allowed opacity-30"
-                      : "hover:bg-neutral-950 hover:text-white"
-                  )}
-                >
-                  <Minus className="h-3.5 w-3.5" strokeWidth={2} />
-                </button>
-                <span className="w-6 text-center text-[15px] font-semibold text-neutral-950">
-                  {it.value}
-                </span>
-                <button
-                  type="button"
-                  onClick={() => it.onChange(Math.min(it.max, it.value + 1))}
-                  disabled={it.value >= it.max}
-                  className={cn(
-                    "flex h-8 w-8 items-center justify-center rounded-full border border-neutral-300 text-neutral-950 transition-colors",
-                    it.value >= it.max
-                      ? "cursor-not-allowed opacity-30"
-                      : "hover:bg-neutral-950 hover:text-white"
-                  )}
-                >
-                  <Plus className="h-3.5 w-3.5" strokeWidth={2} />
-                </button>
-              </div>
-            </div>
-          ))}
-        </div>
-      )}
+      </div>
     </div>
   );
 }
 
-export default function SearchBar({ variant = "hero" }: SearchBarProps) {
+/* ── Main export ──────────────────────────────────── */
+export default function SearchBar({ variant = "hero" }: { variant?: "hero" | "compact" }) {
   const router = useRouter();
+  const [mode, setMode] = useState<"charter" | "empty_legs">("charter");
+
   const {
-    tripType,
-    from,
-    to,
-    fromCode,
-    toCode,
-    date,
-    time,
-    returnDate,
-    returnTime,
-    passengers,
-    bags,
-    pets,
-    legs,
-    setTripType,
-    setFrom,
-    setTo,
-    setDate,
-    setTime,
-    setReturnDate,
-    setReturnTime,
-    setPassengers,
-    setBags,
-    setPets,
-    addLeg,
-    removeLeg,
-    updateLeg,
-    swapLocations,
+    tripType, from, to, fromCode, toCode,
+    date, time, returnDate, returnTime,
+    passengers, bags, pets, legs,
+    setTripType, setFrom, setTo, setDate, setTime,
+    setReturnDate, setReturnTime, setPassengers, setBags, setPets,
+    addLeg, removeLeg, updateLeg, swapLocations,
   } = useSearchStore();
 
   const [fromQuery, setFromQuery] = useState(from);
   const [toQuery, setToQuery] = useState(to);
-
   useEffect(() => setFromQuery(from), [from]);
   useEffect(() => setToQuery(to), [to]);
 
   const handleSubmit = useCallback(
     (e: React.FormEvent) => {
       e.preventDefault();
+      if (mode === "empty_legs") {
+        router.push("/search?category=empty-legs");
+        return;
+      }
       const params = new URLSearchParams();
       params.set("trip", tripType);
       if (tripType === "multi_leg") {
@@ -330,8 +248,8 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
         if (toCode) params.set("to", toCode);
         if (date) params.set("date", date);
         if (time) params.set("time", time);
-        if (tripType === "round_trip") {
-          if (returnDate) params.set("return", returnDate);
+        if (tripType === "round_trip" && returnDate) {
+          params.set("return", returnDate);
           if (returnTime) params.set("return_time", returnTime);
         }
       }
@@ -340,230 +258,219 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
       if (pets > 0) params.set("pets", String(pets));
       router.push(`/search?${params.toString()}`);
     },
-    [
-      tripType,
-      legs,
-      fromCode,
-      toCode,
-      date,
-      time,
-      returnDate,
-      returnTime,
-      passengers,
-      bags,
-      pets,
-      router,
-    ]
+    [mode, tripType, legs, fromCode, toCode, date, time, returnDate, returnTime, passengers, bags, pets, router]
   );
 
-  const isHero = variant === "hero";
   const today = new Date().toISOString().split("T")[0];
 
-  const passengersSummary = `${passengers} ${passengers === 1 ? "Guest" : "Guests"}${
-    bags > 0 ? ` · ${bags} bag${bags === 1 ? "" : "s"}` : ""
-  }${pets > 0 ? ` · ${pets} pet${pets === 1 ? "" : "s"}` : ""}`;
-
   return (
-    <form
-      onSubmit={handleSubmit}
-      className={cn(
-        "w-full transition-all duration-300",
-        isHero ? "max-w-5xl" : "max-w-5xl"
-      )}
-    >
-      {/* Trip-type tabs */}
-      <div className="mb-3 inline-flex items-center gap-1 rounded-full border border-neutral-200 bg-white p-1 backdrop-blur-xl">
-        {TRIP_TYPES.map((t) => {
-          const active = tripType === t.value;
-          return (
-            <button
-              key={t.value}
-              type="button"
-              onClick={() => setTripType(t.value)}
-              className={cn(
-                "rounded-full px-3.5 py-1.5 text-[12px] font-medium transition-colors",
-                active
-                  ? "bg-neutral-950 text-white"
-                  : "text-neutral-600 hover:bg-neutral-100 hover:text-neutral-950"
-              )}
-            >
-              {t.label}
-            </button>
-          );
-        })}
+    <div className="w-full">
+      {/* Mode tabs */}
+      <div className="mb-5 flex gap-6 border-b border-neutral-200">
+        {(["charter", "empty_legs"] as const).map((m) => (
+          <button
+            key={m}
+            type="button"
+            onClick={() => setMode(m)}
+            className={cn(
+              "flex items-center gap-2 pb-3 text-[14px] font-medium transition-all",
+              mode === m
+                ? "border-b-2 border-[#0d1f3c] text-[#0a1628]"
+                : "text-neutral-400 hover:text-neutral-600"
+            )}
+          >
+            {m === "charter" ? (
+              <PlaneTakeoff
+                className={cn("h-4 w-4", mode === m ? "text-[var(--color-navy)]" : "")}
+                strokeWidth={1.75}
+              />
+            ) : (
+              <Sofa
+                className={cn("h-4 w-4", mode === m ? "text-[var(--color-navy)]" : "")}
+                strokeWidth={1.75}
+              />
+            )}
+            {m === "charter" ? "Charter" : "Empty Legs"}
+          </button>
+        ))}
       </div>
 
-      <div className="rounded-2xl border border-neutral-200 bg-white p-2 backdrop-blur-xl">
+      {/* Trip type pills */}
+      <div className="mb-4 flex gap-2">
+        {TRIP_TYPES.map((t) => (
+          <button
+            key={t.value}
+            type="button"
+            onClick={() => setTripType(t.value)}
+            className={cn(
+              "rounded-full px-4 py-2 text-[13px] font-medium transition-all",
+              tripType === t.value
+                ? "bg-[var(--color-ink)] text-white"
+                : "border border-neutral-200 bg-white text-neutral-600 hover:border-neutral-400 hover:text-neutral-900"
+            )}
+          >
+            {t.label}
+          </button>
+        ))}
+      </div>
+
+      <form onSubmit={handleSubmit} className="flex flex-col gap-3">
         {tripType !== "multi_leg" ? (
-          <div className="flex flex-col gap-0 md:flex-row md:items-stretch">
-            {/* FROM */}
-            <AirportField
-              label="From"
-              placeholder="Departure city"
-              value={fromQuery}
-              onChange={(v) => {
-                setFromQuery(v);
-                if (!v) setFrom("", "");
-              }}
-              onSelect={(a) => {
-                setFrom(`${a.city} (${a.code})`, a.code);
-                setFromQuery(`${a.city} (${a.code})`);
-              }}
-            />
+          <>
+            {/* From / To card */}
+            <div className="relative overflow-hidden rounded-2xl bg-white shadow-[0_2px_16px_rgba(0,0,0,0.07)]">
+              <AirportRowField
+                label="From"
+                placeholder="Departure city or airport"
+                value={fromQuery}
+                onChange={(v) => { setFromQuery(v); if (!v) setFrom("", ""); }}
+                onSelect={(a) => {
+                  setFrom(`${a.city} (${a.code})`, a.code);
+                  setFromQuery(`${a.city} (${a.code})`);
+                }}
+              />
+              {/* Divider + swap */}
+              <div className="relative border-t border-neutral-100">
+                <button
+                  type="button"
+                  onClick={() => {
+                    swapLocations();
+                    setFromQuery(to);
+                    setToQuery(from);
+                  }}
+                  className="absolute right-4 top-1/2 z-10 flex h-8 w-8 -translate-y-1/2 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-500 shadow-sm transition-all hover:border-neutral-400 hover:text-neutral-800 active:scale-90"
+                  aria-label="Swap departure and arrival"
+                >
+                  <ArrowUpDown className="h-3.5 w-3.5" strokeWidth={2} />
+                </button>
+              </div>
+              <AirportRowField
+                label="To"
+                placeholder="Arrival city or airport"
+                value={toQuery}
+                onChange={(v) => { setToQuery(v); if (!v) setTo("", ""); }}
+                onSelect={(a) => {
+                  setTo(`${a.city} (${a.code})`, a.code);
+                  setToQuery(`${a.city} (${a.code})`);
+                }}
+              />
+            </div>
 
-            {/* Swap */}
-            <button
-              type="button"
-              onClick={() => {
-                swapLocations();
-                setFromQuery(to);
-                setToQuery(from);
-              }}
-              className="z-10 mx-auto -my-2 flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-neutral-200 bg-white text-neutral-600 transition-all hover:border-neutral-400 hover:bg-neutral-100 hover:text-neutral-950 active:scale-90 md:mx-1 md:my-auto md:h-8 md:w-8"
-              aria-label="Swap departure and arrival"
-            >
-              <ArrowLeftRight className="h-3.5 w-3.5" strokeWidth={2} />
-            </button>
-
-            {/* TO */}
-            <AirportField
-              label="To"
-              placeholder="Arrival city"
-              value={toQuery}
-              onChange={(v) => {
-                setToQuery(v);
-                if (!v) setTo("", "");
-              }}
-              onSelect={(a) => {
-                setTo(`${a.city} (${a.code})`, a.code);
-                setToQuery(`${a.city} (${a.code})`);
-              }}
-            />
-
-            <div className="hidden h-10 w-px self-center bg-neutral-200 md:block" />
-
-            {/* DATE + TIME */}
-            <div className="flex flex-1 items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-neutral-50 md:max-w-[260px]">
-              <Calendar className="h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.75} />
-              <div className="min-w-0 flex-1">
-                <label className="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
-                  {tripType === "round_trip" ? "Depart" : "Date / Time"}
-                </label>
+            {/* Passengers card */}
+            <div className="overflow-hidden rounded-2xl bg-white shadow-[0_2px_16px_rgba(0,0,0,0.07)]">
+              <div className="flex items-center justify-between px-4 py-4">
+                <div className="flex items-center gap-3">
+                  <Users className="h-5 w-5 text-neutral-400" strokeWidth={1.75} />
+                  <div>
+                    <div className="text-[11px] font-medium uppercase tracking-wider text-neutral-400">
+                      Passengers
+                    </div>
+                    <div className="text-[15px] font-medium text-neutral-900">
+                      {passengers} {passengers === 1 ? "Passenger" : "Passengers"}
+                      {bags > 0 && ` · ${bags} bag${bags > 1 ? "s" : ""}`}
+                    </div>
+                  </div>
+                </div>
                 <div className="flex items-center gap-2">
-                  <input
-                    type="date"
-                    min={today}
-                    value={date}
-                    onChange={(e) => setDate(e.target.value)}
+                  <button
+                    type="button"
+                    onClick={() => setPassengers(Math.max(1, passengers - 1))}
                     className={cn(
-                      "min-w-0 flex-1 bg-transparent text-[14px] font-medium text-neutral-950 outline-none",
-                      !date && "text-neutral-400"
+                      "flex h-9 w-9 items-center justify-center rounded-full border transition-colors",
+                      passengers <= 1
+                        ? "cursor-not-allowed border-neutral-100 text-neutral-300"
+                        : "border-neutral-300 text-neutral-700 hover:border-neutral-500"
                     )}
-                  />
-                  <input
-                    type="time"
-                    value={time}
-                    onChange={(e) => setTime(e.target.value)}
-                    className={cn(
-                      "w-[78px] bg-transparent text-[14px] font-medium text-neutral-950 outline-none",
-                      !time && "text-neutral-400"
-                    )}
-                  />
+                    disabled={passengers <= 1}
+                  >
+                    <Minus className="h-3.5 w-3.5" strokeWidth={2} />
+                  </button>
+                  <span className="w-5 text-center text-[15px] font-semibold text-neutral-900">
+                    {passengers}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setPassengers(Math.min(19, passengers + 1))}
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-300 text-neutral-700 transition-colors hover:border-neutral-500"
+                  >
+                    <Plus className="h-3.5 w-3.5" strokeWidth={2} />
+                  </button>
                 </div>
               </div>
             </div>
 
-            {/* RETURN (only round_trip) */}
-            {tripType === "round_trip" && (
-              <>
-                <div className="hidden h-10 w-px self-center bg-neutral-200 md:block" />
-                <div className="flex flex-1 items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-neutral-50 md:max-w-[260px]">
-                  <Calendar
-                    className="h-4 w-4 shrink-0 text-neutral-500"
-                    strokeWidth={1.75}
-                  />
-                  <div className="min-w-0 flex-1">
-                    <label className="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
-                      Return
-                    </label>
-                    <div className="flex items-center gap-2">
-                      <input
-                        type="date"
-                        min={date || today}
-                        value={returnDate}
-                        onChange={(e) => setReturnDate(e.target.value)}
-                        className={cn(
-                          "min-w-0 flex-1 bg-transparent text-[14px] font-medium text-neutral-950 outline-none",
-                          !returnDate && "text-neutral-400"
-                        )}
-                      />
-                      <input
-                        type="time"
-                        value={returnTime}
-                        onChange={(e) => setReturnTime(e.target.value)}
-                        className={cn(
-                          "w-[78px] bg-transparent text-[14px] font-medium text-neutral-950 outline-none",
-                          !returnTime && "text-neutral-400"
-                        )}
-                      />
-                    </div>
+            {/* Date card */}
+            <div className="overflow-hidden rounded-2xl bg-white shadow-[0_2px_16px_rgba(0,0,0,0.07)]">
+              <div className="flex items-center gap-3 px-4 py-4">
+                <Calendar className="h-5 w-5 text-neutral-400" strokeWidth={1.75} />
+                <div className="flex-1">
+                  <div className="text-[11px] font-medium uppercase tracking-wider text-neutral-400">
+                    {tripType === "round_trip" ? "Depart" : "Date and time"}
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <input
+                      type="date"
+                      min={today}
+                      value={date}
+                      onChange={(e) => setDate(e.target.value)}
+                      className={cn(
+                        "flex-1 bg-transparent text-[15px] font-medium outline-none",
+                        date ? "text-neutral-900" : "text-neutral-300"
+                      )}
+                    />
+                    <input
+                      type="time"
+                      value={time}
+                      onChange={(e) => setTime(e.target.value)}
+                      className={cn(
+                        "w-[80px] bg-transparent text-[15px] font-medium outline-none",
+                        time ? "text-neutral-900" : "text-neutral-300"
+                      )}
+                    />
                   </div>
                 </div>
-              </>
-            )}
+              </div>
 
-            <div className="hidden h-10 w-px self-center bg-neutral-200 md:block" />
-
-            {/* PASSENGERS / BAGS / PETS */}
-            <div className="md:min-w-[220px]">
-              <StepperField
-                icon={Users}
-                label="Guests"
-                summary={passengersSummary}
-                items={[
-                  {
-                    key: "pax",
-                    title: "Passengers",
-                    subtitle: "Ages 2+",
-                    value: passengers,
-                    min: 1,
-                    max: 19,
-                    onChange: setPassengers,
-                  },
-                  {
-                    key: "bags",
-                    title: "Bags",
-                    subtitle: "Standard checked",
-                    value: bags,
-                    min: 0,
-                    max: 30,
-                    onChange: setBags,
-                  },
-                  {
-                    key: "pets",
-                    title: "Pets",
-                    subtitle: "Cabin-friendly",
-                    value: pets,
-                    min: 0,
-                    max: 4,
-                    onChange: setPets,
-                  },
-                ]}
-              />
+              {/* Return date (round trip only) */}
+              {tripType === "round_trip" && (
+                <>
+                  <div className="border-t border-neutral-100" />
+                  <div className="flex items-center gap-3 px-4 py-4">
+                    <Calendar className="h-5 w-5 text-neutral-400" strokeWidth={1.75} />
+                    <div className="flex-1">
+                      <div className="text-[11px] font-medium uppercase tracking-wider text-neutral-400">
+                        Return
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <input
+                          type="date"
+                          min={date || today}
+                          value={returnDate}
+                          onChange={(e) => setReturnDate(e.target.value)}
+                          className={cn(
+                            "flex-1 bg-transparent text-[15px] font-medium outline-none",
+                            returnDate ? "text-neutral-900" : "text-neutral-300"
+                          )}
+                        />
+                        <input
+                          type="time"
+                          value={returnTime}
+                          onChange={(e) => setReturnTime(e.target.value)}
+                          className={cn(
+                            "w-[80px] bg-transparent text-[15px] font-medium outline-none",
+                            returnTime ? "text-neutral-900" : "text-neutral-300"
+                          )}
+                        />
+                      </div>
+                    </div>
+                  </div>
+                </>
+              )}
             </div>
-
-            {/* SEARCH */}
-            <button
-              type="submit"
-              className="group ml-auto mt-2 flex shrink-0 items-center justify-center gap-1.5 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98] md:ml-2 md:mt-0"
-            >
-              <Search className="h-3.5 w-3.5" strokeWidth={2.25} />
-              <span>Search Jets</span>
-            </button>
-          </div>
+          </>
         ) : (
-          /* MULTI LEG */
-          <div className="flex flex-col gap-2">
+          /* Multi-leg */
+          <div className="flex flex-col gap-3">
             {legs.map((leg, idx) => (
               <MultiLegRow
                 key={idx}
@@ -574,164 +481,67 @@ export default function SearchBar({ variant = "hero" }: SearchBarProps) {
                 today={today}
               />
             ))}
+            <button
+              type="button"
+              onClick={addLeg}
+              className="flex items-center justify-center gap-2 rounded-2xl border border-dashed border-neutral-300 py-3.5 text-[13px] font-medium text-neutral-500 hover:border-neutral-400 hover:text-neutral-700 transition-colors"
+            >
+              <Plus className="h-4 w-4" strokeWidth={2} />
+              Add another leg
+            </button>
 
-            <div className="flex flex-col items-stretch gap-2 px-1 pt-1 sm:flex-row sm:items-center sm:justify-between">
-              <button
-                type="button"
-                onClick={addLeg}
-                className="inline-flex items-center justify-center gap-1.5 self-start rounded-full border border-neutral-300 bg-neutral-50 px-3.5 py-2 text-[12px] font-medium text-neutral-950 transition-colors hover:border-neutral-400 hover:bg-neutral-100"
-              >
-                <Plus className="h-3.5 w-3.5" strokeWidth={2} />
-                Add another leg
-              </button>
-
-              <div className="flex flex-wrap items-center gap-2 sm:flex-nowrap">
-                <div className="min-w-[200px]">
-                  <StepperField
-                    icon={Users}
-                    label="Guests"
-                    summary={passengersSummary}
-                    items={[
-                      {
-                        key: "pax",
-                        title: "Passengers",
-                        subtitle: "Ages 2+",
-                        value: passengers,
-                        min: 1,
-                        max: 19,
-                        onChange: setPassengers,
-                      },
-                      {
-                        key: "bags",
-                        title: "Bags",
-                        subtitle: "Standard checked",
-                        value: bags,
-                        min: 0,
-                        max: 30,
-                        onChange: setBags,
-                      },
-                      {
-                        key: "pets",
-                        title: "Pets",
-                        subtitle: "Cabin-friendly",
-                        value: pets,
-                        min: 0,
-                        max: 4,
-                        onChange: setPets,
-                      },
-                    ]}
-                  />
+            {/* Passengers (multi-leg) */}
+            <div className="overflow-hidden rounded-2xl bg-white shadow-[0_2px_16px_rgba(0,0,0,0.07)]">
+              <div className="flex items-center justify-between px-4 py-4">
+                <div className="flex items-center gap-3">
+                  <Users className="h-5 w-5 text-neutral-400" strokeWidth={1.75} />
+                  <div>
+                    <div className="text-[11px] font-medium uppercase tracking-wider text-neutral-400">
+                      Passengers
+                    </div>
+                    <div className="text-[15px] font-medium text-neutral-900">
+                      {passengers} {passengers === 1 ? "Passenger" : "Passengers"}
+                    </div>
+                  </div>
                 </div>
-                <button
-                  type="submit"
-                  className="inline-flex items-center justify-center gap-1.5 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98]"
-                >
-                  <Search className="h-3.5 w-3.5" strokeWidth={2.25} />
-                  Search Jets
-                </button>
+                <div className="flex items-center gap-2">
+                  <button
+                    type="button"
+                    onClick={() => setPassengers(Math.max(1, passengers - 1))}
+                    className={cn(
+                      "flex h-9 w-9 items-center justify-center rounded-full border transition-colors",
+                      passengers <= 1
+                        ? "cursor-not-allowed border-neutral-100 text-neutral-300"
+                        : "border-neutral-300 text-neutral-700 hover:border-neutral-500"
+                    )}
+                    disabled={passengers <= 1}
+                  >
+                    <Minus className="h-3.5 w-3.5" strokeWidth={2} />
+                  </button>
+                  <span className="w-5 text-center text-[15px] font-semibold text-neutral-900">
+                    {passengers}
+                  </span>
+                  <button
+                    type="button"
+                    onClick={() => setPassengers(Math.min(19, passengers + 1))}
+                    className="flex h-9 w-9 items-center justify-center rounded-full border border-neutral-300 text-neutral-700 transition-colors hover:border-neutral-500"
+                  >
+                    <Plus className="h-3.5 w-3.5" strokeWidth={2} />
+                  </button>
+                </div>
               </div>
             </div>
           </div>
         )}
-      </div>
-    </form>
-  );
-}
 
-/* ---------- Multi-leg row ---------- */
-function MultiLegRow({
-  index,
-  leg,
-  onUpdate,
-  onRemove,
-  today,
-}: {
-  index: number;
-  leg: { from: string; to: string; fromCode: string; toCode: string; date: string; time: string };
-  onUpdate: (patch: Partial<{ from: string; to: string; fromCode: string; toCode: string; date: string; time: string }>) => void;
-  onRemove?: () => void;
-  today: string;
-}) {
-  const [fromQuery, setFromQuery] = useState(leg.from);
-  const [toQuery, setToQuery] = useState(leg.to);
-
-  useEffect(() => setFromQuery(leg.from), [leg.from]);
-  useEffect(() => setToQuery(leg.to), [leg.to]);
-
-  return (
-    <div className="flex flex-col items-stretch gap-1 rounded-xl border border-neutral-200 bg-neutral-50/50 p-1 md:flex-row md:items-center">
-      <div className="flex h-8 w-12 shrink-0 items-center justify-center rounded-md font-mono text-[11px] uppercase tracking-widest text-neutral-500 md:ml-2">
-        Leg {index + 1}
-      </div>
-
-      <AirportField
-        label="From"
-        placeholder="Departure city"
-        value={fromQuery}
-        onChange={(v) => {
-          setFromQuery(v);
-          if (!v) onUpdate({ from: "", fromCode: "" });
-        }}
-        onSelect={(a) => {
-          onUpdate({ from: `${a.city} (${a.code})`, fromCode: a.code });
-          setFromQuery(`${a.city} (${a.code})`);
-        }}
-      />
-
-      <AirportField
-        label="To"
-        placeholder="Arrival city"
-        value={toQuery}
-        onChange={(v) => {
-          setToQuery(v);
-          if (!v) onUpdate({ to: "", toCode: "" });
-        }}
-        onSelect={(a) => {
-          onUpdate({ to: `${a.city} (${a.code})`, toCode: a.code });
-          setToQuery(`${a.city} (${a.code})`);
-        }}
-      />
-
-      <div className="flex flex-1 items-center gap-3 rounded-xl px-4 py-3 transition-colors hover:bg-neutral-50 md:max-w-[260px]">
-        <Clock className="h-4 w-4 shrink-0 text-neutral-500" strokeWidth={1.75} />
-        <div className="min-w-0 flex-1">
-          <label className="block font-mono text-[10px] uppercase tracking-widest text-neutral-400">
-            Date / Time
-          </label>
-          <div className="flex items-center gap-2">
-            <input
-              type="date"
-              min={today}
-              value={leg.date}
-              onChange={(e) => onUpdate({ date: e.target.value })}
-              className={cn(
-                "min-w-0 flex-1 bg-transparent text-[14px] font-medium text-neutral-950 outline-none",
-                !leg.date && "text-neutral-400"
-              )}
-            />
-            <input
-              type="time"
-              value={leg.time}
-              onChange={(e) => onUpdate({ time: e.target.value })}
-              className={cn(
-                "w-[78px] bg-transparent text-[14px] font-medium text-neutral-950 outline-none",
-                !leg.time && "text-neutral-400"
-              )}
-            />
-          </div>
-        </div>
-      </div>
-
-      {onRemove && (
+        {/* Search button */}
         <button
-          type="button"
-          onClick={onRemove}
-          aria-label={`Remove leg ${index + 1}`}
-          className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full text-neutral-500 transition-colors hover:bg-neutral-100 hover:text-neutral-950 md:mr-2"
+          type="submit"
+          className="w-full rounded-2xl bg-[var(--color-navy)] py-4 text-[16px] font-semibold text-white shadow-[0_4px_20px_rgba(13,31,60,0.4)] transition-all hover:bg-[var(--color-navy-light)] active:scale-[0.99]"
         >
-          <Trash2 className="h-3.5 w-3.5" strokeWidth={1.75} />
+          Search
         </button>
-      )}
+      </form>
     </div>
   );
 }

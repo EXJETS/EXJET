@@ -1,10 +1,22 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
-import { ArrowLeft, User, Save, Plane } from "lucide-react";
+import { ArrowLeft, User, Save, Plane, CheckCircle2 } from "lucide-react";
 
 export default function ProfilePage() {
+  const [saved, setSaved] = useState(false);
+  const [saving, setSaving] = useState(false);
+
+  const handleSave = () => {
+    setSaving(true);
+    setTimeout(() => {
+      setSaving(false);
+      setSaved(true);
+      setTimeout(() => setSaved(false), 3000);
+    }, 900);
+  };
+
   const [form, setForm] = useState({
     firstName: "John", lastName: "Doe", email: "john.doe@example.com",
     phone: "+1 (555) 123-4567", dob: "1985-06-15",
@@ -12,15 +24,15 @@ export default function ProfilePage() {
     passportNumber: "US1234567", passportExpiry: "2030-12-31", nationality: "United States",
   });
 
-  const update = (field: string, value: string) => setForm((prev) => ({ ...prev, [field]: value }));
+  const update = (field: string, value: string) => setForm((prev: typeof form) => ({ ...prev, [field]: value }));
 
   const inputCls =
-    "w-full rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2.5 text-[13px] text-neutral-950 placeholder:text-neutral-400 outline-none focus:border-neutral-400";
+    "w-full rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2.5 text-[13px] text-[#0a1628] placeholder:text-neutral-400 outline-none focus:border-[#0d1f3c]";
   const dateCls = inputCls + "";
   const labelCls = "mb-1 block font-mono text-[10px] uppercase tracking-widest text-neutral-600";
 
   return (
-    <div className="min-h-screen bg-white text-neutral-950">
+    <div className="min-h-screen bg-[#f5f0eb] text-[#0a1628]">
       <div className="mx-auto max-w-3xl px-4 py-8 sm:px-6 lg:px-8">
         <Link
           href="/dashboard"
@@ -30,11 +42,11 @@ export default function ProfilePage() {
         </Link>
 
         <div className="mb-8 flex items-center gap-4">
-          <div className="flex h-16 w-16 items-center justify-center rounded-full border border-neutral-200 bg-neutral-100 text-[20px] font-semibold text-neutral-950">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full border border-neutral-200 bg-white text-[20px] font-semibold text-[#0a1628]">
             {form.firstName[0]}{form.lastName[0]}
           </div>
           <div>
-            <h1 className="text-[28px] font-semibold tracking-tight text-neutral-950">{form.firstName} {form.lastName}</h1>
+            <h1 className="text-[28px] font-semibold tracking-tight text-[#0a1628]">{form.firstName} {form.lastName}</h1>
             <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">EXJET Premium Member</p>
           </div>
         </div>
@@ -48,23 +60,23 @@ export default function ProfilePage() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label className={labelCls}>First Name</label>
-              <input type="text" value={form.firstName} onChange={(e) => update("firstName", e.target.value)} className={inputCls} />
+              <input type="text" value={form.firstName} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("firstName", e.target.value)} className={inputCls} />
             </div>
             <div>
               <label className={labelCls}>Last Name</label>
-              <input type="text" value={form.lastName} onChange={(e) => update("lastName", e.target.value)} className={inputCls} />
+              <input type="text" value={form.lastName} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("lastName", e.target.value)} className={inputCls} />
             </div>
             <div>
               <label className={labelCls}>Email</label>
-              <input type="email" value={form.email} onChange={(e) => update("email", e.target.value)} className={inputCls} />
+              <input type="email" value={form.email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("email", e.target.value)} className={inputCls} />
             </div>
             <div>
               <label className={labelCls}>Phone</label>
-              <input type="tel" value={form.phone} onChange={(e) => update("phone", e.target.value)} className={inputCls} />
+              <input type="tel" value={form.phone} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("phone", e.target.value)} className={inputCls} />
             </div>
             <div>
               <label className={labelCls}>Date of Birth</label>
-              <input type="date" value={form.dob} onChange={(e) => update("dob", e.target.value)} className={dateCls} />
+              <input type="date" value={form.dob} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("dob", e.target.value)} className={dateCls} />
             </div>
           </div>
         </div>
@@ -80,7 +92,7 @@ export default function ProfilePage() {
               <label className={labelCls}>Preferred Cabin Class</label>
               <select
                 value={form.preferredCategory}
-                onChange={(e) => update("preferredCategory", e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => update("preferredCategory", e.target.value)}
                 className={inputCls}
               >
                 <option value="light">Light Jet</option>
@@ -95,7 +107,7 @@ export default function ProfilePage() {
               <input
                 type="text"
                 value={form.dietary}
-                onChange={(e) => update("dietary", e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("dietary", e.target.value)}
                 className={inputCls}
                 placeholder="None"
               />
@@ -104,7 +116,7 @@ export default function ProfilePage() {
               <label className={labelCls}>Special Requests</label>
               <textarea
                 value={form.specialRequests}
-                onChange={(e) => update("specialRequests", e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => update("specialRequests", e.target.value)}
                 rows={3}
                 className={inputCls + " resize-none"}
                 placeholder="Any special requirements for your flights..."
@@ -122,7 +134,7 @@ export default function ProfilePage() {
               <input
                 type="text"
                 value={form.passportNumber}
-                onChange={(e) => update("passportNumber", e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("passportNumber", e.target.value)}
                 className={inputCls}
               />
             </div>
@@ -131,7 +143,7 @@ export default function ProfilePage() {
               <input
                 type="date"
                 value={form.passportExpiry}
-                onChange={(e) => update("passportExpiry", e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("passportExpiry", e.target.value)}
                 className={dateCls}
               />
             </div>
@@ -140,15 +152,29 @@ export default function ProfilePage() {
               <input
                 type="text"
                 value={form.nationality}
-                onChange={(e) => update("nationality", e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("nationality", e.target.value)}
                 className={inputCls}
               />
             </div>
           </div>
         </div>
 
-        <button className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-neutral-950 px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98]">
-          <Save className="h-3.5 w-3.5" strokeWidth={2} /> Save Changes
+        {saved && (
+          <div className="mb-4 flex items-center gap-2 rounded-xl border border-neutral-200 bg-white px-4 py-3">
+            <CheckCircle2 className="h-4 w-4 shrink-0 text-[#0d1f3c]" strokeWidth={2} />
+            <p className="text-[13px] text-neutral-700">Profile saved successfully.</p>
+          </div>
+        )}
+        <button
+          onClick={handleSave}
+          disabled={saving}
+          className="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#0d1f3c] px-6 py-3 text-[13px] font-medium text-white transition-colors hover:bg-[#1a3461] active:scale-[0.98] disabled:opacity-60"
+        >
+          {saving ? (
+            <>Saving…</>
+          ) : (
+            <><Save className="h-3.5 w-3.5" strokeWidth={2} /> Save Changes</>
+          )}
         </button>
       </div>
     </div>

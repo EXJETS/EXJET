@@ -1,199 +1,328 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
-import {
-  Plane, Navigation, Star, MapPin, ArrowRight,
-  Radio, CreditCard,
-} from "lucide-react";
-import { StatCard } from "@/components/dashboard/stat-card";
-import { StatusBadge } from "@/components/dashboard/status-badge";
-import { MiniChart } from "@/components/dashboard/mini-chart";
+import { PlaneTakeoff, ChevronRight, RotateCcw } from "lucide-react";
 import { formatCurrency } from "@/lib/utils";
 
-const spendData = [12000, 0, 35000, 8000, 22000, 0, 41000, 18000, 29000, 0, 56000, 38000];
+type TabId = "upcoming" | "past" | "cancelled";
 
-const upcomingTrips = [
+type FlightStatus = "confirmed" | "completed" | "cancelled";
+
+interface AnyFlight {
+  id: string;
+  jet: string;
+  from: string;
+  to: string;
+  date: string;
+  departTime: string;
+  status: FlightStatus;
+  price: number;
+  arrivalTime?: string;
+}
+
+const upcomingFlights = [
   {
-    id: "bk-001", jet: "Gulfstream G650ER", from: "New York", fromCode: "KTEB",
-    to: "London", toCode: "EGLL", date: "2026-04-15", status: "confirmed" as const, price: 56810,
+    id: "bk-001",
+    jet: "Gulfstream G650ER",
+    from: "Teterboro (KTEB)",
+    to: "London Heathrow (EGLL)",
+    date: "2026-04-15",
+    departTime: "08:00",
+    arrivalTime: "19:45",
+    status: "confirmed" as const,
+    price: 56810,
   },
   {
-    id: "bk-002", jet: "Praetor 500", from: "Miami", fromCode: "KMIA",
-    to: "Austin", toCode: "KAUS", date: "2026-04-22", status: "confirmed" as const, price: 23712,
+    id: "bk-002",
+    jet: "Praetor 500",
+    from: "Miami (KMIA)",
+    to: "Austin (KAUS)",
+    date: "2026-04-22",
+    departTime: "10:30",
+    arrivalTime: "13:15",
+    status: "confirmed" as const,
+    price: 23712,
   },
 ];
 
-const pastTrips = [
-  { id: "bk-003", jet: "Citation CJ4",   from: "Palm Beach", to: "Chicago",     date: "2026-03-10", status: "completed" as const, price: 15808 },
-  { id: "bk-004", jet: "Falcon 900LX",   from: "San Francisco", to: "Las Vegas", date: "2026-02-28", status: "completed" as const, price: 35568 },
-  { id: "bk-005", jet: "Challenger 350", from: "Dallas",       to: "Denver",     date: "2026-01-15", status: "cancelled" as const, price: 27664 },
+const pastFlights = [
+  {
+    id: "bk-003",
+    jet: "Citation CJ4",
+    from: "Palm Beach (KPBI)",
+    to: "Chicago Midway (KMDW)",
+    date: "2026-03-10",
+    departTime: "09:00",
+    status: "completed" as const,
+    price: 15808,
+  },
+  {
+    id: "bk-004",
+    jet: "Falcon 900LX",
+    from: "San Francisco (KSFO)",
+    to: "Las Vegas (KLAS)",
+    date: "2026-02-28",
+    departTime: "14:00",
+    status: "completed" as const,
+    price: 35568,
+  },
+  {
+    id: "bk-005",
+    jet: "Challenger 350",
+    from: "Dallas (KADS)",
+    to: "Denver (KDEN)",
+    date: "2026-01-15",
+    departTime: "07:30",
+    status: "completed" as const,
+    price: 27664,
+  },
 ];
 
-const nearbyJets = [
-  { id: "gulfstream-g500",   name: "Gulfstream G500",   distance: "3.2 mi", airport: "KTEB", category: "heavy",        hourlyRate: 8200, rating: 4.9, status: "available" as const },
-  { id: "challenger-350",    name: "Challenger 350",    distance: "3.2 mi", airport: "KTEB", category: "super_midsize", hourlyRate: 5600, rating: 4.7, status: "available" as const },
-  { id: "phenom-300e",       name: "Phenom 300E",       distance: "8.1 mi", airport: "KJFK", category: "light",         hourlyRate: 3500, rating: 4.9, status: "available" as const },
-  { id: "citation-longitude",name: "Citation Longitude",distance: "11 mi",  airport: "KHPN", category: "super_midsize", hourlyRate: 5400, rating: 4.8, status: "available" as const },
+const cancelledFlights = [
+  {
+    id: "bk-006",
+    jet: "Phenom 300E",
+    from: "New York (KTEB)",
+    to: "Boston (KBOS)",
+    date: "2025-12-20",
+    departTime: "15:00",
+    status: "cancelled" as const,
+    price: 12400,
+  },
 ];
 
-export default function ClientDashboardPage() {
+function fmtDate(iso: string) {
+  return new Date(iso + "T12:00:00Z").toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+  });
+}
+
+function StatusBadge({ status }: { status: "confirmed" | "completed" | "cancelled" }) {
+  const config = {
+    confirmed:  { label: "Confirmed", cls: "bg-emerald-100 text-emerald-800" },
+    completed:  { label: "Completed", cls: "bg-emerald-600 text-white" },
+    cancelled:  { label: "Cancelled", cls: "bg-amber-100 text-amber-800" },
+  };
+  const { label, cls } = config[status];
   return (
-    <div className="mx-auto w-full max-w-7xl p-6">
-      {/* Header */}
-      <div className="mb-6 flex items-center justify-between gap-4">
-        <div>
-          <p className="font-mono text-[11px] uppercase tracking-widest text-neutral-600">Overview</p>
-          <h1 className="mt-2 text-[28px] font-semibold tracking-tight text-neutral-950">Welcome back, John</h1>
-          <p className="mt-1 text-[13px] text-neutral-500">4 jets available near Teterboro · Updated just now</p>
-        </div>
+    <span className={`inline-block rounded-md px-2.5 py-1 text-[12px] font-medium ${cls}`}>
+      {label}
+    </span>
+  );
+}
+
+function FlightCard({
+  flight,
+  showActions,
+}: {
+  flight: AnyFlight;
+  showActions?: boolean;
+}) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white">
+      <div className="p-5">
+        <StatusBadge status={flight.status as "confirmed" | "completed" | "cancelled"} />
+
+        <p className="mt-3 text-[15px] font-semibold text-[#0a1628]">
+          {fmtDate(flight.date)} · {flight.departTime}
+        </p>
+
         <Link
-          href="/search"
-          className="inline-flex items-center gap-2 rounded-full bg-neutral-950 px-5 py-2.5 text-[13px] font-medium text-white transition-colors hover:bg-neutral-800 active:scale-[0.98]"
+          href={`/dashboard/bookings/${flight.id}`}
+          className="mt-3 flex items-stretch gap-3"
         >
-          <Plane className="h-3.5 w-3.5" strokeWidth={2} /> Book a Flight
+          <div className="flex flex-col items-center gap-1 pt-1">
+            <div className="h-2 w-2 rounded-full border-2 border-neutral-400" />
+            <div className="w-px flex-1 bg-neutral-200" />
+            <div className="h-2 w-2 rounded-full bg-[#0d1f3c]" />
+          </div>
+          <div className="flex-1 space-y-2">
+            <p className="text-[14px] text-neutral-700">{flight.from}</p>
+            <p className="text-[14px] text-[#0a1628] font-medium">{flight.to}</p>
+          </div>
+          <ChevronRight className="self-center h-4 w-4 text-neutral-400 shrink-0" strokeWidth={2} />
         </Link>
+
+        <p className="mt-3 text-[13px] text-neutral-500">
+          {flight.jet} · {formatCurrency(flight.price)}
+        </p>
       </div>
 
-      {/* Stats */}
-      <div className="mb-6 grid grid-cols-2 gap-4 lg:grid-cols-4">
-        <StatCard label="Total Flights"  value="12"        icon={Plane}       trend={{ value: "3 this year", up: true }} />
-        <StatCard label="Miles Flown"    value="45,200"    icon={Navigation}  sub="~18 trips around Earth" />
-        <StatCard label="Total Spent"    value="$259,562"  icon={CreditCard}  trend={{ value: "14%", up: true }} />
-        <StatCard label="Avg Rating"     value="4.9 ★"    icon={Star}        sub="Your given ratings" />
-      </div>
-
-      {/* Nearby Jets + Spend Chart */}
-      <div className="mb-6 grid gap-4 lg:grid-cols-3">
-        {/* Spend chart */}
-        <div className="rounded-2xl border border-neutral-200 bg-white p-5 backdrop-blur-xl">
-          <div className="mb-3 flex items-center justify-between">
-            <p className="font-mono text-[11px] uppercase tracking-widest text-neutral-600">Spend (12 mo)</p>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
-              {formatCurrency(spendData.reduce((a, b) => a + b, 0))} total
-            </span>
-          </div>
-          <div className="h-28">
-            <MiniChart data={spendData} color="#ffffff" height={112} />
-          </div>
-        </div>
-
-        {/* Nearby jets */}
-        <div className="rounded-2xl border border-neutral-200 bg-white p-5 backdrop-blur-xl lg:col-span-2">
-          <div className="mb-4 flex items-center justify-between">
-            <div className="flex items-center gap-2">
-              <MapPin className="h-3.5 w-3.5 text-neutral-600" strokeWidth={2} />
-              <p className="font-mono text-[11px] uppercase tracking-widest text-neutral-600">Jets Near You</p>
-              <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">· Teterboro</span>
-            </div>
-            <Link href="/search" className="inline-flex items-center gap-1 text-[12px] font-medium text-neutral-700 transition-colors hover:text-neutral-950">
-              See all <ArrowRight className="h-3 w-3" strokeWidth={2} />
-            </Link>
-          </div>
-          <div className="grid gap-3 sm:grid-cols-2">
-            {nearbyJets.map((j) => (
-              <Link
-                key={j.id}
-                href={`/jets/${j.id}`}
-                className="group flex items-center gap-3 rounded-xl border border-neutral-200 bg-white p-3 transition-colors hover:border-neutral-300 hover:bg-neutral-100"
-              >
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg border border-neutral-200 bg-neutral-100">
-                  <Plane className="h-4 w-4 text-neutral-800" strokeWidth={1.75} />
-                </div>
-                <div className="min-w-0 flex-1">
-                  <p className="truncate text-[13px] font-semibold text-neutral-950">{j.name}</p>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
-                    {j.airport} · {j.distance}
-                  </p>
-                </div>
-                <div className="shrink-0 text-right">
-                  <p className="text-[12px] font-semibold text-neutral-950">
-                    {formatCurrency(j.hourlyRate)}
-                    <span className="font-normal text-neutral-400">/hr</span>
-                  </p>
-                  <div className="flex items-center justify-end gap-1">
-                    <span className="h-1 w-1 rounded-full bg-emerald-500" />
-                    <span className="font-mono text-[9px] uppercase tracking-widest text-neutral-400">Available</span>
-                  </div>
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </div>
-
-      {/* Upcoming Trips */}
-      <div className="mb-6">
-        <div className="mb-4 flex items-center justify-between">
-          <p className="font-mono text-[11px] uppercase tracking-widest text-neutral-600">Upcoming Trips</p>
+      {showActions && (
+        <div className="flex border-t border-neutral-100">
           <Link
-            href="/dashboard/tracking"
-            className="inline-flex items-center gap-1.5 text-[12px] font-medium text-neutral-700 transition-colors hover:text-neutral-950"
+            href="/search"
+            className="flex flex-1 items-center justify-center gap-2 py-3.5 text-[13px] font-medium text-[#0a1628] transition-colors hover:bg-neutral-50"
           >
-            <Radio className="h-3 w-3 text-emerald-700" strokeWidth={2} /> Track Fleet Live
+            <PlaneTakeoff className="h-3.5 w-3.5" strokeWidth={1.75} /> Book again
+          </Link>
+          <div className="w-px bg-neutral-100" />
+          <Link
+            href="/search"
+            className="flex flex-1 items-center justify-center gap-2 py-3.5 text-[13px] font-medium text-[#0a1628] transition-colors hover:bg-neutral-50"
+          >
+            <RotateCcw className="h-3.5 w-3.5" strokeWidth={1.75} /> Book return
           </Link>
         </div>
-        <div className="grid gap-3">
-          {upcomingTrips.map((trip) => (
-            <Link
-              key={trip.id}
-              href={`/dashboard/bookings/${trip.id}`}
-              className="flex flex-col justify-between gap-4 rounded-2xl border border-neutral-200 bg-white p-5 backdrop-blur-xl transition-colors hover:border-neutral-300 hover:bg-neutral-100 sm:flex-row sm:items-center"
-            >
-              <div className="flex items-center gap-4">
-                <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-neutral-200 bg-neutral-100">
-                  <Plane className="h-5 w-5 text-neutral-800" strokeWidth={1.75} />
-                </div>
-                <div>
-                  <h3 className="text-[14px] font-semibold tracking-tight text-neutral-950">{trip.jet}</h3>
-                  <div className="mt-1 flex items-center gap-2 text-[12px] text-neutral-600">
-                    <span>{trip.from} ({trip.fromCode})</span>
-                    <ArrowRight className="h-3 w-3 text-neutral-400" strokeWidth={2} />
-                    <span>{trip.to} ({trip.toCode})</span>
-                  </div>
-                </div>
-              </div>
-              <div className="flex items-center gap-6">
-                <div className="text-right">
-                  <p className="text-[12px] text-neutral-600">
-                    {new Date(trip.date).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
-                  </p>
-                  <p className="mt-0.5 text-[13px] font-semibold text-neutral-950">{formatCurrency(trip.price)}</p>
-                </div>
-                <StatusBadge status={trip.status} />
-              </div>
-            </Link>
-          ))}
+      )}
+
+      {!showActions && (
+        <div className="border-t border-neutral-100">
+          <Link
+            href="/search"
+            className="flex w-full items-center justify-center gap-2 py-3.5 text-[13px] font-medium text-[#0a1628] transition-colors hover:bg-neutral-50"
+          >
+            <PlaneTakeoff className="h-3.5 w-3.5" strokeWidth={1.75} /> Book again
+          </Link>
         </div>
+      )}
+    </div>
+  );
+}
+
+function UpcomingCard({ flight }: { flight: AnyFlight }) {
+  return (
+    <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white">
+      <div className="p-5">
+        <StatusBadge status={flight.status} />
+
+        <p className="mt-3 text-[15px] font-semibold text-[#0a1628]">
+          {fmtDate(flight.date)} · {flight.departTime}
+        </p>
+
+        <Link
+          href={`/dashboard/bookings/${flight.id}`}
+          className="mt-3 flex items-stretch gap-3"
+        >
+          <div className="flex flex-col items-center gap-1 pt-1">
+            <div className="h-2 w-2 rounded-full border-2 border-neutral-400" />
+            <div className="w-px flex-1 bg-neutral-200" />
+            <div className="h-2 w-2 rounded-full bg-[#0d1f3c]" />
+          </div>
+          <div className="flex-1 space-y-2">
+            <p className="text-[14px] text-neutral-700">{flight.from}</p>
+            <p className="text-[14px] text-[#0a1628] font-medium">{flight.to}</p>
+          </div>
+          <ChevronRight className="self-center h-4 w-4 text-neutral-400 shrink-0" strokeWidth={2} />
+        </Link>
+
+        <p className="mt-3 text-[13px] text-neutral-500">
+          {flight.jet} · {formatCurrency(flight.price)}
+        </p>
       </div>
 
-      {/* Past Trips */}
-      <div>
-        <p className="mb-4 font-mono text-[11px] uppercase tracking-widest text-neutral-600">Past Trips</p>
-        <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white backdrop-blur-xl">
-          {pastTrips.map((trip, i) => (
-            <Link
-              key={trip.id}
-              href={`/dashboard/bookings/${trip.id}`}
-              className={`flex items-center justify-between p-4 transition-colors hover:bg-neutral-100 ${
-                i < pastTrips.length - 1 ? "border-b border-neutral-200" : ""
-              }`}
-            >
-              <div className="flex items-center gap-3">
-                <Plane className="h-3.5 w-3.5 text-neutral-400" strokeWidth={1.75} />
-                <div>
-                  <p className="text-[13px] font-medium text-neutral-950">{trip.jet}</p>
-                  <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
-                    {trip.from} → {trip.to} · {new Date(trip.date).toLocaleDateString("en-US", { month: "short", day: "numeric" })}
-                  </p>
+      <div className="border-t border-neutral-100">
+        <Link
+          href={`/dashboard/bookings/${flight.id}`}
+          className="flex w-full items-center justify-center gap-2 py-3.5 text-[13px] font-medium text-[#0a1628] transition-colors hover:bg-neutral-50"
+        >
+          View details <ChevronRight className="h-3.5 w-3.5" strokeWidth={2} />
+        </Link>
+      </div>
+    </div>
+  );
+}
+
+export default function DashboardPage() {
+  const [activeTab, setActiveTab] = useState<TabId>("upcoming");
+
+  const tabs: { id: TabId; label: string }[] = [
+    { id: "upcoming",  label: "Upcoming" },
+    { id: "past",      label: "Past" },
+    { id: "cancelled", label: "Cancelled" },
+  ];
+
+  return (
+    <div className="mx-auto w-full max-w-2xl px-4 py-8 sm:px-6">
+
+      {/* Title */}
+      <h1 className="mb-6 text-center text-[28px] font-semibold tracking-tight text-[#0a1628]">
+        My Flights
+      </h1>
+
+      {/* Tabs */}
+      <div className="flex border-b border-neutral-200">
+        {tabs.map((tab) => (
+          <button
+            key={tab.id}
+            onClick={() => setActiveTab(tab.id)}
+            className={`flex-1 pb-3 text-[14px] font-medium transition-colors ${
+              activeTab === tab.id
+                ? "border-b-2 border-[#0d1f3c] text-[#0a1628]"
+                : "text-neutral-400 hover:text-neutral-600"
+            }`}
+          >
+            {tab.label}
+          </button>
+        ))}
+      </div>
+
+      {/* Tab Content */}
+      <div className="mt-6">
+
+        {/* Upcoming */}
+        {activeTab === "upcoming" && (
+          <>
+            {upcomingFlights.length > 0 ? (
+              <div className="space-y-3">
+                {upcomingFlights.map((f) => (
+                  <UpcomingCard key={f.id} flight={f} />
+                ))}
+              </div>
+            ) : (
+              <div className="flex flex-col items-center justify-center py-24 text-center">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-neutral-100">
+                  <PlaneTakeoff className="h-7 w-7 text-neutral-300" strokeWidth={1.5} />
                 </div>
+                <h2 className="text-[18px] font-semibold text-[#0a1628]">No upcoming flights</h2>
+                <p className="mt-2 max-w-xs text-[14px] text-neutral-500">
+                  As soon as you book a charter, all relevant details will appear here.
+                </p>
               </div>
-              <div className="flex items-center gap-3">
-                <span className="text-[13px] font-medium text-neutral-800">{formatCurrency(trip.price)}</span>
-                <StatusBadge status={trip.status} />
+            )}
+
+            <div className="mt-6">
+              <Link
+                href="/search"
+                className="flex w-full items-center justify-center rounded-full border border-[#0d1f3c] px-6 py-3.5 text-[14px] font-medium text-[#0d1f3c] transition-colors hover:bg-[#0d1f3c] hover:text-white"
+              >
+                Book a flight
+              </Link>
+            </div>
+          </>
+        )}
+
+        {/* Past */}
+        {activeTab === "past" && (
+          <div className="space-y-3">
+            {pastFlights.map((f) => (
+              <FlightCard key={f.id} flight={f} showActions />
+            ))}
+          </div>
+        )}
+
+        {/* Cancelled */}
+        {activeTab === "cancelled" && (
+          <div className="space-y-3">
+            {cancelledFlights.length > 0 ? (
+              cancelledFlights.map((f) => (
+                <FlightCard key={f.id} flight={f} showActions={false} />
+              ))
+            ) : (
+              <div className="flex flex-col items-center justify-center py-24 text-center">
+                <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-full bg-neutral-100">
+                  <PlaneTakeoff className="h-7 w-7 text-neutral-300" strokeWidth={1.5} />
+                </div>
+                <h2 className="text-[18px] font-semibold text-[#0a1628]">No cancelled flights</h2>
+                <p className="mt-2 text-[14px] text-neutral-500">Cancelled bookings will appear here.</p>
               </div>
-            </Link>
-          ))}
-        </div>
+            )}
+          </div>
+        )}
+
       </div>
     </div>
   );

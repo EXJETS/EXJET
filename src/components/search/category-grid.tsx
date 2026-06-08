@@ -56,13 +56,20 @@ const CATEGORY_META: CategoryMeta[] = [
 
 const allJets = jetsData as Jet[];
 
+const PAX_OVERRIDES: Record<JetCategory, [number, number]> = {
+  light:        [4,  8],
+  midsize:      [7,  9],
+  super_midsize:[7,  9],
+  heavy:        [10, 19],
+  ultra_long:   [13, 19],
+};
+
 function aggregate(category: JetCategory) {
   const jets = allJets.filter((j) => j.category === category);
   if (!jets.length) {
     return null;
   }
-  const passengersMin = Math.min(...jets.map((j) => j.passengers));
-  const passengersMax = Math.max(...jets.map((j) => j.passengers));
+  const [passengersMin, passengersMax] = PAX_OVERRIDES[category];
   const rangeMin = Math.min(...jets.map((j) => j.range));
   const rangeMax = Math.max(...jets.map((j) => j.range));
   const speedAvg = Math.round(
@@ -103,12 +110,12 @@ export function CategoryGrid({ routeDistanceNm, hrefBase }: CategoryGridProps) {
             className={cn(
               "group relative flex flex-col overflow-hidden rounded-2xl border bg-white p-6 transition-all hover:bg-neutral-50",
               isRecommended
-                ? "border-neutral-950 ring-1 ring-neutral-950"
-                : "border-neutral-200 hover:border-neutral-300"
+                ? "border-[#0d1f3c] ring-1 ring-[#0d1f3c]"
+                : "border-neutral-200 hover:border-[#0d1f3c]"
             )}
           >
             {isRecommended && (
-              <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-neutral-950 px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-white">
+              <span className="absolute right-4 top-4 inline-flex items-center gap-1 rounded-full bg-[#0d1f3c] px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest text-white">
                 <CheckCircle2 className="h-3 w-3" strokeWidth={2} />
                 Recommended
               </span>
@@ -119,7 +126,7 @@ export function CategoryGrid({ routeDistanceNm, hrefBase }: CategoryGridProps) {
                 <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
                   Category
                 </span>
-                <h3 className="mt-1 text-[20px] font-semibold tracking-tight text-neutral-950">
+                <h3 className="mt-1 text-[20px] font-semibold tracking-tight text-[#0a1628]">
                   {getCategoryLabel(meta.key)}
                 </h3>
                 <p className="mt-1 text-[13px] text-neutral-600">
@@ -163,14 +170,14 @@ export function CategoryGrid({ routeDistanceNm, hrefBase }: CategoryGridProps) {
                 <span className="font-mono text-[10px] uppercase tracking-widest text-neutral-400">
                   From
                 </span>
-                <div className="text-[18px] font-semibold text-neutral-950">
+                <div className="text-[18px] font-semibold text-[#0a1628]">
                   {formatCurrency(stats.fromPrice)}
                   <span className="ml-1 font-mono text-[11px] font-normal text-neutral-500">
                     /hr
                   </span>
                 </div>
               </div>
-              <span className="inline-flex items-center gap-1.5 rounded-full bg-neutral-950 px-3.5 py-1.5 text-[12px] font-medium text-white transition-colors group-hover:bg-neutral-800">
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-[#0d1f3c] px-3.5 py-1.5 text-[12px] font-medium text-white transition-colors group-hover:bg-[#1a3461]">
                 Select
                 <ArrowRight
                   className="h-3.5 w-3.5 transition-transform group-hover:translate-x-0.5"
@@ -200,7 +207,7 @@ function Stat({
         <Icon className="h-3 w-3" strokeWidth={1.75} />
         {label}
       </div>
-      <div className="mt-0.5 text-[13px] font-medium text-neutral-950">
+      <div className="mt-0.5 text-[13px] font-medium text-[#0a1628]">
         {value}
       </div>
     </div>

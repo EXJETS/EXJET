@@ -1,27 +1,31 @@
 @import "tailwindcss";
 
 @theme {
-  /* Premium ivory + ink + champagne palette
-     (Gulfstream / Rolls-Royce / Mercedes editorial) */
-  --color-background: #faf8f4;   /* ivory canvas */
-  --color-foreground: #1a1714;   /* warm ink */
-  --color-muted: #6b6157;        /* warm muted */
-  --color-subtle: #8a8079;       /* subtle warm */
-  --color-hairline: rgba(26, 23, 20, 0.10);
-  --color-hairline-strong: rgba(26, 23, 20, 0.18);
+  /* EXJET brand — midnight navy + silver + white */
+  --color-background: #f5f0eb;   /* silver canvas */
+  --color-foreground: #0a1628;   /* midnight navy */
+  --color-muted: #6b7280;        /* neutral muted */
+  --color-subtle: #9ca3af;       /* neutral subtle */
+  --color-hairline: rgba(10, 22, 40, 0.10);
+  --color-hairline-strong: rgba(10, 22, 40, 0.18);
 
-  --color-ivory: #faf8f4;
-  --color-ivory-deep: #f3eee5;
-  --color-bone: #ece5d8;
-  --color-ink: #1a1714;
-  --color-ink-soft: #2c2622;
-  --color-champagne: #b89b6e;     /* brass / champagne accent */
-  --color-champagne-soft: #d8c19a;
-  --color-bordeaux: #5e1f24;      /* editorial accent */
-  --color-forest: #2c3a2c;        /* deep editorial accent */
+  --color-ivory: #f5f0eb;
+  --color-ivory-deep: #e8e8ed;
+  --color-bone: #d1d1d6;
+  --color-ink: #0d0d0d;
+  --color-ink-soft: #1c1c1e;
+  --color-navy: #0d1f3c;          /* midnight navy accent */
+  --color-navy-light: #1a3461;    /* navy hover */
+  --color-navy-muted: #3d5a8a;    /* muted navy */
+  --color-silver: #f5f0eb;        /* silver/light background */
+  --color-silver-deep: #e8e8ed;   /* deeper silver */
 
-  --color-accent: #1a1714;
-  --color-accent-blue: #0070f3;
+  /* keep champagne alias pointing to navy for backward compat */
+  --color-champagne: #0d1f3c;
+  --color-champagne-soft: #3d5a8a;
+
+  --color-accent: #0d1f3c;
+  --color-accent-blue: #0d1f3c;
 
   --font-sans: var(--font-geist-sans), -apple-system, BlinkMacSystemFont,
     "Segoe UI", Helvetica, Arial, sans-serif;
@@ -43,8 +47,8 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1, "cv11" 1;
   letter-spacing: -0.011em;
-  background: #faf8f4;
-  color: #1a1714;
+  background: #f5f0eb;
+  color: #0a1628;
 }
 
 /* ==========================================================
@@ -181,17 +185,12 @@ body {
 .mesh-hero {
   background-image: radial-gradient(
       ellipse 80% 50% at 50% -20%,
-      rgba(184, 155, 110, 0.18),
+      rgba(13, 31, 60, 0.15),
       transparent 60%
     ),
     radial-gradient(
       ellipse 60% 50% at 80% 60%,
-      rgba(184, 155, 110, 0.10),
-      transparent 50%
-    ),
-    radial-gradient(
-      ellipse 60% 50% at 20% 50%,
-      rgba(26, 23, 20, 0.04),
+      rgba(26, 52, 97, 0.10),
       transparent 50%
     );
 }
@@ -200,15 +199,15 @@ body {
   background:
     radial-gradient(
       ellipse 80% 60% at 50% -20%,
-      rgba(184, 155, 110, 0.22),
+      rgba(13, 31, 60, 0.6),
       transparent 60%
     ),
     radial-gradient(
       ellipse 60% 50% at 80% 100%,
-      rgba(216, 193, 154, 0.10),
+      rgba(26, 52, 97, 0.3),
       transparent 50%
     ),
-    linear-gradient(180deg, #1a1714 0%, #0d0b0a 100%);
+    linear-gradient(180deg, #0a1628 0%, #060e1a 100%);
 }
 
 .mesh-accent {
@@ -242,11 +241,11 @@ body {
   -webkit-text-fill-color: transparent;
 }
 
-.gradient-text-champagne {
+.gradient-text-navy {
   background: linear-gradient(
     180deg,
-    #b89b6e 0%,
-    #8b6f44 100%
+    #0d1f3c 0%,
+    #1a3461 100%
   );
   -webkit-background-clip: text;
   background-clip: text;

@@ -5,7 +5,7 @@ import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
 import {
   Plane, LayoutDashboard, Calendar, DollarSign, Settings, Users,
-  BarChart3, Building2, Menu, X, Bell, Radio, CreditCard, LogOut, User,
+  BarChart3, Building2, Menu, X, Bell, CreditCard, LogOut, User,
 } from "lucide-react";
 import { useState } from "react";
 
@@ -22,7 +22,6 @@ const navItems: Record<DashboardRole, NavItem[]> = {
   client: [
     { href: "/dashboard",              label: "Overview",         icon: LayoutDashboard },
     { href: "/dashboard/trips",        label: "My Trips",         icon: Calendar        },
-    { href: "/dashboard/tracking",     label: "Track My Jet",     icon: Radio           },
     { href: "/dashboard/payments",     label: "Payments",         icon: CreditCard      },
     { href: "/dashboard/profile",      label: "Profile",          icon: User            },
   ],
@@ -67,10 +66,13 @@ export function Sidebar({ role, userName = "John Doe", userInitials = "JD", noti
       {/* Logo / Role */}
       <div className="border-b border-neutral-200 px-5 py-5">
         <Link href="/" className="mb-3 flex items-center gap-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100">
-            <Plane className="h-3.5 w-3.5 text-neutral-950" strokeWidth={2} />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#0a1628]">
+            <svg width="12" height="11" viewBox="0 0 22 20" fill="none">
+              <path d="M11 1L21 19H1L11 1Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinejoin="round" />
+              <path d="M11 7L16 19H6L11 7Z" fill="white" fillOpacity="0.35" />
+            </svg>
           </div>
-          <span className="text-[15px] font-semibold tracking-tight text-neutral-950">EXJET</span>
+          <span className="font-mono text-[14px] font-semibold tracking-[0.1em] text-[#0a1628]">EXJET</span>
         </Link>
         <div className="flex items-center gap-2">
           <span className="h-1.5 w-1.5 rounded-full bg-emerald-500" />
@@ -146,10 +148,13 @@ export function Sidebar({ role, userName = "John Doe", userInitials = "JD", noti
       {/* Mobile top bar */}
       <div className="fixed inset-x-0 top-0 z-40 flex h-14 items-center justify-between border-b border-neutral-200 bg-white px-4 lg:hidden">
         <Link href="/" className="flex items-center gap-2">
-          <div className="flex h-7 w-7 items-center justify-center rounded-lg border border-neutral-300 bg-neutral-100">
-            <Plane className="h-3.5 w-3.5 text-neutral-950" strokeWidth={2} />
+          <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-[#0a1628]">
+            <svg width="12" height="11" viewBox="0 0 22 20" fill="none">
+              <path d="M11 1L21 19H1L11 1Z" fill="none" stroke="white" strokeWidth="1.8" strokeLinejoin="round" />
+              <path d="M11 7L16 19H6L11 7Z" fill="white" fillOpacity="0.35" />
+            </svg>
           </div>
-          <span className="text-[14px] font-semibold tracking-tight text-neutral-950">EXJET</span>
+          <span className="font-mono text-[14px] font-semibold tracking-[0.1em] text-[#0a1628]">EXJET</span>
         </Link>
         <button
           onClick={() => setMobileOpen(true)}
