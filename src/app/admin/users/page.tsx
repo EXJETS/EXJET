@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Search, Users, UserCheck, Ban, Mail } from "lucide-react";
 import { StatCard } from "@/components/dashboard/stat-card";
 import { formatCurrency } from "@/lib/utils";

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { ArrowLeft, User, Save, Plane, CheckCircle2 } from "lucide-react";
 
@@ -24,7 +24,7 @@ export default function ProfilePage() {
     passportNumber: "US1234567", passportExpiry: "2030-12-31", nationality: "United States",
   });
 
-  const update = (field: string, value: string) => setForm((prev) => ({ ...prev, [field]: value }));
+  const update = (field: string, value: string) => setForm((prev: typeof form) => ({ ...prev, [field]: value }));
 
   const inputCls =
     "w-full rounded-lg border border-neutral-200 bg-neutral-50 px-3 py-2.5 text-[13px] text-[#0a1628] placeholder:text-neutral-400 outline-none focus:border-[#0d1f3c]";
@@ -60,23 +60,23 @@ export default function ProfilePage() {
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <div>
               <label className={labelCls}>First Name</label>
-              <input type="text" value={form.firstName} onChange={(e) => update("firstName", e.target.value)} className={inputCls} />
+              <input type="text" value={form.firstName} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("firstName", e.target.value)} className={inputCls} />
             </div>
             <div>
               <label className={labelCls}>Last Name</label>
-              <input type="text" value={form.lastName} onChange={(e) => update("lastName", e.target.value)} className={inputCls} />
+              <input type="text" value={form.lastName} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("lastName", e.target.value)} className={inputCls} />
             </div>
             <div>
               <label className={labelCls}>Email</label>
-              <input type="email" value={form.email} onChange={(e) => update("email", e.target.value)} className={inputCls} />
+              <input type="email" value={form.email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("email", e.target.value)} className={inputCls} />
             </div>
             <div>
               <label className={labelCls}>Phone</label>
-              <input type="tel" value={form.phone} onChange={(e) => update("phone", e.target.value)} className={inputCls} />
+              <input type="tel" value={form.phone} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("phone", e.target.value)} className={inputCls} />
             </div>
             <div>
               <label className={labelCls}>Date of Birth</label>
-              <input type="date" value={form.dob} onChange={(e) => update("dob", e.target.value)} className={dateCls} />
+              <input type="date" value={form.dob} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("dob", e.target.value)} className={dateCls} />
             </div>
           </div>
         </div>
@@ -92,7 +92,7 @@ export default function ProfilePage() {
               <label className={labelCls}>Preferred Cabin Class</label>
               <select
                 value={form.preferredCategory}
-                onChange={(e) => update("preferredCategory", e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLSelectElement>) => update("preferredCategory", e.target.value)}
                 className={inputCls}
               >
                 <option value="light">Light Jet</option>
@@ -107,7 +107,7 @@ export default function ProfilePage() {
               <input
                 type="text"
                 value={form.dietary}
-                onChange={(e) => update("dietary", e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("dietary", e.target.value)}
                 className={inputCls}
                 placeholder="None"
               />
@@ -116,7 +116,7 @@ export default function ProfilePage() {
               <label className={labelCls}>Special Requests</label>
               <textarea
                 value={form.specialRequests}
-                onChange={(e) => update("specialRequests", e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => update("specialRequests", e.target.value)}
                 rows={3}
                 className={inputCls + " resize-none"}
                 placeholder="Any special requirements for your flights..."
@@ -134,7 +134,7 @@ export default function ProfilePage() {
               <input
                 type="text"
                 value={form.passportNumber}
-                onChange={(e) => update("passportNumber", e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("passportNumber", e.target.value)}
                 className={inputCls}
               />
             </div>
@@ -143,7 +143,7 @@ export default function ProfilePage() {
               <input
                 type="date"
                 value={form.passportExpiry}
-                onChange={(e) => update("passportExpiry", e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("passportExpiry", e.target.value)}
                 className={dateCls}
               />
             </div>
@@ -152,7 +152,7 @@ export default function ProfilePage() {
               <input
                 type="text"
                 value={form.nationality}
-                onChange={(e) => update("nationality", e.target.value)}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("nationality", e.target.value)}
                 className={inputCls}
               />
             </div>

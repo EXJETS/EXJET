@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { User, ArrowRight, ArrowLeft, Plane } from "lucide-react";
@@ -22,10 +22,10 @@ export default function PassengersPage() {
   );
 
   const updateField = (index: number, field: keyof PassengerInfo, value: string) => {
-    setForms((prev) => prev.map((p, i) => (i === index ? { ...p, [field]: value } : p)));
+    setForms((prev: PassengerInfo[]) => prev.map((p: PassengerInfo, i: number) => (i === index ? { ...p, [field]: value } : p)));
   };
 
-  const isValid = forms.every((p) => p.firstName && p.lastName && p.email);
+  const isValid = forms.every((p: PassengerInfo) => p.firstName && p.lastName && p.email);
 
   const handleContinue = () => {
     setPassengers(forms);
@@ -66,7 +66,7 @@ export default function PassengersPage() {
               Please provide details for all {passengerCount} passenger{passengerCount > 1 ? "s" : ""}.
             </p>
 
-            {forms.map((passenger, idx) => (
+            {forms.map((passenger: PassengerInfo, idx: number) => (
               <div key={idx} className="rounded-2xl border border-neutral-200 bg-white p-6 backdrop-blur-xl">
                 <div className="mb-4 flex items-center gap-2">
                   <div className="flex h-8 w-8 items-center justify-center rounded-full border border-neutral-200 bg-neutral-100">
@@ -82,7 +82,7 @@ export default function PassengersPage() {
                     <label className={labelCls}>First Name *</label>
                     <input
                       type="text" value={passenger.firstName}
-                      onChange={(e) => updateField(idx, "firstName", e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateField(idx, "firstName", e.target.value)}
                       className={inputCls}
                       placeholder="John"
                     />
@@ -91,7 +91,7 @@ export default function PassengersPage() {
                     <label className={labelCls}>Last Name *</label>
                     <input
                       type="text" value={passenger.lastName}
-                      onChange={(e) => updateField(idx, "lastName", e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateField(idx, "lastName", e.target.value)}
                       className={inputCls}
                       placeholder="Smith"
                     />
@@ -100,7 +100,7 @@ export default function PassengersPage() {
                     <label className={labelCls}>Email *</label>
                     <input
                       type="email" value={passenger.email}
-                      onChange={(e) => updateField(idx, "email", e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateField(idx, "email", e.target.value)}
                       className={inputCls}
                       placeholder="john@example.com"
                     />
@@ -109,7 +109,7 @@ export default function PassengersPage() {
                     <label className={labelCls}>Phone</label>
                     <input
                       type="tel" value={passenger.phone}
-                      onChange={(e) => updateField(idx, "phone", e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateField(idx, "phone", e.target.value)}
                       className={inputCls}
                       placeholder="+1 (555) 000-0000"
                     />
@@ -118,7 +118,7 @@ export default function PassengersPage() {
                     <label className={labelCls}>Date of Birth</label>
                     <input
                       type="date" value={passenger.dateOfBirth}
-                      onChange={(e) => updateField(idx, "dateOfBirth", e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateField(idx, "dateOfBirth", e.target.value)}
                       className={dateInputCls}
                     />
                   </div>
@@ -126,7 +126,7 @@ export default function PassengersPage() {
                     <label className={labelCls}>Passport Number</label>
                     <input
                       type="text" value={passenger.passportNumber}
-                      onChange={(e) => updateField(idx, "passportNumber", e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => updateField(idx, "passportNumber", e.target.value)}
                       className={inputCls}
                       placeholder="Optional"
                     />

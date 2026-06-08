@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Settings, DollarSign, Shield, Bell, Save, Globe } from "lucide-react";
 
 export default function AdminSettingsPage() {

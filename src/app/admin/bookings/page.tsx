@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Search, Download, Plane } from "lucide-react";
 import { StatusBadge } from "@/components/dashboard/status-badge";
 import { StatCard } from "@/components/dashboard/stat-card";

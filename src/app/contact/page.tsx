@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { Phone, Mail, MapPin, Clock, CheckCircle2 } from "lucide-react";
@@ -41,7 +41,7 @@ export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const update = (field: string, value: string) => setForm((p) => ({ ...p, [field]: value }));
+  const update = (field: string, value: string) => setForm((p: typeof form) => ({ ...p, [field]: value }));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -125,7 +125,7 @@ export default function ContactPage() {
                     <label className={labelCls}>Name</label>
                     <input
                       type="text" required value={form.name}
-                      onChange={(e) => update("name", e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("name", e.target.value)}
                       placeholder="John Doe" className={inputCls}
                     />
                   </div>
@@ -133,7 +133,7 @@ export default function ContactPage() {
                     <label className={labelCls}>Phone</label>
                     <input
                       type="tel" value={form.phone}
-                      onChange={(e) => update("phone", e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("phone", e.target.value)}
                       placeholder="+1 (555) 000-0000" className={inputCls}
                     />
                   </div>
@@ -143,14 +143,14 @@ export default function ContactPage() {
                   <label className={labelCls}>Email</label>
                   <input
                     type="email" required value={form.email}
-                    onChange={(e) => update("email", e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("email", e.target.value)}
                     placeholder="you@example.com" className={inputCls}
                   />
                 </div>
 
                 <div>
                   <label className={labelCls}>Subject</label>
-                  <select value={form.subject} onChange={(e) => update("subject", e.target.value)} className={inputCls}>
+                  <select value={form.subject} onChange={(e: React.ChangeEvent<HTMLSelectElement>) => update("subject", e.target.value)} className={inputCls}>
                     <option value="charter">Charter Enquiry</option>
                     <option value="jetcard">EXJET Card</option>
                     <option value="aircraft-sales">Aircraft Sales / Acquisition</option>
@@ -163,7 +163,7 @@ export default function ContactPage() {
                   <label className={labelCls}>Message</label>
                   <textarea
                     required value={form.message}
-                    onChange={(e) => update("message", e.target.value)}
+                    onChange={(e: React.ChangeEvent<HTMLTextAreaElement>) => update("message", e.target.value)}
                     rows={4} placeholder="Tell us about your travel needs..."
                     className={inputCls + " resize-none"}
                   />

@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense, useEffect, useState } from "react";
+import React, { Suspense, useEffect, useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { Plane, MapPin, Calendar, Users, ArrowRight } from "lucide-react";
@@ -127,7 +127,7 @@ function BookingContent() {
                     type="text"
                     placeholder="Search departure city or airport..."
                     value={depSearch}
-                    onChange={(e) => { setDepSearch(e.target.value); setShowDepDropdown(true); }}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setDepSearch(e.target.value); setShowDepDropdown(true); }}
                     onFocus={() => setShowDepDropdown(true)}
                     onBlur={() => setTimeout(() => setShowDepDropdown(false), 200)}
                     className={inputCls}
@@ -139,7 +139,7 @@ function BookingContent() {
                       <button
                         key={a.code}
                         type="button"
-                        onMouseDown={(e) => { e.preventDefault(); setDepartureAirport(a); setDepSearch(`${a.city} (${a.code})`); setShowDepDropdown(false); }}
+                        onMouseDown={(e: React.MouseEvent<HTMLButtonElement>) => { e.preventDefault(); setDepartureAirport(a); setDepSearch(`${a.city} (${a.code})`); setShowDepDropdown(false); }}
                         className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-neutral-100"
                       >
                         <Plane className="h-3.5 w-3.5 text-neutral-600" strokeWidth={1.75} />
@@ -163,7 +163,7 @@ function BookingContent() {
                     type="text"
                     placeholder="Search arrival city or airport..."
                     value={arrSearch}
-                    onChange={(e) => { setArrSearch(e.target.value); setShowArrDropdown(true); }}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => { setArrSearch(e.target.value); setShowArrDropdown(true); }}
                     onFocus={() => setShowArrDropdown(true)}
                     onBlur={() => setTimeout(() => setShowArrDropdown(false), 200)}
                     className={inputCls}
@@ -175,7 +175,7 @@ function BookingContent() {
                       <button
                         key={a.code}
                         type="button"
-                        onMouseDown={(e) => { e.preventDefault(); setArrivalAirport(a); setArrSearch(`${a.city} (${a.code})`); setShowArrDropdown(false); }}
+                        onMouseDown={(e: React.MouseEvent<HTMLButtonElement>) => { e.preventDefault(); setArrivalAirport(a); setArrSearch(`${a.city} (${a.code})`); setShowArrDropdown(false); }}
                         className="flex w-full items-center gap-3 px-4 py-3 text-left transition-colors hover:bg-neutral-100"
                       >
                         <Plane className="h-3.5 w-3.5 text-neutral-600" strokeWidth={1.75} />
@@ -200,7 +200,7 @@ function BookingContent() {
                       type="date"
                       min={today}
                       value={departureDate}
-                      onChange={(e) => setDepartureDate(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setDepartureDate(e.target.value)}
                       className={dateInputCls}
                     />
                   </div>
@@ -213,7 +213,7 @@ function BookingContent() {
                       type="date"
                       min={departureDate || today}
                       value={returnDate}
-                      onChange={(e) => setReturnDate(e.target.value)}
+                      onChange={(e: React.ChangeEvent<HTMLInputElement>) => setReturnDate(e.target.value)}
                       className={dateInputCls}
                     />
                   </div>

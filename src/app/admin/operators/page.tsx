@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import React, { useState } from "react";
 import { Building2, Plus, Search, Star, Plane, DollarSign, CheckCircle, XCircle } from "lucide-react";
 import { StatusBadge } from "@/components/dashboard/status-badge";
 import { StatCard } from "@/components/dashboard/stat-card";
