@@ -139,7 +139,7 @@ function SearchResultsContent() {
   const backHref = hrefBase;
 
   return (
-    <div className="min-h-screen bg-[#f2f2f7] text-[#0a1628]">
+    <div className="min-h-screen bg-[#f5f0eb] text-[#0a1628]">
       {/* Compact Search Bar */}
       <div className="border-b border-neutral-200 bg-white/80 backdrop-blur-xl">
         <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
@@ -299,7 +299,7 @@ export default function SearchPage() {
   return (
     <Suspense
       fallback={
-        <div className="flex min-h-screen items-center justify-center bg-[#f2f2f7]">
+        <div className="flex min-h-screen items-center justify-center bg-[#f5f0eb]">
           <div className="flex items-center gap-3 text-neutral-500">
             <Plane className="h-5 w-5 animate-pulse" strokeWidth={1.5} />
             <span className="font-mono text-[11px] uppercase tracking-widest">

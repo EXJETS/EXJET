@@ -54,7 +54,7 @@ export default function ContactPage() {
   const labelCls = "mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-neutral-500";
 
   return (
-    <div className="min-h-screen bg-[#f2f2f7] text-[#0a1628]">
+    <div className="min-h-screen bg-[#f5f0eb] text-[#0a1628]">
       <div className="mx-auto max-w-5xl px-4 pb-16 pt-24 sm:px-6 lg:px-8">
         <nav className="mb-8 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-400">
           <Link href="/" className="hover:text-[#0a1628] transition-colors">Home</Link>
@@ -78,7 +78,7 @@ export default function ContactPage() {
           <div className="space-y-4">
             {contactChannels.map(({ icon: Icon, label, value, sub, href }) => (
               <div key={label} className="flex items-start gap-4 rounded-2xl border border-neutral-200 bg-white p-5">
-                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f2f2f7]">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f5f0eb]">
                   <Icon className="h-5 w-5 text-[#0d1f3c]" strokeWidth={1.5} />
                 </div>
                 <div>

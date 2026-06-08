@@ -24,7 +24,7 @@ export default function RegisterPage() {
   const labelCls = "mb-1.5 block font-mono text-[10px] uppercase tracking-widest text-neutral-500";
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-[#f2f2f7] px-4 py-12">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[#f5f0eb] px-4 py-12">
       {/* Logo */}
       <div className="mb-8 flex flex-col items-center gap-3">
         <Link href="/" className="inline-flex items-center gap-2">

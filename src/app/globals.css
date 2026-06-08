@@ -2,14 +2,14 @@
 
 @theme {
   /* EXJET brand — midnight navy + silver + white */
-  --color-background: #f2f2f7;   /* silver canvas */
+  --color-background: #f5f0eb;   /* silver canvas */
   --color-foreground: #0a1628;   /* midnight navy */
   --color-muted: #6b7280;        /* neutral muted */
   --color-subtle: #9ca3af;       /* neutral subtle */
   --color-hairline: rgba(10, 22, 40, 0.10);
   --color-hairline-strong: rgba(10, 22, 40, 0.18);
 
-  --color-ivory: #f2f2f7;
+  --color-ivory: #f5f0eb;
   --color-ivory-deep: #e8e8ed;
   --color-bone: #d1d1d6;
   --color-ink: #0d0d0d;
@@ -17,7 +17,7 @@
   --color-navy: #0d1f3c;          /* midnight navy accent */
   --color-navy-light: #1a3461;    /* navy hover */
   --color-navy-muted: #3d5a8a;    /* muted navy */
-  --color-silver: #f2f2f7;        /* silver/light background */
+  --color-silver: #f5f0eb;        /* silver/light background */
   --color-silver-deep: #e8e8ed;   /* deeper silver */
 
   /* keep champagne alias pointing to navy for backward compat */
@@ -47,7 +47,7 @@ body {
   -moz-osx-font-smoothing: grayscale;
   font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "ss01" 1, "cv11" 1;
   letter-spacing: -0.011em;
-  background: #f2f2f7;
+  background: #f5f0eb;
   color: #0a1628;
 }
 

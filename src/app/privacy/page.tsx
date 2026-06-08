@@ -51,7 +51,7 @@ const sections = [
 
 export default function PrivacyPage() {
   return (
-    <div className="min-h-screen bg-[#f2f2f7] text-[#0a1628]">
+    <div className="min-h-screen bg-[#f5f0eb] text-[#0a1628]">
       <div className="mx-auto max-w-3xl px-4 pb-16 pt-24 sm:px-6 lg:px-8">
         <nav className="mb-8 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-400">
           <Link href="/" className="hover:text-[#0a1628] transition-colors">Home</Link>

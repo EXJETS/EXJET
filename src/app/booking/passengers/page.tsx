@@ -35,7 +35,7 @@ export default function PassengersPage() {
 
   if (!jet) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-[#f2f2f7] text-[#0a1628]">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-[#f5f0eb] text-[#0a1628]">
         <Plane className="mb-4 h-12 w-12 text-neutral-300" strokeWidth={1.25} />
         <h2 className="text-[20px] font-semibold tracking-tight">Start from the beginning</h2>
         <Link
@@ -54,7 +54,7 @@ export default function PassengersPage() {
   const labelCls = "mb-1 block font-mono text-[10px] uppercase tracking-widest text-neutral-600";
 
   return (
-    <div className="min-h-screen bg-[#f2f2f7] text-[#0a1628]">
+    <div className="min-h-screen bg-[#f5f0eb] text-[#0a1628]">
       <div className="mx-auto max-w-6xl px-4 pt-20 pb-8 sm:px-6 lg:px-8">
         <BookingStepper currentStep={2} />
 

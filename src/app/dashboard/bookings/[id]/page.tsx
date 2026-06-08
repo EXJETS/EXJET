@@ -46,7 +46,7 @@ export default function BookingDetailPage({
   };
 
   return (
-    <div className="min-h-screen bg-[#f2f2f7] text-[#0a1628]">
+    <div className="min-h-screen bg-[#f5f0eb] text-[#0a1628]">
       <div className="mx-auto max-w-4xl px-4 py-8 sm:px-6 lg:px-8">
         <Link
           href="/dashboard"

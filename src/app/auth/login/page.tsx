@@ -28,7 +28,7 @@ export default function LoginPage() {
     "w-full rounded-lg border border-neutral-200 bg-neutral-50 py-3 pl-10 pr-4 text-[13px] text-[#0a1628] placeholder:text-neutral-400 outline-none focus:border-[#0d1f3c]";
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-[#f2f2f7] px-4 py-12">
+    <div className="flex min-h-screen flex-col items-center justify-center bg-[#f5f0eb] px-4 py-12">
       {/* Logo */}
       <div className="mb-8 flex flex-col items-center gap-3">
         <Link href="/" className="inline-flex items-center gap-2">

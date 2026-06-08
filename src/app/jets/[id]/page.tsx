@@ -38,7 +38,7 @@ export default async function JetDetailPage({
 
   if (!jet) {
     return (
-      <div className="flex min-h-screen flex-col items-center justify-center bg-[#f2f2f7] px-4 text-[#0a1628]">
+      <div className="flex min-h-screen flex-col items-center justify-center bg-[#f5f0eb] px-4 text-[#0a1628]">
         <Plane className="mb-6 h-14 w-14 text-neutral-300" strokeWidth={1.25} />
         <h1 className="text-[28px] font-semibold tracking-tight text-[#0a1628]">Jet Not Found</h1>
         <p className="mt-2 max-w-md text-center text-[14px] text-neutral-600">
@@ -58,7 +58,7 @@ export default async function JetDetailPage({
   const averageRating = (reviews.reduce((sum, r) => sum + r.rating, 0) / reviews.length).toFixed(1);
 
   return (
-    <div className="min-h-screen bg-[#f2f2f7] text-[#0a1628]">
+    <div className="min-h-screen bg-[#f5f0eb] text-[#0a1628]">
       {/* Back Nav */}
       <div className="mx-auto max-w-7xl px-4 py-5 sm:px-6 lg:px-8">
         <Link
