@@ -64,7 +64,7 @@ export default function AdminOperatorsPage() {
         <div className={`${selected ? "hidden lg:block lg:w-1/2" : "w-full"}`}>
           <div className="relative mb-4">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-            <input type="text" value={search} onChange={(e) => setSearch(e.target.value)}
+            <input type="text" value={search} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setSearch(e.target.value)}
               placeholder="Search operators..."
               className="w-full pl-10 pr-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none" />
           </div>
@@ -132,7 +132,7 @@ export default function AdminOperatorsPage() {
               <div className="mb-5">
                 <p className="text-xs font-semibold text-gray-500 uppercase tracking-wide mb-2">Fleet ({selected.jets} aircraft)</p>
                 <div className="space-y-1.5">
-                  {selected.aircraftList.map((ac) => (
+                  {selected.aircraftList.map((ac: string) => (
                     <div key={ac} className="flex items-center gap-2 text-sm text-gray-700">
                       <Plane className="w-3.5 h-3.5 text-gray-400" /> {ac}
                     </div>

@@ -7,6 +7,20 @@ import { formatCurrency } from "@/lib/utils";
 
 type TabId = "upcoming" | "past" | "cancelled";
 
+type FlightStatus = "confirmed" | "completed" | "cancelled";
+
+interface AnyFlight {
+  id: string;
+  jet: string;
+  from: string;
+  to: string;
+  date: string;
+  departTime: string;
+  status: FlightStatus;
+  price: number;
+  arrivalTime?: string;
+}
+
 const upcomingFlights = [
   {
     id: "bk-001",
@@ -104,7 +118,7 @@ function FlightCard({
   flight,
   showActions,
 }: {
-  flight: (typeof pastFlights)[number];
+  flight: AnyFlight;
   showActions?: boolean;
 }) {
   return (
@@ -169,7 +183,7 @@ function FlightCard({
   );
 }
 
-function UpcomingCard({ flight }: { flight: (typeof upcomingFlights)[number] }) {
+function UpcomingCard({ flight }: { flight: AnyFlight }) {
   return (
     <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white">
       <div className="p-5">

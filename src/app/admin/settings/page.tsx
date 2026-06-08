@@ -6,7 +6,7 @@ import { Settings, DollarSign, Shield, Bell, Save, Globe } from "lucide-react";
 export default function AdminSettingsPage() {
   const [platform, setPlatform] = useState({ commission: "10", minBookingHours: "2", currency: "USD", timezone: "America/New_York" });
   const [flags, setFlags] = useState({ maintenanceMode: false, newRegistrations: true, operatorOnboarding: true, publicFleetTracking: true, requirePhotoVerification: true });
-  const toggle = (k: keyof typeof flags) => setFlags(prev => ({ ...prev, [k]: !prev[k] }));
+  const toggle = (k: keyof typeof flags) => setFlags((prev: typeof flags) => ({ ...prev, [k]: !prev[k] }));
 
   return (
     <div className="p-6 max-w-3xl mx-auto w-full">
@@ -24,7 +24,7 @@ export default function AdminSettingsPage() {
             <div key={key}>
               <label className="block text-sm font-medium text-gray-700 mb-1.5">{label}</label>
               <input type={type} value={platform[key as keyof typeof platform]}
-                onChange={(e) => setPlatform(prev => ({ ...prev, [key]: e.target.value }))}
+                onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPlatform((prev: typeof platform) => ({ ...prev, [key]: e.target.value }))}
                 className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none" />
             </div>
           ))}
@@ -37,7 +37,7 @@ export default function AdminSettingsPage() {
         <div className="max-w-xs">
           <label className="block text-sm font-medium text-gray-700 mb-1.5">Platform Commission (%)</label>
           <input type="number" min="0" max="30" value={platform.commission}
-            onChange={(e) => setPlatform(prev => ({ ...prev, commission: e.target.value }))}
+            onChange={(e: React.ChangeEvent<HTMLInputElement>) => setPlatform((prev: typeof platform) => ({ ...prev, commission: e.target.value }))}
             className="w-full px-4 py-2.5 rounded-xl border border-gray-200 text-sm focus:border-amber-500 focus:ring-1 focus:ring-amber-500 outline-none" />
           <p className="text-xs text-gray-400 mt-1.5">Applied to every booking as platform fee</p>
         </div>

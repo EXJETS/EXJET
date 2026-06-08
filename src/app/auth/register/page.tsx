@@ -11,7 +11,7 @@ export default function RegisterPage() {
   const [agreedToTerms, setAgreedToTerms] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  const update = (field: string, value: string) => setForm((p) => ({ ...p, [field]: value }));
+  const update = (field: string, value: string) => setForm((p: typeof form) => ({ ...p, [field]: value }));
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -50,14 +50,14 @@ export default function RegisterPage() {
               <label className={labelCls}>First Name</label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-neutral-400" strokeWidth={1.75} />
-                <input type="text" value={form.firstName} onChange={(e) => update("firstName", e.target.value)} placeholder="John" required className={inputCls} />
+                <input type="text" value={form.firstName} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("firstName", e.target.value)} placeholder="John" required className={inputCls} />
               </div>
             </div>
             <div>
               <label className={labelCls}>Last Name</label>
               <div className="relative">
                 <User className="absolute left-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-neutral-400" strokeWidth={1.75} />
-                <input type="text" value={form.lastName} onChange={(e) => update("lastName", e.target.value)} placeholder="Doe" required className={inputCls} />
+                <input type="text" value={form.lastName} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("lastName", e.target.value)} placeholder="Doe" required className={inputCls} />
               </div>
             </div>
           </div>
@@ -66,7 +66,7 @@ export default function RegisterPage() {
             <label className={labelCls}>Email address</label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" strokeWidth={1.75} />
-              <input type="email" value={form.email} onChange={(e) => update("email", e.target.value)} placeholder="you@example.com" required className={inputCls + " py-3"} />
+              <input type="email" value={form.email} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("email", e.target.value)} placeholder="you@example.com" required className={inputCls + " py-3"} />
             </div>
           </div>
 
@@ -74,7 +74,7 @@ export default function RegisterPage() {
             <label className={labelCls}>Phone number</label>
             <div className="relative">
               <Phone className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" strokeWidth={1.75} />
-              <input type="tel" value={form.phone} onChange={(e) => update("phone", e.target.value)} placeholder="+1 (555) 000-0000" className={inputCls + " py-3"} />
+              <input type="tel" value={form.phone} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("phone", e.target.value)} placeholder="+1 (555) 000-0000" className={inputCls + " py-3"} />
             </div>
           </div>
 
@@ -82,7 +82,7 @@ export default function RegisterPage() {
             <label className={labelCls}>Password</label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" strokeWidth={1.75} />
-              <input type={showPassword ? "text" : "password"} value={form.password} onChange={(e) => update("password", e.target.value)} placeholder="Min. 8 characters" required className={inputCls + " py-3 pr-10"} />
+              <input type={showPassword ? "text" : "password"} value={form.password} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("password", e.target.value)} placeholder="Min. 8 characters" required className={inputCls + " py-3 pr-10"} />
               <button type="button" onClick={() => setShowPassword(!showPassword)} className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-700">
                 {showPassword ? <EyeOff className="h-4 w-4" strokeWidth={1.75} /> : <Eye className="h-4 w-4" strokeWidth={1.75} />}
               </button>
@@ -93,7 +93,7 @@ export default function RegisterPage() {
             <label className={labelCls}>Confirm Password</label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-neutral-400" strokeWidth={1.75} />
-              <input type={showConfirm ? "text" : "password"} value={form.confirmPassword} onChange={(e) => update("confirmPassword", e.target.value)} placeholder="Repeat password" required className={inputCls + " py-3 pr-10"} />
+              <input type={showConfirm ? "text" : "password"} value={form.confirmPassword} onChange={(e: React.ChangeEvent<HTMLInputElement>) => update("confirmPassword", e.target.value)} placeholder="Repeat password" required className={inputCls + " py-3 pr-10"} />
               <button type="button" onClick={() => setShowConfirm(!showConfirm)} className="absolute right-3 top-1/2 -translate-y-1/2 text-neutral-400 hover:text-neutral-700">
                 {showConfirm ? <EyeOff className="h-4 w-4" strokeWidth={1.75} /> : <Eye className="h-4 w-4" strokeWidth={1.75} />}
               </button>
@@ -101,7 +101,7 @@ export default function RegisterPage() {
           </div>
 
           <label className="flex cursor-pointer items-start gap-3">
-            <input type="checkbox" checked={agreedToTerms} onChange={(e) => setAgreedToTerms(e.target.checked)} className="mt-0.5 h-4 w-4 rounded border-neutral-300 accent-[#0d1f3c]" />
+            <input type="checkbox" checked={agreedToTerms} onChange={(e: React.ChangeEvent<HTMLInputElement>) => setAgreedToTerms(e.target.checked)} className="mt-0.5 h-4 w-4 rounded border-neutral-300 accent-[#0d1f3c]" />
             <span className="text-[12px] text-neutral-500">
               I agree to EXJET&apos;s{" "}
               <Link href="/terms" className="text-[#0d1f3c] hover:underline">Terms of Service</Link>
