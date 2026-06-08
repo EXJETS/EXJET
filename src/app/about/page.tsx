@@ -39,7 +39,7 @@ const values = [
 
 export default function AboutPage() {
   return (
-    <div className="min-h-screen bg-[#f2f2f7] text-[#0a1628]">
+    <div className="min-h-screen bg-[#f5f0eb] text-[#0a1628]">
       {/* Hero */}
       <section className="px-4 pb-16 pt-24">
         <div className="mx-auto max-w-3xl">
@@ -51,14 +51,14 @@ export default function AboutPage() {
 
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1.5 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
             <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-500">
-              Private Aviation, Reimagined
+              About EXJET
             </span>
           </div>
 
           <h1 className="text-[clamp(2.5rem,7vw,4rem)] font-semibold leading-[1.05] tracking-tight text-[#0a1628]">
-            We built EXJET because
+            Private aviation that
             <br />
-            <span className="text-neutral-400">the old model was broken.</span>
+            <span className="text-neutral-400">works in your favour.</span>
           </h1>
 
           <p className="mt-6 max-w-xl text-[15px] leading-relaxed text-neutral-500">
@@ -74,7 +74,7 @@ export default function AboutPage() {
         <div className="mx-auto max-w-4xl">
           <div className="grid grid-cols-2 gap-4 sm:grid-cols-4">
             {stats.map((s) => (
-              <div key={s.value} className="rounded-2xl border border-neutral-200 bg-[#f2f2f7] p-5 text-center">
+              <div key={s.value} className="rounded-2xl border border-neutral-200 bg-[#f5f0eb] p-5 text-center">
                 <p className="text-[clamp(1.5rem,4vw,2rem)] font-semibold tracking-tight text-[#0a1628]">{s.value}</p>
                 <p className="mt-1 font-mono text-[9px] uppercase leading-snug tracking-[0.15em] text-neutral-400">{s.label}</p>
               </div>
@@ -84,7 +84,7 @@ export default function AboutPage() {
       </section>
 
       {/* Mission */}
-      <section className="bg-[#f2f2f7] px-4 py-16">
+      <section className="bg-[#f5f0eb] px-4 py-16">
         <div className="mx-auto max-w-3xl">
           <p className="font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-500">Our Mission</p>
           <h2 className="mt-4 font-serif text-[clamp(1.8rem,4vw,2.75rem)] font-normal leading-tight text-[#0a1628]">
@@ -103,10 +103,10 @@ export default function AboutPage() {
       {/* Values */}
       <section className="bg-white px-4 py-16">
         <div className="mx-auto max-w-4xl">
-          <h2 className="mb-10 text-[20px] font-semibold text-[#0a1628]">What we stand for</h2>
+          <h2 className="mb-10 text-[20px] font-semibold text-[#0a1628]">Our operating principles</h2>
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             {values.map(({ icon: Icon, title, body }) => (
-              <div key={title} className="rounded-2xl border border-neutral-200 bg-[#f2f2f7] p-6">
+              <div key={title} className="rounded-2xl border border-neutral-200 bg-[#f5f0eb] p-6">
                 <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-white">
                   <Icon className="h-5 w-5 text-[#0d1f3c]" strokeWidth={1.5} />
                 </div>
@@ -119,7 +119,7 @@ export default function AboutPage() {
       </section>
 
       {/* CTA */}
-      <section className="bg-[#f2f2f7] px-4 py-12">
+      <section className="bg-[#f5f0eb] px-4 py-12">
         <div className="mx-auto max-w-2xl text-center">
           <div className="overflow-hidden rounded-3xl bg-[#0d1f3c] px-8 py-12">
             <h2 className="text-[clamp(1.5rem,4vw,2rem)] font-semibold text-white">Ready to fly differently?</h2>

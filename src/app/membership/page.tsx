@@ -36,7 +36,7 @@ const TIERS = [
     feeNote: "",
     highlight: true,
     dark: false,
-    badge: "Most Popular",
+    badge: null as string | null,
     features: [
       "Everything in Emerald",
       "Priority aircraft selection",
@@ -98,8 +98,8 @@ const HOW_IT_WORKS = [
   },
   {
     step: "03",
-    title: "Confirmed in under 2 hrs",
-    desc: "Submit a request or call your advisor. Confirmed by DocuSign with a pre-flight ARGUS safety report.",
+    title: "Confirmed within two hours",
+    desc: "Submit a request or call your advisor. Every booking confirmed by DocuSign with a pre-flight ARGUS safety report.",
   },
   {
     step: "04",
@@ -120,7 +120,7 @@ export default function MembershipPage() {
   return (
     <div className="flex flex-col">
       {/* ══════════ HERO ══════════ */}
-      <section className="bg-[#f2f2f7] px-4 pt-28 pb-16">
+      <section className="bg-[#f5f0eb] px-4 pt-28 pb-16">
         <div className="mx-auto max-w-2xl text-center">
           <div className="mb-5 inline-flex items-center gap-2 rounded-full border border-neutral-200 bg-white px-3 py-1.5 shadow-[0_1px_4px_rgba(0,0,0,0.06)]">
             <span className="font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-500">
@@ -148,10 +148,10 @@ export default function MembershipPage() {
       </section>
 
       {/* ══════════ TIER CARDS ══════════ */}
-      <section className="bg-[#f2f2f7] px-4 py-14">
+      <section className="bg-[#f5f0eb] px-4 py-14">
         <div className="mx-auto max-w-6xl">
           <div className="mb-10 text-center">
-            <h2 className="text-[22px] font-semibold text-[#0a1628]">Choose your card</h2>
+            <h2 className="text-[22px] font-semibold text-[#0a1628]">Select your programme</h2>
             <p className="mt-2 text-[14px] text-neutral-500">
               Every tier shows you the operator's wholesale cost on every quote. Our fee sits on top — nothing else.
             </p>
@@ -176,7 +176,7 @@ export default function MembershipPage() {
                         ? "bg-[rgba(255,255,255,0.12)] text-white"
                         : tier.highlight
                         ? "bg-[#0d1f3c] text-white"
-                        : "bg-[#f2f2f7] text-[#0d1f3c]"
+                        : "bg-[#f5f0eb] text-[#0d1f3c]"
                     }`}
                   >
                     {tier.badge}
@@ -286,7 +286,7 @@ export default function MembershipPage() {
       </section>
 
       {/* ══════════ TRANSPARENT PRICING EXPLAINER ══════════ */}
-      <section className="bg-[#f2f2f7] px-4 py-14">
+      <section className="bg-[#f5f0eb] px-4 py-14">
         <div className="mx-auto max-w-2xl">
           <div className="mb-8 text-center">
             <p className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#0d1f3c]">The difference</p>
@@ -300,7 +300,7 @@ export default function MembershipPage() {
           </div>
 
           <div className="overflow-hidden rounded-2xl border border-neutral-200 bg-white">
-            <div className="bg-[#f2f2f7] px-5 py-3.5">
+            <div className="bg-[#f5f0eb] px-5 py-3.5">
               <p className="font-mono text-[10px] uppercase tracking-widest text-neutral-500">
                 Sample Quote · Gulfstream G650 · TEB → LAX · Gold Card
               </p>
@@ -335,7 +335,7 @@ export default function MembershipPage() {
       <section className="bg-white px-4 py-14">
         <div className="mx-auto max-w-4xl">
           <h2 className="mb-8 text-center text-[22px] font-semibold text-[#0a1628]">
-            Every card includes
+            Every programme includes
           </h2>
           <div className="grid grid-cols-2 gap-4 lg:grid-cols-4">
             {[
@@ -344,7 +344,7 @@ export default function MembershipPage() {
               { icon: Clock, title: "Quoted < 2 hrs", sub: "Confirmed by DocuSign" },
               { icon: Headphones, title: "24/7 Concierge", sub: "Senior aviation advisors" },
             ].map(({ icon: Icon, title, sub }) => (
-              <div key={title} className="rounded-2xl border border-neutral-100 bg-[#f2f2f7] p-5 text-center">
+              <div key={title} className="rounded-2xl border border-neutral-100 bg-[#f5f0eb] p-5 text-center">
                 <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-xl bg-white">
                   <Icon className="h-5 w-5 text-[#0d1f3c]" strokeWidth={1.5} />
                 </div>
@@ -357,7 +357,7 @@ export default function MembershipPage() {
       </section>
 
       {/* ══════════ CLOSING CTA ══════════ */}
-      <section className="bg-[#f2f2f7] px-4 py-10">
+      <section className="bg-[#f5f0eb] px-4 py-10">
         <div className="mx-auto max-w-md sm:max-w-2xl lg:max-w-7xl">
           <div className="overflow-hidden rounded-3xl bg-[#0d1f3c] px-8 py-12 text-center">
             <div className="mb-4 flex justify-center">

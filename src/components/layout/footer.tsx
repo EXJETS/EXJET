@@ -56,14 +56,14 @@ const socialLinks = [
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-neutral-200 bg-[#f2f2f7] text-[#0a1628]">
+    <footer className="relative border-t border-neutral-200 bg-[#f5f0eb] text-[#0a1628]">
       <div className="mx-auto max-w-7xl px-5 py-24 sm:px-8">
         {/* Editorial top — large wordmark + tagline */}
         <div className="border-b border-neutral-200 pb-14">
           <div className="flex flex-col items-start justify-between gap-8 lg:flex-row lg:items-end">
             <div>
               <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#0d1f3c]">
-                EXJET · Global Access, On-Demand.
+                EXJET · Private Jet Charter
               </span>
               <h2 className="mt-5 font-serif text-[44px] leading-[1.05] text-[#0a1628] sm:text-[56px]">
                 The world,

@@ -271,7 +271,7 @@ export default function AircraftSalesPage() {
       {/* ══════════════════════════════════════════════
           HERO
       ══════════════════════════════════════════════ */}
-      <section className="bg-[#f2f2f7] px-4 pb-10 pt-24">
+      <section className="bg-[#f5f0eb] px-4 pb-10 pt-24">
         <div className="mx-auto max-w-2xl lg:max-w-7xl">
           {/* Breadcrumb */}
           <nav className="mb-8 flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.18em] text-neutral-400">
@@ -325,7 +325,7 @@ export default function AircraftSalesPage() {
       {/* ══════════════════════════════════════════════
           LISTINGS
       ══════════════════════════════════════════════ */}
-      <section className="bg-[#f2f2f7] px-4 py-12">
+      <section className="bg-[#f5f0eb] px-4 py-12">
         <div className="mx-auto max-w-2xl lg:max-w-7xl">
           {/* Section header */}
           <div className="mb-8 flex items-center gap-4">
