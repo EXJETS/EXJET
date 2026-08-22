@@ -9,7 +9,8 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "scrape:argus": "node scripts/scrape-argus-operators.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
@@ -28,6 +29,7 @@
     "@types/react-dom": "^19.1.2",
     "eslint": "^9.25.1",
     "eslint-config-next": "^15.3.1",
+    "playwright": "^1.62.1",
     "tailwindcss": "^4.1.4",
     "typescript": "^5.8.3"
   }
