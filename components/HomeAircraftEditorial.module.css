@@ -1,0 +1,26 @@
+.collection { width: min(1200px, calc(100% - var(--page-gutter, var(--gutter)) * 2)); margin-inline: auto; }
+.track { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.card { min-width: 0; background: #fff; overflow: clip; }
+.cardCopy { text-align: center; padding: 32px 20px 24px; }
+.cardCopy p { margin: 0; color: #5e646a; font-size: .8125rem; line-height: 1.4; }
+.cardCopy h3 { margin: 8px 0 5px; font-size: 2rem; font-weight: 400; line-height: 1.1; letter-spacing: -.025em; }
+.cardAction { display: inline-flex; align-items: center; gap: 5px; min-height: 44px; font-size: .875rem; line-height: 1.4; }
+.cardAction:hover { text-decoration: underline; text-underline-offset: 4px; }
+.image { position: relative; width: 100%; aspect-ratio: 1.8; overflow: hidden; }
+.image img { object-fit: contain; object-position: center; }
+.image[data-scene="exterior"] img { object-fit: contain; }
+.sceneControls { display: flex; justify-content: center; gap: 0; padding: 12px 0 16px; }
+.sceneControls button { display: inline-flex; align-items: center; justify-content: center; min-width: 90px; min-height: 44px; padding: 5px 0; border: 0; color: #5e646a; background: none; font-size: .8125rem; cursor: pointer; }
+.sceneControls span { display: block; width: 100%; padding: 8px 16px; border-radius: 999px; }
+.sceneControls button[aria-pressed="true"] { color: #16181a; font-weight: 500; }
+.sceneControls button[aria-pressed="true"] span { background: #f4f4f4; }
+.sceneControls button:active span { background: #e7e8e8; }
+.note { margin: 22px 0 0; text-align: center; color: #5e646a; font-size: .8125rem; line-height: 1.5; }
+@media (max-width: 760px) {
+  .collection { width: 100%; }
+  .track { grid-template-columns: 1fr; gap: 12px; }
+  .cardCopy { padding: 28px 20px 18px; }
+  .cardCopy h3 { font-size: 1.875rem; }
+  .image { aspect-ratio: 1.65; }
+  .note { padding-inline: 20px; }
+}

@@ -1,0 +1,242 @@
+[
+  {
+    "slug": "privacy",
+    "title": "Privacy Policy",
+    "description": "How information is handled when you explore EXJET or request a service.",
+    "status": "draft",
+    "effectiveDate": null,
+    "reviewedAt": "2026-09-11",
+    "reviewNote": "Draft for review. Business practices and the live service inventory must be confirmed before publication as an effective policy.",
+    "sections": [
+      {
+        "heading": "Information you provide",
+        "paragraphs": [
+          "EXJET LLC receives information you share when you contact the team or request a service. Depending on your request, this can include your name, email address, telephone number, preferred contact method, route, travel date, passenger count, cargo description, and additional instructions.",
+          "Please provide only information needed for the request. Do not put payment-card details, passport copies, medical records, or account passwords in general inquiry fields. If you arrange travel for someone else, make sure you are authorized to share their information."
+        ]
+      },
+      {
+        "heading": "Flight search and website information",
+        "paragraphs": [
+          "Flight search is delivered through Avinode's embedded service. Loading or using it connects your browser to that provider. Information entered into its search and request screens is handled through that service; EXJET's Privacy Policy does not replace the provider's own notice.",
+          "Website requests can include technical information such as an IP address, browser information, requested page, and request time. The native request service uses the request's network address to limit repeated submissions. See Cookies & Website Technologies for more about embedded services and browser choices."
+        ]
+      },
+      {
+        "heading": "Use and sharing",
+        "paragraphs": [
+          "Request information is used to respond, evaluate your requirements, source services, and communicate with you about the inquiry. Contact preferences supplied for a request concern that request; they are not permission for unrelated marketing.",
+          "Information may be shared with the aircraft operators and other service providers needed to handle your inquiry or agreed service, and with technology providers supporting hosting, email, messaging, and lead delivery. Only the services enabled for the relevant request are involved. Information may also need to be retained or disclosed to meet applicable legal obligations."
+        ]
+      },
+      {
+        "heading": "Retention and your choices",
+        "paragraphs": [
+          "Retention depends on the information, the stage of an inquiry or transaction, applicable recordkeeping duties, and any unresolved dispute. A general inquiry does not require an EXJET account. The account page is currently a preview and does not create a functioning account or retrieve booking records.",
+          "Depending on the law that applies, you may have rights to access, correct, obtain a copy of, or delete personal information, or object to certain uses. Send privacy requests to sales@exjet.com. Identity verification and legal exceptions may apply."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "FTC \u2014 Protecting Personal Information",
+        "url": "https://www.ftc.gov/business-guidance/resources/protecting-personal-information-guide-business"
+      },
+      {
+        "label": "Texas Attorney General \u2014 Texas Data Privacy and Security Act",
+        "url": "https://www.texasattorneygeneral.gov/consumer-protection/file-consumer-complaint/consumer-privacy-rights/texas-data-privacy-and-security-act"
+      }
+    ]
+  },
+  {
+    "slug": "terms",
+    "title": "Website Terms",
+    "description": "Terms for using EXJET's website, guides, and service inquiries.",
+    "status": "draft",
+    "effectiveDate": null,
+    "reviewedAt": "2026-09-11",
+    "reviewNote": "Draft for review. These website terms are separate from a flight-specific agreement.",
+    "sections": [
+      {
+        "heading": "EXJET's role",
+        "paragraphs": [
+          "EXJET LLC is an air charter broker, not a direct air carrier, and does not exercise operational control of aircraft. Advertised air transportation is provided by a properly licensed direct air carrier or direct foreign air carrier.",
+          "This website introduces services and provides information for travel planning. Using it or submitting a request does not reserve an aircraft, establish an agency relationship for a particular flight, or create a confirmed charter."
+        ]
+      },
+      {
+        "heading": "Information and availability",
+        "paragraphs": [
+          "Aircraft photographs and descriptions illustrate a model or service unless a particular aircraft is expressly identified. Cabin layouts, equipment, luggage capacity, connectivity, range, and availability can differ between aircraft. Ask EXJET to confirm the details relevant to your trip.",
+          "Route guides, articles, pricing examples, and empty-leg information are planning resources. An example price is not a binding quotation. Aircraft sales information also requires verification of availability, specifications, condition, title, and definitive transaction documents."
+        ]
+      },
+      {
+        "heading": "Requests and agreements",
+        "paragraphs": [
+          "Provide accurate information and keep a copy of your correspondence. A request acknowledgement confirms receipt only. Review the written quotation and applicable agreement for the operator, services, payment requirements, restrictions, changes, and cancellation terms before committing.",
+          "Website Terms, Charter Terms & Disclosures, and Cancellation & Refunds should be read together. The applicable written agreement governs the particular service, subject to rights and duties that cannot lawfully be excluded. No website wording overrides those rights."
+        ]
+      },
+      {
+        "heading": "Responsible use and content",
+        "paragraphs": [
+          "Use the website lawfully. Do not impersonate another person, submit malicious content, interfere with service, or attempt to access accounts or information without authorization.",
+          "EXJET's branding and original content, and third-party photographs and materials, remain subject to their owners' rights. Website access does not grant permission to reuse those materials beyond what applicable law permits. Links to other websites lead to services with their own terms and privacy practices."
+        ]
+      },
+      {
+        "heading": "Questions and updates",
+        "paragraphs": [
+          "Contact EXJET if information appears inaccurate or you need clarification before making travel arrangements. Articles are general information, not individualized legal, tax, technical, or operational advice. Changes to these Website Terms will be reflected in the version and effective date displayed when adopted."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "14 CFR Part 295 \u2014 Air Charter Brokers",
+        "url": "https://www.ecfr.gov/current/title-14/chapter-II/subchapter-A/part-295"
+      }
+    ]
+  },
+  {
+    "slug": "charter-terms",
+    "title": "Charter Terms & Disclosures",
+    "description": "EXJET's broker role and the information provided for an individual passenger charter.",
+    "status": "draft",
+    "effectiveDate": null,
+    "reviewedAt": "2026-09-11",
+    "reviewNote": "Draft passenger-charter overview. Operator, broker capacity, insurance, and commercial terms must be supplied for each actual contract.",
+    "sections": [
+      {
+        "heading": "Your flight agreement",
+        "paragraphs": [
+          "EXJET LLC arranges passenger charter as an air charter broker. The identified carrier operates the aircraft and retains operational control. This page explains the contracting process; it is not a quotation, a flight confirmation, or a disclosure of the operator and insurance for a particular trip.",
+          "A written flight agreement should identify the proposed itinerary, services, commercial conditions, and applicable carrier terms. Review it with your EXJET contact before committing."
+        ]
+      },
+      {
+        "heading": "Before a passenger-charter contract",
+        "paragraphs": [
+          "Under 14 CFR 295.24, EXJET must disclose the operating carrier's corporate and public-facing names; the capacity in which EXJET is contracting; and whether EXJET holds liability insurance covering the charterer, passengers, and property, including its monetary limits.",
+          "On request, the same rule requires disclosure of relevant carrier relationships when EXJET acts as the charterer's agent; the total amount payable to or through EXJET, including fees and taxes; and known direct third-party charges or good-faith estimates. These disclosures may be delivered electronically."
+        ]
+      },
+      {
+        "heading": "Updated information",
+        "paragraphs": [
+          "Required or requested information that is initially unknown or later changes must be supplied within a reasonable time after it becomes available, allowing an informed decision. All such information must be provided before transportation begins. Changes after the trip begins must also be communicated within a reasonable time. The regulation provides cancellation and refund remedies when disclosure is not timely."
+        ]
+      },
+      {
+        "heading": "Confirm the trip details",
+        "paragraphs": [
+          "Ask about the aircraft and cabin configuration, passenger and baggage requirements, schedule flexibility, payment timetable, potential additional charges, and arrangements if the proposed aircraft becomes unavailable. Identify any essential accessibility or handling requirement before accepting a quotation.",
+          "Do not assume a photograph, aircraft category, inquiry reference, or search result confirms a particular tail number, departure slot, or carrier commitment. Make sure those details are expressly agreed where they matter to your journey."
+        ]
+      },
+      {
+        "heading": "Other services",
+        "paragraphs": [
+          "This overview concerns passenger charter. Cargo, aircraft transactions, membership products, and any other service require their own applicable terms. Contact EXJET for the documents relevant to the service you are considering. Nothing here limits rights that applicable law makes non-waivable."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "14 CFR 295.24 \u2014 Passenger-charter disclosures",
+        "url": "https://www.ecfr.gov/current/title-14/chapter-II/subchapter-A/part-295#p-295.24"
+      }
+    ]
+  },
+  {
+    "slug": "cancellations",
+    "title": "Cancellation & Refunds",
+    "description": "How to request a change or cancellation, and how applicable refund rights are addressed.",
+    "status": "draft",
+    "effectiveDate": null,
+    "reviewedAt": "2026-09-11",
+    "reviewNote": "Draft for review. No universal cancellation schedule, fee, or refund exception has been assumed.",
+    "sections": [
+      {
+        "heading": "Before you confirm",
+        "paragraphs": [
+          "Read the cancellation and change provisions in your written agreement before committing to a charter. Conditions can depend on the selected service and agreement. This website does not establish a standard cancellation percentage, a universal free-cancellation window, or a blanket non-refundable rule.",
+          "Ask which charges are included, when payments fall due, how amendments are handled, and what happens if the agreed service becomes unavailable. Keep your quotation, agreement, payment records, and any amendments together."
+        ]
+      },
+      {
+        "heading": "Requesting a change or cancellation",
+        "paragraphs": [
+          "Contact the EXJET representative handling your trip and follow the notice method specified in your agreement. Include the request or booking reference, traveler or contracting-party name, affected itinerary, and the change you want. For an imminent departure, also use the telephone contact in your trip documents.",
+          "Ask for written confirmation of the request and an explanation of any applicable charge or refund. Do not send complete payment-card details or account passwords in a cancellation message."
+        ]
+      },
+      {
+        "heading": "Passenger-charter refund rights",
+        "paragraphs": [
+          "Under 14 CFR 295.26, brokers must promptly refund amounts paid when charter transportation cannot be performed or a refund is otherwise due. The rule refers credit-card refunds to the applicable federal credit requirements; cash and check refunds are due within 20 days after receipt of a complete refund request.",
+          "Under 14 CFR 295.24, untimely required or requested disclosures can entitle the charterer to cancel and obtain a full refund for the charter and connected services. If the relevant failure occurs after transportation begins, the remedy concerns the remaining contract and services not yet provided. The precise circumstances in the regulation apply."
+        ]
+      },
+      {
+        "heading": "Reviewing a refund request",
+        "paragraphs": [
+          "Provide the reference, affected service, reason for the request, and payment date or receipt. If more information is needed, ask what is missing. The handling of any disputed charge or partial service must reflect the agreement and applicable law; a contract label cannot remove a mandatory refund right.",
+          "Cargo, aircraft transactions, and other products may have different rules and agreements. Refer to those documents and contact EXJET for clarification. This page does not extend passenger-charter rules to every service advertised on the website."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "14 CFR Part 295, Subpart C \u2014 Disclosures and refunds",
+        "url": "https://www.ecfr.gov/current/title-14/chapter-II/subchapter-A/part-295/subpart-C"
+      }
+    ]
+  },
+  {
+    "slug": "cookies",
+    "title": "Cookies & Website Technologies",
+    "description": "Embedded flight search, browser storage, and choices about website technologies.",
+    "status": "draft",
+    "effectiveDate": null,
+    "reviewedAt": "2026-09-11",
+    "reviewNote": "Draft based on the inspected source. A live browser storage and network inventory is required to finalize providers, purposes, lifetimes, and applicable choices.",
+    "sections": [
+      {
+        "heading": "What these technologies do",
+        "paragraphs": [
+          "Cookies are small pieces of information stored by a browser. Websites can also use local storage, embedded content, and similar technologies to support functions, remember choices, or collect information about usage. A technology's purpose depends on how the particular service uses it.",
+          "This notice should be read with EXJET's Privacy Policy. Browser storage choices are separate from how information in a submitted inquiry or completed transaction is retained."
+        ]
+      },
+      {
+        "heading": "Embedded flight search",
+        "paragraphs": [
+          "The flight-search area uses Avinode's hosted service. When that area loads, your browser connects to Avinode even though the search appears within the EXJET page. Its content may involve additional service providers and browser technologies. Review the notices displayed by the search service before submitting personal information.",
+          "The availability of the search interface does not mean you have an EXJET account or that your trip is confirmed. You can instead use the contact details on the Contact page to discuss a request directly with EXJET."
+        ]
+      },
+      {
+        "heading": "Your browser choices",
+        "paragraphs": [
+          "Most browsers let you view or remove stored data and restrict third-party cookies. Available controls differ by browser and device. Blocking content or storage may prevent an embedded search feature from loading or remembering information.",
+          "Deleting cookies does not erase information already sent to a service. Private browsing also does not prevent websites from receiving the network information needed to respond to a request. For questions about information already submitted, use the privacy contact route described in the Privacy Policy."
+        ]
+      },
+      {
+        "heading": "Other websites and changes",
+        "paragraphs": [
+          "Following an external link opens a service with its own technology and privacy practices. EXJET's website controls do not manage settings on those other websites or on every device you use.",
+          "Any future analytics, advertising, or additional embedded service must be reflected in this notice and the applicable user controls. This draft does not represent that a consent manager, an advertising opt-out, or a complete third-party cookie inventory has already been implemented."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "FTC \u2014 How Websites and Apps Collect and Use Your Information",
+        "url": "https://consumer.ftc.gov/articles/how-websites-and-apps-collect-and-use-your-information"
+      }
+    ]
+  }
+]

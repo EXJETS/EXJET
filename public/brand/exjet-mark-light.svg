@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 360 124" role="img" aria-labelledby="title desc">
+  <title id="title">EXJET</title>
+  <desc id="desc">EXJET chevron and wordmark</desc>
+  <g fill="#fff">
+    <path d="M180 7 128 55l7 6 45-32z" opacity=".8"/>
+    <path d="M180 7 232 55l-7 6-45-32z"/>
+    <path d="M19 76h39v5H25v13h29v5H25v14h34v5H19z"/>
+    <path d="m82 76 17 17 17-17h8l-21 21 22 21h-8L99 101l-18 17h-8l22-21-21-21z"/>
+    <path d="M151 76h39v5h-14v21c0 11-7 17-20 17-11 0-18-5-20-14l7-1c1 6 5 10 13 10 9 0 13-4 13-12V81h-18z"/>
+    <path d="M216 76h39v5h-32v13h29v5h-29v14h34v5h-41z"/>
+    <path d="M276 76h65v5h-29v37h-7V81h-29z"/>
+  </g>
+</svg>

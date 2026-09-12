@@ -1,0 +1,64 @@
+.landing { --content-width: 1120px; --page-gutter: clamp(20px, 4vw, 48px); --section-space: 80px; background: #fff; color: #16181a; }
+.heroContent :is(h1,p), .sectionHeading :is(h2,p), .experienceIntro :is(h2,p), .experienceDetails :is(h3,p), .bookingSection :is(h2,p), .heroCaption { margin: 0; }
+.eyebrow { color: #5e646a; font-size: .8125rem; font-weight: 400; line-height: 1.5; letter-spacing: .015em; }
+.hero { text-align: center; padding-top: 38px; }
+.heroContent { width: min(850px, calc(100% - var(--page-gutter) * 2)); margin-inline: auto; }
+.hero h1 { margin-top: 10px; font-size: clamp(3rem, 5vw, 4rem); font-weight: 500; line-height: 1.05; letter-spacing: -.035em; }
+.hero h1 span { color: #16181a; }
+.heroDescription { max-width: 52ch; margin: 18px auto 0 !important; color: #5e646a; font-size: 1.125rem; line-height: 1.5; }
+.actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px 24px; margin-top: 20px; }
+.primaryAction { display: inline-flex; align-items: center; justify-content: center; position: relative; min-height: 36px; padding: 8px 16px; border-radius: 980px; background: #16181a; color: #fff; font-size: 14px; font-weight: 400; line-height: 18px; transition: background 160ms ease, transform 140ms ease; }
+.primaryAction:hover { background: #353a3e; }
+.primaryAction:active { transform: scale(.97); }
+.secondaryAction { display:inline-flex; align-items:center; justify-content:center; gap:4px; min-height:44px; padding:8px 0; border:0; color:inherit; font-size:14px; font-weight:400; line-height:18px; }
+.secondaryAction:hover { background:transparent; text-decoration:underline; text-underline-offset:4px; }
+.textAction { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 44px; color: #16181a; font-size: .9375rem; font-weight: 400; line-height: 1.4; }
+.textAction:hover { text-decoration: underline; text-underline-offset: 4px; }
+.heroImage { width: min(1400px, 100%); aspect-ratio: 1500 / 671; margin: 32px auto 0; overflow: hidden; background: #e7e8e8; }
+.heroImage img { display: block; width: 100%; height: 100%; object-fit: contain; object-position: center; }
+.heroCaption { padding: 13px 20px 18px; color: #5e646a; font-size: .75rem; line-height: 1.5; }
+.aircraftSection { padding-block: 58px; background: #f4f4f4; scroll-margin-top: 44px; }
+.sectionHeading { display: flex; flex-direction: column; align-items: center; gap: 10px; width: min(var(--content-width), calc(100% - var(--page-gutter) * 2)); margin: 0 auto 26px; text-align: center; }
+.sectionHeading h2 { margin-top: 10px; font-size: 2.75rem; font-weight: 500; line-height: 1.12; letter-spacing: -.03em; }
+.experienceSection { width: min(var(--content-width), calc(100% - var(--page-gutter) * 2)); margin-inline: auto; padding-block: var(--section-space); scroll-margin-top: 44px; }
+.experienceIntro { max-width: 660px; margin-inline: auto; text-align: center; }
+.experienceIntro h2 { margin-top: 12px; font-size: 2.75rem; font-weight: 500; line-height: 1.12; letter-spacing: -.03em; }
+.experienceIntro h2 span { color: #5e646a; }
+.experienceIntro > p:last-child { max-width: 46ch; margin: 18px auto 0; color: #5e646a; font-size: 1rem; line-height: 1.6; }
+.experienceCard { display: grid; grid-template-columns: 1fr; margin-top: 36px; overflow: clip; background: #f4f4f4; }
+.cabinImage { min-width: 0; }
+.cabinImage img { display: block; width: 100%; height: auto; object-fit: contain; }
+.experienceDetails { display: grid; grid-template-columns: 1fr 1fr; gap: 24px 40px; padding: 40px; }
+.experienceDetails h3 { margin-bottom: 8px; font-size: 1.125rem; font-weight: 500; line-height: 1.3; }
+.experienceDetails p { max-width: 32ch; color: #5e646a; font-size: 1rem; line-height: 1.55; }
+.bookingSection { padding: 68px var(--page-gutter); background: #0b0d0f; color: #fff; text-align: center; }
+.bookingSection .eyebrow { color: #c9cdd1; }
+.bookingSection h2 { margin-top: 12px; font-size: 3rem; font-weight: 500; line-height: 1.1; letter-spacing: -.03em; }
+.bookingSection > p:not(.eyebrow) { margin-top: 18px; color: #c9cdd1; font-size: 1rem; line-height: 1.5; }
+.bookingSection .primaryAction { color: #16181a; background: #fff; }
+.bookingSection .textAction { color: #fff; }
+.bookingSection .secondaryAction:hover { background:#25282b; }
+@media (max-width: 760px) {
+  .landing { --section-space: 48px; }
+  .hero { padding-top: 26px; }
+  .hero h1 { font-size: clamp(2rem, 9.7vw, 2.5rem); font-weight: 500; line-height: 1.1; letter-spacing: -.04em; }
+  .heroDescription { margin-top: 14px !important; font-size: 1rem; }
+  .actions { gap: 8px 18px; margin-top: 17px; }
+  .primaryAction, .secondaryAction, .textAction { font-size: 14px; }
+  .heroImage { margin-top: 26px; }
+  .heroCaption { font-size: .6875rem; padding-block: 10px 14px; }
+  .aircraftSection { padding-block: 36px; }
+  .sectionHeading h2, .experienceIntro h2 { font-size: 2rem; font-weight: 500; }
+  .sectionHeading { margin-bottom: 18px; gap: 4px; }
+  .experienceCard { grid-template-columns: 1fr; margin-top: 26px; }
+  .cabinImage img { height: auto; min-height: 0; aspect-ratio: auto; }
+  .experienceDetails { grid-template-columns: 1fr; padding: 28px 24px; gap: 22px; }
+  .bookingSection { padding-block: 48px; }
+  .bookingSection h2 { font-size: 2.125rem; font-weight: 500; }
+}
+@media (max-width: 359px) { .actions { gap: 8px 12px; } }
+@media (prefers-contrast: more) { .heroDescription, .eyebrow, .heroCaption, .experienceIntro h2 span, .experienceIntro > p:last-child, .experienceDetails p { color: #353a3e; } }
+
+.bookingSection :global(.broker-notice){color:#c9cdd1;max-width:780px;margin:24px auto 0}
+
+.primaryAction::after { content: ""; position: absolute; inset: -4px 0; }

@@ -1,0 +1,298 @@
+[
+  {
+    "path": "/private-jet-charter",
+    "title": "Private aviation. On your terms.",
+    "description": "Start with your destination. EXJET arranges private charter around the people, timing, and details of your trip.",
+    "kicker": "Private jet charter",
+    "kind": "service",
+    "image": {
+      "src": "/images/editorial/falcon-8x-flight-clouds.jpg",
+      "alt": "Complete Dassault Falcon 8X in flight above clouds and green terrain",
+      "width": 1280,
+      "height": 853,
+      "caption": "Dassault Falcon 8X in flight. Representative aircraft; availability is confirmed for each trip."
+    },
+    "sections": [
+      {
+        "heading": "Your itinerary comes first.",
+        "paragraphs": [
+          "One way, a return trip, or several stops: begin with the journey you need to make. Share your preferred airports, travel dates, passenger count, and baggage requirements. Cabin comfort, an important meeting, or a flexible return can matter as much as the distance.",
+          "EXJET arranges flights through licensed operating carriers. The operator retains responsibility for the aircraft, crew, and safe conduct of the flight. A request starts a conversation; it does not reserve an aircraft."
+        ]
+      },
+      {
+        "heading": "Compare the complete offer.",
+        "paragraphs": [
+          "Review the proposed aircraft and cabin, operator, itinerary, total price, and conditions together. Confirm whether photography is representative or depicts the specific aircraft. Ask about catering, connectivity, ground transport, and any potential charges before agreeing to the trip."
+        ],
+        "links": [
+          {
+            "label": "Understand a charter quote",
+            "path": "/articles/understanding-a-private-jet-charter-quote"
+          }
+        ]
+      },
+      {
+        "heading": "A considered choice of aircraft.",
+        "paragraphs": [
+          "The right aircraft accommodates your passengers and luggage while meeting the route and airport requirements. Published range figures are reference points; weather, payload, operating conditions, and available airports determine the actual mission."
+        ],
+        "links": [
+          {
+            "label": "Explore aircraft",
+            "path": "/aircraft"
+          },
+          {
+            "label": "Prepare for your first charter",
+            "path": "/articles/first-private-charter-checklist"
+          }
+        ]
+      }
+    ],
+    "related": [
+      "/routes/dallas-to-new-york",
+      "/routes/dallas-to-miami",
+      "/articles/choosing-a-private-charter-aircraft"
+    ]
+  },
+  {
+    "path": "/corporate-travel",
+    "title": "Make room for the business.",
+    "description": "Private charter planning for executives, assistants, and teams. Bring the schedule together before the journey begins.",
+    "kicker": "Corporate travel",
+    "kind": "service",
+    "image": {
+      "src": "/images/editorial/citation-longitude-cabin.jpg",
+      "alt": "Citation Longitude cabin with cream leather club seating and wood trim",
+      "width": 1920,
+      "height": 1080,
+      "caption": "Citation Longitude cabin. Seating and amenities vary by aircraft."
+    },
+    "sections": [
+      {
+        "heading": "One complete travel brief.",
+        "paragraphs": [
+          "Start with the meeting location, latest useful arrival, passenger list, and any fixed commitments. Include the return plan even when it is provisional. A clear brief lets your advisor discuss suitable aircraft and sensible alternatives before presenting a proposal.",
+          "For several travelers, nominate a point of contact and establish who may approve a quote or change. Share only the passenger information needed at each stage, through the channel agreed for the trip."
+        ]
+      },
+      {
+        "heading": "A productive cabin needs confirmation.",
+        "paragraphs": [
+          "If work is part of the journey, ask about the actual aircraft's connectivity, seating arrangement, tables, power outlets, and baggage access. A model name does not guarantee the equipment fitted to a particular aircraft.",
+          "Discuss confidentiality requirements, catering preferences, and ground transport when requesting the flight. Each requested service should be confirmed in the accepted proposal."
+        ]
+      },
+      {
+        "heading": "Keep changes easy to follow.",
+        "paragraphs": [
+          "Keep the approved itinerary, passenger contacts, price, and cancellation terms in one record. When a meeting moves, ask for an updated itinerary and any cost implications before accepting the change. Use explicitly labeled local times for each airport."
+        ],
+        "links": [
+          {
+            "label": "Read the executive assistant’s guide",
+            "path": "/articles/private-charter-for-executive-assistants"
+          }
+        ]
+      }
+    ],
+    "related": [
+      "/routes/dallas-to-new-york",
+      "/articles/understanding-a-private-jet-charter-quote"
+    ]
+  },
+  {
+    "path": "/pricing",
+    "title": "Understand the whole journey.",
+    "description": "A private charter quote is built around a specific trip. Compare what is included, what can change, and the aircraft being offered.",
+    "kicker": "Charter pricing",
+    "kind": "service",
+    "sections": [
+      {
+        "heading": "A trip price, with context.",
+        "paragraphs": [
+          "Aircraft type, routing, positioning, dates, and the time spent away from base can affect a charter proposal. An hourly figure alone does not tell you the complete amount you will pay. Compare written offers for the same itinerary and passenger requirements.",
+          "EXJET provides a trip-specific proposal following your request. The website does not present a universal hourly tariff or guaranteed live fare."
+        ]
+      },
+      {
+        "heading": "Know what the total includes.",
+        "paragraphs": [
+          "Ask whether positioning, crew expenses, airport charges, taxes, catering, and requested ground arrangements are included. Establish how potential extras such as deicing, waiting, or changes would be approved. Confirm any amounts payable directly to other providers."
+        ],
+        "bullets": [
+          "The complete proposed itinerary and aircraft.",
+          "The total paid through the broker and any separately payable charges.",
+          "Payment deadlines and the proposal’s validity.",
+          "Cancellation, substitution, and disruption terms."
+        ]
+      },
+      {
+        "heading": "Choose value for your mission.",
+        "paragraphs": [
+          "A larger aircraft is not automatically the right choice. A cabin that fits the travelers and baggage, practical airports, and a workable schedule can be more valuable than a headline specification. Review those details before comparing prices."
+        ],
+        "links": [
+          {
+            "label": "Read the complete quote guide",
+            "path": "/articles/understanding-a-private-jet-charter-quote"
+          }
+        ]
+      }
+    ],
+    "related": [
+      "/articles/empty-leg-flights-explained",
+      "/articles/private-charter-versus-jet-cards"
+    ],
+    "image": {
+      "src": "/images/editorial/citation-cj4-gen2-leather-detail.jpg",
+      "alt": "Close-up of a Citation CJ4 Gen2 leather seat and diamond stitching",
+      "width": 2000,
+      "height": 1334,
+      "caption": "Citation CJ4 Gen2 leather seating detail. Representative manufacturer photography."
+    }
+  },
+  {
+    "path": "/aircraft-management",
+    "title": "Begin with the ownership brief.",
+    "description": "Discuss your aircraft, intended use, and management requirements with EXJET before evaluating a provider or proposal.",
+    "kicker": "Aircraft ownership",
+    "kind": "service",
+    "noindex": true,
+    "sections": [
+      {
+        "heading": "Define the requirements.",
+        "paragraphs": [
+          "Aircraft ownership involves decisions about intended use, crew, maintenance coordination, hangar arrangements, insurance, and oversight. Bring the aircraft type, location, current arrangements, and ownership objectives to an initial discussion.",
+          "This page invites a consultation. It does not represent EXJET as an aircraft operator, maintenance organization, or provider of a presently contracted management program."
+        ]
+      },
+      {
+        "heading": "Compare written responsibilities.",
+        "paragraphs": [
+          "When evaluating a management proposal, identify the contracting entities, their authority, what each party will do, and how costs and reports will be provided. Review any proposed charter use separately with qualified aviation and tax advisers."
+        ],
+        "links": [
+          {
+            "label": "Discuss aircraft ownership",
+            "path": "/contact"
+          }
+        ]
+      }
+    ],
+    "related": [
+      "/private-jet-charter"
+    ]
+  },
+  {
+    "path": "/interior-completions",
+    "title": "A cabin with a clear brief.",
+    "description": "Start an aircraft interior discussion with the way you travel: seating, materials, storage, connectivity, and the work required.",
+    "kicker": "Aircraft interiors",
+    "kind": "service",
+    "noindex": true,
+    "image": {
+      "src": "/images/editorial/falcon-6x-cabin-credenza.jpg",
+      "alt": "Falcon 6X wood cabin credenza with a tea service beneath the windows",
+      "width": 1920,
+      "height": 1281,
+      "caption": "Dassault Falcon 6X manufacturer cabin photography. It is not presented as an EXJET completion project."
+    },
+    "sections": [
+      {
+        "heading": "Plan the experience and the scope.",
+        "paragraphs": [
+          "An interior brief begins with the aircraft and its intended use. Distinguish cosmetic refurbishment from changes to layout, equipment, or systems. Set priorities for passenger comfort, durability, storage, connectivity, budget, and downtime.",
+          "Share an aircraft specification and an outline of your requirements with EXJET to discuss next steps. Available providers, project scope, and contractual responsibilities require separate confirmation."
+        ]
+      },
+      {
+        "heading": "Confirm technical approvals.",
+        "paragraphs": [
+          "Appearance is only part of an aircraft interior project. Qualified design, maintenance, and completion providers must establish the work and approvals appropriate to the aircraft. EXJET is not represented here as a certified completion or maintenance facility."
+        ],
+        "links": [
+          {
+            "label": "Start an interior discussion",
+            "path": "/contact"
+          }
+        ]
+      }
+    ],
+    "related": [
+      "/aircraft-management"
+    ]
+  },
+  {
+    "path": "/editorial-standards",
+    "title": "Useful information. Clear sources.",
+    "description": "How EXJET approaches the Flight Guide and the information used to plan private travel.",
+    "kicker": "EXJET editorial",
+    "kind": "legal",
+    "sections": [
+      {
+        "heading": "Original guidance",
+        "paragraphs": [
+          "The Flight Guide explains private aviation in practical language. Articles are written for EXJET and use original structure and explanations. Industry publications can inform research; their articles are not republished through close paraphrasing."
+        ]
+      },
+      {
+        "heading": "Sources and verification",
+        "paragraphs": [
+          "We prioritize official aviation authorities, airport operators, and aircraft manufacturers for facts within their responsibility. Source links appear alongside the guides. Published aircraft data describes a reference configuration and does not establish the performance or equipment of a specific charter aircraft."
+        ]
+      },
+      {
+        "heading": "Dates and changes",
+        "paragraphs": [
+          "Airport conditions, regulations, aircraft availability, and services can change. A guide's update date identifies its editorial version, not a guarantee that every operational detail remains current. The operating carrier confirms the details relevant to an actual flight."
+        ]
+      },
+      {
+        "heading": "Photography",
+        "paragraphs": [
+          "Aircraft photographs identify the model shown and are representative unless the page expressly states otherwise. Manufacturer promotional photographs and owner-selected brand references do not imply that EXJET owns or operates the aircraft."
+        ]
+      },
+      {
+        "heading": "Corrections",
+        "paragraphs": [
+          "If you notice an inaccurate statement or an outdated source, email sales@exjet.com with the page address and the point that needs attention."
+        ]
+      }
+    ]
+  },
+  {
+    "path": "/accessibility",
+    "title": "A website you can use.",
+    "description": "EXJET aims to make its website readable and usable across devices and input methods.",
+    "kicker": "Accessibility",
+    "kind": "legal",
+    "sections": [
+      {
+        "heading": "Navigation and reading",
+        "paragraphs": [
+          "The website includes a skip-to-content link, labeled navigation, visible keyboard focus, descriptive image text, and layouts that adapt to smaller screens. Browser text enlargement is supported, and motion is reduced when that preference is enabled on your device."
+        ]
+      },
+      {
+        "heading": "Embedded flight search",
+        "paragraphs": [
+          "Flight search includes a third-party service whose controls may behave differently from the rest of the website. If you cannot complete a request, contact EXJET directly for assistance."
+        ]
+      },
+      {
+        "heading": "Tell us about a barrier",
+        "paragraphs": [
+          "Email sales@exjet.com or call +1 407 747 5288. Include the page address, the task you were trying to complete, and your device or browser if you wish. Avoid sharing passwords or sensitive travel documents in the report."
+        ],
+        "links": [
+          {
+            "label": "Contact EXJET",
+            "path": "/contact"
+          }
+        ]
+      }
+    ]
+  }
+]

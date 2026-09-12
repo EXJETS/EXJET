@@ -1,0 +1,102 @@
+[
+  {
+    "slug": "kdal",
+    "name": "Dallas Love Field",
+    "city": "Dallas",
+    "citySlug": "dallas",
+    "icao": "KDAL",
+    "iata": "DAL",
+    "description": "A Dallas airport with commercial and general aviation facilities, two parallel runways, and multiple private aviation arrival points. Plan the flight and the ground transfer together.",
+    "location": "Dallas, Texas, United States",
+    "runways": [{"designation":"13R/31L","lengthFeet":8800},{"designation":"13L/31R","lengthFeet":7752}],
+    "timezone": "America/Chicago",
+    "dateChecked": "2026-09-11",
+    "runwaySourcePeriod": "FAA airport diagram: September 3–October 1, 2026",
+    "planningNotes": [
+      "Confirm the exact fixed-base operator, or FBO, before arranging your car. Dallas identifies several FBOs serving private and general aviation aircraft and directs travelers to obtain the correct meeting location from the aircraft operator. Give your driver the confirmed street address and facility name, rather than the airline terminal address.",
+      "Build some flexibility around time-sensitive meetings. Love Field's severe weather guidance explains that heavy rain can reduce visibility and runway traction, while winter conditions can require deicing. General aviation deicing takes place on FBO ramps; the operating team should confirm the actual effect on your flight.",
+      "Share passenger count, baggage and any unusual equipment when requesting an aircraft. The FAA publishes two runway lengths, but available runway distances and aircraft performance require a flight-specific assessment. A runway length alone does not establish that a particular aircraft can operate with your intended load.",
+      "For an itinerary that includes an international arrival, ask the operating team to confirm customs arrangements before committing to the schedule. Dallas publishes a dedicated general aviation customs page with service conditions and capacity limits. These arrangements are separate from the private terminal and should be reconfirmed for your trip."
+    ],
+    "sources": [
+      {"label":"FAA airport diagram — Dallas Love Field","url":"https://aeronav.faa.gov/d-tpp/2609/00106AD.PDF"},
+      {"label":"City of Dallas — Love Field questions and private aircraft meeting locations","url":"https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"},
+      {"label":"Dallas Love Field — severe weather guidance","url":"https://www.dallas-lovefield.com/passenger-info/winter-weather-faq-and-helpful-resources"},
+      {"label":"Dallas Love Field — international arrivals and customs","url":"https://www.dallas-lovefield.com/airport-info/general-aviation/international-arrivals-and-customs"}
+    ]
+  },
+  {
+    "slug": "kteb",
+    "name": "Teterboro Airport",
+    "city": "New York",
+    "citySlug": "new-york",
+    "icao": "KTEB",
+    "iata": "TEB",
+    "description": "Located in New Jersey across the Hudson River from New York City, Teterboro serves business and general aviation travelers visiting the metropolitan area.",
+    "location": "Teterboro, New Jersey, United States",
+    "runways": [{"designation":"01/19","lengthFeet":7000},{"designation":"06/24","lengthFeet":6013}],
+    "timezone": "America/New_York",
+    "dateChecked": "2026-09-11",
+    "runwaySourcePeriod": "Port Authority Flight Crew Handbook, cover revision April 2025",
+    "planningNotes": [
+      "Use your final New York or New Jersey address when choosing the arrival airport. Teterboro is in New Jersey, so a Manhattan itinerary also needs a ground transfer across the Hudson. Confirm the private terminal, vehicle capacity and pickup instructions together, and allow a separate allowance for the drive.",
+      "Discuss late-night timing early. The Port Authority's Quiet Flying Program asks operators to avoid nonessential flights between 11 p.m. and 6 a.m. local time. This is a voluntary quiet-hours program; separate mandatory departure noise limits also apply. The operating team should review the current requirements for the proposed aircraft.",
+      "Ask the operator to confirm that the aircraft has the required airport permission. The Port Authority handbook requires approval for jet operations and a Permission to Operate form when a jet is new to Teterboro or changes owner or operator. Passenger arrangements do not replace that operational check.",
+      "Provide a realistic arrival window when the visit depends on a meeting or event. FAA information describes intersecting runways, a complex taxiway layout and surrounding New York airspace. Your crew should check current notices and procedures; the travel itinerary should allow for changes without assuming a fixed departure or arrival slot."
+    ],
+    "sources": [
+      {"label":"Port Authority — Teterboro Flight Crew Handbook","url":"https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"},
+      {"label":"FAA — Teterboro pilot information","url":"https://www.faa.gov/sites/faa.gov/files/TEB.pdf"}
+    ]
+  },
+  {
+    "slug": "kvny",
+    "name": "Van Nuys Airport",
+    "city": "Los Angeles",
+    "citySlug": "los-angeles",
+    "icao": "KVNY",
+    "iata": "VNY",
+    "description": "A general aviation airport in Los Angeles's San Fernando Valley, Van Nuys offers a distinct arrival point for trips whose ground itinerary fits this part of the region.",
+    "location": "Van Nuys, Los Angeles, California, United States",
+    "runways": [{"designation":"16R/34L","lengthFeet":8001},{"designation":"16L/34R","lengthFeet":4013}],
+    "timezone": "America/Los_Angeles",
+    "dateChecked": "2026-09-11",
+    "runwaySourcePeriod": "FAA airport diagram: September 3–October 1, 2026",
+    "planningNotes": [
+      "Start with your actual Los Angeles destination. Van Nuys is in the San Fernando Valley, and Los Angeles World Airports identifies it as a general aviation airport. Send the hotel, office or venue address with your request so the airport choice can be assessed alongside the ground journey.",
+      "Plan the private terminal and aircraft parking in advance. The airport's June 2026 pilot guide states that there is no public transient parking. Ask the operating team to confirm the handling facility and parking arrangements, then share the exact passenger entrance with everyone joining the flight.",
+      "Raise an early departure or late arrival at the start of planning. Van Nuys has both noise restrictions and a voluntary Quieter Nights program encouraging jet operators to avoid flights between 11 p.m. and 7 a.m. whenever possible. Aircraft-specific curfew requirements need review by the operator.",
+      "Confirm current airfield conditions before finalizing a tightly timed visit. The airport maintains pilot advisories, and its guide distinguishes airport attendance from tower and runway hours. Published runway dimensions are reference information; your crew must assess the aircraft, load, weather, notices and usable distances for the individual flight."
+    ],
+    "sources": [
+      {"label":"FAA airport diagram — Van Nuys","url":"https://aeronav.faa.gov/d-tpp/2609/00552AD.PDF"},
+      {"label":"Van Nuys Airport — airport overview","url":"https://www.iflyvny.com/pilot-information/about-van-nuys-airport"},
+      {"label":"Van Nuys Airport — June 2026 pilot guide","url":"https://www.iflyvny.com/sites/vny/files/documents/VNYPilotGuide.pdf"},
+      {"label":"Van Nuys Airport — noise restrictions and Quieter Nights","url":"https://www.iflyvny.com/pilot-information/noise-restrictions"}
+    ]
+  },
+  {
+    "slug": "kopf",
+    "name": "Miami-Opa Locka Executive Airport",
+    "city": "Miami",
+    "citySlug": "miami",
+    "icao": "KOPF",
+    "iata": "OPF",
+    "description": "A Miami-Dade general aviation gateway and reliever for Miami International, Opa Locka supports business aviation with three runways and several handling areas.",
+    "location": "Opa-locka area, Miami-Dade County, Florida, United States",
+    "runways": [{"designation":"09L/27R","lengthFeet":8002},{"designation":"12/30","lengthFeet":6800},{"designation":"09R/27L","lengthFeet":4309}],
+    "timezone": "America/New_York",
+    "dateChecked": "2026-09-11",
+    "runwaySourcePeriod": "FAA airport diagram: September 3–October 1, 2026; FAA value used where the airport overview differs",
+    "planningNotes": [
+      "Provide the precise South Florida destination with your flight request. Miami-Dade identifies Opa Locka as a reliever airport supporting business aviation. Downtown Miami, Miami Beach and destinations farther north involve different ground journeys, so evaluate the arrival airport and the transfer as one itinerary.",
+      "Confirm the handling facility by name and street address. The FAA airport diagram marks multiple FBO areas around the field. A driver needs the selected passenger entrance rather than a generic airport pin; also confirm the number of travelers and bags before choosing the vehicle.",
+      "If your itinerary continues beyond the United States or returns from abroad, have the operating team verify customs arrangements and required advance coordination. The airport identifies customs facilities on the airfield, but that does not establish clearance availability for every arrival time or passenger group.",
+      "Share passenger and baggage details before selecting the aircraft. The FAA diagram lists runways of different lengths, and Miami-Dade publishes noise-abatement guidance for nearby residential communities. The operating crew should verify current runway availability, weather, notices and aircraft performance for the trip; a published length is not a guarantee of suitability."
+    ],
+    "sources": [
+      {"label":"FAA airport diagram — Miami-Opa Locka Executive","url":"https://aeronav.faa.gov/d-tpp/2609/00256AD.PDF"},
+      {"label":"Miami-Dade Aviation Department — Opa Locka airport overview","url":"https://www.miami-airport.com/opalocka.asp"}
+    ]
+  }
+]

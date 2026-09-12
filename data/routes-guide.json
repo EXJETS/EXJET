@@ -1,0 +1,54 @@
+[
+  {
+    "slug":"dallas-to-new-york",
+    "title":"Dallas to New York",
+    "originAirport":"kdal",
+    "destinationAirport":"kteb",
+    "description":"Plan a Dallas Love Field–Teterboro itinerary around your New York arrival address, meeting time and return-day flexibility.",
+    "sections":[
+      {"heading":"Work backward from the meeting","paragraphs":["Begin with the address and time you need to be in New York, then allow separately for the drive from Teterboro. The airport is in New Jersey across the Hudson, so the flight's arrival time is only one part of reaching a Manhattan office or hotel. Share a latest useful arrival time as well as your preferred departure."]},
+      {"heading":"Coordinate both private terminals","paragraphs":["Love Field and Teterboro have several general aviation handling locations. Confirm the FBO and passenger entrance at each end before arranging cars. For a team traveling from different Dallas locations, circulate one set of meeting instructions with the confirmed terminal address, passenger list and contact details."]},
+      {"heading":"Keep the return plan practical","paragraphs":["If meetings may finish late, discuss the return window when requesting the flight. Teterboro's voluntary quiet hours and mandatory departure noise requirements need to be considered by the aircraft operator. Identify whether an overnight stay is an acceptable alternative and which parts of the schedule are fixed."],"bullets":["Include passenger count, luggage and any work equipment.","State any aircraft cabin or connectivity preferences for confirmation.","Request an itinerary that labels all times by local time zone."]}
+    ],
+    "sources":[{"label":"FAA — Teterboro location and pilot information","url":"https://www.faa.gov/sites/faa.gov/files/TEB.pdf"},{"label":"Port Authority — Teterboro Flight Crew Handbook","url":"https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"},{"label":"City of Dallas — private aircraft meeting locations","url":"https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"}]
+  },
+  {
+    "slug":"dallas-to-miami",
+    "title":"Dallas to Miami",
+    "originAirport":"kdal",
+    "destinationAirport":"kopf",
+    "description":"Build a Dallas Love Field–Miami-Opa Locka itinerary around the full South Florida visit, from the private terminal to your final destination.",
+    "sections":[
+      {"heading":"Choose the arrival for the whole visit","paragraphs":["Give the precise hotel, residence, meeting venue or marina address with your request. Miami-Dade identifies Opa Locka as a business aviation airport and a reliever for Miami International. The right arrival plan depends on where you go afterward, so review the ground transfer before settling the airport choice."]},
+      {"heading":"Describe what is coming aboard","paragraphs":["Include the full passenger count and luggage details, especially golf bags, children's equipment or other bulky items. Aircraft selection should account for the complete load and the planned cabin experience. Ask for confirmation of baggage capacity, seating and requested amenities for the specific aircraft proposed."]},
+      {"heading":"Connect the schedule and the handoff","paragraphs":["Use the confirmed FBO address for pickup and drop-off at both airports. If the trip is tied to a boat departure, event or onward flight, provide that deadline and an acceptable arrival window. Dallas Love Field's weather guidance highlights how rain and winter conditions can affect operations; leave room for the operating team to adjust the plan."],"bullets":["State whether the return date or passenger group may change.","Confirm the transfer vehicle can carry both passengers and luggage.","Flag any international continuation so clearance arrangements receive separate review."]}
+    ],
+    "sources":[{"label":"Miami-Dade Aviation Department — Opa Locka airport overview","url":"https://www.miami-airport.com/opalocka.asp"},{"label":"FAA — Opa Locka airport diagram","url":"https://aeronav.faa.gov/d-tpp/2609/00256AD.PDF"},{"label":"Dallas Love Field — severe weather guidance","url":"https://www.dallas-lovefield.com/passenger-info/winter-weather-faq-and-helpful-resources"}]
+  },
+  {
+    "slug":"new-york-to-miami",
+    "title":"New York to Miami",
+    "originAirport":"kteb",
+    "destinationAirport":"kopf",
+    "description":"Coordinate a Teterboro–Miami-Opa Locka trip around New York ground access, South Florida transfers and the details of the return journey.",
+    "sections":[
+      {"heading":"Allow for the trip to Teterboro","paragraphs":["Teterboro is in New Jersey, so a departure from Manhattan begins with a ground journey across the Hudson. Supply the pickup address and any meeting that precedes the flight. Keep the requested aircraft departure distinct from your car pickup time, and send the confirmed FBO entrance to your driver."]},
+      {"heading":"Match the Miami transfer to your destination","paragraphs":["Opa Locka supports business aviation within the Miami-Dade airport system. Give the exact destination rather than a broad area such as Miami or the beach. The arrival facility and final address should inform vehicle selection, luggage handling and your onward appointment or check-in plans."]},
+      {"heading":"Plan a flexible return deliberately","paragraphs":["For a weekend or an extended stay, specify whether the return date, departure window or passenger list might change. Ask how those changes would affect the proposed arrangement before confirming. If either leg needs nighttime timing, have the operator review Teterboro's noise requirements and voluntary quiet-hours program."],"bullets":["List large bags, sporting equipment and any special passenger needs.","Identify fixed commitments and the amount of schedule flexibility.","Confirm the specific aircraft, private terminals and ground transfer details in the final itinerary."]}
+    ],
+    "sources":[{"label":"FAA — Teterboro airport information","url":"https://www.faa.gov/sites/faa.gov/files/TEB.pdf"},{"label":"Port Authority — Teterboro Flight Crew Handbook","url":"https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"},{"label":"Miami-Dade Aviation Department — Opa Locka airport overview","url":"https://www.miami-airport.com/opalocka.asp"}]
+  },
+  {
+    "slug":"los-angeles-to-new-york",
+    "title":"Los Angeles to New York",
+    "originAirport":"kvny",
+    "destinationAirport":"kteb",
+    "description":"Plan a Van Nuys–Teterboro journey around cabin priorities, local-time arrival goals and the transfers at both ends of a cross-country itinerary.",
+    "sections":[
+      {"heading":"Start with the arrival-day commitment","paragraphs":["Share the New York address and latest useful arrival time, together with your preferred Los Angeles departure window. Label every requested time with its location or time zone. Teterboro is across the Hudson in New Jersey, so reserve a separate allowance for the drive to Manhattan or elsewhere in the region."]},
+      {"heading":"Choose the cabin for the journey","paragraphs":["Explain how you intend to use the flight: working with colleagues, resting or traveling with family. Include passenger count and baggage, then ask for confirmation of the specific seating, connectivity and catering arrangements. Have the operator assess the proposed aircraft and whether a fuel stop is needed for the actual load, weather and routing."]},
+      {"heading":"Resolve airport timing early","paragraphs":["Van Nuys is in the San Fernando Valley, so evaluate its location against your departure address. Both Van Nuys and Teterboro publish noise programs with voluntary nighttime restraints as well as other requirements. Discuss early or late schedules before finalizing your ground itinerary, and confirm aircraft handling and parking with the operating team."],"bullets":["Provide an acceptable arrival window alongside the preferred time.","Confirm the passenger entrance and driver contact at both airports.","Review the westbound return as its own flight plan."]}
+    ],
+    "sources":[{"label":"Van Nuys Airport — location and overview","url":"https://www.iflyvny.com/pilot-information/about-van-nuys-airport"},{"label":"Van Nuys Airport — noise restrictions","url":"https://www.iflyvny.com/pilot-information/noise-restrictions"},{"label":"FAA — Teterboro airport information","url":"https://www.faa.gov/sites/faa.gov/files/TEB.pdf"},{"label":"Port Authority — Teterboro Flight Crew Handbook","url":"https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"}]
+  }
+]

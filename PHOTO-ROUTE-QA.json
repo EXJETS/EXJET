@@ -1,0 +1,71 @@
+{
+  "date": "2026-09-12",
+  "verification": "Production HTTP responses and photo endpoints. Not browser screenshot or interactive toggle verification.",
+  "results": [
+    {
+      "route": "/aircraft/citation-x",
+      "status": 200,
+      "initial_photo_in_html": true,
+      "images": [
+        {
+          "file": "citation-x-flight.jpg",
+          "bytes": 142637,
+          "content_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "route": "/aircraft/challenger-350",
+      "status": 200,
+      "initial_photo_in_html": true,
+      "images": [
+        {
+          "file": "challenger-350-flight.jpg",
+          "bytes": 1659863,
+          "content_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "route": "/aircraft/gulfstream-g650",
+      "status": 200,
+      "initial_photo_in_html": true,
+      "images": [
+        {
+          "file": "g650-flight.jpg",
+          "bytes": 391017,
+          "content_type": "image/jpeg"
+        },
+        {
+          "file": "g650-cabin.jpg",
+          "bytes": 366885,
+          "content_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "route": "/aircraft/falcon-2000lx",
+      "status": 200,
+      "initial_photo_in_html": true,
+      "images": [
+        {
+          "file": "falcon-2000lx-cabin.jpg",
+          "bytes": 136693,
+          "content_type": "image/jpeg"
+        }
+      ]
+    },
+    {
+      "route": "/aircraft/challenger-300",
+      "status": 200,
+      "initial_photo_in_html": true,
+      "images": [
+        {
+          "file": "challenger-300-flight.jpg",
+          "bytes": 325107,
+          "content_type": "image/jpeg"
+        }
+      ]
+    }
+  ]
+}

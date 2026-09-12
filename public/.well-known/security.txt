@@ -1,0 +1,4 @@
+Contact: mailto:sales@exjet.com
+Canonical: https://exjet.com/.well-known/security.txt
+Preferred-Languages: en
+Expires: 2027-08-09T23:59:59Z

@@ -1,0 +1,250 @@
+[
+  {
+    "path": "/",
+    "title": "Home"
+  },
+  {
+    "path": "/about/",
+    "title": "About EXJET"
+  },
+  {
+    "path": "/why-exjet/",
+    "title": "Why EXJET"
+  },
+  {
+    "path": "/aircraft/",
+    "title": "Aircraft"
+  },
+  {
+    "path": "/charter/",
+    "title": "Flight search"
+  },
+  {
+    "path": "/empty-legs/",
+    "title": "Empty legs"
+  },
+  {
+    "path": "/membership/",
+    "title": "Membership"
+  },
+  {
+    "path": "/group-charter/",
+    "title": "Group travel"
+  },
+  {
+    "path": "/cargo/",
+    "title": "Cargo charter"
+  },
+  {
+    "path": "/sales/",
+    "title": "Aircraft sales"
+  },
+  {
+    "path": "/contact/",
+    "title": "Contact"
+  },
+  {
+    "path": "/account/",
+    "title": "Client access"
+  },
+  {
+    "path": "/faq/",
+    "title": "FAQ"
+  },
+  {
+    "path": "/privacy/",
+    "title": "Privacy"
+  },
+  {
+    "path": "/terms/",
+    "title": "Terms"
+  },
+  {
+    "path": "/aircraft/citation-x/",
+    "title": "Citation X"
+  },
+  {
+    "path": "/aircraft/challenger-350/",
+    "title": "Challenger 350"
+  },
+  {
+    "path": "/aircraft/citation-latitude/",
+    "title": "Citation Latitude"
+  },
+  {
+    "path": "/aircraft/gulfstream-g650/",
+    "title": "Gulfstream G650"
+  },
+  {
+    "path": "/aircraft/global-8000/",
+    "title": "Global 8000"
+  },
+  {
+    "path": "/aircraft/falcon-900/",
+    "title": "Falcon 900LX"
+  },
+  {
+    "path": "/aircraft/falcon-2000lx/",
+    "title": "Falcon 2000LX"
+  },
+  {
+    "path": "/aircraft/challenger-300/",
+    "title": "Challenger 300"
+  },
+  {
+    "path": "/sales/citation-m2/",
+    "title": "Citation M2 · Sales"
+  },
+  {
+    "path": "/sales/global-7500/",
+    "title": "Global 7500 · Sales"
+  },
+  {
+    "path": "/sales/praetor-600/",
+    "title": "Praetor 600 · Sales"
+  },
+  {
+    "path": "/sales/phenom-300e/",
+    "title": "Phenom 300E · Sales"
+  },
+  {
+    "path": "/articles/",
+    "title": "Flight Guide"
+  },
+  {
+    "path": "/guides/",
+    "title": "Charter guides"
+  },
+  {
+    "path": "/routes/",
+    "title": "Private jet routes"
+  },
+  {
+    "path": "/airports/",
+    "title": "Airport guides"
+  },
+  {
+    "path": "/destinations/",
+    "title": "Destinations"
+  },
+  {
+    "path": "/search/",
+    "title": "Website search"
+  },
+  {
+    "path": "/articles/understanding-a-private-jet-charter-quote/",
+    "title": "What is included in a private jet charter quote?"
+  },
+  {
+    "path": "/articles/empty-leg-flights-explained/",
+    "title": "Empty legs: understand the opportunity and the limits"
+  },
+  {
+    "path": "/articles/choosing-a-private-charter-aircraft/",
+    "title": "Choose the aircraft around the journey"
+  },
+  {
+    "path": "/articles/first-private-charter-checklist/",
+    "title": "Your first private charter: a practical checklist"
+  },
+  {
+    "path": "/articles/private-charter-for-executive-assistants/",
+    "title": "Private charter planning for executive assistants"
+  },
+  {
+    "path": "/articles/private-charter-versus-jet-cards/",
+    "title": "On-demand charter or a jet card? Compare the terms"
+  },
+  {
+    "path": "/airports/kdal/",
+    "title": "Dallas Love Field"
+  },
+  {
+    "path": "/airports/kteb/",
+    "title": "Teterboro Airport"
+  },
+  {
+    "path": "/airports/kvny/",
+    "title": "Van Nuys Airport"
+  },
+  {
+    "path": "/airports/kopf/",
+    "title": "Miami-Opa Locka Executive Airport"
+  },
+  {
+    "path": "/routes/dallas-to-new-york/",
+    "title": "Dallas to New York"
+  },
+  {
+    "path": "/routes/dallas-to-miami/",
+    "title": "Dallas to Miami"
+  },
+  {
+    "path": "/routes/new-york-to-miami/",
+    "title": "New York to Miami"
+  },
+  {
+    "path": "/routes/los-angeles-to-new-york/",
+    "title": "Los Angeles to New York"
+  },
+  {
+    "path": "/charter-terms/",
+    "title": "Charter Terms & Disclosures"
+  },
+  {
+    "path": "/cancellations/",
+    "title": "Cancellation & Refunds"
+  },
+  {
+    "path": "/cookies/",
+    "title": "Cookies & Website Technologies"
+  },
+  {
+    "path": "/private-jet-charter/",
+    "title": "Private aviation. On your terms."
+  },
+  {
+    "path": "/corporate-travel/",
+    "title": "Make room for the business."
+  },
+  {
+    "path": "/pricing/",
+    "title": "Understand the whole journey."
+  },
+  {
+    "path": "/aircraft-management/",
+    "title": "Begin with the ownership brief."
+  },
+  {
+    "path": "/interior-completions/",
+    "title": "A cabin with a clear brief."
+  },
+  {
+    "path": "/editorial-standards/",
+    "title": "Useful information. Clear sources."
+  },
+  {
+    "path": "/accessibility/",
+    "title": "A website you can use."
+  },
+  {
+    "path": "/articles/flying-private-with-children/",
+    "title": "Flying private with children"
+  },
+  {
+    "path": "/articles/private-jet-travel-with-pets/",
+    "title": "Private jet travel with pets"
+  },
+  {
+    "path": "/articles/planning-a-multigenerational-family-charter/",
+    "title": "Multigenerational family charter"
+  },
+  {
+    "path": "/articles/gulfstream-g550-vs-boeing-bbj1-ownership/",
+    "title": "Gulfstream G550 vs. Boeing BBJ1"
+  },
+  {
+    "path": "/articles/charter-vs-aircraft-ownership-for-a-family-office/",
+    "title": "Charter vs. aircraft ownership"
+  }
+]
