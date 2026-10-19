@@ -1,3 +1,4 @@
+import { ContentCollection } from "@/components/EditorialPage";
 import { EmptyLegBoard } from "@/components/EmptyLegBoard";
 import { PageHero } from "@/components/PageHero";
 import { SectionIntro } from "@/components/SectionIntro";
@@ -15,7 +16,7 @@ const steps = [
 export default function EmptyLegsPage() {
   return (
     <>
-      <PageHero
+      <PageHero heading="Empty leg charter flights"
         dark
         eyebrow="Empty leg opportunities"
         title={<>A repositioning flight.<br /><em>A smarter opening.</em></>}
@@ -40,6 +41,7 @@ export default function EmptyLegsPage() {
           <p className="specification-note">Empty legs are subject to operator confirmation, aircraft repositioning requirements, schedule changes, and availability. EXJET acts as a charter broker and does not operate the flight.</p>
         </div>
       </section>
+      <ContentCollection paths={["/empty-legs/dallas", "/pricing"]} title="Explore the options." description="Compare flexible Dallas departures and the complete cost of a charter." showImages={false} />
     </>
   );
 }
