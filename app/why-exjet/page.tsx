@@ -17,7 +17,7 @@ const pillars = [
 
 export default function WhyExjetPage() {
   return <>
-    <PageHero dark eyebrow="Why EXJET" title={<>More access.<br /><em>Less complexity.</em></>} copy="EXJET simplifies business aviation by bringing aircraft selection, commercial terms, and trip coordination into one clear relationship.">
+    <PageHero heading="Why choose EXJET for aircraft charter" dark eyebrow="Why EXJET" title={<>More access.<br /><em>Less complexity.</em></>} copy="EXJET simplifies business aviation by bringing aircraft selection, commercial terms, and trip coordination into one clear relationship.">
       <ButtonLink href="/contact" variant="light">Start a flight request</ButtonLink>
     </PageHero>
     <section className="why-speed"><div className="shell"><p>Time sensitive mission?</p><h2>Be airborne within 96 hours.</h2><span>Subject to aircraft, crew, airport, regulatory, and route availability.</span></div></section>
