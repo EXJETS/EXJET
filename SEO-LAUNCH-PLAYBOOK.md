@@ -1,3 +1,5 @@
+> SEO configuration update (17 October 2026): use `https://www.exjet.com`. Vercel production builds are indexable; preview/development builds remain noindex. Canonicals always use the public www origin. Any earlier statements below about preview canonicals or an apex-only production gate are historical. See `SEO-RELEASE.md` for current deployment and verification instructions.
+
 # EXJET search and AI visibility launch playbook
 
 The website now supplies the technical foundation. First-page rankings and recommendation-engine visibility also require authority, verified business data, useful content, and consistent external signals. No ethical vendor can guarantee the number-one position for every aircraft or charter query.
@@ -6,7 +8,7 @@ The website now supplies the technical foundation. First-page rankings and recom
 
 1. Point `exjet.com` and `www.exjet.com` to the production deployment. Select one canonical host and permanently redirect the other.
 2. Add the exact production domain to Google Search Console and Bing Webmaster Tools.
-3. Submit `https://exjet.com/sitemap.xml` to both services.
+3. Submit `https://www.exjet.com/sitemap.xml` to both services.
 4. Inspect and request indexing for the homepage, Charter, Aircraft, Membership, Sales, About, FAQ, and Contact pages.
 5. Verify that `robots.txt`, `sitemap.xml`, `manifest.webmanifest`, `llms.txt`, canonical tags, and social preview images resolve on the production domain.
 6. Connect privacy-respecting analytics and conversion events for quote starts, quote completions, calls, email clicks, membership inquiries, and sales inquiries.

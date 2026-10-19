@@ -27,7 +27,6 @@ Production-oriented Next.js website for EXJET, a Dallas-based private aviation b
 - Cargo charter: `cargo@exjet.com`
 - Aircraft sales and general: `sales@exjet.com`
 - Primary phone: `+1 407-747-5288`
-- Alternate phone: `+1 407-624-9708`
 - Address: `1910 Pacific Ave, Dallas, TX 75201`
 
 ## Development
@@ -39,7 +38,27 @@ npm run lint
 npm run build
 ```
 
-The project currently uses `output: "export"` and produces a static deployment in `out/`.
+The project uses the Next.js server build, including server-side API routes.
+
+## Production SEO configuration
+
+See `SEO-RELEASE.md` for the verified release, account-dependent deployment steps and full regression commands.
+
+- The canonical public origin is `https://www.exjet.com`. Canonicals, social
+  metadata, structured data and the sitemap all use this host.
+- On Vercel, only `VERCEL_ENV=production` enables indexing. Preview and
+  development deployments remain noindexed even if they inherit the public URL.
+- For a production build outside Vercel, explicitly set
+  `NEXT_PUBLIC_SITE_URL=https://www.exjet.com` when running `npm run build`.
+- Existing page-level exclusions (including account access, site search and
+  unpublished content) remain noindexed and excluded from the sitemap.
+- SEO metadata and robots.txt are generated at build time. Redeploy after a
+  configuration change; changing environment variables alone does not update
+  an existing deployment.
+
+Run `node --test tests/seo-environment.test.mjs` to check the production and
+preview environment rules. Before release, verify the generated HTML,
+robots.txt and sitemap.xml, then repeat these checks on the public domain.
 
 ## Production integrations still required
 

@@ -1,3 +1,5 @@
+> SEO configuration update (17 October 2026): use `https://www.exjet.com`. Vercel production builds are indexable; preview/development builds remain noindex. Canonicals always use the public www origin. Any earlier statements below about preview canonicals or an apex-only production gate are historical. See `SEO-RELEASE.md` for current deployment and verification instructions.
+
 # EXJET launch audit notes
 
 ## Confirmed public facts used
