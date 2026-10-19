@@ -7,13 +7,18 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: {
     formats: ["image/avif", "image/webp"],
-    unoptimized: true,
+    unoptimized: false,
   },
   async redirects() {
     return [
       {
         source: "/citation-latitude",
-        destination: "/aircraft/citation-latitude",
+        destination: "/aircraft/citation-latitude/",
+        statusCode: 301,
+      },
+      {
+        source: "/airports/kpbi",
+        destination: "/airports/kdjt/",
         statusCode: 301,
       },
     ];
