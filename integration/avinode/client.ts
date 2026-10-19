@@ -130,7 +130,7 @@ export async function resolveAvinodeAirport(value: string): Promise<ExjetAirport
   const normalized = value.trim().toUpperCase();
   const airports = await searchAvinodeAirports(value);
   return airports.find((airport) => airport.icao.toUpperCase() === normalized || airport.iata?.toUpperCase() === normalized)
-    ?? airports[0]
+    ?? (airports.length === 1 ? airports[0] : null)
     ?? null;
 }
 
