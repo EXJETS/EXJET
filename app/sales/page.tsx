@@ -17,7 +17,7 @@ const services = [
 
 export default function SalesPage() {
   return <>
-    <PageHero dark eyebrow="Aircraft sales, leasing and acquisitions" title={<>Find the aircraft.<br /><em>Shape the transaction.</em></>} copy="Confidential representation for sellers, targeted search for buyers, and one point of contact from market brief through closing.">
+    <PageHero heading="Aircraft sales and acquisitions" dark eyebrow="Aircraft sales, leasing and acquisitions" title={<>Find the aircraft.<br /><em>Shape the transaction.</em></>} copy="Confidential representation for sellers, targeted search for buyers, and one point of contact from market brief through closing.">
       <ButtonLink href={`mailto:${siteConfig.email.general}`} variant="light">Contact the sales desk</ButtonLink>
     </PageHero>
     <section className="section sales-listings-section"><div className="shell"><SectionIntro eyebrow="Selected opportunities" title="Current listings, completed work, and targeted searches." copy="Open any aircraft for the available record, commercial context, and next step. Confidential files remain controlled through the EXJET sales desk." />
