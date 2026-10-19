@@ -12,7 +12,7 @@ export function AircraftDetail({ item }: { item: Aircraft }) {
     <div className="detail-viewer">
       <header className="detail-viewer__title">
         <p>{item.maker} · {item.category}</p>
-        <h1>{item.name}</h1>
+        <h1>{item.name} charter</h1>
         <a className="button button--dark" href={`/contact?aircraft=${item.slug}`}>Enquire about this aircraft</a>
       </header>
       {hasAircraftSceneMedia(scene) ? <>

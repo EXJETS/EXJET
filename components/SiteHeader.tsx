@@ -38,7 +38,7 @@ const explore = [
 function NavigationLogo({ onClick }: { onClick?: () => void }) {
   return (
     <Link className="ex-header-logo" href="/" aria-label="EXJET home" onClick={onClick}>
-      <Image src="/brand/exjet-navbar-logo.png" alt="EXJET" width={1254} height={1254} loading="eager" unoptimized />
+      <Image src="/brand/exjet-navbar-logo.png" alt="" width={96} height={96} sizes="48px" loading="eager" />
     </Link>
   );
 }

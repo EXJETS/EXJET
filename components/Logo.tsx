@@ -12,10 +12,10 @@ export function Logo({ light = false, className, onClick }: LogoProps) {
     <Link className={className} href="/" aria-label="EXJET home" onClick={onClick}>
       <Image
         src={light ? "/brand/exjet-guide-mark-light.svg" : "/brand/exjet-guide-mark.svg"}
-        alt="EXJET"
+        alt=""
         width={124}
         height={70}
-        priority
+        loading="lazy"
       />
     </Link>
   );

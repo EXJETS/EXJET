@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { CaretRightIcon } from "@phosphor-icons/react/dist/ssr";
 import { BrokerNotice } from "@/components/BrokerNotice";
+import { ContentSections, ContentFaq } from "@/components/ContentSections";
 import { StructuredData } from "@/components/StructuredData";
 import { absoluteUrl } from "@/data/site";
 import { contentPages, type ContentPage } from "@/data/editorial";
@@ -28,7 +29,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
   const schema = {"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:breadcrumb.map((entry,index)=>({"@type":"ListItem",position:index+1,name:entry.name,item:absoluteUrl(entry.path)}))};
   return <div className="ex-editorial">
     <StructuredData data={schema} />
-    {page.kind === "article" ? <StructuredData data={{"@context":"https://schema.org","@type":"Article",headline:page.title,description:page.description,mainEntityOfPage:absoluteUrl(page.path),publisher:{"@type":"Organization",name:"EXJET LLC",url:absoluteUrl("/")},author:{"@type":"Organization",name:"EXJET editorial",url:absoluteUrl("/editorial-standards")},dateModified:page.updated, ...(page.image ? {image:absoluteUrl(page.image.src)} : {})}} /> : null}
+    {page.kind === "article" ? <StructuredData data={{"@context":"https://schema.org","@type":"Article",headline:page.title,description:page.description,mainEntityOfPage:absoluteUrl(page.path),publisher:{"@id":absoluteUrl("/")+"#organization"},author:{"@type":"Organization",name:"EXJET editorial",url:absoluteUrl("/editorial-standards")},datePublished:page.published,dateModified:page.updated, ...(page.image ? {image:absoluteUrl(page.image.src)} : {})}} /> : null}
     <div className="ex-container"><nav className="ex-breadcrumb" aria-label="Breadcrumb">{breadcrumb.map((entry,index)=><span key={entry.path}>{index > 0 ? <span aria-hidden="true"> / </span> : null}{index===breadcrumb.length-1 ? <span aria-current="page">{entry.name}</span>:<Link href={entry.path}>{entry.name}</Link>}</span>)}</nav>
       <header className={isReading ? "ex-story-intro" : "ex-page-intro"}><p className="ex-kicker">{page.kicker}</p><h1>{page.title}</h1><p>{page.description}</p>
         {page.kind==="article" ? <div className="ex-story-meta"><Link href="/editorial-standards">EXJET editorial</Link><span>{page.readTime}</span>{updatedLabel ? <span>Updated {updatedLabel}</span> : null}</div> : null}
@@ -41,7 +42,8 @@ export function EditorialPage({ page }: { page: ContentPage }) {
       {page.draft ? <p className="ex-draft-note">Policy draft for review. Final terms depend on EXJET’s confirmed practices and the applicable charter agreement.</p> : null}
       {page.facts?.length ? <dl className="ex-facts">{page.facts.map(fact=><div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl> : null}
       {isReading && page.sections.length>3 ? <details className="ex-toc"><summary>In this {page.kind==="legal" ? "policy" : "guide"}</summary><ol>{page.sections.map((section,index)=><li key={section.heading}><a href={`#section-${index+1}`}>{section.heading}</a></li>)}</ol></details> : null}
-      {page.sections.map((section,index)=><section key={section.heading} aria-labelledby={`section-${index+1}`}><h2 id={`section-${index+1}`}>{section.heading}</h2>{section.paragraphs.map((text,i)=><p key={i}>{text}</p>)}{section.bullets?.length ? <ul>{section.bullets.map(text=><li key={text}>{text}</li>)}</ul>:null}{section.links?.map(link=><p key={link.path}><Link href={link.path}>{link.label}</Link></p>)}</section>)}
+      <ContentSections sections={page.sections} />
+      {page.faqs ? <ContentFaq faqs={page.faqs} /> : null}
       {page.sources?.length ? <section className="ex-sources" aria-label="Sources"><h2>Sources & further reading</h2><ul>{page.sources.map(source=><li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul></section> : null}
     </div></div>
     {page.related?.length ? <ContentCollection paths={page.related} title="Continue exploring." silver showImages={false} /> : null}

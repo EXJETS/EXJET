@@ -7,14 +7,14 @@ import { BrokerNotice } from "@/components/BrokerNotice";
 
 const groups = [
   { title: "Fly with EXJET", links: [["Charter", "/charter"], ["Aircraft", "/aircraft"], ["Empty legs", "/empty-legs"], ["Group travel", "/group-charter"], ["Membership", "/membership"]] },
-  { title: "Explore", links: [["Flight Guide", "/articles"], ["Routes", "/routes"], ["Airports", "/airports"], ["Destinations", "/destinations"], ["Charter pricing", "/pricing"]] },
-  { title: "EXJET", links: [["About", "/about"], ["Why EXJET", "/why-exjet"], ["Corporate travel", "/corporate-travel"], ["Aircraft sales", "/sales"], ["Cargo charter", "/cargo"], ["Contact", "/contact"]] },
+  { title: "Explore", links: [["Flight Guide", "/articles"], ["Routes", "/routes"], ["Airports", "/airports"], ["Destinations", "/destinations"], ["Dallas charter", "/private-jet-charter/dallas"], ["Aircraft comparisons", "/aircraft-comparisons"], ["Glossary", "/glossary"], ["Charter pricing", "/pricing"]] },
+  { title: "EXJET", links: [["About", "/about"], ["Why EXJET", "/why-exjet"], ["Safety", "/safety"], ["Corporate travel", "/corporate-travel"], ["Aircraft sales", "/sales"], ["Cargo charter", "/cargo"], ["Contact", "/contact"]] },
 ];
 
 export function SiteFooter() {
   return <footer className="ex-footer">
     <div className="shell ex-footer-top">
-      <div className="ex-footer-brand"><Logo className="ex-footer-logo" /><p>Global Access, On-Demand.</p><a className="ex-footer-phone" href={siteConfig.phone.primary.href}>{siteConfig.phone.primary.display}</a><SocialLinks compact /></div>
+      <div className="ex-footer-brand"><Logo className="ex-footer-logo" /><p>Global Access, On-Demand.</p><a className="ex-footer-phone" href={siteConfig.phone.primary.href}>{siteConfig.phone.primary.display}</a><address className="ex-footer-address">{siteConfig.legalName}<br />{siteConfig.address.display}</address><SocialLinks compact /></div>
       {groups.map((group) => <nav className="ex-footer-desktop" key={group.title} aria-label={group.title}><h2>{group.title}</h2>{group.links.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</nav>)}
       <div className="ex-footer-mobile">
         {groups.map((group) => <details key={group.title}>
