@@ -1,8 +1,8 @@
 [
   {
     "path": "/private-jet-charter",
-    "title": "Private aviation. On your terms.",
-    "description": "Start with your destination. EXJET arranges private charter around the people, timing, and details of your trip.",
+    "title": "Private jet charter, arranged around you",
+    "description": "Arrange domestic and international business jet charter with EXJET. Compare aircraft, understand the broker relationship and request a complete trip proposal.",
     "kicker": "Private jet charter",
     "kind": "service",
     "image": {
@@ -47,18 +47,47 @@
             "path": "/articles/first-private-charter-checklist"
           }
         ]
+      },
+      {
+        "heading": "Explore the journey before requesting a quote",
+        "paragraphs": [
+          "Start with the route and airport, then compare aircraft cabins and the complete cost of the journey. The flight request page is where you submit your itinerary; this service guide explains what to expect from sourcing and confirmation."
+        ],
+        "links": [
+          {
+            "label": "Submit a charter request",
+            "path": "/charter"
+          },
+          {
+            "label": "Dallas charter and airport choices",
+            "path": "/private-jet-charter/dallas"
+          },
+          {
+            "label": "Route planning guides",
+            "path": "/routes"
+          },
+          {
+            "label": "Charter cost guide",
+            "path": "/pricing"
+          },
+          {
+            "label": "Operator review and safety",
+            "path": "/safety"
+          }
+        ]
       }
     ],
     "related": [
       "/routes/dallas-to-new-york",
       "/routes/dallas-to-miami",
       "/articles/choosing-a-private-charter-aircraft"
-    ]
+    ],
+    "seoTitle": "Private Jet Charter | On-Demand Aircraft Solutions | EXJET"
   },
   {
     "path": "/corporate-travel",
-    "title": "Make room for the business.",
-    "description": "Private charter planning for executives, assistants, and teams. Bring the schedule together before the journey begins.",
+    "title": "Corporate aircraft charter for business travel",
+    "description": "Coordinate corporate aircraft charter for executives, teams and assistants. Plan multi-city schedules, passenger needs and clear trip approvals with EXJET.",
     "kicker": "Corporate travel",
     "kind": "service",
     "image": {
@@ -94,48 +123,214 @@
             "path": "/articles/private-charter-for-executive-assistants"
           }
         ]
+      },
+      {
+        "heading": "A useful brief for executive assistants",
+        "paragraphs": [
+          "Separate the traveler’s preferences from fixed business commitments. Give the meeting address, latest useful arrival, expected finish, approval contact and any confidentiality needs. Identify whether the party must return together and whether a substitute aircraft category is acceptable."
+        ],
+        "links": [
+          {
+            "label": "Executive assistant charter checklist",
+            "path": "/articles/private-charter-for-executive-assistants"
+          },
+          {
+            "label": "Group charter for corporate teams",
+            "path": "/group-charter/corporate-teams"
+          },
+          {
+            "label": "Compare on-demand charter and jet cards",
+            "path": "/articles/private-charter-versus-jet-cards"
+          }
+        ]
       }
     ],
     "related": [
       "/routes/dallas-to-new-york",
       "/articles/understanding-a-private-jet-charter-quote"
-    ]
+    ],
+    "seoTitle": "Corporate Private Jet Charter & Business Travel | EXJET"
   },
   {
     "path": "/pricing",
-    "title": "Understand the whole journey.",
-    "description": "A private charter quote is built around a specific trip. Compare what is included, what can change, and the aircraft being offered.",
+    "title": "Private jet charter cost and pricing",
+    "description": "Understand charter costs with hourly reference inputs, route examples, fees and a complete trip calculation. Request a written itinerary-specific quote from EXJET.",
     "kicker": "Charter pricing",
     "kind": "service",
     "sections": [
       {
-        "heading": "A trip price, with context.",
+        "heading": "How much does aircraft charter cost?",
         "paragraphs": [
-          "Aircraft type, routing, positioning, dates, and the time spent away from base can affect a charter proposal. An hourly figure alone does not tell you the complete amount you will pay. Compare written offers for the same itinerary and passenger requirements.",
-          "EXJET provides a trip-specific proposal following your request. The website does not present a universal hourly tariff or guaranteed live fare."
+          "A charter proposal prices a particular itinerary and aircraft. The total can include occupied flying, aircraft positioning, minimum flight time, crew arrangements, airport services and taxes. An attractive hourly number can therefore produce a higher trip total than a more expensive aircraft already near your departure airport.",
+          "EXJET supplies a written trip-specific proposal. The figures here are educational reference inputs and arithmetic examples, not EXJET tariffs, guaranteed fares or statements of current aircraft availability."
         ]
       },
       {
-        "heading": "Know what the total includes.",
+        "heading": "Hourly reference inputs by aircraft category",
         "paragraphs": [
-          "Ask whether positioning, crew expenses, airport charges, taxes, catering, and requested ground arrangements are included. Establish how potential extras such as deicing, waiting, or changes would be approved. Confirm any amounts payable directly to other providers."
+          "These approximate USD hourly figures are published by Global Charter and were checked on October 17, 2026. They provide an openly stated basis for the examples on this site. They are another provider’s category references, not quotations for EXJET flights. Individual aircraft and total trip charges may differ materially."
+        ],
+        "table": {
+          "caption": "Reference inputs for illustrations — USD per flight hour",
+          "headers": [
+            "Category",
+            "Reference input",
+            "Representative comparison"
+          ],
+          "rows": [
+            [
+              "Midsize",
+              "$9,200",
+              "Citation Latitude"
+            ],
+            [
+              "Super-midsize",
+              "$11,500",
+              "Challenger 300 / 350"
+            ],
+            [
+              "Large cabin / heavy",
+              "$13,500",
+              "Falcon 2000LX / 900LX"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750",
+              "Gulfstream G650 / Global family"
+            ],
+            [
+              "VIP airliner",
+              "$24,000",
+              "BBJ / ACJ category"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "A complete illustrative trip calculation",
+        "paragraphs": [
+          "Consider an eight-passenger domestic flight with three occupied hours, one positioning hour and $2,000 of additional charges. This example assumes all $48,000 of pre-tax charges form taxable transportation and that the passenger journey has one taxable domestic segment. It is a budgeting exercise, not a quote."
+        ],
+        "table": {
+          "caption": "Hypothetical domestic trip with eight passengers",
+          "headers": [
+            "Item",
+            "Calculation",
+            "Amount"
+          ],
+          "rows": [
+            [
+              "Occupied flight",
+              "3 × $11,500",
+              "$34,500"
+            ],
+            [
+              "Aircraft positioning",
+              "1 × $11,500",
+              "$11,500"
+            ],
+            [
+              "Other taxable charges",
+              "Illustrative assumption",
+              "$2,000"
+            ],
+            [
+              "Taxable subtotal",
+              "Sum of charges",
+              "$48,000"
+            ],
+            [
+              "Federal percentage tax",
+              "$48,000 × 7.5%",
+              "$3,600"
+            ],
+            [
+              "2026 domestic segment tax",
+              "8 passengers × 1 segment × $5.30",
+              "$42.40"
+            ],
+            [
+              "Illustrative trip total",
+              "Subtotal + the example taxes",
+              "$51,642.40"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "Ask EXJET for an actual trip proposal",
+            "path": "/charter"
+          }
+        ]
+      },
+      {
+        "heading": "Taxes and charges to confirm",
+        "paragraphs": [
+          "For taxable U.S. passenger air transportation, IRS guidance sets a 7.5% percentage tax and a 2026 domestic segment tax of $5.30 per passenger per taxable segment. The applicable treatment depends on the itinerary and charge; the example should not be applied mechanically to international or exempt transportation.",
+          "Ask the provider to show the actual tax treatment and any separately payable charges in the written proposal. A fuel stop, an international sector or a different commercial arrangement can change the calculation."
+        ]
+      },
+      {
+        "heading": "Why one-way and round-trip pricing differ",
+        "paragraphs": [
+          "A one-way passenger itinerary does not necessarily mean the aircraft only flies one sector. It may need to reach your departure airport and move again after landing. For a round trip, the operator may keep the aircraft nearby, reposition it, or provide a different aircraft for the return.",
+          "Compare the same dates, airports, passenger load and flexibility. Ask whether crew hotels, aircraft parking, waiting or daily minimums are included. For a meeting of uncertain length, agree the terms of a schedule change before accepting the offer."
+        ]
+      },
+      {
+        "heading": "Charges that need an explicit answer",
+        "paragraphs": [
+          "A quote should identify what is included, what is conditional and what can be billed after the flight. Request the process for approving any additional expense."
         ],
         "bullets": [
-          "The complete proposed itinerary and aircraft.",
-          "The total paid through the broker and any separately payable charges.",
-          "Payment deadlines and the proposal’s validity.",
-          "Cancellation, substitution, and disruption terms."
+          "Positioning, minimum usage and fuel treatment.",
+          "Airport handling, landing, parking and international services.",
+          "Crew overnight costs, waiting and itinerary changes.",
+          "Deicing, special catering, connectivity and ground transport.",
+          "Payment deadlines, quote validity, cancellation and substitution terms."
         ]
       },
       {
-        "heading": "Choose value for your mission.",
+        "heading": "Choose the aircraft around the trip",
         "paragraphs": [
-          "A larger aircraft is not automatically the right choice. A cabin that fits the travelers and baggage, practical airports, and a workable schedule can be more valuable than a headline specification. Review those details before comparing prices."
+          "Start with the passengers, baggage and airport requirements. Cabin width, seating layout, baggage access and connectivity can matter more than an advertised maximum range. A larger category may be useful for a long trip or a large group, but it is not automatically the best value for a short sector."
         ],
         "links": [
           {
-            "label": "Read the complete quote guide",
+            "label": "Compare aircraft cabins",
+            "path": "/aircraft"
+          },
+          {
+            "label": "Challenger 350 versus Citation Latitude",
+            "path": "/aircraft-comparisons/challenger-350-vs-citation-latitude"
+          },
+          {
+            "label": "Read the charter quote checklist",
             "path": "/articles/understanding-a-private-jet-charter-quote"
+          }
+        ]
+      },
+      {
+        "heading": "Route examples and empty legs",
+        "paragraphs": [
+          "Use a route guide to understand early flight-time and cost illustrations, then request a proposal for your dates. Empty legs depend on another flight’s positioning needs; they can change or disappear. Ask for the exact commercial terms and a backup option before using one for an essential journey."
+        ],
+        "links": [
+          {
+            "label": "Dallas to New York",
+            "path": "/routes/dallas-to-new-york"
+          },
+          {
+            "label": "Dallas to Miami",
+            "path": "/routes/dallas-to-miami"
+          },
+          {
+            "label": "Los Angeles to New York",
+            "path": "/routes/los-angeles-to-new-york"
+          },
+          {
+            "label": "Dallas empty leg enquiries",
+            "path": "/empty-legs/dallas"
           }
         ]
       }
@@ -150,12 +345,42 @@
       "width": 2000,
       "height": 1334,
       "caption": "Citation CJ4 Gen2 leather seating detail. Representative manufacturer photography."
-    }
+    },
+    "seoTitle": "Private Jet Charter Cost & Hourly Pricing Guide | EXJET",
+    "sources": [
+      {
+        "label": "Global Charter — published category reference prices, checked October 17, 2026",
+        "url": "https://www.globalcharter.com/charter/on-demand-jet-charter"
+      },
+      {
+        "label": "IRS — 2026 air transportation taxes, Form 720 instructions",
+        "url": "https://www.irs.gov/instructions/i720"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "Is the hourly figure the total charter price?",
+        "answer": "No. The total may include positioning, minimum flight charges, crew and airport costs, taxes and requested services. Compare the complete written price for the same itinerary."
+      },
+      {
+        "question": "Can EXJET quote a specific aircraft model?",
+        "answer": "Yes. Include the preferred model and any acceptable alternatives. The quoted aircraft, operator, availability and final commercial terms must be confirmed for the travel dates."
+      },
+      {
+        "question": "How can I reduce the cost without changing the trip’s purpose?",
+        "answer": "Offer realistic flexibility in departure time, nearby airports or aircraft type. Ask the advisor to compare complete proposals, including the effect on ground travel, rather than selecting the lowest hourly headline."
+      },
+      {
+        "question": "Are the route estimates live prices?",
+        "answer": "No. They are transparent calculations using the reference inputs and time allowances described on this site. Only a current written proposal establishes the offer for a specific itinerary."
+      }
+    ],
+    "updated": "2026-10-17"
   },
   {
     "path": "/aircraft-management",
-    "title": "Begin with the ownership brief.",
-    "description": "Discuss your aircraft, intended use, and management requirements with EXJET before evaluating a provider or proposal.",
+    "title": "Aircraft management planning",
+    "description": "Discuss aircraft ownership, management objectives and operational priorities with EXJET. Define your brief and confirm the appropriate providers for your aircraft.",
     "kicker": "Aircraft ownership",
     "kind": "service",
     "noindex": true,
@@ -182,12 +407,13 @@
     ],
     "related": [
       "/private-jet-charter"
-    ]
+    ],
+    "seoTitle": "Aircraft Management Planning & Owner Support | EXJET"
   },
   {
     "path": "/interior-completions",
-    "title": "A cabin with a clear brief.",
-    "description": "Start an aircraft interior discussion with the way you travel: seating, materials, storage, connectivity, and the work required.",
+    "title": "Aircraft interior refurbishment and completions",
+    "description": "Plan aircraft interior refurbishment with EXJET. Define cabin priorities, scope, schedule and provider requirements for a coordinated completion project.",
     "kicker": "Aircraft interiors",
     "kind": "service",
     "noindex": true,
@@ -221,12 +447,13 @@
     ],
     "related": [
       "/aircraft-management"
-    ]
+    ],
+    "seoTitle": "Aircraft Interior Refurbishment & Completion Support | EXJET"
   },
   {
     "path": "/editorial-standards",
-    "title": "Useful information. Clear sources.",
-    "description": "How EXJET approaches the Flight Guide and the information used to plan private travel.",
+    "title": "EXJET editorial standards and sources",
+    "description": "Learn how EXJET presents aircraft, airport and charter information. Review source standards, estimate limitations and the distinction between guides and live quotes.",
     "kicker": "EXJET editorial",
     "kind": "legal",
     "sections": [
@@ -259,13 +486,31 @@
         "paragraphs": [
           "If you notice an inaccurate statement or an outdated source, email sales@exjet.com with the page address and the point that needs attention."
         ]
+      },
+      {
+        "heading": "How cost and time illustrations are prepared",
+        "paragraphs": [
+          "Hourly inputs are attributed to the public source and observation date shown on the pricing page. Route examples multiply a stated planning time allowance by those inputs; they do not represent live inventory or a supplier offer. The operating carrier determines the actual flight plan and aircraft suitability.",
+          "Airport information is sourced primarily from airport authorities and regulators. We avoid treating old charts or a published runway length as confirmation that a specific aircraft can operate. Use current official aeronautical information through the operating crew."
+        ],
+        "links": [
+          {
+            "label": "Pricing methodology and example",
+            "path": "/pricing"
+          },
+          {
+            "label": "Operator and aircraft verification",
+            "path": "/safety"
+          }
+        ]
       }
-    ]
+    ],
+    "seoTitle": "Editorial Standards & Aviation Information Sources | EXJET"
   },
   {
     "path": "/accessibility",
-    "title": "A website you can use.",
-    "description": "EXJET aims to make its website readable and usable across devices and input methods.",
+    "title": "Website accessibility",
+    "description": "Find information about accessibility on the EXJET website and ways to request help with aircraft information, charter enquiries or the booking process.",
     "kicker": "Accessibility",
     "kind": "legal",
     "sections": [
@@ -293,6 +538,7 @@
           }
         ]
       }
-    ]
+    ],
+    "seoTitle": "Website Accessibility & Assistance | EXJET"
   }
 ]

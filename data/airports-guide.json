@@ -8,7 +8,16 @@
     "iata": "DAL",
     "description": "A Dallas airport with commercial and general aviation facilities, two parallel runways, and multiple private aviation arrival points. Plan the flight and the ground transfer together.",
     "location": "Dallas, Texas, United States",
-    "runways": [{"designation":"13R/31L","lengthFeet":8800},{"designation":"13L/31R","lengthFeet":7752}],
+    "runways": [
+      {
+        "designation": "13R/31L",
+        "lengthFeet": 8800
+      },
+      {
+        "designation": "13L/31R",
+        "lengthFeet": 7752
+      }
+    ],
     "timezone": "America/Chicago",
     "dateChecked": "2026-09-11",
     "runwaySourcePeriod": "FAA airport diagram: September 3–October 1, 2026",
@@ -19,10 +28,53 @@
       "For an itinerary that includes an international arrival, ask the operating team to confirm customs arrangements before committing to the schedule. Dallas publishes a dedicated general aviation customs page with service conditions and capacity limits. These arrangements are separate from the private terminal and should be reconfirmed for your trip."
     ],
     "sources": [
-      {"label":"FAA airport diagram — Dallas Love Field","url":"https://aeronav.faa.gov/d-tpp/2609/00106AD.PDF"},
-      {"label":"City of Dallas — Love Field questions and private aircraft meeting locations","url":"https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"},
-      {"label":"Dallas Love Field — severe weather guidance","url":"https://www.dallas-lovefield.com/passenger-info/winter-weather-faq-and-helpful-resources"},
-      {"label":"Dallas Love Field — international arrivals and customs","url":"https://www.dallas-lovefield.com/airport-info/general-aviation/international-arrivals-and-customs"}
+      {
+        "label": "City of Dallas — Love Field questions and private aircraft meeting locations",
+        "url": "https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"
+      },
+      {
+        "label": "Dallas Love Field — severe weather guidance",
+        "url": "https://www.dallas-lovefield.com/passenger-info/winter-weather-faq-and-helpful-resources"
+      },
+      {
+        "label": "Dallas Love Field — international arrivals and customs",
+        "url": "https://www.dallas-lovefield.com/airport-info/general-aviation/international-arrivals-and-customs"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Choosing the airport for your trip",
+        "paragraphs": [
+          "A Dallas airport with commercial and general aviation facilities, two parallel runways, and multiple private aviation arrival points. Plan the flight and the ground transfer together.",
+          "Confirm the exact fixed-base operator, or FBO, before arranging your car. Dallas identifies several FBOs serving private and general aviation aircraft and directs travelers to obtain the correct meeting location from the aircraft operator. Give your driver the confirmed street address and facility name, rather than the airline terminal address."
+        ]
+      },
+      {
+        "heading": "Arrival, baggage and onward travel",
+        "paragraphs": [
+          "Build some flexibility around time-sensitive meetings. Love Field's severe weather guidance explains that heavy rain can reduce visibility and runway traction, while winter conditions can require deicing. General aviation deicing takes place on FBO ramps; the operating team should confirm the actual effect on your flight.",
+          "Share passenger count, baggage and any unusual equipment when requesting an aircraft. The FAA publishes two runway lengths, but available runway distances and aircraft performance require a flight-specific assessment. A runway length alone does not establish that a particular aircraft can operate with your intended load."
+        ]
+      },
+      {
+        "heading": "Confirm before departure",
+        "paragraphs": [
+          "For an itinerary that includes an international arrival, ask the operating team to confirm customs arrangements before committing to the schedule. Dallas publishes a dedicated general aviation customs page with service conditions and capacity limits. These arrangements are separate from the private terminal and should be reconfirmed for your trip.",
+          "The operator confirms current airport restrictions, weather, parking and the aircraft’s performance for your particular flight. These passenger guides do not replace current aeronautical information or the operating crew’s flight plan."
+        ]
+      }
+    ],
+    "seoTitle": "Dallas Love Field (DAL) Charter Guide | EXJET",
+    "metaDescription": "Plan aircraft charter at Dallas Love Field (DAL). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "faqs": [
+      {
+        "question": "Where do I meet my charter flight at DAL?",
+        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+      },
+      {
+        "question": "Can every business jet use this airport?",
+        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+      }
     ]
   },
   {
@@ -34,7 +86,16 @@
     "iata": "TEB",
     "description": "Located in New Jersey across the Hudson River from New York City, Teterboro serves business and general aviation travelers visiting the metropolitan area.",
     "location": "Teterboro, New Jersey, United States",
-    "runways": [{"designation":"01/19","lengthFeet":7000},{"designation":"06/24","lengthFeet":6013}],
+    "runways": [
+      {
+        "designation": "01/19",
+        "lengthFeet": 7000
+      },
+      {
+        "designation": "06/24",
+        "lengthFeet": 6013
+      }
+    ],
     "timezone": "America/New_York",
     "dateChecked": "2026-09-11",
     "runwaySourcePeriod": "Port Authority Flight Crew Handbook, cover revision April 2025",
@@ -45,8 +106,49 @@
       "Provide a realistic arrival window when the visit depends on a meeting or event. FAA information describes intersecting runways, a complex taxiway layout and surrounding New York airspace. Your crew should check current notices and procedures; the travel itinerary should allow for changes without assuming a fixed departure or arrival slot."
     ],
     "sources": [
-      {"label":"Port Authority — Teterboro Flight Crew Handbook","url":"https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"},
-      {"label":"FAA — Teterboro pilot information","url":"https://www.faa.gov/sites/faa.gov/files/TEB.pdf"}
+      {
+        "label": "Port Authority — Teterboro Flight Crew Handbook",
+        "url": "https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"
+      },
+      {
+        "label": "FAA — Teterboro pilot information",
+        "url": "https://www.faa.gov/sites/faa.gov/files/TEB.pdf"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Choosing the airport for your trip",
+        "paragraphs": [
+          "Located in New Jersey across the Hudson River from New York City, Teterboro serves business and general aviation travelers visiting the metropolitan area.",
+          "Use your final New York or New Jersey address when choosing the arrival airport. Teterboro is in New Jersey, so a Manhattan itinerary also needs a ground transfer across the Hudson. Confirm the private terminal, vehicle capacity and pickup instructions together, and allow a separate allowance for the drive."
+        ]
+      },
+      {
+        "heading": "Arrival, baggage and onward travel",
+        "paragraphs": [
+          "Discuss late-night timing early. The Port Authority's Quiet Flying Program asks operators to avoid nonessential flights between 11 p.m. and 6 a.m. local time. This is a voluntary quiet-hours program; separate mandatory departure noise limits also apply. The operating team should review the current requirements for the proposed aircraft.",
+          "Ask the operator to confirm that the aircraft has the required airport permission. The Port Authority handbook requires approval for jet operations and a Permission to Operate form when a jet is new to Teterboro or changes owner or operator. Passenger arrangements do not replace that operational check."
+        ]
+      },
+      {
+        "heading": "Confirm before departure",
+        "paragraphs": [
+          "Provide a realistic arrival window when the visit depends on a meeting or event. FAA information describes intersecting runways, a complex taxiway layout and surrounding New York airspace. Your crew should check current notices and procedures; the travel itinerary should allow for changes without assuming a fixed departure or arrival slot.",
+          "The operator confirms current airport restrictions, weather, parking and the aircraft’s performance for your particular flight. These passenger guides do not replace current aeronautical information or the operating crew’s flight plan."
+        ]
+      }
+    ],
+    "seoTitle": "Teterboro Airport (TEB) Charter Guide | EXJET",
+    "metaDescription": "Plan aircraft charter at Teterboro Airport (TEB). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "faqs": [
+      {
+        "question": "Where do I meet my charter flight at TEB?",
+        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+      },
+      {
+        "question": "Can every business jet use this airport?",
+        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+      }
     ]
   },
   {
@@ -58,7 +160,16 @@
     "iata": "VNY",
     "description": "A general aviation airport in Los Angeles's San Fernando Valley, Van Nuys offers a distinct arrival point for trips whose ground itinerary fits this part of the region.",
     "location": "Van Nuys, Los Angeles, California, United States",
-    "runways": [{"designation":"16R/34L","lengthFeet":8001},{"designation":"16L/34R","lengthFeet":4013}],
+    "runways": [
+      {
+        "designation": "16R/34L",
+        "lengthFeet": 8001
+      },
+      {
+        "designation": "16L/34R",
+        "lengthFeet": 4013
+      }
+    ],
     "timezone": "America/Los_Angeles",
     "dateChecked": "2026-09-11",
     "runwaySourcePeriod": "FAA airport diagram: September 3–October 1, 2026",
@@ -69,10 +180,53 @@
       "Confirm current airfield conditions before finalizing a tightly timed visit. The airport maintains pilot advisories, and its guide distinguishes airport attendance from tower and runway hours. Published runway dimensions are reference information; your crew must assess the aircraft, load, weather, notices and usable distances for the individual flight."
     ],
     "sources": [
-      {"label":"FAA airport diagram — Van Nuys","url":"https://aeronav.faa.gov/d-tpp/2609/00552AD.PDF"},
-      {"label":"Van Nuys Airport — airport overview","url":"https://www.iflyvny.com/pilot-information/about-van-nuys-airport"},
-      {"label":"Van Nuys Airport — June 2026 pilot guide","url":"https://www.iflyvny.com/sites/vny/files/documents/VNYPilotGuide.pdf"},
-      {"label":"Van Nuys Airport — noise restrictions and Quieter Nights","url":"https://www.iflyvny.com/pilot-information/noise-restrictions"}
+      {
+        "label": "Van Nuys Airport — airport overview",
+        "url": "https://www.iflyvny.com/pilot-information/about-van-nuys-airport"
+      },
+      {
+        "label": "Van Nuys Airport — June 2026 pilot guide",
+        "url": "https://www.iflyvny.com/sites/vny/files/documents/VNYPilotGuide.pdf"
+      },
+      {
+        "label": "Van Nuys Airport — noise restrictions and Quieter Nights",
+        "url": "https://www.iflyvny.com/pilot-information/noise-restrictions"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Choosing the airport for your trip",
+        "paragraphs": [
+          "A general aviation airport in Los Angeles's San Fernando Valley, Van Nuys offers a distinct arrival point for trips whose ground itinerary fits this part of the region.",
+          "Start with your actual Los Angeles destination. Van Nuys is in the San Fernando Valley, and Los Angeles World Airports identifies it as a general aviation airport. Send the hotel, office or venue address with your request so the airport choice can be assessed alongside the ground journey."
+        ]
+      },
+      {
+        "heading": "Arrival, baggage and onward travel",
+        "paragraphs": [
+          "Plan the private terminal and aircraft parking in advance. The airport's June 2026 pilot guide states that there is no public transient parking. Ask the operating team to confirm the handling facility and parking arrangements, then share the exact passenger entrance with everyone joining the flight.",
+          "Raise an early departure or late arrival at the start of planning. Van Nuys has both noise restrictions and a voluntary Quieter Nights program encouraging jet operators to avoid flights between 11 p.m. and 7 a.m. whenever possible. Aircraft-specific curfew requirements need review by the operator."
+        ]
+      },
+      {
+        "heading": "Confirm before departure",
+        "paragraphs": [
+          "Confirm current airfield conditions before finalizing a tightly timed visit. The airport maintains pilot advisories, and its guide distinguishes airport attendance from tower and runway hours. Published runway dimensions are reference information; your crew must assess the aircraft, load, weather, notices and usable distances for the individual flight.",
+          "The operator confirms current airport restrictions, weather, parking and the aircraft’s performance for your particular flight. These passenger guides do not replace current aeronautical information or the operating crew’s flight plan."
+        ]
+      }
+    ],
+    "seoTitle": "Van Nuys Airport (VNY) Charter Guide | EXJET",
+    "metaDescription": "Plan aircraft charter at Van Nuys Airport (VNY). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "faqs": [
+      {
+        "question": "Where do I meet my charter flight at VNY?",
+        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+      },
+      {
+        "question": "Can every business jet use this airport?",
+        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+      }
     ]
   },
   {
@@ -84,7 +238,20 @@
     "iata": "OPF",
     "description": "A Miami-Dade general aviation gateway and reliever for Miami International, Opa Locka supports business aviation with three runways and several handling areas.",
     "location": "Opa-locka area, Miami-Dade County, Florida, United States",
-    "runways": [{"designation":"09L/27R","lengthFeet":8002},{"designation":"12/30","lengthFeet":6800},{"designation":"09R/27L","lengthFeet":4309}],
+    "runways": [
+      {
+        "designation": "09L/27R",
+        "lengthFeet": 8002
+      },
+      {
+        "designation": "12/30",
+        "lengthFeet": 6800
+      },
+      {
+        "designation": "09R/27L",
+        "lengthFeet": 4309
+      }
+    ],
     "timezone": "America/New_York",
     "dateChecked": "2026-09-11",
     "runwaySourcePeriod": "FAA airport diagram: September 3–October 1, 2026; FAA value used where the airport overview differs",
@@ -95,8 +262,648 @@
       "Share passenger and baggage details before selecting the aircraft. The FAA diagram lists runways of different lengths, and Miami-Dade publishes noise-abatement guidance for nearby residential communities. The operating crew should verify current runway availability, weather, notices and aircraft performance for the trip; a published length is not a guarantee of suitability."
     ],
     "sources": [
-      {"label":"FAA airport diagram — Miami-Opa Locka Executive","url":"https://aeronav.faa.gov/d-tpp/2609/00256AD.PDF"},
-      {"label":"Miami-Dade Aviation Department — Opa Locka airport overview","url":"https://www.miami-airport.com/opalocka.asp"}
+      {
+        "label": "Miami-Dade Aviation Department — Opa Locka airport overview",
+        "url": "https://www.miami-airport.com/opalocka.asp"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Choosing the airport for your trip",
+        "paragraphs": [
+          "A Miami-Dade general aviation gateway and reliever for Miami International, Opa Locka supports business aviation with three runways and several handling areas.",
+          "Provide the precise South Florida destination with your flight request. Miami-Dade identifies Opa Locka as a reliever airport supporting business aviation. Downtown Miami, Miami Beach and destinations farther north involve different ground journeys, so evaluate the arrival airport and the transfer as one itinerary."
+        ]
+      },
+      {
+        "heading": "Arrival, baggage and onward travel",
+        "paragraphs": [
+          "Confirm the handling facility by name and street address. The FAA airport diagram marks multiple FBO areas around the field. A driver needs the selected passenger entrance rather than a generic airport pin; also confirm the number of travelers and bags before choosing the vehicle.",
+          "If your itinerary continues beyond the United States or returns from abroad, have the operating team verify customs arrangements and required advance coordination. The airport identifies customs facilities on the airfield, but that does not establish clearance availability for every arrival time or passenger group."
+        ]
+      },
+      {
+        "heading": "Confirm before departure",
+        "paragraphs": [
+          "Share passenger and baggage details before selecting the aircraft. The FAA diagram lists runways of different lengths, and Miami-Dade publishes noise-abatement guidance for nearby residential communities. The operating crew should verify current runway availability, weather, notices and aircraft performance for the trip; a published length is not a guarantee of suitability.",
+          "The operator confirms current airport restrictions, weather, parking and the aircraft’s performance for your particular flight. These passenger guides do not replace current aeronautical information or the operating crew’s flight plan."
+        ]
+      }
+    ],
+    "seoTitle": "Miami-Opa Locka Executive Airport (OPF) Charter Guide | EXJET",
+    "metaDescription": "Plan aircraft charter at Miami-Opa Locka Executive Airport (OPF). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "faqs": [
+      {
+        "question": "Where do I meet my charter flight at OPF?",
+        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+      },
+      {
+        "question": "Can every business jet use this airport?",
+        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+      }
+    ]
+  },
+  {
+    "slug": "kads",
+    "name": "Addison Airport",
+    "city": "Dallas / Addison",
+    "citySlug": "dallas",
+    "icao": "KADS",
+    "iata": "ADS",
+    "timezone": "America/Chicago",
+    "description": "Addison is a general aviation option for North Dallas, Addison and the northern business corridor. Compare it with Love Field using the actual office or hotel address, rather than selecting an airport solely because it carries a Dallas label.",
+    "location": "Dallas / Addison",
+    "planningNotes": [],
+    "runways": [],
+    "sections": [
+      {
+        "heading": "Choosing your arrival",
+        "paragraphs": [
+          "For a meeting in Addison, Plano or Frisco, give your advisor the venue and the time you need to be there. A charter arrival can avoid an unnecessary trip through an airline terminal, but the final car journey still needs a realistic allowance. Tell the team if travelers are joining from different parts of the Metroplex."
+        ]
+      },
+      {
+        "heading": "Private terminal and ground transfer",
+        "paragraphs": [
+          "The airport lists several FBOs. Ask for the name and street address of the facility handling your particular aircraft; they are not interchangeable meeting points. Arrange parking, baggage assistance and an appropriately sized transfer vehicle with that facility."
+        ]
+      },
+      {
+        "heading": "Schedule and operating considerations",
+        "paragraphs": [
+          "Addison publishes specific customs appointment procedures. An airport described as offering customs does not mean that an international arrival can be accepted at any requested time without arrangements. Have the operator confirm clearance, handling and any after-hours service before accepting the schedule."
+        ]
+      },
+      {
+        "heading": "What to include in your request",
+        "paragraphs": [
+          "Send the dates, departure airport, passenger count and full baggage list. State whether you need catering, connectivity, mobility support or a return flight on the same aircraft. Ask for the complete written trip price and the conditions for any change before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a trip-specific charter quote",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand charter pricing",
+            "path": "/pricing"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Addison Airport — official airport information",
+        "url": "https://www.addisonairport.net/About-ADS/Services-and-Quick-Facts"
+      }
+    ],
+    "seoTitle": "Addison Airport (ADS) Charter Guide | EXJET",
+    "metaDescription": "Plan aircraft charter at Addison Airport (ADS). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "faqs": [
+      {
+        "question": "Where do I meet my charter flight at ADS?",
+        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+      },
+      {
+        "question": "Can every business jet use this airport?",
+        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+      }
+    ]
+  },
+  {
+    "slug": "khpn",
+    "name": "Westchester County Airport",
+    "city": "White Plains / New York",
+    "citySlug": "white-plains",
+    "icao": "KHPN",
+    "iata": "HPN",
+    "timezone": "America/New_York",
+    "description": "Westchester County Airport is a mixed commercial and general aviation airport in White Plains. It provides a useful airport comparison for Westchester, nearby Connecticut and journeys continuing into the New York metropolitan area.",
+    "location": "White Plains / New York",
+    "planningNotes": [],
+    "runways": [],
+    "sections": [
+      {
+        "heading": "Choosing your arrival",
+        "paragraphs": [
+          "If the final destination is a home or office north of Manhattan, compare White Plains with Teterboro using that address. A shorter flight is not automatically a shorter door-to-door trip. Include an onward appointment, a ferry or train connection, and any return-day constraints in the request."
+        ]
+      },
+      {
+        "heading": "Private terminal and ground transfer",
+        "paragraphs": [
+          "Private aircraft use their confirmed handling facility rather than a generic airline check-in point. Westchester lists multiple aviation service providers. Share the operator-confirmed FBO entrance with your driver and ask how much luggage can be loaded into the selected car."
+        ]
+      },
+      {
+        "heading": "Schedule and operating considerations",
+        "paragraphs": [
+          "The FAA describes HPN as a busy mixed-use airport within the New York airspace environment. Airline traffic, general aviation activity and air traffic management can affect timing. Ask the operating crew to assess the day’s conditions and leave flexibility around fixed commitments."
+        ]
+      },
+      {
+        "heading": "What to include in your request",
+        "paragraphs": [
+          "Send the dates, departure airport, passenger count and full baggage list. State whether you need catering, connectivity, mobility support or a return flight on the same aircraft. Ask for the complete written trip price and the conditions for any change before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a trip-specific charter quote",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand charter pricing",
+            "path": "/pricing"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Westchester County Airport — official airport information",
+        "url": "https://www.faa.gov/flight_deck/hpn"
+      }
+    ],
+    "seoTitle": "Westchester County Airport (HPN) Charter Guide | EXJET",
+    "metaDescription": "Plan aircraft charter at Westchester County Airport (HPN). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "faqs": [
+      {
+        "question": "Where do I meet my charter flight at HPN?",
+        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+      },
+      {
+        "question": "Can every business jet use this airport?",
+        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+      }
+    ]
+  },
+  {
+    "slug": "kdjt",
+    "name": "Palm Beach International / DJT",
+    "city": "West Palm Beach",
+    "citySlug": "west-palm-beach",
+    "icao": "KDJT",
+    "iata": "DJT",
+    "timezone": "America/New_York",
+    "description": "The West Palm Beach airport formerly known as Palm Beach International now uses DJT / KDJT. Its official name is President Donald J. Trump International Airport. Older itineraries and search results may still refer to PBI / KPBI.",
+    "location": "West Palm Beach",
+    "planningNotes": [],
+    "runways": [],
+    "sections": [
+      {
+        "heading": "Choosing your arrival",
+        "paragraphs": [
+          "The airport authority announced the name and aviation identifier change in July 2026, with the passenger IATA code transition in August. Specify West Palm Beach and the current DJT code in a new request. Confirm that the itinerary, handling reservation and driver instructions all identify the same airport."
+        ]
+      },
+      {
+        "heading": "Private terminal and ground transfer",
+        "paragraphs": [
+          "For Palm Beach, Wellington or Jupiter, send the final destination address before choosing your transfer. A group arriving for an equestrian event may have substantially different luggage and vehicle requirements from a business team carrying cabin bags."
+        ]
+      },
+      {
+        "heading": "Schedule and operating considerations",
+        "paragraphs": [
+          "Have the operator check current temporary flight restrictions and any required arrival procedures for the date of travel. A previously accepted flight plan or an earlier visit is not confirmation for a new trip. Keep the meeting time, airport arrival and onward transfer as separate entries in the itinerary."
+        ]
+      },
+      {
+        "heading": "What to include in your request",
+        "paragraphs": [
+          "Send the dates, departure airport, passenger count and full baggage list. State whether you need catering, connectivity, mobility support or a return flight on the same aircraft. Ask for the complete written trip price and the conditions for any change before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a trip-specific charter quote",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand charter pricing",
+            "path": "/pricing"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Palm Beach International / DJT — official airport information",
+        "url": "https://www.pbia.org/articles/post/president-donald-j-trump-international-airport-name-change-takes-effect/"
+      }
+    ],
+    "seoTitle": "Palm Beach International / DJT (DJT) Charter Guide | EXJET",
+    "metaDescription": "Plan aircraft charter at Palm Beach International / DJT (DJT). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "faqs": [
+      {
+        "question": "Where do I meet my charter flight at DJT?",
+        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+      },
+      {
+        "question": "Can every business jet use this airport?",
+        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+      }
+    ]
+  },
+  {
+    "slug": "kase",
+    "name": "Aspen/Pitkin County Airport",
+    "city": "Aspen",
+    "citySlug": "aspen",
+    "icao": "KASE",
+    "iata": "ASE",
+    "timezone": "America/Denver",
+    "description": "Aspen/Pitkin County Airport serves Aspen and the surrounding mountain area. Mountain weather, aircraft limitations and operating-hour restrictions make a flexible arrival plan especially valuable for charter travelers.",
+    "location": "Aspen",
+    "planningNotes": [],
+    "runways": [],
+    "sections": [
+      {
+        "heading": "Choosing your arrival",
+        "paragraphs": [
+          "Start with the resort or residence, travel date and latest useful arrival. Tell EXJET whether you can leave earlier, travel the previous day or accept a different airport. An alternate arrival is only useful if the group is comfortable with the resulting ground journey."
+        ]
+      },
+      {
+        "heading": "Private terminal and ground transfer",
+        "paragraphs": [
+          "List skis, snowboards, boots and all checked luggage separately from the passenger count. Bulky sports equipment can determine the suitable aircraft and transfer vehicle. Confirm storage dimensions on the proposed aircraft instead of relying on a category label."
+        ]
+      },
+      {
+        "heading": "Schedule and operating considerations",
+        "paragraphs": [
+          "Aspen publishes aircraft restrictions, approach information and operating procedures for flight crews. The operator must confirm suitability for the actual aircraft, payload and conditions. Ask about the agreed process if weather or operating restrictions require a delay or a different airport."
+        ]
+      },
+      {
+        "heading": "What to include in your request",
+        "paragraphs": [
+          "Send the dates, departure airport, passenger count and full baggage list. State whether you need catering, connectivity, mobility support or a return flight on the same aircraft. Ask for the complete written trip price and the conditions for any change before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a trip-specific charter quote",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand charter pricing",
+            "path": "/pricing"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Aspen/Pitkin County Airport — official airport information",
+        "url": "https://www.aspenairport.com/pilotinformation/"
+      }
+    ],
+    "seoTitle": "Aspen/Pitkin County Airport (ASE) Charter Guide | EXJET",
+    "metaDescription": "Plan aircraft charter at Aspen/Pitkin County Airport (ASE). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "faqs": [
+      {
+        "question": "Where do I meet my charter flight at ASE?",
+        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+      },
+      {
+        "question": "Can every business jet use this airport?",
+        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+      }
+    ]
+  },
+  {
+    "slug": "kege",
+    "name": "Eagle County Regional Airport",
+    "city": "Vail / Eagle County",
+    "citySlug": "vail",
+    "icao": "KEGE",
+    "iata": "EGE",
+    "timezone": "America/Denver",
+    "description": "Eagle County Regional Airport is a gateway for Vail, Beaver Creek and the wider Eagle Valley. Charter planning should connect the flight with the mountain transfer and the baggage requirements of the whole group.",
+    "location": "Vail / Eagle County",
+    "planningNotes": [],
+    "runways": [],
+    "sections": [
+      {
+        "heading": "Choosing your arrival",
+        "paragraphs": [
+          "Provide the precise resort, chalet or meeting location. Vail and Beaver Creek are separate destinations, and the airport arrival is not the end of the journey. Confirm the transfer route and allow room for winter road conditions when planning an evening appointment."
+        ]
+      },
+      {
+        "heading": "Private terminal and ground transfer",
+        "paragraphs": [
+          "Eagle County lists Signature Aviation for general aviation handling. The operator should confirm the assigned facility, parking and services for the trip. Include ski equipment, child seats, mobility assistance and vehicle capacity in the ground-service brief."
+        ]
+      },
+      {
+        "heading": "Schedule and operating considerations",
+        "paragraphs": [
+          "Mountain airport suitability depends on the aircraft and conditions, not simply the published runway length. Establish the acceptable arrival window and any alternative airport before departure. Ask how an itinerary change would affect crew arrangements, ground transfers and price."
+        ]
+      },
+      {
+        "heading": "What to include in your request",
+        "paragraphs": [
+          "Send the dates, departure airport, passenger count and full baggage list. State whether you need catering, connectivity, mobility support or a return flight on the same aircraft. Ask for the complete written trip price and the conditions for any change before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a trip-specific charter quote",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand charter pricing",
+            "path": "/pricing"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Eagle County Regional Airport — official airport information",
+        "url": "https://www.flyvail.com/general-aviation/"
+      }
+    ],
+    "seoTitle": "Eagle County Regional Airport (EGE) Charter Guide | EXJET",
+    "metaDescription": "Plan aircraft charter at Eagle County Regional Airport (EGE). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "faqs": [
+      {
+        "question": "Where do I meet my charter flight at EGE?",
+        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+      },
+      {
+        "question": "Can every business jet use this airport?",
+        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+      }
+    ]
+  },
+  {
+    "slug": "klas",
+    "name": "Harry Reid International Airport",
+    "city": "Las Vegas",
+    "citySlug": "las-vegas",
+    "icao": "KLAS",
+    "iata": "LAS",
+    "timezone": "America/Los_Angeles",
+    "description": "Harry Reid International is one option for a Las Vegas charter itinerary. Henderson Executive and North Las Vegas are alternative airports to discuss with the operator according to the aircraft and final destination.",
+    "location": "Las Vegas",
+    "planningNotes": [],
+    "runways": [],
+    "sections": [
+      {
+        "heading": "Choosing your arrival",
+        "paragraphs": [
+          "Provide the hotel, convention venue or event entrance and the time you need to arrive. For an event-driven trip, work backward from that commitment rather than the flight’s landing time. Specify whether the group leaves immediately afterward or stays overnight."
+        ]
+      },
+      {
+        "heading": "Private terminal and ground transfer",
+        "paragraphs": [
+          "A Las Vegas charter should identify the actual FBO and passenger entrance, not an airline terminal. Confirm the vehicle’s passenger and luggage capacity, especially when multiple travelers arrive separately or carry production equipment."
+        ]
+      },
+      {
+        "heading": "Schedule and operating considerations",
+        "paragraphs": [
+          "Large events can create additional planning demands for aircraft parking and ground arrangements. Ask the operator to confirm handling and any required reservations for the date. Keep a departure window available if the event finish time is uncertain."
+        ]
+      },
+      {
+        "heading": "What to include in your request",
+        "paragraphs": [
+          "Send the dates, departure airport, passenger count and full baggage list. State whether you need catering, connectivity, mobility support or a return flight on the same aircraft. Ask for the complete written trip price and the conditions for any change before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a trip-specific charter quote",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand charter pricing",
+            "path": "/pricing"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Harry Reid International Airport — official airport information",
+        "url": "https://www.harryreidairport.com/our-airports"
+      }
+    ],
+    "seoTitle": "Harry Reid Airport (LAS) Charter Guide | EXJET",
+    "metaDescription": "Plan aircraft charter at Harry Reid International Airport (LAS). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "faqs": [
+      {
+        "question": "Where do I meet my charter flight at LAS?",
+        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+      },
+      {
+        "question": "Can every business jet use this airport?",
+        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+      }
+    ]
+  },
+  {
+    "slug": "kmdw",
+    "name": "Chicago Midway International Airport",
+    "city": "Chicago",
+    "citySlug": "chicago",
+    "icao": "KMDW",
+    "iata": "MDW",
+    "timezone": "America/Chicago",
+    "description": "Chicago Midway supports both airline and general aviation activity. Its published FBO facilities provide a starting point for arranging business jet arrivals, meetings and onward ground transport in Chicago.",
+    "location": "Chicago",
+    "planningNotes": [],
+    "runways": [],
+    "sections": [
+      {
+        "heading": "Choosing your arrival",
+        "paragraphs": [
+          "Specify the office, hotel or venue rather than requesting a generic Chicago arrival. Compare the overall transfer with other suitable area airports if the destination is outside the city. An aircraft’s arrival time and the time you reach the meeting should remain separate commitments."
+        ]
+      },
+      {
+        "heading": "Private terminal and ground transfer",
+        "paragraphs": [
+          "Chicago’s airport authority lists Atlantic Aviation and Signature at Midway. Obtain the specific facility address from the operator and circulate it to every traveler. A rideshare destination set to the airline terminal may take passengers to the wrong side of the airport."
+        ]
+      },
+      {
+        "heading": "Schedule and operating considerations",
+        "paragraphs": [
+          "Discuss deicing, weather delays and the return window when planning a winter itinerary. If the group is returning after an evening event, have the operator assess crew duty and aircraft parking. A same-day round trip needs a complete proposal covering both sectors."
+        ]
+      },
+      {
+        "heading": "What to include in your request",
+        "paragraphs": [
+          "Send the dates, departure airport, passenger count and full baggage list. State whether you need catering, connectivity, mobility support or a return flight on the same aircraft. Ask for the complete written trip price and the conditions for any change before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a trip-specific charter quote",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand charter pricing",
+            "path": "/pricing"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Chicago Midway International Airport — official airport information",
+        "url": "https://www.flychicago.com/midway/myflight/FBO/Pages/default.aspx"
+      }
+    ],
+    "seoTitle": "Chicago Midway Airport (MDW) Charter Guide | EXJET",
+    "metaDescription": "Plan aircraft charter at Chicago Midway International Airport (MDW). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "faqs": [
+      {
+        "question": "Where do I meet my charter flight at MDW?",
+        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+      },
+      {
+        "question": "Can every business jet use this airport?",
+        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+      }
+    ]
+  },
+  {
+    "slug": "khou",
+    "name": "William P. Hobby Airport",
+    "city": "Houston",
+    "citySlug": "houston",
+    "icao": "KHOU",
+    "iata": "HOU",
+    "timezone": "America/Chicago",
+    "description": "William P. Hobby Airport is a Houston airport option for business jet charter. Select the airport and FBO around your Houston destination, the proposed aircraft and the complete ground journey.",
+    "location": "Houston",
+    "planningNotes": [],
+    "runways": [],
+    "sections": [
+      {
+        "heading": "Choosing your arrival",
+        "paragraphs": [
+          "Houston covers a large area. Send the meeting, industrial site or residence address before choosing an arrival airport. Hobby may be worth comparing for a southern or central destination, while a different airport could suit a northern itinerary better."
+        ]
+      },
+      {
+        "heading": "Private terminal and ground transfer",
+        "paragraphs": [
+          "Private charter travelers should use the operator-confirmed handling facility. Arrange a vehicle sized for the passengers and equipment, and ask how the driver will meet the group. This matters particularly when a trip includes presentation materials or specialist business equipment."
+        ]
+      },
+      {
+        "heading": "Schedule and operating considerations",
+        "paragraphs": [
+          "For a short Dallas–Houston mission, positioning and minimum charges may represent a larger part of the price than the occupied flight. State the expected meeting duration and whether the return is firm. Compare the complete same-day itinerary with separate one-way proposals."
+        ]
+      },
+      {
+        "heading": "What to include in your request",
+        "paragraphs": [
+          "Send the dates, departure airport, passenger count and full baggage list. State whether you need catering, connectivity, mobility support or a return flight on the same aircraft. Ask for the complete written trip price and the conditions for any change before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a trip-specific charter quote",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand charter pricing",
+            "path": "/pricing"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "William P. Hobby Airport — official airport information",
+        "url": "https://www.fly2houston.com/hou/"
+      }
+    ],
+    "seoTitle": "William P. Hobby Airport (HOU) Charter Guide | EXJET",
+    "metaDescription": "Plan aircraft charter at William P. Hobby Airport (HOU). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "faqs": [
+      {
+        "question": "Where do I meet my charter flight at HOU?",
+        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+      },
+      {
+        "question": "Can every business jet use this airport?",
+        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+      }
+    ]
+  },
+  {
+    "slug": "mmsd",
+    "name": "Los Cabos International Airport",
+    "city": "San José del Cabo / Los Cabos",
+    "citySlug": "san-josé-del-cabo",
+    "icao": "MMSD",
+    "iata": "SJD",
+    "timezone": "America/Mazatlan",
+    "description": "Los Cabos International Airport uses SJD / MMSD and serves San José del Cabo and Cabo San Lucas. It is distinct from Cabo San Lucas International Airport, so the exact airport should be explicit in a charter request.",
+    "location": "San José del Cabo / Los Cabos",
+    "planningNotes": [],
+    "runways": [],
+    "sections": [
+      {
+        "heading": "Choosing your arrival",
+        "paragraphs": [
+          "Give the resort or residence address and confirm whether the proposal uses Los Cabos International or another approved airport. Do not send a driver to an airport based only on the word Cabo. Include enough transfer time for the actual arrival facility and destination."
+        ]
+      },
+      {
+        "heading": "Private terminal and ground transfer",
+        "paragraphs": [
+          "The airport operator publishes a private aviation/FBO service for SJD. Have the aircraft operator confirm handling, customs, immigration and any operating permissions for your itinerary. Submit passenger documentation through the agreed secure channel and use names exactly as shown on travel documents."
+        ]
+      },
+      {
+        "heading": "Schedule and operating considerations",
+        "paragraphs": [
+          "The return to the United States needs its own clearance and arrival plan. Confirm the approved U.S. arrival airport, passenger details and any pet arrangements well before departure. Charter price comparisons should include international handling and applicable charges rather than only flight hours."
+        ]
+      },
+      {
+        "heading": "What to include in your request",
+        "paragraphs": [
+          "Send the dates, departure airport, passenger count and full baggage list. State whether you need catering, connectivity, mobility support or a return flight on the same aircraft. Ask for the complete written trip price and the conditions for any change before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a trip-specific charter quote",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand charter pricing",
+            "path": "/pricing"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Los Cabos International Airport — official airport information",
+        "url": "https://www.aeropuertosgap.com.mx/es/los-cabos/aviacion-privada.html"
+      }
+    ],
+    "seoTitle": "Los Cabos Airport (SJD) Charter Guide | EXJET",
+    "metaDescription": "Plan aircraft charter at Los Cabos International Airport (SJD). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "faqs": [
+      {
+        "question": "Where do I meet my charter flight at SJD?",
+        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+      },
+      {
+        "question": "Can every business jet use this airport?",
+        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+      }
     ]
   }
 ]

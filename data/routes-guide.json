@@ -1,54 +1,3820 @@
 [
   {
-    "slug":"dallas-to-new-york",
-    "title":"Dallas to New York",
-    "originAirport":"kdal",
-    "destinationAirport":"kteb",
-    "description":"Plan a Dallas Love Field–Teterboro itinerary around your New York arrival address, meeting time and return-day flexibility.",
-    "sections":[
-      {"heading":"Work backward from the meeting","paragraphs":["Begin with the address and time you need to be in New York, then allow separately for the drive from Teterboro. The airport is in New Jersey across the Hudson, so the flight's arrival time is only one part of reaching a Manhattan office or hotel. Share a latest useful arrival time as well as your preferred departure."]},
-      {"heading":"Coordinate both private terminals","paragraphs":["Love Field and Teterboro have several general aviation handling locations. Confirm the FBO and passenger entrance at each end before arranging cars. For a team traveling from different Dallas locations, circulate one set of meeting instructions with the confirmed terminal address, passenger list and contact details."]},
-      {"heading":"Keep the return plan practical","paragraphs":["If meetings may finish late, discuss the return window when requesting the flight. Teterboro's voluntary quiet hours and mandatory departure noise requirements need to be considered by the aircraft operator. Identify whether an overnight stay is an acceptable alternative and which parts of the schedule are fixed."],"bullets":["Include passenger count, luggage and any work equipment.","State any aircraft cabin or connectivity preferences for confirmation.","Request an itinerary that labels all times by local time zone."]}
+    "slug": "dallas-to-new-york",
+    "title": "Dallas to New York private jet charter",
+    "seoTitle": "Dallas to New York Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kdal",
+    "destinationAirport": "kteb",
+    "description": "Plan Dallas to New York aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 3–3.75 hours of block time for early planning on Dallas to New York. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$34,500–$43,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$40,500–$50,500"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$50,000–$63,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Coordinate a New York meeting day",
+        "paragraphs": [
+          "Give the Manhattan or regional meeting address and the latest useful arrival time. A departure from Dallas needs to account for the Eastern time-zone arrival and the transfer from New Jersey. If the meeting end is uncertain, compare a flexible return window with an overnight plan."
+        ]
+      },
+      {
+        "heading": "Work backward from the meeting",
+        "paragraphs": [
+          "Begin with the address and time you need to be in New York, then allow separately for the drive from Teterboro. The airport is in New Jersey across the Hudson, so the flight's arrival time is only one part of reaching a Manhattan office or hotel. Share a latest useful arrival time as well as your preferred departure."
+        ]
+      },
+      {
+        "heading": "Coordinate both private terminals",
+        "paragraphs": [
+          "Love Field and Teterboro have several general aviation handling locations. Confirm the FBO and passenger entrance at each end before arranging cars. For a team traveling from different Dallas locations, circulate one set of meeting instructions with the confirmed terminal address, passenger list and contact details."
+        ]
+      },
+      {
+        "heading": "Keep the return plan practical",
+        "paragraphs": [
+          "If meetings may finish late, discuss the return window when requesting the flight. Teterboro's voluntary quiet hours and mandatory departure noise requirements need to be considered by the aircraft operator. Identify whether an overnight stay is an acceptable alternative and which parts of the schedule are fixed."
+        ],
+        "bullets": [
+          "Include passenger count, luggage and any work equipment.",
+          "State any aircraft cabin or connectivity preferences for confirmation.",
+          "Request an itinerary that labels all times by local time zone."
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Dallas to New York",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
     ],
-    "sources":[{"label":"FAA — Teterboro location and pilot information","url":"https://www.faa.gov/sites/faa.gov/files/TEB.pdf"},{"label":"Port Authority — Teterboro Flight Crew Handbook","url":"https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"},{"label":"City of Dallas — private aircraft meeting locations","url":"https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"}]
+    "sources": [
+      {
+        "label": "City of Dallas — Love Field questions and private aircraft meeting locations",
+        "url": "https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"
+      },
+      {
+        "label": "Port Authority — Teterboro Flight Crew Handbook",
+        "url": "https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Dallas to New York charter flight?",
+        "answer": "Our early planning allowance is 3–3.75 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
   },
   {
-    "slug":"dallas-to-miami",
-    "title":"Dallas to Miami",
-    "originAirport":"kdal",
-    "destinationAirport":"kopf",
-    "description":"Build a Dallas Love Field–Miami-Opa Locka itinerary around the full South Florida visit, from the private terminal to your final destination.",
-    "sections":[
-      {"heading":"Choose the arrival for the whole visit","paragraphs":["Give the precise hotel, residence, meeting venue or marina address with your request. Miami-Dade identifies Opa Locka as a business aviation airport and a reliever for Miami International. The right arrival plan depends on where you go afterward, so review the ground transfer before settling the airport choice."]},
-      {"heading":"Describe what is coming aboard","paragraphs":["Include the full passenger count and luggage details, especially golf bags, children's equipment or other bulky items. Aircraft selection should account for the complete load and the planned cabin experience. Ask for confirmation of baggage capacity, seating and requested amenities for the specific aircraft proposed."]},
-      {"heading":"Connect the schedule and the handoff","paragraphs":["Use the confirmed FBO address for pickup and drop-off at both airports. If the trip is tied to a boat departure, event or onward flight, provide that deadline and an acceptable arrival window. Dallas Love Field's weather guidance highlights how rain and winter conditions can affect operations; leave room for the operating team to adjust the plan."],"bullets":["State whether the return date or passenger group may change.","Confirm the transfer vehicle can carry both passengers and luggage.","Flag any international continuation so clearance arrangements receive separate review."]}
+    "slug": "dallas-to-miami",
+    "title": "Dallas to Miami private jet charter",
+    "seoTitle": "Dallas to Miami Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kdal",
+    "destinationAirport": "kopf",
+    "description": "Plan Dallas to Miami aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 2.5–3.25 hours of block time for early planning on Dallas to Miami. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$29,000–$37,500"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$34,000–$44,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$42,000–$54,500"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Plan the South Florida handoff",
+        "paragraphs": [
+          "A Miami Beach stay, a marina departure and a downtown meeting create different transfer requirements. Specify the actual address and any fixed sailing or event time. Confirm that the vehicle carries the entire party and luggage; a large cabin does not automatically mean a large ground vehicle."
+        ]
+      },
+      {
+        "heading": "Choose the arrival for the whole visit",
+        "paragraphs": [
+          "Give the precise hotel, residence, meeting venue or marina address with your request. Miami-Dade identifies Opa Locka as a business aviation airport and a reliever for Miami International. The right arrival plan depends on where you go afterward, so review the ground transfer before settling the airport choice."
+        ]
+      },
+      {
+        "heading": "Describe what is coming aboard",
+        "paragraphs": [
+          "Include the full passenger count and luggage details, especially golf bags, children's equipment or other bulky items. Aircraft selection should account for the complete load and the planned cabin experience. Ask for confirmation of baggage capacity, seating and requested amenities for the specific aircraft proposed."
+        ]
+      },
+      {
+        "heading": "Connect the schedule and the handoff",
+        "paragraphs": [
+          "Use the confirmed FBO address for pickup and drop-off at both airports. If the trip is tied to a boat departure, event or onward flight, provide that deadline and an acceptable arrival window. Dallas Love Field's weather guidance highlights how rain and winter conditions can affect operations; leave room for the operating team to adjust the plan."
+        ],
+        "bullets": [
+          "State whether the return date or passenger group may change.",
+          "Confirm the transfer vehicle can carry both passengers and luggage.",
+          "Flag any international continuation so clearance arrangements receive separate review."
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Dallas to Miami",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
     ],
-    "sources":[{"label":"Miami-Dade Aviation Department — Opa Locka airport overview","url":"https://www.miami-airport.com/opalocka.asp"},{"label":"FAA — Opa Locka airport diagram","url":"https://aeronav.faa.gov/d-tpp/2609/00256AD.PDF"},{"label":"Dallas Love Field — severe weather guidance","url":"https://www.dallas-lovefield.com/passenger-info/winter-weather-faq-and-helpful-resources"}]
+    "sources": [
+      {
+        "label": "City of Dallas — Love Field questions and private aircraft meeting locations",
+        "url": "https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"
+      },
+      {
+        "label": "Miami-Dade Aviation Department — Opa Locka airport overview",
+        "url": "https://www.miami-airport.com/opalocka.asp"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Dallas to Miami charter flight?",
+        "answer": "Our early planning allowance is 2.5–3.25 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
   },
   {
-    "slug":"new-york-to-miami",
-    "title":"New York to Miami",
-    "originAirport":"kteb",
-    "destinationAirport":"kopf",
-    "description":"Coordinate a Teterboro–Miami-Opa Locka trip around New York ground access, South Florida transfers and the details of the return journey.",
-    "sections":[
-      {"heading":"Allow for the trip to Teterboro","paragraphs":["Teterboro is in New Jersey, so a departure from Manhattan begins with a ground journey across the Hudson. Supply the pickup address and any meeting that precedes the flight. Keep the requested aircraft departure distinct from your car pickup time, and send the confirmed FBO entrance to your driver."]},
-      {"heading":"Match the Miami transfer to your destination","paragraphs":["Opa Locka supports business aviation within the Miami-Dade airport system. Give the exact destination rather than a broad area such as Miami or the beach. The arrival facility and final address should inform vehicle selection, luggage handling and your onward appointment or check-in plans."]},
-      {"heading":"Plan a flexible return deliberately","paragraphs":["For a weekend or an extended stay, specify whether the return date, departure window or passenger list might change. Ask how those changes would affect the proposed arrangement before confirming. If either leg needs nighttime timing, have the operator review Teterboro's noise requirements and voluntary quiet-hours program."],"bullets":["List large bags, sporting equipment and any special passenger needs.","Identify fixed commitments and the amount of schedule flexibility.","Confirm the specific aircraft, private terminals and ground transfer details in the final itinerary."]}
+    "slug": "new-york-to-miami",
+    "title": "New York to Miami private jet charter",
+    "seoTitle": "New York to Miami Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kteb",
+    "destinationAirport": "kopf",
+    "description": "Plan New York to Miami aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 2.75–3.5 hours of block time for early planning on New York to Miami. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$31,500–$40,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$37,000–$47,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$46,000–$58,500"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Build a workable weekend itinerary",
+        "paragraphs": [
+          "Allow time to reach the Teterboro FBO from Manhattan before the requested departure. For a short South Florida stay, specify whether the return is Sunday evening or Monday morning and whether travelers may return separately. That information helps compare one-way sourcing with a complete round-trip proposal."
+        ]
+      },
+      {
+        "heading": "Allow for the trip to Teterboro",
+        "paragraphs": [
+          "Teterboro is in New Jersey, so a departure from Manhattan begins with a ground journey across the Hudson. Supply the pickup address and any meeting that precedes the flight. Keep the requested aircraft departure distinct from your car pickup time, and send the confirmed FBO entrance to your driver."
+        ]
+      },
+      {
+        "heading": "Match the Miami transfer to your destination",
+        "paragraphs": [
+          "Opa Locka supports business aviation within the Miami-Dade airport system. Give the exact destination rather than a broad area such as Miami or the beach. The arrival facility and final address should inform vehicle selection, luggage handling and your onward appointment or check-in plans."
+        ]
+      },
+      {
+        "heading": "Plan a flexible return deliberately",
+        "paragraphs": [
+          "For a weekend or an extended stay, specify whether the return date, departure window or passenger list might change. Ask how those changes would affect the proposed arrangement before confirming. If either leg needs nighttime timing, have the operator review Teterboro's noise requirements and voluntary quiet-hours program."
+        ],
+        "bullets": [
+          "List large bags, sporting equipment and any special passenger needs.",
+          "Identify fixed commitments and the amount of schedule flexibility.",
+          "Confirm the specific aircraft, private terminals and ground transfer details in the final itinerary."
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for New York to Miami",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
     ],
-    "sources":[{"label":"FAA — Teterboro airport information","url":"https://www.faa.gov/sites/faa.gov/files/TEB.pdf"},{"label":"Port Authority — Teterboro Flight Crew Handbook","url":"https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"},{"label":"Miami-Dade Aviation Department — Opa Locka airport overview","url":"https://www.miami-airport.com/opalocka.asp"}]
+    "sources": [
+      {
+        "label": "Port Authority — Teterboro Flight Crew Handbook",
+        "url": "https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"
+      },
+      {
+        "label": "Miami-Dade Aviation Department — Opa Locka airport overview",
+        "url": "https://www.miami-airport.com/opalocka.asp"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a New York to Miami charter flight?",
+        "answer": "Our early planning allowance is 2.75–3.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
   },
   {
-    "slug":"los-angeles-to-new-york",
-    "title":"Los Angeles to New York",
-    "originAirport":"kvny",
-    "destinationAirport":"kteb",
-    "description":"Plan a Van Nuys–Teterboro journey around cabin priorities, local-time arrival goals and the transfers at both ends of a cross-country itinerary.",
-    "sections":[
-      {"heading":"Start with the arrival-day commitment","paragraphs":["Share the New York address and latest useful arrival time, together with your preferred Los Angeles departure window. Label every requested time with its location or time zone. Teterboro is across the Hudson in New Jersey, so reserve a separate allowance for the drive to Manhattan or elsewhere in the region."]},
-      {"heading":"Choose the cabin for the journey","paragraphs":["Explain how you intend to use the flight: working with colleagues, resting or traveling with family. Include passenger count and baggage, then ask for confirmation of the specific seating, connectivity and catering arrangements. Have the operator assess the proposed aircraft and whether a fuel stop is needed for the actual load, weather and routing."]},
-      {"heading":"Resolve airport timing early","paragraphs":["Van Nuys is in the San Fernando Valley, so evaluate its location against your departure address. Both Van Nuys and Teterboro publish noise programs with voluntary nighttime restraints as well as other requirements. Discuss early or late schedules before finalizing your ground itinerary, and confirm aircraft handling and parking with the operating team."],"bullets":["Provide an acceptable arrival window alongside the preferred time.","Confirm the passenger entrance and driver contact at both airports.","Review the westbound return as its own flight plan."]}
+    "slug": "los-angeles-to-new-york",
+    "title": "Los Angeles to New York private jet charter",
+    "seoTitle": "Los Angeles to New York Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kvny",
+    "destinationAirport": "kteb",
+    "description": "Plan Los Angeles to New York aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 4.75–5.75 hours of block time for early planning on Los Angeles to New York. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$54,500–$66,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$64,000–$77,500"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$79,500–$96,500"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Protect the East Coast arrival window",
+        "paragraphs": [
+          "An eastbound flight crosses time zones before the ground transfer into New York begins. Work backward from your meeting or event and ask for all times to be labeled locally. For an evening arrival, confirm the private terminal and transfer arrangements rather than assuming airline-style facilities."
+        ]
+      },
+      {
+        "heading": "Start with the arrival-day commitment",
+        "paragraphs": [
+          "Share the New York address and latest useful arrival time, together with your preferred Los Angeles departure window. Label every requested time with its location or time zone. Teterboro is across the Hudson in New Jersey, so reserve a separate allowance for the drive to Manhattan or elsewhere in the region."
+        ]
+      },
+      {
+        "heading": "Choose the cabin for the journey",
+        "paragraphs": [
+          "Explain how you intend to use the flight: working with colleagues, resting or traveling with family. Include passenger count and baggage, then ask for confirmation of the specific seating, connectivity and catering arrangements. Have the operator assess the proposed aircraft and whether a fuel stop is needed for the actual load, weather and routing."
+        ]
+      },
+      {
+        "heading": "Resolve airport timing early",
+        "paragraphs": [
+          "Van Nuys is in the San Fernando Valley, so evaluate its location against your departure address. Both Van Nuys and Teterboro publish noise programs with voluntary nighttime restraints as well as other requirements. Discuss early or late schedules before finalizing your ground itinerary, and confirm aircraft handling and parking with the operating team."
+        ],
+        "bullets": [
+          "Provide an acceptable arrival window alongside the preferred time.",
+          "Confirm the passenger entrance and driver contact at both airports.",
+          "Review the westbound return as its own flight plan."
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Los Angeles to New York",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
     ],
-    "sources":[{"label":"Van Nuys Airport — location and overview","url":"https://www.iflyvny.com/pilot-information/about-van-nuys-airport"},{"label":"Van Nuys Airport — noise restrictions","url":"https://www.iflyvny.com/pilot-information/noise-restrictions"},{"label":"FAA — Teterboro airport information","url":"https://www.faa.gov/sites/faa.gov/files/TEB.pdf"},{"label":"Port Authority — Teterboro Flight Crew Handbook","url":"https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"}]
+    "sources": [
+      {
+        "label": "Van Nuys Airport — airport overview",
+        "url": "https://www.iflyvny.com/pilot-information/about-van-nuys-airport"
+      },
+      {
+        "label": "Port Authority — Teterboro Flight Crew Handbook",
+        "url": "https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Los Angeles to New York charter flight?",
+        "answer": "Our early planning allowance is 4.75–5.75 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "dallas-to-los-angeles",
+    "title": "Dallas to Los Angeles private jet charter",
+    "seoTitle": "Dallas to Los Angeles Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kdal",
+    "destinationAirport": "kvny",
+    "description": "Plan Dallas to Los Angeles aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 2.75–3.75 hours of block time for early planning on Dallas to Los Angeles. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$31,500–$43,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$37,000–$50,500"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$46,000–$63,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Choose the Los Angeles arrival around the address",
+        "paragraphs": [
+          "Van Nuys is one airport option for a Los Angeles trip, but the final address should determine the airport comparison. A meeting in the San Fernando Valley and an event near the coast can produce different ground plans. Tell EXJET if you need several Los Angeles stops before the return."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Dallas Love Field (DAL) and Van Nuys Airport (VNY). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "DAL airport guide",
+            "path": "/airports/kdal"
+          },
+          {
+            "label": "VNY airport guide",
+            "path": "/airports/kvny"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Dallas to Los Angeles",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "City of Dallas — Love Field questions and private aircraft meeting locations",
+        "url": "https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"
+      },
+      {
+        "label": "Van Nuys Airport — airport overview",
+        "url": "https://www.iflyvny.com/pilot-information/about-van-nuys-airport"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Dallas to Los Angeles charter flight?",
+        "answer": "Our early planning allowance is 2.75–3.75 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "dallas-to-chicago",
+    "title": "Dallas to Chicago private jet charter",
+    "seoTitle": "Dallas to Chicago Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kdal",
+    "destinationAirport": "kmdw",
+    "description": "Plan Dallas to Chicago aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 1.75–2.5 hours of block time for early planning on Dallas to Chicago. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$20,000–$29,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$23,500–$34,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$29,500–$42,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Compare the entire business day",
+        "paragraphs": [
+          "Dallas and Chicago use the same time zone, which simplifies a meeting itinerary but does not remove transfer time. Send the Chicago office or event address and the expected meeting finish. A same-day return may work differently commercially from two separately positioned one-way flights."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Dallas Love Field (DAL) and Chicago Midway International Airport (MDW). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "DAL airport guide",
+            "path": "/airports/kdal"
+          },
+          {
+            "label": "MDW airport guide",
+            "path": "/airports/kmdw"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Dallas to Chicago",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "City of Dallas — Love Field questions and private aircraft meeting locations",
+        "url": "https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"
+      },
+      {
+        "label": "Chicago Midway International Airport — official airport information",
+        "url": "https://www.flychicago.com/midway/myflight/FBO/Pages/default.aspx"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Dallas to Chicago charter flight?",
+        "answer": "Our early planning allowance is 1.75–2.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "dallas-to-houston",
+    "title": "Dallas to Houston private jet charter",
+    "seoTitle": "Dallas to Houston Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kdal",
+    "destinationAirport": "khou",
+    "description": "Plan Dallas to Houston aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 1–1.5 hours of block time for early planning on Dallas to Houston. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$11,500–$17,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$13,500–$20,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$17,000–$25,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Understand short-flight minimums",
+        "paragraphs": [
+          "On this short Texas journey, aircraft positioning and minimum billable time can outweigh the difference between two hourly rates. Supply the Houston address and meeting duration. Ask whether the proposal includes waiting, a crew day, parking and a return sector rather than multiplying the airborne time by a headline rate."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Dallas Love Field (DAL) and William P. Hobby Airport (HOU). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "DAL airport guide",
+            "path": "/airports/kdal"
+          },
+          {
+            "label": "HOU airport guide",
+            "path": "/airports/khou"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Dallas to Houston",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "City of Dallas — Love Field questions and private aircraft meeting locations",
+        "url": "https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"
+      },
+      {
+        "label": "William P. Hobby Airport — official airport information",
+        "url": "https://www.fly2houston.com/hou/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Dallas to Houston charter flight?",
+        "answer": "Our early planning allowance is 1–1.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "dallas-to-aspen",
+    "title": "Dallas to Aspen private jet charter",
+    "seoTitle": "Dallas to Aspen Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kdal",
+    "destinationAirport": "kase",
+    "description": "Plan Dallas to Aspen aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 1.75–2.5 hours of block time for early planning on Dallas to Aspen. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$20,000–$29,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$23,500–$34,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$29,500–$42,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Include a mountain-arrival alternative",
+        "paragraphs": [
+          "Give your preferred Aspen arrival window and an acceptable fallback before selecting an aircraft. If a ski day or dinner reservation is fixed, an earlier departure or travel the previous day may provide more flexibility. The operator must review Aspen restrictions, weather and the specific aircraft’s performance."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Dallas Love Field (DAL) and Aspen/Pitkin County Airport (ASE). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "DAL airport guide",
+            "path": "/airports/kdal"
+          },
+          {
+            "label": "ASE airport guide",
+            "path": "/airports/kase"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Dallas to Aspen",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "City of Dallas — Love Field questions and private aircraft meeting locations",
+        "url": "https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"
+      },
+      {
+        "label": "Aspen/Pitkin County Airport — official airport information",
+        "url": "https://www.aspenairport.com/pilotinformation/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Dallas to Aspen charter flight?",
+        "answer": "Our early planning allowance is 1.75–2.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "dallas-to-vail",
+    "title": "Dallas to Vail private jet charter",
+    "seoTitle": "Dallas to Vail Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kdal",
+    "destinationAirport": "kege",
+    "description": "Plan Dallas to Vail aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 1.75–2.5 hours of block time for early planning on Dallas to Vail. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$20,000–$29,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$23,500–$34,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$29,500–$42,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Connect Eagle County with the resort",
+        "paragraphs": [
+          "A Vail charter itinerary typically needs a ground transfer after the flight to Eagle County. Identify Vail, Beaver Creek or the exact residence and list every ski bag. A group with winter equipment may need a different vehicle and cabin arrangement than a similarly sized business party."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Dallas Love Field (DAL) and Eagle County Regional Airport (EGE). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "DAL airport guide",
+            "path": "/airports/kdal"
+          },
+          {
+            "label": "EGE airport guide",
+            "path": "/airports/kege"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Dallas to Vail",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "City of Dallas — Love Field questions and private aircraft meeting locations",
+        "url": "https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"
+      },
+      {
+        "label": "Eagle County Regional Airport — official airport information",
+        "url": "https://www.flyvail.com/general-aviation/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Dallas to Vail charter flight?",
+        "answer": "Our early planning allowance is 1.75–2.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "dallas-to-las-vegas",
+    "title": "Dallas to Las Vegas private jet charter",
+    "seoTitle": "Dallas to Las Vegas Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kdal",
+    "destinationAirport": "klas",
+    "description": "Plan Dallas to Las Vegas aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 2.5–3.25 hours of block time for early planning on Dallas to Las Vegas. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$29,000–$37,500"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$34,000–$44,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$42,000–$54,500"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Plan around the event finish",
+        "paragraphs": [
+          "Specify the Las Vegas hotel or venue, event date and expected departure after the event. If the finish time can move, provide a realistic range. Ask about aircraft parking and the cost difference between an overnight stay and a return flight arranged independently."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Dallas Love Field (DAL) and Harry Reid International Airport (LAS). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "DAL airport guide",
+            "path": "/airports/kdal"
+          },
+          {
+            "label": "LAS airport guide",
+            "path": "/airports/klas"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Dallas to Las Vegas",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "City of Dallas — Love Field questions and private aircraft meeting locations",
+        "url": "https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"
+      },
+      {
+        "label": "Harry Reid International Airport — official airport information",
+        "url": "https://www.harryreidairport.com/our-airports"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Dallas to Las Vegas charter flight?",
+        "answer": "Our early planning allowance is 2.5–3.25 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "dallas-to-cabo",
+    "title": "Dallas to Cabo private jet charter",
+    "seoTitle": "Dallas to Cabo Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kdal",
+    "destinationAirport": "mmsd",
+    "description": "Plan Dallas to Cabo aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 2.5–3.25 hours of block time for early planning on Dallas to Cabo. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$29,000–$37,500"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$34,000–$44,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$42,000–$54,500"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Name the Cabo airport explicitly",
+        "paragraphs": [
+          "Los Cabos International and Cabo San Lucas International are different airports. This guide uses SJD / MMSD. Provide the resort address, passport names and any pet details early, and ask the operating carrier to confirm international handling and U.S. return clearance before the itinerary is finalized."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Dallas Love Field (DAL) and Los Cabos International Airport (SJD). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "DAL airport guide",
+            "path": "/airports/kdal"
+          },
+          {
+            "label": "SJD airport guide",
+            "path": "/airports/mmsd"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Dallas to Cabo",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "City of Dallas — Love Field questions and private aircraft meeting locations",
+        "url": "https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"
+      },
+      {
+        "label": "Los Cabos International Airport — official airport information",
+        "url": "https://www.aeropuertosgap.com.mx/es/los-cabos/aviacion-privada.html"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Dallas to Cabo charter flight?",
+        "answer": "Our early planning allowance is 2.5–3.25 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "dallas-to-palm-beach",
+    "title": "Dallas to Palm Beach private jet charter",
+    "seoTitle": "Dallas to Palm Beach Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kdal",
+    "destinationAirport": "kdjt",
+    "description": "Plan Dallas to Palm Beach aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 2.25–3 hours of block time for early planning on Dallas to Palm Beach. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$26,000–$34,500"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$30,500–$40,500"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$37,500–$50,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Use the current Palm Beach identifiers",
+        "paragraphs": [
+          "For West Palm Beach arrivals, use DJT / KDJT; older documents may still show PBI / KPBI. Give the destination in Palm Beach, Wellington or Jupiter and the required arrival time. For an equestrian or golf trip, list equipment separately so aircraft and transfer space can be reviewed."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Dallas Love Field (DAL) and Palm Beach International / DJT (DJT). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "DAL airport guide",
+            "path": "/airports/kdal"
+          },
+          {
+            "label": "DJT airport guide",
+            "path": "/airports/kdjt"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Dallas to Palm Beach",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "City of Dallas — Love Field questions and private aircraft meeting locations",
+        "url": "https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"
+      },
+      {
+        "label": "Palm Beach International / DJT — official airport information",
+        "url": "https://www.pbia.org/articles/post/president-donald-j-trump-international-airport-name-change-takes-effect/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Dallas to Palm Beach charter flight?",
+        "answer": "Our early planning allowance is 2.25–3 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "new-york-to-chicago",
+    "title": "New York to Chicago private jet charter",
+    "seoTitle": "New York to Chicago Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kteb",
+    "destinationAirport": "kmdw",
+    "description": "Plan New York to Chicago aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 2–2.75 hours of block time for early planning on New York to Chicago. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$23,000–$31,500"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$27,000–$37,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$33,500–$46,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Keep local times distinct",
+        "paragraphs": [
+          "The Chicago arrival and return to New York occur in different time zones. Confirm the time zone on every itinerary line and include transfers at both ends. If several colleagues are boarding at Teterboro, distribute one confirmed FBO address and passenger meeting time."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Teterboro Airport (TEB) and Chicago Midway International Airport (MDW). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "TEB airport guide",
+            "path": "/airports/kteb"
+          },
+          {
+            "label": "MDW airport guide",
+            "path": "/airports/kmdw"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for New York to Chicago",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Port Authority — Teterboro Flight Crew Handbook",
+        "url": "https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"
+      },
+      {
+        "label": "Chicago Midway International Airport — official airport information",
+        "url": "https://www.flychicago.com/midway/myflight/FBO/Pages/default.aspx"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a New York to Chicago charter flight?",
+        "answer": "Our early planning allowance is 2–2.75 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "new-york-to-aspen",
+    "title": "New York to Aspen private jet charter",
+    "seoTitle": "New York to Aspen Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kteb",
+    "destinationAirport": "kase",
+    "description": "Plan New York to Aspen aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 4–5 hours of block time for early planning on New York to Aspen. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$46,000–$57,500"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$54,000–$67,500"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$67,000–$84,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Set the mountain schedule before the cabin",
+        "paragraphs": [
+          "A late New York departure can leave less flexibility for a mountain arrival. Give the Aspen accommodation address, ski equipment details and an acceptable alternative day or airport. Ask the operator to confirm the proposed aircraft’s suitability rather than choosing it only by published range."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          },
+          {
+            "label": "Gulfstream G650 long-range planning",
+            "path": "/aircraft/gulfstream-g650"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Teterboro Airport (TEB) and Aspen/Pitkin County Airport (ASE). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "TEB airport guide",
+            "path": "/airports/kteb"
+          },
+          {
+            "label": "ASE airport guide",
+            "path": "/airports/kase"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for New York to Aspen",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Port Authority — Teterboro Flight Crew Handbook",
+        "url": "https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"
+      },
+      {
+        "label": "Aspen/Pitkin County Airport — official airport information",
+        "url": "https://www.aspenairport.com/pilotinformation/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a New York to Aspen charter flight?",
+        "answer": "Our early planning allowance is 4–5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "new-york-to-vail",
+    "title": "New York to Vail private jet charter",
+    "seoTitle": "New York to Vail Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kteb",
+    "destinationAirport": "kege",
+    "description": "Plan New York to Vail aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 4–5 hours of block time for early planning on New York to Vail. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$46,000–$57,500"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$54,000–$67,500"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$67,000–$84,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Account for winter equipment and transfers",
+        "paragraphs": [
+          "Use Eagle County as the named airport and identify the actual Vail Valley destination. The passenger list should be accompanied by ski-bag dimensions and any child-seat requests. Discuss a backup transfer plan and the effect of a weather-driven schedule change on the return flight."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          },
+          {
+            "label": "Gulfstream G650 long-range planning",
+            "path": "/aircraft/gulfstream-g650"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Teterboro Airport (TEB) and Eagle County Regional Airport (EGE). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "TEB airport guide",
+            "path": "/airports/kteb"
+          },
+          {
+            "label": "EGE airport guide",
+            "path": "/airports/kege"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for New York to Vail",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Port Authority — Teterboro Flight Crew Handbook",
+        "url": "https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"
+      },
+      {
+        "label": "Eagle County Regional Airport — official airport information",
+        "url": "https://www.flyvail.com/general-aviation/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a New York to Vail charter flight?",
+        "answer": "Our early planning allowance is 4–5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "new-york-to-las-vegas",
+    "title": "New York to Las Vegas private jet charter",
+    "seoTitle": "New York to Las Vegas Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kteb",
+    "destinationAirport": "klas",
+    "description": "Plan New York to Las Vegas aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 5–6 hours of block time for early planning on New York to Las Vegas. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$57,500–$69,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$67,500–$81,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$84,000–$100,500"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Compare a working cabin with a rest cabin",
+        "paragraphs": [
+          "For a westbound transcontinental trip, explain whether the party needs a shared meeting space, individual work seats or room to rest. Confirm the aircraft’s actual connectivity and seating plan. A published aircraft category alone does not establish that the cabin supports your intended use."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          },
+          {
+            "label": "Gulfstream G650 long-range planning",
+            "path": "/aircraft/gulfstream-g650"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Teterboro Airport (TEB) and Harry Reid International Airport (LAS). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "TEB airport guide",
+            "path": "/airports/kteb"
+          },
+          {
+            "label": "LAS airport guide",
+            "path": "/airports/klas"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for New York to Las Vegas",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Port Authority — Teterboro Flight Crew Handbook",
+        "url": "https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"
+      },
+      {
+        "label": "Harry Reid International Airport — official airport information",
+        "url": "https://www.harryreidairport.com/our-airports"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a New York to Las Vegas charter flight?",
+        "answer": "Our early planning allowance is 5–6 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "new-york-to-cabo",
+    "title": "New York to Cabo private jet charter",
+    "seoTitle": "New York to Cabo Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kteb",
+    "destinationAirport": "mmsd",
+    "description": "Plan New York to Cabo aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 5.5–6.5 hours of block time for early planning on New York to Cabo. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$63,000–$75,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$74,000–$88,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$92,000–$109,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Review the complete international trip",
+        "paragraphs": [
+          "Include both the outbound and U.S. return requirements in the initial brief. Ask the operator to confirm nonstop feasibility for the aircraft, passengers, baggage and expected winds. Have the resort transfer arranged for the confirmed SJD private terminal, and keep travel-document submission within the agreed secure process."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          },
+          {
+            "label": "Gulfstream G650 long-range planning",
+            "path": "/aircraft/gulfstream-g650"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Teterboro Airport (TEB) and Los Cabos International Airport (SJD). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "TEB airport guide",
+            "path": "/airports/kteb"
+          },
+          {
+            "label": "SJD airport guide",
+            "path": "/airports/mmsd"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for New York to Cabo",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Port Authority — Teterboro Flight Crew Handbook",
+        "url": "https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"
+      },
+      {
+        "label": "Los Cabos International Airport — official airport information",
+        "url": "https://www.aeropuertosgap.com.mx/es/los-cabos/aviacion-privada.html"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a New York to Cabo charter flight?",
+        "answer": "Our early planning allowance is 5.5–6.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "new-york-to-palm-beach",
+    "title": "New York to Palm Beach private jet charter",
+    "seoTitle": "New York to Palm Beach Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kteb",
+    "destinationAirport": "kdjt",
+    "description": "Plan New York to Palm Beach aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 2.5–3.25 hours of block time for early planning on New York to Palm Beach. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$29,000–$37,500"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$34,000–$44,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$42,000–$54,500"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Coordinate the seasonal South Florida visit",
+        "paragraphs": [
+          "Give the full Palm Beach-area destination and identify any fixed event or appointment. Use the current DJT code in new arrangements, and ask the operator to check current airspace restrictions. If passengers may change on the return, make that clear before accepting a round-trip proposal."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Teterboro Airport (TEB) and Palm Beach International / DJT (DJT). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "TEB airport guide",
+            "path": "/airports/kteb"
+          },
+          {
+            "label": "DJT airport guide",
+            "path": "/airports/kdjt"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for New York to Palm Beach",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Port Authority — Teterboro Flight Crew Handbook",
+        "url": "https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"
+      },
+      {
+        "label": "Palm Beach International / DJT — official airport information",
+        "url": "https://www.pbia.org/articles/post/president-donald-j-trump-international-airport-name-change-takes-effect/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a New York to Palm Beach charter flight?",
+        "answer": "Our early planning allowance is 2.5–3.25 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "new-york-to-houston",
+    "title": "New York to Houston private jet charter",
+    "seoTitle": "New York to Houston Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kteb",
+    "destinationAirport": "khou",
+    "description": "Plan New York to Houston aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 3.5–4.5 hours of block time for early planning on New York to Houston. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$40,000–$52,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$47,000–$61,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$58,500–$75,500"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Map the Houston meetings first",
+        "paragraphs": [
+          "A trip involving multiple Houston business locations may call for a different airport plan from a single central meeting. Send all addresses and the sequence of appointments. Ask for a schedule that identifies car travel separately and includes a clear decision point for any same-day return change."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          },
+          {
+            "label": "Gulfstream G650 long-range planning",
+            "path": "/aircraft/gulfstream-g650"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Teterboro Airport (TEB) and William P. Hobby Airport (HOU). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "TEB airport guide",
+            "path": "/airports/kteb"
+          },
+          {
+            "label": "HOU airport guide",
+            "path": "/airports/khou"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for New York to Houston",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Port Authority — Teterboro Flight Crew Handbook",
+        "url": "https://www.panynj.gov/content/dam/airports/teterboro/TEB-Flight-Crew-Handbook.pdf"
+      },
+      {
+        "label": "William P. Hobby Airport — official airport information",
+        "url": "https://www.fly2houston.com/hou/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a New York to Houston charter flight?",
+        "answer": "Our early planning allowance is 3.5–4.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "los-angeles-to-miami",
+    "title": "Los Angeles to Miami private jet charter",
+    "seoTitle": "Los Angeles to Miami Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kvny",
+    "destinationAirport": "kopf",
+    "description": "Plan Los Angeles to Miami aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 4.5–5.5 hours of block time for early planning on Los Angeles to Miami. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$52,000–$63,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$61,000–$74,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$75,500–$92,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Connect a coast-to-coast flight with the Miami stay",
+        "paragraphs": [
+          "An eastbound Los Angeles–Miami journey consumes more of the destination day than the elapsed flight time suggests. Send the latest useful arrival time and the exact Miami address. If the party wants to sleep, work or dine en route, request the proposed cabin layout and amenities before selecting an aircraft."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          },
+          {
+            "label": "Gulfstream G650 long-range planning",
+            "path": "/aircraft/gulfstream-g650"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Van Nuys Airport (VNY) and Miami-Opa Locka Executive Airport (OPF). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "VNY airport guide",
+            "path": "/airports/kvny"
+          },
+          {
+            "label": "OPF airport guide",
+            "path": "/airports/kopf"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Los Angeles to Miami",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Van Nuys Airport — airport overview",
+        "url": "https://www.iflyvny.com/pilot-information/about-van-nuys-airport"
+      },
+      {
+        "label": "Miami-Dade Aviation Department — Opa Locka airport overview",
+        "url": "https://www.miami-airport.com/opalocka.asp"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Los Angeles to Miami charter flight?",
+        "answer": "Our early planning allowance is 4.5–5.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "los-angeles-to-chicago",
+    "title": "Los Angeles to Chicago private jet charter",
+    "seoTitle": "Los Angeles to Chicago Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kvny",
+    "destinationAirport": "kmdw",
+    "description": "Plan Los Angeles to Chicago aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 3.5–4.5 hours of block time for early planning on Los Angeles to Chicago. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$40,000–$52,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$47,000–$61,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$58,500–$75,500"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Plan the working day across time zones",
+        "paragraphs": [
+          "A morning departure from Los Angeles arrives later by the Chicago clock. Work backward from the meeting and allow for the Midway transfer. Tell EXJET whether the group needs connectivity throughout the flight, noting that the installed system and route coverage must be confirmed for the actual aircraft."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          },
+          {
+            "label": "Gulfstream G650 long-range planning",
+            "path": "/aircraft/gulfstream-g650"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Van Nuys Airport (VNY) and Chicago Midway International Airport (MDW). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "VNY airport guide",
+            "path": "/airports/kvny"
+          },
+          {
+            "label": "MDW airport guide",
+            "path": "/airports/kmdw"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Los Angeles to Chicago",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Van Nuys Airport — airport overview",
+        "url": "https://www.iflyvny.com/pilot-information/about-van-nuys-airport"
+      },
+      {
+        "label": "Chicago Midway International Airport — official airport information",
+        "url": "https://www.flychicago.com/midway/myflight/FBO/Pages/default.aspx"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Los Angeles to Chicago charter flight?",
+        "answer": "Our early planning allowance is 3.5–4.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "los-angeles-to-las-vegas",
+    "title": "Los Angeles to Las Vegas private jet charter",
+    "seoTitle": "Los Angeles to Las Vegas Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kvny",
+    "destinationAirport": "klas",
+    "description": "Plan Los Angeles to Las Vegas aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 1–1.5 hours of block time for early planning on Los Angeles to Las Vegas. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$11,500–$17,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$13,500–$20,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$17,000–$25,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Look beyond the short flight time",
+        "paragraphs": [
+          "A short sector can still involve minimum flight charges, positioning and event-related handling. Compare complete written proposals for the same dates and passengers. If the group returns after a show or sporting event, specify the earliest and latest acceptable return departure."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Van Nuys Airport (VNY) and Harry Reid International Airport (LAS). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "VNY airport guide",
+            "path": "/airports/kvny"
+          },
+          {
+            "label": "LAS airport guide",
+            "path": "/airports/klas"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Los Angeles to Las Vegas",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Van Nuys Airport — airport overview",
+        "url": "https://www.iflyvny.com/pilot-information/about-van-nuys-airport"
+      },
+      {
+        "label": "Harry Reid International Airport — official airport information",
+        "url": "https://www.harryreidairport.com/our-airports"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Los Angeles to Las Vegas charter flight?",
+        "answer": "Our early planning allowance is 1–1.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "los-angeles-to-aspen",
+    "title": "Los Angeles to Aspen private jet charter",
+    "seoTitle": "Los Angeles to Aspen Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kvny",
+    "destinationAirport": "kase",
+    "description": "Plan Los Angeles to Aspen aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 2–3 hours of block time for early planning on Los Angeles to Aspen. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$23,000–$34,500"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$27,000–$40,500"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$33,500–$50,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Coordinate Pacific departure and mountain arrival",
+        "paragraphs": [
+          "Label both departure and arrival in local time. A later California departure can compress the available mountain arrival window, so ask about a practical earlier option. List oversized ski equipment and be clear about whether Eagle County or another operator-approved alternative would meet your travel needs."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Van Nuys Airport (VNY) and Aspen/Pitkin County Airport (ASE). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "VNY airport guide",
+            "path": "/airports/kvny"
+          },
+          {
+            "label": "ASE airport guide",
+            "path": "/airports/kase"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Los Angeles to Aspen",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Van Nuys Airport — airport overview",
+        "url": "https://www.iflyvny.com/pilot-information/about-van-nuys-airport"
+      },
+      {
+        "label": "Aspen/Pitkin County Airport — official airport information",
+        "url": "https://www.aspenairport.com/pilotinformation/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Los Angeles to Aspen charter flight?",
+        "answer": "Our early planning allowance is 2–3 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "los-angeles-to-vail",
+    "title": "Los Angeles to Vail private jet charter",
+    "seoTitle": "Los Angeles to Vail Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kvny",
+    "destinationAirport": "kege",
+    "description": "Plan Los Angeles to Vail aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 2–3 hours of block time for early planning on Los Angeles to Vail. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$23,000–$34,500"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$27,000–$40,500"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$33,500–$50,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Match the aircraft and resort transfer",
+        "paragraphs": [
+          "For a Vail or Beaver Creek visit, request the flight to Eagle County and specify the resort address. Equipment, cabin seating and vehicle capacity should be reviewed together. If guests are arriving from different cities, identify which connection is fixed and which parts of the group itinerary can move."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Van Nuys Airport (VNY) and Eagle County Regional Airport (EGE). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "VNY airport guide",
+            "path": "/airports/kvny"
+          },
+          {
+            "label": "EGE airport guide",
+            "path": "/airports/kege"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Los Angeles to Vail",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Van Nuys Airport — airport overview",
+        "url": "https://www.iflyvny.com/pilot-information/about-van-nuys-airport"
+      },
+      {
+        "label": "Eagle County Regional Airport — official airport information",
+        "url": "https://www.flyvail.com/general-aviation/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Los Angeles to Vail charter flight?",
+        "answer": "Our early planning allowance is 2–3 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "los-angeles-to-cabo",
+    "title": "Los Angeles to Cabo private jet charter",
+    "seoTitle": "Los Angeles to Cabo Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kvny",
+    "destinationAirport": "mmsd",
+    "description": "Plan Los Angeles to Cabo aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 2.25–3 hours of block time for early planning on Los Angeles to Cabo. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$26,000–$34,500"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$30,500–$40,500"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$37,500–$50,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Make the airport and return clearance explicit",
+        "paragraphs": [
+          "Use SJD / MMSD when requesting Los Cabos International. Confirm the resort destination before reserving a transfer and provide all passenger documentation on time. Discuss U.S. return clearance and any pets or unusual baggage as part of the original brief, not only after the outbound flight is selected."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Van Nuys Airport (VNY) and Los Cabos International Airport (SJD). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "VNY airport guide",
+            "path": "/airports/kvny"
+          },
+          {
+            "label": "SJD airport guide",
+            "path": "/airports/mmsd"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Los Angeles to Cabo",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Van Nuys Airport — airport overview",
+        "url": "https://www.iflyvny.com/pilot-information/about-van-nuys-airport"
+      },
+      {
+        "label": "Los Cabos International Airport — official airport information",
+        "url": "https://www.aeropuertosgap.com.mx/es/los-cabos/aviacion-privada.html"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Los Angeles to Cabo charter flight?",
+        "answer": "Our early planning allowance is 2.25–3 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "los-angeles-to-palm-beach",
+    "title": "Los Angeles to Palm Beach private jet charter",
+    "seoTitle": "Los Angeles to Palm Beach Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kvny",
+    "destinationAirport": "kdjt",
+    "description": "Plan Los Angeles to Palm Beach aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 4.5–5.5 hours of block time for early planning on Los Angeles to Palm Beach. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$52,000–$63,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$61,000–$74,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$75,500–$92,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Review nonstop feasibility and cabin priorities",
+        "paragraphs": [
+          "For a cross-country arrival in West Palm Beach, request a cabin suitable for the full journey and have the operator verify range with the intended load. Include the final destination and any required rest arrangements. The current airport identifiers are DJT / KDJT, replacing the older PBI references."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          },
+          {
+            "label": "Gulfstream G650 long-range planning",
+            "path": "/aircraft/gulfstream-g650"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Van Nuys Airport (VNY) and Palm Beach International / DJT (DJT). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "VNY airport guide",
+            "path": "/airports/kvny"
+          },
+          {
+            "label": "DJT airport guide",
+            "path": "/airports/kdjt"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Los Angeles to Palm Beach",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Van Nuys Airport — airport overview",
+        "url": "https://www.iflyvny.com/pilot-information/about-van-nuys-airport"
+      },
+      {
+        "label": "Palm Beach International / DJT — official airport information",
+        "url": "https://www.pbia.org/articles/post/president-donald-j-trump-international-airport-name-change-takes-effect/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Los Angeles to Palm Beach charter flight?",
+        "answer": "Our early planning allowance is 4.5–5.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "miami-to-chicago",
+    "title": "Miami to Chicago private jet charter",
+    "seoTitle": "Miami to Chicago Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kopf",
+    "destinationAirport": "kmdw",
+    "description": "Plan Miami to Chicago aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 3–4 hours of block time for early planning on Miami to Chicago. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$34,500–$46,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$40,500–$54,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$50,000–$67,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Prepare for a change in destination conditions",
+        "paragraphs": [
+          "A South Florida departure and Chicago arrival can require very different ground arrangements, particularly in winter. Ask about weather-related charges and confirm that clothing, baggage and transfers are practical at both ends. Provide an acceptable return window if the Chicago event may run late."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          },
+          {
+            "label": "Gulfstream G650 long-range planning",
+            "path": "/aircraft/gulfstream-g650"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Miami-Opa Locka Executive Airport (OPF) and Chicago Midway International Airport (MDW). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "OPF airport guide",
+            "path": "/airports/kopf"
+          },
+          {
+            "label": "MDW airport guide",
+            "path": "/airports/kmdw"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Miami to Chicago",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Miami-Dade Aviation Department — Opa Locka airport overview",
+        "url": "https://www.miami-airport.com/opalocka.asp"
+      },
+      {
+        "label": "Chicago Midway International Airport — official airport information",
+        "url": "https://www.flychicago.com/midway/myflight/FBO/Pages/default.aspx"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Miami to Chicago charter flight?",
+        "answer": "Our early planning allowance is 3–4 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "miami-to-houston",
+    "title": "Miami to Houston private jet charter",
+    "seoTitle": "Miami to Houston Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kopf",
+    "destinationAirport": "khou",
+    "description": "Plan Miami to Houston aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 2.5–3.5 hours of block time for early planning on Miami to Houston. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$29,000–$40,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$34,000–$47,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$42,000–$58,500"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Coordinate the Miami pickup and Houston meeting",
+        "paragraphs": [
+          "Start with the pickup address in South Florida and the Houston destination rather than only the two city names. Confirm the Opa Locka FBO and ask whether Hobby is the appropriate arrival for the business address. State whether passengers or baggage will change for the return sector."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Miami-Opa Locka Executive Airport (OPF) and William P. Hobby Airport (HOU). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "OPF airport guide",
+            "path": "/airports/kopf"
+          },
+          {
+            "label": "HOU airport guide",
+            "path": "/airports/khou"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Miami to Houston",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Miami-Dade Aviation Department — Opa Locka airport overview",
+        "url": "https://www.miami-airport.com/opalocka.asp"
+      },
+      {
+        "label": "William P. Hobby Airport — official airport information",
+        "url": "https://www.fly2houston.com/hou/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Miami to Houston charter flight?",
+        "answer": "Our early planning allowance is 2.5–3.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "miami-to-aspen",
+    "title": "Miami to Aspen private jet charter",
+    "seoTitle": "Miami to Aspen Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kopf",
+    "destinationAirport": "kase",
+    "description": "Plan Miami to Aspen aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 4.5–5.5 hours of block time for early planning on Miami to Aspen. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$52,000–$63,000"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$61,000–$74,000"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$75,500–$92,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Allow for a mountain-weather alternative",
+        "paragraphs": [
+          "A Miami–Aspen trip combines a longer sector with a destination requiring flight-specific performance review. Tell EXJET the passenger and ski-equipment load, an acceptable alternative airport and your tolerance for an earlier departure. Agree the transfer implications of a diversion before accepting the itinerary."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          },
+          {
+            "label": "Gulfstream G650 long-range planning",
+            "path": "/aircraft/gulfstream-g650"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Miami-Opa Locka Executive Airport (OPF) and Aspen/Pitkin County Airport (ASE). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "OPF airport guide",
+            "path": "/airports/kopf"
+          },
+          {
+            "label": "ASE airport guide",
+            "path": "/airports/kase"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Miami to Aspen",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Miami-Dade Aviation Department — Opa Locka airport overview",
+        "url": "https://www.miami-airport.com/opalocka.asp"
+      },
+      {
+        "label": "Aspen/Pitkin County Airport — official airport information",
+        "url": "https://www.aspenairport.com/pilotinformation/"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Miami to Aspen charter flight?",
+        "answer": "Our early planning allowance is 4.5–5.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
+  },
+  {
+    "slug": "miami-to-cabo",
+    "title": "Miami to Cabo private jet charter",
+    "seoTitle": "Miami to Cabo Private Jet Charter: Cost & Time | EXJET",
+    "originAirport": "kopf",
+    "destinationAirport": "mmsd",
+    "description": "Plan Miami to Cabo aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "sections": [
+      {
+        "heading": "Flight time and budget illustration",
+        "paragraphs": [
+          "Allow approximately 4–5 hours of block time for early planning on Miami to Cabo. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
+          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+        ],
+        "table": {
+          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "headers": [
+            "Aircraft category",
+            "Hourly example input",
+            "Flight-charge illustration"
+          ],
+          "rows": [
+            [
+              "Super-midsize",
+              "$11,500/hour",
+              "$46,000–$57,500"
+            ],
+            [
+              "Large cabin",
+              "$13,500/hour",
+              "$54,000–$67,500"
+            ],
+            [
+              "Ultra-long-range",
+              "$16,750/hour",
+              "$67,000–$84,000"
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "See the calculation basis and complete trip-price example",
+            "path": "/pricing"
+          }
+        ]
+      },
+      {
+        "heading": "Separate resort timing from border formalities",
+        "paragraphs": [
+          "This itinerary crosses an international border and the destination may be a substantial drive from the airport. Name SJD / MMSD, supply the resort address and confirm clearance and handling through the operating carrier. A boat departure or wedding schedule should include a sensible buffer beyond aircraft landing time."
+        ]
+      },
+      {
+        "heading": "Compare cabins against the actual passenger brief",
+        "paragraphs": [
+          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+        ],
+        "links": [
+          {
+            "label": "Challenger 350 cabin and mission guide",
+            "path": "/aircraft/challenger-350"
+          },
+          {
+            "label": "Falcon 2000LX charter guide",
+            "path": "/aircraft/falcon-2000lx"
+          },
+          {
+            "label": "Gulfstream G650 long-range planning",
+            "path": "/aircraft/gulfstream-g650"
+          }
+        ]
+      },
+      {
+        "heading": "Airport and private-terminal choices",
+        "paragraphs": [
+          "This example uses Miami-Opa Locka Executive Airport (OPF) and Los Cabos International Airport (SJD). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+        ],
+        "links": [
+          {
+            "label": "OPF airport guide",
+            "path": "/airports/kopf"
+          },
+          {
+            "label": "SJD airport guide",
+            "path": "/airports/mmsd"
+          }
+        ]
+      },
+      {
+        "heading": "Request a complete proposal",
+        "paragraphs": [
+          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+        ],
+        "links": [
+          {
+            "label": "Request a quote for Miami to Cabo",
+            "path": "/charter"
+          },
+          {
+            "label": "Understand operator review",
+            "path": "/safety"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Miami-Dade Aviation Department — Opa Locka airport overview",
+        "url": "https://www.miami-airport.com/opalocka.asp"
+      },
+      {
+        "label": "Los Cabos International Airport — official airport information",
+        "url": "https://www.aeropuertosgap.com.mx/es/los-cabos/aviacion-privada.html"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is a Miami to Cabo charter flight?",
+        "answer": "Our early planning allowance is 4–5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+      },
+      {
+        "question": "Is the example price the amount I will pay?",
+        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+      },
+      {
+        "question": "Can I request an empty leg on this route?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+      }
+    ],
+    "updated": "2026-10-17"
   }
 ]

@@ -1,4 +1,4 @@
-const PRODUCTION_ORIGIN = "https://exjet.com";
+const PRODUCTION_ORIGIN = "https://www.exjet.com";
 
 function normalizeOrigin(value: string) {
   try {
@@ -8,12 +8,17 @@ function normalizeOrigin(value: string) {
   }
 }
 
-const deploymentOrigin = process.env.VERCEL_URL
-  ? `https://${process.env.VERCEL_URL}`
-  : "http://localhost:3000";
+// Canonicals, social assets, structured data and sitemap URLs must share the
+// public host, never the per-deployment VERCEL_URL.
+export const siteOrigin = PRODUCTION_ORIGIN;
 
-export const siteOrigin = normalizeOrigin(process.env.NEXT_PUBLIC_SITE_URL || deploymentOrigin);
-export const isPublicProduction = siteOrigin === PRODUCTION_ORIGIN;
+// NODE_ENV is also "production" during preview builds. Use Vercel's deployment
+// environment so a preview cannot become indexable by inheriting the site URL.
+// Non-Vercel production builds require an explicit public-site opt-in.
+export const isPublicProduction = process.env.VERCEL_ENV
+  ? process.env.VERCEL_ENV === "production"
+  : process.env.NODE_ENV === "production" &&
+    normalizeOrigin(process.env.NEXT_PUBLIC_SITE_URL || "") === PRODUCTION_ORIGIN;
 
 export const siteConfig = {
   name: "EXJET",
@@ -54,13 +59,18 @@ export const siteConfig = {
 export const socialProfiles = Object.values(siteConfig.social);
 
 export function absoluteUrl(path = "/") {
-  return new URL(path, `${siteOrigin}/`).toString();
+  const url = new URL(path, `${siteOrigin}/`);
+  if (!url.pathname.endsWith("/") && !url.pathname.split("/").at(-1)?.includes(".")) {
+    url.pathname += "/";
+  }
+  return url.toString();
 }
 
 export function organizationJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "Organization",
+    "@id": `${siteOrigin}/#organization`,
     name: siteConfig.name,
     url: siteConfig.url,
     logo: absoluteUrl("/brand/exjet-mark.svg"),
@@ -106,6 +116,7 @@ export function localBusinessJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
+    "@id": `${siteOrigin}/#dallas-office`,
     name: siteConfig.name,
     url: siteConfig.url,
     image: absoluteUrl("/images/manufacturers/latitude-header-new.jpg"),

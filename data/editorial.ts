@@ -3,22 +3,59 @@ import legalData from "./legal.json";
 import airportData from "./airports-guide.json";
 import routeData from "./routes-guide.json";
 import serviceData from "./services.json";
+import additionalData from "./seo-content.json";
+import type { ContentPage, ContentSection } from "./content-types";
+export type { ContentPage, ContentSection } from "./content-types";
 
-export type ContentSection = { heading:string; paragraphs:string[]; bullets?:string[]; links?:{label:string;path:string}[] };
-export type ContentPage = {path:string;title:string;description:string;kicker:string;kind:"hub"|"article"|"airport"|"route"|"service"|"legal";sections:ContentSection[];parent?:{name:string;path:string};sources?:{label:string;url:string}[];image?:{src:string;alt:string;width:number;height:number;caption?:string;scene?:"exterior"|"interior"};items?:string[];collectionTitle?:string;related?:string[];facts?:{label:string;value:string}[];codes?:string[];readTime?:string;updated?:string;draft?:boolean;noindex?:boolean};
-const articles:ContentPage[]=articleData.map(item=>({...item,path:`/articles/${item.slug}`,kind:"article",kicker:item.category,parent:{name:"Flight Guide",path:"/articles"},related:item.related.map(slug=>`/articles/${slug}`),updated:"2026-09-12"}));
-const policies:ContentPage[]=legalData.map(item=>({...item,path:`/${item.slug}`,kind:"legal",kicker:"Legal",draft:true,noindex:true}));
-const airports:ContentPage[]=airportData.map(item=>({path:`/airports/${item.slug}`,title:item.name,description:item.description,kicker:`${item.city} · Airport guide`,kind:"airport",parent:{name:"Airports",path:"/airports"},facts:[{label:"ICAO",value:item.icao},{label:"IATA",value:item.iata},{label:"Location",value:item.city}],sections:[{heading:"Plan your arrival.",paragraphs:[item.location],bullets:item.planningNotes},{heading:"Runways",paragraphs:["Published lengths are reference information. The operating carrier determines runway suitability for the actual aircraft, conditions, and flight."],bullets:item.runways.map(runway=>`${runway.designation}: ${runway.lengthFeet.toLocaleString()} feet`)},{heading:"Before your trip",paragraphs:["Confirm the exact airport, handling location, and ground transfer with your advisor. Airport operating notices, weather, parking, and flight-specific restrictions can change the plan."],links:[{label:"Discuss an airport or itinerary",path:"/contact"}]}],sources:item.sources,related:routeData.filter(route=>[route.originAirport,route.destinationAirport].some(code=>code.toLowerCase()===item.slug)).map(route=>`/routes/${route.slug}`)}));
-const routes:ContentPage[]=routeData.map(item=>({...item,path:`/routes/${item.slug}`,kind:"route",kicker:"Private charter route",parent:{name:"Routes",path:"/routes"},codes:[item.originAirport.toUpperCase().replace(/^K/,""),item.destinationAirport.toUpperCase().replace(/^K/,"")],related:[`/airports/${item.originAirport.toLowerCase()}`,`/airports/${item.destinationAirport.toLowerCase()}`]}));
-const services:ContentPage[]=serviceData as ContentPage[];
-const hubs:ContentPage[]=[
-  {path:"/articles",title:"The EXJET Flight Guide.",description:"A clearer view of private aviation. Practical reading for choosing your aircraft, planning your itinerary, and understanding the details.",kicker:"Read. Plan. Fly.",kind:"hub",sections:[],items:articles.map(page=>page.path),collectionTitle:"Knowledge for the journey."},
-  {path:"/guides",title:"Start with the essentials.",description:"Find your way through private charter, from the first itinerary to the final agreement.",kicker:"Private aviation guides",kind:"hub",sections:[{heading:"A guide for each decision",paragraphs:["Start with the first-flight checklist if charter is new to you. Compare cabin and baggage requirements before choosing an aircraft. Then use the pricing and booking guides to review the terms of an actual offer."],links:[{label:"Explore the complete Flight Guide",path:"/articles"}]}],items:articles.slice(0,3).map(page=>page.path),collectionTitle:"Plan with confidence."},
-  {path:"/routes",title:"Wherever comes next.",description:"Explore private charter between major destinations. Compare airport choices and the details that shape each journey.",kicker:"Private jet routes",kind:"hub",sections:[{heading:"The route is the starting point.",paragraphs:["Your aircraft and itinerary depend on passengers, baggage, timing, weather, and operating conditions. These guides help frame a request; the operator confirms the final flight plan."],links:[{label:"Explore airport guides",path:"/airports"}]}],items:routes.map(page=>page.path),collectionTitle:"Journeys to explore."},
-  {path:"/airports",title:"Closer to your destination.",description:"Understand the airport before you arrive. Reference information and practical planning notes for private aviation.",kicker:"Airport guides",kind:"hub",sections:[{heading:"Confirm the details that matter.",paragraphs:["A city can have several suitable airports. Tell your advisor your final destination, planned arrival time, and transfer needs so the airport choice supports the whole journey. Published runway data alone does not establish suitability for a specific flight."]}],items:airports.map(page=>page.path),collectionTitle:"Know your arrival."},
-  {path:"/destinations",title:"A city. Your own itinerary.",description:"Connect the destination, the airport, and the aircraft. Begin with four gateways to business and leisure travel.",kicker:"Destinations",kind:"hub",sections:[{heading:"Dallas",paragraphs:["Begin with Dallas Love Field when discussing central Dallas access. Tell your advisor whether the final stop is downtown, another part of the Metroplex, or a connecting destination."],links:[{label:"Dallas Love Field guide",path:"/airports/kdal"}]},{heading:"New York",paragraphs:["For a New York visit, the airport and ground journey need to work together. Teterboro is a starting point for comparing business-aviation access with the operator and your ground provider."],links:[{label:"Teterboro guide",path:"/airports/kteb"}]},{heading:"Los Angeles",paragraphs:["Los Angeles trips can involve substantial travel after landing. Share the final address and any meeting time before choosing an airport. The Van Nuys guide explains one business-aviation option."],links:[{label:"Van Nuys guide",path:"/airports/kvny"}]},{heading:"Miami",paragraphs:["Coordinate your airport, handling location, and onward plans together. Miami-Opa Locka Executive is one airport to discuss for a South Florida itinerary."],links:[{label:"Miami-Opa Locka guide",path:"/airports/kopf"}]}],related:routes.map(page=>page.path)},
+type AirportGuide = {
+  slug: string; name: string; city: string; icao: string; iata: string;
+  description: string; metaDescription: string; seoTitle: string;
+  sections: ContentSection[]; sources: {label:string;url:string}[];
+  faqs: {question:string;answer:string}[];
+};
+type RouteGuide = {
+  slug: string; title: string; seoTitle: string; description: string;
+  originAirport: string; destinationAirport: string; sections: ContentSection[];
+  sources: {label:string;url:string}[]; faqs: {question:string;answer:string}[];
+  updated: string;
+};
+const airportGuides = airportData as AirportGuide[];
+const routeGuides = routeData as RouteGuide[];
+const additional = additionalData as ContentPage[];
+const articles: ContentPage[] = articleData.map(item => ({
+  ...item, path: `/articles/${item.slug}`, kind: "article", kicker: item.category,
+  parent: {name:"Flight Guide",path:"/articles"},
+  related: item.related.map(slug=>`/articles/${slug}`),
+  published: "2026-09-12", updated: "updated" in item ? String(item.updated) : "2026-09-12",
+}));
+const policies: ContentPage[] = legalData.map(item => ({
+  ...item,path:`/${item.slug}`,kind:"legal",kicker:"Legal",draft:true,noindex:true,
+}));
+const airports: ContentPage[] = airportGuides.map(item => ({
+  path:`/airports/${item.slug}`, title:`${item.name} charter guide`, seoTitle:item.seoTitle,
+  description:item.metaDescription, kicker:`${item.city} · Airport guide`,kind:"airport",
+  parent:{name:"Airports",path:"/airports"},
+  facts:[{label:"ICAO",value:item.icao},{label:"IATA",value:item.iata},{label:"Location",value:item.city}],
+  sections:item.sections, sources:item.sources, faqs:item.faqs,
+  related:routeGuides.filter(route=>[route.originAirport,route.destinationAirport].includes(item.slug)).slice(0,6).map(route=>`/routes/${route.slug}`),
+}));
+const routes: ContentPage[] = routeGuides.map(item=>({
+  ...item,path:`/routes/${item.slug}`,kind:"route",kicker:"Private charter route",
+  parent:{name:"Routes",path:"/routes"},
+  codes:[item.originAirport,item.destinationAirport].map(code=>airportGuides.find(airport=>airport.slug===code)?.iata || code.toUpperCase()),
+  related:[`/airports/${item.originAirport}`,`/airports/${item.destinationAirport}`,"/pricing"],
+}));
+const services = serviceData as ContentPage[];
+const allArticles = [...articles,...additional.filter(page=>page.kind==="article")];
+const hubs: ContentPage[] = [
+  {path:"/articles",title:"Aircraft charter articles and flight planning",seoTitle:"Business Jet Charter Articles & Flight Guide | EXJET",description:"Read practical charter guides covering aircraft, costs, passengers and trip planning. Understand the details, then discuss your itinerary with an EXJET advisor.",kicker:"The EXJET Flight Guide",kind:"hub",sections:[],items:allArticles.map(page=>page.path),collectionTitle:"Knowledge for the journey."},
+  {path:"/guides",title:"Private jet charter planning guides",seoTitle:"Private Jet Charter Guides & Booking Advice | EXJET",description:"Prepare your charter with guides to quotes, operator authority, aircraft selection and passenger needs. Get informed before requesting your EXJET proposal.",kicker:"Plan with confidence",kind:"hub",sections:[{heading:"Find the guide for your decision",paragraphs:["Start with the first-flight checklist, compare aircraft and baggage requirements, then review the terms of an actual quote. The operator-review guides explain what to check before you book."],links:[{label:"Charter glossary",path:"/glossary"},{label:"Aircraft comparisons",path:"/aircraft-comparisons"},{label:"Complete charter cost guide",path:"/pricing"}]}],items:allArticles.map(page=>page.path),collectionTitle:"Practical charter guidance."},
+  {path:"/routes",title:"Private jet charter routes",seoTitle:"Private Jet Charter Routes, Costs & Flight Times | EXJET",description:"Explore 30 business jet charter routes with airport choices, planning-time estimates and transparent cost examples. Request a quote for your itinerary from EXJET.",kicker:"Wherever comes next",kind:"hub",sections:[{heading:"Plan the whole journey",paragraphs:["Each guide explains a distinct itinerary, with early time allowances and illustrative flight charges. Confirm the actual schedule and complete trip total with your advisor. These pages do not display live availability."],links:[{label:"Compare airports",path:"/airports"},{label:"Understand the cost examples",path:"/pricing"}]}],items:routes.map(page=>page.path),collectionTitle:"Routes to explore."},
+  {path:"/airports",title:"Business aviation airport and FBO guides",seoTitle:"Private Jet Airports & FBO Planning Guides | EXJET",description:"Compare airports for business jet charter, including private terminals, transfers and local planning considerations. Find your airport and request an EXJET quote.",kicker:"Closer to your destination",kind:"hub",sections:[{heading:"Start with the destination address",paragraphs:["Compare the airport, the confirmed handling facility and the ground transfer. Airport conditions and aircraft suitability require the operating carrier’s current review; these are passenger planning guides."],links:[{label:"Dallas Love Field and Addison comparison",path:"/private-jet-charter/dallas"}]}],items:airports.map(page=>page.path),collectionTitle:"Know your arrival."},
+  {path:"/destinations",title:"Business jet charter destinations",seoTitle:"Private Jet Charter Destinations & Travel Planning | EXJET",description:"Plan aircraft charter to mountain and coastal destinations. Connect airport choices, baggage and transfers, then request a complete itinerary proposal from EXJET.",kicker:"A city. Your own itinerary.",kind:"hub",sections:[{heading:"Plan around the actual stay",paragraphs:["Share the resort, residence or meeting address, your fixed commitments and the flexibility in your schedule. Then compare the flight and the ground journey together."],links:[{label:"Dallas charter hub",path:"/private-jet-charter/dallas"},{label:"New York airport planning",path:"/airports/kteb"},{label:"Los Angeles airport planning",path:"/airports/kvny"},{label:"Miami airport planning",path:"/airports/kopf"}]}],items:additional.filter(page=>page.kind==="destination").map(page=>page.path),collectionTitle:"Destinations to explore."},
+  {path:"/aircraft-comparisons",title:"Business jet aircraft comparisons",seoTitle:"Business Jet Charter Aircraft Comparisons | EXJET",description:"Compare charter aircraft by mission, cabin requirements and complete-trip value. Explore Challenger, Citation, Gulfstream and Global comparisons with EXJET.",kicker:"Choose with context",kind:"hub",sections:[],items:additional.filter(page=>page.kind==="comparison").map(page=>page.path),collectionTitle:"Compare the aircraft."},
 ];
-export const contentPages:ContentPage[]=[...hubs,...articles,...airports,...routes,...services,...policies];
-export function getContentPage(path:string){return contentPages.find(page=>page.path===path.replace(/\/$/,""));}
-export const articlePaths=articles.map(page=>page.path);
-export const routePaths=routes.map(page=>page.path);
+export const contentPages: ContentPage[] = [...hubs,...articles,...airports,...routes,...services,...policies,...additional];
+export function getContentPage(path:string) { return contentPages.find(page=>page.path===path.replace(/\/$/,"")); }
+export const articlePaths = allArticles.map(page=>page.path);
+export const routePaths = routes.map(page=>page.path);

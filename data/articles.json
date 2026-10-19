@@ -39,6 +39,26 @@
           "Before accepting, understand payment timing, passenger-requested cancellation charges, and how aircraft substitutions or disruption would be handled. Ask what happens if a meeting finishes late or a passenger is added. Keep the accepted itinerary, price, and applicable terms together so that subsequent changes have a clear reference.",
           "The strongest comparison is one you can explain in a few sentences: what you are buying, who will provide the flight, what is included, and which decisions could affect the final amount."
         ]
+      },
+      {
+        "heading": "Plan your next step",
+        "paragraphs": [
+          "Use these related resources to turn the information into a specific itinerary and a written proposal."
+        ],
+        "links": [
+          {
+            "label": "Charter cost guide",
+            "path": "/pricing"
+          },
+          {
+            "label": "Operator review and safety",
+            "path": "/safety"
+          },
+          {
+            "label": "Request a charter quote",
+            "path": "/charter"
+          }
+        ]
       }
     ],
     "sources": [
@@ -66,15 +86,22 @@
       "width": 1920,
       "height": 1280,
       "caption": "Dassault Falcon 2000LXS cabin. Seating and amenities vary by aircraft."
-    }
+    },
+    "seoTitle": "What is included in a private jet charter quote? | EXJET"
   },
   {
     "slug": "empty-leg-flights-explained",
     "title": "Empty legs: understand the opportunity and the limits",
-    "description": "How empty-leg flights work, what to confirm before booking, and why route flexibility and a backup plan matter.",
+    "description": "How empty-leg flights work, what to confirm before booking, and why route flexibility and a backup plan matter. Explore the guide and discuss your itinerary with EXJET.",
     "category": "Empty legs",
     "readTime": "3 min read",
     "sections": [
+      {
+        "heading": "What is an empty leg flight?",
+        "paragraphs": [
+          "An empty leg is an aircraft repositioning without its primary passengers. When offered for charter, it may provide an opportunity to use that specific route and time window; availability depends on the underlying schedule."
+        ]
+      },
       {
         "heading": "A flight created by aircraft positioning",
         "paragraphs": [
@@ -109,6 +136,26 @@
           "The price does not change the need to identify an authorized operator. Use the FAA's charter resources for U.S. operator and aircraft checks. For brokered flights, request the relevant DOT disclosures and retain the accepted terms.",
           "Treat an online listing as an opportunity to investigate until its availability and booking status are confirmed in writing. If the itinerary only works with an exact arrival time and no practical alternative, explain that requirement before considering an empty leg. A clear brief makes the tradeoff visible before you pay."
         ]
+      },
+      {
+        "heading": "Plan your next step",
+        "paragraphs": [
+          "Use these related resources to turn the information into a specific itinerary and a written proposal."
+        ],
+        "links": [
+          {
+            "label": "Charter cost guide",
+            "path": "/pricing"
+          },
+          {
+            "label": "Operator review and safety",
+            "path": "/safety"
+          },
+          {
+            "label": "Request a charter quote",
+            "path": "/charter"
+          }
+        ]
       }
     ],
     "sources": [
@@ -136,12 +183,14 @@
       "width": 1920,
       "height": 1080,
       "caption": "Citation CJ3 Gen3 in flight. Representative aircraft; availability is confirmed for each trip."
-    }
+    },
+    "seoTitle": "Empty legs: understand the opportunity and the limits | EXJET",
+    "updated": "2026-10-17"
   },
   {
     "slug": "choosing-a-private-charter-aircraft",
     "title": "Choose the aircraft around the journey",
-    "description": "Assess passengers, baggage, cabin layout, range, and airport requirements together when choosing a private charter aircraft.",
+    "description": "Compare private charter aircraft by passengers, baggage, range and cabin needs. Build a practical shortlist and request a tailored quote from EXJET.",
     "category": "Aircraft guides",
     "readTime": "3 min read",
     "sections": [
@@ -179,6 +228,26 @@
           "Nonstop preference and tolerance for a fuel stop.",
           "Current cabin photographs and the offered seating layout."
         ]
+      },
+      {
+        "heading": "Plan your next step",
+        "paragraphs": [
+          "Use these related resources to turn the information into a specific itinerary and a written proposal."
+        ],
+        "links": [
+          {
+            "label": "Charter cost guide",
+            "path": "/pricing"
+          },
+          {
+            "label": "Operator review and safety",
+            "path": "/safety"
+          },
+          {
+            "label": "Request a charter quote",
+            "path": "/charter"
+          }
+        ]
       }
     ],
     "sources": [
@@ -206,7 +275,8 @@
       "width": 2000,
       "height": 1334,
       "caption": "Citation Latitude cabin. Seating and amenities vary by aircraft."
-    }
+    },
+    "seoTitle": "Choose the aircraft around the journey | EXJET"
   },
   {
     "slug": "first-private-charter-checklist",
@@ -249,6 +319,26 @@
           "Tell the booking contact promptly if your plans change.",
           "Listen to the crew's safety briefing and follow their instructions."
         ]
+      },
+      {
+        "heading": "Plan your next step",
+        "paragraphs": [
+          "Use these related resources to turn the information into a specific itinerary and a written proposal."
+        ],
+        "links": [
+          {
+            "label": "Charter cost guide",
+            "path": "/pricing"
+          },
+          {
+            "label": "Operator review and safety",
+            "path": "/safety"
+          },
+          {
+            "label": "Request a charter quote",
+            "path": "/charter"
+          }
+        ]
       }
     ],
     "sources": [
@@ -276,7 +366,8 @@
       "width": 952,
       "height": 613,
       "caption": "Dassault Falcon 8X over the coast. Representative aircraft; availability is confirmed for each trip."
-    }
+    },
+    "seoTitle": "Your first private charter: a practical checklist | EXJET"
   },
   {
     "slug": "private-charter-for-executive-assistants",
@@ -319,6 +410,26 @@
           "Who receives updates during travel?",
           "What is the practical alternative if plans are disrupted?"
         ]
+      },
+      {
+        "heading": "Plan your next step",
+        "paragraphs": [
+          "Use these related resources to turn the information into a specific itinerary and a written proposal."
+        ],
+        "links": [
+          {
+            "label": "Charter cost guide",
+            "path": "/pricing"
+          },
+          {
+            "label": "Operator review and safety",
+            "path": "/safety"
+          },
+          {
+            "label": "Request a charter quote",
+            "path": "/charter"
+          }
+        ]
       }
     ],
     "sources": [
@@ -346,7 +457,8 @@
       "width": 2000,
       "height": 1334,
       "caption": "Citation CJ4 Gen2 cabin workspace. Equipment varies by aircraft."
-    }
+    },
+    "seoTitle": "Private charter planning for executive assistants | EXJET"
   },
   {
     "slug": "private-charter-versus-jet-cards",
@@ -388,6 +500,26 @@
           "Confirm aircraft suitability and operating-carrier information.",
           "Keep current program documents with the comparison."
         ]
+      },
+      {
+        "heading": "Plan your next step",
+        "paragraphs": [
+          "Use these related resources to turn the information into a specific itinerary and a written proposal."
+        ],
+        "links": [
+          {
+            "label": "Charter cost guide",
+            "path": "/pricing"
+          },
+          {
+            "label": "Operator review and safety",
+            "path": "/safety"
+          },
+          {
+            "label": "Request a charter quote",
+            "path": "/charter"
+          }
+        ]
       }
     ],
     "sources": [
@@ -419,7 +551,8 @@
       "width": 2000,
       "height": 959,
       "caption": "Citation Latitude in flight. Representative aircraft; availability is confirmed for each trip."
-    }
+    },
+    "seoTitle": "On-demand charter or a jet card? Compare the terms | EXJET"
   },
   {
     "slug": "flying-private-with-children",
@@ -462,6 +595,26 @@
           "For international travel, confirm passport, visa, entry, and consent requirements for each child and each country on the itinerary. Rules can differ when a minor travels with one parent, another adult, or without a parent. Review official destination guidance early and carry the requested original documents.",
           "Send passenger information only through the method requested by the operator or broker. A family itinerary contains sensitive personal information; keep distribution limited to the people who need it for the flight."
         ]
+      },
+      {
+        "heading": "Plan your next step",
+        "paragraphs": [
+          "Use these related resources to turn the information into a specific itinerary and a written proposal."
+        ],
+        "links": [
+          {
+            "label": "Charter cost guide",
+            "path": "/pricing"
+          },
+          {
+            "label": "Operator review and safety",
+            "path": "/safety"
+          },
+          {
+            "label": "Request a charter quote",
+            "path": "/charter"
+          }
+        ]
       }
     ],
     "sources": [
@@ -489,7 +642,8 @@
       "width": 1920,
       "height": 1281,
       "caption": "Dassault Falcon 6X cabin. The operator confirms the seating configuration and approved child-restraint plan for each flight."
-    }
+    },
+    "seoTitle": "Flying private with children: plan the cabin around your family | EXJET"
   },
   {
     "slug": "private-jet-travel-with-pets",
@@ -525,6 +679,26 @@
           "Confirm cabin restraint and carrier expectations.",
           "Coordinate animal-friendly ground transportation."
         ]
+      },
+      {
+        "heading": "Plan your next step",
+        "paragraphs": [
+          "Use these related resources to turn the information into a specific itinerary and a written proposal."
+        ],
+        "links": [
+          {
+            "label": "Charter cost guide",
+            "path": "/pricing"
+          },
+          {
+            "label": "Operator review and safety",
+            "path": "/safety"
+          },
+          {
+            "label": "Request a charter quote",
+            "path": "/charter"
+          }
+        ]
       }
     ],
     "sources": [
@@ -545,12 +719,13 @@
       "flying-private-with-children",
       "planning-a-multigenerational-family-charter",
       "choosing-a-private-charter-aircraft"
-    ]
+    ],
+    "seoTitle": "Private jet travel with pets: prepare the complete itinerary | EXJET"
   },
   {
     "slug": "planning-a-multigenerational-family-charter",
     "title": "Planning a multigenerational family charter",
-    "description": "Choose the aircraft and itinerary around children, older travelers, accessibility, baggage, privacy, and the ground journey.",
+    "description": "Plan a private charter for several generations with practical advice on seating, baggage, mobility and transfers. Discuss your family itinerary with EXJET.",
     "category": "Family travel",
     "readTime": "4 min read",
     "sections": [
@@ -588,6 +763,26 @@
           "Name one person to approve the itinerary and one backup contact. Send sensitive documents through the requested secure channel and avoid distributing passports or health information in a broad family message.",
           "If the passenger list, accessibility requirement, or baggage changes, tell the advisor promptly. A small change can affect seating, handling, or the aircraft assessment, and the operator needs the current facts before departure."
         ]
+      },
+      {
+        "heading": "Plan your next step",
+        "paragraphs": [
+          "Use these related resources to turn the information into a specific itinerary and a written proposal."
+        ],
+        "links": [
+          {
+            "label": "Charter cost guide",
+            "path": "/pricing"
+          },
+          {
+            "label": "Operator review and safety",
+            "path": "/safety"
+          },
+          {
+            "label": "Request a charter quote",
+            "path": "/charter"
+          }
+        ]
       }
     ],
     "sources": [
@@ -615,7 +810,8 @@
       "width": 2000,
       "height": 1333,
       "caption": "Dassault Falcon 8X dining area. The cabin layout must be confirmed for the aircraft offered."
-    }
+    },
+    "seoTitle": "Planning a multigenerational family charter | EXJET"
   },
   {
     "slug": "gulfstream-g550-vs-boeing-bbj1-ownership",
@@ -665,6 +861,26 @@
           "Stress-test downtime, substitute lift, and resale assumptions.",
           "Obtain specialist legal, tax, technical, and operational advice."
         ]
+      },
+      {
+        "heading": "Plan your next step",
+        "paragraphs": [
+          "Use these related resources to turn the information into a specific itinerary and a written proposal."
+        ],
+        "links": [
+          {
+            "label": "Charter cost guide",
+            "path": "/pricing"
+          },
+          {
+            "label": "Operator review and safety",
+            "path": "/safety"
+          },
+          {
+            "label": "Request a charter quote",
+            "path": "/charter"
+          }
+        ]
       }
     ],
     "sources": [
@@ -689,7 +905,8 @@
       "charter-vs-aircraft-ownership-for-a-family-office",
       "choosing-a-private-charter-aircraft",
       "private-charter-versus-jet-cards"
-    ]
+    ],
+    "seoTitle": "Gulfstream G550 vs. Boeing BBJ1: an ownership decision | EXJET"
   },
   {
     "slug": "charter-vs-aircraft-ownership-for-a-family-office",
@@ -732,6 +949,26 @@
           "Budget substitute lift before it is needed.",
           "Revisit the analysis when the mission changes."
         ]
+      },
+      {
+        "heading": "Plan your next step",
+        "paragraphs": [
+          "Use these related resources to turn the information into a specific itinerary and a written proposal."
+        ],
+        "links": [
+          {
+            "label": "Charter cost guide",
+            "path": "/pricing"
+          },
+          {
+            "label": "Operator review and safety",
+            "path": "/safety"
+          },
+          {
+            "label": "Request a charter quote",
+            "path": "/charter"
+          }
+        ]
       }
     ],
     "sources": [
@@ -752,6 +989,7 @@
       "gulfstream-g550-vs-boeing-bbj1-ownership",
       "private-charter-versus-jet-cards",
       "understanding-a-private-jet-charter-quote"
-    ]
+    ],
+    "seoTitle": "Charter or aircraft ownership for a family office? | EXJET"
   }
 ]
