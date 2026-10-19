@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import { ContentSections, ContentFaq } from "@/components/ContentSections";
+import aircraftGuides from "@/data/aircraft-guides.json";
 import { AircraftDetail } from "@/components/AircraftDetail";
 import { ButtonLink } from "@/components/ButtonLink";
 import { SectionIntro } from "@/components/SectionIntro";
@@ -19,8 +21,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   if (!item) return {};
   return buildDynamicMetadata({
     path: `/aircraft/${item.slug}`,
-    title: `${item.name} Charter Aircraft | EXJET`,
-    description: `${item.name} charter access through EXJET. ${item.summary}`,
+    title: `${item.name} Charter: Cost & Cabin Guide | EXJET`,
+    description: aircraftGuides[slug as keyof typeof aircraftGuides]?.description ?? item.summary,
     image: item.image,
   });
 }
@@ -30,6 +32,7 @@ export default async function AircraftDetailPage({ params }: PageProps) {
   const item = getAircraft(slug);
   if (!item) notFound();
 
+  const guide = aircraftGuides[slug as keyof typeof aircraftGuides];
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -56,6 +59,11 @@ export default async function AircraftDetailPage({ params }: PageProps) {
           <ButtonLink href={`/contact?aircraft=${item.slug}`}>Request this aircraft</ButtonLink>
         </div>
       </section>
+      {guide ? <div className="ex-editorial"><div className="ex-container"><div className="ex-reading">
+        <ContentSections sections={guide.sections} />
+        <ContentFaq faqs={guide.faqs} />
+        {guide.sources.length ? <section className="ex-sources"><h2>Manufacturer references</h2><ul>{guide.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul></section> : null}
+      </div></div></div> : null}
     </>
   );
 }
