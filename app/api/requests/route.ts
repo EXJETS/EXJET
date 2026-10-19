@@ -1,3 +1,4 @@
+import { readObject, intakeError, notPastAnywhere, createRateLimit } from "@/lib/request";
 import { createAvinodeLead, avinodeStatus, resolveAvinodeAirport } from "@/integration/avinode/client";
 import { siteConfig } from "@/data/site";
 
@@ -26,7 +27,7 @@ type IntakeRequest = {
 
 type DispatchResult = { provider: string; ok: boolean };
 
-const attempts = new Map<string, number[]>();
+const throttled = createRateLimit();
 
 function clean(value: unknown, max = 500) {
   return typeof value === "string" ? value.replace(/[\u0000-\u001f\u007f]/g, " ").trim().slice(0, max) : "";
@@ -74,24 +75,14 @@ function parseRequest(value: unknown): IntakeRequest | null {
     website: clean(raw.website, 120) || undefined,
   };
 
-  const dateValid = /^\d{4}-\d{2}-\d{2}$/.test(submittedDate) && !Number.isNaN(Date.parse(`${submittedDate}T12:00:00Z`));
+  const dateValid = notPastAnywhere(submittedDate);
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(parsed.email);
   const phoneValid = parsed.phone.replace(/\D/g, "").length >= 7;
   const missionValid = parsed.departure.length >= 2 && parsed.destination.length >= 2 && dateValid;
-  const today = new Date().toISOString().slice(0, 10);
-  const dateNotPast = submittedDate >= today;
+  const dateNotPast = dateValid;
   if (parsed.mode === "charter" && parsed.passengers && parsed.passengers > 18) parsed.mode = "group";
-  const modeValid = parsed.mode === "cargo" ? Boolean(parsed.cargoType) : Boolean(parsed.passengers && parsed.passengers >= 1 && parsed.passengers <= 100);
+  const modeValid = parsed.mode === "cargo" ? Boolean(parsed.cargoType) : Boolean(parsed.passengers && Number.isInteger(parsed.passengers) && parsed.passengers >= 1 && parsed.passengers <= 100);
   return missionValid && dateNotPast && modeValid && parsed.name.length >= 2 && emailValid && phoneValid ? parsed : null;
-}
-
-function throttled(request: Request) {
-  const forwarded = request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() || "unknown";
-  const now = Date.now();
-  const recent = (attempts.get(forwarded) ?? []).filter((timestamp) => now - timestamp < 10 * 60_000);
-  recent.push(now);
-  attempts.set(forwarded, recent);
-  return recent.length > 8;
 }
 
 function deskFor(mode: RequestMode) {
@@ -233,14 +224,8 @@ async function sendAvinode(input: IntakeRequest, id: string): Promise<DispatchRe
 export async function POST(request: Request) {
   if (throttled(request)) return Response.json({ error: "Too many requests. Please call EXJET for immediate assistance." }, { status: 429 });
 
-  let body: unknown;
-  try {
-    const raw = await request.text();
-    if (raw.length > 24_000) return Response.json({ error: "Request is too large." }, { status: 413 });
-    body = JSON.parse(raw);
-  } catch {
-    return Response.json({ error: "Invalid request." }, { status: 400 });
-  }
+  let body: Record<string, unknown>;
+  try { body = await readObject(request); } catch (error) { return intakeError(error); }
 
   const input = parseRequest(body);
   if (!input) return Response.json({ error: "Please review the required trip and contact details." }, { status: 400 });
