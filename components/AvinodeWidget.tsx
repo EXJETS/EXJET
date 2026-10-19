@@ -1,6 +1,10 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { siteConfig } from "@/data/site";
+import { ArrowCounterClockwiseIcon } from "@phosphor-icons/react/dist/csr/ArrowCounterClockwise";
+import { PhoneIcon } from "@phosphor-icons/react/dist/csr/Phone";
+import { EnvelopeIcon } from "@phosphor-icons/react/dist/csr/Envelope";
 import styles from "./AvinodeWidget.module.css";
 
 type WidgetStatus = "loading" | "loaded" | "slow" | "error";
@@ -46,7 +50,9 @@ export function AvinodeWidget({ compact = false }: { compact?: boolean }) {
         <div className={styles.status} role="status">
           <p>{status === "error" ? "Aircraft search couldn’t load." : "Aircraft search is taking longer to load."}</p>
           <div className={styles.actions}>
-            <button type="button" onClick={retry}>Reload search</button>
+            <button type="button" onClick={retry}><ArrowCounterClockwiseIcon size={18} aria-hidden="true" /> Reload search</button>
+            <a href={siteConfig.phone.primary.href}><PhoneIcon size={18} aria-hidden="true" /> Call EXJET</a>
+            <a href={`mailto:${siteConfig.email.charter}`}><EnvelopeIcon size={18} aria-hidden="true" /> Email your itinerary</a>
           </div>
         </div>
       )}
@@ -59,7 +65,7 @@ export function AvinodeWidget({ compact = false }: { compact?: boolean }) {
         style={{ height }}
         onError={() => setStatus("error")}
       />
-      <noscript><p className={styles.status}>Enable JavaScript to search aircraft, or contact EXJET to plan your flight.</p></noscript>
+      <noscript><p className={styles.status}>Enable JavaScript to search aircraft, or <a href={siteConfig.phone.primary.href}>call EXJET</a> to plan your flight.</p></noscript>
     </section>
   );
 }

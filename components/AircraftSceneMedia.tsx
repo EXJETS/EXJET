@@ -1,6 +1,9 @@
 "use client";
 
-import { TouchEvent, useEffect, useMemo, useState } from "react";
+import { TouchEvent, useMemo, useState } from "react";
+import Image from "next/image";
+import { ArrowLeftIcon } from "@phosphor-icons/react/dist/csr/ArrowLeft";
+import { ArrowRightIcon } from "@phosphor-icons/react/dist/csr/ArrowRight";
 import { AircraftScene } from "@/data/aircraft";
 
 type AircraftSceneMediaProps = {
@@ -28,16 +31,6 @@ export function AircraftSceneMedia({ aircraftName, scene, priority = false }: Ai
   );
   const [activeIndex, setActiveIndex] = useState(0);
   const [touchStart, setTouchStart] = useState<number | null>(null);
-
-  useEffect(() => {
-    if (media.length < 2 || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-    const timer = window.setInterval(() => {
-      setActiveIndex((current) => (current + 1) % media.length);
-    }, 5200);
-
-    return () => window.clearInterval(timer);
-  }, [media.length, scene.id, aircraftName]);
 
   const previous = () => setActiveIndex((current) => (current - 1 + media.length) % media.length);
   const next = () => setActiveIndex((current) => (current + 1) % media.length);
@@ -69,7 +62,9 @@ export function AircraftSceneMedia({ aircraftName, scene, priority = false }: Ai
         onTouchEnd={onTouchEnd}
       >
         {active.portraitImage ? <source media="(max-width: 820px)" srcSet={active.portraitImage} /> : null}
-        <img
+        <Image
+          fill
+          sizes="(max-width: 1200px) 100vw, 1200px"
           src={active.image}
           alt={active.alt ?? `${aircraftName} ${scene.label.toLowerCase()} view`}
           loading={priority ? "eager" : "lazy"}
@@ -83,9 +78,9 @@ export function AircraftSceneMedia({ aircraftName, scene, priority = false }: Ai
       </picture>
       {media.length > 1 ? (
         <div className="aircraft-scene-carousel" aria-label={`${scene.label} image controls`}>
-          <button type="button" onClick={previous} aria-label={`Previous ${scene.label.toLowerCase()} image`}>←</button>
+          <button type="button" onClick={previous} aria-label={`Previous ${scene.label.toLowerCase()} image`}><ArrowLeftIcon size={20} aria-hidden="true" /></button>
           <span aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / {String(media.length).padStart(2, "0")}</span>
-          <button type="button" onClick={next} aria-label={`Next ${scene.label.toLowerCase()} image`}>→</button>
+          <button type="button" onClick={next} aria-label={`Next ${scene.label.toLowerCase()} image`}><ArrowRightIcon size={20} aria-hidden="true" /></button>
         </div>
       ) : null}
     </>
