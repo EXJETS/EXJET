@@ -1,20 +1,20 @@
+import { readObject, intakeError, createRateLimit } from "@/lib/request";
 import { createAvinodeEmptyLegLead, avinodeStatus } from "@/integration/avinode/client";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
+
+const throttled = createRateLimit(12);
 
 function clean(value: unknown, max = 500) {
   return typeof value === "string" ? value.replace(/[\u0000-\u001f\u007f]/g, " ").trim().slice(0, max) : "";
 }
 
 export async function POST(request: Request) {
-  if (!avinodeStatus().enabled) return Response.json({ error: "Live availability is not configured." }, { status: 503 });
+  if (throttled(request)) return Response.json({ error: "Too many requests. Please try again later or contact EXJET." }, { status: 429, headers: { "Retry-After": "600", "Cache-Control": "no-store" } });
+  if (!avinodeStatus().enabled) return Response.json({ error: "Online availability is unavailable. Please call or email EXJET for current options." }, { status: 503 });
   let raw: Record<string, unknown>;
-  try {
-    raw = await request.json() as Record<string, unknown>;
-  } catch {
-    return Response.json({ error: "Invalid request." }, { status: 400 });
-  }
+  try { raw = await readObject(request); } catch (error) { return intakeError(error); }
 
   const searchId = clean(raw.searchId, 80);
   const emptyLegId = clean(raw.emptyLegId, 80);
