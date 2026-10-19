@@ -11,7 +11,7 @@ export default function ContactPage() {
   return (
     <>
       <StructuredData data={localBusinessJsonLd()} />
-      <PageHero eyebrow="Contact EXJET" title={<>Let’s plan<br /><em>what’s next.</em></>} copy="Share the route and timing. An EXJET advisor is available 24/7 to coordinate passenger and cargo charter requests." />
+      <PageHero heading="Contact EXJET for a charter quote" eyebrow="Contact EXJET" title={<>Let’s plan<br /><em>what’s next.</em></>} copy="Share the route and timing. An EXJET advisor is available 24/7 to coordinate passenger and cargo charter requests." />
       <section className="section contact-section">
         <div className="shell contact-layout">
           <QuoteForm />
