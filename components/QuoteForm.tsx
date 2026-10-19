@@ -138,6 +138,8 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
       if (form.departure.trim().toLowerCase() === form.destination.trim().toLowerCase()) {
         setStatus("error"); setMessage("Choose different origin and destination airports."); return;
       }
+      const fields = new FormData(event.currentTarget);
+      setForm(current => ({ ...current, date: String(fields.get("date") ?? current.date), cargoType: String(fields.get("cargoType") ?? current.cargoType), passengers: String(fields.get("passengers") ?? current.passengers) }));
       setStatus("idle");
       setStage("contact");
       window.setTimeout(() => formRef.current?.querySelector<HTMLInputElement>('input[name="name"]')?.focus(), 0);
@@ -166,7 +168,7 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
   };
 
   const subject = mode === "cargo" ? "Cargo charter request" : mode === "group" ? "Group charter request" : "Private charter request";
-  const fallbackBody = `${subject}\nFrom: ${form.departure}\nTo: ${form.destination}\nDate: ${form.date}\nName: ${form.name}\nMobile: ${form.phone}\nEmail: ${form.email}\nNotes: ${form.notes}`;
+  const fallbackBody = `${subject}\nFrom: ${form.departure}\nTo: ${form.destination}\nDate: ${form.date}\nCargo: ${form.cargoType}\nName: ${form.name}\nMobile: ${form.phone}\nEmail: ${form.email}\nNotes: ${form.notes}`;
   const notesLabel = mode === "cargo" ? "Shipment details" : mode === "group" ? "Group details" : "Anything else we should know?";
   const notesPlaceholder = mode === "cargo"
     ? "Dimensions, weight, handling requirements, timing, permits..."
