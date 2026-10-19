@@ -1,3 +1,4 @@
+import { ContentCollection } from "@/components/EditorialPage";
 import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
 import { QuoteForm } from "@/components/QuoteForm";
@@ -17,7 +18,7 @@ const missions = [
 export default function GroupCharterPage() {
   return (
     <>
-      <PageHero
+      <PageHero heading="Group air charter for teams and events"
         dark
         image="/images/editorial/falcon-8x-dining-area.jpg"
         imageAlt="Dassault Falcon 8X dining cabin, representative of small-group private jet travel"
@@ -69,6 +70,7 @@ export default function GroupCharterPage() {
           </div>
         </div>
       </section>
+      <ContentCollection paths={["/group-charter/sports-teams", "/group-charter/corporate-teams"]} title="Plan for your group." description="Build a brief around the people, equipment and schedule." showImages={false} />
     </>
   );
 }
