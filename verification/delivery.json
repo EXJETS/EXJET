@@ -1,0 +1,20 @@
+{
+  "redirects": [
+    {
+      "path": "/airports/kpbi/",
+      "status": 301,
+      "location": "/airports/kdjt/"
+    },
+    {
+      "path": "/citation-latitude/",
+      "status": 301,
+      "location": "/aircraft/citation-latitude/"
+    }
+  ],
+  "logo": {
+    "status": 200,
+    "type": "image/webp",
+    "bytes": 1368,
+    "originalBytes": 330133
+  }
+}

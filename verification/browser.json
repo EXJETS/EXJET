@@ -1,0 +1,306 @@
+[
+  {
+    "path": "/",
+    "width": 1440,
+    "status": 200,
+    "title": "Private Jet Charter & Business Aviation | EXJET Dallas",
+    "h1": [
+      "Private jet charter & business aviation"
+    ],
+    "horizontalOverflow": false,
+    "failedImages": [],
+    "imageBytes": [
+      {
+        "name": "?url=%2Fimages%2Fmanufacturers%2Flatitude-header-new.jpg&w=1200&q=75",
+        "bytes": 39533
+      },
+      {
+        "name": "?url=%2Fimages%2Fmanufacturers%2Ffalcon-900lx-flight.jpg&w=1200&q=75",
+        "bytes": 35154
+      },
+      {
+        "name": "?url=%2Fimages%2Feditorial%2Ffalcon-6x-club-seating.jpg&w=1200&q=75",
+        "bytes": 36674
+      }
+    ],
+    "logo": [
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 36,
+        "naturalWidth": 48
+      },
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 96,
+        "naturalWidth": 48
+      }
+    ],
+    "menuWorks": true,
+    "errors": []
+  },
+  {
+    "path": "/pricing/",
+    "width": 1440,
+    "status": 200,
+    "title": "Private Jet Charter Cost & Hourly Pricing Guide | EXJET",
+    "h1": [
+      "Private jet charter cost and pricing"
+    ],
+    "horizontalOverflow": false,
+    "failedImages": [],
+    "imageBytes": [],
+    "logo": [
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 36,
+        "naturalWidth": 48
+      },
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 96,
+        "naturalWidth": 48
+      }
+    ],
+    "faqWorks": true,
+    "errors": []
+  },
+  {
+    "path": "/group-charter/",
+    "width": 1440,
+    "status": 200,
+    "title": "Group Air Charter Services | EXJET",
+    "h1": [
+      "Group air charter for teams and events"
+    ],
+    "horizontalOverflow": false,
+    "failedImages": [],
+    "imageBytes": [
+      {
+        "name": "exjet-guide-mark.svg",
+        "bytes": 0
+      }
+    ],
+    "logo": [
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 36,
+        "naturalWidth": 48
+      },
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 96,
+        "naturalWidth": 48
+      }
+    ],
+    "errors": []
+  },
+  {
+    "path": "/aircraft/challenger-350/",
+    "width": 1440,
+    "status": 200,
+    "title": "Challenger 350 Charter: Cost & Cabin Guide | EXJET",
+    "h1": [
+      "Challenger 350 charter"
+    ],
+    "horizontalOverflow": false,
+    "failedImages": [],
+    "imageBytes": [
+      {
+        "name": "challenger-350-flight.jpg",
+        "bytes": 1659863
+      },
+      {
+        "name": "exjet-guide-mark.svg",
+        "bytes": 0
+      }
+    ],
+    "logo": [
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 36,
+        "naturalWidth": 48
+      },
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 96,
+        "naturalWidth": 48
+      }
+    ],
+    "errors": []
+  },
+  {
+    "path": "/routes/dallas-to-cabo/",
+    "width": 1440,
+    "status": 200,
+    "title": "Dallas to Cabo Private Jet Charter: Cost & Time | EXJET",
+    "h1": [
+      "Dallas to Cabo private jet charter"
+    ],
+    "horizontalOverflow": false,
+    "failedImages": [],
+    "imageBytes": [
+      {
+        "name": "exjet-guide-mark.svg",
+        "bytes": 0
+      }
+    ],
+    "logo": [
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 36,
+        "naturalWidth": 48
+      },
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 96,
+        "naturalWidth": 48
+      }
+    ],
+    "errors": []
+  },
+  {
+    "path": "/",
+    "width": 390,
+    "status": 200,
+    "title": "Private Jet Charter & Business Aviation | EXJET Dallas",
+    "h1": [
+      "Private jet charter & business aviation"
+    ],
+    "horizontalOverflow": false,
+    "failedImages": [],
+    "imageBytes": [
+      {
+        "name": "?url=%2Fimages%2Fmanufacturers%2Flatitude-header-new.jpg&w=640&q=75",
+        "bytes": 12129
+      },
+      {
+        "name": "?url=%2Fimages%2Fmanufacturers%2Ffalcon-900lx-flight.jpg&w=640&q=75",
+        "bytes": 14268
+      },
+      {
+        "name": "?url=%2Fimages%2Feditorial%2Ffalcon-6x-club-seating.jpg&w=640&q=75",
+        "bytes": 13895
+      }
+    ],
+    "logo": [
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 36,
+        "naturalWidth": 48
+      },
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 96,
+        "naturalWidth": 48
+      }
+    ],
+    "menuWorks": true,
+    "errors": []
+  },
+  {
+    "path": "/pricing/",
+    "width": 390,
+    "status": 200,
+    "title": "Private Jet Charter Cost & Hourly Pricing Guide | EXJET",
+    "h1": [
+      "Private jet charter cost and pricing"
+    ],
+    "horizontalOverflow": false,
+    "failedImages": [],
+    "imageBytes": [],
+    "logo": [
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 36,
+        "naturalWidth": 48
+      },
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 96,
+        "naturalWidth": 48
+      }
+    ],
+    "faqWorks": true,
+    "errors": []
+  },
+  {
+    "path": "/group-charter/",
+    "width": 390,
+    "status": 200,
+    "title": "Group Air Charter Services | EXJET",
+    "h1": [
+      "Group air charter for teams and events"
+    ],
+    "horizontalOverflow": false,
+    "failedImages": [],
+    "imageBytes": [],
+    "logo": [
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 36,
+        "naturalWidth": 48
+      },
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 96,
+        "naturalWidth": 48
+      }
+    ],
+    "errors": []
+  },
+  {
+    "path": "/aircraft/challenger-350/",
+    "width": 390,
+    "status": 200,
+    "title": "Challenger 350 Charter: Cost & Cabin Guide | EXJET",
+    "h1": [
+      "Challenger 350 charter"
+    ],
+    "horizontalOverflow": false,
+    "failedImages": [],
+    "imageBytes": [
+      {
+        "name": "challenger-350-flight.jpg",
+        "bytes": 1659863
+      }
+    ],
+    "logo": [
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 36,
+        "naturalWidth": 48
+      },
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 96,
+        "naturalWidth": 48
+      }
+    ],
+    "errors": []
+  },
+  {
+    "path": "/routes/dallas-to-cabo/",
+    "width": 390,
+    "status": 200,
+    "title": "Dallas to Cabo Private Jet Charter: Cost & Time | EXJET",
+    "h1": [
+      "Dallas to Cabo private jet charter"
+    ],
+    "horizontalOverflow": false,
+    "failedImages": [],
+    "imageBytes": [],
+    "logo": [
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 36,
+        "naturalWidth": 48
+      },
+      {
+        "url": "http://127.0.0.1:3010/_next/image/?url=%2Fbrand%2Fexjet-navbar-logo.png&w=48&q=75",
+        "width": 96,
+        "naturalWidth": 48
+      }
+    ],
+    "errors": []
+  }
+]
