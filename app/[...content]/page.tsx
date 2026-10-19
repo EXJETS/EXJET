@@ -5,5 +5,5 @@ import { buildDynamicMetadata } from "@/data/seo";
 type Props={params:Promise<{content:string[]}>};
 export const dynamicParams=false;
 export function generateStaticParams(){return contentPages.filter(page=>!["/privacy","/terms"].includes(page.path)).map(page=>({content:page.path.split("/").filter(Boolean)}));}
-export async function generateMetadata({params}:Props){const page=getContentPage("/"+(await params).content.join("/"));return page ? buildDynamicMetadata({path:page.path,title:`${page.title.replace(/\.$/,"")} | EXJET`,description:page.description,image:page.image?.src,noindex:page.noindex}):{};}
+export async function generateMetadata({params}:Props){const page=getContentPage("/"+(await params).content.join("/"));return page ? buildDynamicMetadata({path:page.path,title:page.seoTitle || `${page.title.replace(/\.$/,"")} | EXJET`,description:page.description,image:page.image?.src,noindex:page.noindex || page.draft,type:page.kind === "article" ? "article" : "website"}):{};}
 export default async function ContentRoute({params}:Props){const page=getContentPage("/"+(await params).content.join("/"));if(!page)notFound();return <EditorialPage page={page} />;}
