@@ -1,3 +1,4 @@
+import { ContentCollection } from "@/components/EditorialPage";
 import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
 import { QuoteForm } from "@/components/QuoteForm";
@@ -21,7 +22,7 @@ const freighters = [
 export default function CargoPage() {
   return (
     <>
-      <PageHero
+      <PageHero heading="Air cargo charter services"
         dark
         image="/images/cargo-charter-747.webp"
         imageAlt="Boeing 747 freighter being loaded on the apron at dusk"
@@ -80,6 +81,7 @@ export default function CargoPage() {
           </div>
         </div>
       </section>
+      <ContentCollection paths={["/cargo/dallas"]} title="Dallas cargo charter." description="Plan an urgent or specialist shipment from the Dallas–Fort Worth region." showImages={false} />
     </>
   );
 }
