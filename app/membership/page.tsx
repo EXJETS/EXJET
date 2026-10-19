@@ -9,7 +9,7 @@ export const metadata = buildMetadata("/membership", { noindex: true });
 
 export default function MembershipPage() {
   return <>
-    <PageHero dark eyebrow="EXJET membership" title={<>More continuity.<br /><em>Less friction.</em></>} copy="Annual flight-hour programs for clients who value defined access, familiar service, and one team that already understands how they travel.">
+    <PageHero heading="Aircraft charter membership" dark eyebrow="EXJET membership" title={<>More continuity.<br /><em>Less friction.</em></>} copy="Annual flight-hour programs for clients who value defined access, familiar service, and one team that already understands how they travel.">
       <ButtonLink href={`mailto:${siteConfig.email.charter}?subject=EXJET%20membership%20consultation`} variant="light">Talk with membership</ButtonLink>
     </PageHero>
     <section className="section membership-section">
