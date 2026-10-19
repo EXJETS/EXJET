@@ -9,7 +9,7 @@ export default function manifest(): MetadataRoute.Manifest {
     description: "Global private aircraft charter access, on demand.",
     start_url: "/",
     display: "standalone",
-    background_color: "#f4f4f2",
+    background_color: "#f4f4f4",
     theme_color: "#0b0c0e",
     icons: [{ src: "/icon.svg", sizes: "any", type: "image/svg+xml" }],
   };

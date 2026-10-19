@@ -27,7 +27,7 @@
 .ex-inline-link:hover{text-decoration:underline;text-underline-offset:4px}
 .ex-site-search{padding-bottom:72px}
 .ex-card-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
-.ex-card-grid:where(:has(>:nth-child(2)):not(:has(>:nth-child(3))),:has(>:nth-child(4)):not(:has(>:nth-child(5)))){grid-template-columns:repeat(2,minmax(0,1fr))}
+.ex-card-grid:has(> :nth-child(2)):not(:has(> :nth-child(3))), .ex-card-grid:has(> :nth-child(4)):not(:has(> :nth-child(5))) { grid-template-columns: repeat(2,minmax(0,1fr)); }
 .ex-card{display:flex;flex-direction:column;min-width:0;background:#f4f4f4;padding:28px;border-radius:18px;position:relative}
 .ex-section--silver .ex-card{background:white}
 .ex-card h2,.ex-card h3{font-size:1.5rem;font-weight:500;line-height:1.2;letter-spacing:-.02em;margin:12px 0}
