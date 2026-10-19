@@ -83,3 +83,17 @@
 .ex-card--photo{border-radius:12px}
 .ex-card--photo .ex-card-image{border-radius:12px 12px 0 0}
 @media(max-width:760px){.ex-card-grid:has(.ex-card--text){gap:0}.ex-card--text,.ex-section--silver .ex-card--text{padding:24px 0}.ex-card--text h3{max-width:25ch}.ex-feature-photo figcaption{padding-inline:20px}}
+
+/* Shared editorial tools: cost tables, route comparisons and visible FAQs. */
+.ex-table-scroll { max-width:100%; overflow-x:auto; margin:24px 0; border:1px solid #dedee2; border-radius:12px; }
+.ex-table-scroll:focus-visible { outline:2px solid #16181a; outline-offset:4px; }
+.ex-data-table { width:100%; border-collapse:collapse; text-align:left; font-size:.9375rem; line-height:1.5; }
+.ex-data-table caption { text-align:left; padding:16px; color:#5e646a; font-size:.875rem; background:#f6f6f6; }
+.ex-data-table th,.ex-data-table td { padding:14px 16px; border-bottom:1px solid #dedee2; vertical-align:top; min-width:130px; }
+.ex-data-table th { font-weight:500; }.ex-data-table thead { background:#f6f6f6; }.ex-data-table tr:last-child>* { border-bottom:0; }
+.ex-content-faq details { padding:18px 0; border-bottom:1px solid #dedee2; }.ex-content-faq summary { cursor:pointer; font-weight:500; line-height:1.6; }.ex-content-faq p { margin-bottom:0; }
+.ex-footer-address { color:#5e646a; font-size:.8125rem; font-style:normal; line-height:1.6; margin:16px 0; }
+.page-hero .page-hero__display { max-width:18ch; margin:0 auto; font-size:clamp(42px,5vw,64px); font-weight:500; line-height:1.08; letter-spacing:-.035em; text-wrap:balance; }
+.page-hero .page-hero__display em { font-style:normal; color:#5e646a; }
+.page-hero h1.page-hero__topic { max-width:54ch; margin:0 auto 14px; font-size:14px; font-weight:400; line-height:1.5; letter-spacing:0; color:#5e646a; }
+@media(max-width:760px) { .page-hero .page-hero__display { font-size:clamp(36px,10.25vw,42px); } .ex-data-table th,.ex-data-table td { padding:12px; } }

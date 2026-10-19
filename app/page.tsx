@@ -18,8 +18,8 @@ export default function Home() {
       <StructuredData data={localBusinessJsonLd()} />
       <section className={styles.hero} aria-labelledby="home-title">
         <div className={styles.heroContent}>
-          <p className={styles.eyebrow}>Private jet charter</p>
-          <h1 id="home-title">Global Access.<br /><span>On-Demand.</span></h1>
+          <h1 id="home-title" className={styles.eyebrow}>Private jet charter &amp; business aviation</h1>
+          <p className={styles.tagline}>Global Access.<br /><span>On-Demand.</span></p>
           <p className={styles.heroDescription}>EXJET simplifies business aviation through clear access, informed guidance, and service built around every journey.</p>
           <div className={styles.actions}>
             <Link className={styles.primaryAction} href="/charter">Find a flight</Link>
@@ -52,7 +52,8 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <ContentCollection paths={routePaths} title="Wherever comes next." description="A closer look at the airports and details behind your itinerary." silver />
+      <ContentCollection paths={routePaths.slice(0, 4)} title="Wherever comes next." description="A closer look at the airports and details behind your itinerary." silver />
+      <ContentCollection paths={["/private-jet-charter/dallas", "/pricing", "/safety"]} title="Plan with EXJET." description="Local airport choices, transparent cost planning and informed operator review." showImages={false} />
       <ContentCollection paths={articlePaths.slice(0, 3)} title="A clearer view of private aviation." description="The EXJET Flight Guide. Practical reading for the journey ahead." showImages={false} />
       <section className={styles.bookingSection} aria-labelledby="booking-title">
         <p className={styles.eyebrow}>Wherever comes next.</p>

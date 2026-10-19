@@ -26,7 +26,7 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const websiteSchema = { "@context": "https://schema.org", "@type": "WebSite", name: "EXJET", url: siteOrigin };
+  const websiteSchema = { "@context": "https://schema.org", "@type": "WebSite", name: "EXJET", url: siteOrigin, publisher: { "@id": siteOrigin + "/#organization" } };
   return (
     <html lang="en" data-scroll-behavior="smooth" className={process.env.NODE_ENV === "development" ? "ex-design-preview" : undefined}>
       <body>
