@@ -1,3 +1,4 @@
+import { readObject, intakeError, createRateLimit, notPastAnywhere } from "@/lib/request";
 import {
   avinodeStatus,
   resolveAvinodeAirport,
@@ -7,30 +8,28 @@ import {
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+const throttled = createRateLimit(12);
+
 function clean(value: unknown, max = 120) {
   return typeof value === "string" ? value.trim().slice(0, max) : "";
 }
 
 export async function POST(request: Request) {
+  if (throttled(request)) return Response.json({ error: "Too many requests. Please try again later or contact EXJET." }, { status: 429, headers: { "Retry-After": "600", "Cache-Control": "no-store" } });
   const status = avinodeStatus();
   if (!status.enabled) {
-    return Response.json({ error: "Live availability is not configured.", enabled: false }, { status: 503 });
+    return Response.json({ error: "Online availability is unavailable. Please call or email EXJET for current options.", enabled: false }, { status: 503 });
   }
 
   let raw: Record<string, unknown>;
-  try {
-    raw = await request.json() as Record<string, unknown>;
-  } catch {
-    return Response.json({ error: "Invalid search request." }, { status: 400 });
-  }
+  try { raw = await readObject(request); } catch (error) { return intakeError(error); }
 
   const departure = clean(raw.departure);
   const destination = clean(raw.destination);
   const date = clean(raw.date, 10);
   const passengers = Number(raw.passengers ?? 2);
   const flexibilityDays = Number(raw.flexibilityDays ?? 3);
-  const today = new Date().toISOString().slice(0, 10);
-  if ((!departure && !destination) || !/^\d{4}-\d{2}-\d{2}$/.test(date) || date < today || !Number.isFinite(passengers) || passengers < 1 || passengers > 100) {
+  if ((!departure && !destination) || !notPastAnywhere(date) || !Number.isInteger(passengers) || passengers < 1 || passengers > 100) {
     return Response.json({ error: "Enter at least one airport, a future date, and a valid passenger count." }, { status: 400 });
   }
 
