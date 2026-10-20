@@ -1,3 +1,4 @@
+import Image from "next/image";
 import Link from "next/link";
 import { Aircraft } from "@/data/aircraft";
 
@@ -10,7 +11,7 @@ export function AircraftCard({ item, index }: { item: Aircraft; index: number })
         {item.image ? (
           <picture>
             {item.portraitImage ? <source media="(max-width: 820px)" srcSet={item.portraitImage} /> : null}
-            <img src={item.image} alt={`${item.name} exterior`} loading="lazy" decoding="async" />
+            <Image src={item.image} alt={`${item.name} ${item.scenes.find(scene => scene.image === item.image)?.label.toLowerCase() ?? "aircraft"}`} fill sizes="(max-width: 820px) 100vw, 50vw" style={{objectFit: item.cardFit ?? "cover"}} />
           </picture>
         ) : (
           <div className="aircraft-card__placeholder">

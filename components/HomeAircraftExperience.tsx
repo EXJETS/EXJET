@@ -24,12 +24,12 @@ export function HomeAircraftExperience() {
 
   return (
     <div className="aircraft-experience">
-      <div className="aircraft-experience__rail" role="tablist" aria-label="Featured aircraft">
+      <div className="aircraft-experience__rail" role="group" aria-label="Featured aircraft">
         {options.map((item, index) => (
           <button
             type="button"
-            role="tab"
-            aria-selected={item.slug === selected.slug}
+            
+            aria-pressed={item.slug === selected.slug}
             className={item.slug === selected.slug ? "is-active" : ""}
             onClick={() => selectAircraft(item.slug)}
             key={item.slug}
@@ -62,12 +62,12 @@ export function HomeAircraftExperience() {
             {zoomed ? "Reset view" : "Inspect view"}
           </button>
         ) : null}
-        <div className="aircraft-experience__scenes" role="tablist" aria-label={`${selected.name} views`}>
+        <div className="aircraft-experience__scenes" role="group" aria-label={`${selected.name} views`}>
           {selected.scenes.map((item) => (
             <button
               type="button"
-              role="tab"
-              aria-selected={item.id === scene.id}
+              
+              aria-pressed={item.id === scene.id}
               className={item.id === scene.id ? "is-active" : ""}
               onClick={() => { setActiveScene(item.id); setZoomed(false); }}
               key={item.id}

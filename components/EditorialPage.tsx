@@ -17,7 +17,7 @@ export function ContentCard({ page, showImage = true }: { page: ContentPage; sho
 }
 
 export function ContentCollection({ paths, title, description, silver = false, showImages = true }: { paths: string[]; title: string; description?: string; silver?: boolean; showImages?: boolean }) {
-  const pages = paths.map(path => contentPages.find(page => page.path === path)).filter((page): page is ContentPage => Boolean(page));
+  const pages = [...new Set(paths)].map(path => contentPages.find(page => page.path === path)).filter((page): page is ContentPage => Boolean(page));
   if (!pages.length) return null;
   return <section className={`ex-section${silver ? " ex-section--silver" : ""}`}><div className="ex-container"><div className="ex-section-heading"><div><h2>{title}</h2>{description ? <p>{description}</p> : null}</div></div><div className="ex-card-grid">{pages.map(page => <ContentCard page={page} key={page.path} showImage={showImages} />)}</div></div></section>;
 }
@@ -46,7 +46,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
       {page.faqs ? <ContentFaq faqs={page.faqs} /> : null}
       {page.sources?.length ? <section className="ex-sources" aria-label="Sources"><h2>Sources & further reading</h2><ul>{page.sources.map(source=><li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul></section> : null}
     </div></div>
-    {page.related?.length ? <ContentCollection paths={page.related} title="Continue exploring." silver showImages={false} /> : null}
+    {page.related?.length ? <ContentCollection paths={page.related.filter(path => path !== page.path)} title="Continue exploring." silver showImages={false} /> : null}
     {page.kind!=="legal" ? <section className="ex-action-panel"><h2>Make it your itinerary.</h2><p>Tell EXJET where you’re going, who’s travelling, and what matters along the way.</p><Link href="/charter" className="button button--dark">Find a flight</Link><BrokerNotice /></section> : null}
   </div>;
 }

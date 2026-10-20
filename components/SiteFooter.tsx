@@ -6,8 +6,8 @@ import { CaretDownIcon } from "@phosphor-icons/react/dist/ssr";
 import { BrokerNotice } from "@/components/BrokerNotice";
 
 const groups = [
-  { title: "Fly with EXJET", links: [["Charter", "/charter"], ["Aircraft", "/aircraft"], ["Empty legs", "/empty-legs"], ["Group travel", "/group-charter"], ["Membership", "/membership"]] },
-  { title: "Explore", links: [["Flight Guide", "/articles"], ["Routes", "/routes"], ["Airports", "/airports"], ["Destinations", "/destinations"], ["Dallas charter", "/private-jet-charter/dallas"], ["Aircraft comparisons", "/aircraft-comparisons"], ["Glossary", "/glossary"], ["Charter pricing", "/pricing"]] },
+  { title: "Fly with EXJET", links: [["Charter", "/charter"], ["Aircraft", "/aircraft"], ["Empty legs", "/empty-legs"], ["Executive assistants", "/executive-assistants"], ["Family offices", "/family-office-private-aviation"], ["Group travel", "/group-charter"], ["Membership", "/membership"]] },
+  { title: "Explore", links: [["Flight Guide", "/articles"], ["Routes", "/routes"], ["Airports", "/airports"], ["Destinations", "/destinations"], ["Dallas charter", "/private-jet-charter/dallas"], ["Aircraft performance", "/aircraft-performance"], ["Aircraft comparisons", "/aircraft-comparisons"], ["Glossary", "/glossary"], ["Charter pricing", "/pricing"]] },
   { title: "EXJET", links: [["About", "/about"], ["Why EXJET", "/why-exjet"], ["Safety", "/safety"], ["Corporate travel", "/corporate-travel"], ["Aircraft sales", "/sales"], ["Cargo charter", "/cargo"], ["Contact", "/contact"]] },
 ];
 
