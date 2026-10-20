@@ -1,20 +1,17 @@
 {
   "mode": "production",
   "status": "PASS",
-  "html_pages_checked": 114,
+  "html_pages_checked": 139,
   "original_pages_preserved": 62,
-  "indexable_count": 99,
-  "sitemap_urls": 99,
+  "indexable_count": 127,
+  "sitemap_urls": 127,
   "noindex_pages": [
     "/account/",
-    "/aircraft-management/",
     "/cancellations/",
     "/charter-terms/",
     "/cookies/",
-    "/interior-completions/",
     "/membership/",
     "/privacy/",
-    "/sales/",
     "/sales/citation-m2/",
     "/sales/global-7500/",
     "/sales/phenom-300e/",
@@ -23,138 +20,22 @@
     "/terms/"
   ],
   "robots": "User-Agent: *\nAllow: /\n\nSitemap: https://www.exjet.com/sitemap.xml\n",
-  "http_status": {
-    "/aircraft/": 200,
-    "/safety/": 200,
-    "/membership/": 200,
-    "/sales/": 200,
-    "/privacy/": 200,
-    "/routes/": 200,
-    "/empty-legs/": 200,
-    "/glossary/": 200,
-    "/charter/": 200,
-    "/destinations/": 200,
-    "/search/": 200,
-    "/faq/": 200,
-    "/private-jet-charter/": 200,
-    "/charter-terms/": 200,
-    "/cookies/": 200,
-    "/airports/": 200,
-    "/accessibility/": 200,
-    "/contact/": 200,
-    "/corporate-travel/": 200,
-    "/terms/": 200,
-    "/pricing/": 200,
-    "/why-exjet/": 200,
-    "/articles/": 200,
-    "/interior-completions/": 200,
-    "/editorial-standards/": 200,
-    "/aircraft-comparisons/": 200,
-    "/group-charter/": 200,
-    "/guides/": 200,
-    "/cancellations/": 200,
-    "/about/": 200,
-    "/": 200,
-    "/aircraft-management/": 200,
-    "/cargo/": 200,
-    "/account/": 200,
-    "/routes/los-angeles-to-aspen/": 200,
-    "/routes/new-york-to-aspen/": 200,
-    "/routes/new-york-to-houston/": 200,
-    "/routes/los-angeles-to-vail/": 200,
-    "/routes/new-york-to-palm-beach/": 200,
-    "/routes/los-angeles-to-new-york/": 200,
-    "/routes/miami-to-chicago/": 200,
-    "/routes/dallas-to-houston/": 200,
-    "/routes/new-york-to-chicago/": 200,
-    "/routes/dallas-to-cabo/": 200,
-    "/routes/new-york-to-cabo/": 200,
-    "/routes/los-angeles-to-las-vegas/": 200,
-    "/routes/dallas-to-los-angeles/": 200,
-    "/routes/los-angeles-to-chicago/": 200,
-    "/routes/dallas-to-palm-beach/": 200,
-    "/routes/miami-to-aspen/": 200,
-    "/routes/miami-to-cabo/": 200,
-    "/routes/dallas-to-las-vegas/": 200,
-    "/routes/dallas-to-new-york/": 200,
-    "/routes/miami-to-houston/": 200,
-    "/routes/new-york-to-miami/": 200,
-    "/routes/new-york-to-las-vegas/": 200,
-    "/routes/dallas-to-chicago/": 200,
-    "/routes/dallas-to-aspen/": 200,
-    "/routes/dallas-to-miami/": 200,
-    "/routes/los-angeles-to-miami/": 200,
-    "/routes/los-angeles-to-palm-beach/": 200,
-    "/routes/los-angeles-to-cabo/": 200,
-    "/routes/new-york-to-vail/": 200,
-    "/routes/dallas-to-vail/": 200,
-    "/aircraft/falcon-2000lx/": 200,
-    "/aircraft/challenger-300/": 200,
-    "/aircraft/challenger-350/": 200,
-    "/aircraft/citation-x/": 200,
-    "/aircraft/falcon-900/": 200,
-    "/aircraft/global-8000/": 200,
-    "/aircraft/citation-latitude/": 200,
-    "/aircraft/gulfstream-g650/": 200,
-    "/guides/argus-wyvern/": 200,
-    "/guides/part-135-vs-part-91/": 200,
-    "/cargo/dallas/": 200,
-    "/group-charter/sports-teams/": 200,
-    "/group-charter/corporate-teams/": 200,
-    "/airports/kopf/": 200,
-    "/airports/kads/": 200,
-    "/airports/mmsd/": 200,
-    "/airports/kmdw/": 200,
-    "/airports/kege/": 200,
-    "/airports/kase/": 200,
-    "/airports/kteb/": 200,
-    "/airports/kdjt/": 200,
-    "/airports/khou/": 200,
-    "/airports/klas/": 200,
-    "/airports/kvny/": 200,
-    "/airports/khpn/": 200,
-    "/airports/kdal/": 200,
-    "/private-jet-charter/dallas/": 200,
-    "/empty-legs/dallas/": 200,
-    "/aircraft-comparisons/challenger-350-vs-citation-latitude/": 200,
-    "/aircraft-comparisons/gulfstream-g650-vs-global-8000/": 200,
-    "/aircraft-comparisons/challenger-300-vs-challenger-350/": 200,
-    "/destinations/vail/": 200,
-    "/destinations/palm-beach/": 200,
-    "/destinations/aspen/": 200,
-    "/destinations/cabo/": 200,
-    "/articles/empty-leg-flights-explained/": 200,
-    "/articles/charter-vs-aircraft-ownership-for-a-family-office/": 200,
-    "/articles/planning-a-multigenerational-family-charter/": 200,
-    "/articles/flying-private-with-children/": 200,
-    "/articles/choosing-a-private-charter-aircraft/": 200,
-    "/articles/understanding-a-private-jet-charter-quote/": 200,
-    "/articles/gulfstream-g550-vs-boeing-bbj1-ownership/": 200,
-    "/articles/private-charter-for-executive-assistants/": 200,
-    "/articles/first-private-charter-checklist/": 200,
-    "/articles/private-jet-travel-with-pets/": 200,
-    "/articles/private-charter-versus-jet-cards/": 200,
-    "/sales/global-7500/": 200,
-    "/sales/phenom-300e/": 200,
-    "/sales/citation-m2/": 200,
-    "/sales/praetor-600/": 200,
-    "/this-page-must-not-exist-seo-check/": 404
-  },
+  "http_status": {},
   "errors": [],
   "metadata": [
     {
       "path": "/",
-      "title": "Private Jet Charter & Business Aviation | EXJET Dallas",
-      "description": "Arrange business jet charter worldwide with Dallas-based EXJET. Compare aircraft, routes and complete trip proposals with one dedicated point of contact.",
+      "title": "Business Aviation Solutions & Private Jet Charter | EXJET",
+      "description": "Dallas-based EXJET connects charter, aircraft sales, management, MRO, interiors and Starlink installation consulting. Plan your next aviation decision.",
       "h1": [
-        "Private jet charter & business aviation"
+        "Business aviation solutions & private jet charter"
       ],
       "robots": "index, follow"
     },
     {
       "path": "/about/",
-      "title": "About EXJET | Charter Brokerage Founded by Pilots",
-      "description": "Meet EXJET, a Dallas-based business aviation brokerage founded by pilots. Learn about our approach to aircraft sourcing, charter coordination and client service.",
+      "title": "About EXJET | Business Aviation Solutions & Consulting",
+      "description": "Meet EXJET, a Dallas-based business aviation solutions company founded by pilots. Explore charter, aircraft ownership and technical project consulting.",
       "h1": [
         "About EXJET business aviation"
       ],
@@ -171,8 +52,8 @@
     },
     {
       "path": "/account/",
-      "title": "Client Access Preview | EXJET",
-      "description": "Access the private EXJET client portal preview for returning charter customers.",
+      "title": "Client Support | EXJET",
+      "description": "Contact your EXJET advisor for itineraries, documents and new flight requests. Online account sign-in is not available yet.",
       "h1": [
         "A personal point of contact."
       ],
@@ -216,19 +97,82 @@
     },
     {
       "path": "/aircraft-management/",
-      "title": "Aircraft Management Planning & Owner Support | EXJET",
-      "description": "Discuss aircraft ownership, management objectives and operational priorities with EXJET. Define your brief and confirm the appropriate providers for your aircraft.",
+      "title": "Aircraft Management Consulting & Owner Support | EXJET",
+      "description": "Plan aircraft management with EXJET in Dallas. Compare operating budgets, provider proposals, maintenance coordination and reporting for your business jet.",
       "h1": [
-        "Aircraft management planning"
+        "Aircraft management consulting"
       ],
-      "robots": "noindex, follow"
+      "robots": "index, follow"
+    },
+    {
+      "path": "/aircraft-owners/",
+      "title": "Aircraft Owner Services & Aviation Consulting | EXJET",
+      "description": "Connect aircraft acquisitions, management, maintenance, interiors and connectivity with one ownership plan. Explore EXJET\u2019s guides and discuss your aircraft.",
+      "h1": [
+        "Business aviation support for aircraft owners"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/aircraft-performance/",
+      "title": "Business jet performance and specification guides | EXJET",
+      "description": "Compare business jet range, speed, cabin dimensions and passenger assumptions. Use manufacturer-sourced guides to prepare executive and family charter requests.",
+      "h1": [
+        "Business jet performance and specification guides"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/aircraft-performance/citation-latitude/",
+      "title": "Cessna Citation Latitude range, performance and specifications | EXJET",
+      "description": "Compare Cessna Citation Latitude range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
+      "h1": [
+        "Cessna Citation Latitude range, performance and specifications"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/aircraft-performance/citation-longitude/",
+      "title": "Cessna Citation Longitude range, performance and specifications | EXJET",
+      "description": "Compare Cessna Citation Longitude range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
+      "h1": [
+        "Cessna Citation Longitude range, performance and specifications"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/aircraft-performance/falcon-6x/",
+      "title": "Dassault Falcon 6X range, performance and specifications | EXJET",
+      "description": "Compare Dassault Falcon 6X range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
+      "h1": [
+        "Dassault Falcon 6X range, performance and specifications"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/aircraft-performance/global-6000/",
+      "title": "Bombardier Global 6000 range, performance and specifications | EXJET",
+      "description": "Compare Bombardier Global 6000 range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
+      "h1": [
+        "Bombardier Global 6000 range, performance and specifications"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/aircraft-performance/global-7500/",
+      "title": "Bombardier Global 7500 range, performance and specifications | EXJET",
+      "description": "Compare Bombardier Global 7500 range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
+      "h1": [
+        "Bombardier Global 7500 range, performance and specifications"
+      ],
+      "robots": "index, follow"
     },
     {
       "path": "/aircraft/",
       "title": "Business Jet Charter Aircraft & Cabin Guide | EXJET",
       "description": "Compare Citation, Challenger, Gulfstream, Global and Falcon aircraft. Review cabins, mission planning and charter costs, then request options for your journey.",
       "h1": [
-        "The right class.The right fit."
+        "Business aircraft categories and charter options"
       ],
       "robots": "index, follow"
     },
@@ -539,6 +483,15 @@
       "robots": "index, follow"
     },
     {
+      "path": "/business-aviation-consulting/",
+      "title": "Business Aviation Consulting for Family Offices & Corporations | EXJET",
+      "description": "EXJET aviation consulting connects charter, ownership and technical projects for family offices and corporate teams. Build a clear mission, budget and decision brief.",
+      "h1": [
+        "Business aviation consulting for owners and corporate teams"
+      ],
+      "robots": "index, follow"
+    },
+    {
       "path": "/cancellations/",
       "title": "Cancellation & Refunds | EXJET",
       "description": "How to request a change or cancellation, and how applicable refund rights are addressed.",
@@ -585,10 +538,10 @@
     },
     {
       "path": "/contact/",
-      "title": "Request a Private Jet Charter Quote | EXJET",
-      "description": "Contact EXJET in Dallas for business jet, group or cargo charter. Send your itinerary and requirements, or speak with the charter desk about time-sensitive travel.",
+      "title": "Contact EXJET | Charter & Business Aviation Consulting",
+      "description": "Contact EXJET for charter, aircraft sales, management, MRO, interior completions or Starlink installation consulting. Discuss your aircraft, project or itinerary.",
       "h1": [
-        "Contact EXJET for a charter quote"
+        "Contact EXJET for business aviation solutions"
       ],
       "robots": "index, follow"
     },
@@ -607,6 +560,33 @@
       "description": "Coordinate corporate aircraft charter for executives, teams and assistants. Plan multi-city schedules, passenger needs and clear trip approvals with EXJET.",
       "h1": [
         "Corporate aircraft charter for business travel"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/corporate-travel/fortune-500/",
+      "title": "Private aviation planning for Fortune 500 travel teams | EXJET",
+      "description": "A charter planning framework for Fortune 500 travel teams: approvals, operator review, executive scheduling and supplemental lift. Build an EXJET trip brief.",
+      "h1": [
+        "Private aviation planning for Fortune 500 travel teams"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/corporate-travel/roadshows/",
+      "title": "Multi-city private jet charter for executive roadshows | EXJET",
+      "description": "Plan executive roadshows and multi-city charter with meeting buffers, airport choices, passenger changes and clear approvals. Discuss your schedule with EXJET.",
+      "h1": [
+        "Multi-city private jet charter for executive roadshows"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/corporate-travel/supplemental-lift/",
+      "title": "Supplemental aircraft charter for corporate travel | EXJET",
+      "description": "Plan supplemental charter when a corporate aircraft or aviation program cannot cover the mission. Define cabin needs, operator review and backup expectations.",
+      "h1": [
+        "Supplemental aircraft charter for corporate travel"
       ],
       "robots": "index, follow"
     },
@@ -683,6 +663,24 @@
       "robots": "index, follow"
     },
     {
+      "path": "/executive-assistants/",
+      "title": "Private jet charter for executive assistants | EXJET",
+      "description": "Coordinate executive aircraft charter with a clear brief, approval checklist and flight handoff. Plan business travel and request an EXJET proposal.",
+      "h1": [
+        "Private jet charter for executive assistants"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/family-office-private-aviation/",
+      "title": "Family office private aviation and charter | EXJET",
+      "description": "Plan family office aircraft charter around principals, guests, privacy, cabin needs and approvals. Compare flight options and discuss your itinerary with EXJET.",
+      "h1": [
+        "Family office private aviation and charter"
+      ],
+      "robots": "index, follow"
+    },
+    {
       "path": "/faq/",
       "title": "Private Jet Charter FAQ | EXJET",
       "description": "Find answers about charter pricing, aircraft selection, empty legs, passenger details and operator checks. Learn what to confirm before booking with EXJET.",
@@ -737,11 +735,83 @@
       "robots": "index, follow"
     },
     {
+      "path": "/guides/aircraft-cabin-upgrade-planning/",
+      "title": "Aircraft Interior Refurbishment & Starlink Planning | EXJET",
+      "description": "Prepare a cabin refurbishment and connectivity brief. Review aircraft eligibility, installation scope, downtime and acceptance criteria with EXJET\u2019s planning guide.",
+      "h1": [
+        "Planning aircraft interiors and Starlink connectivity"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/guides/aircraft-maintenance-quotes/",
+      "title": "Aircraft Maintenance & MRO Quote Checklist | EXJET",
+      "description": "Compare maintenance work scopes, exclusions, parts, change orders and downtime. Use EXJET\u2019s MRO quote checklist to prepare an aircraft-specific project brief.",
+      "h1": [
+        "How to compare aircraft maintenance and MRO quotes"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/guides/aircraft-management-proposals/",
+      "title": "Aircraft Management Fees & Proposal Comparison | EXJET",
+      "description": "Compare management fees, pass-through costs, crew coverage, charter-use assumptions and owner reporting. Prepare an aircraft management brief with EXJET.",
+      "h1": [
+        "How to compare aircraft management proposals"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/guides/aircraft-tail-number-verification/",
+      "title": "How to verify a charter aircraft tail number | EXJET",
+      "description": "Use a charter aircraft tail number to verify the proposed model, operator and cabin. Learn why database records and published specs do not confirm availability.",
+      "h1": [
+        "How to verify a charter aircraft tail number"
+      ],
+      "robots": "index, follow"
+    },
+    {
       "path": "/guides/argus-wyvern/",
       "title": "ARGUS and WYVERN safety ratings explained | EXJET",
       "description": "Learn how operator ratings, audits and trip-specific reports differ. Understand what ARGUS and WYVERN information can tell you about a proposed charter flight.",
       "h1": [
         "ARGUS and WYVERN safety ratings explained"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/guides/buying-a-business-jet/",
+      "title": "Buying a Business Jet: Aircraft Acquisition Checklist | EXJET",
+      "description": "Build an aircraft acquisition brief, compare records and maintenance exposure, and plan inspection and delivery. Use EXJET\u2019s buyer checklist to prepare your search.",
+      "h1": [
+        "Buying a business jet: an acquisition checklist"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/guides/corporate-charter-procurement/",
+      "title": "Corporate jet charter procurement checklist | EXJET",
+      "description": "Compare charter proposals with a practical procurement checklist covering operator details, aircraft, total cost, approvals and change terms for executive travel.",
+      "h1": [
+        "Corporate jet charter procurement checklist"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/guides/executive-airport-planning/",
+      "title": "Executive charter airport planning by business market | EXJET",
+      "description": "Compare Dallas, New York, Miami, Palm Beach and Los Angeles airport choices by meeting address, FBO handoff and transfer requirements for executive travel.",
+      "h1": [
+        "Executive charter airport planning by business market"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/guides/family-office-flight-planning/",
+      "title": "Family office flight planning checklist | EXJET",
+      "description": "Prepare a family office charter brief covering household needs, seating, sleeping, baggage, approvals and destination transfers for principals and guests.",
+      "h1": [
+        "Family office flight planning checklist"
       ],
       "robots": "index, follow"
     },
@@ -755,22 +825,40 @@
       "robots": "index, follow"
     },
     {
-      "path": "/interior-completions/",
-      "title": "Aircraft Interior Refurbishment & Completion Support | EXJET",
-      "description": "Plan aircraft interior refurbishment with EXJET. Define cabin priorities, scope, schedule and provider requirements for a coordinated completion project.",
+      "path": "/guides/private-aviation-program-comparison/",
+      "title": "NetJets, Flexjet, VistaJet and charter: what to compare | EXJET",
+      "description": "Compare private aviation programs and on-demand charter by commitment, trip cost, aircraft fit and terms. A practical buying framework for EAs and family offices.",
       "h1": [
-        "Aircraft interior refurbishment and completions"
+        "NetJets, Flexjet, VistaJet and charter: what to compare"
       ],
-      "robots": "noindex, follow"
+      "robots": "index, follow"
+    },
+    {
+      "path": "/interior-completions/",
+      "title": "Aircraft Interior Completions & Refurbishment Consulting | EXJET",
+      "description": "Plan a private jet interior refurbishment or completion with EXJET. Define cabin requirements, compare proposals and coordinate design, budget and downtime.",
+      "h1": [
+        "Aircraft interior completions and refurbishment consulting"
+      ],
+      "robots": "index, follow"
     },
     {
       "path": "/membership/",
       "title": "Private Jet Membership Programs | EXJET",
       "description": "Review EXJET membership information and discuss your travel pattern with an advisor. Confirm program terms, aircraft access and pricing before any commitment.",
       "h1": [
-        "Aircraft charter membership"
+        "EXJET Travel Management Membership"
       ],
       "robots": "noindex, follow"
+    },
+    {
+      "path": "/mro/",
+      "title": "Aircraft MRO Consulting & Maintenance Coordination | EXJET",
+      "description": "Coordinate aircraft maintenance, repair and overhaul with EXJET. Compare MRO proposals, plan downtime and define provider responsibilities for your business jet.",
+      "h1": [
+        "Aircraft MRO consulting and maintenance coordination"
+      ],
+      "robots": "index, follow"
     },
     {
       "path": "/pricing/",
@@ -793,7 +881,7 @@
     {
       "path": "/private-jet-charter/",
       "title": "Private Jet Charter | On-Demand Aircraft Solutions | EXJET",
-      "description": "Arrange domestic and international business jet charter with EXJET. Compare aircraft, understand the broker relationship and request a complete trip proposal.",
+      "description": "Arrange domestic and international business jet charter with EXJET. Compare aircraft, discuss your flight requirements and request a complete trip proposal.",
       "h1": [
         "Private jet charter, arranged around you"
       ],
@@ -1103,12 +1191,12 @@
       "h1": [
         "Aircraft sales and acquisitions"
       ],
-      "robots": "noindex, follow"
+      "robots": "index, follow"
     },
     {
       "path": "/sales/citation-m2/",
       "title": "Citation M2 Aircraft Sales | EXJET",
-      "description": "A completed EXJET transaction and a reference point for targeted light-jet acquisitions.",
+      "description": "2014 Citation M2 N74KM, serial 525-0800. An archived aircraft reference for a similar-aircraft acquisition brief.",
       "h1": [
         "Citation M2"
       ],
@@ -1144,11 +1232,29 @@
     {
       "path": "/search/",
       "title": "Search EXJET",
-      "description": "Find aircraft, destinations, airport guides, and private charter articles.",
+      "description": "Find EXJET aviation services, aircraft, destinations, airport guides and charter articles.",
       "h1": [
-        "What\u2019s on your horizon?"
+        "Search services, aircraft and guides"
       ],
       "robots": "noindex, follow"
+    },
+    {
+      "path": "/services/",
+      "title": "Business Aviation Services & Consulting | EXJET Dallas",
+      "description": "Explore EXJET charter, group charter, aircraft sales, management, MRO, interior completions and Starlink installation consulting. Find the service for your next decision.",
+      "h1": [
+        "Business aviation solutions"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/starlink-installation/",
+      "title": "Starlink Aircraft Installation Consulting & Coordination | EXJET",
+      "description": "Plan Starlink installation for your business jet with EXJET. Review aircraft eligibility, installer proposals, downtime, cabin requirements and service activation.",
+      "h1": [
+        "Starlink aviation installation consulting"
+      ],
+      "robots": "index, follow"
     },
     {
       "path": "/terms/",
@@ -1162,7 +1268,7 @@
     {
       "path": "/why-exjet/",
       "title": "Why Choose EXJET for Private Charter | EXJET",
-      "description": "Learn how EXJET coordinates aircraft selection, operator review and charter planning. Understand the broker relationship and the questions to ask before booking.",
+      "description": "Learn how EXJET coordinates aircraft selection, operator review and charter planning. Explore aviation consulting and the questions to ask before booking.",
       "h1": [
         "Why choose EXJET for aircraft charter"
       ],

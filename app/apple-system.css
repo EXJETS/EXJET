@@ -49,8 +49,8 @@ button, a, input, textarea, select { touch-action: manipulation; }
 .ex-header-logo { display: flex; align-items: center; justify-content: center; height: 44px; flex: 0 0 46px; }
 /* Keep the uploaded artwork intact; its transparent canvas surrounds a 31 × 17px mark. */
 .ex-header-logo img { display: block; width: 36px; height: 36px; object-fit: contain; transform: translate(-.55px, -.6px); }
-.ex-primary-nav { display: flex; align-items: center; justify-content: center; gap: 38px; }
-.ex-primary-nav a { display: inline-flex; align-items: center; min-height: 44px; color: #353a3e; font-size: .75rem; font-weight: 400; }
+.ex-primary-nav { display: flex; align-items: center; justify-content: center; gap: 28px; }
+.ex-primary-nav a { display: inline-flex; align-items: center; min-height: 44px; color: #353a3e; font-size: .875rem; font-weight: 400; }
 .ex-primary-nav a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-underline-offset: 4px; }
 .ex-primary-nav a:hover { color: #000; }
 .ex-header-actions { display: flex; align-items: center; justify-content: end; gap: 0; min-width: 0; }

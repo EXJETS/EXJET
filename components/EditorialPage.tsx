@@ -45,7 +45,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
     <div className="ex-container"><div className="ex-reading">
       {page.draft ? <p className="ex-draft-note">Policy draft for review. Final terms depend on EXJET’s confirmed practices and the applicable charter agreement.</p> : null}
       {page.facts?.length ? <dl className="ex-facts">{page.facts.map(fact=><div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl> : null}
-      {isReading && page.sections.length>3 ? <details className="ex-toc"><summary>In this {page.kind==="legal" ? "policy" : "guide"}</summary><ol>{page.sections.map((section,index)=><li key={section.heading}><a href={`#section-${index+1}`}>{section.heading}</a></li>)}</ol></details> : null}
+      {page.sections.length>3 ? <details className="ex-toc"><summary>{page.kind==="legal" ? "In this policy" : page.kind==="article" ? "In this guide" : "On this page"}</summary><ol>{page.sections.map((section,index)=><li key={section.heading}><a href={`#section-${index+1}`}>{section.heading}</a></li>)}</ol></details> : null}
       <ContentSections sections={page.sections} />
       {page.faqs ? <ContentFaq faqs={page.faqs} /> : null}
       {page.sources?.length ? <section className="ex-sources" aria-label="Sources"><h2>Sources & further reading</h2><ul>{page.sources.map(source=><li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul></section> : null}

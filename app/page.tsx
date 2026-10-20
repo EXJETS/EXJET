@@ -24,7 +24,7 @@ export default function Home() {
           <p className={styles.heroDescription}>From charter and aircraft acquisitions to management, maintenance, interiors and connectivity, EXJET brings business aviation solutions together.</p>
           <div className={styles.actions}>
             <Link className={styles.primaryAction} href="/charter">Find a flight</Link>
-            <Link className={styles.secondaryAction} href="#aircraft">Explore aircraft <CaretRightIcon size={14} weight="light" aria-hidden="true" /></Link>
+            <Link className={styles.secondaryAction} href="/sales">Aircraft sales & acquisitions <CaretRightIcon size={14} weight="light" aria-hidden="true" /></Link>
           </div>
         </div>
         <div className={styles.heroImage}>

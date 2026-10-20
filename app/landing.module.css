@@ -7,10 +7,10 @@
 .hero .tagline span { color: #16181a; }
 .heroDescription { max-width: 52ch; margin: 18px auto 0 !important; color: #5e646a; font-size: 1.125rem; line-height: 1.5; }
 .actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px 24px; margin-top: 20px; }
-.primaryAction { display: inline-flex; align-items: center; justify-content: center; position: relative; min-height: 44px; padding: 8px 16px; border-radius: 980px; background: #16181a; color: #fff; font-size: 14px; font-weight: 400; line-height: 18px; transition: background 160ms ease, transform 140ms ease; }
+.primaryAction { display: inline-flex; align-items: center; justify-content: center; position: relative; min-height: 44px; padding: 12px 22px; border-radius: 980px; background: #16181a; color: #fff; font-size: 1rem; font-weight: 400; line-height: 1.4; transition: background 160ms ease, transform 140ms ease; }
 .primaryAction:hover { background: #353a3e; }
 .primaryAction:active { transform: scale(.97); }
-.secondaryAction { display:inline-flex; align-items:center; justify-content:center; gap:4px; min-height:44px; padding:8px 0; border:0; color:inherit; font-size:14px; font-weight:400; line-height:18px; }
+.secondaryAction { display:inline-flex; align-items:center; justify-content:center; gap:4px; min-height:44px; padding:8px 0; border:0; color:inherit; font-size:1rem; font-weight:400; line-height:1.4; }
 .secondaryAction:hover { background:transparent; text-decoration:underline; text-underline-offset:4px; }
 .textAction { display: inline-flex; align-items: center; justify-content: center; gap: 5px; min-height: 44px; color: #16181a; font-size: .9375rem; font-weight: 400; line-height: 1.4; }
 .textAction:hover { text-decoration: underline; text-underline-offset: 4px; }
@@ -44,7 +44,7 @@
   .hero .tagline { font-size: clamp(2rem, 9.7vw, 2.5rem); font-weight: 500; line-height: 1.1; letter-spacing: -.04em; }
   .heroDescription { margin-top: 14px !important; font-size: 1rem; }
   .actions { gap: 8px 18px; margin-top: 17px; }
-  .primaryAction, .secondaryAction, .textAction { font-size: 14px; }
+  .primaryAction, .secondaryAction, .textAction { font-size: .9375rem; }
   .heroImage { margin-top: 26px; }
   .heroCaption { font-size: .6875rem; padding-block: 10px 14px; }
   .aircraftSection { padding-block: 36px; }

@@ -16,7 +16,7 @@ const primary = [
   { href: "/services", label: "Services" },
   { href: "/private-jet-charter", label: "Charter" },
   { href: "/aircraft", label: "Aircraft" },
-  { href: "/articles", label: "Flight Guide" },
+  { href: "/sales", label: "Sales & Acquisitions" },
   { href: "/contact", label: "Contact" },
 ];
 const groups = [
@@ -26,7 +26,7 @@ const groups = [
     ["Executive assistants", "/executive-assistants"], ["Family offices", "/family-office-private-aviation"], ["Group travel", "/group-charter"], ["Corporate travel", "/corporate-travel"], ["Cargo charter", "/cargo"],
   ] },
   { title: "Explore EXJET", links: [
-    ["All services", "/services"], ["Aviation consulting", "/business-aviation-consulting"],
+    ["All services", "/services"], ["Aviation consulting", "/business-aviation-consulting"], ["Aircraft owners", "/aircraft-owners"],
     ["Routes", "/routes"], ["Airports", "/airports"], ["Destinations", "/destinations"],
     ["Flight Guide", "/articles"], ["Aircraft performance", "/aircraft-performance"], ["Aircraft comparisons", "/aircraft-comparisons"], ["Charter FAQ", "/faq"],
     ["About EXJET", "/about"], ["Safety", "/safety"],
@@ -76,6 +76,7 @@ export function SiteHeader() {
         <h2 id="exjet-navigation-title" className={styles.label}>Explore EXJET</h2>
         <div className={styles.quickLinks}>
           <Link href="/charter" className={styles.flight} onClick={close}>Find a flight <ArrowRightIcon size={22} aria-hidden="true" /></Link>
+          <Link href="/sales" onClick={close}>Buy or sell an aircraft <ArrowRightIcon size={18} aria-hidden="true" /></Link>
           <Link href="/contact" onClick={close}>Speak with an advisor <ArrowRightIcon size={18} aria-hidden="true" /></Link>
         </div>
         <div className={styles.groups}>{groups.map(group => <nav key={group.title} aria-label={group.title}>

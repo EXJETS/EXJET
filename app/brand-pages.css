@@ -66,12 +66,12 @@
 .sales-index-card--active .sales-index-card__link { background: #fff; }
 .sales-index-card__link:hover { color: #16181a; background: #f4f4f4; }
 .sales-index-card__link:hover p, .sales-index-card__link:hover small, .sales-index-card__link:hover .sales-index-card__top { color: #5e646a; }
-.sales-index-card__top { font-size: 13px; letter-spacing: 0; text-transform: none; }
+.sales-index-card__top { font-size: 14px; letter-spacing: 0; text-transform: none; }
 .sales-index-card__top > span:first-child { display: none; }
-.sales-index-card p { margin-top: 28px; color: #5e646a; font-size: 13px; letter-spacing: 0; text-transform: none; }
+.sales-index-card p { margin-top: 28px; color: #5e646a; font-size: 14px; letter-spacing: 0; text-transform: none; }
 .sales-index-card h2 { font-size: 34px; font-weight: 400; line-height: 1.1; margin-block: 8px 14px; letter-spacing: -.025em; }
 .sales-index-card strong, .sales-index-card small { font-size: 15px; font-weight: 400; color: #5e646a; line-height: 1.5; }
-.sales-index-card__link > div:last-child { font-size: 14px; color: #16181a; min-height: 44px; letter-spacing: 0; text-transform: none; border-color: #e7e8e8; }
+.sales-index-card__link > div:last-child { font-size: 16px; color: #16181a; min-height: 44px; letter-spacing: 0; text-transform: none; border-color: #e7e8e8; }
 .sales-detail-hero { min-height: 0; background: #f4f4f4; color: #16181a; padding: 52px 0; }
 .sales-detail-hero .shell { text-align: center; }
 .sales-detail-hero h1 { font-size: clamp(40px,5vw,64px); font-weight: 500; line-height: 1.08; letter-spacing: -.035em; margin-block: 14px; }
@@ -180,3 +180,8 @@
   .legal-page { padding-block: 34px 48px; }
   .legal-page h1 { font-size: 36px; font-weight: 400; }
 }
+
+/* Keep transaction-support icons aligned with the service icon family. */
+.sales-service-grid article > svg { display: block; flex-shrink: 0; margin-bottom: 20px; color: #c9cdd1; }
+.sales-services-section .sales-service-grid p { color: #c9cdd1; }
+.sales-index-card__top > span:last-child { padding: 6px 10px; border: 1px solid #d9dcdf; border-radius: 8px; line-height: 1.4; }
