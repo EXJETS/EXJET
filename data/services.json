@@ -143,13 +143,50 @@
             "path": "/articles/private-charter-versus-jet-cards"
           }
         ]
+      },
+      {
+        "heading": "Resources for your travel team",
+        "paragraphs": [
+          "Choose the workflow that matches your responsibility, from an individual executive trip to enterprise procurement or a family office itinerary."
+        ],
+        "links": [
+          {
+            "label": "Private jet charter for executive assistants",
+            "path": "/executive-assistants"
+          },
+          {
+            "label": "Fortune 500 and enterprise travel planning",
+            "path": "/corporate-travel/fortune-500"
+          },
+          {
+            "label": "Family office private aviation",
+            "path": "/family-office-private-aviation"
+          },
+          {
+            "label": "Supplemental lift",
+            "path": "/corporate-travel/supplemental-lift"
+          },
+          {
+            "label": "Executive roadshows",
+            "path": "/corporate-travel/roadshows"
+          },
+          {
+            "label": "Compare aviation programs",
+            "path": "/guides/private-aviation-program-comparison"
+          },
+          {
+            "label": "Aircraft performance references",
+            "path": "/aircraft-performance"
+          }
+        ]
       }
     ],
     "related": [
       "/routes/dallas-to-new-york",
       "/articles/understanding-a-private-jet-charter-quote"
     ],
-    "seoTitle": "Corporate Private Jet Charter & Business Travel | EXJET"
+    "seoTitle": "Corporate Private Jet Charter & Business Travel | EXJET",
+    "updated": "2026-10-20"
   },
   {
     "path": "/pricing",
