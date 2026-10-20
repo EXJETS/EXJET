@@ -4,7 +4,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { siteConfig } from "@/data/site";
+import { siteConfig, aviationSolutions } from "@/data/site";
 import { EqualsIcon } from "@phosphor-icons/react/dist/csr/Equals";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react/dist/csr/MagnifyingGlass";
 import { PhoneIcon } from "@phosphor-icons/react/dist/csr/Phone";
@@ -13,24 +13,23 @@ import { XIcon } from "@phosphor-icons/react/dist/csr/X";
 import styles from "./SiteHeader.module.css";
 
 const primary = [
+  { href: "/services", label: "Services" },
   { href: "/private-jet-charter", label: "Charter" },
   { href: "/aircraft", label: "Aircraft" },
-  { href: "/corporate-travel", label: "Business travel" },
   { href: "/articles", label: "Flight Guide" },
   { href: "/contact", label: "Contact" },
 ];
 const groups = [
+  { title: "Services", links: aviationSolutions.map(service => [service.name, service.path]) },
   { title: "Plan your flight", links: [
     ["Aircraft", "/aircraft"], ["Charter pricing", "/pricing"], ["Empty legs", "/empty-legs"],
     ["Executive assistants", "/executive-assistants"], ["Family offices", "/family-office-private-aviation"], ["Group travel", "/group-charter"], ["Corporate travel", "/corporate-travel"], ["Cargo charter", "/cargo"],
   ] },
-  { title: "Explore", links: [
+  { title: "Explore EXJET", links: [
+    ["All services", "/services"], ["Aviation consulting", "/business-aviation-consulting"],
     ["Routes", "/routes"], ["Airports", "/airports"], ["Destinations", "/destinations"],
     ["Flight Guide", "/articles"], ["Aircraft performance", "/aircraft-performance"], ["Aircraft comparisons", "/aircraft-comparisons"], ["Charter FAQ", "/faq"],
-  ] },
-  { title: "EXJET", links: [
-    ["About EXJET", "/about"], ["Safety", "/safety"], ["Aircraft sales", "/sales"],
-    ["Aircraft management", "/aircraft-management"], ["Interior completions", "/interior-completions"],
+    ["About EXJET", "/about"], ["Safety", "/safety"],
     ["Membership", "/membership"], ["Client support", "/account"],
   ] },
 ];
