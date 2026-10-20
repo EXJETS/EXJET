@@ -2,7 +2,7 @@
   {
     "path": "/private-jet-charter",
     "title": "Private jet charter, arranged around you",
-    "description": "Arrange domestic and international business jet charter with EXJET. Compare aircraft, understand the broker relationship and request a complete trip proposal.",
+    "description": "Arrange domestic and international business jet charter with EXJET. Compare aircraft, discuss your flight requirements and request a complete trip proposal.",
     "kicker": "Private jet charter",
     "kind": "service",
     "image": {
@@ -416,76 +416,173 @@
   },
   {
     "path": "/aircraft-management",
-    "title": "Aircraft management planning",
-    "description": "Discuss aircraft ownership, management objectives and operational priorities with EXJET. Define your brief and confirm the appropriate providers for your aircraft.",
-    "kicker": "Aircraft ownership",
+    "title": "Aircraft management consulting",
+    "seoTitle": "Aircraft Management Consulting & Owner Support | EXJET",
+    "description": "Plan aircraft management with EXJET in Dallas. Compare operating budgets, provider proposals, maintenance coordination and reporting for your business jet.",
+    "kicker": "EXJET business aviation solutions",
     "kind": "service",
-    "noindex": true,
-    "sections": [
-      {
-        "heading": "Define the requirements.",
-        "paragraphs": [
-          "Aircraft ownership involves decisions about intended use, crew, maintenance coordination, hangar arrangements, insurance, and oversight. Bring the aircraft type, location, current arrangements, and ownership objectives to an initial discussion.",
-          "This page invites a consultation. It does not represent EXJET as an aircraft operator, maintenance organization, or provider of a presently contracted management program."
-        ]
-      },
-      {
-        "heading": "Compare written responsibilities.",
-        "paragraphs": [
-          "When evaluating a management proposal, identify the contracting entities, their authority, what each party will do, and how costs and reports will be provided. Review any proposed charter use separately with qualified aviation and tax advisers."
-        ],
-        "links": [
-          {
-            "label": "Discuss aircraft ownership",
-            "path": "/contact"
-          }
-        ]
-      }
-    ],
-    "related": [
-      "/private-jet-charter"
-    ],
-    "seoTitle": "Aircraft Management Planning & Owner Support | EXJET"
-  },
-  {
-    "path": "/interior-completions",
-    "title": "Aircraft interior refurbishment and completions",
-    "description": "Plan aircraft interior refurbishment with EXJET. Define cabin priorities, scope, schedule and provider requirements for a coordinated completion project.",
-    "kicker": "Aircraft interiors",
-    "kind": "service",
-    "noindex": true,
-    "image": {
-      "src": "/images/editorial/falcon-6x-cabin-credenza.jpg",
-      "alt": "Falcon 6X wood cabin credenza with a tea service beneath the windows",
-      "width": 1920,
-      "height": 1281,
-      "caption": "Dassault Falcon 6X manufacturer cabin photography. It is not presented as an EXJET completion project."
+    "parent": {
+      "name": "Services",
+      "path": "/services"
+    },
+    "updated": "2026-10-19",
+    "consultation": {
+      "label": "Discuss your project",
+      "subject": "Aircraft management consulting"
     },
     "sections": [
       {
-        "heading": "Plan the experience and the scope.",
+        "heading": "An operating plan built around the owner.",
         "paragraphs": [
-          "An interior brief begins with the aircraft and its intended use. Distinguish cosmetic refurbishment from changes to layout, equipment, or systems. Set priorities for passenger comfort, durability, storage, connectivity, budget, and downtime.",
-          "Share an aircraft specification and an outline of your requirements with EXJET to discuss next steps. Available providers, project scope, and contractual responsibilities require separate confirmation."
+          "EXJET provides aircraft management consulting for private owners, family offices and corporate aviation teams. Start with how the aircraft needs to work: annual utilization, typical missions, passenger requirements, home base and the level of owner involvement.",
+          "A useful management brief connects daily operations with the longer ownership plan. EXJET helps organize the requirements, compare provider proposals and clarify the decisions that need owner approval. The written engagement sets the services, reporting and responsibilities for your aircraft."
         ]
       },
       {
-        "heading": "Confirm technical approvals.",
+        "heading": "Compare the complete management proposal.",
         "paragraphs": [
-          "Appearance is only part of an aircraft interior project. Qualified design, maintenance, and completion providers must establish the work and approvals appropriate to the aircraft. EXJET is not represented here as a certified completion or maintenance facility."
+          "Review more than a monthly management fee. Understand what is included, what is passed through, who approves additional work and how the owner receives supporting records. Separate the operating budget from acquisition, financing and tax decisions."
+        ],
+        "bullets": [
+          "Crew sourcing, training schedules and coverage requirements.",
+          "Home-base hangar, insurance and trip-support arrangements.",
+          "Scheduled maintenance, engine programs and downtime planning.",
+          "Operating budgets, expense approvals and owner reporting.",
+          "Charter-use objectives, availability priorities and operating responsibility."
+        ]
+      },
+      {
+        "heading": "Connect management with the next aircraft decision.",
+        "paragraphs": [
+          "For an acquisition, define the operating structure before delivery. For an existing aircraft, begin with the current agreements, maintenance forecast and recurring service issues. For a sale, coordinate the transition of records, outstanding work and future travel coverage.",
+          "Family offices may need approval paths for several households. Corporate teams may need consolidated reporting and coordination with an existing flight department. EXJET’s consulting scope can be organized around those requirements without replacing the owner’s aviation, legal or tax advisers."
         ],
         "links": [
           {
-            "label": "Start an interior discussion",
-            "path": "/contact"
+            "label": "Aircraft sales and acquisition consulting",
+            "path": "/sales"
+          },
+          {
+            "label": "Maintenance and MRO coordination",
+            "path": "/mro"
           }
+        ]
+      },
+      {
+        "heading": "Dallas-based consulting, aircraft-specific scope.",
+        "paragraphs": [
+          "Share the aircraft model, registration, base airport, utilization and current management arrangement. For Dallas–Fort Worth owners, identify the practical needs around Dallas Love Field, Addison or the aircraft’s actual home base. We can also discuss an aircraft based elsewhere.",
+          "The appointed operator retains operational control. Maintenance is performed and released by appropriately authorized providers. EXJET’s role, deliverables and provider relationships are set out in the agreed project scope."
         ]
       }
     ],
     "related": [
-      "/aircraft-management"
+      "/business-aviation-consulting",
+      "/mro",
+      "/interior-completions",
+      "/starlink-installation"
     ],
-    "seoTitle": "Aircraft Interior Refurbishment & Completion Support | EXJET"
+    "faqs": [
+      {
+        "question": "What does aircraft management consulting cover?",
+        "answer": "The consulting brief can cover owner objectives, operating budgets, management-provider selection, maintenance coordination, expense approvals and reporting. The agreed scope determines which tasks EXJET supports."
+      },
+      {
+        "question": "Can EXJET work with an existing flight department?",
+        "answer": "Yes. Start by identifying the decisions or projects that need support, the current team’s responsibilities and the approval process. Consulting can focus on a specific workstream."
+      },
+      {
+        "question": "What should I send for an initial discussion?",
+        "answer": "Send the aircraft type, registration, base, expected annual use, current arrangements and your main objectives. Avoid sending sensitive ownership or passenger documents until an appropriate exchange method is agreed."
+      }
+    ]
+  },
+  {
+    "path": "/interior-completions",
+    "title": "Aircraft interior completions and refurbishment consulting",
+    "seoTitle": "Aircraft Interior Completions & Refurbishment Consulting | EXJET",
+    "description": "Plan a private jet interior refurbishment or completion with EXJET. Define cabin requirements, compare proposals and coordinate design, budget and downtime.",
+    "kicker": "EXJET business aviation solutions",
+    "kind": "service",
+    "parent": {
+      "name": "Services",
+      "path": "/services"
+    },
+    "updated": "2026-10-19",
+    "consultation": {
+      "label": "Discuss your project",
+      "subject": "Aircraft interior completions consultation"
+    },
+    "sections": [
+      {
+        "heading": "A cabin brief before a material selection.",
+        "paragraphs": [
+          "EXJET supports aircraft interior completions and refurbishment through consulting, provider sourcing and project coordination. Begin with the way the cabin is used: working, dining, resting, travelling with family or accommodating a changing passenger group.",
+          "A new-aircraft completion and a refurbishment of an existing cabin are different projects. Identify the aircraft model, current layout, records, delivery objective and available downtime before comparing design proposals. The selected completion provider establishes technical feasibility and approval requirements."
+        ]
+      },
+      {
+        "heading": "Define the work in one coordinated scope.",
+        "paragraphs": [
+          "A clear brief helps the owner compare proposals that cover the same work. Separate required repairs from aesthetic preferences, equipment changes and optional upgrades. Record the samples, drawings, assumptions and exclusions that belong to the accepted scope."
+        ],
+        "bullets": [
+          "Seating, upholstery, carpets, veneers and surface finishes.",
+          "Cabin layout, galley, lavatory, storage and passenger needs.",
+          "Lighting, cabin controls, entertainment and connectivity.",
+          "Material documentation, engineering and applicable approvals.",
+          "Budget allowances, change orders, milestones and acceptance criteria."
+        ]
+      },
+      {
+        "heading": "Plan downtime and delivery together.",
+        "paragraphs": [
+          "Discuss facility capacity, material lead times, inspection findings and the handover process before choosing a target completion date. Where appropriate, compare combining interior work with a scheduled maintenance event or connectivity installation.",
+          "EXJET helps keep the commercial brief, owner decisions and provider updates connected. The appointed facility is responsible for the technical work and required release documentation. Any schedule or price is confirmed in the provider’s written proposal."
+        ],
+        "links": [
+          {
+            "label": "Coordinate maintenance planning",
+            "path": "/mro"
+          },
+          {
+            "label": "Explore Starlink installation coordination",
+            "path": "/starlink-installation"
+          }
+        ]
+      },
+      {
+        "heading": "Interior consulting for owners and acquisition teams.",
+        "paragraphs": [
+          "For an aircraft purchase, assess the existing cabin against your mission before assuming a full refurbishment is necessary. For a family office or corporate owner, agree who signs off on design, expenditure and delivery. Dallas-based EXJET can help organize those decisions around your aircraft and chosen facility."
+        ]
+      }
+    ],
+    "related": [
+      "/aircraft-management",
+      "/mro",
+      "/starlink-installation"
+    ],
+    "faqs": [
+      {
+        "question": "What is the difference between a completion and a refurbishment?",
+        "answer": "A completion generally develops an aircraft cabin as part of its initial outfitting. A refurbishment updates an existing interior. The aircraft’s configuration and records determine the actual work and approval requirements."
+      },
+      {
+        "question": "Can interior work be combined with maintenance?",
+        "answer": "It may be practical to coordinate the projects, but facility capabilities, materials, engineering and schedule must be reviewed together before confirming a combined downtime window."
+      },
+      {
+        "question": "Does EXJET perform the installation work?",
+        "answer": "EXJET provides consulting and coordination. The selected completion or maintenance provider performs the technical work under the applicable authority."
+      }
+    ],
+    "sources": [
+      {
+        "label": "FAA: supplemental type certificates",
+        "url": "https://www.faa.gov/aircraft/air_cert/design_approvals/stc"
+      }
+    ]
   },
   {
     "path": "/editorial-standards",
@@ -577,5 +674,331 @@
       }
     ],
     "seoTitle": "Website Accessibility & Assistance | EXJET"
+  },
+  {
+    "path": "/services",
+    "title": "Business aviation solutions",
+    "seoTitle": "Business Aviation Services & Consulting | EXJET Dallas",
+    "description": "Explore EXJET charter, group charter, aircraft sales, management, MRO, interior completions and Starlink installation consulting. Find the service for your next decision.",
+    "kicker": "One relationship. Seven services.",
+    "kind": "hub",
+    "serviceCatalog": true,
+    "updated": "2026-10-19",
+    "consultation": {
+      "label": "Discuss your aviation needs",
+      "subject": "EXJET business aviation solutions"
+    },
+    "sections": [
+      {
+        "heading": "Consulting and coordination across business aviation.",
+        "paragraphs": [
+          "EXJET brings together flight planning, aircraft ownership and technical-project coordination. Choose a service above, or begin with a business aviation consulting brief when the decision spans several areas.",
+          "Our Dallas-based team works with private owners, executive assistants, family offices and corporate aviation teams. Share the mission, aircraft or project requirements so the scope can be built around your next decision."
+        ],
+        "links": [
+          {
+            "label": "Business aviation consulting",
+            "path": "/business-aviation-consulting"
+          },
+          {
+            "label": "Executive assistant support",
+            "path": "/executive-assistants"
+          },
+          {
+            "label": "Family office private aviation",
+            "path": "/family-office-private-aviation"
+          }
+        ]
+      },
+      {
+        "heading": "Clear responsibilities, from proposal to delivery.",
+        "paragraphs": [
+          "EXJET provides consulting, sourcing and coordination. Charter flights are operated by the identified licensed air carrier. Maintenance, completions and installations are performed by the appointed technical providers under the applicable authority. Confirm the scope, provider, schedule and commercial terms for each engagement."
+        ]
+      }
+    ],
+    "related": [
+      "/business-aviation-consulting",
+      "/private-jet-charter/dallas"
+    ]
+  },
+  {
+    "path": "/mro",
+    "title": "Aircraft MRO consulting and maintenance coordination",
+    "seoTitle": "Aircraft MRO Consulting & Maintenance Coordination | EXJET",
+    "description": "Coordinate aircraft maintenance, repair and overhaul with EXJET. Compare MRO proposals, plan downtime and define provider responsibilities for your business jet.",
+    "kicker": "EXJET business aviation solutions",
+    "kind": "service",
+    "parent": {
+      "name": "Services",
+      "path": "/services"
+    },
+    "updated": "2026-10-19",
+    "consultation": {
+      "label": "Discuss your project",
+      "subject": "Aircraft MRO consulting request"
+    },
+    "sections": [
+      {
+        "heading": "Maintenance decisions with a clear owner brief.",
+        "paragraphs": [
+          "MRO means maintenance, repair and overhaul. EXJET provides aircraft MRO consulting and coordination for owners, family offices and corporate aviation teams. The starting point is the aircraft’s records, upcoming maintenance events and the owner’s operating priorities.",
+          "Bring the model, serial number, registration, aircraft location and a summary of the required work. Your maintenance team or selected provider determines the technical requirements. EXJET helps organize the commercial scope, compare suitable proposals and coordinate the owner’s decisions."
+        ]
+      },
+      {
+        "heading": "Compare scope, capability and total downtime.",
+        "paragraphs": [
+          "A useful comparison includes more than the quoted labor rate. Identify the work package, exclusions, parts assumptions, program coverage, facility capability and proposed schedule. Agree how additional findings will be reported and authorized."
+        ],
+        "bullets": [
+          "Scheduled inspections and maintenance-event planning.",
+          "Engine, APU and component workstream coordination.",
+          "Pre-purchase inspection and findings follow-up.",
+          "Avionics, connectivity and cabin-upgrade planning.",
+          "Aircraft positioning, parts logistics and downtime contingencies.",
+          "Change approval, invoice review and handover records."
+        ]
+      },
+      {
+        "heading": "Coordinate the work around your operating calendar.",
+        "paragraphs": [
+          "For a planned visit, work backward from the aircraft’s next essential mission and review the provider’s available capacity. Discuss whether interior or connectivity projects can be combined without creating an impractical delivery deadline.",
+          "For an urgent maintenance issue, provide the aircraft location and a concise description from the crew or maintenance team. Technical troubleshooting, dispatch decisions and return-to-service approval remain with appropriately authorized personnel; consulting does not replace those decisions."
+        ],
+        "links": [
+          {
+            "label": "Aircraft management and owner support",
+            "path": "/aircraft-management"
+          },
+          {
+            "label": "Starlink installation planning",
+            "path": "/starlink-installation"
+          }
+        ]
+      },
+      {
+        "heading": "Dallas-based support for aircraft owners.",
+        "paragraphs": [
+          "EXJET’s Dallas base supports discussions with owners in the Dallas–Fort Worth area and aircraft teams coordinating work elsewhere. Facility selection should follow the aircraft, required approvals, work scope and schedule. A city name alone does not establish that a provider can perform the work.",
+          "EXJET provides consulting and coordination; the appointed maintenance provider performs the work and supplies the required technical records. Provider selection, availability, price and schedule are confirmed for each project."
+        ]
+      }
+    ],
+    "related": [
+      "/aircraft-management",
+      "/interior-completions",
+      "/starlink-installation"
+    ],
+    "faqs": [
+      {
+        "question": "What does MRO stand for in aviation?",
+        "answer": "MRO stands for maintenance, repair and overhaul. It covers a range of aircraft technical work; the precise scope depends on the aircraft, its records and the required maintenance event."
+      },
+      {
+        "question": "Can EXJET help compare maintenance proposals?",
+        "answer": "Yes. EXJET can help organize the project brief and compare the commercial scope, exclusions, schedule and owner-approval requirements. The technical provider confirms capability and applicable authorization."
+      },
+      {
+        "question": "Is EXJET the repair station?",
+        "answer": "EXJET provides MRO consulting and coordination. The appointed, appropriately authorized maintenance provider performs and releases the technical work."
+      }
+    ],
+    "sources": [
+      {
+        "label": "FAA: repair stations",
+        "url": "https://www.faa.gov/aircraft/repair"
+      }
+    ]
+  },
+  {
+    "path": "/starlink-installation",
+    "title": "Starlink aviation installation consulting",
+    "seoTitle": "Starlink Aircraft Installation Consulting & Coordination | EXJET",
+    "description": "Plan Starlink installation for your business jet with EXJET. Review aircraft eligibility, installer proposals, downtime, cabin requirements and service activation.",
+    "kicker": "EXJET business aviation solutions",
+    "kind": "service",
+    "parent": {
+      "name": "Services",
+      "path": "/services"
+    },
+    "updated": "2026-10-19",
+    "consultation": {
+      "label": "Discuss your project",
+      "subject": "Starlink aircraft installation consultation"
+    },
+    "sections": [
+      {
+        "heading": "Start with the aircraft, then the connection.",
+        "paragraphs": [
+          "EXJET provides Starlink aviation installation consulting and coordination for business jet owners, family offices and corporate aviation teams. The project begins with the aircraft model, serial number, registration, current connectivity equipment and intended use.",
+          "Eligibility is aircraft-specific. Confirm the applicable approved installation route, configuration and supporting documentation with the selected installer before ordering hardware or booking downtime. A model name in a general guide is not confirmation that a particular aircraft is ready for installation."
+        ]
+      },
+      {
+        "heading": "Build a complete installation brief.",
+        "paragraphs": [
+          "Define what passengers need to do in the cabin, how the crew will support the system and who will manage the service account. Corporate or family-office requirements may include device access, network administration and a clear support contact."
+        ],
+        "bullets": [
+          "Aircraft model, serial number and registration jurisdiction.",
+          "Existing antenna, avionics and cabin network configuration.",
+          "Applicable approvals and installer capability.",
+          "Hardware, installation, subscription and support scope.",
+          "Downtime window and other planned maintenance or interior work.",
+          "Ground testing, documentation, activation and owner handover."
+        ]
+      },
+      {
+        "heading": "Compare installation and ongoing service separately.",
+        "paragraphs": [
+          "Ask for a proposal that separates equipment, engineering, labor, testing, any required cabin-network work and ongoing service. Confirm exclusions and what happens if inspection reveals additional work. EXJET helps coordinate the questions and compare the written proposals.",
+          "For an acquisition or refurbishment, review connectivity early enough to include it in the ownership and downtime plan. The selected installer confirms the technical work, approval pathway and delivery schedule. Performance, coverage and service terms should be checked directly against current Starlink documentation."
+        ],
+        "links": [
+          {
+            "label": "Coordinate a maintenance event",
+            "path": "/mro"
+          },
+          {
+            "label": "Plan an interior refurbishment",
+            "path": "/interior-completions"
+          }
+        ]
+      },
+      {
+        "heading": "One contact for the owner’s project.",
+        "paragraphs": [
+          "Dallas-based EXJET can help organize an installation brief for your aircraft and chosen facility. Send the aircraft details, location, preferred timing and current connectivity setup to start the discussion.",
+          "EXJET provides consulting and coordination. Installation is performed by the selected appropriately authorized provider. Starlink availability, aircraft eligibility and service terms require confirmation for the specific project; EXJET does not present itself as Starlink or as an authorized installer."
+        ]
+      }
+    ],
+    "related": [
+      "/mro",
+      "/interior-completions",
+      "/aircraft-management"
+    ],
+    "faqs": [
+      {
+        "question": "Can Starlink be installed on any private jet?",
+        "answer": "Do not assume universal eligibility. The selected installer must confirm the current approval route and configuration for the aircraft model, serial number and registration jurisdiction."
+      },
+      {
+        "question": "How much does aircraft Starlink installation cost?",
+        "answer": "Request an aircraft-specific written proposal covering hardware, installation, engineering, testing, cabin-network work and ongoing service. EXJET does not publish a fixed price for an unassessed aircraft."
+      },
+      {
+        "question": "Can installation be coordinated with other aircraft work?",
+        "answer": "It may be possible to combine installation with maintenance or interior work. Confirm the facility’s capability, approvals, parts availability and schedule before committing to a combined project."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Starlink Aviation: current product and service information",
+        "url": "https://starlink.com/business/aviation"
+      },
+      {
+        "label": "FAA: supplemental type certificates",
+        "url": "https://www.faa.gov/aircraft/air_cert/design_approvals/stc"
+      }
+    ]
+  },
+  {
+    "path": "/business-aviation-consulting",
+    "title": "Business aviation consulting for owners and corporate teams",
+    "seoTitle": "Business Aviation Consulting for Family Offices & Corporations | EXJET",
+    "description": "EXJET aviation consulting connects charter, ownership and technical projects for family offices and corporate teams. Build a clear mission, budget and decision brief.",
+    "kicker": "EXJET business aviation solutions",
+    "kind": "service",
+    "parent": {
+      "name": "Services",
+      "path": "/services"
+    },
+    "updated": "2026-10-19",
+    "consultation": {
+      "label": "Discuss your project",
+      "subject": "Business aviation consulting inquiry"
+    },
+    "sections": [
+      {
+        "heading": "Choose the aviation solution around the mission.",
+        "paragraphs": [
+          "EXJET is a business aviation solutions company based in Dallas. Our consulting approach connects the decisions around travel, aircraft ownership and technical projects so that an owner, executive assistant or corporate team can work from one clear brief.",
+          "Start with the outcomes that matter: the places people need to reach, how frequently they travel, the required cabin, schedule flexibility and approval process. For an aircraft project, add the ownership objectives, current condition and available downtime."
+        ]
+      },
+      {
+        "heading": "A decision brief for each stakeholder.",
+        "paragraphs": [
+          "An executive assistant may need a reliable itinerary and a clear process for late changes. A family office may need to coordinate several principals, control distribution of sensitive information and compare ownership with charter. A corporate flight department may need supplemental capacity or support for an aircraft project.",
+          "EXJET helps organize those requirements before comparing options. Finance, procurement, legal and the operating team should agree on the decisions they own, the records they need and the approval milestones."
+        ],
+        "bullets": [
+          "Mission profile and passenger requirements.",
+          "Charter, supplemental lift or ownership objectives.",
+          "Budget assumptions and complete proposal comparisons.",
+          "Operating-provider and technical-provider responsibilities.",
+          "Project milestones, approvals and communication preferences."
+        ]
+      },
+      {
+        "heading": "Connect the flight with the ownership lifecycle.",
+        "paragraphs": [
+          "A purchase decision can affect management, maintenance, interior and connectivity requirements for years. A cabin project can affect aircraft availability. A maintenance event can create a temporary need for charter. Planning these decisions together helps keep the commercial brief consistent.",
+          "The seven EXJET service areas cover charter, group charter, sales and acquisitions, aircraft management, MRO, interior completions and Starlink installation coordination. Each engagement has a defined scope; operating and technical work remains with the appropriately authorized provider."
+        ],
+        "links": [
+          {
+            "label": "Explore all seven services",
+            "path": "/services"
+          },
+          {
+            "label": "Family office aviation planning",
+            "path": "/family-office-private-aviation"
+          },
+          {
+            "label": "Executive assistant charter planning",
+            "path": "/executive-assistants"
+          }
+        ]
+      },
+      {
+        "heading": "Dallas expertise, mission-led geographic planning.",
+        "paragraphs": [
+          "For Dallas–Fort Worth travel, compare Dallas Love Field and Addison against the meeting address, aircraft requirements and ground transfer. For New York, South Florida or Los Angeles trips, use the actual destination and operating assessment to narrow the airport options. Avoid choosing an airport solely because it is the most familiar name.",
+          "Share the next decision, the expected timeline and who is involved. EXJET can help define a consulting brief that connects the right service to the actual business or ownership requirement."
+        ],
+        "links": [
+          {
+            "label": "Dallas private jet charter",
+            "path": "/private-jet-charter/dallas"
+          },
+          {
+            "label": "Corporate travel for large organizations",
+            "path": "/corporate-travel/fortune-500"
+          }
+        ]
+      }
+    ],
+    "related": [
+      "/aircraft-management",
+      "/mro",
+      "/interior-completions"
+    ],
+    "faqs": [
+      {
+        "question": "Who is business aviation consulting for?",
+        "answer": "EXJET works with aircraft owners, corporate aviation and travel teams, executive assistants and family offices that need help organizing charter, ownership or technical-project decisions."
+      },
+      {
+        "question": "Can a consulting engagement focus on one project?",
+        "answer": "Yes. Define the objective, scope, timeline and required deliverables with EXJET. A brief may cover an aircraft acquisition, a management review, maintenance coordination or a cabin-connectivity project."
+      },
+      {
+        "question": "Does consulting replace the operating carrier or technical provider?",
+        "answer": "No. The operating carrier controls the flight, and the selected authorized technical provider performs maintenance or installation work. EXJET coordinates the client brief and agreed consulting workstreams."
+      }
+    ]
   }
 ]

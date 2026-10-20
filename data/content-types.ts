@@ -19,6 +19,8 @@ export type ContentPage = {
   image?: { src: string; alt: string; width: number; height: number; caption?: string; scene?: "exterior" | "interior" };
   items?: string[];
   collectionTitle?: string;
+  serviceCatalog?: boolean;
+  consultation?: { label: string; subject: string };
   related?: string[];
   facts?: { label: string; value: string }[];
   codes?: string[];

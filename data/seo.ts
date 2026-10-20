@@ -9,8 +9,8 @@ type SeoEntry = {
 
 export const pageSeo = {
   "/": {
-    title: "Private Jet Charter & Business Aviation | EXJET Dallas",
-    description: "Arrange business jet charter worldwide with Dallas-based EXJET. Compare aircraft, routes and complete trip proposals with one dedicated point of contact.",
+    title: "Business Aviation Solutions & Private Jet Charter | EXJET",
+    description: "Dallas-based EXJET connects charter, aircraft sales, management, MRO, interiors and Starlink installation consulting. Plan your next aviation decision.",
   },
   "/charter": {
     title: "Request a Private Jet Charter Quote | Flight Search | EXJET",
@@ -42,19 +42,19 @@ export const pageSeo = {
   },
   "/why-exjet": {
     title: "Why Choose EXJET for Private Charter | EXJET",
-    description: "Learn how EXJET coordinates aircraft selection, operator review and charter planning. Understand the broker relationship and the questions to ask before booking.",
+    description: "Learn how EXJET coordinates aircraft selection, operator review and charter planning. Explore aviation consulting and the questions to ask before booking.",
   },
   "/about": {
-    title: "About EXJET | Charter Brokerage Founded by Pilots",
-    description: "Meet EXJET, a Dallas-based business aviation brokerage founded by pilots. Learn about our approach to aircraft sourcing, charter coordination and client service.",
+    title: "About EXJET | Business Aviation Solutions & Consulting",
+    description: "Meet EXJET, a Dallas-based business aviation solutions company founded by pilots. Explore charter, aircraft ownership and technical project consulting.",
   },
   "/faq": {
     title: "Private Jet Charter FAQ | EXJET",
     description: "Find answers about charter pricing, aircraft selection, empty legs, passenger details and operator checks. Learn what to confirm before booking with EXJET.",
   },
   "/contact": {
-    title: "Request a Private Jet Charter Quote | EXJET",
-    description: "Contact EXJET in Dallas for business jet, group or cargo charter. Send your itinerary and requirements, or speak with the charter desk about time-sensitive travel.",
+    title: "Contact EXJET | Charter & Business Aviation Consulting",
+    description: "Contact EXJET for charter, aircraft sales, management, MRO, interior completions or Starlink installation consulting. Discuss your aircraft, project or itinerary.",
   },
   "/privacy": {
     title: "Privacy Policy | EXJET",
