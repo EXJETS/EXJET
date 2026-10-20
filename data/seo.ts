@@ -65,8 +65,8 @@ export const pageSeo = {
     description: "Review the terms governing access to the EXJET website and requests submitted through its digital forms.",
   },
   "/account": {
-    title: "Client Access Preview | EXJET",
-    description: "Access the private EXJET client portal preview for returning charter customers.",
+    title: "Client Support | EXJET",
+    description: "Contact your EXJET advisor for itineraries, documents and new flight requests. Online account sign-in is not available yet.",
   },
 } satisfies Record<string, SeoEntry>;
 

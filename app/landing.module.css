@@ -7,7 +7,7 @@
 .hero .tagline span { color: #16181a; }
 .heroDescription { max-width: 52ch; margin: 18px auto 0 !important; color: #5e646a; font-size: 1.125rem; line-height: 1.5; }
 .actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px 24px; margin-top: 20px; }
-.primaryAction { display: inline-flex; align-items: center; justify-content: center; position: relative; min-height: 36px; padding: 8px 16px; border-radius: 980px; background: #16181a; color: #fff; font-size: 14px; font-weight: 400; line-height: 18px; transition: background 160ms ease, transform 140ms ease; }
+.primaryAction { display: inline-flex; align-items: center; justify-content: center; position: relative; min-height: 44px; padding: 8px 16px; border-radius: 980px; background: #16181a; color: #fff; font-size: 14px; font-weight: 400; line-height: 18px; transition: background 160ms ease, transform 140ms ease; }
 .primaryAction:hover { background: #353a3e; }
 .primaryAction:active { transform: scale(.97); }
 .secondaryAction { display:inline-flex; align-items:center; justify-content:center; gap:4px; min-height:44px; padding:8px 0; border:0; color:inherit; font-size:14px; font-weight:400; line-height:18px; }
@@ -61,6 +61,6 @@
 
 .bookingSection :global(.broker-notice){color:#c9cdd1;max-width:780px;margin:24px auto 0}
 
-.primaryAction::after { content: ""; position: absolute; inset: -4px 0; }
+
 
 .hero h1.eyebrow { margin: 0; font-size: .875rem; font-weight: 400; line-height: 1.5; letter-spacing: .015em; color: #5e646a; }

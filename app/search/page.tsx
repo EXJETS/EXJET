@@ -5,10 +5,10 @@ import { pageSeo, buildDynamicMetadata } from "@/data/seo";
 
 export const metadata = buildDynamicMetadata({ path: "/search", title: "Search EXJET", description: "Find aircraft, destinations, airport guides, and private charter articles.", noindex: true });
 const items = [
-  ...Object.entries(pageSeo).filter(([path]) => !["/privacy", "/terms", "/account"].includes(path)).map(([path, entry]) => ({ path, title: entry.title, description: entry.description })),
-  ...contentPages.filter(page => !page.draft).map(page => ({ path: page.path, title: page.title, description: page.description })),
+  ...Object.entries(pageSeo).filter(([path]) => !["/privacy", "/terms", "/account", "/membership", "/sales", "/search"].includes(path)).map(([path, entry]) => ({ path, title: entry.title, description: entry.description })),
+  ...contentPages.filter(page => !page.draft && !page.noindex).map(page => ({ path: page.path, title: page.title, description: page.description, keywords: page.sections.map(section => `${section.heading} ${section.paragraphs.join(" ")}`).join(" ") })),
   ...aircraft.map(item => ({ path: `/aircraft/${item.slug}`, title: item.name, description: item.category })),
 ];
 export default function SearchPage() {
-  return <div className="ex-editorial"><header className="ex-page-intro ex-container"><p className="ex-kicker">Search EXJET</p><h1>What’s on your horizon?</h1></header><SiteSearch items={items} /></div>;
+  return <div className="ex-editorial"><header className="ex-page-intro ex-container"><p className="ex-kicker">Search EXJET</p><h1>Search aircraft, routes and guides</h1></header><SiteSearch items={Array.from(new Map(items.map(item => [item.path, item])).values())} /></div>;
 }

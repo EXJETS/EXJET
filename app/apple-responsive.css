@@ -35,7 +35,7 @@ body {
 .button {
   position: relative;
   width: auto;
-  min-height: 36px;
+  min-height: 44px;
   padding: 8px 16px;
   border: 0;
   border-radius: var(--ex-control-radius);
@@ -49,12 +49,7 @@ body {
   transition: background-color 160ms ease, color 160ms ease, transform 140ms ease;
 }
 
-/* Compact visible pills retain a 44px invisible tap area. */
-.button::after {
-  content: "";
-  position: absolute;
-  inset: -4px 0;
-}
+/* Visible controls provide a minimum 44px touch target. */
 
 .page-hero__inner > .button,
 .quote-form__submit .button,
@@ -62,7 +57,7 @@ body {
 .charter-motion__content .button {
   width: fit-content;
   max-width: 100%;
-  min-height: 36px;
+  min-height: 44px;
   padding: 8px 16px;
 }
 
@@ -378,3 +373,45 @@ body {
     --ex-page-gutter: 18px;
   }
 }
+
+/* Shared interaction repairs: visible focus, legible hints and consistent icons. */
+.social-links svg { stroke: none; fill: currentColor; width: 20px; height: 20px; }
+.social-links svg :is(path, rect, circle) { fill: currentColor; stroke: none; }
+.social-links--compact a { min-width: 44px; min-height: 44px; font-size: 13px; text-transform: none; letter-spacing: 0; }
+.quote-form__airport { min-width: 0; padding: 1.45rem 1.35rem; border: 1px solid var(--line); border-top: 0; }
+.quote-form__airport > label { display: block; margin: 0 0 12px; padding: 0; border: 0 !important; font-size: 14px; color: #5e646a; }
+.quote-form__airport-list button[aria-selected="true"] { background: #e7e8e8; outline: 2px solid #16181a; outline-offset: -2px; }
+.quote-form__airport-list small { font-size: 13px; letter-spacing: 0; }
+.quote-form__airport-list strong { font-size: 14px; }
+.quote-form__progress { margin: 0; padding: 16px 0; color: #5e646a; font-size: 14px; }
+.quote-form :is(input, textarea, select):focus-visible,
+.empty-leg-board :is(input, textarea):focus-visible { outline: 2px solid #0071e3; outline-offset: 4px; }
+.quote-form__preference input:focus-visible + span { outline: 3px solid #0071e3; outline-offset: 3px; }
+.quote-form__preference label span { min-height: 44px; font-size: 14px; letter-spacing: 0; text-transform: capitalize; border-radius: 8px; }
+.quote-form__preference legend { font-size: 14px; letter-spacing: 0; text-transform: none; }
+.quote-form__submit p, .quote-form__broker-disclosure, .quote-form__error { font-size: 14px; color: #5e646a; }
+.quote-form__error { color: #7b2525; }
+.quote-form__mission-summary button, .quote-form__new { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; letter-spacing: 0; text-transform: none; cursor: pointer; }
+.quote-form__mission-summary { grid-template-columns: auto minmax(0, 1fr); }
+.quote-form__mission-summary small { font-size: 14px; }
+.quote-form__mission-summary p { flex-wrap: wrap; }
+.quote-form__mission-summary p strong { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+.quote-form__submit .button { gap: 12px; }
+.empty-leg-inquiry form > header button { display: grid; place-items: center; min-width: 44px; min-height: 44px; }
+.empty-leg-inquiry input { min-height: 44px; font-size: 16px; }
+.empty-leg-inquiry label > span, .empty-leg-results__request { font-size: 14px; letter-spacing: 0; text-transform: none; }
+.empty-leg-results__request { min-height: 44px; }
+.empty-leg-inquiry a { text-decoration: underline; text-underline-offset: 3px; }
+.aircraft-scene-carousel button { min-width: 44px; min-height: 44px; display: grid; place-items: center; }
+.not-found { min-height: 65vh; padding-block: 72px; }
+.not-found h1 { font-size: clamp(36px, 6vw, 64px); line-height: 1.12; letter-spacing: -.035em; }
+.section-intro--inverse .section-intro__copy { color: #c9cdd1; }
+@media (max-width: 760px) {
+  .quote-form__mission-summary { grid-template-columns: 1fr; }
+  .quote-form__submit .button { width: 100%; }
+}
+.ex-contact-preference { margin-bottom: 24px; padding: 24px; background: #f4f4f4; border: 1px solid #dedee2; border-radius: 16px; }
+.ex-contact-preference p { font-size: 15px; color: #5e646a; line-height: 1.6; margin: 0 0 12px; }
+.ex-contact-preference h2 { margin: 0 0 12px; font-size: 24px; font-weight: 500; }
+.ex-contact-preference .button { gap: 10px; }
+@media(max-width:760px) { .ex-card-grid:has(> :nth-child(2)):not(:has(> :nth-child(3))), .ex-card-grid:has(> :nth-child(4)):not(:has(> :nth-child(5))) { grid-template-columns: 1fr; } }

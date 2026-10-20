@@ -1,3 +1,7 @@
+import { Suspense } from "react";
+import { ContactPreference } from "@/components/ContactPreference";
+import { aircraft } from "@/data/aircraft";
+import { aircraftCategories } from "@/data/aircraftCategories";
 import { PageHero } from "@/components/PageHero";
 import { QuoteForm } from "@/components/QuoteForm";
 import { SocialLinks } from "@/components/SocialLinks";
@@ -14,7 +18,10 @@ export default function ContactPage() {
       <PageHero heading="Contact EXJET for a charter quote" eyebrow="Contact EXJET" title={<>Let’s plan<br /><em>what’s next.</em></>} copy="Share the route and timing. An EXJET advisor is available 24/7 to coordinate passenger and cargo charter requests." />
       <section className="section contact-section">
         <div className="shell contact-layout">
-          <QuoteForm />
+          <div>
+            <Suspense fallback={null}><ContactPreference aircraft={Object.fromEntries(aircraft.map(item => [item.slug, item.name]))} categories={Object.fromEntries(aircraftCategories.map(item => [item.slug, item.name]))} /></Suspense>
+            <QuoteForm />
+          </div>
           <aside>
             <p>Passenger charter</p><a href={`mailto:${siteConfig.email.charter}`}>{siteConfig.email.charter}</a>
             <p>Cargo charter</p><a href={`mailto:${siteConfig.email.cargo}`}>{siteConfig.email.cargo}</a>

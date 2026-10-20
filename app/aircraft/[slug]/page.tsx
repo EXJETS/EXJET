@@ -1,3 +1,4 @@
+import { StructuredData } from "@/components/StructuredData";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ContentSections, ContentFaq } from "@/components/ContentSections";
@@ -44,7 +45,7 @@ export default async function AircraftDetailPage({ params }: PageProps) {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumb) }} />
+      <StructuredData data={breadcrumb} />
       <AircraftDetail item={item} />
       <section className="section aircraft-detail-copy">
         <div className="shell">

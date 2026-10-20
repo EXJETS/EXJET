@@ -1,0 +1,57 @@
+/* Shared accessibility rules for EXJET-owned pages, not the hosted flight widget. */
+:root { --focus-ring: #005fcc; }
+body.menu-open { overflow: hidden; }
+main { min-width: 0; }
+:is(h1,h2,h3,p,li,dd) { overflow-wrap: break-word; }
+:is(button,a,summary,input,textarea,select):focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 4px;
+}
+:is(.section--dark,.page-hero--dark,.page-hero--image) { --focus-ring: #99caff; }
+:is(.ex-breadcrumb a,.ex-toc a,.ex-story-meta a,.ex-legal-links a) {
+  min-height: 44px; display: inline-flex; align-items: center;
+}
+.ex-content-faq summary { min-height: 44px; padding-block: 8px; }
+.ex-content-faq details { padding-block: 8px; }
+.ex-reading :is(p,li) a { text-decoration-thickness: 1px; text-underline-offset: .2em; }
+.ex-reading section, .aircraft-category-list article { scroll-margin-top: 72px; }
+.ex-facts > div, .split-copy > *, .ex-footer-top > *, .ex-reading { min-width: 0; }
+.ex-facts dd { overflow-wrap: anywhere; }
+.ex-footer-logo { flex-shrink: 0; }
+.ex-recovery { min-height: 65svh; }
+.ex-recovery h1 { font-size: clamp(2rem,5vw,3.5rem); line-height: 1.15; }
+.ex-recovery > p { max-width: 50ch; margin-block: 20px; }
+.ex-search-form:focus-within { border-color: #16181a; }
+.ex-search-form input { scroll-margin-top: 72px; }
+.ex-search-clear { flex: 0 0 44px; min-height: 44px; border: 0; border-radius: 50%; background: #f4f4f4; color: #16181a; cursor: pointer; }
+.ex-search-result h2 a { display: inline-flex; align-items: center; min-height: 44px; }
+.ex-search-result h2 a:hover { text-decoration: underline; text-underline-offset: 5px; }
+button:disabled { cursor: not-allowed; }
+@media (max-width: 820px) {
+  .ex-header { height: calc(44px + env(safe-area-inset-top)); padding-top: env(safe-area-inset-top); }
+  .ex-footer-mobile summary, .ex-footer-mobile nav a { font-size: .9375rem; }
+  .ex-footer-mobile summary { min-height: 48px; }
+  .ex-breadcrumb { gap: 0 6px; }
+  .ex-breadcrumb > span { min-width: 0; }
+  .ex-reading { width: 100%; }
+  .large-contact-link { overflow-wrap: anywhere; }
+}
+@media (max-width: 380px) {
+  .ex-facts { grid-template-columns: 1fr; }
+  .ex-inline-actions { align-items: stretch; flex-direction: column; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; scroll-behavior: auto !important; }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .ex-header { background: #fafafc; backdrop-filter: none; }
+}
+@media (prefers-contrast: more) {
+  :root { --muted: #353a3e; --line: #777; }
+  .ex-card, .ex-table-scroll, .ex-footer-mobile details { border-color: #777; }
+}
+@media (forced-colors: active) {
+  .button, .ex-menu-button, .ex-search-clear { border: 1px solid ButtonText; }
+  :is(a,button,input,select,textarea,summary):focus-visible { outline-color: Highlight; }
+}

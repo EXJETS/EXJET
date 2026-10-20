@@ -1,3 +1,4 @@
+import { ContentCollection } from "@/components/EditorialPage";
 import { AircraftCategoryCard } from "@/components/AircraftCategoryCard";
 import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
@@ -11,7 +12,7 @@ export const metadata = buildMetadata("/aircraft");
 export default function AircraftPage() {
   return (
     <>
-      <PageHero eyebrow="Jet categories" title={<>The right class.<br /><em>The right fit.</em></>} copy="EXJET sources private jets across the full charter market. Start with the category that fits the mission, or let your advisor compare the strongest available options for your route." />
+      <PageHero heading="Business aircraft categories and charter options" eyebrow="Aircraft categories" title={<>The right class.<br /><em>The right fit.</em></>} copy="EXJET sources business aircraft across the full charter market. Start with the category that fits the mission, or let your advisor compare the strongest available options for your route." />
       <section className="section" aria-label="Explore aircraft exteriors and cabins">
         <HomeAircraftEditorial />
       </section>
@@ -34,6 +35,7 @@ export default function AircraftPage() {
           {aircraftCategories.map((item, index) => <AircraftCategoryCard item={item} index={index} key={item.slug} />)}
         </div>
       </section>
+      <ContentCollection paths={["/aircraft-performance", "/aircraft-comparisons", "/guides/aircraft-tail-number-verification"]} title="Compare the details that matter." description="Performance, cabin choices and aircraft verification for your mission." showImages={false} />
       <section className="aircraft-category-advisor section section--dark">
         <div className="shell split-copy">
           <p className="eyebrow eyebrow--light"><span />Not sure where to begin?</p>
