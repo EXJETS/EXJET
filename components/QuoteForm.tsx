@@ -84,7 +84,7 @@ function AirportInput({ label, value, code, onChange }: {
   }, [code, value]);
   return <div className="quote-form__airport">
     <label htmlFor={id}>{label}</label>
-    <input ref={input} id={id} value={value} maxLength={120} required autoComplete="off"
+    <input ref={input} id={id} value={value} maxLength={120} required pattern={String.raw`.*\S.*`} title="Enter a city or airport." autoComplete="off"
       placeholder="City, airport, IATA or ICAO" role="combobox" aria-autocomplete="list"
       aria-expanded={open} aria-controls={open ? listId : undefined}
       aria-activedescendant={open && active >= 0 ? `${id}-${active}` : undefined}
@@ -200,7 +200,7 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
             <AirportInput label="Destination" value={form.destination} code={form.destinationIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, destination: value, destinationIcao: icao }))} />
             <label><span>Date</span><input value={form.date} onChange={(event) => update("date", event.target.value)} name="date" type="date" min={today} required /></label>
             {mode === "cargo" ? (
-              <label><span>Cargo type</span><input value={form.cargoType} onChange={(event) => update("cargoType", event.target.value)} name="cargoType" maxLength={160} required placeholder="General description" /></label>
+              <label><span>Cargo type</span><input value={form.cargoType} onChange={(event) => update("cargoType", event.target.value)} name="cargoType" maxLength={160} required pattern={String.raw`.*\S.*`} title="Describe the cargo." placeholder="General description" /></label>
             ) : (
               <label><span>Passengers</span><input value={form.passengers} onChange={(event) => update("passengers", event.target.value)} name="passengers" type="number" inputMode="numeric" min="1" max="100" required /></label>
             )}
@@ -220,7 +220,7 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
             <small>{form.date} · {mode === "cargo" ? form.cargoType : `${form.passengers} traveler${form.passengers === "1" ? "" : "s"}`}</small>
           </div>
           <div className="quote-form__row quote-form__row--identity">
-            <label><span>Name</span><input value={form.name} onChange={(event) => update("name", event.target.value)} name="name" minLength={2} maxLength={100} autoComplete="name" required placeholder="Your name" /></label>
+            <label><span>Name</span><input value={form.name} onChange={(event) => update("name", event.target.value)} name="name" minLength={2} maxLength={100} pattern={String.raw`.*\S.*`} title="Enter your name." autoComplete="name" required placeholder="Your name" /></label>
             <label><span>Mobile</span><input value={form.phone} onChange={(event) => update("phone", event.target.value)} name="phone" maxLength={40} type="tel" inputMode="tel" autoComplete="tel" required placeholder="+1" /></label>
             <label><span>Email</span><input value={form.email} onChange={(event) => update("email", event.target.value)} name="email" maxLength={180} type="email" inputMode="email" autoComplete="email" required placeholder="you@company.com" /></label>
           </div>
