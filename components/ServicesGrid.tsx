@@ -9,7 +9,7 @@ export function ServicesGrid() {
   return <ul className={styles.grid}>{aviationSolutions.map(service => {
     const Icon = icons[service.icon];
     return <li key={service.path}><Link href={service.path} className={styles.card}>
-      <div className={styles.symbol}><Icon size={28} weight="light" aria-hidden="true" /><ArrowUpRightIcon size={18} aria-hidden="true" /></div>
+      <div className={styles.symbol}><span className={styles.icon}><Icon size={26} weight="regular" aria-hidden="true" /></span><ArrowUpRightIcon size={18} aria-hidden="true" /></div>
       <h3>{service.name}</h3><p>{service.description}</p>
     </Link></li>;
   })}</ul>;

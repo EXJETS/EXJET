@@ -4,6 +4,7 @@ import airportData from "./airports-guide.json";
 import routeData from "./routes-guide.json";
 import serviceData from "./services.json";
 import additionalData from "./seo-content.json";
+import ownerData from "./owner-guides.json";
 import type { ContentPage, ContentSection } from "./content-types";
 export type { ContentPage, ContentSection } from "./content-types";
 
@@ -21,7 +22,7 @@ type RouteGuide = {
 };
 const airportGuides = airportData as AirportGuide[];
 const routeGuides = routeData as RouteGuide[];
-const additional = additionalData as ContentPage[];
+const additional = [...additionalData, ...ownerData] as ContentPage[];
 const articles: ContentPage[] = articleData.map(item => ({
   ...item, path: `/articles/${item.slug}`, kind: "article", kicker: item.category,
   parent: {name:"Flight Guide",path:"/articles"},
