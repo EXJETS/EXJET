@@ -185,3 +185,6 @@
 .sales-service-grid article > svg { display: block; flex-shrink: 0; margin-bottom: 20px; color: #c9cdd1; }
 .sales-services-section .sales-service-grid p { color: #c9cdd1; }
 .sales-index-card__top > span:last-child { padding: 6px 10px; border: 1px solid #d9dcdf; border-radius: 8px; line-height: 1.4; }
+
+.sales-service-grid h3 { margin: 0 0 16px; min-height: 2.4em; }
+@media (max-width: 600px) { .sales-service-grid h3 { min-height: 0; } }
