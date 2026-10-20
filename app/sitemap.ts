@@ -5,7 +5,7 @@ import { absoluteUrl } from "@/data/site";
 
 export const dynamic = "force-static";
 export default function sitemap(): MetadataRoute.Sitemap {
-  const originals = ["/", "/charter", "/empty-legs", "/group-charter", "/cargo", "/aircraft", "/why-exjet", "/about", "/faq", "/contact"];
+  const originals = ["/", "/charter", "/empty-legs", "/group-charter", "/cargo", "/aircraft", "/why-exjet", "/about", "/faq", "/contact", "/sales"];
   const detailPages = aircraft.map(item => `/aircraft/${item.slug}`);
   const pages = contentPages.filter(page => !page.noindex && !page.draft);
   return [...originals, ...detailPages, ...pages.map(page => page.path)].map(path => {
