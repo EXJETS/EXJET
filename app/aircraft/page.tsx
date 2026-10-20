@@ -14,6 +14,7 @@ export default function AircraftPage() {
     <>
       <PageHero heading="Business aircraft categories and charter options" eyebrow="Aircraft categories" title={<>The right class.<br /><em>The right fit.</em></>} copy="EXJET sources business aircraft across the full charter market. Start with the category that fits the mission, or let your advisor compare the strongest available options for your route." />
       <section className="section" aria-label="Explore aircraft exteriors and cabins">
+        <h2 className="sr-only">Featured business aircraft</h2>
         <HomeAircraftEditorial />
       </section>
       <section className="aircraft-category-index section">

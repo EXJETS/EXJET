@@ -3,11 +3,12 @@
 import { useSearchParams } from "next/navigation";
 import { EnvelopeIcon } from "@phosphor-icons/react/dist/csr/Envelope";
 import { siteConfig } from "@/data/site";
+import { selectedLabel } from "./selection";
 
 export function ContactPreference({ aircraft, categories }: { aircraft: Record<string, string>; categories: Record<string, string> }) {
   const params = useSearchParams();
-  const aircraftName = aircraft[params.get("aircraft") ?? ""];
-  const category = categories[params.get("category") ?? ""];
+  const aircraftName = selectedLabel(aircraft, params.get("aircraft"));
+  const category = selectedLabel(categories, params.get("category"));
   const preference = aircraftName || category || (params.get("service") === "empty-leg" ? "Empty-leg match" : "");
   if (!preference) return null;
   const subject = `EXJET enquiry: ${preference}`;

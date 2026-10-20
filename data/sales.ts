@@ -4,12 +4,13 @@ export type SalesListing = {
   maker: string;
   year?: string;
   category: string;
-  status: "Sold" | "Off-market" | "For lease" | "Acquisition brief";
+  status: "Sold" | "Off-market" | "For lease" | "Acquisition brief" | "Aircraft reference";
   availability: "record" | "active" | "search";
   summary: string;
   description: string[];
   facts: Array<[string, string]>;
   callToAction: string;
+  source?: { label: string; url: string; note: string };
 };
 
 export const salesListings: SalesListing[] = [
@@ -17,17 +18,18 @@ export const salesListings: SalesListing[] = [
     slug: "citation-m2",
     name: "Citation M2",
     maker: "Cessna",
-    year: "2013",
+    year: "2014",
     category: "Light jet",
-    status: "Sold",
+    status: "Aircraft reference",
     availability: "record",
-    summary: "A completed EXJET transaction and a reference point for targeted light-jet acquisitions.",
+    summary: "2014 Citation M2 N74KM, serial 525-0800. An archived aircraft reference for a similar-aircraft acquisition brief.",
     description: [
-      "This Citation M2 was represented as a single-pilot certified light jet with MSP Gold enrollment, a fresh Phase 5 inspection, and 2021 paint and interior.",
-      "The aircraft is no longer available. EXJET can build a confidential search for a similar M2 or comparable owner-operated light jet.",
+      "The supplied Aircraft.com record identifies N74KM as a 2014 Citation M2 based at Fort Worth Spinks (KFWS), with a six-passenger configuration and Garmin G3000 flight deck.",
+      "That record is marked unavailable for sale or charter. The recorded times and program details below are historical listing information and require current records for verification. This reference does not establish EXJET representation or a completed EXJET transaction.",
     ],
-    facts: [["Total time", "2,450 hours"], ["Seats", "6"], ["Maximum range", "1,550 nm"], ["Cruise speed", "404 kts"], ["Engines", "Williams FJ44-1AP-21"], ["Recorded sale price", "$3.3M"]],
+    facts: [["Registration", "N74KM"], ["Serial number", "525-0800"], ["Year", "2014"], ["Recorded airframe time", "2,290.6 hours"], ["Recorded landings", "2,197"], ["Listed seating", "6 passengers"], ["Listed engine program", "TAP Blue"], ["Listed avionics", "Garmin G3000"]],
     callToAction: "Source a similar aircraft",
+    source: { label: "View the Aircraft.com reference", url: "https://www.aircraft.com/aircraft/252345811/n74km-2014-cessna-citation-m2", note: "Historical listing details; current status and records must be confirmed." },
   },
   {
     slug: "global-7500",

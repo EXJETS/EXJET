@@ -1,6 +1,7 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef } from "react";
+import { useSearchParams } from "next/navigation";
 import Link from "next/link";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react/dist/csr/MagnifyingGlass";
 import { XIcon } from "@phosphor-icons/react/dist/csr/X";
@@ -8,7 +9,14 @@ import { XIcon } from "@phosphor-icons/react/dist/csr/X";
 export type SearchItem = { path: string; title: string; description: string; keywords?: string };
 const normalize = (value: string) => value.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[-/]/g, " ");
 export function SiteSearch({ items }: { items: SearchItem[] }) {
-  const [query, setQuery] = useState("");
+  const params = useSearchParams();
+  const query = (params.get("q") ?? "").slice(0, 200);
+  const setQuery = (value: string) => {
+    const url = new URL(window.location.href);
+    if (value) url.searchParams.set("q", value.slice(0, 200));
+    else url.searchParams.delete("q");
+    window.history.replaceState(null, "", `${url.pathname}${url.search}${url.hash}`);
+  };
   const input = useRef<HTMLInputElement>(null);
   const words = normalize(query).trim().split(/\s+/).filter(Boolean);
   const results = words.length ? items.map(item => {

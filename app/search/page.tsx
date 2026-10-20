@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { SiteSearch } from "@/components/SiteSearch";
 import { contentPages } from "@/data/editorial";
 import { aircraft } from "@/data/aircraft";
@@ -10,5 +11,5 @@ const items = [
   ...aircraft.map(item => ({ path: `/aircraft/${item.slug}`, title: item.name, description: item.category })),
 ];
 export default function SearchPage() {
-  return <div className="ex-editorial"><header className="ex-page-intro ex-container"><p className="ex-kicker">Search EXJET</p><h1>Search aircraft, routes and guides</h1></header><SiteSearch items={Array.from(new Map(items.map(item => [item.path, item])).values())} /></div>;
+  return <div className="ex-editorial"><header className="ex-page-intro ex-container"><p className="ex-kicker">Search EXJET</p><h1>Search aircraft, routes and guides</h1></header><Suspense fallback={<p className="ex-container" role="status">Loading search…</p>}><SiteSearch items={Array.from(new Map(items.map(item => [item.path, item])).values())} /></Suspense></div>;
 }
