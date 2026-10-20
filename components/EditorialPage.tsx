@@ -4,7 +4,8 @@ import { CaretRightIcon } from "@phosphor-icons/react/dist/ssr";
 import { BrokerNotice } from "@/components/BrokerNotice";
 import { ContentSections, ContentFaq } from "@/components/ContentSections";
 import { StructuredData } from "@/components/StructuredData";
-import { absoluteUrl } from "@/data/site";
+import { ServicesGrid } from "@/components/ServicesGrid";
+import { absoluteUrl, siteConfig } from "@/data/site";
 import { contentPages, type ContentPage } from "@/data/editorial";
 
 export function ContentCard({ page, showImage = true }: { page: ContentPage; showImage?: boolean }) {
@@ -23,19 +24,22 @@ export function ContentCollection({ paths, title, description, silver = false, s
 }
 
 export function EditorialPage({ page }: { page: ContentPage }) {
+  const consultationHref = page.consultation ? `mailto:${siteConfig.email.general}?subject=${encodeURIComponent(page.consultation.subject)}` : null;
   const isReading = page.kind === "article" || page.kind === "legal";
   const updatedLabel = page.updated ? new Intl.DateTimeFormat("en-US", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${page.updated}T00:00:00Z`)) : null;
   const breadcrumb = [{name:"Home",path:"/"}, ...(page.parent ? [page.parent] : []),{name:page.title,path:page.path}];
   const schema = {"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:breadcrumb.map((entry,index)=>({"@type":"ListItem",position:index+1,name:entry.name,item:absoluteUrl(entry.path)}))};
   return <div className="ex-editorial">
     <StructuredData data={schema} />
+    {page.kind === "service" ? <StructuredData data={{"@context":"https://schema.org","@type":"Service",name:page.title,description:page.description,url:absoluteUrl(page.path),provider:{"@id":absoluteUrl("/")+"#organization"}}} /> : null}
     {page.kind === "article" ? <StructuredData data={{"@context":"https://schema.org","@type":"Article",headline:page.title,description:page.description,mainEntityOfPage:absoluteUrl(page.path),publisher:{"@id":absoluteUrl("/")+"#organization"},author:{"@type":"Organization",name:"EXJET editorial",url:absoluteUrl("/editorial-standards")},datePublished:page.published,dateModified:page.updated, ...(page.image ? {image:absoluteUrl(page.image.src)} : {})}} /> : null}
     <div className="ex-container"><nav className="ex-breadcrumb" aria-label="Breadcrumb">{breadcrumb.map((entry,index)=><span key={entry.path}>{index > 0 ? <span aria-hidden="true"> / </span> : null}{index===breadcrumb.length-1 ? <span aria-current="page">{entry.name}</span>:<Link href={entry.path}>{entry.name}</Link>}</span>)}</nav>
       <header className={isReading ? "ex-story-intro" : "ex-page-intro"}><p className="ex-kicker">{page.kicker}</p><h1>{page.title}</h1><p>{page.description}</p>
         {page.kind==="article" ? <div className="ex-story-meta"><Link href="/editorial-standards">EXJET editorial</Link><span>{page.readTime}</span>{updatedLabel ? <span>Updated {updatedLabel}</span> : null}</div> : null}
-        {page.kind==="service" ? <div className="ex-intro-actions"><Link className="button button--dark" href="/contact">Discuss your plans</Link><Link className="ex-inline-link" href="/charter">Find a flight<CaretRightIcon size={16} weight="light" aria-hidden="true" /></Link></div> : null}
+        {page.kind==="service" ? <div className="ex-intro-actions">{consultationHref ? <a className="button button--dark" href={consultationHref}>{page.consultation?.label}</a> : <Link className="button button--dark" href="/contact">Discuss your plans</Link>}<Link className="ex-inline-link" href={consultationHref ? "/services" : "/charter"}>{consultationHref ? "Explore all services" : "Find a flight"}<CaretRightIcon size={16} weight="light" aria-hidden="true" /></Link></div> : null}
       </header>
     </div>
+    {page.serviceCatalog ? <section className="ex-section ex-section--silver"><div className="ex-container"><div className="ex-section-heading"><h2>Explore our services</h2></div><ServicesGrid /></div></section> : null}
     {page.image && page.kind!=="hub" ? <figure className="ex-feature-photo" style={{maxWidth:Math.min(page.image.width,1400)}}><Image src={page.image.src} alt={page.image.alt} width={page.image.width} height={page.image.height} priority sizes="(max-width:1400px) 100vw, 1400px" /><figcaption>{page.image.caption || page.image.alt}</figcaption></figure> : null}
     {page.items ? <ContentCollection paths={page.items} title={page.collectionTitle || "Explore"} silver showImages={page.path === "/articles"} /> : null}
     <div className="ex-container"><div className="ex-reading">
@@ -47,6 +51,6 @@ export function EditorialPage({ page }: { page: ContentPage }) {
       {page.sources?.length ? <section className="ex-sources" aria-label="Sources"><h2>Sources & further reading</h2><ul>{page.sources.map(source=><li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul></section> : null}
     </div></div>
     {page.related?.length ? <ContentCollection paths={page.related.filter(path => path !== page.path)} title="Continue exploring." silver showImages={false} /> : null}
-    {page.kind!=="legal" ? <section className="ex-action-panel"><h2>Make it your itinerary.</h2><p>Tell EXJET where you’re going, who’s travelling, and what matters along the way.</p><Link href="/charter" className="button button--dark">Find a flight</Link><BrokerNotice /></section> : null}
+    {page.kind!=="legal" ? <section className="ex-action-panel"><h2>{consultationHref ? "Plan your next aviation decision." : "Make it your itinerary."}</h2><p>{consultationHref ? "Share the aircraft, objectives and timing. EXJET will help define the next steps." : "Tell EXJET where you’re going, who’s travelling, and what matters along the way."}</p>{consultationHref ? <a href={consultationHref} className="button button--dark">{page.consultation?.label}</a> : <><Link href="/charter" className="button button--dark">Find a flight</Link><BrokerNotice /></>}</section> : null}
   </div>;
 }

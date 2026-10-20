@@ -24,12 +24,12 @@ export function SiteSearch({ items }: { items: SearchItem[] }) {
     const text = normalize(`${item.title} ${item.description} ${item.path} ${item.keywords || ""}`);
     return { item, score: words.every(word => text.includes(word)) ? words.reduce((score, word) => score + (title.includes(word) ? 3 : 1), 0) : 0 };
   }).filter(result => result.score > 0).sort((a, b) => b.score - a.score).map(result => result.item)
-    : items.filter(item => ["/executive-assistants", "/family-office-private-aviation", "/aircraft", "/routes", "/airports", "/pricing"].includes(item.path));
+    : items.filter(item => ["/services", "/business-aviation-consulting", "/executive-assistants", "/family-office-private-aviation", "/aircraft", "/pricing"].includes(item.path));
   return <div className="ex-container ex-site-search">
     <div className="ex-search-form" role="search" aria-label="Search EXJET">
       <MagnifyingGlassIcon size={24} aria-hidden="true" />
       <label className="sr-only" htmlFor="site-search">Search EXJET</label>
-      <input ref={input} id="site-search" type="search" placeholder="Aircraft, airports, routes, guides" value={query} maxLength={200} onChange={event => setQuery(event.target.value)} aria-controls="site-search-results" autoComplete="off" />
+      <input ref={input} id="site-search" type="search" placeholder="Services, aircraft, airports, guides" value={query} maxLength={200} onChange={event => setQuery(event.target.value)} aria-controls="site-search-results" autoComplete="off" />
       {query ? <button className="ex-search-clear" type="button" aria-label="Clear search" onClick={() => { setQuery(""); input.current?.focus(); }}><XIcon size={18} aria-hidden="true" /></button> : null}
     </div>
     <div className="ex-search-results" id="site-search-results"><p className="ex-search-count" role="status">{words.length ? `${results.length} ${results.length === 1 ? "result" : "results"}` : "Explore EXJET"}</p>

@@ -1,14 +1,14 @@
 import Link from "next/link";
 import { Logo } from "@/components/Logo";
 import { SocialLinks } from "@/components/SocialLinks";
-import { siteConfig } from "@/data/site";
+import { siteConfig, aviationSolutions } from "@/data/site";
 import { CaretDownIcon } from "@phosphor-icons/react/dist/ssr";
 import { BrokerNotice } from "@/components/BrokerNotice";
 
 const groups = [
-  { title: "Fly with EXJET", links: [["Charter", "/charter"], ["Aircraft", "/aircraft"], ["Empty legs", "/empty-legs"], ["Executive assistants", "/executive-assistants"], ["Family offices", "/family-office-private-aviation"], ["Group travel", "/group-charter"], ["Membership", "/membership"]] },
+  { title: "Services", links: aviationSolutions.map(service => [service.name, service.path]) },
   { title: "Explore", links: [["Flight Guide", "/articles"], ["Routes", "/routes"], ["Airports", "/airports"], ["Destinations", "/destinations"], ["Dallas charter", "/private-jet-charter/dallas"], ["Aircraft performance", "/aircraft-performance"], ["Aircraft comparisons", "/aircraft-comparisons"], ["Glossary", "/glossary"], ["Charter pricing", "/pricing"]] },
-  { title: "EXJET", links: [["About", "/about"], ["Why EXJET", "/why-exjet"], ["Safety", "/safety"], ["Corporate travel", "/corporate-travel"], ["Aircraft sales", "/sales"], ["Cargo charter", "/cargo"], ["Contact", "/contact"]] },
+  { title: "EXJET", links: [["All services", "/services"], ["Aviation consulting", "/business-aviation-consulting"], ["About", "/about"], ["Why EXJET", "/why-exjet"], ["Safety", "/safety"], ["Executive assistants", "/executive-assistants"], ["Family offices", "/family-office-private-aviation"], ["Corporate travel", "/corporate-travel"], ["Aircraft", "/aircraft"], ["Empty legs", "/empty-legs"], ["Membership", "/membership"], ["Cargo charter", "/cargo"], ["Contact", "/contact"]] },
 ];
 
 export function SiteFooter() {

@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { ServicesGrid } from "@/components/ServicesGrid";
 import { HomeAircraftEditorial } from "@/components/HomeAircraftEditorial";
 import { ContentCollection } from "@/components/EditorialPage";
 import { BrokerNotice } from "@/components/BrokerNotice";
@@ -18,9 +19,9 @@ export default function Home() {
       <StructuredData data={localBusinessJsonLd()} />
       <section className={styles.hero} aria-labelledby="home-title">
         <div className={styles.heroContent}>
-          <h1 id="home-title" className={styles.eyebrow}>Private jet charter &amp; business aviation</h1>
+          <h1 id="home-title" className={styles.eyebrow}>Business aviation solutions &amp; private jet charter</h1>
           <p className={styles.tagline}>Global Access.<br /><span>On-Demand.</span></p>
-          <p className={styles.heroDescription}>EXJET simplifies business aviation through clear access, informed guidance, and service built around every journey.</p>
+          <p className={styles.heroDescription}>From charter and aircraft acquisitions to management, maintenance, interiors and connectivity, EXJET brings business aviation solutions together.</p>
           <div className={styles.actions}>
             <Link className={styles.primaryAction} href="/charter">Find a flight</Link>
             <Link className={styles.secondaryAction} href="#aircraft">Explore aircraft <CaretRightIcon size={14} weight="light" aria-hidden="true" /></Link>
@@ -30,6 +31,7 @@ export default function Home() {
           <Image src="/images/home/owner-selected-hero.webp" alt="Bombardier Global 8000 in flight over the ocean beside a coastline" width={1500} height={671} sizes="(max-width: 1400px) 100vw, 1400px" priority />
         </div>
       </section>
+      <section className="ex-section ex-section--silver" aria-labelledby="services-title"><div className="ex-container"><div className="ex-section-heading"><div><p className={styles.eyebrow}>Business aviation solutions</p><h2 id="services-title">One relationship. Every stage of aviation.</h2></div><Link href="/services" className={styles.textAction}>Explore all services <CaretRightIcon size={16} aria-hidden="true" /></Link></div><ServicesGrid /></div></section>
       <section className={styles.aircraftSection} id="aircraft" aria-labelledby="aircraft-title">
         <div className={styles.sectionHeading}>
           <div><p className={styles.eyebrow}>Explore the aircraft</p><h2 id="aircraft-title">The right aircraft for every journey.</h2></div>
