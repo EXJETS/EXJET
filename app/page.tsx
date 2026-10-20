@@ -52,6 +52,7 @@ export default function Home() {
           </div>
         </div>
       </section>
+      <ContentCollection paths={["/executive-assistants", "/family-office-private-aviation", "/corporate-travel/fortune-500"]} title="Built around the people who arrange the journey." description="Aircraft charter planning for executive assistants, family offices and corporate travel teams." showImages={false} />
       <ContentCollection paths={routePaths.slice(0, 4)} title="Wherever comes next." description="A closer look at the airports and details behind your itinerary." silver />
       <ContentCollection paths={["/private-jet-charter/dallas", "/pricing", "/safety"]} title="Plan with EXJET." description="Local airport choices, transparent cost planning and informed operator review." showImages={false} />
       <ContentCollection paths={articlePaths.slice(0, 3)} title="A clearer view of private aviation." description="The EXJET Flight Guide. Practical reading for the journey ahead." showImages={false} />
