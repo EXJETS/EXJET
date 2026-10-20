@@ -1,12 +1,13 @@
 import routes from "@/data/reviewRoutes.json";
+import { contentPages } from "@/data/editorial";
 export const dynamic = "force-dynamic";
 
 export function GET(request: Request) {
-  if (process.env.NODE_ENV !== "development") return new Response(null, { status: 404 });
+  if (process.env.NODE_ENV !== "development" && process.env.VERCEL_ENV !== "preview") return new Response(null, { status: 404 });
   const search = new URL(request.url).searchParams;
   const requestedWidth = Number(search.get("width"));
   const width = [320, 390, 768].includes(requestedWidth) ? requestedWidth : 390;
-  const path = routes.some((route) => route.path === search.get("page")) ? search.get("page")! : "/";
+  const path = [...routes, ...contentPages].some((route) => route.path === search.get("page")) ? search.get("page")! : "/";
   return new Response(`<!doctype html><html lang="en"><head><meta name="viewport" content="width=device-width, initial-scale=1"><title>EXJET design review</title><style>html,body{margin:0;background:#e8e8ed}body{display:flex;justify-content:center}iframe{display:block;width:${width}px;height:844px;flex:none;border:0;background:white}aside{position:fixed;left:16px;top:16px;display:grid;gap:8px;width:140px;font:13px system-ui}button{min-height:44px;border:0;border-radius:10px;background:white;color:#16181a;cursor:pointer}@media(max-width:900px){aside{display:none}}</style></head><body><aside aria-label="Page capture controls"><button id="top">Page top</button><button id="next">Next section</button><output id="position"></output></aside><iframe title="EXJET responsive preview" src="${path}"></iframe><script>
 const frame=document.querySelector('iframe');
 async function settle(){
