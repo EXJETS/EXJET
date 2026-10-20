@@ -48,7 +48,7 @@ export default function CargoPage() {
           <SectionIntro
             eyebrow="Representative freighter access"
             title="From narrow-body lift to intercontinental heavy cargo."
-            copy="EXJET brokers across the global cargo market. These are common examples, not a fixed fleet. The best aircraft is sourced around payload, dimensions, routing, loading method, timing, and availability."
+            copy="EXJET sources options across the global cargo market. These are common examples, not a fixed fleet. The best aircraft is sourced around payload, dimensions, routing, loading method, timing, and availability."
           />
           <div className="cargo-aircraft-grid">
             {freighters.map(([name, category, copy], index) => (
