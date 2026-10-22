@@ -1,10 +1,6 @@
-# Current homepage hero direction — 22 October 2026
+# Current homepage correction — 22 October 2026
 
-The homepage opens with three distinct areas: a single-line “Global Access. On-Demand.” heading on a platinum surface, the complete owner-selected Global 8000 coastal photograph, and two black-text action rows below the image. Do not overlay the headline or actions on the aircraft. Preserve the original image aspect ratio and navbar logo. Desktop image width responds to viewport height so both actions remain visible on standard laptop screens; mobile uses its own heading scale, full-width image and stacked 90px action targets. The next section uses one editorial introduction instead of repeating the service heading.
-
-References inspected in the cloud browser for this revision: Apple, XO, VistaJet and Bombardier. The implementation uses their spacious hierarchy and separation of content, imagery and actions within EXJET’s existing Ubuntu and neutral palette. It does not copy their branding. Homepage flight search remains a link to `/charter/`; Avinode integration code is unchanged.
-
-Responsive browser checks covered 320×568, 390×844, 430×932, 768×1024, 1024×768 and 1366×768: the headline stays on one line, the aircraft remains uncropped, action text is black and the page has no horizontal overflow. These directions supersede older hero layout notes below.
+The inset, platinum-framed hero and large two-column action rows were rejected by the owner. Do not restore them. The approved coastal aircraft photograph now spans the full viewport width directly beneath the navbar. A light, single-line “Global Access. On-Demand.” heading sits over the water above the aircraft. Use two simple white, black-text buttons below the aircraft on desktop. On mobile, keep the complete image at its natural aspect ratio and place compact outlined buttons beneath it. Preserve the original navbar logo and Avinode integration. This direction supersedes older hero notes below.
 
 # Current CTA direction — 22 October 2026
 
