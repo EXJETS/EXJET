@@ -277,8 +277,13 @@ body {
 
 @media (max-width: 760px) {
   :root {
-    --ex-section-gap: 52px;
+    --ex-page-gutter: 20px;
+    --ex-section-gap: 40px;
+    --ex-mobile-title: clamp(1.875rem, 8.2vw, 2.125rem);
+    --ex-mobile-heading: 1.5rem;
   }
+
+  body { font-size: 1rem; }
 
   .shell,
   .ex-container {
@@ -286,26 +291,30 @@ body {
   }
 
   .page-hero__inner {
-    padding-block: 34px 32px;
+    padding-block: 28px;
   }
 
+  .ex-page-intro, .ex-story-intro { padding-block: 16px 24px; }
+
   .page-hero h1,
+  .page-hero .page-hero__display,
   .ex-page-intro h1,
   .ex-story-intro h1 {
-    font-size: clamp(36px, 10.25vw, 42px);
-    line-height: 1.08;
+    font-size: var(--ex-mobile-title);
+    line-height: 1.12;
   }
 
   .page-hero .page-hero__copy,
   .ex-page-intro > p:not(.ex-kicker),
   .ex-story-intro > p:not(.ex-kicker) {
-    font-size: 17px;
+    margin-top: 16px;
+    font-size: 1rem;
     line-height: 1.55;
   }
 
   .section-intro,
   .ex-section-heading {
-    margin-bottom: 26px;
+    margin-bottom: 20px;
   }
 
   .section-intro h2,
@@ -315,7 +324,7 @@ body {
   .about-values h2,
   .about-location h2,
   .why-speed h2 {
-    font-size: 28px;
+    font-size: var(--ex-mobile-heading);
     line-height: 1.14;
   }
 
@@ -331,25 +340,40 @@ body {
   }
 
   .ex-card {
-    padding: 24px;
+    padding: 20px;
     border-radius: 16px;
   }
 
   .ex-card-image {
-    margin: -24px -24px 22px;
+    margin: -20px -20px 18px;
     border-radius: 16px 16px 0 0;
   }
 
   .ex-reading h2 {
-    margin-top: 36px;
-    font-size: 25px;
+    margin-top: 28px;
+    font-size: var(--ex-mobile-heading);
   }
 
   .ex-reading p,
   .ex-reading li {
-    font-size: 17px;
+    font-size: 1rem;
     line-height: 1.62;
   }
+
+  .ex-reading { padding-bottom: 40px; }
+  .ex-card h2, .ex-card h3 { font-size: 1.25rem; }
+  .ex-action-panel { padding-block: 40px; }
+  .ex-action-panel h2 { font-size: var(--ex-mobile-heading); }
+
+  .detail-viewer__title h1, .sales-detail-hero h1,
+  .account-story h1, .legal-page h1 { font-size: var(--ex-mobile-title); }
+  .aircraft-category-card__heading h2, .sales-index-card h2,
+  .empty-leg-results__empty h2, .membership-card h2,
+  .account-panel h2 { font-size: var(--ex-mobile-heading); }
+  .process-grid h3, .group-mission-grid h3, .sales-service-grid h3,
+  .cargo-aircraft-grid h3 { font-size: 1.25rem; }
+  .aircraft-category-card { padding: 24px 20px; }
+  .sales-index-card__link, .account-panel { padding: 20px; }
 
   .ex-search-panel {
     border-radius: 18px;
