@@ -1,8 +1,9 @@
 .header:global(.ex-header) { height: auto; border-bottom: 1px solid rgb(22 24 26 / 7%); }
 .header :global(.ex-header-inner) { width: min(1120px, calc(100% - 40px)); min-height: 64px; }
 .header :global(.ex-header-actions) { flex: none; gap: 4px; }
-.bookFlight { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 20px; border-radius: 999px; background: #16181a; color: #fff; font-size: .875rem; line-height: 1.4; white-space: nowrap; }
-.bookFlight:hover { background: #353a3e; }
+.bookFlight { display: inline-flex; align-items: center; justify-content: center; min-height: 44px; padding: 10px 20px; border-radius: 999px; background: transparent; color: #000; font-size: .875rem; line-height: 1.4; white-space: nowrap; }
+.bookFlight:hover { background: transparent; color: #000; text-decoration: underline; text-underline-offset: 5px; }
+.bookFlight:focus-visible { outline: 2px solid #16181a; outline-offset: 2px; }
 .mobileGroups { display: none; }
 .mobileGroups details { border-bottom: 1px solid #dedee2; }
 .mobileGroups summary { display: flex; align-items: center; justify-content: space-between; gap: 20px; min-height: 60px; font-size: 1.125rem; font-weight: 500; list-style: none; cursor: pointer; }
