@@ -65,27 +65,30 @@
 .localLinks { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 28px; margin-top: 28px; padding-top: 20px; border-top: 1px solid #d9dcdf; }
 .localLinks a { display: inline-flex; align-items: center; min-height: 44px; font-size: .875rem; text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 760px) {
-  .landing { --section-space: 48px; }
-  .heroActions { position: static; padding: 20px; background: #fff; }
+  .landing { --section-space: 40px; --page-gutter: 20px; }
+  .heroActions { position: static; padding: 16px 20px; background: #fff; }
   .heroActions .primaryAction { background: #16181a; color: #fff; }
   .heroActions .secondaryAction { background: #fff; color: #16181a; border-color: #d9dcdf; }
   .heroVisual::after { bottom: auto; height: calc(100vw * 671 / 1500); background: linear-gradient(to bottom, rgb(0 0 0 / 42%), transparent 55%); }
-  .heroIntro { padding-top: 16px; }
+  .heroIntro { padding-top: 12px; }
+  .heroIntro h1 { font-size: 1.25rem; }
+  .heroIntro p { margin-top: 12px; font-size: .9375rem; line-height: 1.55; }
   .hero .tagline { font-weight: 500; line-height: 1.1; letter-spacing: -.04em; }
   .heroDescription { margin-top: 14px !important; font-size: 1rem; }
   .actions { gap: 8px 18px; margin-top: 17px; }
-  .primaryAction, .secondaryAction, .textAction { font-size: .9375rem; }
+  .primaryAction, .secondaryAction, .textAction { font-size: .875rem; }
+  .primaryAction, .heroActions .secondaryAction { padding-block: 10px; }
   .heroImage { margin-top: 26px; }
   .heroCaption { font-size: .6875rem; padding-block: 10px 14px; }
-  .sectionHeading h2, .experienceIntro h2 { font-size: 2rem; font-weight: 500; }
-  .sectionHeading { margin-bottom: 24px; gap: 4px; }
+  .sectionHeading h2, .experienceIntro h2 { font-size: 1.625rem; font-weight: 500; }
+  .sectionHeading { margin-bottom: 20px; gap: 4px; }
   .experienceCard { grid-template-columns: 1fr; margin-top: 26px; }
   .cabinImage img { height: auto; min-height: 0; aspect-ratio: auto; }
-  .experienceDetails { grid-template-columns: 1fr; padding: 28px 24px; gap: 22px; }
-  .bookingSection { padding-block: 48px; }
-  .bookingSection h2 { font-size: 2.125rem; font-weight: 500; }
+  .experienceDetails { grid-template-columns: 1fr; padding: 24px 20px; gap: 20px; }
+  .bookingSection { padding-block: 40px; }
+  .bookingSection h2 { font-size: 1.625rem; font-weight: 500; }
   .audienceGrid { grid-template-columns: 1fr; gap: 12px; }
-  .audienceCard { padding: 24px; }
+  .audienceCard { padding: 20px; }
   .audienceCard h3, .planningGrid h3 { font-size: 1.125rem; }
   .audienceCard p { margin: 10px 0 14px; font-size: .9375rem; }
   .planningGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }

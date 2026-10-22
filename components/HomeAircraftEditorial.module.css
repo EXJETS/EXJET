@@ -19,8 +19,9 @@
 @media (max-width: 760px) {
   .collection { width: calc(100% - var(--page-gutter, 20px) * 2); }
   .track { grid-template-columns: 1fr; gap: 12px; }
-  .cardCopy { padding: 28px 20px 18px; }
-  .cardCopy h3 { font-size: 1.875rem; }
-  .image { aspect-ratio: 1.65; }
+  .cardCopy { padding: 22px 20px 14px; }
+  .cardCopy h3 { font-size: 1.5rem; }
+  .image { aspect-ratio: 2; }
+  .sceneControls { padding-block: 8px 12px; }
   .note { padding-inline: 20px; }
 }
