@@ -7,7 +7,7 @@ import { StructuredData } from "@/components/StructuredData";
 import { buildMetadata } from "@/data/seo";
 import { localBusinessJsonLd } from "@/data/site";
 import styles from "./landing.module.css";
-import { CaretRightIcon } from "@phosphor-icons/react/dist/ssr";
+import { ArrowUpRightIcon, CaretRightIcon } from "@phosphor-icons/react/dist/ssr";
 
 export const metadata = buildMetadata("/");
 
@@ -31,20 +31,33 @@ export default function Home() {
     <div className={styles.landing}>
       <StructuredData data={localBusinessJsonLd()} />
       <section className={styles.hero} aria-labelledby="home-title">
+        <header className={styles.heroContent}>
+          <p className={styles.heroEyebrow}>Business aviation solutions</p>
+          <h1 className={styles.tagline} id="home-title">Global Access. On-Demand.</h1>
+        </header>
         <div className={styles.heroVisual}>
-          <Image className={styles.heroPhoto} src="/images/home/owner-selected-hero.webp" alt="Bombardier Global 8000 in flight over the ocean beside a coastline" width={1500} height={671} sizes="100vw" priority />
-          <div className={styles.heroContent}><p className={styles.tagline}>Global Access. On-Demand.</p></div>
-          <div className={styles.heroActions}>
-            <Link className={styles.primaryAction} href="/charter">Find a flight</Link>
-            <Link className={styles.secondaryAction} href="/sales">Aircraft sales &amp; acquisitions <CaretRightIcon size={14} weight="light" aria-hidden="true" /></Link>
-          </div>
+          <Image className={styles.heroPhoto} src="/images/home/owner-selected-hero.webp" alt="Bombardier Global 8000 in flight over the ocean beside a coastline" width={1500} height={671} sizes="(min-width: 1500px) 1500px, 100vw" preload />
         </div>
-        <div className={styles.heroIntro}>
-          <h1 id="home-title">Business aviation solutions</h1>
-          <p>Aircraft charter, ownership advice and technical project coordination for private clients, executive assistants and family offices.</p>
+        <nav className={styles.heroActions} aria-label="Start with EXJET">
+          <Link className={styles.heroAction} href="/charter">
+            <span className={styles.heroActionCopy}><span className={styles.heroActionLabel}>On-demand charter</span><span className={styles.heroActionTitle}>Find a flight</span></span>
+            <ArrowUpRightIcon size={24} weight="light" aria-hidden="true" />
+          </Link>
+          <Link className={styles.heroAction} href="/sales">
+            <span className={styles.heroActionCopy}><span className={styles.heroActionLabel}>Aircraft ownership</span><span className={styles.heroActionTitle}>Aircraft sales &amp; acquisitions</span></span>
+            <ArrowUpRightIcon size={24} weight="light" aria-hidden="true" />
+          </Link>
+        </nav>
+      </section>
+      <section className={styles.servicesSection} aria-labelledby="services-title">
+        <div className={styles.container}>
+          <div className={styles.servicesIntro}>
+            <div><p className={styles.eyebrow}>The EXJET approach</p><h2 id="services-title">One relationship.<br />Every stage of aviation.</h2></div>
+            <div className={styles.servicesLead}><p>Aircraft charter, ownership advice and technical project coordination for private clients, executive assistants and family offices.</p><Link href="/services" className={styles.textAction}>Explore all services <CaretRightIcon size={16} aria-hidden="true" /></Link></div>
+          </div>
+          <ServicesGrid compact />
         </div>
       </section>
-      <section className={styles.servicesSection} aria-labelledby="services-title"><div className={styles.container}><div className={styles.sectionHeading}><div><p className={styles.eyebrow}>Business aviation solutions</p><h2 id="services-title">One relationship.<br />Every stage of aviation.</h2></div><Link href="/services" className={styles.textAction}>Explore all services <CaretRightIcon size={16} aria-hidden="true" /></Link></div><ServicesGrid compact /></div></section>
       <section className={styles.aircraftSection} id="aircraft" aria-labelledby="aircraft-title">
         <div className={styles.sectionHeading}>
           <div><p className={styles.eyebrow}>Explore the aircraft</p><h2 id="aircraft-title">The right aircraft for every journey.</h2></div>
