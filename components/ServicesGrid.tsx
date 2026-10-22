@@ -7,8 +7,8 @@ import styles from "./ServicesGrid.module.css";
 const icons = { charter: AirplaneTiltIcon, group: UsersThreeIcon, sales: HandshakeIcon, management: GaugeIcon, mro: WrenchIcon, interior: ArmchairIcon, connectivity: WifiHighIcon };
 
 const servicePhotos: Partial<Record<keyof typeof icons, { src: string; alt: string }>> = {
-  charter: { src: "/images/editorial/citation-latitude-flight-forest.jpg", alt: "Citation Latitude in flight" },
-  group: { src: "/images/editorial/falcon-8x-dining-area.jpg", alt: "Representative Falcon 8X cabin with a dining area" },
+  charter: { src: "/images/editorial/falcon-8x-flight-coast.jpg", alt: "Dassault Falcon 8X flying above a Mediterranean coastline" },
+  group: { src: "/images/editorial/citation-longitude-cabin.jpg", alt: "Representative Citation Longitude cabin with facing leather seats" },
   sales: { src: "/images/manufacturers/g650-flight.jpg", alt: "Gulfstream G650 in flight" },
 };
 

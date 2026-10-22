@@ -65,3 +65,23 @@
 .cardBody h3 { font-weight: 400; }
 .card:hover { border-color: #aaaeb2; }
 @media(max-width:760px) { .toolbar { padding: 16px; gap: 12px; }.directory .grid { grid-template-columns: 1fr; gap: 0; }.directory .cardBody { padding: 24px 0; }.directory .cardBody h3 { font-size: 22px; }.cardBody { padding: 20px; }.facts { gap: 16px; }.heading h2 { font-size: 28px; } }
+
+.shortlistBar { display: none; }
+.comparison { scroll-margin-top: calc(var(--header-height) + 16px); }
+@media (max-width:760px) {
+  .section:has(.explorerIntro) { padding-top: 24px; }
+  .explorerIntro { margin-bottom: 16px; }
+  .explorerIntro .kicker { display: none; }
+  .explorerIntro h2 { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+  .explorerIntro p:not(.kicker) { margin: 0; font-size: 14px; line-height: 1.6; }
+  .toolbar { padding: 12px; }
+  .search { flex-basis: 100%; min-width: 0; padding-inline: 12px; }
+  .search > svg { flex-shrink: 0; }
+  .select { min-width: 0; }
+  .resultCount { margin-block: 16px; }
+  .hasShortlist { padding-bottom: calc(104px + env(safe-area-inset-bottom)); }
+  .shortlistBar { position: fixed; z-index: 50; inset-inline: 16px; bottom: calc(12px + env(safe-area-inset-bottom)); display: flex; align-items: center; justify-content: space-between; gap: 8px; max-width: 520px; margin-inline: auto; padding: 8px 8px 8px 16px; color: #000; background: #fff; border: 1px solid #c9cdd1; border-radius: 12px; box-shadow: 0 4px 24px rgb(0 0 0 / 12%); }
+  .shortlistBar > span { font-size: 12px; }
+  .shortlistBar a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+  .shortlistBar button { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; padding: 0; background: transparent; border: 0; color: #000; }
+}

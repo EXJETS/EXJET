@@ -86,7 +86,7 @@ export function SiteHeader() {
         <div className={styles.groups}>{groups.map(group => <nav key={group.title} aria-label={group.title}>
           <h3>{group.title}</h3>{group.links.map(([label, href]) => <Link key={href} href={href} aria-current={isCurrent(href) ? "page" : undefined} onClick={close}>{label}</Link>)}
         </nav>)}</div>
-        <div className={styles.mobileGroups}>{groups.map(group => <details key={group.title}>
+        <div className={styles.mobileGroups}>{groups.map(group => <details key={group.title} name="exjet-mobile-navigation">
           <summary>{group.title}<CaretDownIcon size={18} aria-hidden="true" /></summary>
           <nav aria-label={group.title}>{group.links.map(([label, href]) => <Link key={href} href={href} aria-current={isCurrent(href) ? "page" : undefined} onClick={close}>{label}</Link>)}</nav>
         </details>)}</div>
