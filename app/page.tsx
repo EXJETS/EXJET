@@ -30,7 +30,7 @@ export default function Home() {
       <section className={styles.hero} aria-labelledby="home-title">
         <div className={styles.heroContent}>
           <h1 id="home-title" className={styles.eyebrow}>Business aviation solutions &amp; private jet charter</h1>
-          <p className={styles.tagline}>Global Access.<br /><span>On-Demand.</span></p>
+          <p className={styles.tagline}>Global Access. On-Demand.</p>
           <p className={styles.heroDescription}>From charter and aircraft acquisitions to management, maintenance, interiors and connectivity, EXJET brings business aviation solutions together.</p>
           <div className={styles.actions}>
             <Link className={styles.primaryAction} href="/charter">Find a flight</Link>
