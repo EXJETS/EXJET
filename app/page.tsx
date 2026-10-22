@@ -28,17 +28,17 @@ export default function Home() {
     <div className={styles.landing}>
       <StructuredData data={localBusinessJsonLd()} />
       <section className={styles.hero} aria-labelledby="home-title">
-        <div className={styles.heroContent}>
-          <h1 id="home-title" className={styles.eyebrow}>Business aviation solutions &amp; private jet charter</h1>
-          <p className={styles.tagline}>Global Access. On-Demand.</p>
-          <p className={styles.heroDescription}>From charter and aircraft acquisitions to management, maintenance, interiors and connectivity, EXJET brings business aviation solutions together.</p>
-          <div className={styles.actions}>
+        <div className={styles.heroVisual}>
+          <Image className={styles.heroPhoto} src="/images/home/owner-selected-hero.webp" alt="Bombardier Global 8000 in flight over the ocean beside a coastline" width={1500} height={671} sizes="100vw" priority />
+          <div className={styles.heroContent}><p className={styles.tagline}>Global Access. On-Demand.</p></div>
+          <div className={styles.heroActions}>
             <Link className={styles.primaryAction} href="/charter">Find a flight</Link>
-            <Link className={styles.secondaryAction} href="/sales">Aircraft sales & acquisitions <CaretRightIcon size={14} weight="light" aria-hidden="true" /></Link>
+            <Link className={styles.secondaryAction} href="/sales">Aircraft sales &amp; acquisitions <CaretRightIcon size={14} weight="light" aria-hidden="true" /></Link>
           </div>
         </div>
-        <div className={styles.heroImage}>
-          <Image src="/images/home/owner-selected-hero.webp" alt="Bombardier Global 8000 in flight over the ocean beside a coastline" width={1500} height={671} sizes="(max-width: 1400px) 100vw, 1400px" priority />
+        <div className={styles.heroIntro}>
+          <h1 id="home-title">Business aviation solutions</h1>
+          <p>Aircraft charter, ownership advice and technical project coordination for private clients, executive assistants and family offices.</p>
         </div>
       </section>
       <section className={styles.servicesSection} aria-labelledby="services-title"><div className={styles.container}><div className={styles.sectionHeading}><div><p className={styles.eyebrow}>Business aviation solutions</p><h2 id="services-title">One relationship.<br />Every stage of aviation.</h2></div><Link href="/services" className={styles.textAction}>Explore all services <CaretRightIcon size={16} aria-hidden="true" /></Link></div><ServicesGrid compact /></div></section>
