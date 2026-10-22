@@ -66,7 +66,7 @@
     "related": [
       "/travel-journal/villas-and-private-islands",
       "/travel-journal/yacht-and-jet-itineraries",
-      "/travel-journal/turks-and-caicos",
+      "/travel-journal/anguilla",
       "/travel-journal"
     ],
     "published": "2026-10-22",
@@ -214,7 +214,7 @@
     "related": [
       "/travel-journal/yacht-and-jet-itineraries",
       "/travel-journal/villas-and-private-islands",
-      "/travel-journal/turks-and-caicos",
+      "/travel-journal/mustique",
       "/travel-journal"
     ],
     "published": "2026-10-22",
@@ -294,7 +294,7 @@
     "related": [
       "/travel-journal/multigenerational-holidays",
       "/travel-journal/wellness-retreats",
-      "/travel-journal/palm-beach",
+      "/travel-journal/golf-holidays",
       "/travel-journal"
     ],
     "published": "2026-10-22",
@@ -440,7 +440,7 @@
     "related": [
       "/travel-journal/villas-and-private-islands",
       "/travel-journal/multigenerational-holidays",
-      "/travel-journal/palm-beach",
+      "/travel-journal/nantucket",
       "/travel-journal"
     ],
     "published": "2026-10-22",
@@ -586,7 +586,7 @@
     "related": [
       "/travel-journal/ski-and-chalet-holidays",
       "/travel-journal/vail",
-      "/travel-journal/st-moritz",
+      "/travel-journal/jackson-hole",
       "/travel-journal"
     ],
     "published": "2026-10-22",
@@ -740,7 +740,7 @@
     "related": [
       "/travel-journal/yacht-and-jet-itineraries",
       "/travel-journal/villas-and-private-islands",
-      "/travel-journal/monaco",
+      "/travel-journal/portofino",
       "/travel-journal"
     ],
     "published": "2026-10-22",
@@ -954,7 +954,7 @@
     "related": [
       "/travel-journal/yacht-and-jet-itineraries",
       "/travel-journal/lake-como",
-      "/travel-journal/multigenerational-holidays",
+      "/travel-journal/capri",
       "/travel-journal"
     ],
     "published": "2026-10-22",
@@ -1172,7 +1172,7 @@
     "related": [
       "/travel-journal/villas-and-private-islands",
       "/travel-journal/yacht-and-jet-itineraries",
-      "/travel-journal/mykonos",
+      "/travel-journal/mallorca",
       "/travel-journal"
     ],
     "published": "2026-10-22",
@@ -1316,7 +1316,7 @@
     "related": [
       "/travel-journal/ski-and-chalet-holidays",
       "/travel-journal/gstaad",
-      "/travel-journal/aspen",
+      "/travel-journal/zermatt",
       "/travel-journal"
     ],
     "published": "2026-10-22",
@@ -1756,7 +1756,7 @@
     "related": [
       "/travel-journal/villas-and-private-islands",
       "/travel-journal/maldives",
-      "/travel-journal/bora-bora",
+      "/travel-journal/mauritius",
       "/travel-journal"
     ],
     "published": "2026-10-22",
@@ -1904,7 +1904,7 @@
     "related": [
       "/travel-journal/art-culture-and-private-visits",
       "/travel-journal/multigenerational-holidays",
-      "/travel-journal/wellness-retreats",
+      "/travel-journal/niseko",
       "/travel-journal"
     ],
     "published": "2026-10-22",
@@ -2198,6 +2198,882 @@
     "published": "2026-10-22",
     "updated": "2026-10-22",
     "readTime": "2 min read"
+  },
+  {
+    "path": "/travel-journal/nantucket",
+    "title": "Nantucket: beach days and an island residence",
+    "seoTitle": "Nantucket Travel Guide: Beaches, Stays & Flight Planning | EXJET",
+    "description": "Plan a Nantucket holiday around the beach, the residence and the town. A practical island guide for private clients, executive assistants and family offices.",
+    "kicker": "Islands & coast · Americas",
+    "kind": "article",
+    "parent": {
+      "name": "Travel Journal",
+      "path": "/travel-journal"
+    },
+    "journal": {
+      "category": "Islands & coast",
+      "region": "Americas"
+    },
+    "facts": [
+      {
+        "label": "The focus",
+        "value": "Beach days, walking and residence stays"
+      },
+      {
+        "label": "Suggested pace",
+        "value": "Five to seven nights"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Choose the beach around the party",
+        "paragraphs": [
+          "Nantucket’s beaches have different characters. The Chamber of Commerce identifies Children’s and Jetties as calmer-water options, while Cisco attracts surfers and Madaket is known for sunsets. Use those distinctions to frame the accommodation search, then confirm current conditions locally. A beach described as family-friendly still requires the usual attention to the individual guest and the day’s conditions."
+        ]
+      },
+      {
+        "heading": "Make the residence the centre of the stay",
+        "paragraphs": [
+          "Choose between a town-based routine and a quieter coastal address. For a family gathering, request the room plan, outdoor space and household-service arrangements before comparing views. A morning walk, a beach afternoon and a shared dinner can be a complete day. Keep one or two outings for guests who want more activity, including a guided nature walk or time exploring the island’s maritime setting."
+        ]
+      },
+      {
+        "heading": "Separate the summer idea from the actual dates",
+        "paragraphs": [
+          "The island publishes seasonal events, but restaurants, activities and transport need checking for the chosen week. A return visit should not rely on the previous year’s opening calendar. If a particular celebration is the reason for travelling, confirm its date and booking arrangements before fixing the flight and accommodation."
+        ]
+      },
+      {
+        "heading": "Give the arrival team one clear handover",
+        "paragraphs": [
+          "Share the residence address, passenger list and baggage requirements when discussing aircraft options. Confirm who receives the party and whether the property is ready at the expected time. If some guests travel by ferry and others by air, treat the two arrivals separately in the household brief. Any beach-vehicle access should be checked against the current permit arrangements."
+        ]
+      },
+      {
+        "heading": "For the travel brief",
+        "paragraphs": [],
+        "bullets": [
+          "Identify the beach setting and the daily routine each household prefers.",
+          "Confirm seasonal openings and the residence handover window.",
+          "List separate air and ferry arrivals, with a named reception contact."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Nantucket Chamber — beach and activity guide",
+        "url": "https://www.nantucketchamber.org/play/"
+      },
+      {
+        "label": "Nantucket Chamber — seasonal events",
+        "url": "https://www.nantucketchamber.org/list-of-events/"
+      },
+      {
+        "label": "Nantucket Chamber — beach access",
+        "url": "https://www.nantucketchamber.org/beach-access/"
+      }
+    ],
+    "related": [
+      "/travel-journal/hamptons",
+      "/travel-journal/multigenerational-holidays",
+      "/travel-journal/seasonal-holiday-planning",
+      "/travel-journal"
+    ],
+    "published": "2026-10-22",
+    "updated": "2026-10-22",
+    "readTime": "2 min read",
+    "faqs": [
+      {
+        "question": "What should an EA confirm before a Nantucket residence stay?",
+        "answer": "Confirm the exact address, room plan, household services, property handover and each guest’s arrival method. Review seasonal venue openings and transport arrangements for the actual dates."
+      }
+    ]
+  },
+  {
+    "path": "/travel-journal/jackson-hole",
+    "title": "Jackson Hole: mountain days and a measured pace",
+    "seoTitle": "Jackson Hole Travel Guide: Skiing, Nature & Family Stays | EXJET",
+    "description": "Choose Jackson Hole for a ski holiday or a summer nature itinerary. Plan the base, activities, equipment and arrival around the whole travelling party.",
+    "kicker": "Alpine escapes · Americas",
+    "kind": "article",
+    "parent": {
+      "name": "Travel Journal",
+      "path": "/travel-journal"
+    },
+    "journal": {
+      "category": "Alpine escapes",
+      "region": "Americas"
+    },
+    "facts": [
+      {
+        "label": "The focus",
+        "value": "Skiing, outdoor time and valley stays"
+      },
+      {
+        "label": "Suggested pace",
+        "value": "Five to seven nights"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Choose the season before the programme",
+        "paragraphs": [
+          "Jackson Hole has distinct winter and summer travel patterns. Its tourism board describes mid-June to mid-September as a peak period for the valley and nearby national parks. Winter planning centres on a different activity mix. Choose the purpose of the trip first, then confirm the operating calendar and conditions for the specific experiences under consideration."
+        ]
+      },
+      {
+        "heading": "Decide between a ski-led and a wider valley stay",
+        "paragraphs": [
+          "For a ski holiday, start with the lesson meeting point and how the party reaches it each morning. For a summer visit, start with the intended guided outings and the time guests want to spend at the property. Do not assume that an address ideal for one programme is equally convenient for the other. Guests who prefer a quieter day should have a considered alternative."
+        ]
+      },
+      {
+        "heading": "Keep nature experiences realistic",
+        "paragraphs": [
+          "Ask a qualified local provider to shape outings around guest interests, walking ability and current access. Treat wildlife viewing as an opportunity rather than a promised encounter. Avoid planning several distant stops simply because they appear close on a regional map. A guided day and a quieter afternoon can offer more than an itinerary built around constant movement."
+        ]
+      },
+      {
+        "heading": "Plan the equipment and the alternative arrival",
+        "paragraphs": [
+          "Provide skis, outdoor equipment and ordinary luggage details when comparing aircraft. The operating carrier must review the actual flight and airport conditions. Agree a workable onward transfer and an alternative with the relevant providers. Keep the first booked activity away from the planned touchdown time so the whole holiday does not depend on a perfect connection."
+        ]
+      },
+      {
+        "heading": "For the travel brief",
+        "paragraphs": [],
+        "bullets": [
+          "Choose the accommodation around the daily meeting points.",
+          "Confirm current park or activity access with the responsible provider.",
+          "Review equipment capacity for both the aircraft and ground vehicle."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Visit Jackson Hole — seasonal travel patterns",
+        "url": "https://visitjacksonhole.com/off-season-vs-peak-season-in-jackson-hole"
+      },
+      {
+        "label": "Visit Jackson Hole — current events",
+        "url": "https://visitjacksonhole.com/do/events"
+      }
+    ],
+    "related": [
+      "/travel-journal/aspen",
+      "/travel-journal/ski-and-chalet-holidays",
+      "/travel-journal/seasonal-holiday-planning",
+      "/travel-journal"
+    ],
+    "published": "2026-10-22",
+    "updated": "2026-10-22",
+    "readTime": "2 min read",
+    "faqs": [
+      {
+        "question": "Is Jackson Hole only a winter destination?",
+        "answer": "No. The tourism board identifies summer as a peak period for the valley and nearby national parks. The right dates depend on whether the party wants skiing, guided outdoor activities or a quieter stay."
+      }
+    ]
+  },
+  {
+    "path": "/travel-journal/anguilla",
+    "title": "Anguilla: a beach stay with space to settle in",
+    "seoTitle": "Anguilla Travel Guide: Beaches, Villas & Arrival Planning | EXJET",
+    "description": "Plan an Anguilla beach holiday around Shoal Bay, Meads Bay or a quieter villa setting, with a clear accommodation and arrival brief for the travel team.",
+    "kicker": "Islands & coast · Caribbean",
+    "kind": "article",
+    "parent": {
+      "name": "Travel Journal",
+      "path": "/travel-journal"
+    },
+    "journal": {
+      "category": "Islands & coast",
+      "region": "Caribbean"
+    },
+    "facts": [
+      {
+        "label": "The focus",
+        "value": "Beach time, villa life and shared meals"
+      },
+      {
+        "label": "Suggested pace",
+        "value": "Six or seven nights"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Choose the bay before the property",
+        "paragraphs": [
+          "Anguilla’s tourism guide highlights beaches including Shoal Bay, Maunday’s Bay and Rendezvous Bay. Choose the setting around the kind of stay the party wants: days largely at the accommodation, easy dining options or a quieter base for a family gathering. Confirm the precise beach and property address instead of treating the whole island as one resort."
+        ]
+      },
+      {
+        "heading": "Compare service as carefully as the view",
+        "paragraphs": [
+          "A staffed villa and a resort can create very different routines. Ask who prepares meals, which services are included and how visiting guests are handled. For several households, confirm bedroom proximity, private space and the arrangements for accompanying staff. The best choice is the one that supports the family’s habits without adding daily coordination work."
+        ]
+      },
+      {
+        "heading": "Give the week a light structure",
+        "paragraphs": [
+          "Choose a few shared lunches or dinners and leave the rest of the stay flexible. A boat outing should have an alternative date and a clear description of boarding, shade and the proposed activity. Have the local provider advise on the day’s conditions. Avoid describing an excursion as private or exclusive until the actual booking confirms it."
+        ]
+      },
+      {
+        "heading": "Resolve the full island arrival",
+        "paragraphs": [
+          "Review suitable flight options against the property and the travellers’ starting points. If the proposed journey uses an onward air or marine connection, confirm its timetable, baggage acceptance and change arrangements separately. The accommodation team should know who is arriving on each service and who will receive any revised schedule."
+        ]
+      },
+      {
+        "heading": "For the travel brief",
+        "paragraphs": [],
+        "bullets": [
+          "Record the exact bay and accommodation address.",
+          "Confirm the household-service scope and room plan in writing.",
+          "Identify the provider responsible for each final connection."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Anguilla Tourist Board — beaches",
+        "url": "https://ivisitanguilla.com/beaches/"
+      },
+      {
+        "label": "Anguilla Tourist Board — Shoal Bay",
+        "url": "https://ivisitanguilla.com/listing/upper-shoal-bay-beach/"
+      }
+    ],
+    "related": [
+      "/travel-journal/turks-and-caicos",
+      "/travel-journal/villas-and-private-islands",
+      "/travel-journal/st-barts",
+      "/travel-journal"
+    ],
+    "published": "2026-10-22",
+    "updated": "2026-10-22",
+    "readTime": "2 min read",
+    "faqs": [
+      {
+        "question": "What is the first decision when planning an Anguilla villa holiday?",
+        "answer": "Choose the setting and daily routine before comparing properties. Then confirm the room layout, included household services and the complete journey to that exact address."
+      }
+    ]
+  },
+  {
+    "path": "/travel-journal/mustique",
+    "title": "Mustique: a villa holiday planned around the island",
+    "seoTitle": "Mustique Travel Guide: Villas, Connections & Holiday Planning | EXJET",
+    "description": "Plan a Mustique villa stay with clear household requirements and a coordinated final flight. Review the property, connections and baggage before departure.",
+    "kicker": "Islands & coast · Caribbean",
+    "kind": "article",
+    "parent": {
+      "name": "Travel Journal",
+      "path": "/travel-journal"
+    },
+    "journal": {
+      "category": "Islands & coast",
+      "region": "Caribbean"
+    },
+    "facts": [
+      {
+        "label": "The focus",
+        "value": "Villa life and an unhurried island stay"
+      },
+      {
+        "label": "Suggested pace",
+        "value": "A week in one villa"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Let the villa brief lead the search",
+        "paragraphs": [
+          "Mustique’s own villa collection includes a range of layouts and settings. Start with the number of households, room distribution, accessibility and the required level of service. Request the actual floor plan and included services from the property team. A photograph of a terrace cannot tell an EA whether the bedrooms and common areas suit the whole family."
+        ]
+      },
+      {
+        "heading": "Choose a daily rhythm that uses the house",
+        "paragraphs": [
+          "Build the stay around shared meals, beach time and a few optional activities. Confirm which services are provided by the villa and which require separate reservations. If the party expects visitors or a celebration, discuss those plans before booking. Keep one coordinator for changes so the household team receives a consistent set of instructions."
+        ]
+      },
+      {
+        "heading": "Treat the final flight as its own booking",
+        "paragraphs": [
+          "The Mustique Company publishes regional flight connections through Air Adelphi from international gateways. The suitable gateway and service depend on the actual itinerary and current availability. Ask its travel team and the aviation advisor to reconcile the complete journey. A long-range aircraft request should not be presented as a confirmed flight directly to the island."
+        ]
+      },
+      {
+        "heading": "Check daylight and baggage requirements",
+        "paragraphs": [
+          "The island’s published travel information states that arrivals cannot land after sunset and that baggage is not checked through to the final destination. Confirm current check-in, connection and luggage arrangements with the responsible carrier. Build an overnight alternative into the plan where needed, with clear responsibility for updating the villa and the next flight."
+        ]
+      },
+      {
+        "heading": "For the travel brief",
+        "paragraphs": [],
+        "bullets": [
+          "Request the villa floor plan and a written service schedule.",
+          "Confirm the gateway, final carrier and daylight arrival window.",
+          "Agree baggage handling and a missed-connection alternative."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "The Mustique Company — villa collection",
+        "url": "https://www.mustique-island.com/villa"
+      },
+      {
+        "label": "The Mustique Company — flight connections",
+        "url": "https://mustique-island.com/travel/flights"
+      },
+      {
+        "label": "The Mustique Company — travel information",
+        "url": "https://www.mustique-island.com/travel-tcs"
+      }
+    ],
+    "related": [
+      "/travel-journal/villas-and-private-islands",
+      "/travel-journal/st-barts",
+      "/travel-journal/bahamas",
+      "/travel-journal"
+    ],
+    "published": "2026-10-22",
+    "updated": "2026-10-22",
+    "readTime": "2 min read",
+    "faqs": [
+      {
+        "question": "Can the international flight and Mustique connection be planned separately?",
+        "answer": "They can involve separate providers, but the schedules must be reconciled. Confirm the final carrier, daylight arrival, baggage handover and connection margin before committing the international journey."
+      }
+    ]
+  },
+  {
+    "path": "/travel-journal/mallorca",
+    "title": "Mallorca: the coast, the mountains and a country base",
+    "seoTitle": "Mallorca Travel Guide: Coast, Tramuntana & Villa Stays | EXJET",
+    "description": "Explore Mallorca through a coastal or country-house stay, the Serra de Tramuntana and village visits, with practical planning for private clients and families.",
+    "kicker": "Islands & coast · Europe",
+    "kind": "article",
+    "parent": {
+      "name": "Travel Journal",
+      "path": "/travel-journal"
+    },
+    "journal": {
+      "category": "Islands & coast",
+      "region": "Europe"
+    },
+    "facts": [
+      {
+        "label": "The focus",
+        "value": "Coastal stays, mountain scenery and village days"
+      },
+      {
+        "label": "Suggested pace",
+        "value": "A week in one region"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Choose which Mallorca the party wants",
+        "paragraphs": [
+          "A coast-led holiday and a stay focused on the Serra de Tramuntana are different briefs. The island’s mountain landscapes, villages and winding roads deserve their own time. Select the area around the intended daily activities, then compare accommodation. A property described as Mallorca may still be far from the experiences that prompted the trip."
+        ]
+      },
+      {
+        "heading": "Give the Tramuntana a considered day",
+        "paragraphs": [
+          "The official island guide describes a landscape of villages, trails and cultivated valleys, including the area around Sóller. Ask a local guide to propose an outing matched to the party’s interests and mobility. Do not select a walk simply because it is scenic or assume that a general description establishes its suitability for every guest."
+        ]
+      },
+      {
+        "heading": "Balance outings with the house",
+        "paragraphs": [
+          "For a villa or country-house stay, confirm the room plan, pool arrangements and household services. Alternate a substantial excursion with time at the property. A beach day, village lunch or boat outing can each be the main activity. Check the current opening calendar with venues and retain an alternative for weather-sensitive plans."
+        ]
+      },
+      {
+        "heading": "Plan to the actual property entrance",
+        "paragraphs": [
+          "Give the flight advisor and ground provider the precise address and access instructions. Ask the property team whether the approach suits the proposed vehicle, especially when carrying several guests and luggage. Confirm the handover window and avoid making a distant restaurant reservation dependent on an immediate departure from the airport."
+        ]
+      },
+      {
+        "heading": "For the travel brief",
+        "paragraphs": [],
+        "bullets": [
+          "Choose the coast, mountain area or country base before the property.",
+          "Ask the guide to confirm the demands of the proposed route.",
+          "Review vehicle access and the accommodation’s seasonal services."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Balearic Islands Tourism — Serra de Tramuntana",
+        "url": "https://www.illesbalears.travel/en/mallorca/serra-de-tramuntana-guide-for-visiting-it"
+      },
+      {
+        "label": "Balearic Islands Tourism — Sóller and island landscapes",
+        "url": "https://www.illesbalears.travel/en/mallorca/a-movie-trip"
+      }
+    ],
+    "related": [
+      "/travel-journal/ibiza",
+      "/travel-journal/villas-and-private-islands",
+      "/travel-journal/seasonal-holiday-planning",
+      "/travel-journal"
+    ],
+    "published": "2026-10-22",
+    "updated": "2026-10-22",
+    "readTime": "2 min read",
+    "faqs": [
+      {
+        "question": "Should a Mallorca itinerary cover the whole island?",
+        "answer": "A focused base usually makes a shorter stay easier. Choose the region around the party’s main interests and group outings geographically, with realistic driving and activity time."
+      }
+    ]
+  },
+  {
+    "path": "/travel-journal/portofino",
+    "title": "Portofino: a few days on the Ligurian coast",
+    "seoTitle": "Portofino Travel Guide: Coastal Stays & Itinerary Planning | EXJET",
+    "description": "Plan a Portofino stay around the harbour, the surrounding coast and a considered day outdoors. Practical guidance for private clients and their travel teams.",
+    "kicker": "Islands & coast · Europe",
+    "kind": "article",
+    "parent": {
+      "name": "Travel Journal",
+      "path": "/travel-journal"
+    },
+    "journal": {
+      "category": "Islands & coast",
+      "region": "Europe"
+    },
+    "facts": [
+      {
+        "label": "The focus",
+        "value": "Harbour life, coastal walks and time on the water"
+      },
+      {
+        "label": "Suggested pace",
+        "value": "Three or four nights"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Make the harbour a base, not a checklist",
+        "paragraphs": [
+          "Portofino rewards a stay with room to linger: a harbour-side meal, time by the water and a walk into the surrounding landscape. Choose the accommodation for its position and access as well as its view. For guests who prefer little walking, ask the property to describe the route from the arrival point to the room, including steps and gradients."
+        ]
+      },
+      {
+        "heading": "Give San Fruttuoso its own outing",
+        "paragraphs": [
+          "The Portofino promontory offers coastal paths and the abbey setting at San Fruttuoso, reached by boat or on foot. These are different kinds of day. A walking itinerary needs a route appropriate to the guests’ fitness and equipment; a marine visit depends on the service and sea conditions. Ask the local guide to explain the return arrangements before selecting either."
+        ]
+      },
+      {
+        "heading": "Be precise about a day on the water",
+        "paragraphs": [
+          "For a boat outing, agree where the party boards, the likely itinerary, shade and seating, and whether lunch is ashore or aboard. A harbour pickup and an offshore tender transfer are not interchangeable. Keep the day adaptable and ask the provider to confirm current operating conditions rather than building the holiday around a fixed coastal route."
+        ]
+      },
+      {
+        "heading": "Coordinate the last stretch",
+        "paragraphs": [
+          "Give the ground provider the exact property and its arrival instructions. If joining a yacht, use the confirmed berth and captain’s contact rather than a general destination name. Allow time between the flight, road journey and any boat departure. For an EA, one reconciled itinerary is more useful than several independently booked transfers."
+        ]
+      },
+      {
+        "heading": "For the travel brief",
+        "paragraphs": [],
+        "bullets": [
+          "Confirm the property’s pedestrian access and luggage handover.",
+          "Choose a guided walk or boat visit with a clear return plan.",
+          "Reconcile the aircraft arrival with the property or yacht reception."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Italia.it — Portofino",
+        "url": "https://www.italia.it/en/liguria/genoa/portofino"
+      },
+      {
+        "label": "Italia.it — the Portofino promontory",
+        "url": "https://www.italia.it/en/liguria/genoa/mount-of-portofino"
+      }
+    ],
+    "related": [
+      "/travel-journal/saint-tropez",
+      "/travel-journal/yacht-and-jet-itineraries",
+      "/travel-journal/capri",
+      "/travel-journal"
+    ],
+    "published": "2026-10-22",
+    "updated": "2026-10-22",
+    "readTime": "2 min read",
+    "faqs": [
+      {
+        "question": "What should a Portofino transfer brief include?",
+        "answer": "Use the exact property entrance or confirmed yacht berth, a receiving contact and the luggage arrangements. Include any walking, steps or tender transfer in the brief rather than treating arrival in the town as the end of the journey."
+      }
+    ]
+  },
+  {
+    "path": "/travel-journal/capri",
+    "title": "Capri: an island stay beyond the day trip",
+    "seoTitle": "Capri Travel Guide: Anacapri, Coastal Days & Arrival Planning | EXJET",
+    "description": "Consider Capri and Anacapri for an island stay built around views, gardens and coastal days, with a coordinated onward transfer and room to change the pace.",
+    "kicker": "Islands & coast · Europe",
+    "kind": "article",
+    "parent": {
+      "name": "Travel Journal",
+      "path": "/travel-journal"
+    },
+    "journal": {
+      "category": "Islands & coast",
+      "region": "Europe"
+    },
+    "facts": [
+      {
+        "label": "The focus",
+        "value": "Island views, gardens and coastal dining"
+      },
+      {
+        "label": "Suggested pace",
+        "value": "Three to five nights"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Choose between Capri and Anacapri",
+        "paragraphs": [
+          "Start with the setting the party prefers. Capri’s central meeting places and the higher village of Anacapri offer different daily routines. In Anacapri, the San Michele setting and views from Monte Solaro can anchor an outing. Check the actual property location and the effort involved in reaching the experiences on the shortlist."
+        ]
+      },
+      {
+        "heading": "Keep one day for the island itself",
+        "paragraphs": [
+          "The Gardens of Augustus, the Certosa di San Giacomo and the Faraglioni provide distinct ways to experience Capri. Select a small number of stops with a local guide instead of compressing them into a shore-excursion schedule. Leave time for lunch and for guests who prefer to return to the accommodation earlier."
+        ]
+      },
+      {
+        "heading": "Treat the sea as a separate plan",
+        "paragraphs": [
+          "A boat day offers another perspective on the coast. Confirm boarding, the proposed route and the weather alternative with the marine provider. Do not make the Blue Grotto or any single sea-dependent visit the condition of a successful holiday. The group should still have a worthwhile day if an outing changes or cannot operate."
+        ]
+      },
+      {
+        "heading": "Plan past the mainland airport",
+        "paragraphs": [
+          "The air journey is only one part of reaching an island accommodation. Compare the complete onward itinerary, including the port or other confirmed transfer point, baggage handover and reception on Capri. Allow recovery time if a flight arrives late. For a mixed-age party, ask about each stage’s steps, boarding and walking requirements before committing."
+        ]
+      },
+      {
+        "heading": "For the travel brief",
+        "paragraphs": [],
+        "bullets": [
+          "Select the base around the party’s preferred daily routine.",
+          "Confirm the physical demands of the room access and excursions.",
+          "Keep a documented alternative to the planned marine connection."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Italia.it — Capri and Anacapri",
+        "url": "https://www.italia.it/en/campania/things-to-do/capri-exclusive-holidays"
+      },
+      {
+        "label": "Italia.it — the islands of the Gulf of Naples",
+        "url": "https://www.italia.it/en/campania/isole-del-golfo-capri-procida-ischia"
+      }
+    ],
+    "related": [
+      "/travel-journal/amalfi-coast",
+      "/travel-journal/portofino",
+      "/travel-journal/yacht-and-jet-itineraries",
+      "/travel-journal"
+    ],
+    "published": "2026-10-22",
+    "updated": "2026-10-22",
+    "readTime": "2 min read",
+    "faqs": [
+      {
+        "question": "How should an EA compare arrival options for Capri?",
+        "answer": "Compare the full door-to-door itinerary. Include the mainland arrival, onward connection, luggage handling and final property access, with a workable alternative if the planned connection changes."
+      }
+    ]
+  },
+  {
+    "path": "/travel-journal/zermatt",
+    "title": "Zermatt: a mountain stay with a different arrival",
+    "seoTitle": "Zermatt Travel Guide: Skiing, Village Stays & Transfers | EXJET",
+    "description": "Plan Zermatt around the Matterhorn landscape, skiing or mountain walks, with clear arrangements for the car-free village and the final hotel transfer.",
+    "kicker": "Alpine escapes · Europe",
+    "kind": "article",
+    "parent": {
+      "name": "Travel Journal",
+      "path": "/travel-journal"
+    },
+    "journal": {
+      "category": "Alpine escapes",
+      "region": "Europe"
+    },
+    "facts": [
+      {
+        "label": "The focus",
+        "value": "Mountain scenery, snow sports and village life"
+      },
+      {
+        "label": "Suggested pace",
+        "value": "Four to seven nights"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Start with the car-free village",
+        "paragraphs": [
+          "Zermatt’s official arrival guide describes a car-free destination, with private cars left in Täsch and the journey continued by train or an authorised transfer. Do not brief an ordinary airport car as a direct hotel drop-off. Have the accommodation confirm the final approach and local reception, including how luggage and ski equipment reach the property."
+        ]
+      },
+      {
+        "heading": "Choose the stay around the mountain day",
+        "paragraphs": [
+          "For skiers, compare access to the intended lifts, equipment storage and meeting points for instruction. For a mixed party, consider the village routine for guests who are not skiing. A chalet or hotel should make both days straightforward, with a clear way for the group to meet for lunch or at the end of the afternoon."
+        ]
+      },
+      {
+        "heading": "There is a winter day beyond skiing",
+        "paragraphs": [
+          "Zermatt publishes marked winter walks and snowshoe itineraries. Choose a route with local advice about current conditions, effort and suitable equipment. In a warmer season, review hiking options afresh rather than assuming the winter plan translates directly. Mountain weather and lift operations can change the day, so retain an alternative close to the accommodation."
+        ]
+      },
+      {
+        "heading": "Give the transfer chain room",
+        "paragraphs": [
+          "Plan the air arrival, onward road or rail journey and final village transfer as one sequence. Confirm which provider receives the party at each change, especially when travelling with children or several sets of equipment. Avoid placing the first fixed mountain activity immediately after the scheduled arrival. The group’s first afternoon can simply be time to settle in."
+        ]
+      },
+      {
+        "heading": "For the travel brief",
+        "paragraphs": [],
+        "bullets": [
+          "Confirm the car-free arrival sequence with the property.",
+          "List ski equipment and luggage for every transfer stage.",
+          "Balance mountain activities with a clear plan for non-skiers."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Zermatt Tourism — arrival",
+        "url": "https://zermatt.swiss/en/plan-book/arrival"
+      },
+      {
+        "label": "Zermatt Tourism — winter walks and snowshoe tours",
+        "url": "https://zermatt.swiss/en/activities/snowsports/winter-hiking-snowshoe-tours"
+      },
+      {
+        "label": "Zermatt Tourism — hiking trails",
+        "url": "https://zermatt.swiss/en/activities/hiking-mountaineering/hiking/hiking-trails"
+      }
+    ],
+    "related": [
+      "/travel-journal/st-moritz",
+      "/travel-journal/ski-and-chalet-holidays",
+      "/travel-journal/seasonal-holiday-planning",
+      "/travel-journal"
+    ],
+    "published": "2026-10-22",
+    "updated": "2026-10-22",
+    "readTime": "2 min read",
+    "faqs": [
+      {
+        "question": "Can a standard airport car drive straight to a Zermatt hotel?",
+        "answer": "Zermatt is car-free. Confirm the permitted onward arrangement from Täsch and the final local transfer with the accommodation, including luggage and equipment handling."
+      }
+    ]
+  },
+  {
+    "path": "/travel-journal/mauritius",
+    "title": "Mauritius: a coastal stay with an island beyond it",
+    "seoTitle": "Mauritius Travel Guide: Coastal Stays, Nature & Seasons | EXJET",
+    "description": "Plan a Mauritius holiday around the coast, the season and time inland. Compare beach days, western landscapes and a practical arrival brief for the family.",
+    "kicker": "Islands & coast · Indian Ocean",
+    "kind": "article",
+    "parent": {
+      "name": "Travel Journal",
+      "path": "/travel-journal"
+    },
+    "journal": {
+      "category": "Islands & coast",
+      "region": "Indian Ocean"
+    },
+    "facts": [
+      {
+        "label": "The focus",
+        "value": "Coastal stays, nature and island discovery"
+      },
+      {
+        "label": "Suggested pace",
+        "value": "Seven to ten nights"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Choose a coast and a daily routine",
+        "paragraphs": [
+          "Begin with the balance of beach time and exploration. A property that suits a week largely on site may be a different choice from one intended as a base for inland outings. Ask about the exact beach setting, room layout and activities available during the proposed dates. For several generations, confirm what each guest can enjoy without a substantial daily transfer."
+        ]
+      },
+      {
+        "heading": "Give the west a day of its own",
+        "paragraphs": [
+          "Mauritius’ official tourism guide brings together the landscapes of Black River Gorges, Le Morne and Chamarel in its western region. Select a focused outing rather than trying to cover them all at once. A viewpoint visit and a guided hike require different time, footwear and ability. Have a local specialist match the route to the people travelling."
+        ]
+      },
+      {
+        "heading": "Read the season at island level",
+        "paragraphs": [
+          "The official climate guide describes November to April as summer and May to October as winter, with wetter summer conditions. This is a seasonal framework, not a forecast for a particular resort. Ask the accommodation and activity providers about the chosen coast, current conditions and alternatives to water-dependent outings. Avoid treating all Indian Ocean destinations as interchangeable."
+        ]
+      },
+      {
+        "heading": "Make the arrival brief useful to the household",
+        "paragraphs": [
+          "Share the exact accommodation, room-readiness arrangements and ground reception contact with the travel team. For a longer stay, record sporting equipment and any separate arrivals before reviewing aircraft options. Keep the first day light and make clear which bookings are confirmed by the property, which by an excursion provider and which by the aviation team."
+        ]
+      },
+      {
+        "heading": "For the travel brief",
+        "paragraphs": [],
+        "bullets": [
+          "Select the coast before comparing room and residence options.",
+          "Check the seasonal fit of the planned outdoor activities.",
+          "Assign a receiving contact to each separate family arrival."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Mauritius Tourism Promotion Authority — the west",
+        "url": "https://mauritiusnow.com/mauritius-map/west-mauritius/"
+      },
+      {
+        "label": "Mauritius Tourism Promotion Authority — weather",
+        "url": "https://mauritiusnow.com/mauritius-weather/"
+      }
+    ],
+    "related": [
+      "/travel-journal/seychelles",
+      "/travel-journal/maldives",
+      "/travel-journal/multigenerational-holidays",
+      "/travel-journal"
+    ],
+    "published": "2026-10-22",
+    "updated": "2026-10-22",
+    "readTime": "2 min read",
+    "faqs": [
+      {
+        "question": "Is the same season suitable for every Indian Ocean island?",
+        "answer": "Each destination has its own climate and operating calendar. For Mauritius, review the chosen coast, the time of year and the planned activities with the relevant local providers."
+      }
+    ]
+  },
+  {
+    "path": "/travel-journal/niseko",
+    "title": "Niseko: a Hokkaido mountain stay for the whole party",
+    "seoTitle": "Niseko Travel Guide: Ski Stays, Summer Trails & Planning | EXJET",
+    "description": "Compare Niseko bases for skiing, dining and summer mountain time, with practical guidance on equipment, transfers and arrangements for non-skiing guests.",
+    "kicker": "Alpine escapes · Asia",
+    "kind": "article",
+    "parent": {
+      "name": "Travel Journal",
+      "path": "/travel-journal"
+    },
+    "journal": {
+      "category": "Alpine escapes",
+      "region": "Asia"
+    },
+    "facts": [
+      {
+        "label": "The focus",
+        "value": "Snow sports, mountain scenery and Japanese dining"
+      },
+      {
+        "label": "Suggested pace",
+        "value": "Five to seven nights"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Choose the base before the residence",
+        "paragraphs": [
+          "Japan’s tourism organisation describes Niseko as a group of connected ski areas, with different places to stay around the mountain. Hirafu has a concentration of accommodation and dining. Compare the actual location, lift access and evening routine rather than treating every Niseko address as equivalent. A quieter residence may require more planned transport."
+        ]
+      },
+      {
+        "heading": "Match the mountain day to the guests",
+        "paragraphs": [
+          "Confirm instruction, equipment rental and meeting points for each skier or snowboarder. Mixed abilities can mean different daily schedules, so decide where the party will reunite. For non-skiers, establish an enjoyable plan around the accommodation, dining and locally confirmed activities. Proximity to a lift does not by itself resolve the needs of the whole family."
+        ]
+      },
+      {
+        "heading": "Consider Niseko outside the snow season",
+        "paragraphs": [
+          "JNTO also highlights summer and autumn hiking in the Niseko area. A warm-season visit should have its own brief, based on the trails, weather and services operating at that time. Ask a local guide about route conditions and the demands of the proposed walk. Do not assume that the winter resort programme or its full restaurant offering continues unchanged."
+        ]
+      },
+      {
+        "heading": "Plan the Hokkaido ground journey carefully",
+        "paragraphs": [
+          "When reviewing flights, include the onward journey to the chosen property and the time needed for luggage and equipment. Ask the ground provider to confirm vehicle capacity and arrangements appropriate to the conditions. Keep the arrival day free of tightly timed lessons or dining commitments. For an EA, the essential handover is from the aircraft itinerary to the team receiving the guests at the residence."
+        ]
+      },
+      {
+        "heading": "For the travel brief",
+        "paragraphs": [],
+        "bullets": [
+          "Specify the village or ski-area base and the exact property.",
+          "Record each guest’s instruction, rental and non-skiing plans.",
+          "Allow the arrival schedule to accommodate the onward road journey."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Japan National Tourism Organization — Niseko",
+        "url": "https://www.japan.travel/en/destinations/hokkaido/hokkaido/niseko-and-nearby-ski-resorts/"
+      },
+      {
+        "label": "Japan National Tourism Organization — Hirafu",
+        "url": "https://www.japan.travel/en/experiences-in-japan/336/"
+      },
+      {
+        "label": "Japan National Tourism Organization — summer hiking",
+        "url": "https://www.japan.travel/en/japans-local-treasures/summer-hiking-niseko-2023/"
+      }
+    ],
+    "related": [
+      "/travel-journal/kyoto",
+      "/travel-journal/ski-and-chalet-holidays",
+      "/travel-journal/seasonal-holiday-planning",
+      "/travel-journal"
+    ],
+    "published": "2026-10-22",
+    "updated": "2026-10-22",
+    "readTime": "2 min read",
+    "faqs": [
+      {
+        "question": "What should a family office compare when choosing a Niseko base?",
+        "answer": "Compare the exact residence location, lift access, evening transport and arrangements for non-skiers. Confirm instruction and equipment plans separately for each participant."
+      }
+    ]
   },
   {
     "path": "/travel-journal/villas-and-private-islands",
@@ -2836,11 +3712,267 @@
     "related": [
       "/travel-journal/turks-and-caicos",
       "/travel-journal/vail",
-      "/travel-journal/london",
+      "/travel-journal/seasonal-holiday-planning",
       "/travel-journal"
     ],
     "published": "2026-10-22",
     "updated": "2026-10-22",
     "readTime": "2 min read"
+  },
+  {
+    "path": "/travel-journal/golf-holidays",
+    "title": "Golf holidays: secure the round, then shape the journey",
+    "seoTitle": "Golf Holiday Planning for Private Clients & Family Offices | EXJET",
+    "description": "Plan a golf holiday around confirmed course access, tee times, equipment and the wider party. A practical brief for executive assistants and family offices.",
+    "kicker": "Experience guides · Global",
+    "kind": "article",
+    "parent": {
+      "name": "Travel Journal",
+      "path": "/travel-journal"
+    },
+    "journal": {
+      "category": "Experience guides",
+      "region": "Global"
+    },
+    "facts": [
+      {
+        "label": "The focus",
+        "value": "Course access, equipment and time together"
+      },
+      {
+        "label": "Suggested pace",
+        "value": "Build the stay around confirmed rounds"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Start with access to the course",
+        "paragraphs": [
+          "A destination name is not a tee-time confirmation. Identify the course, the number of players and the dates, then ask about its current booking process, eligibility and any accommodation requirement. Keep requested, provisional and confirmed rounds clearly separated in the itinerary. Flights and hotel choices should reflect the access actually secured."
+        ]
+      },
+      {
+        "heading": "Compare two very different booking models",
+        "paragraphs": [
+          "Pebble Beach publishes tee-time arrangements tied to resort reservations and date-specific conditions. At St Andrews, the Old Course has its own allocation routes, including a ballot. A ballot entry is not a reserved round. These examples show why an EA needs the course’s current written terms rather than a general assurance of access from a destination guide."
+        ]
+      },
+      {
+        "heading": "Make room for the rest of the party",
+        "paragraphs": [
+          "Ask which guests intend to play every day and which prefer a mixed holiday. A second morning round may suit the golfers while a shared lunch, cultural visit or afternoon at the property suits everyone. Confirm transport for separate groups and agree where they will meet. Do not make non-playing companions dependent on the golfers’ finishing time."
+        ]
+      },
+      {
+        "heading": "Brief clubs as equipment, not ordinary luggage",
+        "paragraphs": [
+          "Record the number and dimensions of golf bags alongside suitcases when requesting aircraft options. Confirm how the equipment will move through every ground transfer and whether rental sets are a better fit for part of the party. Schedule practice, caddies or buggies with the course where available, and retain a weather alternative for the day."
+        ]
+      },
+      {
+        "heading": "For the travel brief",
+        "paragraphs": [],
+        "bullets": [
+          "Obtain the exact course, confirmed tee time and applicable terms.",
+          "Record player requirements and the plan for non-playing guests.",
+          "Confirm club-bag capacity across both aircraft and ground vehicles."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Pebble Beach Resorts — golf planning questions",
+        "url": "https://www.pebblebeach.com/plan-my-trip/frequently-asked-questions/"
+      },
+      {
+        "label": "Pebble Beach Resorts — availability",
+        "url": "https://www.pebblebeach.com/plan-my-trip/preview-availability/"
+      },
+      {
+        "label": "St Andrews Links — request a tee time",
+        "url": "https://standrews.com/request-a-tee-time"
+      }
+    ],
+    "related": [
+      "/travel-journal/los-cabos",
+      "/travel-journal/multigenerational-holidays",
+      "/travel-journal/seasonal-holiday-planning",
+      "/travel-journal"
+    ],
+    "published": "2026-10-22",
+    "updated": "2026-10-22",
+    "readTime": "2 min read",
+    "faqs": [
+      {
+        "question": "Should flights be booked before the preferred golf rounds are confirmed?",
+        "answer": "Where a particular course is the reason for travelling, establish the access and booking conditions first. A request or ballot entry should not be presented as a confirmed tee time."
+      },
+      {
+        "question": "What belongs in the aircraft brief for a golf trip?",
+        "answer": "Include the passenger count, suitcase details and the number and dimensions of golf bags. Ask the operator to confirm suitability for the actual aircraft and include the equipment in the ground-transfer brief."
+      }
+    ]
+  },
+  {
+    "path": "/travel-journal/seasonal-holiday-planning",
+    "title": "When to go: a seasonal framework for time away",
+    "seoTitle": "Seasonal Luxury Travel Planning: When to Go | Travel Journal | EXJET",
+    "description": "Match holiday dates with destinations, seasonal activities and the needs of the party. A practical travel-planning framework for EAs and family offices.",
+    "kicker": "Experience guides · Global",
+    "kind": "article",
+    "parent": {
+      "name": "Travel Journal",
+      "path": "/travel-journal"
+    },
+    "journal": {
+      "category": "Experience guides",
+      "region": "Global"
+    },
+    "facts": [
+      {
+        "label": "The focus",
+        "value": "Seasonal fit, useful dates and a workable itinerary"
+      },
+      {
+        "label": "Suggested pace",
+        "value": "Choose the experience, then the window"
+      }
+    ],
+    "sections": [
+      {
+        "heading": "Begin with the reason for travelling",
+        "paragraphs": [
+          "Decide whether the holiday depends on skiing, a particular event, time on the water or simply a week together. That distinction determines which dates are flexible. For an EA or family office, record school calendars, household commitments and each traveller’s available window before circulating a destination shortlist. A compelling place is useful only when its operating season matches the proposed stay."
+        ]
+      },
+      {
+        "heading": "A planning calendar, not a weather promise",
+        "paragraphs": [
+          "The examples below are starting points for a conversation. Seasons vary by hemisphere and locality: Queenstown’s winter falls in June to August, while Mauritius describes November to April as summer. Jackson Hole’s tourism guide identifies mid-June to mid-September as a peak visitor period. The actual opening calendar, weather and available services still need checking for the precise dates."
+        ],
+        "table": {
+          "caption": "Seasonal ideas to compare; confirm local conditions and opening dates.",
+          "headers": [
+            "Travel window",
+            "Ideas to explore",
+            "What to confirm"
+          ],
+          "rows": [
+            [
+              "December–March",
+              "Compare a Niseko or Zermatt ski stay with a Caribbean island holiday.",
+              "Mountain operations, connection schedules and festive-period booking terms."
+            ],
+            [
+              "April–June",
+              "Consider Mallorca or the Ligurian coast for a stay centred on villages, scenery and dining.",
+              "The actual property and venue opening dates; suitability of planned outdoor activities."
+            ],
+            [
+              "July–September",
+              "Compare Nantucket or Jackson Hole with a Southern Hemisphere winter visit to Queenstown.",
+              "Peak-period availability in the north; mountain conditions and operations in New Zealand."
+            ],
+            [
+              "October–November",
+              "Review a culture-led city stay or Mauritius as its winter moves towards summer.",
+              "The exact cultural programme, chosen coast and local activity conditions."
+            ]
+          ]
+        },
+        "links": [
+          {
+            "label": "Niseko",
+            "path": "/travel-journal/niseko"
+          },
+          {
+            "label": "Zermatt",
+            "path": "/travel-journal/zermatt"
+          },
+          {
+            "label": "Mallorca",
+            "path": "/travel-journal/mallorca"
+          },
+          {
+            "label": "Portofino",
+            "path": "/travel-journal/portofino"
+          },
+          {
+            "label": "Nantucket",
+            "path": "/travel-journal/nantucket"
+          },
+          {
+            "label": "Jackson Hole",
+            "path": "/travel-journal/jackson-hole"
+          },
+          {
+            "label": "Queenstown",
+            "path": "/travel-journal/queenstown"
+          },
+          {
+            "label": "Mauritius",
+            "path": "/travel-journal/mauritius"
+          }
+        ]
+      },
+      {
+        "heading": "Separate climate from what is open",
+        "paragraphs": [
+          "A pleasant forecast does not establish that the desired restaurant, lift, boat service or residence programme will operate. Obtain the provider’s calendar and booking conditions. For a shoulder-season holiday, choose a base that remains worthwhile if a particular outing is unavailable. For an event-led stay, use the organiser’s confirmed date rather than last year’s schedule."
+        ]
+      },
+      {
+        "heading": "Keep one shared planning record",
+        "paragraphs": [
+          "Give the travelling household, property team and aviation advisor the same version of the itinerary. Identify the fixed commitments, provisional requests and flexible days. Add the final ground or island connection and a practical alternative where the journey depends on a separate service. This keeps a change in one booking from silently invalidating the rest of the holiday."
+        ]
+      },
+      {
+        "heading": "For the travel brief",
+        "paragraphs": [],
+        "bullets": [
+          "Record the party’s fixed dates and the experience that matters most.",
+          "Confirm venue openings, activity conditions and booking deadlines.",
+          "Recheck connections and property reception before departure."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "Queenstown Tourism — seasons and weather",
+        "url": "https://www.queenstownnz.co.nz/plan/seasons-and-weather/"
+      },
+      {
+        "label": "Mauritius Tourism Promotion Authority — weather",
+        "url": "https://mauritiusnow.com/mauritius-weather/"
+      },
+      {
+        "label": "Jackson Hole Travel & Tourism — peak and quieter seasons",
+        "url": "https://visitjacksonhole.com/off-season-vs-peak-season-in-jackson-hole"
+      },
+      {
+        "label": "Japan National Tourism Organization — summer hiking in Niseko",
+        "url": "https://www.japan.travel/en/japans-local-treasures/summer-hiking-niseko-2023/"
+      }
+    ],
+    "related": [
+      "/travel-journal/multigenerational-holidays",
+      "/travel-journal/ski-and-chalet-holidays",
+      "/travel-journal/villas-and-private-islands",
+      "/travel-journal"
+    ],
+    "published": "2026-10-22",
+    "updated": "2026-10-22",
+    "readTime": "3 min read",
+    "faqs": [
+      {
+        "question": "What does shoulder season mean for a holiday brief?",
+        "answer": "It describes a period outside a destination’s main peak, but it does not guarantee lower prices, good weather or full services. Confirm the accommodation, dining and activity calendar for the exact dates."
+      },
+      {
+        "question": "How should an EA narrow a seasonal destination shortlist?",
+        "answer": "Start with the fixed dates and the purpose of the trip. Compare seasonal suitability, current operating calendars and the complete journey, then present a small number of workable options."
+      }
+    ]
   }
 ]
