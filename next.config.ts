@@ -1,26 +1,13 @@
 import type { NextConfig } from "next";
 
+// Fully static export: the same `out/` folder is deployed to Vercel and
+// bundled into the iOS app by Capacitor (see capacitor.config.ts).
 const nextConfig: NextConfig = {
+  output: "export",
+  trailingSlash: true,
   reactStrictMode: true,
   poweredByHeader: false,
-  // Vercel-safety: never fail a build on a lint rule, never on unused types.
-  // The local `npm run lint` still runs them manually.
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    // Local `tsc --noEmit` passes; don't let stale build-time type probing
-    // block deploys.
-    ignoreBuildErrors: false,
-  },
-  images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "images.unsplash.com",
-      },
-    ],
-  },
+  images: { unoptimized: true },
 };
 
 export default nextConfig;
