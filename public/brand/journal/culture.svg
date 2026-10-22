@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" fill="none">
+<defs>
+ <linearGradient id="ground" x1="0" y1="0" x2="720" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#f5f5f2"/><stop offset="1" stop-color="#ccd0d0"/></linearGradient>
+ <linearGradient id="silver" x1="100" y1="40" x2="580" y2="390" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset=".45" stop-color="#e8e9e6"/><stop offset="1" stop-color="#9da5a7"/></linearGradient>
+ <linearGradient id="stone" x1="120" y1="80" x2="550" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#a9b1b3"/><stop offset="1" stop-color="#454f54"/></linearGradient>
+ <linearGradient id="night" x1="0" y1="0" x2="720" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#303a40"/><stop offset="1" stop-color="#11191e"/></linearGradient>
+ <radialGradient id="globe" cx=".32" cy=".26" r=".8"><stop stop-color="#f5f6f2"/><stop offset=".45" stop-color="#bfc7c7"/><stop offset=".8" stop-color="#5b6a70"/><stop offset="1" stop-color="#243139"/></radialGradient>
+ <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse"><path d="M72 0H0V72" stroke="#58636a" stroke-opacity=".09"/></pattern>
+</defs>
+<path fill="url(#ground)" d="M0 0h720v440H0z"/>
+<path fill="url(#grid)" d="M0 0h720v440H0z"/>
+ <path d="M190 440V200a170 170 0 0 1 340 0v240Z" fill="url(#silver)"/>
+ <path d="M241 440V205a119 119 0 0 1 238 0v235Z" fill="url(#stone)"/>
+ <path d="M275 440V214a85 85 0 0 1 170 0v226Z" fill="url(#night)"/>
+ <path d="M305 440V229a55 55 0 0 1 110 0v211Z" fill="#c5cfcd"/>
+ <path d="M190 440V200a170 170 0 0 1 340 0M241 440V205a119 119 0 0 1 238 0M275 440V214a85 85 0 0 1 170 0" stroke="#fff" stroke-opacity=".6"/>
+ <path d="m305 355-95 85h300l-95-85Z" fill="url(#silver)"/>
+ <path d="M290 370h140M270 388h180M245 410h230" stroke="#758586" stroke-opacity=".4"/><path d="M24 40V24h16M680 24h16v16M24 400v16h16M680 416h16v-16" stroke="#fff" stroke-opacity=".6"/>
+</svg>
