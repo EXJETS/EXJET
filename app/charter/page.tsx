@@ -16,7 +16,7 @@ export default function CharterPage() {
   return (
     <div className={styles.booking}>
       <header className={styles.heading}>
-        <div><p>Your next flight.</p><h1>Request a charter quote.</h1></div>
+        <div><p>Private jet charter & empty legs</p><h1>Find a flight.</h1></div>
         <Link className="ex-text-link" href="/contact">Need a hand? Contact EXJET <span aria-hidden="true">›</span></Link>
       </header>
       <section id="charter-request" className={styles.search} aria-label="Aircraft search"><QuoteForm /></section>

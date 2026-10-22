@@ -3,7 +3,7 @@ import { ContactPreference } from "@/components/ContactPreference";
 import { aircraft } from "@/data/aircraft";
 import { aircraftCategories } from "@/data/aircraftCategories";
 import { PageHero } from "@/components/PageHero";
-import { QuoteForm } from "@/components/QuoteForm";
+import { FlightSearchLink } from "@/components/FlightSearchLink";
 import { SocialLinks } from "@/components/SocialLinks";
 import { StructuredData } from "@/components/StructuredData";
 import { buildMetadata } from "@/data/seo";
@@ -20,7 +20,7 @@ export default function ContactPage() {
         <div className="shell contact-layout">
           <div>
             <Suspense fallback={null}><ContactPreference aircraft={Object.fromEntries(aircraft.map(item => [item.slug, item.name]))} categories={Object.fromEntries(aircraftCategories.map(item => [item.slug, item.name]))} /></Suspense>
-            <QuoteForm />
+            <FlightSearchLink />
           </div>
           <aside>
             <p>Passenger charter</p><a href={`mailto:${siteConfig.email.charter}`}>{siteConfig.email.charter}</a>

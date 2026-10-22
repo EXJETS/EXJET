@@ -1,11 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { FlightSearchPanel } from "@/components/FlightSearchPanel";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { HomeAircraftEditorial } from "@/components/HomeAircraftEditorial";
-import { ContentCollection } from "@/components/EditorialPage";
 import { BrokerNotice } from "@/components/BrokerNotice";
-import { articlePaths, routePaths } from "@/data/editorial";
 import { StructuredData } from "@/components/StructuredData";
 import { buildMetadata } from "@/data/seo";
 import { localBusinessJsonLd } from "@/data/site";
@@ -13,6 +10,18 @@ import styles from "./landing.module.css";
 import { CaretRightIcon } from "@phosphor-icons/react/dist/ssr";
 
 export const metadata = buildMetadata("/");
+
+const audiences = [
+  { title: "Executive assistants", copy: "Coordinate executive schedules, preferences and last-minute changes with one point of contact.", href: "/executive-assistants" },
+  { title: "Family offices", copy: "Private aviation planning shaped around your principals, family and ownership objectives.", href: "/family-office-private-aviation" },
+  { title: "Corporate travel teams", copy: "Charter planning for Fortune 500 teams, board travel and multi-city business itineraries.", href: "/corporate-travel/fortune-500" },
+];
+const planningLinks = [
+  { title: "Routes & destinations", copy: "Explore your next journey.", href: "/routes" },
+  { title: "Airports", copy: "Find the right arrival point.", href: "/airports" },
+  { title: "Charter pricing", copy: "Understand the full quote.", href: "/pricing" },
+  { title: "The Flight Guide", copy: "Get answers before you fly.", href: "/articles" },
+];
 
 export default function Home() {
   return (
@@ -32,8 +41,7 @@ export default function Home() {
           <Image src="/images/home/owner-selected-hero.webp" alt="Bombardier Global 8000 in flight over the ocean beside a coastline" width={1500} height={671} sizes="(max-width: 1400px) 100vw, 1400px" priority />
         </div>
       </section>
-      <section className={styles.flightSearch} aria-labelledby="home-search-title"><div className={styles.sectionHeading}><div><p className={styles.eyebrow}>Your next journey</p><h2 id="home-search-title">Where would you like to go?</h2></div><Link href="/how-it-works" className={styles.textAction}>How it works <CaretRightIcon size={16} aria-hidden="true" /></Link></div><FlightSearchPanel compact /></section>
-      <section className="ex-section ex-section--silver" aria-labelledby="services-title"><div className="ex-container"><div className="ex-section-heading"><div><p className={styles.eyebrow}>Business aviation solutions</p><h2 id="services-title">One relationship. Every stage of aviation.</h2></div><Link href="/services" className={styles.textAction}>Explore all services <CaretRightIcon size={16} aria-hidden="true" /></Link></div><ServicesGrid /></div></section>
+      <section className={styles.servicesSection} aria-labelledby="services-title"><div className={styles.container}><div className={styles.sectionHeading}><div><p className={styles.eyebrow}>Business aviation solutions</p><h2 id="services-title">One relationship.<br />Every stage of aviation.</h2></div><Link href="/services" className={styles.textAction}>Explore all services <CaretRightIcon size={16} aria-hidden="true" /></Link></div><ServicesGrid compact /></div></section>
       <section className={styles.aircraftSection} id="aircraft" aria-labelledby="aircraft-title">
         <div className={styles.sectionHeading}>
           <div><p className={styles.eyebrow}>Explore the aircraft</p><h2 id="aircraft-title">The right aircraft for every journey.</h2></div>
@@ -56,10 +64,15 @@ export default function Home() {
           </div>
         </div>
       </section>
-      <ContentCollection paths={["/executive-assistants", "/family-office-private-aviation", "/corporate-travel/fortune-500"]} title="Built around the people who arrange the journey." description="Aircraft charter planning for executive assistants, family offices and corporate travel teams." showImages={false} />
-      <ContentCollection paths={routePaths.slice(0, 4)} title="Wherever comes next." description="A closer look at the airports and details behind your itinerary." silver />
-      <ContentCollection paths={["/private-jet-charter/dallas", "/pricing", "/safety"]} title="Plan with EXJET." description="Local airport choices, transparent cost planning and informed operator review." showImages={false} />
-      <ContentCollection paths={articlePaths.slice(0, 3)} title="A clearer view of private aviation." description="The EXJET Flight Guide. Practical reading for the journey ahead." showImages={false} />
+      <section className={styles.audienceSection} aria-labelledby="audience-title"><div className={styles.container}>
+        <div className={styles.sectionHeading}><div><p className={styles.eyebrow}>Made for your priorities</p><h2 id="audience-title">For the people<br />behind the journey.</h2></div></div>
+        <div className={styles.audienceGrid}>{audiences.map(item => <Link key={item.href} href={item.href} className={styles.audienceCard}><h3>{item.title}</h3><p>{item.copy}</p><span>Discover more <CaretRightIcon size={16} aria-hidden="true" /></span></Link>)}</div>
+      </div></section>
+      <section className={styles.planningSection} aria-labelledby="planning-title"><div className={styles.container}>
+        <div className={styles.sectionHeading}><div><p className={styles.eyebrow}>Plan with confidence</p><h2 id="planning-title">A clearer view of private aviation.</h2></div><Link href="/how-it-works" className={styles.textAction}>How it works <CaretRightIcon size={16} aria-hidden="true" /></Link></div>
+        <div className={styles.planningGrid}>{planningLinks.map(item => <Link key={item.href} href={item.href}><h3>{item.title}</h3><p>{item.copy}</p><CaretRightIcon size={18} aria-hidden="true" /></Link>)}</div>
+        <div className={styles.localLinks}><Link href="/private-jet-charter/dallas">Private jet charter in Dallas</Link><Link href="/safety">Our approach to safety</Link><Link href="/empty-legs">Explore empty legs</Link></div>
+      </div></section>
       <section className={styles.bookingSection} aria-labelledby="booking-title">
         <p className={styles.eyebrow}>Wherever comes next.</p>
         <h2 id="booking-title">Move with clarity.</h2>
