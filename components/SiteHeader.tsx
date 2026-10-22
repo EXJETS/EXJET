@@ -27,6 +27,7 @@ const groups = [
     ["Executive assistants", "/executive-assistants"], ["Family offices", "/family-office-private-aviation"], ["Group travel", "/group-charter"], ["Corporate travel", "/corporate-travel"], ["Cargo charter", "/cargo"],
   ] },
   { title: "Resources", links: [
+    ["Travel Journal", "/travel-journal"],
     ["Routes", "/routes"], ["Airports", "/airports"], ["Destinations", "/destinations"],
     ["Flight Guide", "/articles"], ["Aircraft guides", "/aircraft-guides"], ["Aircraft performance", "/aircraft-performance"], ["Aircraft comparisons", "/aircraft-comparisons"], ["Charter FAQ", "/faq"],
     ["How it works", "/how-it-works"],
