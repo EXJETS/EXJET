@@ -1,3 +1,4 @@
+import { ButtonLink } from "@/components/ButtonLink";
 import { Suspense } from "react";
 import { ContactPreference } from "@/components/ContactPreference";
 import { aircraft } from "@/data/aircraft";
@@ -15,7 +16,12 @@ export default function ContactPage() {
   return (
     <>
       <StructuredData data={localBusinessJsonLd()} />
-      <PageHero heading="Contact EXJET for business aviation solutions" eyebrow="Contact EXJET" title={<>Let’s plan<br /><em>what’s next.</em></>} copy="Share your itinerary, aircraft or project objectives. Connect with EXJET for charter, sales and acquisitions, management, MRO, interior completions or Starlink installation consulting." />
+      <PageHero heading="Speak with EXJET" eyebrow="Contact EXJET" title={<>Let’s plan<br /><em>what’s next.</em></>} copy="Share your itinerary, aircraft or project objectives. Connect with EXJET for charter, sales and acquisitions, management, MRO, interior completions or Starlink installation consulting.">
+        <div className="ex-intro-actions contact-primary-actions">
+          <ButtonLink href={siteConfig.phone.primary.href}>Call EXJET</ButtonLink>
+          <ButtonLink href={`mailto:${siteConfig.email.general}`} variant="outline">Email an advisor</ButtonLink>
+        </div>
+      </PageHero>
       <section className="section contact-section">
         <div className="shell contact-layout">
           <div>

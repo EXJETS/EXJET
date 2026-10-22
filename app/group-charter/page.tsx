@@ -1,7 +1,6 @@
 import { ContentCollection } from "@/components/EditorialPage";
 import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
-import { FlightSearchLink } from "@/components/FlightSearchLink";
 import { SectionIntro } from "@/components/SectionIntro";
 import { buildMetadata } from "@/data/seo";
 import { siteConfig } from "@/data/site";
@@ -18,16 +17,16 @@ const missions = [
 export default function GroupCharterPage() {
   return (
     <>
-      <PageHero heading="Group air charter for teams and events"
+      <PageHero heading="Group charter. Every detail aligned."
         dark
-        image="/images/editorial/falcon-8x-dining-area.jpg"
-        imageAlt="Dassault Falcon 8X dining cabin, representative of small-group private jet travel"
-        imageWidth={2000}
-        imageHeight={1333}
+        image="/images/editorial/citation-longitude-cabin.jpg"
+        imageAlt="Citation Longitude cabin with facing leather seats, representative of small-group travel"
+        imageWidth={1920}
+        imageHeight={1080}
         imagePosition="center"
         eyebrow="Group air charter"
         title={<>Move together.<br /><em>Arrive ready.</em></>}
-        copy="Aircraft sourcing and itinerary coordination for groups that need more than a block of seats. One advisor keeps the aircraft, timing, baggage, and ground plan connected."
+        copy="Private flights for executive teams, sports and entertainment travel. One advisor coordinates your aircraft, schedule and ground arrangements."
       >
         <ButtonLink href="#group-request" variant="light">Start a group request</ButtonLink>
       </PageHero>
@@ -36,17 +35,17 @@ export default function GroupCharterPage() {
         <div className="shell">
           <SectionIntro
             eyebrow="Build the movement"
-            title="Start with the group. We’ll shape the lift."
-            copy="Share the route, date, and approximate headcount now. The follow-up brief can cover baggage, equipment, ground transportation, schedule constraints, and passenger handling."
+            title="One brief. A coordinated journey."
+            copy="Share your route, dates and passenger count. We’ll help plan aircraft capacity, baggage, equipment and transfers around your schedule."
           />
-          <FlightSearchLink title="Find an aircraft for your group." copy="Explore aircraft for a single flight, or contact EXJET to coordinate a larger group or multiple aircraft." />
+          <div className="ex-intro-actions"><ButtonLink href={`mailto:${siteConfig.email.charter}?subject=Group%20charter%20enquiry`}>Discuss your group</ButtonLink><ButtonLink href="/charter" variant="outline">Find a flight</ButtonLink></div>
           <p className="specification-note">For multiple aircraft or a larger group than the search supports, <a href={`mailto:${siteConfig.email.charter}`}>contact EXJET with your group brief</a>.</p>
         </div>
       </section>
 
       <section className="section section--dark group-missions-section">
         <div className="shell">
-          <SectionIntro inverse eyebrow="Designed around the mission" title="Many travelers. One operating picture." />
+          <SectionIntro inverse eyebrow="Designed around the mission" title="Travel together. Stay on schedule." />
           <div className="group-mission-grid">
             {missions.map(([number, title, copy]) => (
               <article key={number}>

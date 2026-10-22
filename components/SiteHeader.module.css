@@ -13,12 +13,12 @@
 .mobileGroups nav a { display: flex; align-items: center; min-height: 44px; padding-block: 10px; font-size: 1rem; line-height: 1.4; }
 .mobileGroups a[aria-current="page"] { font-weight: 500; text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 820px) {
-  .header :global(.ex-header-inner) { min-height: 52px; width: calc(100% - 24px); gap: 12px; }
+  .header :global(.ex-header-inner) { min-height: 56px; width: calc(100% - 32px); gap: 12px; }
   .header :global(.ex-header-actions) { gap: 4px; }
   .header :global(.ex-header-actions) > .desktopSearch { display: inline-flex; }
-  .bookFlight { padding-inline: 12px; font-size: .8125rem; }
+  .bookFlight { padding-inline: 12px; font-size: .875rem; }
   .header :global(.ex-header-logo) img { width: 32px; height: 32px; }
-  .header :global(.ex-menu-button) svg { width: 18px; height: 18px; }
+  .header :global(.ex-menu-button) svg { width: 22px; height: 22px; }
 }
 .dialog { inset: 0 0 auto; width: 100%; max-width: none; max-height: 100dvh; margin: 0; padding: 0; border: 0; color: #16181a; background: #fff; overflow-y: auto; overscroll-behavior: contain; }
 .dialog::backdrop { background: rgb(22 24 26 / 24%); backdrop-filter: blur(8px); }
@@ -38,7 +38,7 @@
 .contact a { display: inline-flex; gap: 10px; align-items: center; min-height: 44px; }
 @media (max-width: 820px) {
   .dialog { height: 100dvh; padding-bottom: env(safe-area-inset-bottom); }
-  .heading { width: calc(100% - 24px); min-height: calc(52px + env(safe-area-inset-top)); }
+  .heading { width: calc(100% - 24px); min-height: calc(56px + env(safe-area-inset-top)); }
   .content { width: calc(100% - 40px); margin-block: 16px 20px; }
   .groups { display: none; }
   .mobileGroups { display: block; }
@@ -50,3 +50,5 @@
   .contact { margin-top: 20px; gap: 0 24px; }
 }
 @media (prefers-reduced-transparency: reduce) { .dialog::backdrop { backdrop-filter: none; background: rgb(0 0 0 / 50%); } }
+
+@media (max-width: 480px) { .header :global(.ex-header-actions) > .desktopSearch { display: none; } .quickLinks a { min-height: 48px; } .quickLinks .flight { font-size: 24px; } .contact { display: grid; gap: 4px; } }

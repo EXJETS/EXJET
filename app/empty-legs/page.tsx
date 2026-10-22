@@ -20,15 +20,11 @@ export default function EmptyLegsPage() {
         dark
         eyebrow="Empty leg opportunities"
         title={<>A repositioning flight.<br /><em>A smarter opening.</em></>}
-        copy="Empty legs can create exceptional one-way charter opportunities when your route and timing align with an aircraft repositioning schedule. Availability can change without notice."
+        copy="Explore one-way aircraft repositioning opportunities. Availability and timing require confirmation."
       />
-      <section className="empty-leg-board-section section">
+      <section className="empty-leg-board-section section" aria-labelledby="empty-leg-search-title">
         <div className="shell">
-          <SectionIntro
-            eyebrow="Search availability"
-            title="Flexible timing creates the best opportunities."
-            copy="Published opportunities are verified by EXJET before an option is presented for confirmation. Empty-leg schedules can change quickly, so flexibility creates the strongest match."
-          />
+          <h2 id="empty-leg-search-title" className="sr-only">Search empty legs</h2>
           <EmptyLegBoard items={emptyLegPreview} />
         </div>
       </section>
