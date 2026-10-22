@@ -7,7 +7,7 @@ import { StructuredData } from "@/components/StructuredData";
 import { buildMetadata } from "@/data/seo";
 import { localBusinessJsonLd } from "@/data/site";
 import styles from "./landing.module.css";
-import { ArrowUpRightIcon, CaretRightIcon } from "@phosphor-icons/react/dist/ssr";
+import { CaretRightIcon } from "@phosphor-icons/react/dist/ssr";
 
 export const metadata = buildMetadata("/");
 
@@ -31,23 +31,16 @@ export default function Home() {
     <div className={styles.landing}>
       <StructuredData data={localBusinessJsonLd()} />
       <section className={styles.hero} aria-labelledby="home-title">
-        <header className={styles.heroContent}>
-          <p className={styles.heroEyebrow}>Business aviation solutions</p>
-          <h1 className={styles.tagline} id="home-title">Global Access. On-Demand.</h1>
-        </header>
         <div className={styles.heroVisual}>
-          <Image className={styles.heroPhoto} src="/images/home/owner-selected-hero.webp" alt="Bombardier Global 8000 in flight over the ocean beside a coastline" width={1500} height={671} sizes="(min-width: 1500px) 1500px, 100vw" preload />
+          <Image className={styles.heroPhoto} src="/images/home/owner-selected-hero.webp" alt="Bombardier Global 8000 in flight over the ocean beside a coastline" width={1500} height={671} sizes="100vw" preload />
+          <div className={styles.heroContent}>
+            <h1 className={styles.tagline} id="home-title">Global Access. On-Demand.</h1>
+          </div>
+          <nav className={styles.heroActions} aria-label="Start with EXJET">
+            <Link className={styles.heroAction} href="/charter">Find a flight <CaretRightIcon size={16} weight="light" aria-hidden="true" /></Link>
+            <Link className={styles.heroAction} href="/sales">Aircraft sales &amp; acquisitions <CaretRightIcon size={16} weight="light" aria-hidden="true" /></Link>
+          </nav>
         </div>
-        <nav className={styles.heroActions} aria-label="Start with EXJET">
-          <Link className={styles.heroAction} href="/charter">
-            <span className={styles.heroActionCopy}><span className={styles.heroActionLabel}>On-demand charter</span><span className={styles.heroActionTitle}>Find a flight</span></span>
-            <ArrowUpRightIcon size={24} weight="light" aria-hidden="true" />
-          </Link>
-          <Link className={styles.heroAction} href="/sales">
-            <span className={styles.heroActionCopy}><span className={styles.heroActionLabel}>Aircraft ownership</span><span className={styles.heroActionTitle}>Aircraft sales &amp; acquisitions</span></span>
-            <ArrowUpRightIcon size={24} weight="light" aria-hidden="true" />
-          </Link>
-        </nav>
       </section>
       <section className={styles.servicesSection} aria-labelledby="services-title">
         <div className={styles.container}>
