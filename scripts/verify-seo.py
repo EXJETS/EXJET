@@ -56,6 +56,13 @@ args=parser.parse_args()
 root=Path(__file__).resolve().parents[1]
 build=root/'.next/server/app'
 origin='https://www.exjet.com'
+# App pages render at request time and intentionally have no static HTML file.
+# Accept only concrete routes that exist in Next's compiled page manifest.
+manifest=json.loads((root/'.next/server/app-paths-manifest.json').read_text())
+runtime_pages={route(name.removesuffix('/page')) for name,file in manifest.items()
+               if name.endswith('/page') and '[' not in name and not name.startswith('/_')
+               and (root/'.next/server'/file).is_file()}
+linked_runtime=set()
 errors=[]; pages={}; titles=defaultdict(list); descriptions=defaultdict(list)
 for file in build.rglob('*.html'):
     relative='/'+file.relative_to(build).as_posix()[:-5]
@@ -94,7 +101,9 @@ for path,page in pages.items():
         if not url.path:target=path
         elif not url.path.startswith('/'):continue
         else:target=route(url.path)
-        if target not in pages:
+        if target not in pages and target in runtime_pages:
+            linked_runtime.add(target)
+        elif target not in pages:
             if not (root/'public'/url.path.lstrip('/')).is_file():errors.append(f'{path}: broken internal link {href}')
         elif url.fragment and url.fragment not in pages[target].ids:
             errors.append(f'{path}: broken anchor {href}')
@@ -134,9 +143,10 @@ if args.base_url:
         except HTTPError as e:return path,e.code,e.headers.get('X-Robots-Tag','')
         except Exception as e:return path,str(e),''
     with ThreadPoolExecutor(max_workers=8) as pool:
-        for path,status,xrobots in pool.map(fetch,list(pages)+['/this-page-must-not-exist-seo-check/']):
+        for path,status,xrobots in pool.map(fetch,list(pages)+sorted(linked_runtime)+['/this-page-must-not-exist-seo-check/']):
             http_status[path]=status
-            if status!=(200 if path in pages else 404):errors.append(f'{path}: HTTP {status}')
+            if status!=(200 if path in pages or path in linked_runtime else 404):errors.append(f'{path}: HTTP {status}')
+            if path.startswith('/app/') and 'noindex' not in xrobots.lower():errors.append(f'{path}: app route missing noindex HTTP header')
             if args.mode=='production' and path in indexable and 'noindex' in xrobots.lower():errors.append(f'{path}: noindex HTTP header')
 report={'mode':args.mode,'status':'PASS' if not errors else 'FAIL','html_pages_checked':len(pages),'original_pages_preserved':len(expected),'indexable_count':len(indexable),'sitemap_urls':len(locs),'noindex_pages':sorted(noindex),'robots':robots,'http_status':http_status,'errors':sorted(set(errors)), 'metadata':[{'path':p,'title':d.title,'description':d.meta.get('description'),'h1':d.h1,'robots':d.meta.get('robots')} for p,d in sorted(pages.items())]}
 report_dir=root/'verification';report_dir.mkdir(exist_ok=True)

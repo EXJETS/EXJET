@@ -93,19 +93,19 @@
   },
   {
     "path": "/sales/citation-m2/",
-    "title": "Citation M2 · Sales"
+    "title": "Citation M2 \u00b7 Sales"
   },
   {
     "path": "/sales/global-7500/",
-    "title": "Global 7500 · Sales"
+    "title": "Global 7500 \u00b7 Sales"
   },
   {
     "path": "/sales/praetor-600/",
-    "title": "Praetor 600 · Sales"
+    "title": "Praetor 600 \u00b7 Sales"
   },
   {
     "path": "/sales/phenom-300e/",
-    "title": "Phenom 300E · Sales"
+    "title": "Phenom 300E \u00b7 Sales"
   },
   {
     "path": "/articles/",
@@ -246,5 +246,45 @@
   {
     "path": "/articles/charter-vs-aircraft-ownership-for-a-family-office/",
     "title": "Charter vs. aircraft ownership"
+  },
+  {
+    "path": "/app/",
+    "title": "App overview"
+  },
+  {
+    "path": "/app/search/",
+    "title": "App flight search"
+  },
+  {
+    "path": "/app/empty-legs/",
+    "title": "App empty legs"
+  },
+  {
+    "path": "/app/aircraft/",
+    "title": "App aircraft"
+  },
+  {
+    "path": "/app/trips/",
+    "title": "App trips"
+  },
+  {
+    "path": "/app/locations/",
+    "title": "App locations"
+  },
+  {
+    "path": "/app/messages/",
+    "title": "App messages"
+  },
+  {
+    "path": "/app/settings/",
+    "title": "App settings"
+  },
+  {
+    "path": "/app/login/",
+    "title": "App sign-in"
+  },
+  {
+    "path": "/app/alerts/",
+    "title": "App flight alerts"
   }
 ]
