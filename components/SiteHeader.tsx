@@ -22,9 +22,9 @@ const primary = [
 ];
 const groups = [
   { title: "Services", links: aviationSolutions.map(service => [service.name, service.path]) },
-  { title: "Plan your flight", links: [
+  { title: "Your travel", links: [
     ["Aircraft", "/aircraft"], ["Charter pricing", "/pricing"], ["Empty legs", "/empty-legs"],
-    ["Executive assistants", "/executive-assistants"], ["Family offices", "/family-office-private-aviation"], ["Group travel", "/group-charter"], ["Corporate travel", "/corporate-travel"], ["Cargo charter", "/cargo"],
+    ["Executive assistants", "/executive-assistants"], ["Family offices", "/family-office-private-aviation"], ["Sports teams", "/group-charter/sports-teams"], ["Entertainment & event travel", "/group-charter"], ["Fortune 500 teams", "/corporate-travel/fortune-500"], ["Cargo charter", "/cargo"],
   ] },
   { title: "Resources", links: [
     ["Travel Journal", "/travel-journal"],

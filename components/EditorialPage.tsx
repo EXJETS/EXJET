@@ -6,6 +6,7 @@ import { ContentSections, ContentFaq } from "@/components/ContentSections";
 import { StructuredData } from "@/components/StructuredData";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { ContentDirectory } from "@/components/ContentDirectory";
+import { PageOutline } from "@/components/PageOutline";
 import { TravelJournalDirectory } from "@/components/TravelJournalDirectory";
 import { absoluteUrl, siteConfig } from "@/data/site";
 import { contentPages, type ContentPage } from "@/data/editorial";
@@ -32,7 +33,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
   const updatedLabel = page.updated ? new Intl.DateTimeFormat("en-US", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${page.updated}T00:00:00Z`)) : null;
   const breadcrumb = [{name:"Home",path:"/"}, ...(page.parent ? [page.parent] : []),{name:page.title,path:page.path}];
   const schema = {"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:breadcrumb.map((entry,index)=>({"@type":"ListItem",position:index+1,name:entry.name,item:absoluteUrl(entry.path)}))};
-  return <div className="ex-editorial">
+  return <div className="ex-editorial" data-page-kind={page.kind}>
     <StructuredData data={schema} />
     {page.journalDirectory ? <StructuredData data={{"@context":"https://schema.org","@type":"CollectionPage",name:page.title,description:page.description,url:absoluteUrl(page.path),mainEntity:{"@type":"ItemList",itemListElement:collection.map((item,index)=>({"@type":"ListItem",position:index+1,name:item.title,url:absoluteUrl(item.path)}))}}} /> : null}
     {page.kind === "service" ? <StructuredData data={{"@context":"https://schema.org","@type":"Service",name:page.title,description:page.description,url:absoluteUrl(page.path),provider:{"@id":absoluteUrl("/")+"#organization"}}} /> : null}
@@ -46,10 +47,10 @@ export function EditorialPage({ page }: { page: ContentPage }) {
     {page.serviceCatalog ? <section className="ex-section ex-section--silver"><div className="ex-container"><div className="ex-section-heading"><h2>Explore our services</h2></div><ServicesGrid /></div></section> : null}
     {page.image && page.kind!=="hub" ? <figure className="ex-feature-photo" style={{maxWidth:Math.min(page.image.width,1400)}}><Image src={page.image.src} alt={page.image.alt} width={page.image.width} height={page.image.height} priority sizes="(max-width:1400px) 100vw, 1400px" /><figcaption>{page.image.caption || page.image.alt}</figcaption></figure> : null}
     {page.journalDirectory ? <TravelJournalDirectory items={collection.filter(item=>item.journal).map(item=>({path:item.path,title:item.title,description:item.description,category:item.journal!.category,region:item.journal!.region,readTime:item.readTime,focus:item.facts?.map(fact=>fact.value).join(" ") || ""}))} /> : page.items ? <ContentDirectory title={page.collectionTitle || "Explore"} items={collection.map(item => ({path:item.path,title:item.title,description:item.description,kicker:item.kicker,codes:item.codes,searchText:[item.title,item.description,item.kicker,...(item.codes || []),...(item.facts?.map(fact=>fact.value) || [])].join(" ")}))} /> : null}
-    <div className="ex-container"><div className="ex-reading">
+    <div className={`ex-container ex-content-layout${page.sections.length >= 3 ? " ex-content-layout--outline" : ""}`}><PageOutline sections={page.sections} /><div className="ex-reading">
       {page.draft ? <p className="ex-draft-note">Policy draft for review. Final terms depend on EXJET’s confirmed practices and the applicable charter agreement.</p> : null}
       {page.facts?.length ? <dl className="ex-facts">{page.facts.map(fact=><div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl> : null}
-      {page.sections.length>3 ? <details className="ex-toc"><summary>{page.kind==="legal" ? "In this policy" : page.kind==="article" ? "In this guide" : "On this page"}</summary><ol>{page.sections.map((section,index)=><li key={section.heading}><a href={`#section-${index+1}`}>{section.heading}</a></li>)}</ol></details> : null}
+
       <ContentSections sections={page.sections} />
       {page.faqs ? <ContentFaq faqs={page.faqs} /> : null}
       {page.sources?.length ? <section className="ex-sources" aria-label="Sources"><h2>Sources & further reading</h2><ul>{page.sources.map(source=><li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul></section> : null}

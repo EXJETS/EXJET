@@ -14,7 +14,10 @@ export const metadata = buildMetadata("/");
 const audiences = [
   { title: "Executive assistants", copy: "Coordinate executive schedules, preferences and last-minute changes with one point of contact.", href: "/executive-assistants" },
   { title: "Family offices", copy: "Private aviation planning shaped around your principals, family and ownership objectives.", href: "/family-office-private-aviation" },
-  { title: "Corporate travel teams", copy: "Charter planning for Fortune 500 teams, board travel and multi-city business itineraries.", href: "/corporate-travel/fortune-500" },
+  { title: "Fortune 500 teams", copy: "Charter planning for Fortune 500 teams, board travel and multi-city business itineraries.", href: "/corporate-travel/fortune-500" },
+  { title: "Private clients", copy: "Discreet aircraft selection and itinerary planning for individuals, families and their guests.", href: "/private-jet-charter" },
+  { title: "Sports agents & managers", copy: "Coordinate athletes, teams, equipment and event schedules with a clear travel brief.", href: "/group-charter/sports-teams" },
+  { title: "Entertainment & event travel", copy: "Plan travel for artists, actors, musicians and their teams around productions, tours and major events.", href: "/group-charter" },
 ];
 const planningLinks = [
   { title: "Routes & destinations", copy: "Explore your next journey.", href: "/routes" },

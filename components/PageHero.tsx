@@ -44,8 +44,8 @@ export function PageHero({
       style={heroStyle}
     >
       <div className="shell page-hero__inner">
-        {heading ? <h1 className="page-hero__topic">{heading}</h1> : <p className={`eyebrow${dark ? " eyebrow--light" : ""}`}>{eyebrow}</p>}
-        {heading ? <p className="page-hero__display">{title}</p> : <h1>{title}</h1>}
+        <p className="eyebrow">{eyebrow}</p>
+        <h1>{heading || title}</h1>
         <p className="page-hero__copy">{copy}</p>
         {children}
       </div>
