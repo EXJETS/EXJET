@@ -39,7 +39,7 @@ export default function AircraftPage() {
           {aircraftCategories.map((item, index) => <AircraftCategoryCard item={item} index={index} key={item.slug} />)}
         </div>
       </section>
-      <ContentCollection paths={["/aircraft-performance", "/aircraft-comparisons", "/guides/aircraft-tail-number-verification"]} title="Compare the details that matter." description="Performance, cabin choices and aircraft verification for your mission." showImages={false} />
+      <ContentCollection paths={["/aircraft-guides", "/aircraft-performance", "/aircraft-comparisons", "/guides/aircraft-tail-number-verification"]} title="Compare the details that matter." description="Performance, cabin choices and aircraft verification for your mission." showImages={false} />
       <section className="aircraft-category-advisor section section--dark">
         <div className="shell split-copy">
           <p className="eyebrow eyebrow--light"><span />Not sure where to begin?</p>
