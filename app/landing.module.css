@@ -1,4 +1,4 @@
-.landing { --content-width: 1120px; --page-gutter: clamp(20px, 4vw, 48px); --section-space: 72px; background: #fff; color: #16181a; }
+.landing { --content-width: var(--ex-content-width,1200px); --page-gutter: var(--ex-page-gutter,24px); --section-space: var(--ex-section-gap,88px); background: #fff; color: #16181a; }
 .container { width: min(var(--content-width), calc(100% - var(--page-gutter) * 2)); margin-inline: auto; }
 .heroContent :is(h1,p), .sectionHeading :is(h2,p), .experienceIntro :is(h2,p), .experienceDetails :is(h3,p), .bookingSection :is(h2,p), .heroCaption { margin: 0; }
 .eyebrow { color: #5e646a; font-size: .8125rem; font-weight: 400; line-height: 1.5; letter-spacing: .015em; }
@@ -52,7 +52,7 @@
 .bookingSection .textAction { color: #fff; }
 .bookingSection .secondaryAction:hover { background:#25282b; }
 .audienceGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-.audienceCard { display: flex; flex-direction: column; padding: 28px; background: #fff; border-radius: 16px; color: inherit; }
+.audienceCard { display: flex; flex-direction: column; padding: 28px; background: #fff; border-radius: 8px; color: inherit; }
 .audienceCard h3, .planningGrid h3 { margin: 0; font-size: 1.25rem; font-weight: 500; line-height: 1.3; letter-spacing: -.02em; }
 .audienceCard p, .planningGrid p { margin: 12px 0 20px; color: #5e646a; font-size: 1rem; line-height: 1.55; }
 .audienceCard span { display: flex; align-items: center; gap: 4px; margin-top: auto; font-size: .9375rem; }

@@ -1,7 +1,7 @@
-.booking { width: min(1120px, calc(100% - clamp(16px, 4vw, 48px) * 2)); margin-inline: auto; padding-block: 48px 64px; }
+.booking { width: min(var(--ex-content-width,1200px), calc(100% - var(--ex-page-gutter,24px) * 2)); margin-inline: auto; padding-block: 64px 80px; }
 .heading { display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: 16px 32px; margin-bottom: 28px; }
 .heading p { margin: 0 0 10px; color: #626267; font-size: .875rem; font-weight: 500; }
-.heading h1 { margin: 0; font-size: clamp(2.25rem, 4vw, 3.5rem); font-weight: 500; line-height: 1.1; letter-spacing: -.045em; }
+.heading h1 { margin: 0; font-size: var(--ex-title-size,60px); font-weight: 400; line-height: 1.1; letter-spacing: -.045em; }
 .heading > a { font-size: .9375rem; }
 .search { scroll-margin-top: 88px; }
 .process { padding-top: 48px; }

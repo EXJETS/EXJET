@@ -7,8 +7,9 @@ import { BrokerNotice } from "@/components/BrokerNotice";
 
 const groups = [
   { title: "Services", links: aviationSolutions.map(service => [service.name, service.path]) },
-  { title: "Explore", links: [["Travel Journal", "/travel-journal"], ["Flight Guide", "/articles"], ["Routes", "/routes"], ["Airports", "/airports"], ["Destinations", "/destinations"], ["Dallas charter", "/private-jet-charter/dallas"], ["Aircraft performance", "/aircraft-performance"], ["Aircraft comparisons", "/aircraft-comparisons"], ["Glossary", "/glossary"], ["Charter pricing", "/pricing"]] },
-  { title: "EXJET", links: [["How it works", "/how-it-works"], ["Ways to fly", "/ways-to-fly"], ["Operator relationships", "/operator-partners"], ["Partnerships", "/partnership"], ["Client support", "/account"], ["All services", "/services"], ["Aviation consulting", "/business-aviation-consulting"], ["About", "/about"], ["Why EXJET", "/why-exjet"], ["Safety", "/safety"], ["Executive assistants", "/executive-assistants"], ["Family offices", "/family-office-private-aviation"], ["Corporate travel", "/corporate-travel"], ["Aircraft", "/aircraft"], ["Empty legs", "/empty-legs"], ["Membership", "/membership"], ["Cargo charter", "/cargo"], ["Contact", "/contact"]] },
+  { title: "Explore", links: [["Aircraft", "/aircraft"], ["Empty legs", "/empty-legs"], ["Travel Journal", "/travel-journal"], ["Routes", "/routes"], ["Airports", "/airports"], ["Destinations", "/destinations"], ["Charter pricing", "/pricing"], ["Aircraft guides", "/aircraft-guides"], ["Flight Guide", "/articles"]] },
+  { title: "Your travel", links: [["Executive assistants", "/executive-assistants"], ["Family offices", "/family-office-private-aviation"], ["Fortune 500 teams", "/corporate-travel/fortune-500"], ["Sports teams", "/group-charter/sports-teams"], ["Entertainment & events", "/group-charter"], ["Aircraft owners", "/aircraft-owners"], ["Membership", "/membership"]] },
+  { title: "EXJET", links: [["About", "/about"], ["Why EXJET", "/why-exjet"], ["Safety", "/safety"], ["How it works", "/how-it-works"], ["Operator relationships", "/operator-partners"], ["Partnerships", "/partnership"], ["Client support", "/account"], ["Contact", "/contact"]] },
 ];
 
 export function SiteFooter() {

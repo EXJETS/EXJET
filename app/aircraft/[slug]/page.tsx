@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { ContentSections, ContentFaq } from "@/components/ContentSections";
 import aircraftGuides from "@/data/aircraft-guides.json";
+import { PageOutline } from "@/components/PageOutline";
 import { AircraftDetail } from "@/components/AircraftDetail";
 import { ButtonLink } from "@/components/ButtonLink";
 import { SectionIntro } from "@/components/SectionIntro";
@@ -60,7 +61,7 @@ export default async function AircraftDetailPage({ params }: PageProps) {
           <ButtonLink href={`/contact?aircraft=${item.slug}`}>Request this aircraft</ButtonLink>
         </div>
       </section>
-      {guide ? <div className="ex-editorial"><div className="ex-container"><div className="ex-reading">
+      {guide ? <div className="ex-editorial"><div className="ex-container ex-content-layout ex-content-layout--outline"><PageOutline sections={guide.sections} /><div className="ex-reading">
         <ContentSections sections={guide.sections} />
         <ContentFaq faqs={guide.faqs} />
         {guide.sources.length ? <section className="ex-sources"><h2>Manufacturer references</h2><ul>{guide.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul></section> : null}
