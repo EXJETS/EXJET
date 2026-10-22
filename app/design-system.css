@@ -12,6 +12,10 @@
   --ex-line: #dedfe1;
   --ex-radius: 8px;
   --header-height: 64px;
+  --ex-cta-ink: #000;
+  --ex-cta-surface: transparent;
+  --ex-cta-hover: #e9eaec;
+  --ex-cta-border: #8b9095;
 }
 .ex-public { background: #fff; color: #16181a; }
 .ex-public :is(.shell,.ex-container) { width: min(var(--ex-content-width),calc(100% - 2 * var(--ex-page-gutter))); }
@@ -35,7 +39,7 @@
 .ex-public :is(.section-intro__copy,.ex-section-heading p) { max-width: 48ch; margin: 16px 0 0; text-align: left; font-size: 16px; line-height: 1.7; }
 .ex-public .section-intro__copy { flex: 0 1 430px; }
 .ex-public .button { min-height: 48px; padding: 12px 22px; font-size: 14px; gap: 10px; font-weight: 400; }
-.ex-public .button--outline { padding-inline: 0; }
+.ex-public .button--outline { padding-inline: 22px; }
 .ex-public :is(.ex-inline-link,.ex-text-link) { font-size: 14px; min-height: 44px; }
 .ex-public :is(.button,.ex-inline-link,.ex-text-link) svg { flex-shrink: 0; width: 16px; height: 16px; }
 .ex-public :is(.ex-page-intro,.ex-story-intro) { max-width: 960px; text-align: left; padding: 44px 0 64px; }
@@ -80,7 +84,7 @@
 .ex-public .ex-action-panel { padding: 80px var(--ex-page-gutter); background: #191b1e; color: #fff; }
 .ex-public .ex-action-panel h2 { font-size: var(--ex-heading-size); font-weight: 400; }
 .ex-public .ex-action-panel > p { color: #c4c7cb; font-size: 16px; line-height: 1.7; max-width: 56ch; }
-.ex-public .ex-action-panel .button { background: #fff; color: #16181a; margin-top: 12px; }
+.ex-public .ex-action-panel .button { margin-top: 12px; }
 .ex-public .ex-action-panel .broker-notice { color: #b8bdc2; }
 .ex-public .ex-table-scroll { border-radius: var(--ex-radius); }
 .ex-public .ex-data-table caption { background: #eeeef0; }
@@ -106,6 +110,7 @@
 .ex-public .aircraft-category-card__heading h2 { font-size: 36px; font-weight: 400; }
 .ex-public :is(.sales-index-card,.membership-card,.account-panel) { border: 1px solid var(--ex-line); border-radius: var(--ex-radius); box-shadow: none; }
 .ex-public .sales-index-card__link { min-height: 340px; padding: 32px; }
+.ex-public .sales-index-card__link:hover { background: var(--ex-cta-hover); color: #000; }
 .ex-public .sales-index-card h2 { font-size: 32px; }
 .ex-public .sales-detail-hero { background: var(--ex-surface); padding-block: 72px; }
 .ex-public .sales-detail-hero .shell { text-align: left; }
@@ -124,7 +129,26 @@
 .ex-public :is(.empty-leg-search,.empty-leg-inquiry,.ex-contact-preference) { border-radius: var(--ex-radius); }
 .ex-public .empty-leg-search { overflow: clip; border: 1px solid var(--ex-line); }
 .ex-public .empty-leg-search label { background: #fff; }
-.ex-public .empty-leg-search button { background: #191b1e; color: #fff; }
+/* Shared CTA colors apply to EXJET controls only, never embedded booking UI. */
+:is(.ex-public,.ex-application) :is(.button,.empty-leg-search button) {
+  color: var(--ex-cta-ink);
+  background: var(--ex-cta-surface);
+  border: 1px solid var(--ex-cta-border);
+}
+:is(.ex-public,.ex-application) :is(.button,.empty-leg-search button):is(:hover,:focus-visible,:active) {
+  color: var(--ex-cta-ink);
+  background: var(--ex-cta-hover);
+  border-color: var(--ex-cta-ink);
+}
+:is(.ex-public,.ex-application) :is(.button,.empty-leg-search button):focus-visible {
+  outline: 2px solid #000;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px #fff;
+}
+.ex-public :is(.ex-action-panel,.section--dark,.final-cta,.not-found) { --ex-cta-surface: #fff; }
+.ex-public :is(.ex-inline-link,.ex-text-link,.aircraft-category-card__cta,.large-contact-link) { color: var(--ex-cta-ink); }
+.ex-public .section--dark :is(.large-contact-link,.ex-inline-link,.ex-text-link) { background: #fff; padding: 12px 22px; border-radius: 999px; margin-bottom: 12px; width: fit-content; max-width: 100%; }
+.ex-public .not-found > .shell > div > a:last-child { color: #000; background: #fff; padding: 12px 22px; border-radius: 999px; }
 .ex-public .empty-leg-results__empty { border-radius: var(--ex-radius); padding: 48px; }
 .ex-public .ex-search-form { max-width: 880px; border: 1px solid var(--ex-line); border-radius: var(--ex-radius); padding-inline: 20px; background: var(--ex-surface); }
 .ex-public .ex-search-result { padding-block: 32px; }

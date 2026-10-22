@@ -1,3 +1,9 @@
+# Current CTA direction — 22 October 2026
+
+All EXJET call-to-action labels use black (#000) text on desktop and mobile, including hover and keyboard-focus states. Use transparent, outlined buttons on light surfaces and white buttons over dark sections or photography. Never restore white labels or charcoal-filled CTAs through a page-specific or mobile override. Apply the same colors to the public pages, homepage, cards, and client workspace. Keep visible focus indicators and existing touch-target sizes. Avinode-owned UI and integration code remain unchanged.
+
+Shared CTA tokens live in `app/design-system.css`; homepage and client-workspace modules consume them. This direction supersedes older CTA styling notes below.
+
 # Latest photography update
 
 See PHOTO-UPDATE.md for six additions across all five formerly empty aircraft pages. Official manufacturer media services are now supported through exact source/asset pairs. The Challenger 300 has one explicitly disclosed manufacturer-credited archival fallback for review; do not describe it as a download from bombardier.com. No deployment or updated browser page captures were performed. The historical notes below predate this update.
