@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { EmptyLegResults } from "./EmptyLegResults";
 import { FormEvent, useMemo, useRef, useEffect, useState } from "react";
 import { localDate } from "./localDate";
 import { XIcon } from "@phosphor-icons/react/dist/csr/X";
@@ -93,17 +94,8 @@ export function EmptyLegBoard({ items, live = false }: { items: EmptyLeg[]; live
         <label><span>Passengers</span><input type="number" min="1" max="100" value={passengers} onChange={(event) => setPassengers(event.target.value)} required /></label>
         <button type="submit" disabled={searchStatus === "searching"}>{searchStatus === "searching" ? "Searching..." : "Search availability"}<ArrowRightIcon size={18} aria-hidden="true" /></button>
       </form>
-      <div className="empty-leg-results" aria-live="polite">
-        {results.length ? results.map((item) => (
-          <article key={item.id}>
-            <div><span>{item.departureAirport}</span><small>{item.departureCity}</small></div>
-            <ArrowRightIcon size={20} aria-hidden="true" />
-            <div><span>{item.arrivalAirport}</span><small>{item.arrivalCity}</small></div>
-            <div><span>{item.departureDate}</span><small>{item.departureWindow ?? "Time on request"}</small></div>
-            <div><span>{item.aircraftModel ?? item.aircraftCategory}</span><small>{item.seats ? `Up to ${item.seats} seats` : item.aircraftCategory}</small></div>
-            <button className="empty-leg-results__request" type="button" onClick={() => { setSelected(item); setRequestStatus("idle"); setRequestMessage(""); setReference(""); }}>Request this leg</button>
-          </article>
-        )) : (
+      <div aria-live="polite">
+        {results.length ? <EmptyLegResults items={results} onRequest={item => { setSelected(item); setRequestStatus("idle"); setRequestMessage(""); setReference(""); }} /> : (
           <div className="empty-leg-results__empty">
             <span>{searchStatus === "error" ? "Search unavailable" : searchStatus === "complete" ? "No current match" : "Dynamic inventory"}</span>
             <h2>{searchStatus === "complete" ? "No published match right now." : "Tell us where you want to go."}</h2>

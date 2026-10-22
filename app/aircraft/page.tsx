@@ -6,6 +6,8 @@ import { HomeAircraftEditorial } from "@/components/HomeAircraftEditorial";
 import { SectionIntro } from "@/components/SectionIntro";
 import { aircraftCategories } from "@/data/aircraftCategories";
 import { buildMetadata } from "@/data/seo";
+import { AircraftExplorer } from "@/components/AircraftExplorer";
+import { aircraft } from "@/data/aircraft";
 
 export const metadata = buildMetadata("/aircraft");
 
@@ -13,6 +15,7 @@ export default function AircraftPage() {
   return (
     <>
       <PageHero heading="Business aircraft categories and charter options" eyebrow="Aircraft categories" title={<>The right class.<br /><em>The right fit.</em></>} copy="EXJET sources business aircraft across the full charter market. Start with the category that fits the mission, or let your advisor compare the strongest available options for your route." />
+      <AircraftExplorer items={aircraft} />
       <section className="section" aria-label="Explore aircraft exteriors and cabins">
         <h2 className="sr-only">Featured business aircraft</h2>
         <HomeAircraftEditorial />

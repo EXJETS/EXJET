@@ -5,6 +5,7 @@ import { BrokerNotice } from "@/components/BrokerNotice";
 import { ContentSections, ContentFaq } from "@/components/ContentSections";
 import { StructuredData } from "@/components/StructuredData";
 import { ServicesGrid } from "@/components/ServicesGrid";
+import { ContentDirectory } from "@/components/ContentDirectory";
 import { absoluteUrl, siteConfig } from "@/data/site";
 import { contentPages, type ContentPage } from "@/data/editorial";
 
@@ -41,7 +42,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
     </div>
     {page.serviceCatalog ? <section className="ex-section ex-section--silver"><div className="ex-container"><div className="ex-section-heading"><h2>Explore our services</h2></div><ServicesGrid /></div></section> : null}
     {page.image && page.kind!=="hub" ? <figure className="ex-feature-photo" style={{maxWidth:Math.min(page.image.width,1400)}}><Image src={page.image.src} alt={page.image.alt} width={page.image.width} height={page.image.height} priority sizes="(max-width:1400px) 100vw, 1400px" /><figcaption>{page.image.caption || page.image.alt}</figcaption></figure> : null}
-    {page.items ? <ContentCollection paths={page.items} title={page.collectionTitle || "Explore"} silver showImages={page.path === "/articles"} /> : null}
+    {page.items ? <ContentDirectory title={page.collectionTitle || "Explore"} items={page.items.map(path => contentPages.find(item => item.path === path)).filter((item): item is ContentPage => Boolean(item)).map(item => ({path:item.path,title:item.title,description:item.description,kicker:item.kicker,codes:item.codes,searchText:[item.title,item.description,item.kicker,...(item.codes || []),...(item.facts?.map(fact=>fact.value) || [])].join(" ")}))} /> : null}
     <div className="ex-container"><div className="ex-reading">
       {page.draft ? <p className="ex-draft-note">Policy draft for review. Final terms depend on EXJET’s confirmed practices and the applicable charter agreement.</p> : null}
       {page.facts?.length ? <dl className="ex-facts">{page.facts.map(fact=><div key={fact.label}><dt>{fact.label}</dt><dd>{fact.value}</dd></div>)}</dl> : null}

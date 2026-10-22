@@ -9,6 +9,7 @@ import { EqualsIcon } from "@phosphor-icons/react/dist/csr/Equals";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react/dist/csr/MagnifyingGlass";
 import { PhoneIcon } from "@phosphor-icons/react/dist/csr/Phone";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/csr/ArrowRight";
+import { UserCircleIcon } from "@phosphor-icons/react/dist/csr/UserCircle";
 import { XIcon } from "@phosphor-icons/react/dist/csr/X";
 import styles from "./SiteHeader.module.css";
 
@@ -29,7 +30,7 @@ const groups = [
     ["All services", "/services"], ["Aviation consulting", "/business-aviation-consulting"], ["Aircraft owners", "/aircraft-owners"],
     ["Routes", "/routes"], ["Airports", "/airports"], ["Destinations", "/destinations"],
     ["Flight Guide", "/articles"], ["Aircraft performance", "/aircraft-performance"], ["Aircraft comparisons", "/aircraft-comparisons"], ["Charter FAQ", "/faq"],
-    ["About EXJET", "/about"], ["Safety", "/safety"],
+    ["How it works", "/how-it-works"], ["Ways to fly", "/ways-to-fly"], ["Operator relationships", "/operator-partners"], ["Partnerships", "/partnership"], ["About EXJET", "/about"], ["Safety", "/safety"],
     ["Membership", "/membership"], ["Client support", "/account"],
   ] },
 ];
@@ -67,6 +68,7 @@ export function SiteHeader() {
       <div className="ex-header-actions">
         <Link className="ex-menu-button" href="/search" title="Search EXJET" aria-label="Search EXJET" aria-current={isCurrent("/search") ? "page" : undefined}><MagnifyingGlassIcon size={20} aria-hidden="true" /></Link>
         <a className="ex-menu-button" href={siteConfig.phone.primary.href} title="Call EXJET" aria-label={`Call EXJET at ${siteConfig.phone.primary.display}`}><PhoneIcon size={20} aria-hidden="true" /></a>
+        <Link className="ex-menu-button" href="/account" title="Client support" aria-label="Client support"><UserCircleIcon size={20} aria-hidden="true" /></Link>
         <button ref={trigger} className="ex-menu-button" type="button" aria-label="Explore EXJET" aria-haspopup="dialog" aria-expanded={open} aria-controls="exjet-navigation" onClick={() => setMenuPath(pathname)}><EqualsIcon size={20} aria-hidden="true" /></button>
       </div>
     </div>

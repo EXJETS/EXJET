@@ -64,3 +64,6 @@
 
 
 .hero h1.eyebrow { margin: 0; font-size: .875rem; font-weight: 400; line-height: 1.5; letter-spacing: .015em; color: #5e646a; }
+
+.flightSearch { max-width: 1280px; margin: 0 auto; padding: 64px 32px; }
+@media(max-width:700px) { .flightSearch { padding:40px 16px; } }
