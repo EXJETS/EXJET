@@ -1,0 +1,7 @@
+import Link from 'next/link';
+import { AirplaneTiltIcon, LightningIcon } from '@phosphor-icons/react/dist/ssr';
+import { EmptyLegBoard } from '@/components/EmptyLegBoard';
+import { emptyLegPreview } from '@/data/emptyLegs';
+import s from '@/components/portal/Journey.module.css';
+export const metadata = { title: 'Empty-leg private jet flights' };
+export default function EmptyLegsApp(){return <><div className={s.searchIntro}><div><p className={s.eyebrow}>EMPTY-LEG OPPORTUNITIES</p><h1>Be open to<br/><em>somewhere extraordinary.</em></h1></div><p>A repositioning flight can become your next getaway. Explore opportunities when your destination and timing have a little flexibility.</p></div><nav className={s.searchTabs} aria-label="Flight search type"><Link href="/app/search/"><AirplaneTiltIcon size={19} aria-hidden="true"/>Private charter</Link><Link href="/app/empty-legs/" aria-current="page"><LightningIcon size={19} aria-hidden="true"/>Empty legs</Link></nav><EmptyLegBoard items={emptyLegPreview}/><div className={s.infoStrip}>{[['01','Stay flexible','Dates and nearby airports can open up more possibilities.'],['02','Find your fit','Filter returned opportunities and shortlist your favourites.'],['03','Let us confirm','Every flight and final price is reconfirmed with the operator.']].map(([number,title,copy])=><div key={number}><span>{number}</span><div><h3>{title}</h3><p>{copy}</p></div></div>)}</div></>;}

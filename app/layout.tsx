@@ -1,4 +1,5 @@
 import type { Metadata, Viewport } from "next";
+import { SiteFrame } from "@/components/SiteFrame";
 import { SiteFooter } from "@/components/SiteFooter";
 import { SiteHeader } from "@/components/SiteHeader";
 import { StructuredData } from "@/components/StructuredData";
@@ -13,6 +14,7 @@ import "./brand-pages.css";
 import "./editorial.css";
 import "./apple-responsive.css";
 import "./interaction.css";
+import "./exjet-identity.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),
@@ -22,7 +24,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#ffffff",
+  themeColor: "#f7f8f2",
   viewportFit: "cover",
 };
 
@@ -34,9 +36,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <a className="ex-skip-link" href="#main-content">Skip to content</a>
         <StructuredData data={organizationJsonLd()} />
         <StructuredData data={websiteSchema} />
-        <SiteHeader />
-        <main id="main-content" tabIndex={-1}>{children}</main>
-        <SiteFooter />
+        <SiteFrame header={<SiteHeader />} footer={<SiteFooter />}>{children}</SiteFrame>
       </body>
     </html>
   );
