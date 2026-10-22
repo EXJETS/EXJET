@@ -5,6 +5,7 @@ import routeData from "./routes-guide.json";
 import serviceData from "./services.json";
 import additionalData from "./seo-content.json";
 import ownerData from "./owner-guides.json";
+import experienceData from "./experience-pages.json";
 import type { ContentPage, ContentSection } from "./content-types";
 export type { ContentPage, ContentSection } from "./content-types";
 
@@ -56,7 +57,7 @@ const hubs: ContentPage[] = [
   {path:"/destinations",title:"Business jet charter destinations",seoTitle:"Private Jet Charter Destinations & Travel Planning | EXJET",description:"Plan aircraft charter to mountain and coastal destinations. Connect airport choices, baggage and transfers, then request a complete itinerary proposal from EXJET.",kicker:"A city. Your own itinerary.",kind:"hub",sections:[{heading:"Plan around the actual stay",paragraphs:["Share the resort, residence or meeting address, your fixed commitments and the flexibility in your schedule. Then compare the flight and the ground journey together."],links:[{label:"Dallas charter hub",path:"/private-jet-charter/dallas"},{label:"New York airport planning",path:"/airports/kteb"},{label:"Los Angeles airport planning",path:"/airports/kvny"},{label:"Miami airport planning",path:"/airports/kopf"}]}],items:additional.filter(page=>page.kind==="destination").map(page=>page.path),collectionTitle:"Destinations to explore."},
   {path:"/aircraft-comparisons",title:"Business jet aircraft comparisons",seoTitle:"Business Jet Charter Aircraft Comparisons | EXJET",description:"Compare charter aircraft by mission, cabin requirements and complete-trip value. Explore Challenger, Citation, Gulfstream and Global comparisons with EXJET.",kicker:"Choose with context",kind:"hub",sections:[],items:additional.filter(page=>page.kind==="comparison").map(page=>page.path),collectionTitle:"Compare the aircraft."},
 ];
-export const contentPages: ContentPage[] = [...hubs,...articles,...airports,...routes,...services,...policies,...additional];
+export const contentPages: ContentPage[] = [...hubs,...articles,...airports,...routes,...services,...policies,...additional,...experienceData as ContentPage[]];
 export function getContentPage(path:string) { return contentPages.find(page=>page.path===path.replace(/\/$/,"")); }
 export const articlePaths = allArticles.map(page=>page.path);
 export const routePaths = routes.map(page=>page.path);

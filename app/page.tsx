@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { FlightSearchPanel } from "@/components/FlightSearchPanel";
 import { ServicesGrid } from "@/components/ServicesGrid";
 import { HomeAircraftEditorial } from "@/components/HomeAircraftEditorial";
 import { ContentCollection } from "@/components/EditorialPage";
@@ -31,6 +32,7 @@ export default function Home() {
           <Image src="/images/home/owner-selected-hero.webp" alt="Bombardier Global 8000 in flight over the ocean beside a coastline" width={1500} height={671} sizes="(max-width: 1400px) 100vw, 1400px" priority />
         </div>
       </section>
+      <section className={styles.flightSearch} aria-labelledby="home-search-title"><div className={styles.sectionHeading}><div><p className={styles.eyebrow}>Your next journey</p><h2 id="home-search-title">Where would you like to go?</h2></div><Link href="/how-it-works" className={styles.textAction}>How it works <CaretRightIcon size={16} aria-hidden="true" /></Link></div><FlightSearchPanel compact /></section>
       <section className="ex-section ex-section--silver" aria-labelledby="services-title"><div className="ex-container"><div className="ex-section-heading"><div><p className={styles.eyebrow}>Business aviation solutions</p><h2 id="services-title">One relationship. Every stage of aviation.</h2></div><Link href="/services" className={styles.textAction}>Explore all services <CaretRightIcon size={16} aria-hidden="true" /></Link></div><ServicesGrid /></div></section>
       <section className={styles.aircraftSection} id="aircraft" aria-labelledby="aircraft-title">
         <div className={styles.sectionHeading}>

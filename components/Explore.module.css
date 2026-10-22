@@ -1,0 +1,47 @@
+.section { max-width: 1280px; margin: 0 auto; padding: 80px 32px; color: #1d1d1f; }
+.heading { display:flex; align-items:center; justify-content:space-between; gap:24px; margin-bottom:32px; }
+.heading h2 { font-size:clamp(28px,4vw,46px); line-height:1.1; letter-spacing:-.035em; font-weight:500; margin:8px 0 16px; }
+.heading p:not(.kicker) { max-width:720px; color:#63636a; font-size:17px; line-height:1.65; }
+.kicker { color:#65656c; font-size:12px; font-weight:500; letter-spacing:.09em; text-transform:uppercase; }
+.toolbar { display:flex; flex-wrap:wrap; align-items:center; gap:16px; }
+.search { flex:1 1 320px; display:flex; align-items:center; gap:12px; min-height:56px; border:1px solid #bcbcc2; background:white; border-radius:12px; padding:0 16px; }
+.search:focus-within { outline:2px solid #2857a5; outline-offset:3px; }
+.search input { width:100%; min-width:0; border:0; outline:0; font:inherit; color:#1d1d1f; background:transparent; min-height:54px; }
+.select { display:flex; flex-direction:column; gap:4px; min-width:170px; }
+.select span { font-size:11px; color:#63636a; }
+.select select { font:inherit; min-height:44px; padding:8px 34px 8px 12px; border:1px solid #bcbcc2; border-radius:8px; background:white; color:#1d1d1f; }
+.textButton { font:inherit; color:#303037; background:transparent; border:0; min-height:44px; padding:8px; text-decoration:underline; text-underline-offset:4px; cursor:pointer; }
+.resultCount { font-size:13px; color:#63636a; margin:24px 0; }
+.grid { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:24px; }
+.card { border:1px solid #dedee2; border-radius:20px; overflow:hidden; background:white; min-width:0; display:flex; flex-direction:column; }
+.aircraftPhoto { display:flex; align-items:center; justify-content:center; aspect-ratio:5/3; background:#f5f5f7; overflow:hidden; }
+.aircraftPhoto img { width:100%; height:100%; transition:transform .3s; }
+.aircraftPhoto:hover img { transform:scale(1.025); }
+.cardBody { padding:24px; display:flex; flex:1; flex-direction:column; align-items:flex-start; }
+.cardBody h3 { font-size:24px; font-weight:500; line-height:1.25; letter-spacing:-.025em; margin:10px 0 14px; }
+.cardBody h3 a { color:inherit; text-decoration:none; }
+.cardBody>p:not(.kicker) { line-height:1.65; font-size:15px; color:#63636a; margin:0 0 24px; }
+.facts { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin:auto 0 20px; width:100%; }
+.facts dt { font-size:11px; color:#63636a; margin-bottom:6px; }
+.facts dd { margin:0; font-size:13px; line-height:1.5; }
+.cardActions { display:flex; align-items:center; flex-wrap:wrap; justify-content:space-between; gap:12px; width:100%; border-top:1px solid #eeeef0; padding-top:12px; }
+.cardActions a,.cardLink { display:inline-flex; align-items:center; gap:8px; min-height:44px; font-size:14px; font-weight:500; text-decoration:none; color:inherit; }
+.cardLink { margin-top:auto; }
+.compareCheck { display:flex; align-items:center; gap:7px; min-height:44px; font-size:13px; cursor:pointer; }
+.compareCheck input { width:18px; height:18px; accent-color:#1d1d1f; }
+.compareCheck:has(input:disabled) { opacity:.5; cursor:default; }
+.empty { text-align:center; padding:64px 20px; background:#f5f5f7; border-radius:20px; }
+.empty h3 { margin:16px 0; font-size:24px; }.empty p { margin:0 0 24px; color:#63636a; }
+.comparison { margin-top:48px; padding:32px; border:1px solid #dedee2; border-radius:20px; background:#f5f5f7; }
+.tableScroll { overflow:auto; margin:24px 0; }
+.tableScroll table { border-collapse:collapse; width:100%; min-width:480px; font-size:14px; text-align:left; }
+.tableScroll th,.tableScroll td { padding:18px 16px; border-bottom:1px solid #d9d9de; vertical-align:top; min-width:145px; }
+.tableScroll th { font-weight:500; }.tableScroll a { color:inherit; text-underline-offset:4px; }
+.remove { display:inline-flex; align-items:center; justify-content:center; width:44px; height:44px; border:0; border-radius:50%; background:transparent; cursor:pointer; }
+.routeCodes { display:flex; align-items:center; gap:16px; margin:4px 0 24px; font-size:26px; letter-spacing:-.025em; }
+.directory .cardBody h3 { font-size:22px; }
+.section :is(button,a,input,select):focus-visible { outline:2px solid #2857a5; outline-offset:4px; }
+@media(max-width:1050px) { .grid { grid-template-columns:repeat(2,minmax(0,1fr)); } }
+@media(max-width:700px) { .section { padding:48px 20px; }.grid { grid-template-columns:1fr; gap:16px; }.heading { align-items:flex-start; flex-direction:column; }.toolbar { align-items:stretch; }.search { flex-basis:100%; }.select { flex:1; }.cardBody { padding:24px; }.comparison { padding:20px; }.tableScroll { margin-inline:-8px; }.heading h2 { font-size:32px; } }
+@media(prefers-reduced-motion:reduce) { .aircraftPhoto img { transition:none; } }
+.legResults{padding:24px 0}.legGrid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}.legCard{border:1px solid #d2d2d7;border-radius:20px;padding:24px;background:#fff;color:#1d1d1f}.legTop,.legBottom{display:flex;align-items:center;justify-content:space-between;gap:16px}.legTop .kicker{margin:0}.saveLeg{display:grid;place-items:center;min-width:44px;min-height:44px;border:0;border-radius:50%;background:#f5f5f7;color:#1d1d1f;cursor:pointer}.saveLeg[aria-pressed=true]{background:#1d1d1f;color:white}.shortlistToggle{display:flex;align-items:center;gap:8px;min-height:52px;padding:12px 18px;background:white;border:1px solid #d2d2d7;border-radius:12px;color:#1d1d1f;cursor:pointer}.shortlistToggle[aria-pressed=true]{background:#1d1d1f;color:white}.legRoute{display:grid;grid-template-columns:minmax(0,1fr) 24px minmax(0,1fr);gap:16px;align-items:center;padding:20px 0}.legRoute h3{font-size:28px;margin:0}.legRoute p{font-size:14px;color:#616168;margin:8px 0 0;overflow-wrap:anywhere}.legFacts{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:0;padding:20px 0;border-top:1px solid #e8e8ed;border-bottom:1px solid #e8e8ed}.legFacts dt{font-size:12px;color:#616168}.legFacts dd{font-size:15px;margin:5px 0 0;overflow-wrap:anywhere}.legBottom{padding-top:20px;flex-wrap:wrap}.legBottom p{font-size:14px;flex:1;margin:0}.legResults button:focus-visible,.legResults select:focus-visible{outline:2px solid #0066cc;outline-offset:3px}@media(max-width:760px){.legGrid{grid-template-columns:1fr}.legCard{padding:20px}.legBottom button{width:100%}}

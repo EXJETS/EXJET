@@ -1,0 +1,155 @@
+[
+  {
+    "path": "/how-it-works",
+    "title": "How EXJET aircraft charter works",
+    "seoTitle": "How EXJET aircraft charter works | EXJET",
+    "description": "Plan your charter from the first request to arrival. Compare aircraft, review a written quote, confirm the operator and coordinate the itinerary with EXJET.",
+    "kicker": "The EXJET experience",
+    "kind": "service",
+    "sections": [
+      {
+        "heading": "1. Share your itinerary",
+        "paragraphs": [
+          "Start with your departure and destination airports, dates, passenger count and schedule flexibility. Add baggage, pets, accessibility requirements and any ground transportation needs. One-way, round-trip and multi-leg requests help us understand the complete mission."
+        ]
+      },
+      {
+        "heading": "2. Compare suitable aircraft",
+        "paragraphs": [
+          "Your EXJET advisor helps evaluate the cabin, range, baggage space, airport suitability and the operating carrier. Aircraft profiles are a starting point; an actual proposal identifies the available aircraft and its configuration."
+        ]
+      },
+      {
+        "heading": "3. Review the complete proposal",
+        "paragraphs": [
+          "Review the written trip total, taxes, fees, payment schedule and cancellation terms. Confirm the operator, the proposed aircraft and any substitution terms. A search result or request submission does not confirm a reservation."
+        ]
+      },
+      {
+        "heading": "4. Confirm and prepare",
+        "paragraphs": [
+          "Once the applicable agreement and payment requirements are complete and the booking is confirmed, coordinate passenger information and the final itinerary with your advisor. Confirm the departure facility, reporting time and contact details before travel."
+        ]
+      },
+      {
+        "heading": "5. Stay connected through arrival",
+        "paragraphs": [
+          "Keep your advisor informed of changes to the schedule or passenger requirements. The operating carrier determines flight safety and operational decisions. EXJET helps coordinate the customer-facing details of your journey."
+        ]
+      }
+    ],
+    "related": [
+      "/charter",
+      "/pricing",
+      "/safety",
+      "/faq"
+    ]
+  },
+  {
+    "path": "/ways-to-fly",
+    "title": "Aircraft charter options for every itinerary",
+    "seoTitle": "Aircraft charter options for every itinerary | EXJET",
+    "description": "Compare on-demand charter, group flights, empty legs and corporate aviation support. Choose the right EXJET service for your itinerary and travel needs.",
+    "kicker": "The EXJET experience",
+    "kind": "service",
+    "sections": [
+      {
+        "heading": "On-demand charter",
+        "paragraphs": [
+          "Arrange a complete aircraft for your itinerary. Begin with your route and schedule, then compare suitable options and a written quote. Aircraft availability, operating requirements and final terms are confirmed for each trip."
+        ]
+      },
+      {
+        "heading": "Group charter",
+        "paragraphs": [
+          "Coordinate travel for executive teams, sports groups, events and other larger parties. Share the passenger total, baggage and equipment, travel windows and ground arrangements so the entire movement can be planned together."
+        ]
+      },
+      {
+        "heading": "Empty-leg opportunities",
+        "paragraphs": [
+          "A repositioning flight can suit a flexible itinerary when the route and timing align. Availability can change with the primary aircraft schedule. Review the specific terms and contingency arrangements before committing."
+        ]
+      },
+      {
+        "heading": "Corporate and family-office support",
+        "paragraphs": [
+          "Executive assistants, corporate travel teams and family offices can work with one EXJET contact to coordinate the itinerary and decision process. Discuss recurring travel needs and any program terms directly with your advisor."
+        ]
+      }
+    ],
+    "related": [
+      "/private-jet-charter",
+      "/group-charter",
+      "/empty-legs",
+      "/corporate-travel",
+      "/family-office-private-aviation"
+    ]
+  },
+  {
+    "path": "/operator-partners",
+    "title": "Aircraft operator relationships",
+    "seoTitle": "Aircraft operator relationships | EXJET",
+    "description": "Connect with EXJET about aircraft charter opportunities. Discuss operating authority, aircraft capabilities, coverage and the information needed for trip review.",
+    "kicker": "The EXJET experience",
+    "kind": "service",
+    "sections": [
+      {
+        "heading": "Start with your capabilities",
+        "paragraphs": [
+          "EXJET welcomes introductions from certificated aircraft operators. Share your company name, operating region, aircraft categories and commercial contact through our contact page. An introduction does not imply acceptance into a network or a guaranteed volume of business."
+        ]
+      },
+      {
+        "heading": "Review each mission",
+        "paragraphs": [
+          "Operator authority, aircraft suitability, insurance, safety information and operational requirements are reviewed for the specific request. The operating carrier retains operational control and determines whether the mission can be performed."
+        ]
+      },
+      {
+        "heading": "Keep information current",
+        "paragraphs": [
+          "Aircraft availability, specifications, cabin configuration, commercial terms and operational contacts should be current when options are presented. Use the agreed secure channel for documents; do not submit sensitive operational records through a general inquiry."
+        ]
+      }
+    ],
+    "related": [
+      "/contact",
+      "/safety",
+      "/aircraft"
+    ]
+  },
+  {
+    "path": "/partnership",
+    "title": "Business aviation partnerships",
+    "seoTitle": "Business aviation partnerships | EXJET",
+    "description": "Discuss business aviation collaboration with EXJET across charter, aircraft ownership and technical projects. Tell us how your services support a client mission.",
+    "kicker": "The EXJET experience",
+    "kind": "service",
+    "sections": [
+      {
+        "heading": "A practical introduction",
+        "paragraphs": [
+          "Tell us about your organization, capabilities and the client need you can help address. EXJET considers relationships across charter planning, aircraft ownership, maintenance coordination, interiors and connectivity."
+        ]
+      },
+      {
+        "heading": "Define the work before making promises",
+        "paragraphs": [
+          "Scope, responsibilities, commercial terms and any client-facing representation should be agreed before a project begins. We do not publish a standard referral commission, exclusivity promise or guaranteed volume."
+        ]
+      },
+      {
+        "heading": "Connect with EXJET",
+        "paragraphs": [
+          "Use our contact page to introduce your company and proposed collaboration. Include the relevant service and region so the conversation can reach the appropriate contact."
+        ]
+      }
+    ],
+    "related": [
+      "/services",
+      "/contact",
+      "/operator-partners"
+    ]
+  }
+]
