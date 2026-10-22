@@ -15,10 +15,9 @@ import styles from "./SiteHeader.module.css";
 
 const primary = [
   { href: "/services", label: "Services" },
-  { href: "/app/search/", label: "Charter" },
-  { href: "/app/empty-legs/", label: "Empty legs" },
+  { href: "/private-jet-charter", label: "Charter" },
   { href: "/aircraft", label: "Aircraft" },
-  
+  { href: "/sales", label: "Sales & Acquisitions" },
   { href: "/contact", label: "Contact" },
 ];
 const groups = [
@@ -67,10 +66,9 @@ export function SiteHeader() {
         {primary.map(link => <Link key={link.href} href={link.href} aria-current={isCurrent(link.href) ? "page" : undefined}>{link.label}</Link>)}
       </nav>
       <div className="ex-header-actions">
-        <Link href="/app/search/" className="ex-book-cta">Find a flight <ArrowRightIcon size={16} aria-hidden="true" /></Link>
         <Link className="ex-menu-button" href="/search" title="Search EXJET" aria-label="Search EXJET" aria-current={isCurrent("/search") ? "page" : undefined}><MagnifyingGlassIcon size={20} aria-hidden="true" /></Link>
         <a className="ex-menu-button" href={siteConfig.phone.primary.href} title="Call EXJET" aria-label={`Call EXJET at ${siteConfig.phone.primary.display}`}><PhoneIcon size={20} aria-hidden="true" /></a>
-        <Link className="ex-menu-button" href="/app/" title="EXJET app" aria-label="EXJET app"><UserCircleIcon size={20} aria-hidden="true" /></Link>
+        <Link className="ex-menu-button" href="/account" title="Client support" aria-label="Client support"><UserCircleIcon size={20} aria-hidden="true" /></Link>
         <button ref={trigger} className="ex-menu-button" type="button" aria-label="Explore EXJET" aria-haspopup="dialog" aria-expanded={open} aria-controls="exjet-navigation" onClick={() => setMenuPath(pathname)}><EqualsIcon size={20} aria-hidden="true" /></button>
       </div>
     </div>
