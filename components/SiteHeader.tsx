@@ -28,7 +28,7 @@ const groups = [
   ] },
   { title: "Resources", links: [
     ["Routes", "/routes"], ["Airports", "/airports"], ["Destinations", "/destinations"],
-    ["Flight Guide", "/articles"], ["Aircraft performance", "/aircraft-performance"], ["Aircraft comparisons", "/aircraft-comparisons"], ["Charter FAQ", "/faq"],
+    ["Flight Guide", "/articles"], ["Aircraft guides", "/aircraft-guides"], ["Aircraft performance", "/aircraft-performance"], ["Aircraft comparisons", "/aircraft-comparisons"], ["Charter FAQ", "/faq"],
     ["How it works", "/how-it-works"],
   ] },
   { title: "About EXJET", links: [

@@ -13,9 +13,9 @@
 .mobileGroups a[aria-current="page"] { font-weight: 500; text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 820px) {
   .header :global(.ex-header-inner) { min-height: 56px; width: calc(100% - 24px); gap: 12px; }
-  .header :global(.ex-header-actions) { gap: 8px; }
-  .header :global(.ex-header-actions) > .desktopSearch { display: none; }
-  .bookFlight { padding-inline: 18px; }
+  .header :global(.ex-header-actions) { gap: 4px; }
+  .header :global(.ex-header-actions) > .desktopSearch { display: inline-flex; }
+  .bookFlight { padding-inline: 14px; }
 }
 .dialog { inset: 0 0 auto; width: 100%; max-width: none; max-height: 100dvh; margin: 0; padding: 0; border: 0; color: #16181a; background: #fff; overflow-y: auto; overscroll-behavior: contain; }
 .dialog::backdrop { background: rgb(22 24 26 / 24%); backdrop-filter: blur(8px); }
