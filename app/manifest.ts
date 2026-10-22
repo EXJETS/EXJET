@@ -6,11 +6,11 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "EXJET",
     short_name: "EXJET",
-    description: "Private jet charter, empty legs and your personal travel workspace.",
-    start_url: "/app/",
+    description: "Global private aircraft charter access, on demand.",
+    start_url: "/",
     display: "standalone",
-    background_color: "#f7f8f2",
-    theme_color: "#203b2b",
+    background_color: "#f4f4f4",
+    theme_color: "#0b0c0e",
     icons: [{ src: "/icon.svg", sizes: "any", type: "image/svg+xml" }],
   };
 }

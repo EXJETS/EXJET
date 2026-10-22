@@ -14,7 +14,6 @@ import "./brand-pages.css";
 import "./editorial.css";
 import "./apple-responsive.css";
 import "./interaction.css";
-import "./exjet-identity.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),
@@ -24,7 +23,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
-  themeColor: "#f7f8f2",
+  themeColor: "#ffffff",
   viewportFit: "cover",
 };
 
