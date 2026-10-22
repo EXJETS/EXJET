@@ -13,6 +13,8 @@
   --ex-silver: #f5f5f7;
   --ex-line: #d9dadd;
   --ex-control-radius: 980px;
+  --ex-title-size: clamp(42px, 4.5vw, 60px);
+  --ex-heading-size: clamp(30px, 3.4vw, 44px);
 }
 
 body {
@@ -138,7 +140,7 @@ body {
 .ex-story-intro h1 {
   max-width: 18ch;
   margin-inline: auto;
-  font-size: clamp(42px, 5vw, 64px);
+  font-size: var(--ex-title-size);
   font-weight: 500;
   letter-spacing: -.035em;
   line-height: 1.08;
@@ -176,7 +178,7 @@ body {
 .about-values h2,
 .about-location h2,
 .why-speed h2 {
-  font-size: clamp(30px, 3.4vw, 44px);
+  font-size: var(--ex-heading-size);
   font-weight: 500;
   letter-spacing: -.025em;
   line-height: 1.12;
@@ -242,7 +244,7 @@ body {
 }
 
 .ex-action-panel h2 {
-  font-size: clamp(30px, 3.4vw, 44px);
+  font-size: var(--ex-heading-size);
   font-weight: 500;
 }
 
