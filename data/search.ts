@@ -26,7 +26,7 @@ export function normalizeSearch(value: string) {
   return value.toLowerCase().normalize("NFKD").replace(/[\u0300-\u036f]/g, "").replace(/[-/\u2010-\u2015]/g, " ");
 }
 
-const featuredPaths = new Set(["/services", "/business-aviation-consulting", "/executive-assistants", "/family-office-private-aviation", "/aircraft-owners", "/aircraft", "/pricing"]);
+const featuredPaths = new Set(["/travel-journal", "/services", "/business-aviation-consulting", "/executive-assistants", "/family-office-private-aviation", "/aircraft-owners", "/aircraft", "/pricing"]);
 
 export function searchItems(items: SearchItem[], query: string) {
   const words = normalizeSearch(query).trim().split(/\s+/).filter(Boolean);

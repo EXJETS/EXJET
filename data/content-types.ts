@@ -20,6 +20,8 @@ export type ContentPage = {
   items?: string[];
   collectionTitle?: string;
   serviceCatalog?: boolean;
+  journalDirectory?: boolean;
+  journal?: { category: string; region: string };
   consultation?: { label: string; subject: string };
   related?: string[];
   facts?: { label: string; value: string }[];

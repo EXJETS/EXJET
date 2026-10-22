@@ -71,6 +71,7 @@ export default function Home() {
       <section className={styles.planningSection} aria-labelledby="planning-title"><div className={styles.container}>
         <div className={styles.sectionHeading}><div><p className={styles.eyebrow}>Plan with confidence</p><h2 id="planning-title">A clearer view of private aviation.</h2></div><Link href="/how-it-works" className={styles.textAction}>How it works <CaretRightIcon size={16} aria-hidden="true" /></Link></div>
         <div className={styles.planningGrid}>{planningLinks.map(item => <Link key={item.href} href={item.href}><h3>{item.title}</h3><p>{item.copy}</p><CaretRightIcon size={18} aria-hidden="true" /></Link>)}</div>
+        <aside className={styles.journalCallout} aria-labelledby="home-journal-title"><div><p className={styles.eyebrow}>The Travel Journal</p><h3 id="home-journal-title">Time away, well considered.</h3><p>Island escapes, alpine stays and cultural journeys. Find the place and the pace for your next holiday.</p></div><Link href="/travel-journal" className={styles.textAction}>Explore destinations & experiences <CaretRightIcon size={16} aria-hidden="true" /></Link></aside>
         <div className={styles.localLinks}><Link href="/private-jet-charter/dallas">Private jet charter in Dallas</Link><Link href="/safety">Our approach to safety</Link><Link href="/empty-legs">Explore empty legs</Link></div>
       </div></section>
       <section className={styles.bookingSection} aria-labelledby="booking-title">
