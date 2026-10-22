@@ -1,7 +1,7 @@
 import { ContentCollection } from "@/components/EditorialPage";
 import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
-import { QuoteForm } from "@/components/QuoteForm";
+import { FlightSearchLink } from "@/components/FlightSearchLink";
 import { SectionIntro } from "@/components/SectionIntro";
 import { buildMetadata } from "@/data/seo";
 import { siteConfig } from "@/data/site";
@@ -39,7 +39,7 @@ export default function GroupCharterPage() {
             title="Start with the group. We’ll shape the lift."
             copy="Share the route, date, and approximate headcount now. The follow-up brief can cover baggage, equipment, ground transportation, schedule constraints, and passenger handling."
           />
-          <QuoteForm mode="group" />
+          <FlightSearchLink title="Find an aircraft for your group." copy="Explore aircraft for a single flight, or contact EXJET to coordinate a larger group or multiple aircraft." />
           <p className="specification-note">For multiple aircraft or a larger group than the search supports, <a href={`mailto:${siteConfig.email.charter}`}>contact EXJET with your group brief</a>.</p>
         </div>
       </section>

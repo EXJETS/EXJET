@@ -12,4 +12,16 @@
 @media(max-width:1000px) { .grid { grid-template-columns: repeat(2,minmax(0,1fr)); } .grid li,.grid li:nth-child(-n+3) { grid-column: auto; } .grid li:last-child { grid-column: 1 / -1; } }
 @media(max-width:600px) { .grid { grid-template-columns: 1fr; gap: 12px; } .card { padding: 24px; } }
 @media(prefers-reduced-motion:reduce) { .card { transition: none; } }
+.compact .card { gap: 12px; padding: 24px; border-radius: 16px; }
+.compact .card p { font-size: .9375rem; line-height: 1.5; }
+@media(max-width:600px) {
+  .compact { gap: 8px; }
+  .compact .card { display: grid; grid-template-columns: 40px minmax(0,1fr) 18px; align-items: center; gap: 12px; min-height: 76px; padding: 14px 16px; border-radius: 12px; }
+  .compact .symbol { display: contents; }
+  .compact .icon { grid-column: 1; grid-row: 1; width: 40px; height: 40px; border-radius: 10px; }
+  .compact .icon svg { width: 22px; height: 22px; }
+  .compact .symbol > svg { grid-column: 3; grid-row: 1; }
+  .compact .card h3 { grid-column: 2; grid-row: 1; margin: 0; font-size: 1rem; }
+  .compact .card p { display: none; }
+}
 @media(forced-colors:active) { .card { border-color: ButtonText; } .card:focus-visible { outline-color: Highlight; } }

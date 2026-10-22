@@ -5,8 +5,8 @@ import styles from "./ServicesGrid.module.css";
 
 const icons = { charter: AirplaneTiltIcon, group: UsersThreeIcon, sales: HandshakeIcon, management: GaugeIcon, mro: WrenchIcon, interior: ArmchairIcon, connectivity: WifiHighIcon };
 
-export function ServicesGrid() {
-  return <ul className={styles.grid}>{aviationSolutions.map(service => {
+export function ServicesGrid({ compact = false }: { compact?: boolean }) {
+  return <ul className={`${styles.grid}${compact ? ` ${styles.compact}` : ""}`}>{aviationSolutions.map(service => {
     const Icon = icons[service.icon];
     return <li key={service.path}><Link href={service.path} className={styles.card}>
       <div className={styles.symbol}><span className={styles.icon}><Icon size={26} weight="regular" aria-hidden="true" /></span><ArrowUpRightIcon size={18} aria-hidden="true" /></div>

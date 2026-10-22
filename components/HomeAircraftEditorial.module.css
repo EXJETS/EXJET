@@ -1,5 +1,5 @@
 .collection { width: min(1200px, calc(100% - var(--page-gutter, var(--gutter)) * 2)); margin-inline: auto; }
-.track { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.track { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 24px; }
 .card { min-width: 0; background: #fff; overflow: clip; }
 .cardCopy { text-align: center; padding: 32px 20px 24px; }
 .cardCopy p { margin: 0; color: #5e646a; font-size: .8125rem; line-height: 1.4; }
@@ -17,7 +17,7 @@
 .sceneControls button:active span { background: #e7e8e8; }
 .note { margin: 22px 0 0; text-align: center; color: #5e646a; font-size: .8125rem; line-height: 1.5; }
 @media (max-width: 760px) {
-  .collection { width: 100%; }
+  .collection { width: calc(100% - var(--page-gutter, 20px) * 2); }
   .track { grid-template-columns: 1fr; gap: 12px; }
   .cardCopy { padding: 28px 20px 18px; }
   .cardCopy h3 { font-size: 1.875rem; }

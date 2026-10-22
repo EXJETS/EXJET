@@ -15,7 +15,7 @@ export function ContactPreference({ aircraft, categories }: { aircraft: Record<s
   const body = `I would like to discuss ${preference}.\n\nOrigin:\nDestination:\nTravel dates:\nPassengers:\nAdditional requirements:`;
   return <section className="ex-contact-preference" aria-label="Your selected preference">
     <p>Selected preference</p><h2>{preference}</h2>
-    <p>Send this preference to an advisor, or use the search below to explore available aircraft.</p>
+    <p>Send this preference to an advisor, or visit Find a Flight to explore available aircraft.</p>
     <a className="button button--dark" href={`mailto:${siteConfig.email.charter}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`}><EnvelopeIcon size={18} aria-hidden="true" /> Email this request</a>
   </section>;
 }
