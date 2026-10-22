@@ -2,8 +2,17 @@
 .container { width: min(var(--content-width), calc(100% - var(--page-gutter) * 2)); margin-inline: auto; }
 .heroContent :is(h1,p), .sectionHeading :is(h2,p), .experienceIntro :is(h2,p), .experienceDetails :is(h3,p), .bookingSection :is(h2,p), .heroCaption { margin: 0; }
 .eyebrow { color: #5e646a; font-size: .8125rem; font-weight: 400; line-height: 1.5; letter-spacing: .015em; }
-.hero { text-align: center; padding-top: 48px; }
-.heroContent { width: min(850px, calc(100% - var(--page-gutter) * 2)); margin-inline: auto; }
+.hero { text-align: center; }
+.heroVisual { position: relative; background: #15384b; }
+.heroVisual::after { content: ""; position: absolute; inset: 0; pointer-events: none; background: linear-gradient(to bottom, rgb(0 0 0 / 42%), transparent 35%, transparent 72%, rgb(0 0 0 / 30%)); }
+.heroPhoto { display: block; width: 100%; height: auto; }
+.heroActions { position: absolute; z-index: 1; bottom: 24px; left: 20px; right: 20px; display: flex; align-items: center; justify-content: center; flex-wrap: wrap; gap: 12px; }
+.heroActions .primaryAction { background: #fff; color: #16181a; }
+.heroActions .secondaryAction { padding: 12px 20px; color: #fff; background: rgb(0 0 0 / 42%); border: 1px solid rgb(255 255 255 / 70%); border-radius: 999px; }
+.heroIntro { width: min(720px, calc(100% - var(--page-gutter) * 2)); margin: auto; padding-block: 40px 0; }
+.heroIntro h1 { margin: 0; font-size: clamp(1.375rem, 3vw, 2rem); line-height: 1.2; font-weight: 500; letter-spacing: -.025em; }
+.heroIntro p { margin: 14px 0 0; color: #5e646a; font-size: 1rem; line-height: 1.6; }
+.heroContent { position: absolute; z-index: 1; top: clamp(16px, 3.5vw, 52px); left: 0; right: 0; width: min(1000px, calc(100% - var(--page-gutter) * 2)); margin-inline: auto; color: #fff; text-shadow: 0 1px 12px rgb(0 0 0 / 35%); }
 .hero .tagline { margin-top: 10px; font-size: clamp(1rem, 5.8vw, 4rem); white-space: nowrap; font-weight: 500; line-height: 1.05; letter-spacing: -.035em; }
 .heroDescription { max-width: 52ch; margin: 18px auto 0 !important; color: #5e646a; font-size: 1.125rem; line-height: 1.5; }
 .actions { display: flex; justify-content: center; align-items: center; flex-wrap: wrap; gap: 8px 24px; margin-top: 20px; }
@@ -57,7 +66,11 @@
 .localLinks a { display: inline-flex; align-items: center; min-height: 44px; font-size: .875rem; text-decoration: underline; text-underline-offset: 4px; }
 @media (max-width: 760px) {
   .landing { --section-space: 48px; }
-  .hero { padding-top: 32px; }
+  .heroActions { position: static; padding: 20px; background: #fff; }
+  .heroActions .primaryAction { background: #16181a; color: #fff; }
+  .heroActions .secondaryAction { background: #fff; color: #16181a; border-color: #d9dcdf; }
+  .heroVisual::after { bottom: auto; height: calc(100vw * 671 / 1500); background: linear-gradient(to bottom, rgb(0 0 0 / 42%), transparent 55%); }
+  .heroIntro { padding-top: 16px; }
   .hero .tagline { font-weight: 500; line-height: 1.1; letter-spacing: -.04em; }
   .heroDescription { margin-top: 14px !important; font-size: 1rem; }
   .actions { gap: 8px 18px; margin-top: 17px; }
@@ -86,3 +99,5 @@
 
 
 .hero h1.eyebrow { margin: 0; font-size: .875rem; font-weight: 400; line-height: 1.5; letter-spacing: .015em; color: #5e646a; }
+
+@media (max-width: 420px) { .heroActions { flex-direction: column; gap: 10px; } .heroActions > a { width: 100%; } }
