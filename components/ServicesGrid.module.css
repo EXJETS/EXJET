@@ -1,5 +1,5 @@
 .grid { display: grid; grid-template-columns: repeat(12,minmax(0,1fr)); gap: 16px; margin: 0; padding: 0; list-style: none; }
-.grid li { min-width: 0; grid-column: span 3; }
+.grid li { min-width: 0; grid-column: span 6; }
 .grid li:nth-child(-n+3) { grid-column: span 4; }
 .card { display: flex; flex-direction: column; height: 100%; gap: 0; padding: 0; border: 1px solid #e4e5e6; border-radius: 4px; overflow: hidden; background: #fff; color: #16181a; text-decoration: none; transition: border-color .18s ease,box-shadow .18s ease; }
 .symbol { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 48px; }

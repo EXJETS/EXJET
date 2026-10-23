@@ -21,6 +21,18 @@
         ]
       },
       {
+        "heading": "Private and group charters.",
+        "paragraphs": [
+          "From individual travel to executive teams, sports and entertainment groups, plan the aircraft around your passengers, baggage and schedule."
+        ],
+        "links": [
+          {
+            "label": "Explore group charter",
+            "path": "/group-charter"
+          }
+        ]
+      },
+      {
         "heading": "Compare the complete offer.",
         "paragraphs": [
           "Review the proposed aircraft and cabin, operator, itinerary, total price, and conditions together. Confirm whether photography is representative or depicts the specific aircraft. Ask about catering, connectivity, ground transport, and any potential charges before agreeing to the trip."
@@ -680,51 +692,32 @@
   },
   {
     "path": "/services",
-    "title": "Business aviation solutions",
+    "title": "Services",
     "seoTitle": "Business Aviation Services & Consulting | EXJET Dallas",
-    "description": "Explore EXJET charter, group charter, aircraft sales, management, MRO, interior completions and Starlink installation consulting. Find the service for your next decision.",
-    "kicker": "One relationship. Seven services.",
+    "description": "Empty legs, charters, dry lease, fractional and ownership. Find the right approach to private aviation with EXJET.",
+    "kicker": "Five ways to fly",
     "kind": "hub",
     "serviceCatalog": true,
-    "updated": "2026-10-19",
+    "updated": "2026-10-22",
     "consultation": {
       "label": "Discuss your aviation needs",
       "subject": "EXJET business aviation solutions"
     },
     "sections": [
       {
-        "heading": "Consulting and coordination across business aviation.",
+        "heading": "Start with how you fly.",
         "paragraphs": [
-          "EXJET brings together flight planning, aircraft ownership and technical-project coordination. Choose a service above, or begin with a business aviation consulting brief when the decision spans several areas.",
-          "Our Dallas-based team works with private owners, executive assistants, family offices and corporate aviation teams. Share the mission, aircraft or project requirements so the scope can be built around your next decision."
+          "Share your routes, travel frequency and priorities. EXJET helps you compare the options and plan your next step."
         ],
         "links": [
           {
-            "label": "Business aviation consulting",
-            "path": "/business-aviation-consulting"
-          },
-          {
-            "label": "Executive assistant support",
-            "path": "/executive-assistants"
-          },
-          {
-            "label": "Family office private aviation",
-            "path": "/family-office-private-aviation"
+            "label": "Speak with EXJET",
+            "path": "/contact"
           }
-        ]
-      },
-      {
-        "heading": "Clear responsibilities, from proposal to delivery.",
-        "paragraphs": [
-          "EXJET provides consulting, sourcing and coordination. Charter flights are operated by the identified licensed air carrier. Maintenance, completions and installations are performed by the appointed technical providers under the applicable authority. Confirm the scope, provider, schedule and commercial terms for each engagement."
         ]
       }
     ],
-    "related": [
-      "/business-aviation-consulting",
-      "/private-jet-charter/dallas",
-      "/aircraft-owners"
-    ]
+    "related": []
   },
   {
     "path": "/mro",
@@ -1007,5 +1000,134 @@
         "answer": "No. The operating carrier controls the flight, and the selected authorized technical provider performs maintenance or installation work. EXJET coordinates the client brief and agreed consulting workstreams."
       }
     ]
+  },
+  {
+    "path": "/dry-lease",
+    "title": "Dry lease",
+    "seoTitle": "Private Jet Dry Lease Consulting | EXJET",
+    "description": "Explore aircraft leasing options around your routes, expected flying and operating requirements. EXJET helps define the brief and compare opportunities.",
+    "consultation": {
+      "label": "Discuss a dry lease",
+      "subject": "Dry lease enquiry"
+    },
+    "sections": [
+      {
+        "heading": "An aircraft for your operating needs.",
+        "paragraphs": [
+          "A dry lease provides the aircraft without crew. Start with your intended use, preferred aircraft, lease term and expected flight hours."
+        ]
+      },
+      {
+        "heading": "Define the arrangement.",
+        "paragraphs": [
+          "EXJET can help source options and coordinate the review of aircraft condition, availability and commercial terms. Confirm operational control, crew arrangements, insurance, maintenance and return conditions with your aviation advisers before committing."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "FAA: aircraft leasing and operational control",
+        "url": "https://www.faa.gov/about/initiatives/safecharteroperations/pilots-owners-and-operators"
+      }
+    ],
+    "kind": "service",
+    "kicker": "EXJET services",
+    "parent": {
+      "name": "Services",
+      "path": "/services"
+    },
+    "updated": "2026-10-22"
+  },
+  {
+    "path": "/fractional",
+    "title": "Fractional",
+    "seoTitle": "Fractional Aircraft Ownership Consulting | EXJET",
+    "description": "Compare fractional aircraft ownership with your travel needs. EXJET helps review program options, access terms and costs before you make a commitment.",
+    "consultation": {
+      "label": "Discuss fractional ownership",
+      "subject": "Fractional ownership enquiry"
+    },
+    "sections": [
+      {
+        "heading": "A share in aircraft ownership.",
+        "paragraphs": [
+          "Fractional ownership combines a share in an aircraft with a managed program. The right fit depends on where, when and how often you fly."
+        ]
+      },
+      {
+        "heading": "Compare the complete program.",
+        "paragraphs": [
+          "Review the aircraft category, annual allocation, booking notice, peak-day access, fees and exit terms together. EXJET provides consulting on available options; aircraft access and service commitments are defined by the selected provider’s agreement."
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "FAA: fractional ownership programs",
+        "url": "https://www.faa.gov/licenses_certificates/airline_certification/air_carrier/14_CFR_Part_91"
+      }
+    ],
+    "kind": "service",
+    "kicker": "EXJET services",
+    "parent": {
+      "name": "Services",
+      "path": "/services"
+    },
+    "updated": "2026-10-22"
+  },
+  {
+    "path": "/ownership",
+    "title": "Ownership",
+    "seoTitle": "Aircraft Ownership, Sales & Acquisitions | EXJET",
+    "description": "From finding an aircraft to planning its ownership. EXJET supports acquisition, sales and the decisions that follow delivery.",
+    "consultation": {
+      "label": "Discuss aircraft ownership",
+      "subject": "Aircraft ownership enquiry"
+    },
+    "sections": [
+      {
+        "heading": "Find the right aircraft.",
+        "paragraphs": [
+          "Define the routes, cabin, budget and timing that matter. Compare suitable aircraft and coordinate the acquisition process with your appointed advisers."
+        ],
+        "links": [
+          {
+            "label": "Aircraft sales & acquisitions",
+            "path": "/sales"
+          }
+        ]
+      },
+      {
+        "heading": "Plan beyond delivery.",
+        "paragraphs": [
+          "Build an ownership plan around operating budgets, management providers, maintenance and cabin requirements. Keep your team aligned through one EXJET relationship."
+        ],
+        "links": [
+          {
+            "label": "Aircraft management",
+            "path": "/aircraft-management"
+          },
+          {
+            "label": "Maintenance consulting",
+            "path": "/mro"
+          },
+          {
+            "label": "Interior completions",
+            "path": "/interior-completions"
+          },
+          {
+            "label": "Connectivity",
+            "path": "/starlink-installation"
+          }
+        ]
+      }
+    ],
+    "kind": "service",
+    "kicker": "EXJET services",
+    "parent": {
+      "name": "Services",
+      "path": "/services"
+    },
+    "updated": "2026-10-22"
   }
 ]
