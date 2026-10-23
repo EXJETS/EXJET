@@ -1,16 +1,16 @@
 /* EXJET's shared presentation layer. Public pages and the client workspace use
    the same measured scale; vendor-owned booking contents are not targeted. */
 :root {
-  --ex-content-width: 1200px;
+  --ex-content-width: 1320px;
   --ex-reading-width: 720px;
   --ex-page-gutter: clamp(24px, 5vw, 64px);
-  --ex-section-gap: clamp(72px, 7vw, 104px);
-  --ex-title-size: clamp(42px, 4.4vw, 60px);
-  --ex-heading-size: clamp(30px, 3.2vw, 44px);
+  --ex-section-gap: clamp(72px, 9vw, 136px);
+  --ex-title-size: clamp(42px, 5.2vw, 76px);
+  --ex-heading-size: clamp(32px, 4vw, 58px);
   --ex-card-title: 24px;
   --ex-surface: #f5f5f6;
   --ex-line: #dedfe1;
-  --ex-radius: 8px;
+  --ex-radius: 0px;
   --header-height: 64px;
   --ex-cta-ink: #000;
   --ex-cta-surface: transparent;
@@ -172,7 +172,7 @@
   .ex-footer { padding-top: 40px; }
 }
 @media (max-width: 760px) {
-  :root { --ex-page-gutter: 20px; --ex-section-gap: 48px; --ex-title-size: clamp(30px,8vw,36px); --ex-heading-size: 28px; --ex-card-title: 22px; --ex-radius: 8px; }
+  :root { --ex-page-gutter: 20px; --ex-section-gap: 48px; --ex-title-size: clamp(30px,8vw,36px); --ex-heading-size: 28px; --ex-card-title: 22px; --ex-radius: 0px; }
   .ex-public .page-hero__inner { padding-block: 36px 40px; }
   .ex-public .page-hero h1 { max-width: 24ch; line-height: 1.14; }
   .ex-public .page-hero .eyebrow { margin-bottom: 16px; font-size: 11px; }
@@ -252,4 +252,26 @@
 @media(max-width:359px) {
   .ex-public .empty-leg-search { grid-template-columns:minmax(0,1fr); }
   .ex-public .empty-leg-search label { border-right:0; }
+}
+
+/* Shared editorial direction: consistent across services, guides and aircraft. */
+.ex-public :is(.ex-page-intro,.ex-story-intro) h1,
+.ex-public .detail-viewer__title h1,
+.ex-public .ex-section-heading h2,
+.ex-public .ex-action-panel h2 { font-weight:300; letter-spacing:-.045em; }
+.ex-public .ex-page-intro { padding-block:clamp(56px,7vw,104px); }
+.ex-public .ex-card { background:transparent; border-top:1px solid var(--ex-line); }
+.ex-public .ex-card--photo { border:0; padding:0 0 24px; }
+.ex-public .ex-card--photo > :not(.ex-card-image) { margin-inline:0; }
+.ex-public .ex-card h3 { font-weight:300; font-size:28px; }
+.ex-public .ex-card-image { margin-bottom:24px; }
+.ex-public .button { border-radius:999px; padding-inline:28px; min-height:48px; }
+.ex-public .ex-reading h2 { font-weight:300; font-size:34px; }
+.ex-public .ex-feature-photo { margin-bottom:64px; }
+.ex-public .ex-facts { border-block:1px solid var(--ex-line); background:transparent; padding:24px 0; }
+@media(max-width:760px) {
+ .ex-public .ex-page-intro { padding-block:40px; }
+ .ex-public .ex-reading h2 { font-size:28px; }
+ .ex-public .ex-card h3 { font-size:25px; }
+ .ex-public .ex-feature-photo { margin-bottom:32px; }
 }

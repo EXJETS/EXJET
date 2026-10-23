@@ -1,9 +1,9 @@
 .collection { width: min(1200px, calc(100% - var(--page-gutter, var(--gutter)) * 2)); margin-inline: auto; }
-.track { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 32px 24px; }
-.card { min-width: 0; background: #f7f7f8; border-radius: 4px; overflow: clip; }
-.cardCopy { text-align: center; padding: 32px 20px 24px; }
+.track { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 48px; }
+.card { min-width: 0; background: transparent; border-radius: 0; overflow: clip; }
+.cardCopy { text-align: left; padding: 32px 0 24px; }
 .cardCopy p { margin: 0; color: #5e646a; font-size: .8125rem; line-height: 1.4; }
-.cardCopy h3 { margin: 8px 0 5px; font-size: 2rem; font-weight: 400; line-height: 1.1; letter-spacing: -.025em; }
+.cardCopy h3 { margin: 8px 0 5px; font-size: 2.75rem; font-weight: 300; line-height: 1.1; letter-spacing: -.025em; }
 .cardAction { color: #000; display: inline-flex; align-items: center; gap: 5px; min-height: 44px; font-size: .875rem; line-height: 1.4; }
 .cardAction:hover { text-decoration: underline; text-underline-offset: 4px; }
 .image { position: relative; width: 100%; aspect-ratio: 16 / 10; overflow: hidden; }
@@ -19,8 +19,8 @@
 @media (max-width: 760px) {
   .collection { width: calc(100% - var(--page-gutter, 20px) * 2); }
   .track { grid-template-columns: 1fr; gap: 12px; }
-  .cardCopy { padding: 22px 20px 14px; }
-  .cardCopy h3 { font-size: 1.5rem; }
+  .cardCopy { padding: 22px 0 14px; }
+  .cardCopy h3 { font-size: 2rem; }
   .image { aspect-ratio: 2; }
   .sceneControls { padding-block: 8px 12px; }
   .note { padding-inline: 20px; }
