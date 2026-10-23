@@ -1,3 +1,7 @@
+# Current design direction — 23 October 2026
+
+Owner requests Bombardier-inspired graphic design and UX. Use expansive photography, light display type, alternating editorial service chapters, fine rules, generous responsive spacing and pill-shaped actions. Preserve EXJET marks, Ubuntu, neutral white/platinum/charcoal palette, black CTA labels, five services, existing hero image and Avinode. This supersedes earlier compact card styling; do not copy Bombardier wordmarks or imply affiliation.
+
 # Current homepage correction — 22 October 2026
 
 The inset, platinum-framed hero and large two-column action rows were rejected by the owner. Do not restore them. The approved coastal aircraft photograph now spans the full viewport width directly beneath the navbar. A light, single-line “Global Access. On-Demand.” heading sits over the water above the aircraft. Use two simple white, black-text buttons below the aircraft on desktop. On mobile, keep the complete image at its natural aspect ratio and place compact outlined buttons beneath it. Preserve the original navbar logo and Avinode integration. This direction supersedes older hero notes below.

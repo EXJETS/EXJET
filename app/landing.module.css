@@ -10,7 +10,7 @@
 .heroContent { position: absolute; z-index: 1; top: 10%; inset-inline: 20px; color: #fff; }
 .hero .tagline { margin: 0; font-size: clamp(32px,4.5vw,68px); white-space: nowrap; font-weight: 300; line-height: 1.1; letter-spacing: -.035em; text-shadow: 0 1px 10px rgb(8 30 43 / 20%); }
 .heroActions { position: absolute; z-index: 1; bottom: 7%; inset-inline: 20px; display: flex; align-items: center; justify-content: center; gap: 16px; }
-.heroAction { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 48px; padding: 13px 24px; border: 1px solid #fff; border-radius: 4px; color: #000; background: #fff; font-size: 14px; font-weight: 400; line-height: 1.4; transition: background-color 160ms ease,border-color 160ms ease; }
+.heroAction { display: inline-flex; align-items: center; justify-content: center; gap: 16px; min-height: 48px; padding: 13px 24px; border: 1px solid #fff; border-radius: 999px; color: #000; background: #fff; font-size: 14px; font-weight: 400; line-height: 1.4; transition: background-color 160ms ease,border-color 160ms ease; }
 .heroAction:first-child { min-width: 166px; }
 .heroAction > svg { flex-shrink: 0; }
 .heroAction:hover { color: #000; background: #e9eaec; border-color: #e9eaec; }
@@ -33,12 +33,12 @@
 .servicesSection, .aircraftSection, .audienceSection, .planningSection { padding-block: var(--section-space); scroll-margin-top: 80px; }
 .aircraftSection, .audienceSection { background: #f4f4f4; }
 .sectionHeading { display: flex; flex-direction: column; align-items: center; gap: 10px; width: min(var(--content-width), calc(100% - var(--page-gutter) * 2)); margin: 0 auto 26px; text-align: center; }
-.sectionHeading h2 { margin-top: 10px; font-size: 2.75rem; font-weight: 500; line-height: 1.12; letter-spacing: -.03em; }
+.sectionHeading h2 { margin-top: 10px; font-size: 2.75rem; font-weight: 300; line-height: 1.12; letter-spacing: -.03em; }
 .container > .sectionHeading { width: 100%; }
 .sectionHeading h2 { max-width: 24ch; text-wrap: balance; }
 .experienceSection { width: min(var(--content-width), calc(100% - var(--page-gutter) * 2)); margin-inline: auto; padding-block: var(--section-space); scroll-margin-top: 44px; }
 .experienceIntro { max-width: 660px; margin-inline: auto; text-align: center; }
-.experienceIntro h2 { margin-top: 12px; font-size: 2.75rem; font-weight: 500; line-height: 1.12; letter-spacing: -.03em; }
+.experienceIntro h2 { margin-top: 12px; font-size: 2.75rem; font-weight: 300; line-height: 1.12; letter-spacing: -.03em; }
 .experienceIntro h2 span { color: #5e646a; }
 .experienceIntro > p:last-child { max-width: 46ch; margin: 18px auto 0; color: #5e646a; font-size: 1rem; line-height: 1.6; }
 .experienceCard { display: grid; grid-template-columns: 1.2fr 1fr; align-items: center; margin-top: 36px; overflow: clip; background: #f4f4f4; }
@@ -46,18 +46,18 @@
 .cabinImage img { display: block; width: 100%; height: auto; object-fit: contain; }
 .experienceDetails { display: grid; grid-template-columns: 1fr; gap: 24px; padding: 36px; }
 .experienceDetails > a { justify-self: start; }
-.experienceDetails h3 { margin-bottom: 8px; font-size: 1.125rem; font-weight: 500; line-height: 1.3; }
+.experienceDetails h3 { margin-bottom: 8px; font-size: 1.125rem; font-weight: 300; line-height: 1.3; }
 .experienceDetails p { max-width: 32ch; color: #5e646a; font-size: 1rem; line-height: 1.55; }
 .bookingSection { padding: 68px var(--page-gutter); background: #0b0d0f; color: #fff; text-align: center; }
 .bookingSection .eyebrow { color: #c9cdd1; }
-.bookingSection h2 { margin-top: 12px; font-size: 3rem; font-weight: 500; line-height: 1.1; letter-spacing: -.03em; }
+.bookingSection h2 { margin-top: 12px; font-size: 3rem; font-weight: 300; line-height: 1.1; letter-spacing: -.03em; }
 .bookingSection > p:not(.eyebrow) { margin-top: 18px; color: #c9cdd1; font-size: 1rem; line-height: 1.5; }
 .bookingSection :is(.primaryAction,.secondaryAction,.textAction) { color: #000; background: #fff; padding: 12px 22px; border: 1px solid var(--ex-cta-border); border-radius: 999px; }
 .bookingSection :is(.primaryAction,.secondaryAction,.textAction):hover { color: #000; background: var(--ex-cta-hover); border-color: #000; }
 :is(.primaryAction,.secondaryAction,.textAction):focus-visible { outline: 2px solid #000; outline-offset: 3px; box-shadow: 0 0 0 3px #fff; }
 .audienceGrid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; }
-.audienceCard { display: flex; flex-direction: column; padding: 28px; background: #fff; border-radius: 8px; color: inherit; }
-.audienceCard h3, .planningGrid h3 { margin: 0; font-size: 1.25rem; font-weight: 500; line-height: 1.3; letter-spacing: -.02em; }
+.audienceCard { display: flex; flex-direction: column; padding: 28px; background: #fff; border-radius: 0; color: inherit; }
+.audienceCard h3, .planningGrid h3 { margin: 0; font-size: 1.25rem; font-weight: 300; line-height: 1.3; letter-spacing: -.02em; }
 .audienceCard p, .planningGrid p { margin: 12px 0 20px; color: #5e646a; font-size: 1rem; line-height: 1.55; }
 .audienceCard span { color: #000; display: flex; align-items: center; gap: 4px; margin-top: auto; font-size: .9375rem; }
 .audienceCard:hover span { text-decoration: underline; text-underline-offset: 4px; }
@@ -68,7 +68,7 @@
 .planningGrid a:hover h3 { text-decoration: underline; text-underline-offset: 4px; }
 .localLinks { display: flex; justify-content: center; flex-wrap: wrap; gap: 8px 28px; margin-top: 28px; padding-top: 20px; border-top: 1px solid #d9dcdf; }
 .localLinks a { display: inline-flex; align-items: center; min-height: 44px; font-size: .875rem; text-decoration: underline; text-underline-offset: 4px; }
-.journalCallout { display:flex; align-items:center; justify-content:space-between; gap:24px 40px; margin-top:32px; padding:28px; border-radius:20px; background:#f4f4f4; }
+.journalCallout { display:flex; align-items:center; justify-content:space-between; gap:24px 40px; margin-top:32px; padding:28px; border-radius:0; background:#f4f4f4; }
 .journalCallout h3 { margin:10px 0; font-size:1.5rem; font-weight:500; line-height:1.2; letter-spacing:-.025em; }
 .journalCallout div > p:last-child { max-width:52ch; margin:0; color:#5e646a; font-size:.9375rem; line-height:1.6; }
 .journalCallout > a { flex-shrink:0; }
@@ -88,23 +88,60 @@
   .primaryAction { padding-block: 10px; }
   .heroImage { margin-top: 26px; }
   .heroCaption { font-size: .6875rem; padding-block: 10px 14px; }
-  .sectionHeading h2, .experienceIntro h2 { font-size: 1.625rem; font-weight: 500; }
+  .sectionHeading h2, .experienceIntro h2 { font-size: 1.625rem; font-weight: 300; }
   .sectionHeading { margin-bottom: 20px; gap: 4px; }
   .experienceCard { grid-template-columns: 1fr; margin-top: 26px; }
   .cabinImage img { height: auto; min-height: 0; aspect-ratio: auto; }
   .experienceDetails { grid-template-columns: 1fr; padding: 24px 20px; gap: 20px; }
   .bookingSection { padding-block: 40px; }
-  .bookingSection h2 { font-size: 1.625rem; font-weight: 500; }
+  .bookingSection h2 { font-size: 1.625rem; font-weight: 300; }
   .audienceGrid { grid-template-columns: 1fr; gap: 12px; }
   .audienceCard { padding: 20px; }
   .audienceCard h3, .planningGrid h3 { font-size: 1.125rem; }
   .audienceCard p { margin: 10px 0 14px; font-size: .9375rem; }
   .planningGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; }
-  .journalCallout { flex-direction:column; align-items:flex-start; padding:20px; gap:16px; margin-top:24px; border-radius:16px; }.journalCallout h3 { font-size:1.25rem; }.journalCallout > a { flex-shrink:1; }
+  .journalCallout { flex-direction:column; align-items:flex-start; padding:20px; gap:16px; margin-top:24px; border-radius:0; }.journalCallout h3 { font-size:1.25rem; }.journalCallout > a { flex-shrink:1; }
   .localLinks { justify-content: flex-start; gap: 0 24px; margin-top: 20px; }
 }
-@media (max-width: 480px) { .heroActions { flex-direction: column; padding: 16px 20px; } .heroAction { width: 100%; min-height: 48px; font-size: 15px; border-radius: 8px; } .heroAction:first-child { background: #f1f2f3; border-color: #d4d7da; } .servicesSection { padding-top: 28px; } .planningGrid { grid-template-columns: 1fr; gap: 8px; } }
+@media (max-width: 480px) { .heroActions { flex-direction: column; padding: 16px 20px; } .heroAction { width: 100%; min-height: 48px; font-size: 15px; border-radius: 0; } .heroAction:first-child { background: #f1f2f3; border-color: #d4d7da; } .servicesSection { padding-top: 28px; } .planningGrid { grid-template-columns: 1fr; gap: 8px; } }
 @media (max-width: 359px) { .actions { gap: 8px 12px; } }
 @media (prefers-contrast: more) { .eyebrow, .heroCaption, .experienceIntro h2 span, .experienceIntro > p:last-child, .experienceDetails p { color: #353a3e; } }
 
 .bookingSection :global(.broker-notice){color:#c9cdd1;max-width:780px;margin:24px auto 0}
+
+/* Aviation editorial direction, October 2026. */
+.landing { --content-width: 1320px; --section-space: clamp(72px,9vw,136px); }
+.eyebrow { text-transform: uppercase; letter-spacing: .14em; font-size: 11px; }
+.sectionHeading { flex-direction: row; justify-content: space-between; align-items: end; text-align: left; margin-bottom: 48px; gap: 32px; }
+.sectionHeading h2, .servicesIntro h2, .experienceIntro h2 { font-size: clamp(36px,4.2vw,64px); font-weight: 300; line-height: 1.09; letter-spacing: -.045em; }
+.sectionHeading > a { flex-shrink: 0; }
+.textAction { gap: 14px; font-size: 13px; letter-spacing: .03em; }
+.aircraftSection { background: #f3f4f4; }
+.experienceIntro { max-width: 900px; margin-inline: 0; text-align: left; }
+.experienceIntro > p:last-child { margin: 24px 0 0; }
+.experienceCard { margin-top: 56px; background: transparent; gap: 64px; grid-template-columns: 1.4fr 1fr; }
+.experienceDetails { padding: 0; gap: 32px; }
+.experienceDetails h3 { font-size: 24px; }
+.audienceSection { background: #fff; border-top: 1px solid #dedfe1; }
+.audienceGrid { gap: 0 48px; }
+.audienceCard { padding: 32px 0; border-top: 1px solid #c9cdd1; background: transparent; }
+.audienceCard h3 { font-size: 28px; }
+.audienceCard span { min-height: 44px; }
+.planningSection { background: #f3f4f4; }
+.journalCallout { margin-top: 64px; padding: 40px 0; background: transparent; border-top: 1px solid #c9cdd1; }
+.journalCallout h3 { font-size: 36px; font-weight: 300; }
+.bookingSection { padding-block: clamp(72px,9vw,128px); }
+.bookingSection h2 { font-size: clamp(40px,5vw,72px); }
+@media(max-width:760px) {
+ .landing { --section-space: 56px; --page-gutter: 20px; }
+ .sectionHeading { flex-direction: column; align-items: flex-start; gap: 16px; margin-bottom: 28px; }
+ .sectionHeading h2, .servicesIntro h2, .experienceIntro h2 { font-size: 34px; line-height: 1.13; }
+ .experienceCard { grid-template-columns: 1fr; gap: 28px; margin-top: 32px; }
+ .experienceDetails { padding: 0; }
+ .experienceDetails h3 { font-size: 23px; }
+ .audienceCard { padding: 24px 0; }
+ .audienceCard h3 { font-size: 25px; }
+ .journalCallout { margin-top: 32px; padding-block: 28px; }
+ .journalCallout h3 { font-size: 30px; }
+ .heroAction { border-radius: 999px; }
+}
