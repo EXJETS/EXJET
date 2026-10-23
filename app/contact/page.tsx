@@ -16,7 +16,7 @@ export default function ContactPage() {
   return (
     <>
       <StructuredData data={localBusinessJsonLd()} />
-      <PageHero heading="Speak with EXJET" eyebrow="Contact EXJET" title={<>Let’s plan<br /><em>what’s next.</em></>} copy="Share your itinerary, aircraft or project objectives. Connect with EXJET for charter, sales and acquisitions, management, MRO, interior completions or Starlink installation consulting.">
+      <PageHero heading="Speak with EXJET" eyebrow="Contact EXJET" title={<>Let’s plan<br /><em>what’s next.</em></>} copy="Tell us how you want to fly. Speak with EXJET about empty legs, charters, dry lease, fractional or aircraft ownership.">
         <div className="ex-intro-actions contact-primary-actions">
           <ButtonLink href={siteConfig.phone.primary.href}>Call EXJET</ButtonLink>
           <ButtonLink href={`mailto:${siteConfig.email.general}`} variant="outline">Email an advisor</ButtonLink>

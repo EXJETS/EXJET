@@ -1,11 +1,9 @@
 export const aviationSolutions = [
-  { name: "Charter", path: "/private-jet-charter", description: "Private jet charter planned around your route, schedule and cabin requirements.", icon: "charter" },
-  { name: "Group Charter", path: "/group-charter", description: "Coordinated air travel for corporate teams, sports, events and larger passenger groups.", icon: "group" },
-  { name: "Sales & Acquisitions", path: "/sales", description: "Aircraft search, market analysis and transaction consulting for buyers and sellers.", icon: "sales" },
-  { name: "Aircraft Management", path: "/aircraft-management", description: "Owner consulting across operating plans, budgets, provider selection and reporting.", icon: "management" },
-  { name: "MRO", path: "/mro", description: "Maintenance, repair and overhaul consulting, provider sourcing and downtime coordination.", icon: "mro" },
-  { name: "Interior Completions", path: "/interior-completions", description: "Cabin refurbishment and completion consulting, from the design brief to delivery planning.", icon: "interior" },
-  { name: "Starlink Installation", path: "/starlink-installation", description: "Aircraft connectivity consulting, eligibility review and installation coordination.", icon: "connectivity" },
+  { name: "Empty legs", path: "/empty-legs", description: "One-way opportunities for flexible travel plans.", icon: "empty" },
+  { name: "Charters", path: "/private-jet-charter", description: "Private and group flights arranged around your schedule.", icon: "charter" },
+  { name: "Dry lease", path: "/dry-lease", description: "Aircraft leasing options for your operating needs.", icon: "lease" },
+  { name: "Fractional", path: "/fractional", description: "Shared aircraft ownership shaped around how you fly.", icon: "fractional" },
+  { name: "Ownership", path: "/ownership", description: "Aircraft acquisition, sales and owner support.", icon: "ownership" },
 ] as const;
 
 const PRODUCTION_ORIGIN = "https://www.exjet.com";
@@ -36,7 +34,7 @@ export const siteConfig = {
   url: siteOrigin,
   productionUrl: PRODUCTION_ORIGIN,
   description:
-    "EXJET is a Dallas-based business aviation solutions company providing charter, group charter, aircraft sales and acquisitions, aircraft management consulting, MRO consulting, interior completions and Starlink installation coordination.",
+    "EXJET provides empty-leg opportunities, private and group charters, dry lease consulting, fractional ownership advice and aircraft ownership support.",
   phone: {
     primary: {
       display: "+1 407 747 5288",
