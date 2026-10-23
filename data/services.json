@@ -87,6 +87,26 @@
             "path": "/safety"
           }
         ]
+      },
+      {
+        "heading": "Private jet charter for business and personal travel.",
+        "paragraphs": [
+          "Plan travel for principals, executive teams, families and their guests. EXJET coordinates aircraft options around the passenger brief, preferred airports and schedule, with each flight confirmed through the selected operating carrier."
+        ],
+        "links": [
+          {
+            "label": "Private jet charter for executive assistants",
+            "path": "/executive-assistants"
+          },
+          {
+            "label": "Family office private aviation",
+            "path": "/family-office-private-aviation"
+          },
+          {
+            "label": "Dallas private jet charter",
+            "path": "/private-jet-charter/dallas"
+          }
+        ]
       }
     ],
     "related": [
@@ -693,8 +713,8 @@
   {
     "path": "/services",
     "title": "Services",
-    "seoTitle": "Business Aviation Services & Consulting | EXJET Dallas",
-    "description": "Empty legs, charters, dry lease, fractional and ownership. Find the right approach to private aviation with EXJET.",
+    "seoTitle": "Private Aviation Services: Charter, Leasing & Ownership | EXJET",
+    "description": "Explore private jet charter, empty leg flights, dry lease, fractional ownership and aircraft acquisition services. Compare your options with EXJET.",
     "kicker": "Five ways to fly",
     "kind": "hub",
     "serviceCatalog": true,
@@ -1004,7 +1024,7 @@
   {
     "path": "/dry-lease",
     "title": "Dry lease",
-    "seoTitle": "Private Jet Dry Lease Consulting | EXJET",
+    "seoTitle": "Aircraft Dry Lease & Private Jet Leasing Consulting | EXJET",
     "description": "Explore aircraft leasing options around your routes, expected flying and operating requirements. EXJET helps define the brief and compare opportunities.",
     "consultation": {
       "label": "Discuss a dry lease",
@@ -1021,6 +1041,22 @@
         "heading": "Define the arrangement.",
         "paragraphs": [
           "EXJET can help source options and coordinate the review of aircraft condition, availability and commercial terms. Confirm operational control, crew arrangements, insurance, maintenance and return conditions with your aviation advisers before committing."
+        ]
+      },
+      {
+        "heading": "What to include in a dry lease enquiry",
+        "paragraphs": [
+          "Share your intended aircraft base, planned routes, passenger requirements and expected annual flying. Include the proposed lease duration and who will manage the operating arrangements. These details help narrow the aircraft search before terms are discussed."
+        ],
+        "links": [
+          {
+            "label": "Compare aircraft ownership",
+            "path": "/ownership"
+          },
+          {
+            "label": "Explore on-demand charter",
+            "path": "/private-jet-charter"
+          }
         ]
       }
     ],
@@ -1041,7 +1077,7 @@
   {
     "path": "/fractional",
     "title": "Fractional",
-    "seoTitle": "Fractional Aircraft Ownership Consulting | EXJET",
+    "seoTitle": "Fractional Jet Ownership & Program Consulting | EXJET",
     "description": "Compare fractional aircraft ownership with your travel needs. EXJET helps review program options, access terms and costs before you make a commitment.",
     "consultation": {
       "label": "Discuss fractional ownership",
@@ -1058,6 +1094,22 @@
         "heading": "Compare the complete program.",
         "paragraphs": [
           "Review the aircraft category, annual allocation, booking notice, peak-day access, fees and exit terms together. EXJET provides consulting on available options; aircraft access and service commitments are defined by the selected provider’s agreement."
+        ]
+      },
+      {
+        "heading": "Fractional ownership or on-demand charter?",
+        "paragraphs": [
+          "Start with a recent travel history and the trips you expect next year. Compare recurring commitments, aircraft access, route suitability and exit terms against charter proposals for similar journeys. Program fees and availability require confirmation with each provider."
+        ],
+        "links": [
+          {
+            "label": "Compare aviation programs",
+            "path": "/guides/private-aviation-program-comparison"
+          },
+          {
+            "label": "Family office aviation planning",
+            "path": "/family-office-private-aviation"
+          }
         ]
       }
     ],
@@ -1079,7 +1131,7 @@
     "path": "/ownership",
     "title": "Ownership",
     "seoTitle": "Aircraft Ownership, Sales & Acquisitions | EXJET",
-    "description": "From finding an aircraft to planning its ownership. EXJET supports acquisition, sales and the decisions that follow delivery.",
+    "description": "Plan private aircraft ownership with EXJET. Compare business jets, coordinate aircraft acquisition or sales, and define management and maintenance priorities.",
     "consultation": {
       "label": "Discuss aircraft ownership",
       "subject": "Aircraft ownership enquiry"
@@ -1118,6 +1170,26 @@
           {
             "label": "Connectivity",
             "path": "/starlink-installation"
+          }
+        ]
+      },
+      {
+        "heading": "Build the aircraft acquisition brief.",
+        "paragraphs": [
+          "Define your typical mission, longest recurring route, passenger and baggage needs, preferred base and target delivery date. Review acquisition and operating budgets together, then coordinate technical, legal and financial due diligence with your appointed specialists."
+        ],
+        "links": [
+          {
+            "label": "Business jet acquisition checklist",
+            "path": "/guides/buying-a-business-jet"
+          },
+          {
+            "label": "Compare aircraft management proposals",
+            "path": "/guides/aircraft-management-proposals"
+          },
+          {
+            "label": "Fractional ownership consulting",
+            "path": "/fractional"
           }
         ]
       }

@@ -46,7 +46,7 @@ export default function Home() {
         <div className={styles.container}>
           <div className={styles.servicesIntro}>
             <div><p className={styles.eyebrow}>The EXJET approach</p><h2 id="services-title">One relationship.<br />Every stage of aviation.</h2></div>
-            <div className={styles.servicesLead}><p>From a single flight to aircraft ownership. Explore five ways to make private aviation work for you.</p><Link href="/services" className={styles.textAction}>Explore all services <CaretRightIcon size={16} aria-hidden="true" /></Link></div>
+            <div className={styles.servicesLead}><p>Private jet charter, empty leg flights and aircraft ownership advice. Explore five ways to fly with our Dallas-based team.</p><Link href="/services" className={styles.textAction}>Explore all services <CaretRightIcon size={16} aria-hidden="true" /></Link></div>
           </div>
           <ServicesGrid compact />
         </div>

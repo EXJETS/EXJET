@@ -9,8 +9,8 @@ type SeoEntry = {
 
 export const pageSeo = {
   "/": {
-    title: "Business Aviation Solutions & Private Jet Charter | EXJET",
-    description: "Dallas-based EXJET connects charter, aircraft sales, management, MRO, interiors and Starlink installation consulting. Plan your next aviation decision.",
+    title: "Private Jet Charter, Empty Legs & Ownership | EXJET",
+    description: "Arrange private jet charter and empty leg flights with EXJET. Explore dry lease, fractional ownership and aircraft acquisition advice from our Dallas team.",
   },
   "/charter": {
     title: "Request a Private Jet Charter Quote | Flight Search | EXJET",
@@ -21,7 +21,7 @@ export const pageSeo = {
     description: "Explore empty leg flight opportunities with EXJET. Share your route and flexible dates to request current availability, aircraft details and a written quote.",
   },
   "/group-charter": {
-    title: "Group Air Charter Services | EXJET",
+    title: "Group Air Charter for Corporate & Sports Teams | EXJET",
     description: "Arrange group air charter for corporate teams, sports and events. Coordinate passenger counts, baggage, schedules and airport transfers with an EXJET advisor.",
   },
   "/cargo": {
@@ -29,7 +29,7 @@ export const pageSeo = {
     description: "Request cargo aircraft charter for urgent, oversized or high-value shipments. Share weight, dimensions, route and timing for a tailored proposal from EXJET.",
   },
   "/aircraft": {
-    title: "Business Jet Charter Aircraft & Cabin Guide | EXJET",
+    title: "Private Jet Charter Aircraft: Cabins & Costs | EXJET",
     description: "Compare Citation, Challenger, Gulfstream, Global and Falcon aircraft. Review cabins, mission planning and charter costs, then request options for your journey.",
   },
   "/membership": {
@@ -37,11 +37,11 @@ export const pageSeo = {
     description: "Review EXJET membership information and discuss your travel pattern with an advisor. Confirm program terms, aircraft access and pricing before any commitment.",
   },
   "/sales": {
-    title: "Private Aircraft Sales and Acquisitions | EXJET",
+    title: "Private Jets for Sale & Aircraft Acquisitions | EXJET",
     description: "Discuss aircraft sales and acquisitions with EXJET. Define your mission, review representation options and request a confidential aircraft search or sale brief.",
   },
   "/why-exjet": {
-    title: "Why Choose EXJET for Private Charter | EXJET",
+    title: "Private Aviation Consulting & Charter Planning | EXJET",
     description: "Learn how EXJET coordinates aircraft selection, operator review and charter planning. Explore aviation consulting and the questions to ask before booking.",
   },
   "/about": {
@@ -53,8 +53,8 @@ export const pageSeo = {
     description: "Find answers about charter pricing, aircraft selection, empty legs, passenger details and operator checks. Learn what to confirm before booking with EXJET.",
   },
   "/contact": {
-    title: "Contact EXJET | Charter & Business Aviation Consulting",
-    description: "Contact EXJET for charter, aircraft sales, management, MRO, interior completions or Starlink installation consulting. Discuss your aircraft, project or itinerary.",
+    title: "Contact EXJET | Private Jet Charter & Ownership",
+    description: "Contact EXJET for private jet charter, empty leg flights, dry lease, fractional ownership and aircraft acquisitions. Discuss your route or aviation plans.",
   },
   "/privacy": {
     title: "Privacy Policy | EXJET",

@@ -2,7 +2,7 @@
   {
     "path": "/how-it-works",
     "title": "How EXJET aircraft charter works",
-    "seoTitle": "How EXJET aircraft charter works | EXJET",
+    "seoTitle": "How to Book a Private Jet Charter with EXJET",
     "description": "Plan your charter from the first request to arrival. Compare aircraft, review a written quote, confirm the operator and coordinate the itinerary with EXJET.",
     "kicker": "The EXJET experience",
     "kind": "service",
@@ -47,34 +47,74 @@
   },
   {
     "path": "/ways-to-fly",
-    "title": "Aircraft charter options for every itinerary",
-    "seoTitle": "Aircraft charter options for every itinerary | EXJET",
-    "description": "Compare on-demand charter, group flights, empty legs and corporate aviation support. Choose the right EXJET service for your itinerary and travel needs.",
+    "title": "Private aviation options: charter, leasing and ownership",
+    "seoTitle": "Private Aviation Options: Charter vs Ownership | EXJET",
+    "description": "Compare empty leg flights, private jet charter, dry lease, fractional ownership and whole-aircraft ownership. Find the approach that fits your travel.",
     "kicker": "The EXJET experience",
     "kind": "service",
     "sections": [
       {
-        "heading": "On-demand charter",
+        "heading": "Empty legs",
         "paragraphs": [
-          "Arrange a complete aircraft for your itinerary. Begin with your route and schedule, then compare suitable options and a written quote. Aircraft availability, operating requirements and final terms are confirmed for each trip."
+          "Consider one-way repositioning opportunities when your schedule and airports are flexible. Availability depends on the underlying aircraft movement and requires confirmation."
+        ],
+        "links": [
+          {
+            "label": "Explore empty leg flights",
+            "path": "/empty-legs"
+          }
         ]
       },
       {
-        "heading": "Group charter",
+        "heading": "Charters",
         "paragraphs": [
-          "Coordinate travel for executive teams, sports groups, events and other larger parties. Share the passenger total, baggage and equipment, travel windows and ground arrangements so the entire movement can be planned together."
+          "Arrange a private flight for your route and passengers. For executive teams, events or larger groups, build the request around the full passenger and baggage brief."
+        ],
+        "links": [
+          {
+            "label": "Private jet charter",
+            "path": "/private-jet-charter"
+          },
+          {
+            "label": "Group air charter",
+            "path": "/group-charter"
+          }
         ]
       },
       {
-        "heading": "Empty-leg opportunities",
+        "heading": "Dry lease",
         "paragraphs": [
-          "A repositioning flight can suit a flexible itinerary when the route and timing align. Availability can change with the primary aircraft schedule. Review the specific terms and contingency arrangements before committing."
+          "Explore aircraft leasing around your operating needs, intended use and lease duration. Review the operating arrangements and responsibilities with your aviation advisers."
+        ],
+        "links": [
+          {
+            "label": "Aircraft dry lease consulting",
+            "path": "/dry-lease"
+          }
         ]
       },
       {
-        "heading": "Corporate and family-office support",
+        "heading": "Fractional",
         "paragraphs": [
-          "Executive assistants, corporate travel teams and family offices can work with one EXJET contact to coordinate the itinerary and decision process. Discuss recurring travel needs and any program terms directly with your advisor."
+          "Compare shared aircraft ownership programs against your travel history, access needs, recurring commitments and exit terms."
+        ],
+        "links": [
+          {
+            "label": "Fractional jet ownership consulting",
+            "path": "/fractional"
+          }
+        ]
+      },
+      {
+        "heading": "Ownership",
+        "paragraphs": [
+          "Plan aircraft acquisition and ongoing ownership around your mission, budget and management requirements. Coordinate specialist review before making a commitment."
+        ],
+        "links": [
+          {
+            "label": "Aircraft ownership and acquisitions",
+            "path": "/ownership"
+          }
         ]
       }
     ],
