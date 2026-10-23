@@ -144,7 +144,8 @@
         "question": "Do you guarantee a four-hour departure?",
         "answer": "Departure timing depends on aircraft, crew, airports and the route. Contact EXJET for an urgent request so the operating carrier can confirm a realistic timeline."
       }
-    ]
+    ],
+    "seoTitle": "Dallas Private Jet Charter: Love Field & Addison | EXJET"
   },
   {
     "path": "/empty-legs/dallas",
@@ -200,7 +201,8 @@
     "parent": {
       "name": "Empty legs",
       "path": "/empty-legs"
-    }
+    },
+    "seoTitle": "Empty Leg Flights Dallas: Private Jet Opportunities | EXJET"
   },
   {
     "path": "/safety",
@@ -281,7 +283,8 @@
     "parent": {
       "name": "EXJET",
       "path": "/about"
-    }
+    },
+    "seoTitle": "Private Jet Charter Safety & Operator Vetting | EXJET"
   },
   {
     "path": "/guides/part-135-vs-part-91",
@@ -356,7 +359,8 @@
     },
     "published": "2026-10-17",
     "updated": "2026-10-17",
-    "readTime": "4 min read"
+    "readTime": "4 min read",
+    "seoTitle": "Part 135 vs Part 91: Private Jet Charter Guide | EXJET"
   },
   {
     "path": "/guides/argus-wyvern",
@@ -430,7 +434,8 @@
     },
     "published": "2026-10-17",
     "updated": "2026-10-17",
-    "readTime": "4 min read"
+    "readTime": "4 min read",
+    "seoTitle": "ARGUS & WYVERN Ratings: Charter Safety Guide | EXJET"
   },
   {
     "path": "/group-charter/sports-teams",
@@ -471,7 +476,8 @@
     "parent": {
       "name": "Group charter",
       "path": "/group-charter"
-    }
+    },
+    "seoTitle": "Sports Team Air Charter & Tournament Travel | EXJET"
   },
   {
     "path": "/group-charter/corporate-teams",
@@ -512,7 +518,8 @@
     "parent": {
       "name": "Group charter",
       "path": "/group-charter"
-    }
+    },
+    "seoTitle": "Corporate Group Air Charter & Incentive Travel | EXJET"
   },
   {
     "path": "/cargo/dallas",
@@ -553,7 +560,8 @@
     "parent": {
       "name": "Cargo charter",
       "path": "/cargo"
-    }
+    },
+    "seoTitle": "Dallas Air Cargo Charter & Urgent Freight | EXJET"
   },
   {
     "path": "/destinations/aspen",
@@ -598,7 +606,8 @@
     "parent": {
       "name": "Destinations",
       "path": "/destinations"
-    }
+    },
+    "seoTitle": "Aspen Private Jet Charter & Flight Planning | EXJET"
   },
   {
     "path": "/destinations/vail",
@@ -643,7 +652,8 @@
     "parent": {
       "name": "Destinations",
       "path": "/destinations"
-    }
+    },
+    "seoTitle": "Vail & Beaver Creek Private Jet Charter | EXJET"
   },
   {
     "path": "/destinations/cabo",
@@ -688,7 +698,8 @@
     "parent": {
       "name": "Destinations",
       "path": "/destinations"
-    }
+    },
+    "seoTitle": "Cabo Private Jet Charter & Los Cabos Flights | EXJET"
   },
   {
     "path": "/destinations/palm-beach",
@@ -733,7 +744,8 @@
     "parent": {
       "name": "Destinations",
       "path": "/destinations"
-    }
+    },
+    "seoTitle": "Palm Beach Private Jet Charter & Flight Planning | EXJET"
   },
   {
     "path": "/aircraft-comparisons/challenger-350-vs-citation-latitude",
@@ -1099,12 +1111,13 @@
     "parent": {
       "name": "Guides",
       "path": "/guides"
-    }
+    },
+    "seoTitle": "Private Jet Charter Glossary & Aviation Terms | EXJET"
   },
   {
     "path": "/executive-assistants",
     "title": "Private jet charter for executive assistants",
-    "seoTitle": "Private jet charter for executive assistants | EXJET",
+    "seoTitle": "Private Jet Charter for Executive Assistants | EXJET",
     "description": "Coordinate executive aircraft charter with a clear brief, approval checklist and flight handoff. Plan business travel and request an EXJET proposal.",
     "kicker": "Executive & family travel",
     "kind": "service",
@@ -1201,6 +1214,22 @@
             "path": "/guides/executive-airport-planning"
           }
         ]
+      },
+      {
+        "heading": "Prepare the private jet charter request.",
+        "paragraphs": [
+          "Send the airports, local travel dates, passenger count and baggage needs together. Identify the person approving the quote and flag fixed meeting times so the advisor can compare workable aircraft options."
+        ],
+        "links": [
+          {
+            "label": "Request a private jet charter quote",
+            "path": "/charter"
+          },
+          {
+            "label": "Executive assistant booking checklist",
+            "path": "/articles/private-charter-for-executive-assistants"
+          }
+        ]
       }
     ],
     "parent": {
@@ -1226,7 +1255,7 @@
   {
     "path": "/family-office-private-aviation",
     "title": "Family office private aviation and charter",
-    "seoTitle": "Family office private aviation and charter | EXJET",
+    "seoTitle": "Family Office Private Aviation & Jet Charter | EXJET",
     "description": "Plan family office aircraft charter around principals, guests, privacy, cabin needs and approvals. Compare flight options and discuss your itinerary with EXJET.",
     "kicker": "Executive & family travel",
     "kind": "service",
@@ -1298,6 +1327,26 @@
             "path": "/corporate-travel/supplemental-lift"
           }
         ]
+      },
+      {
+        "heading": "Compare charter, fractional and aircraft ownership.",
+        "paragraphs": [
+          "Review each option against the principal’s travel pattern, approval process and ownership objectives. EXJET can help structure the comparison around the full itinerary and ongoing commitments."
+        ],
+        "links": [
+          {
+            "label": "Fractional aircraft ownership consulting",
+            "path": "/fractional"
+          },
+          {
+            "label": "Aircraft ownership and acquisitions",
+            "path": "/ownership"
+          },
+          {
+            "label": "Aircraft dry lease consulting",
+            "path": "/dry-lease"
+          }
+        ]
       }
     ],
     "parent": {
@@ -1323,7 +1372,7 @@
   {
     "path": "/corporate-travel/fortune-500",
     "title": "Private aviation planning for Fortune 500 travel teams",
-    "seoTitle": "Private aviation planning for Fortune 500 travel teams | EXJET",
+    "seoTitle": "Corporate Jet Charter for Fortune 500 Teams | EXJET",
     "description": "A charter planning framework for Fortune 500 travel teams: approvals, operator review, executive scheduling and supplemental lift. Build an EXJET trip brief.",
     "kicker": "Executive & family travel",
     "kind": "article",
@@ -1405,6 +1454,26 @@
         "paragraphs": [
           "Track quote-to-approval time, changes after acceptance, final cost against the approved proposal and the reasons for exceptions. Record whether the itinerary met the business requirement. These measures help refine future briefs without inventing a savings percentage or treating every flight hour as an interchangeable product."
         ]
+      },
+      {
+        "heading": "Choose the right corporate travel option.",
+        "paragraphs": [
+          "A single executive trip, a board roadshow and a team movement need different briefs. Match the request to your travel policy, schedule and aircraft requirements before comparing proposals."
+        ],
+        "links": [
+          {
+            "label": "Executive roadshow charter",
+            "path": "/corporate-travel/roadshows"
+          },
+          {
+            "label": "Corporate group air charter",
+            "path": "/group-charter/corporate-teams"
+          },
+          {
+            "label": "Supplemental aircraft charter",
+            "path": "/corporate-travel/supplemental-lift"
+          }
+        ]
       }
     ],
     "parent": {
@@ -1422,7 +1491,7 @@
   {
     "path": "/guides/corporate-charter-procurement",
     "title": "Corporate jet charter procurement checklist",
-    "seoTitle": "Corporate jet charter procurement checklist | EXJET",
+    "seoTitle": "Corporate Private Jet Charter Procurement Checklist | EXJET",
     "description": "Compare charter proposals with a practical procurement checklist covering operator details, aircraft, total cost, approvals and change terms for executive travel.",
     "kicker": "Executive & family travel",
     "kind": "article",
@@ -1499,7 +1568,7 @@
   {
     "path": "/corporate-travel/supplemental-lift",
     "title": "Supplemental aircraft charter for corporate travel",
-    "seoTitle": "Supplemental aircraft charter for corporate travel | EXJET",
+    "seoTitle": "Supplemental Lift & Corporate Aircraft Charter | EXJET",
     "description": "Plan supplemental charter when a corporate aircraft or aviation program cannot cover the mission. Define cabin needs, operator review and backup expectations.",
     "kicker": "Executive & family travel",
     "kind": "article",
@@ -1590,7 +1659,7 @@
   {
     "path": "/corporate-travel/roadshows",
     "title": "Multi-city private jet charter for executive roadshows",
-    "seoTitle": "Multi-city private jet charter for executive roadshows | EXJET",
+    "seoTitle": "Executive Roadshow & Multi-City Private Jet Charter | EXJET",
     "description": "Plan executive roadshows and multi-city charter with meeting buffers, airport choices, passenger changes and clear approvals. Discuss your schedule with EXJET.",
     "kicker": "Executive & family travel",
     "kind": "article",
@@ -1659,7 +1728,7 @@
   {
     "path": "/guides/family-office-flight-planning",
     "title": "Family office flight planning checklist",
-    "seoTitle": "Family office flight planning checklist | EXJET",
+    "seoTitle": "Family Office Private Flight Planning Checklist | EXJET",
     "description": "Prepare a family office charter brief covering household needs, seating, sleeping, baggage, approvals and destination transfers for principals and guests.",
     "kicker": "Executive & family travel",
     "kind": "article",
@@ -1756,7 +1825,7 @@
   {
     "path": "/guides/executive-airport-planning",
     "title": "Executive charter airport planning by business market",
-    "seoTitle": "Executive charter airport planning by business market | EXJET",
+    "seoTitle": "Private Jet Airport Planning for Executive Travel | EXJET",
     "description": "Compare Dallas, New York, Miami, Palm Beach and Los Angeles airport choices by meeting address, FBO handoff and transfer requirements for executive travel.",
     "kicker": "Executive & family travel",
     "kind": "article",
@@ -1861,7 +1930,7 @@
   {
     "path": "/guides/aircraft-tail-number-verification",
     "title": "How to verify a charter aircraft tail number",
-    "seoTitle": "How to verify a charter aircraft tail number | EXJET",
+    "seoTitle": "Charter Aircraft Tail Number & Operator Verification | EXJET",
     "description": "Use a charter aircraft tail number to verify the proposed model, operator and cabin. Learn why database records and published specs do not confirm availability.",
     "kicker": "Executive & family travel",
     "kind": "article",
@@ -1932,7 +2001,7 @@
   {
     "path": "/guides/private-aviation-program-comparison",
     "title": "NetJets, Flexjet, VistaJet and charter: what to compare",
-    "seoTitle": "NetJets, Flexjet, VistaJet and charter: what to compare | EXJET",
+    "seoTitle": "NetJets vs Flexjet vs VistaJet vs Charter: Comparison | EXJET",
     "description": "Compare private aviation programs and on-demand charter by commitment, trip cost, aircraft fit and terms. A practical buying framework for EAs and family offices.",
     "kicker": "Executive & family travel",
     "kind": "article",
@@ -2059,7 +2128,7 @@
   {
     "path": "/aircraft-performance/global-6000",
     "title": "Bombardier Global 6000 range, performance and specifications",
-    "seoTitle": "Bombardier Global 6000 range, performance and specifications | EXJET",
+    "seoTitle": "Global 6000 Range, Performance & Specs | EXJET",
     "description": "Compare Bombardier Global 6000 range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
     "kicker": "Aircraft performance reference",
     "kind": "article",
@@ -2189,7 +2258,7 @@
   {
     "path": "/aircraft-performance/global-7500",
     "title": "Bombardier Global 7500 range, performance and specifications",
-    "seoTitle": "Bombardier Global 7500 range, performance and specifications | EXJET",
+    "seoTitle": "Global 7500 Range, Performance & Specs | EXJET",
     "description": "Compare Bombardier Global 7500 range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
     "kicker": "Aircraft performance reference",
     "kind": "article",
@@ -2311,7 +2380,7 @@
   {
     "path": "/aircraft-performance/citation-longitude",
     "title": "Cessna Citation Longitude range, performance and specifications",
-    "seoTitle": "Cessna Citation Longitude range, performance and specifications | EXJET",
+    "seoTitle": "Citation Longitude Range, Performance & Specs | EXJET",
     "description": "Compare Cessna Citation Longitude range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
     "kicker": "Aircraft performance reference",
     "kind": "article",
@@ -2445,7 +2514,7 @@
   {
     "path": "/aircraft-performance/citation-latitude",
     "title": "Cessna Citation Latitude range, performance and specifications",
-    "seoTitle": "Cessna Citation Latitude range, performance and specifications | EXJET",
+    "seoTitle": "Citation Latitude Range, Performance & Specs | EXJET",
     "description": "Compare Cessna Citation Latitude range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
     "kicker": "Aircraft performance reference",
     "kind": "article",
@@ -2579,7 +2648,7 @@
   {
     "path": "/aircraft-performance/falcon-6x",
     "title": "Dassault Falcon 6X range, performance and specifications",
-    "seoTitle": "Dassault Falcon 6X range, performance and specifications | EXJET",
+    "seoTitle": "Falcon 6X Range, Performance & Specs | EXJET",
     "description": "Compare Dassault Falcon 6X range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
     "kicker": "Aircraft performance reference",
     "kind": "article",
@@ -2713,7 +2782,7 @@
   {
     "path": "/aircraft-performance",
     "title": "Business jet performance and specification guides",
-    "seoTitle": "Business jet performance and specification guides | EXJET",
+    "seoTitle": "Business Jet Range, Performance & Specifications | EXJET",
     "description": "Compare business jet range, speed, cabin dimensions and passenger assumptions. Use manufacturer-sourced guides to prepare executive and family charter requests.",
     "kicker": "Aircraft research",
     "kind": "hub",
