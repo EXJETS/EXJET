@@ -48,12 +48,15 @@
       ]
     ],
     "note": "Published model figures are reference values, not a mission guarantee. Range, runway requirements and usable baggage depend on load, reserves and conditions; the operating crew confirms suitability.",
-    "floorplan": {
-      "src": "/images/manufacturers/latitude-floorplan.jpg",
-      "width": 600,
-      "height": 750
-    },
-    "source": "https://cessna.txtav.com/en/citation/latitude"
+    "source": "https://cessna.txtav.com/en/citation/latitude",
+    "floorplans": [
+      {
+        "src": "/images/manufacturers/latitude-floorplan.jpg",
+        "width": 600,
+        "height": 750,
+        "label": "Representative layout"
+      }
+    ]
   },
   "global-8000": {
     "name": "Global 8000",
@@ -104,12 +107,15 @@
       ]
     ],
     "note": "Range assumes Mach 0.85, eight passengers, four crew, ISA conditions and NBAA IFR reserves. Takeoff is at sea level, ISA and maximum takeoff weight; landing uses a typical landing weight. Cabin length excludes baggage. Actual mission performance varies.",
-    "floorplan": {
-      "src": "/images/manufacturers/global-8000-floorplan.png",
-      "width": 2600,
-      "height": 697
-    },
-    "source": "https://bombardier.com/en/aircraft/global-8000"
+    "source": "https://bombardier.com/en/aircraft/global-8000",
+    "floorplans": [
+      {
+        "src": "/images/manufacturers/global-8000-floorplan.png",
+        "width": 2600,
+        "height": 697,
+        "label": "Representative layout"
+      }
+    ]
   },
   "falcon-900": {
     "name": "Falcon 900LX",
@@ -153,5 +159,76 @@
     ],
     "note": "Figures refer specifically to the 900LX in the June 2020 technical backgrounder. Range assumes long-range cruise, six passengers, two crew and NBAA IFR reserves. Takeoff is at sea level, ISA and maximum takeoff weight. Landing is an FAR Part 91 reference, not a charter dispatch requirement. Cabin length excludes flight deck and baggage.",
     "source": "https://www.dassaultfalcon.com/app/uploads/2023/01/Falcon-900LX-Backgrounder.pdf"
+  },
+  "citation-longitude": {
+    "name": "Citation Longitude",
+    "metrics": [
+      [
+        "Maximum range",
+        "3,500 nm"
+      ],
+      [
+        "Maximum cruise",
+        "483 ktas"
+      ],
+      [
+        "Maximum altitude",
+        "45,000 ft"
+      ]
+    ],
+    "cabin": [
+      [
+        "Cabin height",
+        "6 ft"
+      ],
+      [
+        "Cabin width",
+        "6 ft 5 in"
+      ],
+      [
+        "Cabin length",
+        "25 ft 2 in"
+      ],
+      [
+        "Baggage volume",
+        "112 cu ft"
+      ]
+    ],
+    "performance": [
+      [
+        "Takeoff field length",
+        "4,810 ft"
+      ],
+      [
+        "Landing distance",
+        "3,170 ft"
+      ],
+      [
+        "Maximum takeoff weight",
+        "39,500 lb"
+      ]
+    ],
+    "note": "Manufacturer-published model figures, reviewed 23 October 2026. Maximum range and maximum cruise are separate reference values and are not achieved simultaneously. Payload, reserves, weather, airport elevation, runway conditions and the individual aircraft affect usable range and runway requirements. The operating carrier confirms mission suitability and required dispatch margins.",
+    "floorplans": [
+      {
+        "label": "Standard",
+        "src": "/images/manufacturers/longitude-floorplan-standard.jpg",
+        "width": 600,
+        "height": 750
+      },
+      {
+        "label": "Aft couch",
+        "src": "/images/manufacturers/longitude-floorplan-aft-couch.jpg",
+        "width": 600,
+        "height": 750
+      },
+      {
+        "label": "Side-facing seat",
+        "src": "/images/manufacturers/longitude-floorplan-side-seat.jpg",
+        "width": 600,
+        "height": 750
+      }
+    ],
+    "source": "https://cessna.txtav.com/en/citation/longitude"
   }
 }

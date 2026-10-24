@@ -7,6 +7,17 @@ const root = fileURLToPath(new URL("../", import.meta.url));
 const manifest = JSON.parse(await readFile(path.join(root, "PHOTO-SOURCES.json"), "utf8"));
 const approved = new Map(manifest.assets.map(asset => [asset.file, asset]));
 const errors = [];
+const references = JSON.parse(await readFile(path.join(root, "data/aircraft-reference.json"), "utf8"));
+for (const reference of Object.values(references)) {
+  for (const layout of reference.floorplans ?? []) {
+    const asset = approved.get(layout.src);
+    if (!asset || asset.model !== reference.name || asset.scene !== "floorplan") {
+      errors.push(`Floor plan does not match its aircraft model: ${reference.name} — ${layout.src}`);
+    } else if (asset.dimensions.width !== layout.width || asset.dimensions.height !== layout.height) {
+      errors.push(`Floor plan dimensions differ from the source record: ${layout.src}`);
+    }
+  }
+}
 const manufacturerHosts = ["bombardier.com", "gulfstream.com", "cessna.txtav.com", "dassaultfalcon.com", "dassault-business.com", "embraer.com", "boeing.com"];
 // Official media services are checked as source/asset pairs. A CDN hostname
 // alone is not provenance and must never approve unrelated third-party images.
@@ -22,6 +33,9 @@ function isVerifiedManufacturerMedia(asset) {
   }
   if (asset.source_kind !== "manufacturer-press-photo") return false;
   const pairs = [
+    ["https://media.txtav.com/assets/225549/", [
+      "https://d21buns5ku92am.cloudfront.net/69280/images/511142-375594-Longitude_Exterior_2019_02-c42cc7-original-1610392719-61b2b6-large-1699376158.jpg",
+    ]],
     ["https://www.gulfstreamnews.com/en/media/", [
       "https://gulfstream.widen.net/content/j3bbqgfcga/jpeg/d_g650_a_newsroom_00210.jpeg?position=c&color=ffffffff&quality=80&u=ozllfz",
       "https://gulfstream.widen.net/content/cmwvhawnv9/jpeg/d_g650_g650ER_i_newsroom_0147.jpeg?position=c&color=ffffffff&quality=80&u=ozllfz",

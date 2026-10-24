@@ -8,6 +8,7 @@ import { aircraftCategories } from "@/data/aircraftCategories";
 import { buildMetadata } from "@/data/seo";
 import { AircraftExplorer } from "@/components/AircraftExplorer";
 import { aircraft } from "@/data/aircraft";
+import { getAircraftComparison } from "@/data/aircraft-reference";
 
 export const metadata = buildMetadata("/aircraft");
 
@@ -15,7 +16,7 @@ export default function AircraftPage() {
   return (
     <>
       <PageHero heading="Explore business aircraft" eyebrow="Aircraft categories" title={<>The right class.<br /><em>The right fit.</em></>} copy="Compare cabin classes and passenger capacity. Your advisor confirms availability, configuration and suitability for your route." />
-      <AircraftExplorer items={aircraft} />
+      <AircraftExplorer items={aircraft} references={Object.fromEntries(aircraft.map(item => [item.slug, getAircraftComparison(item.slug)]))} />
       <section className="section" aria-label="Explore aircraft exteriors and cabins">
         <h2 className="sr-only">Featured business aircraft</h2>
         <HomeAircraftEditorial />

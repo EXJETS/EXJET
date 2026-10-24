@@ -687,5 +687,75 @@
       }
     ],
     "sources": []
+  },
+  "citation-longitude": {
+    "description": "Explore Citation Longitude charter with manufacturer photography, three cabin layouts, range and cabin specifications. Request a complete EXJET trip quote.",
+    "sections": [
+      {
+        "heading": "A cabin designed around the working day",
+        "paragraphs": [
+          "The Citation Longitude combines a flat-floor cabin with seating that can be arranged for conversation, work or rest. Review the three manufacturer layout examples above to understand how an aft couch or side-facing seat changes the use of the cabin. The layout and amenities offered for a charter are confirmed for the specific aircraft."
+        ]
+      },
+      {
+        "heading": "Range and airport planning",
+        "paragraphs": [
+          "Cessna publishes a maximum range of 3,500 nautical miles and a maximum cruise speed of 483 knots true airspeed. These describe different operating conditions: the maximum range is not a promise to fly that distance at the maximum cruise speed. Share the exact airports, passenger count and baggage so the operating carrier can assess the mission.",
+          "For a Dallas departure, a coast-to-coast itinerary can be a useful comparison with the Citation Latitude or Challenger 350. Winds, runway conditions, payload and reserves determine whether a particular route can be operated nonstop."
+        ],
+        "links": [
+          {
+            "label": "Compare the Citation Latitude",
+            "path": "/aircraft/citation-latitude"
+          },
+          {
+            "label": "Explore the Challenger 350",
+            "path": "/aircraft/challenger-350"
+          }
+        ]
+      },
+      {
+        "heading": "What to confirm before choosing an aircraft",
+        "paragraphs": [
+          "Ask for the registration, current cabin photographs, approved passenger seating, baggage limits and installed connectivity. The published 112 cubic feet of baggage volume does not establish how many individual cases will fit or their permitted combined weight. Give your advisor dimensions for oversized items."
+        ]
+      },
+      {
+        "heading": "A complete quote for your itinerary",
+        "paragraphs": [
+          "Longitude charter pricing depends on the available aircraft, positioning, flight time, airport charges, crew requirements and taxes. Compare a complete trip quote with clear inclusions and change terms. This model profile and its manufacturer imagery describe the aircraft type; they do not represent live inventory or a guaranteed price."
+        ],
+        "links": [
+          {
+            "label": "Request a Citation Longitude quote",
+            "path": "/contact?aircraft=citation-longitude"
+          },
+          {
+            "label": "How charter pricing works",
+            "path": "/pricing"
+          }
+        ]
+      }
+    ],
+    "faqs": [
+      {
+        "question": "What is the Citation Longitude’s published range?",
+        "answer": "Cessna publishes a maximum range of 3,500 nautical miles. Actual trip capability depends on payload, weather, reserves and the operating conditions confirmed by the carrier."
+      },
+      {
+        "question": "Which cabin layout will my aircraft have?",
+        "answer": "The standard, aft couch and side-facing seat layouts are representative manufacturer options. Your advisor confirms the actual layout and approved seating for the aircraft proposed for your trip."
+      },
+      {
+        "question": "Is the Citation Longitude the same as the Citation Latitude?",
+        "answer": "They are distinct models. The Longitude has a longer cabin and a higher published maximum range. Photographs, layouts and performance figures on this page refer specifically to the Longitude."
+      }
+    ],
+    "sources": [
+      {
+        "label": "Cessna Citation Longitude — manufacturer specifications and cabin layouts",
+        "url": "https://cessna.txtav.com/en/citation/longitude"
+      }
+    ]
   }
 }
