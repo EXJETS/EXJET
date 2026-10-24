@@ -28,7 +28,7 @@ export function AircraftDetail({ item }: { item: Aircraft }) {
           ))}
         </div>
       </div>
-      <p className="detail-viewer__caption">Representative aircraft. Your advisor confirms the specific aircraft and cabin.</p>
+
       </> : null}
     </div>
   );

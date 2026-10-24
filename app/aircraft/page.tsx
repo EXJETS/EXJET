@@ -2,7 +2,6 @@ import { ContentCollection } from "@/components/EditorialPage";
 import { AircraftCategoryCard } from "@/components/AircraftCategoryCard";
 import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
-import { HomeAircraftEditorial } from "@/components/HomeAircraftEditorial";
 import { SectionIntro } from "@/components/SectionIntro";
 import { aircraftCategories } from "@/data/aircraftCategories";
 import { buildMetadata } from "@/data/seo";
@@ -17,10 +16,6 @@ export default function AircraftPage() {
     <>
       <PageHero heading="Explore business aircraft" eyebrow="Aircraft categories" title={<>The right class.<br /><em>The right fit.</em></>} copy="Compare cabin classes and passenger capacity. Your advisor confirms availability, configuration and suitability for your route." />
       <AircraftExplorer items={aircraft} references={Object.fromEntries(aircraft.map(item => [item.slug, getAircraftComparison(item.slug)]))} />
-      <section className="section" aria-label="Explore aircraft exteriors and cabins">
-        <h2 className="sr-only">Featured business aircraft</h2>
-        <HomeAircraftEditorial />
-      </section>
       <section className="aircraft-category-index section">
         <div className="shell">
           <SectionIntro

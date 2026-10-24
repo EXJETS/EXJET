@@ -13,7 +13,7 @@ export function AircraftReference({ slug }: { slug: string }) {
         {[{ title: "Cabin dimensions", rows: reference.cabin }, { title: "Performance reference", rows: reference.performance }].map(group => <div key={group.title}><h3>{group.title}</h3><dl>{group.rows.map(([label, value]) => <div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>)}
       </div>
       {reference.floorplans?.length ? <AircraftFloorplans key={slug} name={reference.name} layouts={reference.floorplans} /> : null}
-      <details className="aircraft-reference__notes"><summary>Specifications & operating assumptions</summary><p>{reference.note}</p><a href={reference.source} target="_blank" rel="noopener noreferrer">Technical reference ↗</a></details>
+      <details className="aircraft-reference__notes"><summary>Specifications & operating assumptions</summary><p>{reference.note}</p></details>
     </div>
   </section>;
 }

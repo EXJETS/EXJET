@@ -7,20 +7,10 @@ export function AircraftCard({ item, index }: { item: Aircraft; index: number })
 
   return (
     <article className="aircraft-card">
-      <Link href={href} className={`aircraft-card__media${item.cardFit === "contain" ? " aircraft-card__media--contain" : ""}`}>
-        {item.image ? (
-          <picture>
-            {item.portraitImage ? <source media="(max-width: 820px)" srcSet={item.portraitImage} /> : null}
-            <Image src={item.image} alt={`${item.name} ${item.scenes.find(scene => scene.image === item.image)?.label.toLowerCase() ?? "aircraft"}`} fill sizes="(max-width: 820px) 100vw, 50vw" style={{objectFit: item.cardFit ?? "cover"}} />
-          </picture>
-        ) : (
-          <div className="aircraft-card__placeholder">
-            <span>Verified imagery coming soon</span>
-            <strong>{item.name}</strong>
-          </div>
-        )}
+      {item.image ? <Link href={href} className={`aircraft-card__media${item.cardFit === "contain" ? " aircraft-card__media--contain" : ""}`}>
+        <Image src={item.image} alt={`${item.name} ${item.scenes.find(scene => scene.image === item.image)?.label.toLowerCase() ?? "aircraft"}`} fill sizes="(max-width: 820px) 100vw, 50vw" style={{objectFit: item.cardFit ?? "cover"}} />
         {item.status === "coming-soon" ? <span className="aircraft-card__status">Coming soon to management</span> : null}
-      </Link>
+      </Link> : null}
       <div className="aircraft-card__content">
         <div>
           <span>0{index + 1}</span>

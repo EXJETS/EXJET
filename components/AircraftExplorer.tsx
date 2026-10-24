@@ -6,7 +6,6 @@ import { useState } from "react";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react/dist/csr/MagnifyingGlass";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/csr/ArrowRight";
 import { XIcon } from "@phosphor-icons/react/dist/csr/X";
-import { AirplaneTiltIcon } from "@phosphor-icons/react/dist/csr/AirplaneTilt";
 import type { Aircraft } from "@/data/aircraft";
 import type { AircraftComparison } from "@/data/aircraft-reference";
 import styles from "./Explore.module.css";
@@ -16,7 +15,7 @@ export function AircraftExplorer({ items, references }: { items: Aircraft[]; ref
   const [category, setCategory] = useState("All aircraft");
   const [selected, setSelected] = useState<string[]>([]);
   const categories = ["All aircraft", ...new Set(items.map(item => item.category))];
-  const visible = items.filter(item => (category === "All aircraft" || item.category === category) && `${item.name} ${item.maker} ${item.category}`.toLowerCase().includes(query.trim().toLowerCase()));
+  const visible = items.filter(item => (category === "All aircraft" || item.category === category) && `${item.name} ${item.maker} ${item.category}`.toLowerCase().includes(query.trim().toLowerCase())).sort((a, b) => Number(Boolean(b.image)) - Number(Boolean(a.image)));
   const compared = items.filter(item => selected.includes(item.slug));
   const toggle = (slug: string) => setSelected(current => current.includes(slug) ? current.filter(item => item !== slug) : current.length < 3 ? [...current, slug] : current);
 
@@ -29,9 +28,9 @@ export function AircraftExplorer({ items, references }: { items: Aircraft[]; ref
     </div>
     <p className={styles.resultCount} role="status">{visible.length} aircraft {visible.length === 1 ? "profile" : "profiles"}{selected.length ? ` · ${selected.length} selected for comparison` : ""}</p>
     <div className={styles.grid}>{visible.map(item => <article className={styles.card} key={item.slug}>
-      <Link className={styles.aircraftPhoto} href={`/aircraft/${item.slug}`} aria-label={`Explore ${item.name}`}>
-        {item.image ? <Image src={item.image} alt={`${item.maker} ${item.name}`} width={800} height={480} sizes="(max-width: 720px) 100vw, (max-width: 1100px) 50vw, 33vw" style={{ objectFit: item.cardFit || "contain" }} /> : <AirplaneTiltIcon size={64} weight="light" aria-hidden="true" />}
-      </Link>
+      {item.image ? <Link className={styles.aircraftPhoto} href={`/aircraft/${item.slug}`} aria-label={`Explore ${item.name}`}>
+        <Image src={item.image} alt={`${item.name} ${item.scenes.find(scene => scene.image === item.image)?.label.toLowerCase() ?? "aircraft"}`} width={800} height={480} sizes="(max-width: 760px) 100vw, 50vw" style={{ objectFit: item.cardFit || "contain" }} />
+      </Link> : null}
       <div className={styles.cardBody}><p className={styles.kicker}>{item.category}</p><h3><Link href={`/aircraft/${item.slug}`}>{item.name}</Link></h3><p>{item.summary}</p>
         <dl className={styles.facts}><div><dt>Passengers</dt><dd>{item.typical.passengers}</dd></div><div><dt>{references[item.slug] ? "Published range" : "Cabin"}</dt><dd>{references[item.slug]?.range ?? item.typical.cabin}</dd></div></dl>
         <div className={styles.cardActions}><Link href={`/aircraft/${item.slug}`}>Explore aircraft <ArrowRightIcon size={18} aria-hidden="true" /></Link>
@@ -49,7 +48,6 @@ export function AircraftExplorer({ items, references }: { items: Aircraft[]; ref
       <div className={styles.tableScroll} tabIndex={0} role="region" aria-label="Aircraft comparison table"><table><caption className="sr-only">Aircraft planning profiles</caption><thead><tr><th scope="col">Compare</th>{compared.map(item => <th scope="col" key={item.slug}>{item.name}<button className={styles.remove} aria-label={`Remove ${item.name} from comparison`} onClick={() => toggle(item.slug)}><XIcon size={16} aria-hidden="true" /></button></th>)}</tr></thead><tbody>
         {([['Category', 'category'], ['Passengers', 'passengers'], ['Cabin', 'cabin']] as const).map(([label,key]) => <tr key={key}><th scope="row">{label}</th>{compared.map(item => <td key={item.slug}>{key === 'category' ? item.category : item.typical[key]}</td>)}</tr>)}
         {([['Published range', 'range'], ['Cabin height', 'height'], ['Cabin width', 'width'], ['Cabin length', 'length'], ['Baggage volume', 'baggage']] as const).map(([label,key]) => <tr key={key}><th scope="row">{label}</th>{compared.map(item => <td key={item.slug}>{references[item.slug]?.[key] ?? (key === 'range' ? item.typical.range : key === 'baggage' ? item.typical.baggage : 'Confirm with advisor')}</td>)}</tr>)}
-        <tr><th scope="row">Manufacturer reference</th>{compared.map(item => <td key={item.slug}>{references[item.slug] ? <a href={references[item.slug]!.source} target="_blank" rel="noopener noreferrer">{item.name} specifications <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a> : 'Ask your advisor for model specifications'}</td>)}</tr>
         <tr><th scope="row">Next step</th>{compared.map(item => <td key={item.slug}><Link href={`/aircraft/${item.slug}`}>View {item.name}</Link></td>)}</tr>
       </tbody></table></div>
       <p className={styles.comparisonNote}>Published figures describe the aircraft model, not the available aircraft. Range assumptions differ by manufacturer; payload, reserves and conditions affect each mission. Review the model page for operating assumptions and representative layouts.</p>

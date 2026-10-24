@@ -6,11 +6,10 @@
     "kicker": "Private jet charter",
     "kind": "service",
     "image": {
-      "src": "/images/editorial/falcon-8x-flight-coast.jpg",
-      "alt": "Dassault Falcon 8X above a Mediterranean coastline",
-      "width": 952,
-      "height": 613,
-      "caption": "Dassault Falcon 8X in flight. Representative aircraft; availability is confirmed for each trip."
+      "src": "/images/manufacturers/falcon-8x-rest.jpg",
+      "alt": "Falcon 8X rest area",
+      "width": 2000,
+      "height": 1100
     },
     "sections": [
       {
@@ -123,11 +122,10 @@
     "kicker": "Corporate travel",
     "kind": "service",
     "image": {
-      "src": "/images/editorial/citation-longitude-cabin.jpg",
-      "alt": "Citation Longitude cabin with cream leather club seating and wood trim",
+      "src": "/images/manufacturers/longitude-ecru.jpg",
+      "alt": "Citation Longitude Ecru cabin",
       "width": 1920,
-      "height": 1080,
-      "caption": "Citation Longitude cabin. Seating and amenities vary by aircraft."
+      "height": 1080
     },
     "sections": [
       {
@@ -409,11 +407,10 @@
       "/articles/private-charter-versus-jet-cards"
     ],
     "image": {
-      "src": "/images/editorial/citation-cj4-gen2-leather-detail.jpg",
-      "alt": "Close-up of a Citation CJ4 Gen2 leather seat and diamond stitching",
-      "width": 2000,
-      "height": 1334,
-      "caption": "Citation CJ4 Gen2 leather seating detail. Representative manufacturer photography."
+      "src": "/images/manufacturers/falcon-6x-galley.jpg",
+      "alt": "Falcon 6X galley with wood cabinetry",
+      "width": 1920,
+      "height": 1281
     },
     "seoTitle": "Private Jet Charter Cost & Hourly Pricing Guide | EXJET",
     "sources": [

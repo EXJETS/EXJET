@@ -18,37 +18,9 @@ for (const reference of Object.values(references)) {
     }
   }
 }
-const manufacturerHosts = ["bombardier.com", "gulfstream.com", "cessna.txtav.com", "dassaultfalcon.com", "dassault-business.com", "embraer.com", "boeing.com"];
-// Official media services are checked as source/asset pairs. A CDN hostname
-// alone is not provenance and must never approve unrelated third-party images.
-function isVerifiedManufacturerMedia(asset) {
-  // The user's fallback sourcing allowance is limited here to one inspected,
-  // uncropped archival photo explicitly credited to Bombardier Aerospace.
-  // Its publisher provenance and 800px limit remain disclosed in the manifest.
-  if (asset.source_kind === "manufacturer-credited-republication") {
-    return asset.model === "Challenger 300" &&
-      asset.source_page === "https://www.bjtonline.com/business-jet-news/bombardiers-challenger-300" &&
-      asset.image_url === "https://www.bjtonline.com/sites/bjtonline.com/files/01_c300_03a_507.jpg" &&
-      Boolean(asset.source_limitation);
-  }
-  if (asset.source_kind !== "manufacturer-press-photo") return false;
-  const pairs = [
-    ["https://media.txtav.com/assets/225549/", [
-      "https://d21buns5ku92am.cloudfront.net/69280/images/511142-375594-Longitude_Exterior_2019_02-c42cc7-original-1610392719-61b2b6-large-1699376158.jpg",
-    ]],
-    ["https://www.gulfstreamnews.com/en/media/", [
-      "https://gulfstream.widen.net/content/j3bbqgfcga/jpeg/d_g650_a_newsroom_00210.jpeg?position=c&color=ffffffff&quality=80&u=ozllfz",
-      "https://gulfstream.widen.net/content/cmwvhawnv9/jpeg/d_g650_g650ER_i_newsroom_0147.jpeg?position=c&color=ffffffff&quality=80&u=ozllfz",
-    ]],
-    ["https://media.txtav.com/194346-textron-aviation-brings-faster-connectivity-to-one-of-the-fastest-civilian-aircraft-in-the-world/", [
-      "https://d21buns5ku92am.cloudfront.net/69280/images/373766-750_X_0004-44bb54-original-1608525319.jpg",
-    ]],
-    ["https://www.globenewswire.com/news-release/2020/12/23/2150237/0/en/bombardier-announces-sale-of-10-challenger-350-business-jets.html", [
-      "https://ml.globenewswire.com/Resource/Download/c7bf275c-aace-4393-9d94-dd0d664aca94",
-    ]],
-  ];
-  return pairs.some(([source, images]) => source === asset.source_page && images.includes(asset.image_url));
-}
+// Owner's source restriction: only the four supplied manufacturer websites.
+// No uploader, press-distributor, dealership or archival republication exceptions.
+const manufacturerHosts = ["bombardier.com", "cessna.txtav.com", "dassaultfalcon.com", "embraer.com"];
 function isManufacturerUrl(value) {
   try {
     const url = new URL(value);
@@ -70,24 +42,14 @@ async function checkDirectory(directory) {
       continue;
     }
     const bytes = await readFile(filename);
-    // Explicit owner selections: the uploaded hero and restored original cargo photo.
-    // Retain exact bytes without asserting independent manufacturer provenance.
-    const isOwnerSelection =
-      (publicPath === "/images/home/owner-selected-hero.webp" && asset.source_kind === "user-selected-upload") ||
-      (publicPath === "/images/cargo-charter-747.webp" && asset.source_kind === "user-selected-existing-asset");
-    if (isOwnerSelection) {
-      const hash = createHash("sha256").update(bytes).digest("hex");
-      if (hash !== asset.sha256 || !asset.user_approved_on || !asset.source_library_file_id) {
-        errors.push(`Owner-selected image differs from approved source: ${publicPath}`);
-      }
-      approved.delete(publicPath);
-      continue;
-    }
-    if ((!isManufacturerUrl(asset.source_page) || !isManufacturerUrl(asset.image_url)) && !isVerifiedManufacturerMedia(asset)) {
+    if (!isManufacturerUrl(asset.source_page) || !isManufacturerUrl(asset.image_url)) {
       errors.push(`Photo source is outside the specified manufacturer websites: ${publicPath}`);
     }
-    if (!["manufacturer-product-gallery", "manufacturer-campaign", "manufacturer-press-photo", "manufacturer-service-showcase", "manufacturer-credited-republication"].includes(asset.source_kind) || /pre-?owned|used-aircraft|dealer/i.test(asset.source_page)) {
+    if (!["manufacturer-product-gallery", "manufacturer-campaign", "manufacturer-service-showcase"].includes(asset.source_kind) || /pre-?owned|used-aircraft|dealer/i.test(asset.source_page)) {
       errors.push(`Photo is not approved manufacturer promotional imagery: ${publicPath}`);
+    }
+    if (!asset.visually_inspected || asset.ui_overlay_free !== true) {
+      errors.push(`Photo has not passed visual review for gallery counters, controls and overlays: ${publicPath}`);
     }
     const sha256 = createHash("sha256").update(bytes).digest("hex");
     if (asset.scene === "exterior" && asset.flight_status !== "in-flight") {

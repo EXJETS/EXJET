@@ -72,7 +72,6 @@ export default async function AircraftDetailPage({ params }: PageProps) {
       {guide ? <div className="ex-editorial"><div className="ex-container ex-content-layout ex-content-layout--outline"><PageOutline sections={guide.sections} /><div className="ex-reading">
         <ContentSections sections={guide.sections} />
         <ContentFaq faqs={guide.faqs} />
-        {guide.sources.length ? <section className="ex-sources"><h2>Manufacturer references</h2><ul>{guide.sources.map(source => <li key={source.url}><a href={source.url} target="_blank" rel="noopener noreferrer">{source.label}</a></li>)}</ul></section> : null}
       </div></div></div> : null}
     </>
   );

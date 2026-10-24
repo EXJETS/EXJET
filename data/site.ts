@@ -200,7 +200,7 @@ export function localBusinessJsonLd() {
     "@id": `${siteOrigin}/#dallas-office`,
     name: siteConfig.name,
     url: siteConfig.url,
-    image: absoluteUrl("/images/manufacturers/latitude-header-new.jpg"),
+    image: absoluteUrl("/images/manufacturers/global-8000-clouds.webp"),
     logo: absoluteUrl("/brand/exjet-wordmark.svg"),
     description: siteConfig.description,
     telephone: siteConfig.phone.primary.e164,
