@@ -16,7 +16,7 @@ import styles from "./SiteHeader.module.css";
 
 const primary = [
   { href: "/services", label: "Services" },
-  { href: "/private-jet-charter", label: "Charters" },
+  { href: "/aircraft-charter", label: "Charter" },
   { href: "/aircraft", label: "Aircraft" },
   { href: "/empty-legs", label: "Empty legs" },
 ];

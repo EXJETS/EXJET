@@ -1,3 +1,7 @@
+# Service positioning — 24 October 2026
+
+EXJET is an aviation solutions company serving business and commercial aviation. The service order is Charter (Passenger/Cargo), Dry Lease (Passenger/Cargo), ACMI (Passenger/Cargo), Fractional, Ownership, Management, Crew, Engineering & STC, Service & Repair, Interior Completion, Empty Legs. This supersedes every earlier five-service restriction. Keep the navbar visual design; synchronize its service links with data/site.ts.
+
 # Full template redesign — 24 October 2026
 
 The public homepage, service, aircraft, editorial and footer templates now use a Bombardier-inspired editorial system: expansive campaign imagery, light large display type, asymmetric introductions, fine rules, spacious sections and black-label actions. Preserve the existing navbar and menu exactly. Do not modify Avinode integration or vendor UI. Responsive layouts stack at 760px; avoid desktop-sized text on phones. Manufacturer specifications and representative floor plans are model-specific and carry operating assumptions.

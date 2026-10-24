@@ -9,8 +9,8 @@ type SeoEntry = {
 
 export const pageSeo = {
   "/": {
-    title: "Private Jet Charter, Empty Legs & Ownership | EXJET",
-    description: "Arrange private jet charter and empty leg flights with EXJET. Explore dry lease, fractional ownership and aircraft acquisition advice from our Dallas team.",
+    title: "Business & Commercial Aviation Solutions | EXJET",
+    description: "EXJET supports business and commercial aviation with passenger and cargo charter, dry lease, ACMI, ownership, crew and aircraft technical services.",
   },
   "/charter": {
     title: "Request a Private Jet Charter Quote | Flight Search | EXJET",
@@ -45,16 +45,16 @@ export const pageSeo = {
     description: "Learn how EXJET coordinates aircraft selection, operator review and charter planning. Explore aviation consulting and the questions to ask before booking.",
   },
   "/about": {
-    title: "About EXJET | Business Aviation Solutions & Consulting",
-    description: "Meet EXJET, a Dallas-based business aviation solutions company founded by pilots. Explore charter, aircraft ownership and technical project consulting.",
+    title: "About EXJET | Business & Commercial Aviation Solutions",
+    description: "EXJET is a Dallas-based aviation solutions company serving business and commercial aviation, from charter and leasing to ownership and technical support.",
   },
   "/faq": {
     title: "Private Jet Charter FAQ | EXJET",
     description: "Find answers about charter pricing, aircraft selection, empty legs, passenger details and operator checks. Learn what to confirm before booking with EXJET.",
   },
   "/contact": {
-    title: "Contact EXJET | Private Jet Charter & Ownership",
-    description: "Contact EXJET for private jet charter, empty leg flights, dry lease, fractional ownership and aircraft acquisitions. Discuss your route or aviation plans.",
+    title: "Contact EXJET | Aviation Solutions",
+    description: "Contact EXJET for business and commercial aviation solutions. Discuss passenger and cargo charter, leasing, ACMI, ownership, crew or technical requirements.",
   },
   "/privacy": {
     title: "Privacy Policy | EXJET",

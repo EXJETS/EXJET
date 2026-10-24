@@ -448,16 +448,16 @@
   },
   {
     "path": "/aircraft-management",
-    "title": "Aircraft management consulting",
-    "seoTitle": "Aircraft Management Consulting & Owner Support | EXJET",
-    "description": "Plan aircraft management with EXJET in Dallas. Compare operating budgets, provider proposals, maintenance coordination and reporting for your business jet.",
-    "kicker": "EXJET business aviation solutions",
+    "title": "Aircraft management.",
+    "seoTitle": "Aircraft Management & Operating Support | EXJET",
+    "description": "Plan aircraft management for business and commercial aviation with EXJET. Coordinate operating budgets, crew, maintenance providers and owner reporting.",
+    "kicker": "Business & commercial aviation",
     "kind": "service",
     "parent": {
       "name": "Services",
       "path": "/services"
     },
-    "updated": "2026-10-19",
+    "updated": "2026-10-24",
     "consultation": {
       "label": "Discuss your project",
       "subject": "Aircraft management consulting"
@@ -466,7 +466,7 @@
       {
         "heading": "An operating plan built around the owner.",
         "paragraphs": [
-          "EXJET provides aircraft management consulting for private owners, family offices and corporate aviation teams. Start with how the aircraft needs to work: annual utilization, typical missions, passenger requirements, home base and the level of owner involvement.",
+          "EXJET supports aircraft management planning for business and commercial aviation. Start with utilization, operating base, passenger or cargo missions, crew coverage and the owner’s reporting requirements.",
           "A useful management brief connects daily operations with the longer ownership plan. EXJET helps organize the requirements, compare provider proposals and clarify the decisions that need owner approval. The written engagement sets the services, reporting and responsibilities for your aircraft."
         ]
       },
@@ -533,16 +533,16 @@
   },
   {
     "path": "/interior-completions",
-    "title": "Aircraft interior completions and refurbishment consulting",
-    "seoTitle": "Aircraft Interior Completions & Refurbishment Consulting | EXJET",
-    "description": "Plan a private jet interior refurbishment or completion with EXJET. Define cabin requirements, compare proposals and coordinate design, budget and downtime.",
-    "kicker": "EXJET business aviation solutions",
+    "title": "Interior completion.",
+    "seoTitle": "Aircraft Interior Completion & Refurbishment | EXJET",
+    "description": "Plan aircraft interior completion and refurbishment with EXJET. Coordinate cabin requirements, provider proposals, budget and delivery for your aircraft.",
+    "kicker": "Business & commercial aviation",
     "kind": "service",
     "parent": {
       "name": "Services",
       "path": "/services"
     },
-    "updated": "2026-10-19",
+    "updated": "2026-10-24",
     "consultation": {
       "label": "Discuss your project",
       "subject": "Aircraft interior completions consultation"
@@ -712,22 +712,22 @@
   },
   {
     "path": "/services",
-    "title": "Services",
-    "seoTitle": "Private Aviation Services: Charter, Leasing & Ownership | EXJET",
-    "description": "Explore private jet charter, empty leg flights, dry lease, fractional ownership and aircraft acquisition services. Compare your options with EXJET.",
-    "kicker": "Five ways to fly",
+    "title": "Aviation solutions.",
+    "seoTitle": "Business & Commercial Aviation Services | EXJET",
+    "description": "Explore EXJET aviation solutions: passenger and cargo charter, dry lease, ACMI, ownership, management, crew, engineering, repair and interior completion.",
+    "kicker": "Business & commercial aviation",
     "kind": "hub",
     "serviceCatalog": true,
-    "updated": "2026-10-22",
+    "updated": "2026-10-24",
     "consultation": {
       "label": "Discuss your aviation needs",
-      "subject": "EXJET business aviation solutions"
+      "subject": "Business and commercial aviation solutions"
     },
     "sections": [
       {
-        "heading": "Start with how you fly.",
+        "heading": "One company. A connected aviation brief.",
         "paragraphs": [
-          "Share your routes, travel frequency and priorities. EXJET helps you compare the options and plan your next step."
+          "EXJET is an aviation solutions company serving business and commercial aviation. Tell us what you need to move, operate, own or improve. We connect aircraft access, operating support and technical project coordination around that requirement."
         ],
         "links": [
           {
@@ -741,16 +741,16 @@
   },
   {
     "path": "/mro",
-    "title": "Aircraft MRO consulting and maintenance coordination",
-    "seoTitle": "Aircraft MRO Consulting & Maintenance Coordination | EXJET",
-    "description": "Coordinate aircraft maintenance, repair and overhaul with EXJET. Compare MRO proposals, plan downtime and define provider responsibilities for your business jet.",
-    "kicker": "EXJET business aviation solutions",
+    "title": "Service & repair.",
+    "seoTitle": "Aircraft Service, Repair & MRO Coordination | EXJET",
+    "description": "Coordinate aircraft service, repair and MRO with EXJET for business and commercial aviation. Define the work scope, provider capability and downtime.",
+    "kicker": "Business & commercial aviation",
     "kind": "service",
     "parent": {
       "name": "Services",
       "path": "/services"
     },
-    "updated": "2026-10-19",
+    "updated": "2026-10-24",
     "consultation": {
       "label": "Discuss your project",
       "subject": "Aircraft MRO consulting request"
@@ -759,7 +759,7 @@
       {
         "heading": "Maintenance decisions with a clear owner brief.",
         "paragraphs": [
-          "MRO means maintenance, repair and overhaul. EXJET provides aircraft MRO consulting and coordination for owners, family offices and corporate aviation teams. The starting point is the aircraft’s records, upcoming maintenance events and the owner’s operating priorities.",
+          "EXJET coordinates service, repair and maintenance projects for business and commercial aircraft. Begin with the aircraft records, upcoming maintenance events, reported defects and operating priorities.",
           "Bring the model, serial number, registration, aircraft location and a summary of the required work. Your maintenance team or selected provider determines the technical requirements. EXJET helps organize the commercial scope, compare suitable proposals and coordinate the owner’s decisions."
         ]
       },
@@ -925,16 +925,16 @@
   },
   {
     "path": "/business-aviation-consulting",
-    "title": "Business aviation consulting for owners and corporate teams",
-    "seoTitle": "Business Aviation Consulting for Family Offices & Corporations | EXJET",
-    "description": "EXJET aviation consulting connects charter, ownership and technical projects for family offices and corporate teams. Build a clear mission, budget and decision brief.",
-    "kicker": "EXJET business aviation solutions",
+    "title": "Aviation consulting. Business & commercial.",
+    "seoTitle": "Business & Commercial Aviation Consulting | EXJET",
+    "description": "EXJET connects aircraft charter, leasing, ownership and technical project consulting for business and commercial aviation. Discuss your requirements.",
+    "kicker": "Aviation solutions",
     "kind": "service",
     "parent": {
       "name": "Services",
       "path": "/services"
     },
-    "updated": "2026-10-19",
+    "updated": "2026-10-24",
     "consultation": {
       "label": "Discuss your project",
       "subject": "Business aviation consulting inquiry"
@@ -1023,9 +1023,9 @@
   },
   {
     "path": "/dry-lease",
-    "title": "Dry lease",
-    "seoTitle": "Aircraft Dry Lease & Private Jet Leasing Consulting | EXJET",
-    "description": "Explore aircraft leasing options around your routes, expected flying and operating requirements. EXJET helps define the brief and compare opportunities.",
+    "title": "Dry lease. Passenger & cargo.",
+    "seoTitle": "Passenger & Cargo Aircraft Dry Lease | EXJET",
+    "description": "Explore passenger and cargo aircraft dry leasing with EXJET. Define the aircraft, term, operating requirements and delivery conditions for your fleet.",
     "consultation": {
       "label": "Discuss a dry lease",
       "subject": "Dry lease enquiry"
@@ -1038,6 +1038,12 @@
         ]
       },
       {
+        "heading": "Passenger and cargo aircraft.",
+        "paragraphs": [
+          "For passenger operations, define seating, cabin requirements and the route network. For cargo operations, include payload, loading configuration and handling needs. Aircraft-only leasing requires an operating plan separate from the aircraft supply."
+        ]
+      },
+      {
         "heading": "Define the arrangement.",
         "paragraphs": [
           "EXJET can help source options and coordinate the review of aircraft condition, availability and commercial terms. Confirm operational control, crew arrangements, insurance, maintenance and return conditions with your aviation advisers before committing."
@@ -1046,7 +1052,7 @@
       {
         "heading": "What to include in a dry lease enquiry",
         "paragraphs": [
-          "Share your intended aircraft base, planned routes, passenger requirements and expected annual flying. Include the proposed lease duration and who will manage the operating arrangements. These details help narrow the aircraft search before terms are discussed."
+          "Share the aircraft base, intended routes, passenger capacity or cargo specification, lease duration and expected utilization. Identify the proposed operating organization and delivery timing so aircraft and commercial requirements can be assessed together."
         ],
         "links": [
           {
@@ -1072,7 +1078,12 @@
       "name": "Services",
       "path": "/services"
     },
-    "updated": "2026-10-22"
+    "updated": "2026-10-24",
+    "related": [
+      "/acmi",
+      "/aircraft-charter",
+      "/ownership"
+    ]
   },
   {
     "path": "/fractional",
@@ -1131,7 +1142,7 @@
     "path": "/ownership",
     "title": "Ownership",
     "seoTitle": "Aircraft Ownership, Sales & Acquisitions | EXJET",
-    "description": "Plan private aircraft ownership with EXJET. Compare business jets, coordinate aircraft acquisition or sales, and define management and maintenance priorities.",
+    "description": "Plan business and commercial aircraft ownership with EXJET. Coordinate aircraft acquisitions, sales, management planning and technical project requirements.",
     "consultation": {
       "label": "Discuss aircraft ownership",
       "subject": "Aircraft ownership enquiry"
@@ -1140,7 +1151,7 @@
       {
         "heading": "Find the right aircraft.",
         "paragraphs": [
-          "Define the routes, cabin, budget and timing that matter. Compare suitable aircraft and coordinate the acquisition process with your appointed advisers."
+          "Define the aircraft mission, passenger or cargo requirements, budget and delivery timing. EXJET supports business and commercial aircraft sales and acquisitions, coordinating the process with your appointed advisers."
         ],
         "links": [
           {
@@ -1201,5 +1212,281 @@
       "path": "/services"
     },
     "updated": "2026-10-22"
+  },
+  {
+    "path": "/aircraft-charter",
+    "title": "Charter. Passenger & cargo.",
+    "seoTitle": "Passenger & Cargo Aircraft Charter Services | EXJET",
+    "description": "Arrange passenger and cargo aircraft charter with EXJET. Coordinate business travel, group movements and freight capacity around your route and schedule.",
+    "kicker": "Business & commercial aviation",
+    "kind": "service",
+    "parent": {
+      "name": "Services",
+      "path": "/services"
+    },
+    "updated": "2026-10-24",
+    "consultation": {
+      "label": "Discuss your requirements",
+      "subject": "Charter. Passenger & cargo."
+    },
+    "sections": [
+      {
+        "heading": "Passenger charter.",
+        "paragraphs": [
+          "Business travel, executive teams, sports delegations and entertainment movements all begin with the same essentials: the itinerary, passengers and schedule. EXJET coordinates aircraft sourcing and trip requirements with licensed operating carriers."
+        ],
+        "links": [
+          {
+            "label": "Business jet charter",
+            "path": "/private-jet-charter"
+          },
+          {
+            "label": "Group passenger charter",
+            "path": "/group-charter"
+          },
+          {
+            "label": "Find a flight",
+            "path": "/charter"
+          }
+        ]
+      },
+      {
+        "heading": "Cargo charter.",
+        "paragraphs": [
+          "For urgent shipments, oversized freight or planned logistics, start with the load and delivery deadline. Share total weight, piece dimensions, loading requirements and any special handling needs so suitable aircraft and operating proposals can be assessed."
+        ],
+        "links": [
+          {
+            "label": "Explore cargo charter",
+            "path": "/cargo"
+          }
+        ]
+      },
+      {
+        "heading": "One flight or a wider capacity requirement.",
+        "paragraphs": [
+          "A single charter, repeated flights and dedicated fleet capacity require different arrangements. EXJET helps define the brief, compare the complete proposal and coordinate the next step. For sustained passenger or cargo capacity, consider ACMI or a dry lease."
+        ],
+        "links": [
+          {
+            "label": "ACMI capacity",
+            "path": "/acmi"
+          },
+          {
+            "label": "Dry lease options",
+            "path": "/dry-lease"
+          }
+        ]
+      },
+      {
+        "heading": "Prepare your charter brief.",
+        "paragraphs": [
+          "Send departure and destination airports, dates, timing flexibility and your passenger or cargo requirements. Aircraft availability, final pricing and operating terms are confirmed in the proposal. The named air carrier operates the flight."
+        ]
+      }
+    ],
+    "related": [
+      "/private-jet-charter",
+      "/group-charter",
+      "/cargo",
+      "/empty-legs"
+    ]
+  },
+  {
+    "path": "/acmi",
+    "title": "ACMI. Passenger & cargo.",
+    "seoTitle": "Passenger & Cargo ACMI Aircraft Leasing | EXJET",
+    "description": "Source passenger and cargo ACMI capacity with EXJET. Define aircraft, crew, maintenance and insurance requirements for seasonal demand or fleet support.",
+    "kicker": "Business & commercial aviation",
+    "kind": "service",
+    "parent": {
+      "name": "Services",
+      "path": "/services"
+    },
+    "updated": "2026-10-24",
+    "consultation": {
+      "label": "Discuss your requirements",
+      "subject": "ACMI. Passenger & cargo."
+    },
+    "sections": [
+      {
+        "heading": "Capacity with the operating package.",
+        "paragraphs": [
+          "ACMI means aircraft, crew, maintenance and insurance. EXJET supports sourcing and commercial coordination for passenger and cargo requirements, with the operating package supplied by the contracted carrier."
+        ]
+      },
+      {
+        "heading": "Passenger capacity.",
+        "paragraphs": [
+          "Define the aircraft category, seating requirement, routes, operating base, start date and duration. Seasonal demand, planned fleet changes and replacement capacity each need a clear schedule and operating brief."
+        ]
+      },
+      {
+        "heading": "Cargo capacity.",
+        "paragraphs": [
+          "Start with payload, volume, loading configuration and the intended route network. Include expected frequency, handling arrangements and any special cargo requirements. The proposed carrier confirms aircraft suitability and its operating scope."
+        ]
+      },
+      {
+        "heading": "Compare the full commitment.",
+        "paragraphs": [
+          "Review the proposed aircraft, operating period, block-hour commitments, positioning and the allocation of additional costs. Fuel, airport charges and handling must be addressed in the agreement. Availability and approvals are confirmed for the specific operation."
+        ],
+        "links": [
+          {
+            "label": "Aircraft-only dry lease",
+            "path": "/dry-lease"
+          },
+          {
+            "label": "Cargo charter",
+            "path": "/cargo"
+          }
+        ]
+      },
+      {
+        "heading": "Build your capacity brief.",
+        "paragraphs": [
+          "Share your required start date, term, base, routes, monthly utilization and passenger or cargo specification. EXJET coordinates suitable proposals and the commercial discussion; operational responsibility remains with the appointed carrier."
+        ]
+      }
+    ],
+    "related": [
+      "/aircraft-charter",
+      "/dry-lease",
+      "/cargo",
+      "/crew"
+    ],
+    "sources": [
+      {
+        "label": "National Airlines: aircraft leasing and ACMI",
+        "url": "https://www.nationalairlines.com/our-services/aircraft-leasing-acmi-cmi/"
+      }
+    ]
+  },
+  {
+    "path": "/crew",
+    "title": "Crew. The right people for the mission.",
+    "seoTitle": "Business & Commercial Aviation Crew Sourcing | EXJET",
+    "description": "Discuss flight and cabin crew sourcing with EXJET for business and commercial aviation. Define aircraft experience, base, schedule and assignment requirements.",
+    "kicker": "Business & commercial aviation",
+    "kind": "service",
+    "parent": {
+      "name": "Services",
+      "path": "/services"
+    },
+    "updated": "2026-10-24",
+    "consultation": {
+      "label": "Discuss your requirements",
+      "subject": "Crew. The right people for the mission."
+    },
+    "sections": [
+      {
+        "heading": "Flight crew.",
+        "paragraphs": [
+          "Begin with the aircraft type, operating base, assignment dates and required experience. EXJET helps organize the brief and coordinate introductions for permanent, contract or temporary flight crew requirements."
+        ]
+      },
+      {
+        "heading": "Cabin crew.",
+        "paragraphs": [
+          "Match the assignment to the aircraft, passenger profile and service expectations. Include the intended routes, languages, schedule and any specific cabin or service experience needed."
+        ]
+      },
+      {
+        "heading": "Confirm the fit before assignment.",
+        "paragraphs": [
+          "The employing or operating organization verifies licensing, ratings, medical status, recency, training and eligibility for the role. Crew availability and contract terms are confirmed individually; a sourcing enquiry does not guarantee placement."
+        ]
+      },
+      {
+        "heading": "Send a clear crew brief.",
+        "paragraphs": [
+          "Include aircraft type, role, base, start date, duration, rotation and your selection criteria. For a broader operating requirement, coordinate crew sourcing with aircraft management or an ACMI capacity discussion."
+        ],
+        "links": [
+          {
+            "label": "Management support",
+            "path": "/aircraft-management"
+          },
+          {
+            "label": "ACMI capacity",
+            "path": "/acmi"
+          }
+        ]
+      }
+    ],
+    "related": [
+      "/aircraft-management",
+      "/acmi",
+      "/contact"
+    ]
+  },
+  {
+    "path": "/engineering-stc",
+    "title": "Engineering & STC. From requirement to approved scope.",
+    "seoTitle": "Aircraft Engineering & STC Project Coordination | EXJET",
+    "description": "Plan aircraft modifications with EXJET. Coordinate engineering providers, STC applicability, installation scope and documentation for business and commercial aircraft.",
+    "kicker": "Business & commercial aviation",
+    "kind": "service",
+    "parent": {
+      "name": "Services",
+      "path": "/services"
+    },
+    "updated": "2026-10-24",
+    "consultation": {
+      "label": "Discuss your requirements",
+      "subject": "Engineering & STC. From requirement to approved scope."
+    },
+    "sections": [
+      {
+        "heading": "Start with the aircraft and the change.",
+        "paragraphs": [
+          "Share the aircraft type, serial number, registration, current configuration and intended modification. EXJET helps structure the project brief and coordinate discussions with suitable engineering and installation providers."
+        ]
+      },
+      {
+        "heading": "STC planning.",
+        "paragraphs": [
+          "A supplemental type certificate approves a change to an aircraft’s original type design. Applicability depends on the specific aircraft and modification. The responsible engineering and certification teams establish the approval path, compatibility and documentation requirements."
+        ]
+      },
+      {
+        "heading": "Connect engineering and installation.",
+        "paragraphs": [
+          "Cabin changes, connectivity and other aircraft modifications need a coordinated scope. Review design inputs, equipment, installation capability, lead times, testing and handover requirements together."
+        ],
+        "links": [
+          {
+            "label": "Interior completion",
+            "path": "/interior-completions"
+          },
+          {
+            "label": "Starlink installation coordination",
+            "path": "/starlink-installation"
+          },
+          {
+            "label": "Service & repair",
+            "path": "/mro"
+          }
+        ]
+      },
+      {
+        "heading": "Keep project decisions aligned.",
+        "paragraphs": [
+          "EXJET supports the commercial brief, provider comparison and project communication. The appointed specialists perform engineering, certification and technical work within their authorizations. Approval and delivery dates are established through the project review, not assumed in advance."
+        ]
+      }
+    ],
+    "related": [
+      "/mro",
+      "/interior-completions",
+      "/aircraft-management"
+    ],
+    "sources": [
+      {
+        "label": "FAA: supplemental type certificates",
+        "url": "https://www.faa.gov/aircraft/air_cert/design_approvals/stc"
+      }
+    ]
   }
 ]

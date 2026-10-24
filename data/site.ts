@@ -1,9 +1,81 @@
 export const aviationSolutions = [
-  { name: "Empty legs", path: "/empty-legs", description: "One-way opportunities for flexible travel plans.", icon: "empty" },
-  { name: "Charters", path: "/private-jet-charter", description: "Private and group flights arranged around your schedule.", icon: "charter" },
-  { name: "Dry lease", path: "/dry-lease", description: "Aircraft leasing options for your operating needs.", icon: "lease" },
-  { name: "Fractional", path: "/fractional", description: "Shared aircraft ownership shaped around how you fly.", icon: "fractional" },
-  { name: "Ownership", path: "/ownership", description: "Aircraft acquisition, sales and owner support.", icon: "ownership" },
+  {
+    "name": "Charter",
+    "path": "/aircraft-charter",
+    "description": "Passenger and cargo charter for business travel, group movements and commercial transport.",
+    "icon": "charter",
+    "scope": "Passenger / Cargo"
+  },
+  {
+    "name": "Dry Lease",
+    "path": "/dry-lease",
+    "description": "Aircraft-only leasing for passenger and cargo operating requirements.",
+    "icon": "lease",
+    "scope": "Passenger / Cargo"
+  },
+  {
+    "name": "ACMI",
+    "path": "/acmi",
+    "description": "Aircraft, crew, maintenance and insurance for passenger and cargo capacity.",
+    "icon": "charter",
+    "scope": "Passenger / Cargo"
+  },
+  {
+    "name": "Fractional",
+    "path": "/fractional",
+    "description": "Fractional aircraft ownership advice shaped around your travel and access needs.",
+    "icon": "fractional",
+    "scope": ""
+  },
+  {
+    "name": "Ownership",
+    "path": "/ownership",
+    "description": "Aircraft sales, acquisitions and ownership planning for business and commercial aviation.",
+    "icon": "ownership",
+    "scope": ""
+  },
+  {
+    "name": "Management",
+    "path": "/aircraft-management",
+    "description": "Aircraft management planning, provider coordination and owner reporting.",
+    "icon": "ownership",
+    "scope": ""
+  },
+  {
+    "name": "Crew",
+    "path": "/crew",
+    "description": "Flight and cabin crew sourcing for business and commercial aircraft.",
+    "icon": "fractional",
+    "scope": ""
+  },
+  {
+    "name": "Engineering & STC",
+    "path": "/engineering-stc",
+    "description": "Aircraft modification planning, engineering coordination and STC project support.",
+    "icon": "lease",
+    "scope": ""
+  },
+  {
+    "name": "Service & Repair",
+    "path": "/mro",
+    "description": "Maintenance, repair and overhaul coordination around your aircraft and operating schedule.",
+    "icon": "lease",
+    "scope": ""
+  },
+  {
+    "name": "Interior Completion",
+    "path": "/interior-completions",
+    "description": "Cabin completion and refurbishment planning, from the design brief to delivery.",
+    "icon": "ownership",
+    "scope": ""
+  },
+  {
+    "name": "Empty Legs",
+    "path": "/empty-legs",
+    "description": "One-way repositioning flight opportunities for flexible travel plans.",
+    "icon": "empty",
+    "scope": ""
+  }
 ] as const;
 
 const PRODUCTION_ORIGIN = "https://www.exjet.com";
@@ -34,7 +106,7 @@ export const siteConfig = {
   url: siteOrigin,
   productionUrl: PRODUCTION_ORIGIN,
   description:
-    "EXJET provides empty-leg opportunities, private and group charters, dry lease consulting, fractional ownership advice and aircraft ownership support.",
+    "EXJET is an aviation solutions company serving business and commercial aviation through charter, leasing, ACMI, ownership, management, crew and technical services.",
   phone: {
     primary: {
       display: "+1 407 747 5288",
@@ -117,7 +189,7 @@ export function organizationJsonLd() {
       },
     ],
     sameAs: socialProfiles,
-    hasOfferCatalog: { "@type": "OfferCatalog", name: "EXJET business aviation solutions", itemListElement: aviationSolutions.map(service => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: service.name, description: service.description, url: absoluteUrl(service.path) } })) },
+    hasOfferCatalog: { "@type": "OfferCatalog", name: "EXJET business and commercial aviation solutions", itemListElement: aviationSolutions.map(service => ({ "@type": "Offer", itemOffered: { "@type": "Service", name: service.name, description: service.description, url: absoluteUrl(service.path) } })) },
   };
 }
 

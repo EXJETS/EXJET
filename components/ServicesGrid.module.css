@@ -24,3 +24,5 @@
  .symbol { top:20px; }
 }
 @media(prefers-reduced-motion:reduce) { .symbol { transition:none; } }
+
+.scope{font-size:12px!important;text-transform:uppercase;letter-spacing:.08em;margin-bottom:12px!important}
