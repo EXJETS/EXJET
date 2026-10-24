@@ -1,0 +1,90 @@
+/* Public-page templates. Intentionally excludes the navbar and vendor UI. */
+.ex-public{--ex-radius:0;--ex-surface:#f5f5f3;--ex-heading-size:clamp(38px,4.8vw,72px);--ex-title-size:clamp(48px,6.4vw,94px)}
+.ex-public .page-hero{border:0;background:#f5f5f3}
+.ex-public .page-hero__inner{width:auto;max-width:1320px;margin:auto;padding:100px var(--ex-page-gutter);}
+.ex-public .page-hero h1{font-weight:300;max-width:18ch;font-size:var(--ex-title-size);line-height:1.03}
+.ex-public .page-hero .page-hero__copy{max-width:43ch;font-size:18px;margin-top:30px;line-height:1.7}
+.ex-public .page-hero--image{display:grid;grid-template-columns:1fr 1.15fr;align-items:center;gap:0;background:#f5f5f3;min-height:620px}
+.ex-public .page-hero--image .page-hero__inner{padding:70px clamp(28px,5vw,80px);min-width:0;max-width:none}
+.ex-public .page-hero--image h1{font-size:clamp(42px,4.7vw,72px)}
+.ex-public .page-hero--image .page-hero__photograph{width:100%;background:transparent;margin:0;min-width:0}
+.ex-public .page-hero--image .page-hero__photograph img{width:100%;height:auto;max-height:none;object-fit:contain}
+.ex-public .section-intro{align-items:start;gap:6vw;margin-bottom:56px}
+.ex-public .section-intro h2{font-weight:300;letter-spacing:-.04em}
+.ex-public .section-intro__copy{margin-top:8px;font-size:17px}
+.ex-public .section--dark,.ex-public .ex-action-panel{background:#111516}
+.ex-public :is(.ex-action-panel,.section--dark) .button{background:#fff;color:#000}
+.ex-public .ex-action-panel{padding-block:clamp(72px,10vw,152px);border:0}
+.ex-public .ex-action-panel h2{max-width:19ch;margin-inline:auto;font-weight:300;line-height:1.05}
+.ex-public .ex-editorial-masthead{padding-inline:var(--ex-page-gutter);background:#f5f5f3}
+.ex-public .ex-editorial-masthead>.ex-container{width:100%;max-width:1320px}
+.ex-public .ex-editorial-masthead .ex-breadcrumb{padding-top:28px}
+.ex-public .ex-editorial-masthead :is(.ex-page-intro,.ex-story-intro){max-width:none;padding:56px 0 90px}
+.ex-public .ex-editorial-masthead :is(.ex-page-intro,.ex-story-intro) h1{font-size:var(--ex-title-size);font-weight:300;line-height:1.04;max-width:20ch}
+.ex-public .ex-editorial-masthead--photo{display:grid;grid-template-columns:1fr 1.1fr;gap:clamp(32px,5vw,80px);align-items:center;padding-block:0 60px}
+.ex-public .ex-editorial-masthead--photo>.ex-feature-photo{width:100%;margin:60px 0 0;align-self:center}
+.ex-public .ex-editorial-masthead--photo .ex-feature-photo img{height:auto;max-height:none;object-fit:contain}
+.ex-public .ex-editorial-masthead--photo .ex-feature-photo figcaption{padding:14px 0;background:transparent;text-align:left;font-size:11px}
+.ex-public .ex-editorial-masthead--photo :is(.ex-page-intro,.ex-story-intro){padding-bottom:24px}
+.ex-public .ex-editorial-masthead--photo :is(.ex-page-intro,.ex-story-intro) h1{font-size:clamp(40px,4.7vw,70px);max-width:20ch}
+.ex-public .ex-editorial-masthead--photo :is(.ex-page-intro,.ex-story-intro)>p:not(.ex-kicker){font-size:17px;line-height:1.7}
+.ex-public .ex-content-layout{padding-top:88px;padding-bottom:32px}
+.ex-public .ex-content-layout--outline{grid-template-columns:220px minmax(0,800px);gap:8vw}
+.ex-public .ex-reading>section{padding:32px 0 48px}
+.ex-public .ex-reading h2{font-size:clamp(30px,3vw,44px);font-weight:300;line-height:1.15;letter-spacing:-.035em}
+.ex-public .ex-outline{border-right:0;border-top:1px solid #b8bdc1;padding-top:22px}
+.ex-public .ex-outline a{font-size:13px;border-bottom:1px solid #e1e3e4;padding:16px 0}
+.ex-public .ex-card-grid{gap:48px 32px}
+.ex-public .ex-card{padding:30px 0;background:transparent;border-radius:0;box-shadow:none}
+.ex-public .ex-card--photo{padding-top:0;border-top:0}
+.ex-public .ex-card-image{border-radius:0;overflow:hidden}
+.ex-public .ex-card h3{font-size:30px;line-height:1.12}
+.ex-public .ex-card .ex-inline-link{min-height:48px;margin-top:16px}
+.ex-public .detail-viewer{background:#f5f5f3;display:grid;grid-template-columns:1fr 1.6fr;align-items:center;padding:80px var(--ex-page-gutter) 40px;column-gap:5vw}
+.ex-public .detail-viewer__title{width:100%;padding:0;min-width:0}
+.ex-public .detail-viewer__title h1{font-size:clamp(44px,5.2vw,80px);font-weight:300;max-width:12ch;line-height:1.03;margin:22px 0 30px}
+.ex-public .detail-viewer__visual{width:100%;aspect-ratio:16/10;max-height:none;min-width:0}
+.ex-public .detail-viewer__controls{grid-column:2;padding:24px 0 8px}
+.ex-public .detail-viewer__controls>div{border:1px solid #a9afb3;border-radius:999px;padding:4px}
+.ex-public .detail-viewer__controls button.is-active{background:#fff;color:#000}
+.ex-public .detail-viewer__caption{grid-column:2;padding:12px 0 0}
+.ex-public .spec-grid{border-block:1px solid #bfc4c7;padding-block:32px;gap:32px;background:transparent}
+.ex-public .spec-grid strong{font-size:clamp(24px,2.5vw,38px);font-weight:300}
+.ex-public .spec-grid span{text-transform:uppercase;font-size:11px;letter-spacing:.1em;margin-bottom:16px}
+.ex-public .aircraft-category-card{border-top:1px solid #c2c6c8;background:transparent;padding:56px 0;margin:0;border-radius:0}
+.ex-public .aircraft-category-card__heading h2{font-size:clamp(36px,4vw,60px);font-weight:300}
+.ex-public .sales-index-card{border-radius:0;border-top:1px solid #bfc4c7;background:transparent}
+.ex-public .sales-index-card__link{padding:32px 0}
+.ex-public .sales-index-card h2{font-size:46px;font-weight:300}
+.ex-public :is(.faq-list,.ex-content-faq) summary{font-size:22px;font-weight:300;padding-block:24px}
+.ex-footer{background:#eceeed;border-top:1px solid #d2d6d5;padding-top:64px}
+.ex-footer .ex-footer-top{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:56px;padding-bottom:64px}
+.ex-footer .ex-footer-brand{grid-column:1/-1;display:grid;grid-template-columns:1fr 1fr;align-items:center;gap:16px 60px;border-bottom:1px solid #c3c8c6;padding-bottom:40px}
+.ex-footer .ex-footer-logo{width:220px;max-width:100%;height:auto}
+.ex-footer .ex-footer-brand>p{font-size:26px;letter-spacing:-.025em;font-weight:300}
+.ex-footer .ex-footer-address{font-size:13px;line-height:1.7}
+.ex-footer .ex-footer-phone{font-size:22px;font-weight:300}
+@media(max-width:1000px){.ex-public .ex-content-layout--outline{grid-template-columns:190px minmax(0,1fr);gap:40px}.ex-public .page-hero--image{min-height:0}.ex-public .page-hero--image .page-hero__inner{padding:56px 28px}.ex-public .ex-editorial-masthead--photo{gap:28px}}
+@media(max-width:760px){
+ .ex-public{--ex-title-size:40px;--ex-heading-size:36px;--ex-page-gutter:20px;--ex-section-gap:64px}
+ .ex-public .page-hero__inner{padding:48px 20px}.ex-public .page-hero h1{font-size:40px;line-height:1.08}
+ .ex-public .page-hero--image{display:flex;flex-direction:column;align-items:stretch}.ex-public .page-hero--image .page-hero__inner{padding:44px 20px}.ex-public .page-hero--image h1{font-size:38px}.ex-public .page-hero .page-hero__copy{font-size:16px;margin-top:22px}
+ .ex-public .section-intro{gap:24px;margin-bottom:32px}.ex-public .section-intro__copy{font-size:16px}
+ .ex-public .ex-editorial-masthead--photo{display:block;padding-bottom:0}.ex-public .ex-editorial-masthead--photo>.ex-feature-photo{margin-top:10px;max-width:100%!important}.ex-public .ex-editorial-masthead--photo .ex-feature-photo figcaption{padding-bottom:24px}
+ .ex-public .ex-editorial-masthead :is(.ex-page-intro,.ex-story-intro){padding:32px 0 44px}.ex-public .ex-editorial-masthead :is(.ex-page-intro,.ex-story-intro) h1{font-size:38px;line-height:1.1;overflow-wrap:break-word}.ex-public .ex-editorial-masthead :is(.ex-page-intro,.ex-story-intro)>p:not(.ex-kicker){font-size:16px}
+ .ex-public .ex-content-layout--outline{display:block}.ex-public .ex-content-layout{padding-top:40px}.ex-public .ex-reading>section{padding:20px 0 28px}.ex-public .ex-reading h2{font-size:30px}.ex-public .ex-reading :is(p,li){font-size:16px;line-height:1.75}
+ .ex-public .ex-card-grid{gap:32px}.ex-public .ex-card h3{font-size:27px}.ex-public .detail-viewer{display:block;padding:44px 0 28px}.ex-public .detail-viewer__title{padding-inline:20px}.ex-public .detail-viewer__title h1{font-size:44px;max-width:16ch}.ex-public .detail-viewer__visual{margin-top:32px}.ex-public .detail-viewer__controls{padding:20px 16px 0}.ex-public .detail-viewer__caption{font-size:11px;padding:14px 20px 0}
+ .ex-public .spec-grid{gap:28px 16px;padding-block:28px}.ex-public .spec-grid strong{font-size:24px}.ex-public .aircraft-category-card{padding:36px 0}.ex-public .aircraft-category-card__heading h2{font-size:36px}.ex-public .sales-index-card h2{font-size:34px}.ex-public :is(.faq-list,.ex-content-faq) summary{font-size:20px}
+ .ex-footer{padding-top:40px}.ex-footer .ex-footer-top{display:block;padding-bottom:24px}.ex-footer .ex-footer-brand{display:flex;align-items:flex-start;gap:16px;padding-bottom:32px;margin-bottom:24px}.ex-footer .ex-footer-logo{width:180px}.ex-footer .ex-footer-brand>p{font-size:23px}.ex-footer .ex-footer-phone{font-size:20px}
+}
+@media(prefers-reduced-motion:reduce){.ex-public *{scroll-behavior:auto}}
+.ex-public .aircraft-reference{background:#f5f5f3}
+.aircraft-reference h2{max-width:18ch;font-size:clamp(36px,4.5vw,68px);font-weight:300;line-height:1.08;margin:20px 0 56px}
+.aircraft-reference__metrics{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;border-block:1px solid #bec3c5;padding:36px 0;margin:0 0 64px}
+.aircraft-reference dt{font-size:13px;color:#52595e;line-height:1.5}.aircraft-reference dd{margin:12px 0 0;font-size:clamp(25px,3.5vw,50px);font-weight:300;line-height:1.15}
+.aircraft-reference__tables{display:grid;grid-template-columns:1fr 1fr;gap:8vw}.aircraft-reference h3{font-size:28px;font-weight:300;margin:0 0 24px}
+.aircraft-reference__tables dl>div{display:flex;justify-content:space-between;gap:24px;border-top:1px solid #d4d7d7;padding:18px 0}.aircraft-reference__tables dd{font-size:17px;margin:0;text-align:right}
+.aircraft-reference__floorplan{margin:64px 0 0;padding:40px;background:#fff}.aircraft-reference__floorplan img{display:block;width:100%;height:auto;max-height:580px;object-fit:contain}.aircraft-reference figcaption{font-size:13px;color:#555d62;line-height:1.7;margin-top:24px}
+.aircraft-reference__notes{border-top:1px solid #bec3c5;padding-top:24px;margin-top:40px;font-size:13px;line-height:1.8}.aircraft-reference__notes summary{cursor:pointer;min-height:44px}.aircraft-reference__notes p{max-width:90ch}
+@media(max-width:760px){.aircraft-reference h2{font-size:36px;margin-bottom:32px}.aircraft-reference__metrics{grid-template-columns:1fr;gap:24px;margin-bottom:40px;padding:28px 0}.aircraft-reference__metrics>div{display:flex;justify-content:space-between;align-items:center;gap:16px}.aircraft-reference__metrics dd{font-size:28px;margin:0;text-align:right}.aircraft-reference__tables{grid-template-columns:1fr;gap:24px}.aircraft-reference__floorplan{padding:24px 16px;margin-top:40px}}
+@media(max-width:760px){.ex-footer .ex-footer-brand{flex-direction:column}.ex-footer .ex-footer-address{width:100%}}

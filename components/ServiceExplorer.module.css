@@ -1,0 +1,9 @@
+.explorer{display:grid;grid-template-columns:1.25fr 1fr;gap:clamp(40px,8vw,120px);align-items:center}
+.visual{position:relative;min-width:0;aspect-ratio:1.12;background:#edf0f0}
+.visual img{object-fit:contain}
+.visual>span{position:absolute;bottom:18px;left:20px;font-size:11px;letter-spacing:.14em;background:#fff;padding:8px 12px;color:#151515}
+.options{min-width:0}.option{border-top:1px solid #bfc2c3}.option:last-child{border-bottom:1px solid #bfc2c3}
+.option h3{margin:0}.option button{width:100%;display:flex;align-items:center;justify-content:space-between;gap:20px;text-align:left;padding:20px 0;border:0;background:transparent;color:#17191b;font:300 clamp(28px,3.6vw,50px)/1.12 Ubuntu,sans-serif;letter-spacing:-.04em;cursor:pointer}
+.option button>span{font-size:24px;font-weight:300}.option p{max-width:34ch;color:#565b60;font-size:17px;line-height:1.7;margin:0 0 18px}.option a{display:inline-flex;align-items:center;gap:24px;min-height:46px;padding:10px 22px;border:1px solid #777d82;border-radius:999px;font-size:12px;text-transform:uppercase;letter-spacing:.06em;color:#000;background:transparent;margin-bottom:26px}
+.option a:hover{background:#e8eaeb}.option button:focus-visible,.option a:focus-visible{outline:2px solid #16181a;outline-offset:5px}
+@media(max-width:760px){.explorer{grid-template-columns:1fr;gap:28px}.visual{aspect-ratio:16/10}.option button{font-size:30px;padding-block:19px}.option p{font-size:16px}.option a{min-height:48px}}

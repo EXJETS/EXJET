@@ -1,3 +1,4 @@
+import { AircraftReference } from "@/components/AircraftReference";
 import { StructuredData } from "@/components/StructuredData";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
@@ -61,6 +62,7 @@ export default async function AircraftDetailPage({ params }: PageProps) {
           <ButtonLink href={`/contact?aircraft=${item.slug}`}>Request this aircraft</ButtonLink>
         </div>
       </section>
+      <AircraftReference slug={slug} />
       {guide ? <div className="ex-editorial"><div className="ex-container ex-content-layout ex-content-layout--outline"><PageOutline sections={guide.sections} /><div className="ex-reading">
         <ContentSections sections={guide.sections} />
         <ContentFaq faqs={guide.faqs} />

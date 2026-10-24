@@ -175,6 +175,13 @@ export const aircraft: Aircraft[] = [
         "image": "/images/home/owner-selected-hero.webp",
         "fit": "contain",
         "focalPoint": "center"
+      },
+      {
+        "id": "cabin",
+        "label": "Interior",
+        "image": "/images/manufacturers/global-8000-club.webp",
+        "fit": "contain",
+        "focalPoint": "center"
       }
     ]
   },
