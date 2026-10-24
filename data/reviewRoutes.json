@@ -286,5 +286,9 @@
   {
     "path": "/app/alerts/",
     "title": "App flight alerts"
+  },
+  {
+    "path": "/aircraft/citation-longitude/",
+    "title": "Citation Longitude"
   }
 ]

@@ -604,6 +604,87 @@
       "transformation": "Original manufacturer-served bytes.",
       "publication_permission": "Commercial publication permission has not been verified.",
       "source_kind": "manufacturer-product-gallery"
+    },
+    {
+      "file": "/images/manufacturers/longitude-flight-sunrise.jpg",
+      "model": "Citation Longitude",
+      "manufacturer": "Cessna",
+      "scene": "exterior",
+      "source_kind": "manufacturer-press-photo",
+      "source_page": "https://media.txtav.com/assets/225549/",
+      "image_url": "https://d21buns5ku92am.cloudfront.net/69280/images/511142-375594-Longitude_Exterior_2019_02-c42cc7-original-1610392719-61b2b6-large-1699376158.jpg",
+      "dimensions": {
+        "width": 1000,
+        "height": 667
+      },
+      "evidence": "Cessna Citation Longitude Air-to-Air 001 in the official Textron Aviation media kit. Whole aircraft banking above water at sunrise. Exact manufacturer-served large image, visually inspected.",
+      "sha256": "605df4309c5bc18f1b1b8d65e4d6c0c3e8a5f6b09deac478b06853f929e20f67",
+      "file_bytes": 97675,
+      "source_bytes_verified_on": "2026-10-23",
+      "transformation": "Original manufacturer-served bytes; CSS only for display.",
+      "publication_permission": "Commercial publication permission not independently verified.",
+      "visually_inspected": true,
+      "flight_status": "in-flight"
+    },
+    {
+      "file": "/images/manufacturers/longitude-floorplan-standard.jpg",
+      "model": "Citation Longitude",
+      "manufacturer": "Cessna",
+      "scene": "floorplan",
+      "source_kind": "manufacturer-product-gallery",
+      "source_page": "https://cessna.txtav.com/en/citation/longitude",
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/jets/longitude/interior-floorplan/longitude-std-black.jpg",
+      "dimensions": {
+        "width": 600,
+        "height": 750
+      },
+      "evidence": "Exact manufacturer cabin layout image linked by the Longitude product page; visually inspected. Representative configuration only.",
+      "sha256": "697f0cea9b91dadfecfc514eb2a954b5071cd4a490436f4531135afcfc40ccc0",
+      "file_bytes": 30502,
+      "source_bytes_verified_on": "2026-10-23",
+      "transformation": "Original manufacturer-served bytes; CSS only for display.",
+      "publication_permission": "Commercial publication permission not independently verified.",
+      "visually_inspected": true
+    },
+    {
+      "file": "/images/manufacturers/longitude-floorplan-aft-couch.jpg",
+      "model": "Citation Longitude",
+      "manufacturer": "Cessna",
+      "scene": "floorplan",
+      "source_kind": "manufacturer-product-gallery",
+      "source_page": "https://cessna.txtav.com/en/citation/longitude",
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/jets/longitude/interior-floorplan/longitude-aft-black.jpg",
+      "dimensions": {
+        "width": 600,
+        "height": 750
+      },
+      "evidence": "Exact manufacturer cabin layout image linked by the Longitude product page; visually inspected. Representative configuration only.",
+      "sha256": "edbd1c69d414cfbf52e5935c7c5900804723a8cfb9536a30b2a03d13b0ef6bec",
+      "file_bytes": 29511,
+      "source_bytes_verified_on": "2026-10-23",
+      "transformation": "Original manufacturer-served bytes; CSS only for display.",
+      "publication_permission": "Commercial publication permission not independently verified.",
+      "visually_inspected": true
+    },
+    {
+      "file": "/images/manufacturers/longitude-floorplan-side-seat.jpg",
+      "model": "Citation Longitude",
+      "manufacturer": "Cessna",
+      "scene": "floorplan",
+      "source_kind": "manufacturer-product-gallery",
+      "source_page": "https://cessna.txtav.com/en/citation/longitude",
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/jets/longitude/interior-floorplan/longitude-sfs-black.jpg",
+      "dimensions": {
+        "width": 600,
+        "height": 750
+      },
+      "evidence": "Exact manufacturer cabin layout image linked by the Longitude product page; visually inspected. Representative configuration only.",
+      "sha256": "1392ed661816cefcd968a6b6075be6cc97ebb139886929ec6bfeb94f784e13d1",
+      "file_bytes": 31030,
+      "source_bytes_verified_on": "2026-10-23",
+      "transformation": "Original manufacturer-served bytes; CSS only for display.",
+      "publication_permission": "Commercial publication permission not independently verified.",
+      "visually_inspected": true
     }
   ],
   "brand": "Latest user-supplied navbar PNG; Flight Guide footer artwork; Ubuntu 300/400/500",

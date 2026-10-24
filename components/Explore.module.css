@@ -33,7 +33,7 @@
 .empty { text-align:center; padding:64px 20px; background:#f5f5f7; border-radius:8px; }
 .empty h3 { margin:16px 0; font-size:24px; }.empty p { margin:0 0 24px; color:#63636a; }
 .comparison { margin-top:48px; padding:32px; border:1px solid #dedee2; border-radius:8px; background:#f5f5f7; }
-.tableScroll { overflow:auto; margin:24px 0; }
+.tableScroll { position:relative; overflow:auto; margin:24px 0; }
 .tableScroll table { border-collapse:collapse; width:100%; min-width:480px; font-size:14px; text-align:left; }
 .tableScroll th,.tableScroll td { padding:18px 16px; border-bottom:1px solid #d9d9de; vertical-align:top; min-width:145px; }
 .tableScroll th { font-weight:500; }.tableScroll a { color:inherit; text-underline-offset:4px; }
@@ -68,6 +68,10 @@
 
 .shortlistBar { display: none; }
 .comparison { scroll-margin-top: calc(var(--header-height) + 16px); }
+.comparisonNote { max-width: 80ch; font-size: 13px; line-height: 1.7; color: #52595e; margin: 0 0 24px; }
+.tableScroll:focus-visible { outline: 2px solid #2857a5; outline-offset: 4px; }
+.tableScroll tbody a { display: inline-flex; align-items: center; min-height: 44px; }
+.tableScroll tbody th { position: sticky; left: 0; background: #f5f5f7; z-index: 1; }
 @media (max-width:760px) {
   .section:has(.explorerIntro) { padding-top: 24px; }
   .explorerIntro { margin-bottom: 16px; }

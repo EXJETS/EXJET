@@ -11,6 +11,7 @@ import { SectionIntro } from "@/components/SectionIntro";
 import { aircraft, getAircraft } from "@/data/aircraft";
 import { buildDynamicMetadata } from "@/data/seo";
 import { absoluteUrl } from "@/data/site";
+import { getAircraftReference } from "@/data/aircraft-reference";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
@@ -36,6 +37,7 @@ export default async function AircraftDetailPage({ params }: PageProps) {
   if (!item) notFound();
 
   const guide = aircraftGuides[slug as keyof typeof aircraftGuides];
+  const reference = getAircraftReference(slug);
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -49,6 +51,10 @@ export default async function AircraftDetailPage({ params }: PageProps) {
     <>
       <StructuredData data={breadcrumb} />
       <AircraftDetail item={item} />
+      {reference ? <nav className="aircraft-detail-jump" aria-label={`${item.name} page sections`}>
+        <a href="#aircraft-specifications">Specifications <span aria-hidden="true">↓</span></a>
+        {reference.floorplans?.length ? <a href="#cabin-layout">Cabin layouts <span aria-hidden="true">↓</span></a> : null}
+      </nav> : null}
       <section className="section aircraft-detail-copy">
         <div className="shell">
           <SectionIntro eyebrow={`${item.maker} · ${item.category}`} title="At a glance." copy={item.summary} />

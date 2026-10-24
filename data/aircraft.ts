@@ -266,6 +266,38 @@ export const aircraft: Aircraft[] = [
       }
     ],
     "image": "/images/manufacturers/challenger-300-flight.jpg"
+  },
+  {
+    "slug": "citation-longitude",
+    "name": "Citation Longitude",
+    "maker": "Cessna",
+    "category": "Super-midsize",
+    "status": "charter",
+    "summary": "A flat-floor cabin with fully berthable seating and a 3,500 nm published maximum range for longer business journeys.",
+    "cardFit": "contain",
+    "typical": {
+      "passengers": "Up to 12; configuration varies",
+      "range": "Up to 3,500 nm (published)",
+      "baggage": "112 cu ft (published)",
+      "cabin": "6 ft stand-up cabin"
+    },
+    "scenes": [
+      {
+        "id": "exterior",
+        "label": "Exterior",
+        "image": "/images/manufacturers/longitude-flight-sunrise.jpg",
+        "fit": "contain",
+        "focalPoint": "center"
+      },
+      {
+        "id": "cabin",
+        "label": "Interior",
+        "image": "/images/editorial/citation-longitude-cabin.jpg",
+        "fit": "contain",
+        "focalPoint": "center"
+      }
+    ],
+    "image": "/images/manufacturers/longitude-flight-sunrise.jpg"
   }
 ];
 
