@@ -1,3 +1,7 @@
+# Full template redesign — 24 October 2026
+
+The public homepage, service, aircraft, editorial and footer templates now use a Bombardier-inspired editorial system: expansive campaign imagery, light large display type, asymmetric introductions, fine rules, spacious sections and black-label actions. Preserve the existing navbar and menu exactly. Do not modify Avinode integration or vendor UI. Responsive layouts stack at 760px; avoid desktop-sized text on phones. Manufacturer specifications and representative floor plans are model-specific and carry operating assumptions.
+
 # Current design direction — 23 October 2026
 
 Owner requests Bombardier-inspired graphic design and UX. Use expansive photography, light display type, alternating editorial service chapters, fine rules, generous responsive spacing and pill-shaped actions. Preserve EXJET marks, Ubuntu, neutral white/platinum/charcoal palette, black CTA labels, five services, existing hero image and Avinode. This supersedes earlier compact card styling; do not copy Bombardier wordmarks or imply affiliation.

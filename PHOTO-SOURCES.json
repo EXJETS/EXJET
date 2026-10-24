@@ -529,6 +529,81 @@
       "publication_permission": "Commercial publication permission has not been verified.",
       "visually_inspected": true,
       "source_limitation": "800px archival original; suitable for mobile review. Manufacturer attribution is publisher-confirmed, not independently verified against bombardier.com."
+    },
+    {
+      "file": "/images/manufacturers/global-8000-club.webp",
+      "model": "Global 8000",
+      "scene": "interior",
+      "source_page": "https://bombardier.com/en/aircraft/global-8000",
+      "image_url": "https://bombardier.com/sites/default/files/styles/retina_2700x900/public/2024-10/DDBA1288A_0011044_simplifie%CC%81_2024_V4-copy-2700x1200.jpg.webp?itok=QhBTAz58",
+      "dimensions": {
+        "width": 2700,
+        "height": 1200
+      },
+      "evidence": "Image URL observed on the official Global 8000 product page and downloaded image visually inspected.",
+      "sha256": "1e729dd5275f670e886293374e92c7137c4b5a492c251d35ca94773ca811b2dc",
+      "file_bytes": 279930,
+      "manufacturer": "Bombardier",
+      "source_bytes_verified_on": "2026-10-23",
+      "transformation": "Original manufacturer-served WebP bytes.",
+      "publication_permission": "Commercial publication permission has not been verified.",
+      "source_kind": "manufacturer-product-gallery"
+    },
+    {
+      "file": "/images/manufacturers/global-8000-flight.webp",
+      "model": "Global 8000",
+      "scene": "exterior",
+      "source_page": "https://bombardier.com/en/aircraft/global-8000",
+      "image_url": "https://bombardier.com/sites/default/files/styles/retina_2700x900/public/2024-10/16A0029_2024_V2-copy-Global-8000-2085x932.jpg.webp?itok=cnBsGzgO",
+      "dimensions": {
+        "width": 2085,
+        "height": 932
+      },
+      "evidence": "Image URL observed on the official Global 8000 product page and downloaded image visually inspected.",
+      "sha256": "7ccc841eec12bc54b1cbf61edc5eee419bafee40cc3c9a81204ea37b06007ccf",
+      "file_bytes": 508524,
+      "manufacturer": "Bombardier",
+      "source_bytes_verified_on": "2026-10-23",
+      "transformation": "Original manufacturer-served WebP bytes.",
+      "publication_permission": "Commercial publication permission has not been verified.",
+      "source_kind": "manufacturer-product-gallery",
+      "flight_status": "in-flight"
+    },
+    {
+      "file": "/images/manufacturers/latitude-floorplan.jpg",
+      "model": "Citation Latitude",
+      "scene": "floorplan",
+      "source_page": "https://cessna.txtav.com/en/citation/latitude",
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/jets/latitude/interior-floorplan/latitude-floorplan-club.jpg",
+      "dimensions": {
+        "width": 600,
+        "height": 750
+      },
+      "evidence": "Representative floor plan displayed on the exact model product page; layout varies by individual aircraft.",
+      "sha256": "9386ad34182a40fb462c14b500c42f86539e032644419f454442c923a7ba7159",
+      "file_bytes": 35610,
+      "source_bytes_verified_on": "2026-10-23",
+      "transformation": "Original manufacturer-served bytes.",
+      "publication_permission": "Commercial publication permission has not been verified.",
+      "source_kind": "manufacturer-product-gallery"
+    },
+    {
+      "file": "/images/manufacturers/global-8000-floorplan.png",
+      "model": "Global 8000",
+      "scene": "floorplan",
+      "source_page": "https://bombardier.com/en/aircraft/global-8000",
+      "image_url": "https://bombardier.com/sites/default/files/2024-10/DDBA1288A_Ac_Brochures_2024Phase2_7500_Floorplan_V8-no-bkgd-2600x697.png",
+      "dimensions": {
+        "width": 2600,
+        "height": 697
+      },
+      "evidence": "Representative floor plan displayed on the exact model product page; layout varies by individual aircraft.",
+      "sha256": "36f9cd738924d333b164bc6d30f79b2a3014711863b4bcece6e447d9ab625738",
+      "file_bytes": 1022739,
+      "source_bytes_verified_on": "2026-10-23",
+      "transformation": "Original manufacturer-served bytes.",
+      "publication_permission": "Commercial publication permission has not been verified.",
+      "source_kind": "manufacturer-product-gallery"
     }
   ],
   "brand": "Latest user-supplied navbar PNG; Flight Guide footer artwork; Ubuntu 300/400/500",

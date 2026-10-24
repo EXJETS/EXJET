@@ -1,0 +1,157 @@
+{
+  "citation-latitude": {
+    "name": "Citation Latitude",
+    "metrics": [
+      [
+        "Maximum range",
+        "2,700 nm"
+      ],
+      [
+        "Maximum cruise",
+        "446 ktas"
+      ],
+      [
+        "Maximum altitude",
+        "45,000 ft"
+      ]
+    ],
+    "cabin": [
+      [
+        "Cabin height",
+        "6 ft"
+      ],
+      [
+        "Cabin width",
+        "6 ft 5 in"
+      ],
+      [
+        "Cabin length",
+        "21 ft 9 in"
+      ],
+      [
+        "Baggage volume",
+        "127 cu ft"
+      ]
+    ],
+    "performance": [
+      [
+        "Takeoff distance",
+        "3,580 ft"
+      ],
+      [
+        "Landing distance",
+        "2,480 ft"
+      ],
+      [
+        "Maximum takeoff weight",
+        "30,800 lb"
+      ]
+    ],
+    "note": "Published model figures are reference values, not a mission guarantee. Range, runway requirements and usable baggage depend on load, reserves and conditions; the operating crew confirms suitability.",
+    "floorplan": {
+      "src": "/images/manufacturers/latitude-floorplan.jpg",
+      "width": 600,
+      "height": 750
+    },
+    "source": "https://cessna.txtav.com/en/citation/latitude"
+  },
+  "global-8000": {
+    "name": "Global 8000",
+    "metrics": [
+      [
+        "Published range",
+        "8,000 nm"
+      ],
+      [
+        "Maximum speed",
+        "Mach 0.95"
+      ],
+      [
+        "Maximum altitude",
+        "51,000 ft"
+      ]
+    ],
+    "cabin": [
+      [
+        "Cabin height",
+        "6 ft 2 in"
+      ],
+      [
+        "Cabin width",
+        "8 ft"
+      ],
+      [
+        "Cabin length",
+        "54 ft 5 in"
+      ],
+      [
+        "Living spaces",
+        "4"
+      ]
+    ],
+    "performance": [
+      [
+        "Takeoff distance",
+        "5,760 ft"
+      ],
+      [
+        "Landing distance",
+        "2,220 ft"
+      ],
+      [
+        "Typical cruise",
+        "Mach 0.85"
+      ]
+    ],
+    "note": "Range assumes Mach 0.85, eight passengers, four crew, ISA conditions and NBAA IFR reserves. Takeoff is at sea level, ISA and maximum takeoff weight; landing uses a typical landing weight. Cabin length excludes baggage. Actual mission performance varies.",
+    "floorplan": {
+      "src": "/images/manufacturers/global-8000-floorplan.png",
+      "width": 2600,
+      "height": 697
+    },
+    "source": "https://bombardier.com/en/aircraft/global-8000"
+  },
+  "falcon-900": {
+    "name": "Falcon 900LX",
+    "metrics": [
+      [
+        "Published range",
+        "4,750 nm"
+      ],
+      [
+        "Typical cruise",
+        "Mach 0.80"
+      ],
+      [
+        "Maximum altitude",
+        "51,000 ft"
+      ]
+    ],
+    "cabin": [
+      [
+        "Cabin height",
+        "6 ft 2 in"
+      ],
+      [
+        "Cabin width",
+        "7 ft 8 in"
+      ],
+      [
+        "Cabin length",
+        "33 ft 2 in"
+      ]
+    ],
+    "performance": [
+      [
+        "Takeoff distance",
+        "5,360 ft"
+      ],
+      [
+        "Landing distance",
+        "2,415 ft"
+      ]
+    ],
+    "note": "Figures refer specifically to the 900LX in the June 2020 technical backgrounder. Range assumes long-range cruise, six passengers, two crew and NBAA IFR reserves. Takeoff is at sea level, ISA and maximum takeoff weight. Landing is an FAR Part 91 reference, not a charter dispatch requirement. Cabin length excludes flight deck and baggage.",
+    "source": "https://www.dassaultfalcon.com/app/uploads/2023/01/Falcon-900LX-Backgrounder.pdf"
+  }
+}
