@@ -24,10 +24,10 @@ export default function CargoPage() {
     <>
       <PageHero heading="Air cargo charter services"
         dark
-        image="/images/cargo-charter-747.webp"
-        imageAlt="Boeing 747 freighter being loaded on the apron at dusk"
-        imageWidth={1672}
-        imageHeight={941}
+        image="/images/manufacturers/skycourier-freighter.jpg"
+        imageAlt="Cessna SkyCourier freighter on the apron"
+        imageWidth={1920}
+        imageHeight={1080}
         eyebrow="Cargo charter"
         title={<>Cargo without<br /><em>compromise.</em></>}
         copy="Aircraft sourcing and charter coordination for time-sensitive, specialized, and mission-specific cargo movements worldwide."

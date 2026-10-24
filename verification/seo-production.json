@@ -1,10 +1,10 @@
 {
   "mode": "production",
   "status": "PASS",
-  "html_pages_checked": 139,
+  "html_pages_checked": 232,
   "original_pages_preserved": 62,
-  "indexable_count": 127,
-  "sitemap_urls": 127,
+  "indexable_count": 220,
+  "sitemap_urls": 220,
   "noindex_pages": [
     "/account/",
     "/cancellations/",
@@ -25,17 +25,17 @@
   "metadata": [
     {
       "path": "/",
-      "title": "Business Aviation Solutions & Private Jet Charter | EXJET",
-      "description": "Dallas-based EXJET connects charter, aircraft sales, management, MRO, interiors and Starlink installation consulting. Plan your next aviation decision.",
+      "title": "Business & Commercial Aviation Solutions | EXJET",
+      "description": "EXJET supports business and commercial aviation with passenger and cargo charter, dry lease, ACMI, ownership, crew and aircraft technical services.",
       "h1": [
-        "Business aviation solutions & private jet charter"
+        "Global Access. On-Demand."
       ],
       "robots": "index, follow"
     },
     {
       "path": "/about/",
-      "title": "About EXJET | Business Aviation Solutions & Consulting",
-      "description": "Meet EXJET, a Dallas-based business aviation solutions company founded by pilots. Explore charter, aircraft ownership and technical project consulting.",
+      "title": "About EXJET | Business & Commercial Aviation Solutions",
+      "description": "EXJET is a Dallas-based aviation solutions company serving business and commercial aviation, from charter and leasing to ownership and technical support.",
       "h1": [
         "About EXJET business aviation"
       ],
@@ -58,6 +58,24 @@
         "A personal point of contact."
       ],
       "robots": "noindex, follow"
+    },
+    {
+      "path": "/acmi/",
+      "title": "Passenger & Cargo ACMI Aircraft Leasing | EXJET",
+      "description": "Source passenger and cargo ACMI capacity with EXJET. Define aircraft, crew, maintenance and insurance requirements for seasonal demand or fleet support.",
+      "h1": [
+        "ACMI. Passenger & cargo."
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/aircraft-charter/",
+      "title": "Passenger & Cargo Aircraft Charter Services | EXJET",
+      "description": "Arrange passenger and cargo aircraft charter with EXJET. Coordinate business travel, group movements and freight capacity around your route and schedule.",
+      "h1": [
+        "Charter. Passenger & cargo."
+      ],
+      "robots": "index, follow"
     },
     {
       "path": "/aircraft-comparisons/",
@@ -96,11 +114,20 @@
       "robots": "index, follow"
     },
     {
-      "path": "/aircraft-management/",
-      "title": "Aircraft Management Consulting & Owner Support | EXJET",
-      "description": "Plan aircraft management with EXJET in Dallas. Compare operating budgets, provider proposals, maintenance coordination and reporting for your business jet.",
+      "path": "/aircraft-guides/",
+      "title": "Business Aircraft Guides: Learjet to Gulfstream | EXJET",
+      "description": "Compare Learjet, Hawker, Citation, Challenger, Gulfstream, Global and Falcon aircraft. Practical cabin and trip planning guides for executive assistants and family offices.",
       "h1": [
-        "Aircraft management consulting"
+        "Business aircraft charter guides"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/aircraft-management/",
+      "title": "Aircraft Management & Operating Support | EXJET",
+      "description": "Plan aircraft management for business and commercial aviation with EXJET. Coordinate operating budgets, crew, maintenance providers and owner reporting.",
+      "h1": [
+        "Aircraft management."
       ],
       "robots": "index, follow"
     },
@@ -115,7 +142,7 @@
     },
     {
       "path": "/aircraft-performance/",
-      "title": "Business jet performance and specification guides | EXJET",
+      "title": "Business Jet Range, Performance & Specifications | EXJET",
       "description": "Compare business jet range, speed, cabin dimensions and passenger assumptions. Use manufacturer-sourced guides to prepare executive and family charter requests.",
       "h1": [
         "Business jet performance and specification guides"
@@ -124,7 +151,7 @@
     },
     {
       "path": "/aircraft-performance/citation-latitude/",
-      "title": "Cessna Citation Latitude range, performance and specifications | EXJET",
+      "title": "Citation Latitude Range, Performance & Specs | EXJET",
       "description": "Compare Cessna Citation Latitude range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
       "h1": [
         "Cessna Citation Latitude range, performance and specifications"
@@ -133,7 +160,7 @@
     },
     {
       "path": "/aircraft-performance/citation-longitude/",
-      "title": "Cessna Citation Longitude range, performance and specifications | EXJET",
+      "title": "Citation Longitude Range, Performance & Specs | EXJET",
       "description": "Compare Cessna Citation Longitude range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
       "h1": [
         "Cessna Citation Longitude range, performance and specifications"
@@ -142,7 +169,7 @@
     },
     {
       "path": "/aircraft-performance/falcon-6x/",
-      "title": "Dassault Falcon 6X range, performance and specifications | EXJET",
+      "title": "Falcon 6X Range, Performance & Specs | EXJET",
       "description": "Compare Dassault Falcon 6X range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
       "h1": [
         "Dassault Falcon 6X range, performance and specifications"
@@ -151,7 +178,7 @@
     },
     {
       "path": "/aircraft-performance/global-6000/",
-      "title": "Bombardier Global 6000 range, performance and specifications | EXJET",
+      "title": "Global 6000 Range, Performance & Specs | EXJET",
       "description": "Compare Bombardier Global 6000 range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
       "h1": [
         "Bombardier Global 6000 range, performance and specifications"
@@ -160,7 +187,7 @@
     },
     {
       "path": "/aircraft-performance/global-7500/",
-      "title": "Bombardier Global 7500 range, performance and specifications | EXJET",
+      "title": "Global 7500 Range, Performance & Specs | EXJET",
       "description": "Compare Bombardier Global 7500 range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
       "h1": [
         "Bombardier Global 7500 range, performance and specifications"
@@ -169,10 +196,10 @@
     },
     {
       "path": "/aircraft/",
-      "title": "Business Jet Charter Aircraft & Cabin Guide | EXJET",
+      "title": "Private Jet Charter Aircraft: Cabins & Costs | EXJET",
       "description": "Compare Citation, Challenger, Gulfstream, Global and Falcon aircraft. Review cabins, mission planning and charter costs, then request options for your journey.",
       "h1": [
-        "Business aircraft categories and charter options"
+        "Explore business aircraft"
       ],
       "robots": "index, follow"
     },
@@ -200,6 +227,15 @@
       "description": "Explore Citation Latitude charter costs, cabin considerations and Dallas or New York mission planning. Compare aircraft options and request a tailored EXJET quote.",
       "h1": [
         "Citation Latitude charter"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/aircraft/citation-longitude/",
+      "title": "Citation Longitude Charter: Cost & Cabin Guide | EXJET",
+      "description": "Explore Citation Longitude charter with manufacturer photography, three cabin layouts, range and cabin specifications. Request a complete EXJET trip quote.",
+      "h1": [
+        "Citation Longitude charter"
       ],
       "robots": "index, follow"
     },
@@ -259,7 +295,7 @@
     },
     {
       "path": "/airports/kads/",
-      "title": "Addison Airport (ADS) Charter Guide | EXJET",
+      "title": "Addison Airport (ADS) Private Jet Charter | EXJET",
       "description": "Plan aircraft charter at Addison Airport (ADS). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
       "h1": [
         "Addison Airport charter guide"
@@ -268,7 +304,7 @@
     },
     {
       "path": "/airports/kase/",
-      "title": "Aspen/Pitkin County Airport (ASE) Charter Guide | EXJET",
+      "title": "Aspen Airport (ASE) Private Jet Charter Guide | EXJET",
       "description": "Plan aircraft charter at Aspen/Pitkin County Airport (ASE). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
       "h1": [
         "Aspen/Pitkin County Airport charter guide"
@@ -277,7 +313,7 @@
     },
     {
       "path": "/airports/kdal/",
-      "title": "Dallas Love Field (DAL) Charter Guide | EXJET",
+      "title": "Dallas Love Field (DAL) Private Jet Charter | EXJET",
       "description": "Plan aircraft charter at Dallas Love Field (DAL). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
       "h1": [
         "Dallas Love Field charter guide"
@@ -286,7 +322,7 @@
     },
     {
       "path": "/airports/kdjt/",
-      "title": "Palm Beach International / DJT (DJT) Charter Guide | EXJET",
+      "title": "Palm Beach Airport (DJT) Private Jet Charter | EXJET",
       "description": "Plan aircraft charter at Palm Beach International / DJT (DJT). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
       "h1": [
         "Palm Beach International / DJT charter guide"
@@ -295,7 +331,7 @@
     },
     {
       "path": "/airports/kege/",
-      "title": "Eagle County Regional Airport (EGE) Charter Guide | EXJET",
+      "title": "Eagle County Airport (EGE) Private Jet Charter | EXJET",
       "description": "Plan aircraft charter at Eagle County Regional Airport (EGE). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
       "h1": [
         "Eagle County Regional Airport charter guide"
@@ -304,7 +340,7 @@
     },
     {
       "path": "/airports/khou/",
-      "title": "William P. Hobby Airport (HOU) Charter Guide | EXJET",
+      "title": "Houston Hobby (HOU) Private Jet Charter | EXJET",
       "description": "Plan aircraft charter at William P. Hobby Airport (HOU). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
       "h1": [
         "William P. Hobby Airport charter guide"
@@ -313,7 +349,7 @@
     },
     {
       "path": "/airports/khpn/",
-      "title": "Westchester County Airport (HPN) Charter Guide | EXJET",
+      "title": "Westchester Airport (HPN) Private Jet Charter | EXJET",
       "description": "Plan aircraft charter at Westchester County Airport (HPN). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
       "h1": [
         "Westchester County Airport charter guide"
@@ -322,7 +358,7 @@
     },
     {
       "path": "/airports/klas/",
-      "title": "Harry Reid Airport (LAS) Charter Guide | EXJET",
+      "title": "Las Vegas Airport (LAS) Private Jet Charter | EXJET",
       "description": "Plan aircraft charter at Harry Reid International Airport (LAS). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
       "h1": [
         "Harry Reid International Airport charter guide"
@@ -331,7 +367,7 @@
     },
     {
       "path": "/airports/kmdw/",
-      "title": "Chicago Midway Airport (MDW) Charter Guide | EXJET",
+      "title": "Chicago Midway (MDW) Private Jet Charter | EXJET",
       "description": "Plan aircraft charter at Chicago Midway International Airport (MDW). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
       "h1": [
         "Chicago Midway International Airport charter guide"
@@ -340,7 +376,7 @@
     },
     {
       "path": "/airports/kopf/",
-      "title": "Miami-Opa Locka Executive Airport (OPF) Charter Guide | EXJET",
+      "title": "Miami Opa-locka (OPF) Private Jet Charter | EXJET",
       "description": "Plan aircraft charter at Miami-Opa Locka Executive Airport (OPF). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
       "h1": [
         "Miami-Opa Locka Executive Airport charter guide"
@@ -349,7 +385,7 @@
     },
     {
       "path": "/airports/kteb/",
-      "title": "Teterboro Airport (TEB) Charter Guide | EXJET",
+      "title": "Teterboro Airport (TEB) Private Jet Charter | EXJET",
       "description": "Plan aircraft charter at Teterboro Airport (TEB). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
       "h1": [
         "Teterboro Airport charter guide"
@@ -358,7 +394,7 @@
     },
     {
       "path": "/airports/kvny/",
-      "title": "Van Nuys Airport (VNY) Charter Guide | EXJET",
+      "title": "Van Nuys Airport (VNY) Private Jet Charter | EXJET",
       "description": "Plan aircraft charter at Van Nuys Airport (VNY). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
       "h1": [
         "Van Nuys Airport charter guide"
@@ -367,7 +403,7 @@
     },
     {
       "path": "/airports/mmsd/",
-      "title": "Los Cabos Airport (SJD) Charter Guide | EXJET",
+      "title": "Los Cabos Airport (SJD) Private Jet Charter | EXJET",
       "description": "Plan aircraft charter at Los Cabos International Airport (SJD). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
       "h1": [
         "Los Cabos International Airport charter guide"
@@ -384,8 +420,71 @@
       "robots": "index, follow"
     },
     {
+      "path": "/articles/challenger-300-charter-guide/",
+      "title": "Challenger 300: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Challenger 300 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Challenger 300 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/challenger-350-charter-guide/",
+      "title": "Challenger 350: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Challenger 350 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Challenger 350 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/challenger-3500-charter-guide/",
+      "title": "Challenger 3500: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Challenger 3500 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Challenger 3500 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/challenger-601-charter-guide/",
+      "title": "Challenger 601: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Challenger 601 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Challenger 601 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/challenger-604-charter-guide/",
+      "title": "Challenger 604: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Challenger 604 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Challenger 604 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/challenger-605-charter-guide/",
+      "title": "Challenger 605: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Challenger 605 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Challenger 605 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/challenger-650-charter-guide/",
+      "title": "Challenger 650: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Challenger 650 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Challenger 650 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
       "path": "/articles/charter-vs-aircraft-ownership-for-a-family-office/",
-      "title": "Charter or aircraft ownership for a family office? | EXJET",
+      "title": "Charter vs Aircraft Ownership for Family Offices | EXJET",
       "description": "Compare on-demand charter with whole-aircraft ownership using mission consistency, control, capital, staffing, availability, and risk.",
       "h1": [
         "Charter or aircraft ownership for a family office?"
@@ -394,7 +493,7 @@
     },
     {
       "path": "/articles/choosing-a-private-charter-aircraft/",
-      "title": "Choose the aircraft around the journey | EXJET",
+      "title": "How to Choose a Private Jet for Charter | EXJET",
       "description": "Compare private charter aircraft by passengers, baggage, range and cabin needs. Build a practical shortlist and request a tailored quote from EXJET.",
       "h1": [
         "Choose the aircraft around the journey"
@@ -402,8 +501,35 @@
       "robots": "index, follow"
     },
     {
+      "path": "/articles/citation-excel-charter-guide/",
+      "title": "Citation Excel / XL: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Citation Excel / XL cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Citation Excel / XL charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/citation-x-charter-guide/",
+      "title": "Citation X: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Citation X cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Citation X charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/citation-xls-charter-guide/",
+      "title": "Citation XLS: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Citation XLS cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Citation XLS charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
       "path": "/articles/empty-leg-flights-explained/",
-      "title": "Empty legs: understand the opportunity and the limits | EXJET",
+      "title": "What Is an Empty Leg Flight? Costs & Booking | EXJET",
       "description": "How empty-leg flights work, what to confirm before booking, and why route flexibility and a backup plan matter. Explore the guide and discuss your itinerary with EXJET.",
       "h1": [
         "Empty legs: understand the opportunity and the limits"
@@ -411,8 +537,26 @@
       "robots": "index, follow"
     },
     {
+      "path": "/articles/falcon-2000-charter-guide/",
+      "title": "Falcon 2000: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Falcon 2000 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Falcon 2000 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/falcon-900-charter-guide/",
+      "title": "Falcon 900: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Falcon 900 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Falcon 900 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
       "path": "/articles/first-private-charter-checklist/",
-      "title": "Your first private charter: a practical checklist | EXJET",
+      "title": "First Private Jet Charter: Booking Checklist | EXJET",
       "description": "Prepare your itinerary, verify the operator, confirm the airport meeting point, and review baggage and travel-document requirements.",
       "h1": [
         "Your first private charter: a practical checklist"
@@ -421,7 +565,7 @@
     },
     {
       "path": "/articles/flying-private-with-children/",
-      "title": "Flying private with children: plan the cabin around your family | EXJET",
+      "title": "Flying Private with Children: Family Travel Guide | EXJET",
       "description": "A practical guide to child restraints, baggage, routines, catering, and documents when arranging a private flight for your family.",
       "h1": [
         "Flying private with children: plan the cabin around your family"
@@ -429,8 +573,62 @@
       "robots": "index, follow"
     },
     {
+      "path": "/articles/global-5000-charter-guide/",
+      "title": "Global 5000: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Global 5000 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Global 5000 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/global-6000-charter-guide/",
+      "title": "Global 6000: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Global 6000 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Global 6000 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/global-express-charter-guide/",
+      "title": "Global Express: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Global Express cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Global Express charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/global-express-xrs-charter-guide/",
+      "title": "Global Express XRS: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Global Express XRS cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Global Express XRS charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/gulfstream-g450-charter-guide/",
+      "title": "Gulfstream G450: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Gulfstream G450 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Gulfstream G450 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/gulfstream-g550-charter-guide/",
+      "title": "Gulfstream G550: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Gulfstream G550 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Gulfstream G550 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
       "path": "/articles/gulfstream-g550-vs-boeing-bbj1-ownership/",
-      "title": "Gulfstream G550 vs. Boeing BBJ1: an ownership decision | EXJET",
+      "title": "Gulfstream G550 vs Boeing BBJ1: Ownership Comparison | EXJET",
       "description": "Compare a Gulfstream G550 with a Boeing BBJ1 through mission profile, cabin use, airport access, staffing, maintenance, and acquisition risk.",
       "h1": [
         "Gulfstream G550 vs. Boeing BBJ1: an ownership decision"
@@ -438,8 +636,107 @@
       "robots": "index, follow"
     },
     {
+      "path": "/articles/gulfstream-giv-charter-guide/",
+      "title": "Gulfstream GIV: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Gulfstream GIV cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Gulfstream GIV charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/gulfstream-giv-sp-charter-guide/",
+      "title": "Gulfstream GIV-SP: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Gulfstream GIV-SP cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Gulfstream GIV-SP charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/gulfstream-gv-charter-guide/",
+      "title": "Gulfstream GV: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Gulfstream GV cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Gulfstream GV charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/hawker-750-charter-guide/",
+      "title": "Hawker 750: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Hawker 750 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Hawker 750 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/hawker-800-charter-guide/",
+      "title": "Hawker 800 and 800XP: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Hawker 800 and 800XP cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Hawker 800 and 800XP charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/hawker-850xp-charter-guide/",
+      "title": "Hawker 850XP: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Hawker 850XP cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Hawker 850XP charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/hawker-900xp-charter-guide/",
+      "title": "Hawker 900XP: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Hawker 900XP cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Hawker 900XP charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/learjet-40-charter-guide/",
+      "title": "Learjet 40: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Learjet 40 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Learjet 40 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/learjet-45-charter-guide/",
+      "title": "Learjet 45: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Learjet 45 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Learjet 45 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/learjet-60-charter-guide/",
+      "title": "Learjet 60: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Learjet 60 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Learjet 60 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/articles/learjet-75-charter-guide/",
+      "title": "Learjet 75: Cabin, Range & Charter Guide | EXJET",
+      "description": "Compare Learjet 75 cabin requirements, model differences and charter planning. A practical guide for executive assistants, principals and family offices.",
+      "h1": [
+        "Learjet 75 charter guide"
+      ],
+      "robots": "index, follow"
+    },
+    {
       "path": "/articles/planning-a-multigenerational-family-charter/",
-      "title": "Planning a multigenerational family charter | EXJET",
+      "title": "Family Private Jet Charter: Group Travel Planning | EXJET",
       "description": "Plan a private charter for several generations with practical advice on seating, baggage, mobility and transfers. Discuss your family itinerary with EXJET.",
       "h1": [
         "Planning a multigenerational family charter"
@@ -448,7 +745,7 @@
     },
     {
       "path": "/articles/private-charter-for-executive-assistants/",
-      "title": "Private charter planning for executive assistants | EXJET",
+      "title": "Executive Assistant Private Jet Booking Checklist | EXJET",
       "description": "Build a clear trip brief, compare aircraft proposals, manage approvals, and keep executive travel details consistent from request to arrival.",
       "h1": [
         "Private charter planning for executive assistants"
@@ -457,7 +754,7 @@
     },
     {
       "path": "/articles/private-charter-versus-jet-cards/",
-      "title": "On-demand charter or a jet card? Compare the terms | EXJET",
+      "title": "Jet Card vs On-Demand Charter: Costs & Terms | EXJET",
       "description": "Compare trip-by-trip charter with jet-card commitments using your routes, booking habits, cancellation needs, and the actual program contract.",
       "h1": [
         "On-demand charter or a jet card? Compare the terms"
@@ -466,7 +763,7 @@
     },
     {
       "path": "/articles/private-jet-travel-with-pets/",
-      "title": "Private jet travel with pets: prepare the complete itinerary | EXJET",
+      "title": "Private Jet Travel with Pets: Planning Guide | EXJET",
       "description": "Plan a private flight with a pet by confirming operator approval, destination health rules, cabin arrangements, and ground transfers.",
       "h1": [
         "Private jet travel with pets: prepare the complete itinerary"
@@ -475,7 +772,7 @@
     },
     {
       "path": "/articles/understanding-a-private-jet-charter-quote/",
-      "title": "What is included in a private jet charter quote? | EXJET",
+      "title": "Private Jet Charter Quotes: Costs & Inclusions | EXJET",
       "description": "Compare the complete trip price, possible additional charges, aircraft details, and cancellation terms before accepting a private charter quote.",
       "h1": [
         "What is included in a private jet charter quote?"
@@ -484,10 +781,10 @@
     },
     {
       "path": "/business-aviation-consulting/",
-      "title": "Business Aviation Consulting for Family Offices & Corporations | EXJET",
-      "description": "EXJET aviation consulting connects charter, ownership and technical projects for family offices and corporate teams. Build a clear mission, budget and decision brief.",
+      "title": "Business & Commercial Aviation Consulting | EXJET",
+      "description": "EXJET connects aircraft charter, leasing, ownership and technical project consulting for business and commercial aviation. Discuss your requirements.",
       "h1": [
-        "Business aviation consulting for owners and corporate teams"
+        "Aviation consulting. Business & commercial."
       ],
       "robots": "index, follow"
     },
@@ -511,7 +808,7 @@
     },
     {
       "path": "/cargo/dallas/",
-      "title": "Dallas air cargo charter | EXJET",
+      "title": "Dallas Air Cargo Charter & Urgent Freight | EXJET",
       "description": "Request air cargo charter from Dallas\u2013Fort Worth for urgent or specialized shipments. Share dimensions, weight, handling and delivery timing with EXJET.",
       "h1": [
         "Dallas air cargo charter"
@@ -532,16 +829,16 @@
       "title": "Request a Private Jet Charter Quote | Flight Search | EXJET",
       "description": "Send your airports, travel dates and passenger count to EXJET. Request aircraft options and a complete charter quote for your domestic or international trip.",
       "h1": [
-        "Request a charter quote."
+        "Find a flight."
       ],
       "robots": "index, follow"
     },
     {
       "path": "/contact/",
-      "title": "Contact EXJET | Charter & Business Aviation Consulting",
-      "description": "Contact EXJET for charter, aircraft sales, management, MRO, interior completions or Starlink installation consulting. Discuss your aircraft, project or itinerary.",
+      "title": "Contact EXJET | Aviation Solutions",
+      "description": "Contact EXJET for business and commercial aviation solutions. Discuss passenger and cargo charter, leasing, ACMI, ownership, crew or technical requirements.",
       "h1": [
-        "Contact EXJET for business aviation solutions"
+        "Speak with EXJET"
       ],
       "robots": "index, follow"
     },
@@ -565,7 +862,7 @@
     },
     {
       "path": "/corporate-travel/fortune-500/",
-      "title": "Private aviation planning for Fortune 500 travel teams | EXJET",
+      "title": "Corporate Jet Charter for Fortune 500 Teams | EXJET",
       "description": "A charter planning framework for Fortune 500 travel teams: approvals, operator review, executive scheduling and supplemental lift. Build an EXJET trip brief.",
       "h1": [
         "Private aviation planning for Fortune 500 travel teams"
@@ -574,7 +871,7 @@
     },
     {
       "path": "/corporate-travel/roadshows/",
-      "title": "Multi-city private jet charter for executive roadshows | EXJET",
+      "title": "Executive Roadshow & Multi-City Private Jet Charter | EXJET",
       "description": "Plan executive roadshows and multi-city charter with meeting buffers, airport choices, passenger changes and clear approvals. Discuss your schedule with EXJET.",
       "h1": [
         "Multi-city private jet charter for executive roadshows"
@@ -583,10 +880,19 @@
     },
     {
       "path": "/corporate-travel/supplemental-lift/",
-      "title": "Supplemental aircraft charter for corporate travel | EXJET",
+      "title": "Supplemental Lift & Corporate Aircraft Charter | EXJET",
       "description": "Plan supplemental charter when a corporate aircraft or aviation program cannot cover the mission. Define cabin needs, operator review and backup expectations.",
       "h1": [
         "Supplemental aircraft charter for corporate travel"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/crew/",
+      "title": "Business & Commercial Aviation Crew Sourcing | EXJET",
+      "description": "Discuss flight and cabin crew sourcing with EXJET for business and commercial aviation. Define aircraft experience, base, schedule and assignment requirements.",
+      "h1": [
+        "Crew. The right people for the mission."
       ],
       "robots": "index, follow"
     },
@@ -601,7 +907,7 @@
     },
     {
       "path": "/destinations/aspen/",
-      "title": "Aspen private jet charter | EXJET",
+      "title": "Aspen Private Jet Charter & Flight Planning | EXJET",
       "description": "Plan aircraft charter to Aspen with airport, baggage and transfer guidance. Explore relevant route examples and request a trip-specific proposal from EXJET.",
       "h1": [
         "Aspen private jet charter"
@@ -610,7 +916,7 @@
     },
     {
       "path": "/destinations/cabo/",
-      "title": "Los Cabos private jet charter | EXJET",
+      "title": "Cabo Private Jet Charter & Los Cabos Flights | EXJET",
       "description": "Plan aircraft charter to Los Cabos with airport, baggage and transfer guidance. Explore relevant route examples and request a trip-specific proposal from EXJET.",
       "h1": [
         "Los Cabos private jet charter"
@@ -619,7 +925,7 @@
     },
     {
       "path": "/destinations/palm-beach/",
-      "title": "Palm Beach private jet charter | EXJET",
+      "title": "Palm Beach Private Jet Charter & Flight Planning | EXJET",
       "description": "Plan aircraft charter to Palm Beach with airport, baggage and transfer guidance. Explore relevant route examples and request a trip-specific proposal from EXJET.",
       "h1": [
         "Palm Beach private jet charter"
@@ -628,10 +934,19 @@
     },
     {
       "path": "/destinations/vail/",
-      "title": "Vail and Beaver Creek private jet charter | EXJET",
+      "title": "Vail & Beaver Creek Private Jet Charter | EXJET",
       "description": "Plan aircraft charter to Vail and Beaver Creek with airport, baggage and transfer guidance. Explore relevant route examples and request a trip-specific proposal from EXJET.",
       "h1": [
         "Vail and Beaver Creek private jet charter"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/dry-lease/",
+      "title": "Passenger & Cargo Aircraft Dry Lease | EXJET",
+      "description": "Explore passenger and cargo aircraft dry leasing with EXJET. Define the aircraft, term, operating requirements and delivery conditions for your fleet.",
+      "h1": [
+        "Dry lease. Passenger & cargo."
       ],
       "robots": "index, follow"
     },
@@ -655,7 +970,7 @@
     },
     {
       "path": "/empty-legs/dallas/",
-      "title": "Dallas empty leg flights | EXJET",
+      "title": "Empty Leg Flights Dallas: Private Jet Opportunities | EXJET",
       "description": "Request Dallas empty leg charter opportunities with flexible dates and routing. Understand availability, terms and backup options before confirming with EXJET.",
       "h1": [
         "Dallas empty leg flights"
@@ -663,8 +978,17 @@
       "robots": "index, follow"
     },
     {
+      "path": "/engineering-stc/",
+      "title": "Aircraft Engineering & STC Project Coordination | EXJET",
+      "description": "Plan aircraft modifications with EXJET. Coordinate engineering providers, STC applicability, installation scope and documentation for business and commercial aircraft.",
+      "h1": [
+        "Engineering & STC. From requirement to approved scope."
+      ],
+      "robots": "index, follow"
+    },
+    {
       "path": "/executive-assistants/",
-      "title": "Private jet charter for executive assistants | EXJET",
+      "title": "Private Jet Charter for Executive Assistants | EXJET",
       "description": "Coordinate executive aircraft charter with a clear brief, approval checklist and flight handoff. Plan business travel and request an EXJET proposal.",
       "h1": [
         "Private jet charter for executive assistants"
@@ -673,7 +997,7 @@
     },
     {
       "path": "/family-office-private-aviation/",
-      "title": "Family office private aviation and charter | EXJET",
+      "title": "Family Office Private Aviation & Jet Charter | EXJET",
       "description": "Plan family office aircraft charter around principals, guests, privacy, cabin needs and approvals. Compare flight options and discuss your itinerary with EXJET.",
       "h1": [
         "Family office private aviation and charter"
@@ -690,8 +1014,17 @@
       "robots": "index, follow"
     },
     {
+      "path": "/fractional/",
+      "title": "Fractional Jet Ownership & Program Consulting | EXJET",
+      "description": "Compare fractional aircraft ownership with your travel needs. EXJET helps review program options, access terms and costs before you make a commitment.",
+      "h1": [
+        "Fractional"
+      ],
+      "robots": "index, follow"
+    },
+    {
       "path": "/glossary/",
-      "title": "Aircraft charter glossary | EXJET",
+      "title": "Private Jet Charter Glossary & Aviation Terms | EXJET",
       "description": "Understand aircraft charter terms including FBO, block time, positioning, empty legs and operational control. Use EXJET\u2019s glossary to review your next proposal.",
       "h1": [
         "Aircraft charter glossary"
@@ -700,16 +1033,16 @@
     },
     {
       "path": "/group-charter/",
-      "title": "Group Air Charter Services | EXJET",
+      "title": "Group Air Charter for Corporate & Sports Teams | EXJET",
       "description": "Arrange group air charter for corporate teams, sports and events. Coordinate passenger counts, baggage, schedules and airport transfers with an EXJET advisor.",
       "h1": [
-        "Group air charter for teams and events"
+        "Group charter. Every detail aligned."
       ],
       "robots": "index, follow"
     },
     {
       "path": "/group-charter/corporate-teams/",
-      "title": "Corporate group aircraft charter | EXJET",
+      "title": "Corporate Group Air Charter & Incentive Travel | EXJET",
       "description": "Arrange group charter for corporate meetings, site visits and events. Coordinate approvals, passengers, baggage and multi-city schedules with EXJET.",
       "h1": [
         "Corporate group aircraft charter"
@@ -718,7 +1051,7 @@
     },
     {
       "path": "/group-charter/sports-teams/",
-      "title": "Sports team air charter | EXJET",
+      "title": "Sports Team Air Charter & Tournament Travel | EXJET",
       "description": "Coordinate sports team charter with EXJET. Plan the traveling roster, equipment, schedule and transfers, then request appropriate aircraft and a complete proposal.",
       "h1": [
         "Sports team air charter"
@@ -763,7 +1096,7 @@
     },
     {
       "path": "/guides/aircraft-tail-number-verification/",
-      "title": "How to verify a charter aircraft tail number | EXJET",
+      "title": "Charter Aircraft Tail Number & Operator Verification | EXJET",
       "description": "Use a charter aircraft tail number to verify the proposed model, operator and cabin. Learn why database records and published specs do not confirm availability.",
       "h1": [
         "How to verify a charter aircraft tail number"
@@ -772,7 +1105,7 @@
     },
     {
       "path": "/guides/argus-wyvern/",
-      "title": "ARGUS and WYVERN safety ratings explained | EXJET",
+      "title": "ARGUS & WYVERN Ratings: Charter Safety Guide | EXJET",
       "description": "Learn how operator ratings, audits and trip-specific reports differ. Understand what ARGUS and WYVERN information can tell you about a proposed charter flight.",
       "h1": [
         "ARGUS and WYVERN safety ratings explained"
@@ -790,7 +1123,7 @@
     },
     {
       "path": "/guides/corporate-charter-procurement/",
-      "title": "Corporate jet charter procurement checklist | EXJET",
+      "title": "Corporate Private Jet Charter Procurement Checklist | EXJET",
       "description": "Compare charter proposals with a practical procurement checklist covering operator details, aircraft, total cost, approvals and change terms for executive travel.",
       "h1": [
         "Corporate jet charter procurement checklist"
@@ -799,7 +1132,7 @@
     },
     {
       "path": "/guides/executive-airport-planning/",
-      "title": "Executive charter airport planning by business market | EXJET",
+      "title": "Private Jet Airport Planning for Executive Travel | EXJET",
       "description": "Compare Dallas, New York, Miami, Palm Beach and Los Angeles airport choices by meeting address, FBO handoff and transfer requirements for executive travel.",
       "h1": [
         "Executive charter airport planning by business market"
@@ -808,7 +1141,7 @@
     },
     {
       "path": "/guides/family-office-flight-planning/",
-      "title": "Family office flight planning checklist | EXJET",
+      "title": "Family Office Private Flight Planning Checklist | EXJET",
       "description": "Prepare a family office charter brief covering household needs, seating, sleeping, baggage, approvals and destination transfers for principals and guests.",
       "h1": [
         "Family office flight planning checklist"
@@ -817,7 +1150,7 @@
     },
     {
       "path": "/guides/part-135-vs-part-91/",
-      "title": "Part 135 vs Part 91: a charter passenger guide | EXJET",
+      "title": "Part 135 vs Part 91: Private Jet Charter Guide | EXJET",
       "description": "Understand the distinction between on-demand charter and private aircraft operations. Learn what operating authority and aircraft details to verify before booking.",
       "h1": [
         "Part 135 vs Part 91: a charter passenger guide"
@@ -826,7 +1159,7 @@
     },
     {
       "path": "/guides/private-aviation-program-comparison/",
-      "title": "NetJets, Flexjet, VistaJet and charter: what to compare | EXJET",
+      "title": "NetJets vs Flexjet vs VistaJet vs Charter: Comparison | EXJET",
       "description": "Compare private aviation programs and on-demand charter by commitment, trip cost, aircraft fit and terms. A practical buying framework for EAs and family offices.",
       "h1": [
         "NetJets, Flexjet, VistaJet and charter: what to compare"
@@ -834,11 +1167,20 @@
       "robots": "index, follow"
     },
     {
-      "path": "/interior-completions/",
-      "title": "Aircraft Interior Completions & Refurbishment Consulting | EXJET",
-      "description": "Plan a private jet interior refurbishment or completion with EXJET. Define cabin requirements, compare proposals and coordinate design, budget and downtime.",
+      "path": "/how-it-works/",
+      "title": "How to Book a Private Jet Charter with EXJET",
+      "description": "Plan your charter from the first request to arrival. Compare aircraft, review a written quote, confirm the operator and coordinate the itinerary with EXJET.",
       "h1": [
-        "Aircraft interior completions and refurbishment consulting"
+        "How EXJET aircraft charter works"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/interior-completions/",
+      "title": "Aircraft Interior Completion & Refurbishment | EXJET",
+      "description": "Plan aircraft interior completion and refurbishment with EXJET. Coordinate cabin requirements, provider proposals, budget and delivery for your aircraft.",
+      "h1": [
+        "Interior completion."
       ],
       "robots": "index, follow"
     },
@@ -853,10 +1195,37 @@
     },
     {
       "path": "/mro/",
-      "title": "Aircraft MRO Consulting & Maintenance Coordination | EXJET",
-      "description": "Coordinate aircraft maintenance, repair and overhaul with EXJET. Compare MRO proposals, plan downtime and define provider responsibilities for your business jet.",
+      "title": "Aircraft Service, Repair & MRO Coordination | EXJET",
+      "description": "Coordinate aircraft service, repair and MRO with EXJET for business and commercial aviation. Define the work scope, provider capability and downtime.",
       "h1": [
-        "Aircraft MRO consulting and maintenance coordination"
+        "Service & repair."
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/operator-partners/",
+      "title": "Aircraft operator relationships | EXJET",
+      "description": "Connect with EXJET about aircraft charter opportunities. Discuss operating authority, aircraft capabilities, coverage and the information needed for trip review.",
+      "h1": [
+        "Aircraft operator relationships"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/ownership/",
+      "title": "Aircraft Ownership, Sales & Acquisitions | EXJET",
+      "description": "Plan business and commercial aircraft ownership with EXJET. Coordinate aircraft acquisitions, sales, management planning and technical project requirements.",
+      "h1": [
+        "Ownership"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/partnership/",
+      "title": "Business aviation partnerships | EXJET",
+      "description": "Discuss business aviation collaboration with EXJET across charter, aircraft ownership and technical projects. Tell us how your services support a client mission.",
+      "h1": [
+        "Business aviation partnerships"
       ],
       "robots": "index, follow"
     },
@@ -889,7 +1258,7 @@
     },
     {
       "path": "/private-jet-charter/dallas/",
-      "title": "Dallas private jet charter | EXJET",
+      "title": "Dallas Private Jet Charter: Love Field & Addison | EXJET",
       "description": "Arrange business jet charter from Dallas with EXJET. Compare Love Field and Addison, explore routes and pricing, and request a complete trip proposal.",
       "h1": [
         "Dallas private jet charter"
@@ -1177,7 +1546,7 @@
     },
     {
       "path": "/safety/",
-      "title": "Charter safety and operator review | EXJET",
+      "title": "Private Jet Charter Safety & Operator Vetting | EXJET",
       "description": "Understand operator authority, aircraft verification and independent safety reports. Learn what to confirm before booking business jet charter through EXJET.",
       "h1": [
         "Charter safety and operator review"
@@ -1186,7 +1555,7 @@
     },
     {
       "path": "/sales/",
-      "title": "Private Aircraft Sales and Acquisitions | EXJET",
+      "title": "Private Jets for Sale & Aircraft Acquisitions | EXJET",
       "description": "Discuss aircraft sales and acquisitions with EXJET. Define your mission, review representation options and request a confidential aircraft search or sale brief.",
       "h1": [
         "Aircraft sales and acquisitions"
@@ -1240,10 +1609,10 @@
     },
     {
       "path": "/services/",
-      "title": "Business Aviation Services & Consulting | EXJET Dallas",
-      "description": "Explore EXJET charter, group charter, aircraft sales, management, MRO, interior completions and Starlink installation consulting. Find the service for your next decision.",
+      "title": "Business & Commercial Aviation Services | EXJET",
+      "description": "Explore EXJET aviation solutions: passenger and cargo charter, dry lease, ACMI, ownership, management, crew, engineering, repair and interior completion.",
       "h1": [
-        "Business aviation solutions"
+        "Aviation solutions."
       ],
       "robots": "index, follow"
     },
@@ -1266,8 +1635,476 @@
       "robots": "noindex, follow"
     },
     {
+      "path": "/travel-journal/",
+      "title": "Luxury Travel Journal: Destinations & Experiences | EXJET",
+      "description": "Destination and experience guides for private clients, executive assistants and family offices. Consider the place, the pace and the details of getting there.",
+      "h1": [
+        "The Travel Journal."
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/amalfi-coast/",
+      "title": "Amalfi Coast Luxury Travel Guide: Stays & Transfers | EXJET",
+      "description": "Explore the Amalfi Coast through a well-chosen base, coastal visits and boat days. Plan the property access and transfers before committing a busy itinerary.",
+      "h1": [
+        "The Amalfi Coast: a stay shaped around the sea"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/anguilla/",
+      "title": "Anguilla Luxury Travel Guide: Beaches & Villas | EXJET",
+      "description": "Plan an Anguilla beach holiday around Shoal Bay, Meads Bay or a quieter villa setting, with a clear accommodation and arrival brief for the travel team.",
+      "h1": [
+        "Anguilla: a beach stay with space to settle in"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/art-culture-and-private-visits/",
+      "title": "Luxury Art & Cultural Travel: Private Visit Planning | EXJET",
+      "description": "Plan an art or cultural holiday with the right guide, confirmed admission and a coherent itinerary, including practical notes on private visits and event-led travel.",
+      "h1": [
+        "Art and cultural travel: make access meaningful"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/aspen/",
+      "title": "Aspen Luxury Travel Guide: Skiing & Summer Stays | EXJET",
+      "description": "Plan Aspen for skiing or summer culture, with a practical guide to the daily pace, accommodation brief, baggage and flexible mountain arrival planning.",
+      "h1": [
+        "Aspen: ski days, summer culture and family time"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/bahamas/",
+      "title": "Bahamas Luxury Travel: Exuma & Harbour Island | EXJET",
+      "description": "Compare Exuma and Harbour Island for a Bahamas holiday. Plan the island, accommodation and final boat or air connection around the way your party travels.",
+      "h1": [
+        "The Bahamas: Exuma and Harbour Island"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/bora-bora/",
+      "title": "Bora Bora Luxury Travel Guide: Lagoon & Island Stays | EXJET",
+      "description": "Plan a Bora Bora holiday around the lagoon, accommodation setting and final island transfer, with practical guidance for families and long-haul private travel.",
+      "h1": [
+        "Bora Bora: lagoon days and a settled island stay"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/botswana/",
+      "title": "Botswana Luxury Safari Guide: Okavango Planning | EXJET",
+      "description": "Plan an Okavango Delta safari around camp location, guiding and a manageable travel pace, with practical notes for luggage, connections and family preferences.",
+      "h1": [
+        "Botswana: a carefully planned Okavango safari"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/cape-town/",
+      "title": "Cape Town Luxury Travel Guide: City & Coastal Stays | EXJET",
+      "description": "Plan a Cape Town stay around Table Mountain, city time and optional wine-country visits, with clear activity priorities and arrival coordination for private clients.",
+      "h1": [
+        "Cape Town: the mountain, the city and considered days"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/capri/",
+      "title": "Capri Luxury Travel Guide: Stays & Arrival Planning | EXJET",
+      "description": "Consider Capri and Anacapri for an island stay built around views, gardens and coastal days, with a coordinated onward transfer and room to change the pace.",
+      "h1": [
+        "Capri: an island stay beyond the day trip"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/courchevel/",
+      "title": "Courchevel Luxury Ski Guide: Chalets & Transfers | EXJET",
+      "description": "Plan a Courchevel ski or summer stay with a clear village choice, chalet requirements and practical notes for equipment, lessons and mountain transfers.",
+      "h1": [
+        "Courchevel: choose the village, then the chalet"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/dubai/",
+      "title": "Dubai Luxury Travel Guide: City & Private Holidays | EXJET",
+      "description": "Plan a Dubai leisure stay around culture, dining and time at the property, with practical notes for neighbourhood choice, daily pacing and arrival coordination.",
+      "h1": [
+        "Dubai: city culture and a private holiday rhythm"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/golf-holidays/",
+      "title": "Luxury Golf Holidays: Private Travel Planning | EXJET",
+      "description": "Plan a golf holiday around confirmed course access, tee times, equipment and the wider party. A practical brief for executive assistants and family offices.",
+      "h1": [
+        "Golf holidays: secure the round, then shape the journey"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/gstaad/",
+      "title": "Gstaad Luxury Travel Guide: Chalets & Alpine Stays | EXJET",
+      "description": "Plan a Gstaad chalet holiday around village life, mountain activities and household preferences, with a clear brief for accommodation and arrival coordination.",
+      "h1": [
+        "Gstaad: chalet life and a quieter mountain pace"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/hamptons/",
+      "title": "Hamptons Luxury Travel Guide: Summer Stays | EXJET",
+      "description": "Plan a Hamptons stay around the right village, household routine and coastal activities, with a clear flight and ground transport brief for the travel team.",
+      "h1": [
+        "The Hamptons: a summer residence itinerary"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/ibiza/",
+      "title": "Ibiza Luxury Travel Guide: Villas & Coastal Days | EXJET",
+      "description": "Plan an Ibiza holiday around the right villa setting, coastal activities and Dalt Vila, with practical notes for mixed-age groups and transport coordination.",
+      "h1": [
+        "Ibiza: villas, coastal days and the old town"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/jackson-hole/",
+      "title": "Jackson Hole Luxury Travel: Skiing & Family Stays | EXJET",
+      "description": "Choose Jackson Hole for a ski holiday or a summer nature itinerary. Plan the base, activities, equipment and arrival around the whole travelling party.",
+      "h1": [
+        "Jackson Hole: mountain days and a measured pace"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/kyoto/",
+      "title": "Kyoto Luxury Travel Guide: Culture & Private Visits | EXJET",
+      "description": "Plan a Kyoto cultural holiday with thoughtful temple visits, gardens and dining, supported by respectful local guidance and a practical travel-team brief.",
+      "h1": [
+        "Kyoto: a cultural stay with care and context"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/lake-como/",
+      "title": "Lake Como Luxury Travel Guide: Villas & Boat Days | EXJET",
+      "description": "Plan a Lake Como holiday with a thoughtful lakeside base, garden visits and boat days, plus practical notes for property access and airport transfers.",
+      "h1": [
+        "Lake Como: villas, gardens and days on the water"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/london/",
+      "title": "London Luxury Travel Guide: Art, Theatre & Dining | EXJET",
+      "description": "Plan a London holiday around theatre, museums and dining, with a clear brief for tickets, specialist visits, accommodation and aircraft arrival transfers.",
+      "h1": [
+        "London: theatre, collections and a considered city stay"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/los-cabos/",
+      "title": "Los Cabos Luxury Travel Guide: Villas & Coast | EXJET",
+      "description": "Plan a Los Cabos escape with a clear choice of neighbourhood, villa or resort, plus thoughtful dining, boating and aircraft charter arrival coordination.",
+      "h1": [
+        "Los Cabos: coast, cuisine and time together"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/maldives/",
+      "title": "Maldives Luxury Travel Guide: Islands & Transfers | EXJET",
+      "description": "Plan a Maldives resort or villa holiday around the island, marine interests and final transfer, with a clear arrival brief for families and private travel teams.",
+      "h1": [
+        "The Maldives: choose the island, then the connection"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/mallorca/",
+      "title": "Mallorca Luxury Travel Guide: Coast & Villa Stays | EXJET",
+      "description": "Explore Mallorca through a coastal or country-house stay, the Serra de Tramuntana and village visits, with practical planning for private clients and families.",
+      "h1": [
+        "Mallorca: the coast, the mountains and a country base"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/mauritius/",
+      "title": "Mauritius Luxury Travel Guide: Coast & Seasons | EXJET",
+      "description": "Plan a Mauritius holiday around the coast, the season and time inland. Compare beach days, western landscapes and a practical arrival brief for the family.",
+      "h1": [
+        "Mauritius: a coastal stay with an island beyond it"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/monaco/",
+      "title": "Monaco Luxury Travel Guide: Events & Riviera Stays | EXJET",
+      "description": "Plan a Monaco stay around culture, dining or a confirmed event, with practical notes on accommodation, access, ground transfers and an onward Riviera itinerary.",
+      "h1": [
+        "Monaco: culture, the coast and event-led travel"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/multigenerational-holidays/",
+      "title": "Multigenerational Luxury Holidays: Family Planning | EXJET",
+      "description": "Plan a family holiday across generations with clear room arrangements, flexible activities and coordinated arrivals, designed for executive assistants and family offices.",
+      "h1": [
+        "Multigenerational holidays: one plan, different priorities"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/mustique/",
+      "title": "Mustique Luxury Travel Guide: Villas & Connections | EXJET",
+      "description": "Plan a Mustique villa stay with clear household requirements and a coordinated final flight. Review the property, connections and baggage before departure.",
+      "h1": [
+        "Mustique: a villa holiday planned around the island"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/mykonos/",
+      "title": "Mykonos Luxury Travel Guide: Villas & Delos Visits | EXJET",
+      "description": "Plan a Mykonos stay with a clear villa brief, time on the coast and a considered visit to Delos, plus practical notes for transfers and group preferences.",
+      "h1": [
+        "Mykonos: the island and a day on Delos"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/nantucket/",
+      "title": "Nantucket Luxury Travel Guide: Stays & Flights | EXJET",
+      "description": "Plan a Nantucket holiday around the beach, the residence and the town. A practical island guide for private clients, executive assistants and family offices.",
+      "h1": [
+        "Nantucket: beach days and an island residence"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/napa-valley/",
+      "title": "Napa Valley Luxury Travel Guide: Wine & Dining | EXJET",
+      "description": "Plan a Napa Valley escape with thoughtful winery appointments, dining and transfers. A practical guide for private clients, hosts and executive assistants.",
+      "h1": [
+        "Napa Valley: wine, dining and a slower pace"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/niseko/",
+      "title": "Niseko Luxury Travel Guide: Skiing & Summer Stays | EXJET",
+      "description": "Compare Niseko bases for skiing, dining and summer mountain time, with practical guidance on equipment, transfers and arrangements for non-skiing guests.",
+      "h1": [
+        "Niseko: a Hokkaido mountain stay for the whole party"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/palm-beach/",
+      "title": "Palm Beach Luxury Travel Guide: Coast & Culture | EXJET",
+      "description": "Shape a Palm Beach stay around the coast, Worth Avenue, cultural visits and family time, with practical notes for residence and aircraft arrival planning.",
+      "h1": [
+        "Palm Beach: a coastal stay with cultural depth"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/paris/",
+      "title": "Paris Luxury Travel Guide: Art & Fine Dining | EXJET",
+      "description": "Plan a Paris cultural escape around art, dining and neighbourhood time, with practical notes for private visits, reservations and executive-assistant coordination.",
+      "h1": [
+        "Paris: art, dining and time to explore"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/portofino/",
+      "title": "Portofino Luxury Travel Guide: Coastal Stays | EXJET",
+      "description": "Plan a Portofino stay around the harbour, the surrounding coast and a considered day outdoors. Practical guidance for private clients and their travel teams.",
+      "h1": [
+        "Portofino: a few days on the Ligurian coast"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/queenstown/",
+      "title": "Queenstown Luxury Travel Guide: Alps & Wine | EXJET",
+      "description": "Plan Queenstown for mountain scenery, winter sports and Central Otago wine, with practical advice on activity pacing, long-haul arrivals and private travel.",
+      "h1": [
+        "Queenstown: alpine scenery and Central Otago wine"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/safari-and-conservation/",
+      "title": "Luxury Safari & Conservation Travel Planning | EXJET",
+      "description": "Plan a safari around guiding, camp location and a manageable pace. Review family requirements, conservation claims and every transfer before confirming the journey.",
+      "h1": [
+        "Safari and conservation travel: a considered approach"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/saint-tropez/",
+      "title": "Saint-Tropez Luxury Travel Guide: Riviera Stays | EXJET",
+      "description": "Plan Saint-Tropez around a villa, beach days, dining and time on the water. Coordinate the Riviera stay and final transfer with a clear travel brief.",
+      "h1": [
+        "Saint-Tropez: the Riviera at your own pace"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/sardinia/",
+      "title": "Sardinia Luxury Travel Guide: Costa Smeralda | EXJET",
+      "description": "Plan a Sardinia stay around Costa Smeralda, Porto Cervo and time on the water, with clear villa, yacht and flight-arrival coordination for the travel team.",
+      "h1": [
+        "Sardinia: Costa Smeralda and a coastal itinerary"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/seasonal-holiday-planning/",
+      "title": "Luxury Travel by Season: When to Go | EXJET",
+      "description": "Match holiday dates with destinations, seasonal activities and the needs of the party. A practical travel-planning framework for EAs and family offices.",
+      "h1": [
+        "When to go: a seasonal framework for time away"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/seychelles/",
+      "title": "Seychelles Luxury Travel Guide: Island Stays | EXJET",
+      "description": "Plan a Seychelles holiday around Mah\u00e9, Praslin or La Digue, with thoughtful island selection, nature experiences and a coordinated final transfer brief.",
+      "h1": [
+        "Seychelles: an island stay with room to explore"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/ski-and-chalet-holidays/",
+      "title": "Luxury Ski & Chalet Holidays: Travel Planning | EXJET",
+      "description": "Plan a private ski holiday with the right chalet, instruction and equipment arrangements, plus a flexible flight and mountain-transfer brief for the whole party.",
+      "h1": [
+        "Ski and chalet holidays: plan beyond the slopes"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/st-barts/",
+      "title": "St. Barts Luxury Travel Guide: Villas & Arrival | EXJET",
+      "description": "Plan a St. Barts holiday around villa life, beach days and Gustavia, with practical arrival and household coordination notes for private travel teams.",
+      "h1": [
+        "St. Barts: villas, beaches and island time"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/st-moritz/",
+      "title": "St. Moritz Luxury Travel Guide: Skiing & Summer | EXJET",
+      "description": "Explore St. Moritz for skiing, the Engadine lakes and cultural visits, with practical accommodation, equipment and mountain-arrival planning for private travel.",
+      "h1": [
+        "St. Moritz: the Engadine in winter and summer"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/turks-and-caicos/",
+      "title": "Turks & Caicos Luxury Travel Guide: Beaches & Villas | EXJET",
+      "description": "Explore Turks and Caicos for a family beach holiday, from Grace Bay to a villa stay, with clear planning notes for accommodation, transfers and boat days.",
+      "h1": [
+        "Turks and Caicos: a considered beach escape"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/tuscany/",
+      "title": "Tuscany: a country house, wine and cultural days | EXJET",
+      "description": "Plan a Tuscany villa stay around Chianti or Val d\u2019Orcia, with wine appointments, cultural visits and practical household and transport coordination.",
+      "h1": [
+        "Tuscany: a country house, wine and cultural days"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/vail/",
+      "title": "Vail Luxury Travel Guide: Skiing & Family Holidays | EXJET",
+      "description": "Explore Vail for ski holidays and summer mountain stays. Coordinate the village, activities, equipment and arrival around every member of the party.",
+      "h1": [
+        "Vail: a mountain holiday for the whole party"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/villas-and-private-islands/",
+      "title": "Luxury Villa & Private Island Holiday Planning | EXJET",
+      "description": "Plan a villa or private-island holiday with a clear brief for room layouts, household services, guest arrivals and the final flight, road or boat connection.",
+      "h1": [
+        "Villa and private-island holidays: the planning brief"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/wellness-retreats/",
+      "title": "Luxury Wellness Retreats: Private Travel Planning | EXJET",
+      "description": "Plan a restorative leisure stay around quiet surroundings, suitable activities and a manageable journey, with practical accommodation and scheduling guidance.",
+      "h1": [
+        "Wellness retreats: space to rest, thoughtfully planned"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/wine-and-gastronomy/",
+      "title": "Luxury Wine & Gastronomy Travel Planning | EXJET",
+      "description": "Plan a wine and dining holiday around real interests, confirmed access and a comfortable daily pace, with practical guidance for hosts, EAs and family offices.",
+      "h1": [
+        "Wine and gastronomy journeys: fewer, better appointments"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/yacht-and-jet-itineraries/",
+      "title": "Private Jet & Yacht Travel: Itinerary Planning | EXJET",
+      "description": "Coordinate a private flight with a yacht itinerary through clear embarkation details, baggage planning, transfer ownership and practical contingency arrangements.",
+      "h1": [
+        "Yacht and jet itineraries: connect the two journeys"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/travel-journal/zermatt/",
+      "title": "Zermatt Luxury Travel Guide: Skiing & Transfers | EXJET",
+      "description": "Plan Zermatt around the Matterhorn landscape, skiing or mountain walks, with clear arrangements for the car-free village and the final hotel transfer.",
+      "h1": [
+        "Zermatt: a mountain stay with a different arrival"
+      ],
+      "robots": "index, follow"
+    },
+    {
+      "path": "/ways-to-fly/",
+      "title": "Private Aviation Options: Charter vs Ownership | EXJET",
+      "description": "Compare empty leg flights, private jet charter, dry lease, fractional ownership and whole-aircraft ownership. Find the approach that fits your travel.",
+      "h1": [
+        "Private aviation options: charter, leasing and ownership"
+      ],
+      "robots": "index, follow"
+    },
+    {
       "path": "/why-exjet/",
-      "title": "Why Choose EXJET for Private Charter | EXJET",
+      "title": "Private Aviation Consulting & Charter Planning | EXJET",
       "description": "Learn how EXJET coordinates aircraft selection, operator review and charter planning. Explore aviation consulting and the questions to ask before booking.",
       "h1": [
         "Why choose EXJET for aircraft charter"

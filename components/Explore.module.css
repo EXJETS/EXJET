@@ -89,3 +89,15 @@
   .shortlistBar a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
   .shortlistBar button { display: grid; place-items: center; flex-shrink: 0; width: 44px; height: 44px; padding: 0; background: transparent; border: 0; color: #000; }
 }
+/* Public catalogue replaces the compact dashboard cards. Workspace stays unchanged. */
+:global(.ex-public) .grid:not(.legGrid){grid-template-columns:repeat(2,minmax(0,1fr));gap:44px 32px}
+:global(.ex-public) .card{border:0;border-radius:0;border-bottom:1px solid #c4ccd0;background:transparent}
+:global(.ex-public) .aircraftPhoto{aspect-ratio:1.6;background:#eef0f1}
+:global(.ex-public) .cardBody{padding:26px 0 28px}
+:global(.ex-public) .cardBody h3{font-family:var(--ex-display);font-size:38px;line-height:1.05;font-weight:400;margin:10px 0 18px}
+:global(.ex-public) .cardBody>p:not(.kicker){max-width:48ch;font-size:16px}
+:global(.ex-public) .toolbar{border:0;border-radius:0;padding:24px;background:#eef0f1}
+:global(.ex-public) .search,:global(.ex-public) .select select{border-radius:0;border-color:#a6b0b6}
+:global(.ex-public) .comparison{border-radius:0;background:#eef0f1;border:0;padding:40px}
+:global(.ex-public) .heading h2{font-family:var(--ex-display);font-weight:400}
+@media(max-width:760px){:global(.ex-public) .grid:not(.legGrid){grid-template-columns:1fr;gap:32px}:global(.ex-public) .cardBody h3{font-size:34px}:global(.ex-public) .toolbar{padding:14px}:global(.ex-public) .comparison{padding:20px}:global(.ex-public) .cardBody{padding-top:22px}}

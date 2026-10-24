@@ -52,16 +52,7 @@ export const aircraft: Aircraft[] = [
       "baggage": "Varies by configuration",
       "cabin": "Stand-up cabin"
     },
-    "scenes": [
-      {
-        "id": "exterior",
-        "label": "Exterior",
-        "image": "/images/manufacturers/citation-x-flight.jpg",
-        "fit": "contain",
-        "focalPoint": "center"
-      }
-    ],
-    "image": "/images/manufacturers/citation-x-flight.jpg"
+    "scenes": []
   },
   {
     "slug": "challenger-350",
@@ -78,16 +69,7 @@ export const aircraft: Aircraft[] = [
       "baggage": "Varies by configuration",
       "cabin": "Super-midsize cabin"
     },
-    "scenes": [
-      {
-        "id": "exterior",
-        "label": "Exterior",
-        "image": "/images/manufacturers/challenger-350-flight.jpg",
-        "fit": "contain",
-        "focalPoint": "center"
-      }
-    ],
-    "image": "/images/manufacturers/challenger-350-flight.jpg"
+    "scenes": []
   },
   {
     "slug": "citation-latitude",
@@ -105,21 +87,14 @@ export const aircraft: Aircraft[] = [
     },
     "scenes": [
       {
-        "id": "exterior",
-        "label": "Exterior",
-        "image": "/images/manufacturers/latitude-header-new.jpg",
-        "fit": "contain",
-        "focalPoint": "center"
-      },
-      {
         "id": "cabin",
         "label": "Interior",
-        "image": "/images/manufacturers/latitude-interior-new.jpg",
+        "image": "/images/manufacturers/latitude-glacier.jpg",
         "fit": "contain",
         "focalPoint": "center"
       }
     ],
-    "image": "/images/manufacturers/latitude-header-new.jpg"
+    "image": "/images/manufacturers/latitude-glacier.jpg"
   },
   {
     "slug": "gulfstream-g650",
@@ -135,23 +110,7 @@ export const aircraft: Aircraft[] = [
       "baggage": "Varies by configuration",
       "cabin": "Large-cabin aircraft"
     },
-    "scenes": [
-      {
-        "id": "exterior",
-        "label": "Exterior",
-        "image": "/images/manufacturers/g650-flight.jpg",
-        "fit": "contain",
-        "focalPoint": "center"
-      },
-      {
-        "id": "cabin",
-        "label": "Interior",
-        "image": "/images/manufacturers/g650-cabin.jpg",
-        "fit": "contain",
-        "focalPoint": "center"
-      }
-    ],
-    "image": "/images/manufacturers/g650-flight.jpg"
+    "scenes": []
   },
   {
     "slug": "global-8000",
@@ -167,23 +126,23 @@ export const aircraft: Aircraft[] = [
       "baggage": "Varies by configuration",
       "cabin": "Four-zone large cabin"
     },
-    "image": "/images/home/owner-selected-hero.webp",
     "scenes": [
       {
         "id": "exterior",
         "label": "Exterior",
-        "image": "/images/home/owner-selected-hero.webp",
+        "image": "/images/manufacturers/global-8000-clouds.webp",
         "fit": "contain",
         "focalPoint": "center"
       },
       {
         "id": "cabin",
         "label": "Interior",
-        "image": "/images/manufacturers/global-8000-club.webp",
+        "image": "/images/manufacturers/global-8000-entertainment.jpg",
         "fit": "contain",
         "focalPoint": "center"
       }
-    ]
+    ],
+    "image": "/images/manufacturers/global-8000-clouds.webp"
   },
   {
     "slug": "falcon-900",
@@ -192,7 +151,6 @@ export const aircraft: Aircraft[] = [
     "category": "Heavy jet",
     "status": "charter",
     "summary": "Three-engine capability paired with a comfortable long-range cabin.",
-    "image": "/images/manufacturers/falcon-900lx-flight.jpg",
     "typical": {
       "passengers": "Varies by aircraft",
       "range": "Mission dependent",
@@ -203,19 +161,20 @@ export const aircraft: Aircraft[] = [
       {
         "id": "exterior",
         "label": "Exterior",
-        "image": "/images/manufacturers/falcon-900lx-flight.jpg",
+        "image": "/images/manufacturers/falcon-900lx-coast.jpg",
         "fit": "contain",
         "focalPoint": "center"
       },
       {
         "id": "cabin",
         "label": "Interior",
-        "image": "/images/manufacturers/falcon-900lx-cabin.jpg",
+        "image": "/images/manufacturers/falcon-900lx-cabin-new.jpg",
         "fit": "contain",
         "focalPoint": "center"
       }
     ],
-    "cardFit": "contain"
+    "cardFit": "contain",
+    "image": "/images/manufacturers/falcon-900lx-coast.jpg"
   },
   {
     "slug": "falcon-2000lx",
@@ -230,17 +189,8 @@ export const aircraft: Aircraft[] = [
       "baggage": "Varies by configuration",
       "cabin": "Large-cabin aircraft"
     },
-    "scenes": [
-      {
-        "id": "cabin",
-        "label": "Interior",
-        "image": "/images/manufacturers/falcon-2000lx-cabin.jpg",
-        "fit": "contain",
-        "focalPoint": "center"
-      }
-    ],
-    "cardFit": "contain",
-    "image": "/images/manufacturers/falcon-2000lx-cabin.jpg"
+    "scenes": [],
+    "cardFit": "contain"
   },
   {
     "slug": "challenger-300",
@@ -256,16 +206,7 @@ export const aircraft: Aircraft[] = [
       "baggage": "Varies by configuration",
       "cabin": "Super-midsize cabin"
     },
-    "scenes": [
-      {
-        "id": "exterior",
-        "label": "Exterior",
-        "image": "/images/manufacturers/challenger-300-flight.jpg",
-        "fit": "contain",
-        "focalPoint": "center"
-      }
-    ],
-    "image": "/images/manufacturers/challenger-300-flight.jpg"
+    "scenes": []
   },
   {
     "slug": "citation-longitude",
@@ -285,19 +226,19 @@ export const aircraft: Aircraft[] = [
       {
         "id": "exterior",
         "label": "Exterior",
-        "image": "/images/manufacturers/longitude-flight-sunrise.jpg",
+        "image": "/images/manufacturers/longitude-mission.jpg",
         "fit": "contain",
         "focalPoint": "center"
       },
       {
         "id": "cabin",
         "label": "Interior",
-        "image": "/images/editorial/citation-longitude-cabin.jpg",
+        "image": "/images/manufacturers/longitude-glacier.jpg",
         "fit": "contain",
         "focalPoint": "center"
       }
     ],
-    "image": "/images/manufacturers/longitude-flight-sunrise.jpg"
+    "image": "/images/manufacturers/longitude-mission.jpg"
   }
 ];
 

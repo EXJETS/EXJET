@@ -15,7 +15,7 @@ const groups = [
 export function SiteFooter() {
   return <footer className="ex-footer">
     <div className="shell ex-footer-top">
-      <div className="ex-footer-brand"><Logo className="ex-footer-logo" /><p>Global Access, On-Demand.</p><a className="ex-footer-phone" href={siteConfig.phone.primary.href}>{siteConfig.phone.primary.display}</a><address className="ex-footer-address">{siteConfig.legalName}<br />{siteConfig.address.display}</address><SocialLinks compact /></div>
+      <div className="ex-footer-brand"><Logo light className="ex-footer-logo" /><p>Global Access, On-Demand.</p><a className="ex-footer-phone" href={siteConfig.phone.primary.href}>{siteConfig.phone.primary.display}</a><address className="ex-footer-address">{siteConfig.legalName}<br />{siteConfig.address.display}</address><SocialLinks compact /></div>
       {groups.map((group) => <nav className="ex-footer-desktop" key={group.title} aria-label={group.title}><h2>{group.title}</h2>{group.links.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</nav>)}
       <div className="ex-footer-mobile">
         {groups.map((group) => <details key={group.title}>

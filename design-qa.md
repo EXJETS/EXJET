@@ -1,40 +1,45 @@
-# EXJET full website design review
+# EXJET public-site design QA
 
-Date: 11 September 2026. Scope: shared navigation and all 27 existing page routes, reviewed as a mobile website at 390 CSS pixels. A desktop homepage view is included. Deployment remains paused.
+Review date: 24 October 2026. Baseline: production commit `6044594daa0ecc55ed2a7928eb8b58d126853c3f`. Scope: public-site visual redesign, replacement photography and removal of public source displays and gallery counters.
 
-## Reference and evidence
+## Visual comparison
 
-The supplied Apple mobile screenshot is the navbar reference. The live Apple.com desktop navbar was previously measured at 44 CSS pixels. EXJET's updated header was compared against the supplied reference in EXJET-Navbar-Comparison.jpg, which includes the previous implementation and the corrected version in one image. The source phone header is normalized to the same width; Safari chrome is excluded. EXJET intentionally retains its original guide artwork, Ubuntu typography, and neutral palette.
+Reference and before/after captures are saved in `verification/`.
 
-EXJET-All-Pages.html and EXJET-Page-Images.zip contain all 27 full-length mobile page images, a desktop homepage, and the navbar comparison. Full mobile images are assembled from real browser screenshots at recorded scroll offsets. The 390 × 844 iframe is cropped from the browser canvas. Subsequent frames omit the repeated 44px sticky header; overlapping content is aligned using the actual scroll offset. No page pixels or missing content were reconstructed. Each page's opening, middle, and bottom excerpts were inspected. Initial blank or partially painted captures were rejected and replaced.
+| Surface | Implemented result | Intentional EXJET treatment |
+| --- | --- | --- |
+| Page structure | Large photographic opening, spacious editorial chapters, alternating white/platinum sections and dark closing contact block | Original navbar and logo preserved |
+| Typography | Large display headings, restrained small labels and readable body copy | Locally hosted display serif paired with existing Ubuntu body text |
+| Photography | Full-width flight and cabin photography, large catalogue cards, interactive model selection | Only original images from the four owner-approved manufacturer sites; no embedded gallery UI |
+| Spacing and alignment | Wide desktop gutters, chapter rules, generous section spacing and stacked mobile layouts | Existing navigation dimensions and black CTA labels retained |
+| Components and interactions | Fly/Own/Operate services, model and cabin selection, comparisons and named floor-plan buttons | Existing Avinode integration and booking routes preserved |
 
-## Findings resolved
+## Photography and visible content
 
-- P2: the navbar booking pill and larger logo made the header visually heavy. It now uses a small guide logo, 20px lightweight icons, 44px touch targets, and one 44px row.
-- P2: inherited white text and excessive height made sales introductions unreadable on the new light surface. Text colors, spacing, and minimum height were corrected.
-- P2: hidden decorative indices left aircraft model names in a narrow grid column. Model rows now use the available width.
-- P2: the cargo list retained a narrow index column, overlapping model headings and descriptions. The cards now stack their content correctly.
-- P2: sales detail notes touched the viewport edges. They now share the page gutters.
-- P2: exterior photographs could crop parts of aircraft. Verified exterior media now uses contain fitting.
-- Capture reliability: some screenshots were taken before client content painted. Accepted replacements were checked visually after settling.
+- Removed all 28 photographs from the baseline manifest. Added 20 different manufacturer photographs; retained five exact-model floor plans.
+- All 25 packaged assets were visually inspected and match their recorded original-byte hashes. The build guard restricts both page and image URLs to the four approved manufacturer hosts.
+- No visible photo credits, source lists, manufacturer reference links or numeric gallery counters remain in the edited public components.
+- Five aircraft profiles have no approved exact-model replacement photograph and render text without substitute photos or placeholder canvases.
+- New asset paths prevent reuse of the retired image cache, including the Falcon 900LX exterior.
 
-No actionable P0, P1, or P2 visual findings remain in these reviewed states. This is a design acceptance result, not production or integration acceptance.
+## Browser verification
 
-## Verification
+- Desktop homepage, services catalogue, charter service chapters, aircraft catalogue/detail and footer were visually inspected.
+- Thirty route/viewport combinations were checked across 320, 390 and 768 CSS pixels: home, services, aircraft charter, MRO, aircraft catalogue, Longitude detail, charter search, contact, sales and travel journal. Settled documents had no horizontal overflow. A premature sales measurement was repeated after its styles loaded and passed.
+- Mobile navigation opened and closed. Fly, Own and Operate panels displayed their corresponding services. The Falcon 900LX model selector and Interior control loaded the correct replacement cabin image.
+- Longitude Interior selection and the Aft couch and Side-facing seat floor-plan buttons changed the displayed media correctly. Global 8000/Longitude comparison showed the two aircraft's values without a source row.
+- Avinode's embedded form visibly loaded with One way, Round trip, From, To and Search controls. No booking/search submission was made.
+- Homepage CTA text computed to black. Navbar, original logo artwork and Avinode implementation files are unchanged.
 
-- All 27 routes loaded and had no horizontal document overflow at 390px during the route audit.
-- Menu opening/closing, search navigation, FAQ expansion, and the Challenger 350 Interior selection were verified in the cloud browser. The selected interior points to the official Challenger 350 cabin asset.
-- The Avinode search form visibly loaded on charter/contact captures. No search or quote request was submitted.
-- `npm run build` passed, including TypeScript and generation of all routes.
-- `npm run lint` passed.
-- Recent browser error logs contained extension metadata errors; no application error was present in the inspected log window.
+## Iterations and limits
 
-## Limits and next decisions
+- Fixed the tablet hero crop by placing its heading above the photograph and retaining the complete aircraft. Final 768px screenshot and document-width measurement passed.
+- Rejected an unreliable full-page capture with unpainted image regions; accepted evidence uses settled viewport captures. Reviewed the page in sections.
+- Historical development logs contained an earlier resolved stylesheet import error and browser-extension metadata/hydration noise. No functional application failure was observed in the reviewed final interactions.
+- This is not an exhaustive accessibility audit or a real booking transaction test. Protected Vercel preview URLs are not part of browser acceptance; local visual verification, deployment build status and public production checks are used.
 
-- The account page is a preview; no real sign-in or widget-to-management synchronization is established by this work.
-- Membership promises, aircraft specifications, sale/lease status, and prices are retained content requiring owner review. This pass does not verify commercial claims.
-- Global 8000 has no verified photograph; G650 and Falcon 900LX currently have interior-only media; Citation X has exterior-only media. Sales and cargo pages use text where verified matching photographs were unavailable.
-- The image review shows default page states at 390px. It is not an exhaustive accessibility audit, every menu state, or a complete desktop route audit.
-- Source and image permission details are in PHOTO-SOURCES.json. No deployment was performed.
+## Release checks
 
-final result: passed
+Final production build, lint and photography guard passed. SEO verification passed with 232 public pages, 220 indexable pages and zero issues. An initial local build used preview indexing rules; rebuilding with `VERCEL_ENV=production` verified the production crawler policy. No code change was needed for that environment distinction.
+
+Final visual result: passed for the reviewed surfaces and states.

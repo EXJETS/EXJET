@@ -17,7 +17,7 @@ export function AircraftFloorplans({ name, layouts }: { name: string; layouts: A
     <div id="cabin-layout-image" className={`aircraft-reference__layout-image${layout.height > layout.width ? " aircraft-reference__layout-image--portrait" : ""}`}>
       <Image key={layout.src} src={layout.src} width={layout.width} height={layout.height} alt={`${name} — ${layout.label.toLowerCase()} cabin floor plan`} sizes="(max-width:760px) 90vw, 1100px" />
     </div>
-    <figcaption><span aria-live="polite">{layout.label}.</span> Representative manufacturer layout. Seating, sleeping arrangements and amenities vary by individual aircraft.</figcaption>
+    <figcaption><span aria-live="polite">{layout.label}.</span> Seating, sleeping arrangements and amenities vary by individual aircraft.</figcaption>
     <a className="ex-inline-link" href={layout.src} target="_blank" rel="noopener noreferrer">View full-size floor plan <span aria-hidden="true">↗</span><span className="sr-only"> (opens in a new tab)</span></a>
   </figure>;
 }

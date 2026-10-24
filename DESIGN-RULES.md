@@ -1,3 +1,11 @@
+# Owner photography and display correction — 23 October 2026
+
+Only use original photos obtained directly from cessna.txtav.com, bombardier.com, dassaultfalcon.com or embraer.com. Remove all earlier photography, uploader exceptions, publisher-hosted fallbacks and other manufacturer sources. Preserve existing model-specific floor plans from these approved sites. Never show gallery counts such as 1/10, screenshots containing controls, or placeholders. Keep source records and inspection evidence internal: no visible source credits, source links, photography notes or source sections. This explicitly supersedes every earlier photography exception below. Preserve the navbar and EXJET logo.
+
+# Owner correction — full visual replacement, 24 October 2026
+
+The owner rejected the previous pass as visually unchanged. Rebuild the public template and replace the repeated homepage imagery. The live Bombardier reference now informs serif display typography, immersive manufacturer photography and large editorial chapters. Preserve the navbar and menu visual design, original EXJET marks, black CTA labels and Avinode code. The new Global 8000 cloud image replaces the coastal homepage hero. Use Libre Caslon Display for public headings and Ubuntu for body/navigation; no tan UI surfaces. This explicitly supersedes older requirements to retain the homepage hero, Ubuntu display headings, and the previous editorial template. Keep manufacturer source images original and model-correct.
+
 # Service positioning — 24 October 2026
 
 EXJET is an aviation solutions company serving business and commercial aviation. The service order is Charter (Passenger/Cargo), Dry Lease (Passenger/Cargo), ACMI (Passenger/Cargo), Fractional, Ownership, Management, Crew, Engineering & STC, Service & Repair, Interior Completion, Empty Legs. This supersedes every earlier five-service restriction. Keep the navbar visual design; synchronize its service links with data/site.ts.

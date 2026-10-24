@@ -74,7 +74,7 @@ export type StaticSeoPath = keyof typeof pageSeo;
 
 export function buildMetadata(path: StaticSeoPath, options?: { noindex?: boolean }): Metadata {
   const entry: SeoEntry = pageSeo[path];
-  const image = entry.image || "/images/manufacturers/latitude-header-new.jpg";
+  const image = entry.image || "/images/manufacturers/global-8000-clouds.webp";
   const index = isPublicProduction && !options?.noindex;
   return {
     title: { absolute: entry.title },
@@ -120,7 +120,7 @@ export function buildDynamicMetadata({
   type?: "website" | "article";
 }): Metadata {
   const index = isPublicProduction && !noindex;
-  const socialImage = image || "/images/home/owner-selected-hero.webp";
+  const socialImage = image || "/images/manufacturers/global-8000-clouds.webp";
   return {
     title: { absolute: title },
     description,

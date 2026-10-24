@@ -19,7 +19,7 @@ export default function GroupCharterPage() {
     <>
       <PageHero heading="Group charter. Every detail aligned."
         dark
-        image="/images/editorial/citation-longitude-cabin.jpg"
+        image="/images/manufacturers/longitude-glacier.jpg"
         imageAlt="Citation Longitude cabin with facing leather seats, representative of small-group travel"
         imageWidth={1920}
         imageHeight={1080}

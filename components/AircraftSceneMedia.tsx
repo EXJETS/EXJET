@@ -79,7 +79,7 @@ export function AircraftSceneMedia({ aircraftName, scene, priority = false }: Ai
       {media.length > 1 ? (
         <div className="aircraft-scene-carousel" aria-label={`${scene.label} image controls`}>
           <button type="button" onClick={previous} aria-label={`Previous ${scene.label.toLowerCase()} image`}><ArrowLeftIcon size={20} aria-hidden="true" /></button>
-          <span aria-live="polite">{String(activeIndex + 1).padStart(2, "0")} / {String(media.length).padStart(2, "0")}</span>
+          <span className="sr-only" aria-live="polite">{active.alt ?? `${aircraftName} ${scene.label.toLowerCase()} view`}</span>
           <button type="button" onClick={next} aria-label={`Next ${scene.label.toLowerCase()} image`}><ArrowRightIcon size={20} aria-hidden="true" /></button>
         </div>
       ) : null}
