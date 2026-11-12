@@ -3,6 +3,8 @@
 Audit date: 2026-11-12. Branch: `claude/intelligent-mccarthy-9cbrj4` (identical to `main` at `6a116b4` before this commit).
 Scope: every tracked file read or scanned (75 files, about 9,900 lines excluding the lockfile). Build, typecheck and dependency audit were run.
 
+> **Correction, 2026-11-12 (see REPO_CLEANUP.md).** This audit covers the `main` branch only. A later, much larger line of EXJET work exists on branch `fix/production-seo-2026-10-19` (last commit 2026-10-23, 280 files, Next.js 16, Supabase, tests, brand and SEO documents) and was never merged to `main`. It may be what is deployed. This audit will be redone against the canonical branch once that is confirmed. The spec conflicts and missing-backend findings below apply to `main`; they are unverified for the October line.
+
 ## Summary
 
 The repo is a single Next.js 15 front-end prototype with hardcoded mock data. There is no backend, database, auth, billing, KYC, RFQ flow, agent framework, tests or CI. It models a different business from the locked PRODUCT spec: an instant-booking marketplace with prices, commission and a global fleet, where the spec is a US-only, membership-only, RFQ-only marketplace with no prices.
