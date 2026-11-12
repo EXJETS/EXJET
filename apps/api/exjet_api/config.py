@@ -56,6 +56,11 @@ class Settings(BaseSettings):
     ground_rfq_daily_cap: int = 10  # rental car / chauffeur requests
     seat_invite_ttl_hours: int = 72
     password_reset_ttl_minutes: int = 30
+    email_verification_ttl_hours: int = 48
+    # Operator manifest links: one token per recipient, expiring, revocable. `max_views` caps reads per link
+    # (a page reload or a mail scanner's prefetch must not burn it; set 1 for strictly single view).
+    manifest_link_ttl_hours: int = 72
+    manifest_link_max_views: int = 10
     # Attachment parsing bounds (M5)
     pdf_max_bytes: int = 10 * 1024 * 1024
     pdf_max_pages: int = 50

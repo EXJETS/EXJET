@@ -110,10 +110,11 @@ Errors: `{"error": {"code": "snake_case", "message": "..."}}`. 401 unauthenticat
 FastAPI serves `/openapi.json`; `apps/api/openapi.json` is exported in CI and is the typed source for the frontend.
 
 Auth and account
-- `POST /auth/signup` {email, password, full_name, account_type: individual|family_office, signup_source?} → dev/test: 201 Me (new email, logged in) or 202 {status:"check_your_email"} (email already registered); staging/prod: 202 {status:"check_your_email"} for both, no session is issued
-- `POST /auth/login` {email, password} → Me · `POST /auth/logout` → 204 (ends ALL of the user's sessions) · `GET /me` → Me
+- `POST /auth/signup` {email, password, full_name, account_type: individual|family_office, signup_source?} → dev/test: 201 Me (new email, logged in, `user.email_verified` false) or 202 {status:"check_your_email"} (email already registered); staging/prod: 202 {status:"check_your_email"} for both, no session is issued. A new email always gets an `email_verification` message (transactional, through `mailer`) with a single-use, hashed, expiring (48 h, `EXJET_EMAIL_VERIFICATION_TTL_HOURS`) link `{APP_BASE_URL}/verify-email?token=…`
+- `POST /auth/verify-email` {token} → Me with a session cookie, in every environment (409 `invalid_token` when used, expired or unknown) · `POST /auth/verify-email/resend` {email} → uniform 202 {status:"check_your_email"}, rate limited per address and per email; only an active unverified account is mailed
+- `POST /auth/login` {email, password} → Me; dev/test never require verification; staging/prod answer 403 `email_not_verified` (after the password matched) until the email is verified · `POST /auth/logout` → 204 (ends ALL of the user's sessions) · `GET /me` → Me
 - `POST /auth/password` {current_password, new_password} → 204 (revokes other sessions) · `POST /auth/password/reset-request` {email} → 202 (uniform) · `POST /auth/password/reset` {token, new_password} → 204
-- Me = {user:{id,email,full_name,role}, account:{id,type,display_name,seats,kyc_status}, subscription:{plan,status,current_period_end}|null, member:{is_owner,identity_status,is_suspended}|null, entitled: bool, next_step: "kyc"|"kyc_pending"|"billing"|"ready"}
+- Me = {user:{id,email,full_name,role,email_verified}, account:{id,type,display_name,seats,kyc_status}, subscription:{plan,status,current_period_end}|null, member:{is_owner,identity_status,is_suspended}|null, entitled: bool, next_step: "kyc"|"kyc_pending"|"billing"|"ready"}
 - Seats are invitations. `POST /account/seats` {email} (owner only; family_office/enterprise; subscription active; account KYC approved; members + pending < plan seats) → 202 {status:"invitation_queued"} (identical whether or not the email has a login) · `GET /account/seats` → {account_id, seats, members[], invitations[]} · `DELETE /account/seats/invitations/{id}` → 204 · `POST /account/seats/accept` {token} (signed in as the invited email) → Me
 
 KYC
@@ -123,24 +124,26 @@ KYC
 Billing (membership only)
 - `GET /billing/plans` → [{plan,name,unit_amount_cents,interval:"month",seats}] (Individual 75000, Family Office 100000; Enterprise is inquiry and has no price)
 - `POST /billing/checkout` {plan} → {checkout_url} · `POST /billing/portal` → {url}
-- `POST /billing/webhook` (provider signature) · `POST /billing/enterprise-inquiry` {company,seats,notes} → 202
+- `POST /billing/webhook` (provider signature) · `POST /billing/enterprise-inquiry` {company, seats, notes?, contact_name, contact_email, contact_phone?} → 202 (all free text and contact fields are stored encrypted in `enterprise_inquiries`; the admin reads them at `GET /admin/enterprise-inquiries`). Fake provider URLs: `checkout_url` is `{APP_BASE_URL}/dev/checkout?session=…&plan=…` and the portal `url` is `{APP_BASE_URL}/dev/billing-portal?customer=…`; the app renders those pages only in dev/test and completes a checkout with `POST /v1/dev/complete-checkout` {account_id, plan}
 
 Catalog (public; member-only fields null unless entitled)
-- `GET /airports?q=` → [{icao,iata,name,city,state,elevation_ft,longest_runway_ft}]
+- `GET /airports?q=` → [{icao,iata,name,city,state,elevation_ft,longest_runway_ft}] · `GET /airports/{icao}/fbos` → [{id, name, phone|null, email|null}] (public; phone and email only for entitled viewers; 404 for an unknown airport)
 - `GET /categories` → [{category,name,type_count}] · `GET /aircraft-types?category=` → [AircraftType] · `GET /aircraft-types/{slug}`
 - `GET /listings?type_slug=&category=&home=` → [Listing]
 - Listing = {listing_id, type:{slug,manufacturer,model,category}, year_of_manufacture, year_refurbished, passenger_seats, home_city, amenities, photos, safety_rating, tail_number|null, operator:{id,dba_name,certificate_type,contacts:[{name,title,email,phone}]}|null}
 - `GET /empty-legs` → [{id, origin, destination, available_from, available_to, listing: Listing}] (never a price)
 
 Trips
-- `POST /trips/intake` {text} → TripDraft parsed from plain language {trip_type, legs:[{origin_icao,destination_icao,depart_at}], passengers, checked_bags, carry_on_bags, golf_bags, ski_bags, unresolved:[field…], confidence}. Parses; does not save.
+- `POST /trips/intake` {text} → TripDraft parsed from plain language {trip_type, legs:[{origin_icao,destination_icao,depart_at|null,depart_local|null,origin_timezone|null}], passengers, checked_bags, carry_on_bags, golf_bags, ski_bags, unresolved:[field…], confidence}. Parses; does not save.
+- Departure times (`POST /trips`, `PATCH /trips/{id}`): `depart_at` is either an instant with an offset (`2026-12-04T14:00:00-05:00`, `…Z`) or a naive wall-clock time `YYYY-MM-DDTHH:MM[:SS]` read in the ORIGIN airport's IANA zone; any other format is 422 `validation_error`. Stored as UTC. A zoneless or unrecognized airport zone is 422 `airport_timezone_unknown` (never guessed, never UTC). A wall time inside a DST gap is 422 `nonexistent_local_time`; a wall time that occurs twice (fall back) takes the FIRST occurrence (the daylight offset); pass an offset to mean the second. Every response leg carries `depart_at` (UTC instant), `depart_local` (naive wall time at the origin) and `origin_timezone` (the zone saved with the leg), so a client never guesses. In an intake draft a time whose origin has no zone is returned as null and listed in `unresolved`.
 - `POST /trips` TripDraft → 201 Trip · `GET /trips` · `GET /trips/{id}` · `PATCH /trips/{id}` (draft only) · `POST /trips/{id}/cancel`
 - `GET /trips/{id}/match` → {legs:[{distance_nm}], categories:[{category, types:[{slug,model,stops:0|1,fuel_stop_icao|null,flight_time_minutes, listing_count}]}], rejected:[{slug,reasons[]}]}
 - `GET /trips/{id}/listings?type_slug=` → [Listing] feasible tails (entitled sees operator/tail)
 - `POST /trips/{id}/rfqs` {listing_ids:[…]} (entitled only) → 201 [Rfq] and enqueues dispatch
 - `POST /trips/{id}/ground-rfqs` {kind: rental_car|chauffeur, leg_sequence, fbo_id, details} (entitled only)
 - Rfq = {id, reference, kind, status, sent_at, replied_at, listing: Listing}
-- Trip = {id,status,trip_type,passengers,bags…,legs[],rfqs[],quotes[],manifest:{due_at,submitted_at}|null,weather_available:bool}
+- Trip = {id,status,trip_type,passengers,bags…,legs[],rfqs[],quotes[],manifest:{due_at,submitted_at}|null,weather_available:bool}; leg = {sequence, origin_icao, destination_icao, depart_at, depart_local, origin_timezone, origin:{icao,name,city,state,latitude,longitude,timezone}, destination:{…same}, distance_nm, is_international}
+- Status and enum fields in every response model are closed `Literal` types in OpenAPI (kyc/identity status, Me.next_step, subscription status and plan, trip status and type, rfq status and kind, quote status, payment link status, go_live_status, safety_rating, aircraft category, approval kind and status, job status, id_type, flight status), so generated TypeScript types are exact unions.
 
 Quotes, contract, payment
 - `GET /trips/{id}/quotes` → [Quote]; Quote = {id,status,operator:{dba_name},listing,total_amount_cents|null,currency,valid_until,operator_quote_number,line_items[],quote_pdf_url,contract:{id,pdf_url,acknowledged_at}|null,payment_link:{url,host,status,host_approved,changed_since_first}|null}
@@ -149,14 +152,17 @@ Quotes, contract, payment
 - `GET /documents/{id}` → 302 short-lived signed URL bound to document id + viewer (owner account or admin only; audited for KYC); the file is always served as an attachment (see Security controls)
 
 Manifest and flight
-- `GET /trips/{id}/manifest` → {due_at, submitted_at, required_id_type, passengers:[…]} · `PUT /trips/{id}/manifest` {passengers:[{full_name,date_of_birth,id_type,id_number,id_expiry,id_issuer,weight_lbs?}]} · `POST /trips/{id}/manifest/submit`
+- `GET /trips/{id}/manifest` → {due_at, submitted_at, required_id_type, expected_passengers, passengers:[{id, full_name, date_of_birth, id_type, id_number_last4, id_expiry, id_issuer, weight_lbs}]} (full ID numbers are never returned) · `PUT /trips/{id}/manifest` {passengers:[{id?, full_name, date_of_birth, id_type, id_number?, id_expiry, id_issuer, weight_lbs?}]} is an UPSERT by passenger `id`: an existing `id` without `id_number` keeps the stored number, an item without `id` is created (`id_number` required, 422 `manifest_invalid`), a foreign or unknown `id` is 422 `unknown_passenger`, a repeated `id` 422 `duplicate_passenger_id`, passengers missing from the list are deleted · `POST /trips/{id}/manifest/submit` (every passenger must have a full ID number on file; unchanged). Editing a submitted manifest (trip `scheduled`, before the first departure) reopens it: the trip returns to `manifest_due`, `submitted_at` clears and the operator's links are revoked; submit again to issue new ones.
+- Manifest delivery is a SECURE LINK, never passenger PII by email. Submit enqueues `manifest.deliver`, which emails each address the accepted quote's RFQ went to (purpose `manifest`; same authorization as the RFQ) the RFQ reference, route, date and `{APP_BASE_URL}/operator/manifest?token=…` (one token per recipient, SHA-256 at rest, expires in 72 h `EXJET_MANIFEST_LINK_TTL_HOURS`, at most `EXJET_MANIFEST_LINK_MAX_VIEWS` (10) reads so a reload or a scanner's prefetch does not burn it) and sets `Manifest.sent_to_operator_at`. `GET /operator/manifest?token=` (no session; rate limited per address and per token; 404 `invalid_link` for unknown, expired, revoked or exhausted) → {trip_reference, legs:[{sequence,origin_icao,destination_icao,depart_local,origin_timezone}], submitted_at, expires_at, expected_passengers, passengers:[{full_name,date_of_birth,id_type,id_number,id_expiry,id_issuer,weight_lbs}]}, writing an `audit_log` row per use (ip, time, token id). Resubmission after a change revokes the old links and issues new ones.
 - `GET /trips/{id}/weather` → per leg {origin:{metar,taf}, destination:{metar,taf}, summary}
 - `GET /trips/{id}/track` → per leg {status, position:{lat,lon,altitude_ft,groundspeed_kts,heading,at}|null}
 
 Admin / Company OS (role admin)
 - `GET /admin/approvals?status=` · `POST /admin/approvals/{id}/decide` {decision: approved|rejected, note}
 - `GET /admin/kyc/submissions?status=` · `GET /admin/kyc/submissions/{id}` (documents via signed URLs)
-- `GET /admin/operators` · `POST /admin/operators/{id}/request-go-live`
+- `GET /admin/operators` · `POST /admin/operators/{id}/request-go-live` → 201 {operator: AdminOperatorOut, approval: ApprovalOut}
+- `GET /admin/quotes?status=` · `GET /admin/quotes/{id}` · `POST /admin/quotes/{id}/resolve` all return AdminQuoteReview with `pdf_url` populated (short-lived signed URL bound to the document and the admin)
+- `GET /admin/enterprise-inquiries` → [{id, created_at, account_id, user_id, company, seats, notes, contact_name, contact_email, contact_phone}] (audited read) · `POST /admin/trips/{id}/manifest/revoke-links` → {revoked: n}
 - `POST /admin/ingest` multipart {dataset, file} → IngestRun · `GET /admin/ingest/runs`
 - `GET /admin/metrics` → {mrr_cents, arr_cents, members_by_plan, kyc_queue, rfq_to_quote_rate, median_operator_response_minutes}
 - `GET /admin/agent-actions` · `GET /admin/jobs`

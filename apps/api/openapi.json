@@ -4,13 +4,12 @@
       "Accepted": {
         "properties": {
           "status": {
+            "const": "check_your_email",
+            "default": "check_your_email",
             "title": "Status",
             "type": "string"
           }
         },
-        "required": [
-          "status"
-        ],
         "title": "Accepted",
         "type": "object"
       },
@@ -26,6 +25,13 @@
             "type": "string"
           },
           "kyc_status": {
+            "enum": [
+              "not_started",
+              "submitted",
+              "in_review",
+              "approved",
+              "rejected"
+            ],
             "title": "Kyc Status",
             "type": "string"
           },
@@ -34,6 +40,11 @@
             "type": "integer"
           },
           "type": {
+            "enum": [
+              "individual",
+              "family_office",
+              "enterprise"
+            ],
             "title": "Type",
             "type": "string"
           }
@@ -135,6 +146,10 @@
             "type": "string"
           },
           "kind": {
+            "enum": [
+              "individual",
+              "business"
+            ],
             "title": "Kind",
             "type": "string"
           },
@@ -148,6 +163,13 @@
             "type": "string"
           },
           "status": {
+            "enum": [
+              "not_started",
+              "submitted",
+              "in_review",
+              "approved",
+              "rejected"
+            ],
             "title": "Status",
             "type": "string"
           },
@@ -208,6 +230,11 @@
             "type": "integer"
           },
           "certificate_type": {
+            "enum": [
+              "135",
+              "121",
+              "foreign"
+            ],
             "title": "Certificate Type",
             "type": "string"
           },
@@ -220,6 +247,12 @@
             "type": "string"
           },
           "go_live_status": {
+            "enum": [
+              "draft",
+              "pending_ceo",
+              "live",
+              "suspended"
+            ],
             "title": "Go Live Status",
             "type": "string"
           },
@@ -246,6 +279,13 @@
             "type": "integer"
           },
           "safety_rating": {
+            "enum": [
+              "Not rated",
+              "Gold",
+              "Gold+",
+              "Platinum",
+              "Platinum+"
+            ],
             "title": "Safety Rating",
             "type": "string"
           }
@@ -339,6 +379,14 @@
             "type": "string"
           },
           "status": {
+            "enum": [
+              "received",
+              "needs_review",
+              "ready",
+              "accepted",
+              "declined",
+              "expired"
+            ],
             "title": "Status",
             "type": "string"
           },
@@ -427,10 +475,23 @@
             "type": "integer"
           },
           "permission_level": {
+            "enum": [
+              "READ",
+              "DRAFT",
+              "EXECUTE"
+            ],
             "title": "Permission Level",
             "type": "string"
           },
           "status": {
+            "enum": [
+              "queued",
+              "running",
+              "awaiting_approval",
+              "done",
+              "failed",
+              "blocked"
+            ],
             "title": "Status",
             "type": "string"
           }
@@ -499,6 +560,16 @@
             "title": "Cabin Width Ft"
           },
           "category": {
+            "enum": [
+              "turboprop",
+              "very_light",
+              "light",
+              "midsize",
+              "super_midsize",
+              "heavy",
+              "ultra_long_range",
+              "airliner"
+            ],
             "title": "Category",
             "type": "string"
           },
@@ -586,6 +657,71 @@
           "icao_type_code"
         ],
         "title": "AircraftTypeOut",
+        "type": "object"
+      },
+      "AirportBrief": {
+        "description": "Enough to label an airport and draw a schematic: no runway or elevation data.",
+        "properties": {
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City"
+          },
+          "icao": {
+            "title": "Icao",
+            "type": "string"
+          },
+          "latitude": {
+            "title": "Latitude",
+            "type": "number"
+          },
+          "longitude": {
+            "title": "Longitude",
+            "type": "number"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "State"
+          },
+          "timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Timezone"
+          }
+        },
+        "required": [
+          "icao",
+          "name",
+          "city",
+          "state",
+          "latitude",
+          "longitude",
+          "timezone"
+        ],
+        "title": "AirportBrief",
         "type": "object"
       },
       "AirportOut": {
@@ -714,6 +850,21 @@
             "type": "string"
           },
           "kind": {
+            "enum": [
+              "kyc_final",
+              "operator_go_live",
+              "outreach_campaign",
+              "rfq_dispatch_policy",
+              "plan_change",
+              "refund",
+              "content_publish",
+              "merge",
+              "deploy",
+              "payment_host",
+              "inbound_review",
+              "seat_overage",
+              "legal_notice"
+            ],
             "title": "Kind",
             "type": "string"
           },
@@ -738,6 +889,11 @@
             "type": "string"
           },
           "status": {
+            "enum": [
+              "pending",
+              "approved",
+              "rejected"
+            ],
             "title": "Status",
             "type": "string"
           },
@@ -855,6 +1011,16 @@
       "CategoryOut": {
         "properties": {
           "category": {
+            "enum": [
+              "turboprop",
+              "very_light",
+              "light",
+              "midsize",
+              "super_midsize",
+              "heavy",
+              "ultra_long_range",
+              "airliner"
+            ],
             "title": "Category",
             "type": "string"
           },
@@ -1188,6 +1354,28 @@
             "title": "Company",
             "type": "string"
           },
+          "contact_email": {
+            "title": "Contact Email",
+            "type": "string"
+          },
+          "contact_name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Contact Name",
+            "type": "string"
+          },
+          "contact_phone": {
+            "anyOf": [
+              {
+                "maxLength": 24,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contact Phone"
+          },
           "notes": {
             "anyOf": [
               {
@@ -1209,9 +1397,167 @@
         },
         "required": [
           "company",
-          "seats"
+          "seats",
+          "contact_name",
+          "contact_email"
         ],
         "title": "EnterpriseInquiryIn",
+        "type": "object"
+      },
+      "EnterpriseInquiryOut": {
+        "properties": {
+          "account_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Account Id"
+          },
+          "company": {
+            "title": "Company",
+            "type": "string"
+          },
+          "contact_email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contact Email"
+          },
+          "contact_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contact Name"
+          },
+          "contact_phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Contact Phone"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "seats": {
+            "title": "Seats",
+            "type": "integer"
+          },
+          "user_id": {
+            "format": "uuid",
+            "title": "User Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "created_at",
+          "account_id",
+          "user_id",
+          "company",
+          "seats",
+          "notes",
+          "contact_name",
+          "contact_email",
+          "contact_phone"
+        ],
+        "title": "EnterpriseInquiryOut",
+        "type": "object"
+      },
+      "FboOut": {
+        "properties": {
+          "email": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Email"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "phone",
+          "email"
+        ],
+        "title": "FboOut",
+        "type": "object"
+      },
+      "GoLiveRequestOut": {
+        "properties": {
+          "approval": {
+            "$ref": "#/components/schemas/ApprovalOut"
+          },
+          "operator": {
+            "$ref": "#/components/schemas/AdminOperatorOut"
+          }
+        },
+        "required": [
+          "operator",
+          "approval"
+        ],
+        "title": "GoLiveRequestOut",
         "type": "object"
       },
       "GroundRfqIn": {
@@ -1277,6 +1623,12 @@
             "type": "string"
           },
           "dataset": {
+            "enum": [
+              "operators",
+              "aircraft",
+              "airports_fbos",
+              "outreach_lists"
+            ],
             "title": "Dataset",
             "type": "string"
           },
@@ -1393,6 +1745,12 @@
             "type": "string"
           },
           "status": {
+            "enum": [
+              "queued",
+              "running",
+              "done",
+              "failed"
+            ],
             "title": "Status",
             "type": "string"
           }
@@ -1434,6 +1792,13 @@
             "type": "string"
           },
           "status": {
+            "enum": [
+              "not_started",
+              "submitted",
+              "in_review",
+              "approved",
+              "rejected"
+            ],
             "title": "Status",
             "type": "string"
           }
@@ -1450,6 +1815,13 @@
       "KycStatusOut": {
         "properties": {
           "kyc_status": {
+            "enum": [
+              "not_started",
+              "submitted",
+              "in_review",
+              "approved",
+              "rejected"
+            ],
             "title": "Kyc Status",
             "type": "string"
           },
@@ -1488,6 +1860,13 @@
             "type": "string"
           },
           "status": {
+            "enum": [
+              "not_started",
+              "submitted",
+              "in_review",
+              "approved",
+              "rejected"
+            ],
             "title": "Status",
             "type": "string"
           }
@@ -1525,6 +1904,17 @@
             ],
             "title": "Depart Date"
           },
+          "depart_local": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Depart Local"
+          },
           "destination_icao": {
             "anyOf": [
               {
@@ -1546,12 +1936,24 @@
               }
             ],
             "title": "Origin Icao"
+          },
+          "origin_timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Origin Timezone"
           }
         },
         "title": "LegDraftIO",
         "type": "object"
       },
       "LegIn": {
+        "description": "`depart_at` is either an instant with an offset (`2026-12-04T14:00:00-05:00`, `...Z`) or a naive wall-clock time\n(`2026-12-04T14:00` or `...T14:00:00`) that is interpreted in the ORIGIN airport's time zone. Nothing else is accepted\n(a bare date, a space instead of `T`, a week number).",
         "properties": {
           "depart_at": {
             "format": "date-time",
@@ -1586,6 +1988,20 @@
             "title": "Depart At",
             "type": "string"
           },
+          "depart_local": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Depart Local"
+          },
+          "destination": {
+            "$ref": "#/components/schemas/AirportBrief"
+          },
           "destination_icao": {
             "title": "Destination Icao",
             "type": "string"
@@ -1605,9 +2021,23 @@
             "title": "Is International",
             "type": "boolean"
           },
+          "origin": {
+            "$ref": "#/components/schemas/AirportBrief"
+          },
           "origin_icao": {
             "title": "Origin Icao",
             "type": "string"
+          },
+          "origin_timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Origin Timezone"
           },
           "sequence": {
             "title": "Sequence",
@@ -1619,6 +2049,10 @@
           "origin_icao",
           "destination_icao",
           "depart_at",
+          "depart_local",
+          "origin_timezone",
+          "origin",
+          "destination",
           "distance_nm",
           "is_international"
         ],
@@ -1642,6 +2076,12 @@
             "type": "integer"
           },
           "status": {
+            "enum": [
+              "scheduled",
+              "airborne",
+              "landed",
+              "unknown"
+            ],
             "title": "Status",
             "type": "string"
           }
@@ -1765,6 +2205,13 @@
           "safety_rating": {
             "anyOf": [
               {
+                "enum": [
+                  "Not rated",
+                  "Gold",
+                  "Gold+",
+                  "Platinum",
+                  "Platinum+"
+                ],
                 "type": "string"
               },
               {
@@ -1829,6 +2276,11 @@
       "ListingOperator": {
         "properties": {
           "certificate_type": {
+            "enum": [
+              "135",
+              "121",
+              "foreign"
+            ],
             "title": "Certificate Type",
             "type": "string"
           },
@@ -1861,6 +2313,16 @@
       "ListingType": {
         "properties": {
           "category": {
+            "enum": [
+              "turboprop",
+              "very_light",
+              "light",
+              "midsize",
+              "super_midsize",
+              "heavy",
+              "ultra_long_range",
+              "airliner"
+            ],
             "title": "Category",
             "type": "string"
           },
@@ -1952,6 +2414,10 @@
             "type": "array"
           },
           "required_id_type": {
+            "enum": [
+              "real_id",
+              "passport"
+            ],
             "title": "Required Id Type",
             "type": "string"
           },
@@ -1998,6 +2464,16 @@
       "MatchCategoryOut": {
         "properties": {
           "category": {
+            "enum": [
+              "turboprop",
+              "very_light",
+              "light",
+              "midsize",
+              "super_midsize",
+              "heavy",
+              "ultra_long_range",
+              "airliner"
+            ],
             "title": "Category",
             "type": "string"
           },
@@ -2334,70 +2810,108 @@
         "title": "MetricsOut",
         "type": "object"
       },
-      "PassengerIn": {
+      "OperatorManifestLeg": {
         "properties": {
-          "date_of_birth": {
-            "format": "date",
-            "title": "Date Of Birth",
-            "type": "string"
-          },
-          "full_name": {
-            "maxLength": 200,
-            "minLength": 1,
-            "title": "Full Name",
-            "type": "string"
-          },
-          "id_expiry": {
-            "format": "date",
-            "title": "Id Expiry",
-            "type": "string"
-          },
-          "id_issuer": {
-            "maxLength": 64,
-            "minLength": 1,
-            "title": "Id Issuer",
-            "type": "string"
-          },
-          "id_number": {
-            "maxLength": 64,
-            "minLength": 1,
-            "title": "Id Number",
-            "type": "string"
-          },
-          "id_type": {
-            "enum": [
-              "real_id",
-              "passport"
-            ],
-            "title": "Id Type",
-            "type": "string"
-          },
-          "weight_lbs": {
+          "depart_local": {
             "anyOf": [
               {
-                "maximum": 700.0,
-                "minimum": 1.0,
-                "type": "integer"
+                "type": "string"
               },
               {
                 "type": "null"
               }
             ],
-            "title": "Weight Lbs"
+            "title": "Depart Local"
+          },
+          "destination_icao": {
+            "title": "Destination Icao",
+            "type": "string"
+          },
+          "origin_icao": {
+            "title": "Origin Icao",
+            "type": "string"
+          },
+          "origin_timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Origin Timezone"
+          },
+          "sequence": {
+            "title": "Sequence",
+            "type": "integer"
           }
         },
         "required": [
-          "full_name",
-          "date_of_birth",
-          "id_type",
-          "id_number",
-          "id_expiry",
-          "id_issuer"
+          "sequence",
+          "origin_icao",
+          "destination_icao",
+          "depart_local",
+          "origin_timezone"
         ],
-        "title": "PassengerIn",
+        "title": "OperatorManifestLeg",
         "type": "object"
       },
-      "PassengerOut": {
+      "OperatorManifestOut": {
+        "description": "What an operator contact sees through a secure link. Contains passenger PII: never cached, never emailed.",
+        "properties": {
+          "expected_passengers": {
+            "title": "Expected Passengers",
+            "type": "integer"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "legs": {
+            "items": {
+              "$ref": "#/components/schemas/OperatorManifestLeg"
+            },
+            "title": "Legs",
+            "type": "array"
+          },
+          "passengers": {
+            "items": {
+              "$ref": "#/components/schemas/OperatorManifestPassenger"
+            },
+            "title": "Passengers",
+            "type": "array"
+          },
+          "submitted_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Submitted At"
+          },
+          "trip_reference": {
+            "title": "Trip Reference",
+            "type": "string"
+          }
+        },
+        "required": [
+          "trip_reference",
+          "legs",
+          "submitted_at",
+          "expires_at",
+          "expected_passengers",
+          "passengers"
+        ],
+        "title": "OperatorManifestOut",
+        "type": "object"
+      },
+      "OperatorManifestPassenger": {
         "properties": {
           "date_of_birth": {
             "title": "Date Of Birth",
@@ -2430,11 +2944,15 @@
             ],
             "title": "Id Issuer"
           },
-          "id_number_last4": {
-            "title": "Id Number Last4",
+          "id_number": {
+            "title": "Id Number",
             "type": "string"
           },
           "id_type": {
+            "enum": [
+              "real_id",
+              "passport"
+            ],
             "title": "Id Type",
             "type": "string"
           },
@@ -2451,6 +2969,163 @@
           }
         },
         "required": [
+          "full_name",
+          "date_of_birth",
+          "id_type",
+          "id_number",
+          "id_expiry",
+          "id_issuer",
+          "weight_lbs"
+        ],
+        "title": "OperatorManifestPassenger",
+        "type": "object"
+      },
+      "PassengerIn": {
+        "description": "`id` set: update that passenger; `id_number` omitted keeps the stored number (it is never returned in full).\n`id` omitted: a new passenger, `id_number` required.",
+        "properties": {
+          "date_of_birth": {
+            "format": "date",
+            "title": "Date Of Birth",
+            "type": "string"
+          },
+          "full_name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Full Name",
+            "type": "string"
+          },
+          "id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id"
+          },
+          "id_expiry": {
+            "format": "date",
+            "title": "Id Expiry",
+            "type": "string"
+          },
+          "id_issuer": {
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Id Issuer",
+            "type": "string"
+          },
+          "id_number": {
+            "anyOf": [
+              {
+                "maxLength": 64,
+                "minLength": 1,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id Number"
+          },
+          "id_type": {
+            "enum": [
+              "real_id",
+              "passport"
+            ],
+            "title": "Id Type",
+            "type": "string"
+          },
+          "weight_lbs": {
+            "anyOf": [
+              {
+                "maximum": 700.0,
+                "minimum": 1.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Weight Lbs"
+          }
+        },
+        "required": [
+          "full_name",
+          "date_of_birth",
+          "id_type",
+          "id_expiry",
+          "id_issuer"
+        ],
+        "title": "PassengerIn",
+        "type": "object"
+      },
+      "PassengerOut": {
+        "properties": {
+          "date_of_birth": {
+            "title": "Date Of Birth",
+            "type": "string"
+          },
+          "full_name": {
+            "title": "Full Name",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "id_expiry": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id Expiry"
+          },
+          "id_issuer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id Issuer"
+          },
+          "id_number_last4": {
+            "title": "Id Number Last4",
+            "type": "string"
+          },
+          "id_type": {
+            "enum": [
+              "real_id",
+              "passport"
+            ],
+            "title": "Id Type",
+            "type": "string"
+          },
+          "weight_lbs": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Weight Lbs"
+          }
+        },
+        "required": [
+          "id",
           "full_name",
           "date_of_birth",
           "id_type",
@@ -2551,6 +3226,11 @@
             "type": "boolean"
           },
           "status": {
+            "enum": [
+              "pending",
+              "member_marked_paid",
+              "operator_confirmed"
+            ],
             "title": "Status",
             "type": "string"
           },
@@ -2593,6 +3273,11 @@
             "type": "string"
           },
           "plan": {
+            "enum": [
+              "individual",
+              "family_office",
+              "enterprise"
+            ],
             "title": "Plan",
             "type": "string"
           },
@@ -2906,6 +3591,14 @@
             "type": "string"
           },
           "status": {
+            "enum": [
+              "received",
+              "needs_review",
+              "ready",
+              "accepted",
+              "declined",
+              "expired"
+            ],
             "title": "Status",
             "type": "string"
           },
@@ -2978,6 +3671,19 @@
         "title": "RejectedOut",
         "type": "object"
       },
+      "ResendVerificationIn": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "title": "ResendVerificationIn",
+        "type": "object"
+      },
       "ResolveQuoteIn": {
         "properties": {
           "reject": {
@@ -3007,6 +3713,19 @@
           "total_amount_cents"
         ],
         "title": "ResolveQuoteIn",
+        "type": "object"
+      },
+      "RevokeLinksOut": {
+        "properties": {
+          "revoked": {
+            "title": "Revoked",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "revoked"
+        ],
+        "title": "RevokeLinksOut",
         "type": "object"
       },
       "RfqCreateIn": {
@@ -3048,6 +3767,12 @@
             "type": "string"
           },
           "kind": {
+            "enum": [
+              "charter",
+              "empty_leg",
+              "rental_car",
+              "chauffeur"
+            ],
             "title": "Kind",
             "type": "string"
           },
@@ -3090,6 +3815,14 @@
             "title": "Sent At"
           },
           "status": {
+            "enum": [
+              "queued",
+              "sent",
+              "replied",
+              "declined",
+              "expired",
+              "failed"
+            ],
             "title": "Status",
             "type": "string"
           }
@@ -3196,6 +3929,13 @@
             "title": "Full Name"
           },
           "identity_status": {
+            "enum": [
+              "not_started",
+              "submitted",
+              "in_review",
+              "approved",
+              "rejected"
+            ],
             "title": "Identity Status",
             "type": "string"
           },
@@ -3372,10 +4112,21 @@
             "title": "Current Period End"
           },
           "plan": {
+            "enum": [
+              "individual",
+              "family_office",
+              "enterprise"
+            ],
             "title": "Plan",
             "type": "string"
           },
           "status": {
+            "enum": [
+              "incomplete",
+              "active",
+              "past_due",
+              "canceled"
+            ],
             "title": "Status",
             "type": "string"
           }
@@ -3624,6 +4375,11 @@
             "type": "integer"
           },
           "trip_type": {
+            "enum": [
+              "one_way",
+              "round_trip",
+              "multi_leg"
+            ],
             "title": "Trip Type",
             "type": "string"
           },
@@ -3736,10 +4492,27 @@
             "type": "integer"
           },
           "status": {
+            "enum": [
+              "draft",
+              "rfq_sent",
+              "quoted",
+              "contracted",
+              "paid",
+              "manifest_due",
+              "scheduled",
+              "in_flight",
+              "completed",
+              "cancelled"
+            ],
             "title": "Status",
             "type": "string"
           },
           "trip_type": {
+            "enum": [
+              "one_way",
+              "round_trip",
+              "multi_leg"
+            ],
             "title": "Trip Type",
             "type": "string"
           },
@@ -3874,6 +4647,10 @@
             "title": "Email",
             "type": "string"
           },
+          "email_verified": {
+            "title": "Email Verified",
+            "type": "boolean"
+          },
           "full_name": {
             "anyOf": [
               {
@@ -3891,6 +4668,10 @@
             "type": "string"
           },
           "role": {
+            "enum": [
+              "member",
+              "admin"
+            ],
             "title": "Role",
             "type": "string"
           }
@@ -3899,7 +4680,8 @@
           "id",
           "email",
           "full_name",
-          "role"
+          "role",
+          "email_verified"
         ],
         "title": "UserOut",
         "type": "object"
@@ -3942,6 +4724,21 @@
           "type"
         ],
         "title": "ValidationError",
+        "type": "object"
+      },
+      "VerifyEmailIn": {
+        "properties": {
+          "token": {
+            "maxLength": 200,
+            "minLength": 20,
+            "title": "Token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "token"
+        ],
+        "title": "VerifyEmailIn",
         "type": "object"
       },
       "WeatherOut": {
@@ -4317,6 +5114,56 @@
           }
         },
         "summary": "Decide",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/enterprise-inquiries": {
+      "get": {
+        "description": "Enterprise has no price: an inquiry waits here for the CEO to follow up. Contains personal contact details, so\neach read is audited (counts only).",
+        "operationId": "enterprise_inquiries_v1_admin_enterprise_inquiries_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 500,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/EnterpriseInquiryOut"
+                  },
+                  "title": "Response Enterprise Inquiries V1 Admin Enterprise Inquiries Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Enterprise Inquiries",
         "tags": [
           "admin"
         ]
@@ -4766,7 +5613,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ApprovalOut"
+                  "$ref": "#/components/schemas/GoLiveRequestOut"
                 }
               }
             },
@@ -4831,6 +5678,49 @@
           }
         },
         "summary": "Review Quotes",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/quotes/{quote_id}": {
+      "get": {
+        "operationId": "review_quote_v1_admin_quotes__quote_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "quote_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Quote Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminQuoteReview"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Review Quote",
         "tags": [
           "admin"
         ]
@@ -5009,6 +5899,50 @@
           }
         },
         "summary": "Remove Suppression",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/trips/{trip_id}/manifest/revoke-links": {
+      "post": {
+        "description": "Withdraw every operator link issued for this trip's manifest (they stop working at once).",
+        "operationId": "revoke_manifest_links_v1_admin_trips__trip_id__manifest_revoke_links_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RevokeLinksOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Revoke Manifest Links",
         "tags": [
           "admin"
         ]
@@ -5206,6 +6140,53 @@
         ]
       }
     },
+    "/v1/airports/{icao}/fbos": {
+      "get": {
+        "description": "FBOs at an airport (for ground requests). Names are public; phone and email only for entitled viewers.",
+        "operationId": "airport_fbos_v1_airports__icao__fbos_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "icao",
+            "required": true,
+            "schema": {
+              "title": "Icao",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/FboOut"
+                  },
+                  "title": "Response Airport Fbos V1 Airports  Icao  Fbos Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Airport Fbos",
+        "tags": [
+          "catalog"
+        ]
+      }
+    },
     "/v1/auth/login": {
       "post": {
         "operationId": "login_v1_auth_login_post",
@@ -5375,7 +6356,7 @@
     },
     "/v1/auth/signup": {
       "post": {
-        "description": "New email: account created. In dev/test the caller is logged in at once (201 Me). Everywhere else the answer is\nthe same 202 for a new and for an existing email, and the caller signs in with the password (L3).\nAn existing email gets an `account_notice` email and no change.",
+        "description": "New email: account created. In dev/test the caller is logged in at once (201 Me). Everywhere else the answer is\nthe same 202 for a new and for an existing email, and the caller confirms the emailed verification link, then signs in (L3).\nAn existing email gets an `account_notice` email and no change. A new email always gets an `email_verification` message\n(in dev/test too, so the flow is testable; there the session is issued at once and login does not require verification).",
         "operationId": "signup_v1_auth_signup_post",
         "requestBody": {
           "content": {
@@ -5420,6 +6401,90 @@
           }
         },
         "summary": "Signup",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/v1/auth/verify-email": {
+      "post": {
+        "description": "Redeem the emailed single-use token: marks the email verified and signs the person in (every environment).",
+        "operationId": "verify_email_v1_auth_verify_email_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/VerifyEmailIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Me"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Verify Email",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/v1/auth/verify-email/resend": {
+      "post": {
+        "description": "Always 202 'check_your_email', whether or not the email has an unverified account.",
+        "operationId": "resend_verification_v1_auth_verify_email_resend_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResendVerificationIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Accepted"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Resend Verification",
         "tags": [
           "auth"
         ]
@@ -5970,6 +7035,51 @@
         "summary": "Me",
         "tags": [
           "auth"
+        ]
+      }
+    },
+    "/v1/operator/manifest": {
+      "get": {
+        "description": "The submitted manifest for one trip, for the operator contact the link was issued to. Rate limited per client\naddress and per token; every use of a known token is written to audit_log (ip, time, token id).",
+        "operationId": "operator_manifest_v1_operator_manifest_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "token",
+            "required": true,
+            "schema": {
+              "maxLength": 200,
+              "minLength": 20,
+              "title": "Token",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OperatorManifestOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Operator Manifest",
+        "tags": [
+          "operator"
         ]
       }
     },

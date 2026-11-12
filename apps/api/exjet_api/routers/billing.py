@@ -62,7 +62,8 @@ def enterprise_inquiry(body: S.EnterpriseInquiryIn, viewer: Viewer = Depends(req
     The free text is stored encrypted in enterprise_inquiries; audit_log carries only the inquiry id."""
     hit("enterprise_inquiry_user", str(viewer.user.id))
     inq = EnterpriseInquiry(account_id=viewer.account.id if viewer.account else None, user_id=viewer.user.id,
-                            company=body.company, seats=body.seats, notes=body.notes)
+                            company=body.company, seats=body.seats, notes=body.notes, contact_name=body.contact_name,
+                            contact_email=body.contact_email, contact_phone=body.contact_phone)
     db.add(inq)
     db.flush()
     audit(db, actor=f"user:{viewer.user.id}", action="enterprise_inquiry", subject_type="enterprise_inquiry",

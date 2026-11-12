@@ -13,6 +13,7 @@ from .entitlements import Viewer, can_see_member_fields
 from .models import Aircraft, Airport, Contract, EmptyLeg, PaymentLink, Quote, Rfq, Trip
 from .services import quote_checks as QC
 from .supply import operator_sellable
+from .timeutil import to_local_str
 
 WEATHER_HORIZON = timedelta(hours=36)  # TAFs cover roughly 30 hours
 MEMBER_VISIBLE_QUOTE_STATUSES = {"ready", "accepted", "declined", "expired"}
@@ -23,6 +24,7 @@ class Builder:
         self.db = db
         self.viewer = viewer
         self._cities: dict[str, str | None] = {}
+        self._airports: dict[str, Airport | None] = {}
 
     @property
     def entitled(self) -> bool:
@@ -34,6 +36,25 @@ class Builder:
         if icao not in self._cities:
             self._cities[icao] = self.db.execute(select(Airport.city).where(Airport.icao == icao)).scalar_one_or_none()
         return self._cities[icao]
+
+    def airport(self, icao: str) -> Airport | None:
+        if icao not in self._airports:
+            self._airports[icao] = self.db.execute(select(Airport).where(Airport.icao == icao)).scalar_one_or_none()
+        return self._airports[icao]
+
+    def airport_brief(self, icao: str) -> S.AirportBrief:
+        a = self.airport(icao)
+        if a is None:  # cannot happen through the API (legs reference airports); kept honest rather than invented
+            raise LookupError(f"airport {icao} missing")
+        return S.AirportBrief.model_validate(a)
+
+    def leg(self, leg) -> S.LegOut:
+        tz = leg.origin_timezone or (self.airport(leg.origin_icao).timezone if self.airport(leg.origin_icao) else None)
+        return S.LegOut(
+            sequence=leg.sequence, origin_icao=leg.origin_icao, destination_icao=leg.destination_icao, depart_at=leg.depart_at,
+            depart_local=to_local_str(leg.depart_at, tz), origin_timezone=tz if to_local_str(leg.depart_at, tz) else None,
+            origin=self.airport_brief(leg.origin_icao), destination=self.airport_brief(leg.destination_icao),
+            distance_nm=leg.distance_nm, is_international=leg.is_international)
 
     # ------------------------------------------------------------------ listing
     def listing(self, ac: Aircraft) -> S.Listing:
@@ -103,9 +124,7 @@ class Builder:
             id=t.id, status=t.status, trip_type=t.trip_type, passengers=t.passengers, checked_bags=t.checked_bags,
             carry_on_bags=t.carry_on_bags, golf_bags=t.golf_bags, ski_bags=t.ski_bags, notes=t.notes,
             accepted_quote_id=t.accepted_quote_id,
-            legs=[S.LegOut(sequence=leg.sequence, origin_icao=leg.origin_icao, destination_icao=leg.destination_icao,
-                           depart_at=leg.depart_at, distance_nm=leg.distance_nm, is_international=leg.is_international)
-                  for leg in t.legs],
+            legs=[self.leg(leg) for leg in t.legs],
             rfqs=[self.rfq(r) for r in sorted(t.rfqs, key=lambda x: x.created_at)],
             quotes=quotes,
             manifest=S.ManifestBrief(due_at=m.due_at, submitted_at=m.submitted_at) if m else None,

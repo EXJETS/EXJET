@@ -15,6 +15,7 @@ from ..config import get_settings
 from ..errors import unprocessable
 from ..models import Aircraft, AircraftType, Airport, Trip, TripLeg
 from ..supply import sellable_aircraft
+from ..timeutil import resolve_departure
 
 
 def airport_ref(a: Airport) -> AirportRef:
@@ -44,10 +45,9 @@ def build_legs(db: Session, legs: list[S.LegIn]) -> list[TripLeg]:
             raise unprocessable("unknown_airport", f"Leg {i + 1} uses an airport that is not in the airport list.")
         if o.icao == d.icao:
             raise unprocessable("invalid_leg", f"Leg {i + 1} starts and ends at the same airport.")
-        if leg.depart_at.tzinfo is None:
-            raise unprocessable("invalid_departure", "Departure times must include a time zone offset.")
+        depart_utc, tzname = resolve_departure(leg.depart_at, o.icao, o.timezone, leg_no=i + 1)
         out.append(TripLeg(
-            sequence=i, origin_icao=o.icao, destination_icao=d.icao, depart_at=leg.depart_at,
+            sequence=i, origin_icao=o.icao, destination_icao=d.icao, depart_at=depart_utc, origin_timezone=tzname,
             distance_nm=round(great_circle_nm(o.latitude, o.longitude, d.latitude, d.longitude)),
             is_international=(o.country != "US" or d.country != "US"),
         ))

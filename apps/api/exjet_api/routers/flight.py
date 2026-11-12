@@ -26,7 +26,7 @@ def get_manifest(trip_id: uuid.UUID, viewer: Viewer = Depends(require_member), d
 @router.put("/{trip_id}/manifest", response_model=S.ManifestOut)
 def put_manifest(trip_id: uuid.UUID, body: S.ManifestPut, viewer: Viewer = Depends(require_member), db: Session = Depends(get_session)):
     trip = get_owned_trip(db, viewer, trip_id)
-    M.put_manifest(db, trip, body)
+    M.put_manifest(db, trip, body, actor=f"user:{viewer.user.id}")
     db.commit()
     return M.manifest_out(db, trip)
 
@@ -34,7 +34,7 @@ def put_manifest(trip_id: uuid.UUID, body: S.ManifestPut, viewer: Viewer = Depen
 @router.post("/{trip_id}/manifest/submit", response_model=S.ManifestOut)
 def submit_manifest(trip_id: uuid.UUID, viewer: Viewer = Depends(require_member), db: Session = Depends(get_session)):
     trip = get_owned_trip(db, viewer, trip_id)
-    M.submit_manifest(db, trip)
+    M.submit_manifest(db, trip, viewer.user.id)
     db.commit()
     return M.manifest_out(db, trip)
 

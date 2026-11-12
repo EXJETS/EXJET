@@ -17,6 +17,12 @@ from .errors import NotImplementedProvider, ProviderError
 FAKE_WEBHOOK_SECRET = secrets.token_hex(32)
 
 
+def _app_base() -> str:
+    from ..config import get_settings
+
+    return get_settings().app_base_url.rstrip("/")
+
+
 @dataclass(frozen=True)
 class CheckoutSession:
     id: str
@@ -54,11 +60,12 @@ class FakeBilling:
 
     def create_checkout(self, *, account_id, plan, unit_amount_cents, customer_email, success_url, cancel_url):
         sid = f"fakecs_{uuid.uuid4().hex[:16]}"
-        return CheckoutSession(id=sid, url=f"{success_url.rstrip('/')}/fake-checkout?session={sid}",
+        # The member app renders /dev/checkout only in dev/test and finishes it with POST /v1/dev/complete-checkout.
+        return CheckoutSession(id=sid, url=f"{_app_base()}/dev/checkout?session={sid}&plan={plan}",
                                customer_id=f"fakecus_{account_id.hex[:16]}")
 
     def create_portal(self, *, customer_id, return_url):
-        return f"{return_url.rstrip('/')}/fake-portal?customer={customer_id}"
+        return f"{_app_base()}/dev/billing-portal?customer={customer_id}"
 
     @staticmethod
     def sign(body: bytes) -> str:

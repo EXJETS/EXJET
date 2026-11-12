@@ -21,6 +21,35 @@ def _email(v: str) -> str:
     return n
 
 
+# Closed value sets, declared once so the generated OpenAPI (and the frontend's TypeScript types) carry exact unions.
+# They mirror the enums in models.py; stored values outside them are a bug, not something to widen silently.
+UserRole = Literal["member", "admin"]
+AccountType = Literal["individual", "family_office", "enterprise"]
+PlanName = Literal["individual", "family_office", "enterprise"]
+KycStatus = Literal["not_started", "submitted", "in_review", "approved", "rejected"]
+SubscriptionStatus = Literal["incomplete", "active", "past_due", "canceled"]
+NextStep = Literal["kyc", "kyc_pending", "billing", "ready"]
+SafetyRating = Literal["Not rated", "Gold", "Gold+", "Platinum", "Platinum+"]
+CertificateType = Literal["135", "121", "foreign"]
+GoLiveStatus = Literal["draft", "pending_ceo", "live", "suspended"]
+AircraftCategory = Literal["turboprop", "very_light", "light", "midsize", "super_midsize", "heavy", "ultra_long_range", "airliner"]
+TripType = Literal["one_way", "round_trip", "multi_leg"]
+TripStatus = Literal["draft", "rfq_sent", "quoted", "contracted", "paid", "manifest_due", "scheduled", "in_flight",
+                     "completed", "cancelled"]
+RfqKind = Literal["charter", "empty_leg", "rental_car", "chauffeur"]
+RfqStatus = Literal["queued", "sent", "replied", "declined", "expired", "failed"]
+QuoteStatus = Literal["received", "needs_review", "ready", "accepted", "declined", "expired"]
+PaymentLinkStatus = Literal["pending", "member_marked_paid", "operator_confirmed"]
+PaxIdType = Literal["real_id", "passport"]
+ApprovalKind = Literal["kyc_final", "operator_go_live", "outreach_campaign", "rfq_dispatch_policy", "plan_change", "refund",
+                       "content_publish", "merge", "deploy", "payment_host", "inbound_review", "seat_overage", "legal_notice"]
+ApprovalStatus = Literal["pending", "approved", "rejected"]
+JobStatus = Literal["queued", "running", "done", "failed"]
+AgentActionStatus = Literal["queued", "running", "awaiting_approval", "done", "failed", "blocked"]
+FlightStatus = Literal["scheduled", "airborne", "landed", "unknown"]
+IngestDataset = Literal["operators", "aircraft", "airports_fbos", "outreach_lists"]
+
+
 class ORM(BaseModel):
     model_config = ConfigDict(from_attributes=True)
 
@@ -47,26 +76,27 @@ class UserOut(BaseModel):
     id: uuid.UUID
     email: str
     full_name: str | None
-    role: str
+    role: UserRole
+    email_verified: bool
 
 
 class AccountOut(BaseModel):
     id: uuid.UUID
-    type: str
+    type: AccountType
     display_name: str
     seats: int
-    kyc_status: str
+    kyc_status: KycStatus
 
 
 class SubscriptionOut(BaseModel):
-    plan: str
-    status: str
+    plan: PlanName
+    status: SubscriptionStatus
     current_period_end: datetime | None
 
 
 class MemberOut(BaseModel):
     is_owner: bool
-    identity_status: Literal["not_started", "submitted", "in_review", "approved", "rejected"]
+    identity_status: KycStatus
     is_suspended: bool = False
 
 
@@ -76,13 +106,22 @@ class Me(BaseModel):
     subscription: SubscriptionOut | None
     member: MemberOut | None = None  # this person's seat on the account (owner inherits the account KYC result)
     entitled: bool
-    next_step: Literal["kyc", "kyc_pending", "billing", "ready"]
+    next_step: NextStep
 
 
 class SignupPending(BaseModel):
     """Uniform signup answer outside dev/test: identical whether or not the email already has an account."""
 
     status: Literal["check_your_email"] = "check_your_email"
+
+
+class VerifyEmailIn(BaseModel):
+    token: str = Field(min_length=20, max_length=200)
+
+
+class ResendVerificationIn(BaseModel):
+    email: str
+    _v = field_validator("email")(_email)
 
 
 class PasswordChangeIn(BaseModel):
@@ -101,7 +140,7 @@ class PasswordResetIn(BaseModel):
 
 
 class Accepted(BaseModel):
-    status: str
+    status: Literal["check_your_email"] = "check_your_email"
 
 
 class SeatIn(BaseModel):
@@ -120,7 +159,7 @@ class SeatMemberOut(BaseModel):
     email: str
     full_name: str | None
     is_owner: bool
-    identity_status: str
+    identity_status: KycStatus
     is_suspended: bool
 
 
@@ -145,25 +184,25 @@ class SeatAcceptIn(BaseModel):
 # --------------------------------------------------------------------------- kyc
 class KycSubmissionOut(BaseModel):
     id: uuid.UUID
-    status: str
+    status: KycStatus
 
 
 class KycLatest(BaseModel):
     id: uuid.UUID
-    status: str
+    status: KycStatus
     created_at: datetime
     decision_note: str | None
 
 
 class KycStatusOut(BaseModel):
-    kyc_status: str  # for the owner: the account result; for an invited member: their own identity result
+    kyc_status: KycStatus  # for the owner: the account result; for an invited member: their own identity result
     latest_submission: KycLatest | None
     scope: Literal["account", "member"] = "account"
 
 
 # --------------------------------------------------------------------------- billing
 class PlanOut(BaseModel):
-    plan: str
+    plan: PlanName
     name: str
     unit_amount_cents: int | None
     interval: Literal["month"] | None
@@ -183,10 +222,49 @@ class PortalOut(BaseModel):
     url: str
 
 
+_PHONE_RE = re.compile(r"^\+?[0-9 ().\-]{7,24}$")
+
+
 class EnterpriseInquiryIn(BaseModel):
     company: str = Field(min_length=1, max_length=200)
     seats: int = Field(ge=1, le=10000)
     notes: str | None = Field(default=None, max_length=2000)
+    contact_name: str = Field(min_length=1, max_length=200)
+    contact_email: str
+    contact_phone: str | None = Field(default=None, max_length=24)
+
+    _v = field_validator("contact_email")(_email)
+
+    @field_validator("contact_name")
+    @classmethod
+    def _name(cls, v: str) -> str:
+        v = v.strip()
+        if not v:
+            raise ValueError("contact_name is required")
+        return v
+
+    @field_validator("contact_phone")
+    @classmethod
+    def _phone(cls, v: str | None) -> str | None:
+        if v is None or not v.strip():
+            return None
+        v = v.strip()
+        if not _PHONE_RE.match(v) or sum(c.isdigit() for c in v) < 7:
+            raise ValueError("invalid phone number")
+        return v
+
+
+class EnterpriseInquiryOut(BaseModel):
+    id: uuid.UUID
+    created_at: datetime
+    account_id: uuid.UUID | None
+    user_id: uuid.UUID
+    company: str
+    seats: int
+    notes: str | None
+    contact_name: str | None  # null only on rows written before contact fields existed
+    contact_email: str | None
+    contact_phone: str | None
 
 
 # --------------------------------------------------------------------------- catalog
@@ -200,8 +278,27 @@ class AirportOut(ORM):
     longest_runway_ft: int | None
 
 
+class AirportBrief(ORM):
+    """Enough to label an airport and draw a schematic: no runway or elevation data."""
+
+    icao: str
+    name: str
+    city: str | None
+    state: str | None
+    latitude: float
+    longitude: float
+    timezone: str | None  # IANA name; null when the airport record has none
+
+
+class FboOut(BaseModel):
+    id: uuid.UUID
+    name: str
+    phone: str | None  # entitled viewers only
+    email: str | None  # entitled viewers only
+
+
 class CategoryOut(BaseModel):
-    category: str
+    category: AircraftCategory
     name: str
     type_count: int
 
@@ -210,7 +307,7 @@ class AircraftTypeOut(ORM):
     slug: str
     manufacturer: str
     model: str
-    category: str
+    category: AircraftCategory
     max_passengers: int | None
     range_nm: int | None
     cruise_speed_kts: int | None
@@ -226,7 +323,7 @@ class ListingType(BaseModel):
     slug: str
     manufacturer: str
     model: str
-    category: str
+    category: AircraftCategory
 
 
 class ContactOut(BaseModel):
@@ -239,7 +336,7 @@ class ContactOut(BaseModel):
 class ListingOperator(BaseModel):
     id: uuid.UUID
     dba_name: str
-    certificate_type: str
+    certificate_type: CertificateType
     contacts: list[ContactOut]
 
 
@@ -252,7 +349,7 @@ class Listing(BaseModel):
     home_city: str | None
     amenities: list[str]
     photos: list[str]
-    safety_rating: str | None
+    safety_rating: SafetyRating | None
     tail_number: str | None  # member-only
     operator: ListingOperator | None  # member-only
 
@@ -272,6 +369,10 @@ class LegDraftIO(BaseModel):
     destination_icao: str | None = None
     depart_at: datetime | None = None
     depart_date: date | None = None
+    # Wall-clock time at the origin airport (naive `YYYY-MM-DDTHH:MM:SS`) and that airport's IANA zone, so a client can
+    # show the time without guessing. Both null when the time or the airport's zone is unknown.
+    depart_local: str | None = None
+    origin_timezone: str | None = None
 
 
 class IntakeIn(BaseModel):
@@ -279,7 +380,7 @@ class IntakeIn(BaseModel):
 
 
 class TripDraftOut(BaseModel):
-    trip_type: str
+    trip_type: TripType
     legs: list[LegDraftIO]
     passengers: int | None
     checked_bags: int
@@ -292,14 +393,28 @@ class TripDraftOut(BaseModel):
     candidates: dict[str, list[str]] = {}
 
 
+_DEPART_RE = re.compile(r"^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d{1,6})?)?(Z|[+-]\d{2}:\d{2})?$")
+
+
 class LegIn(BaseModel):
+    """`depart_at` is either an instant with an offset (`2026-12-04T14:00:00-05:00`, `...Z`) or a naive wall-clock time
+    (`2026-12-04T14:00` or `...T14:00:00`) that is interpreted in the ORIGIN airport's time zone. Nothing else is accepted
+    (a bare date, a space instead of `T`, a week number)."""
+
     origin_icao: str = Field(min_length=4, max_length=4)
     destination_icao: str = Field(min_length=4, max_length=4)
     depart_at: datetime
 
+    @field_validator("depart_at", mode="before")
+    @classmethod
+    def _strict_depart(cls, v):
+        if isinstance(v, str) and not _DEPART_RE.match(v.strip()):
+            raise ValueError("depart_at must be YYYY-MM-DDTHH:MM[:SS] with an optional UTC offset")
+        return v.strip() if isinstance(v, str) else v
+
 
 class TripCreate(BaseModel):
-    trip_type: Literal["one_way", "round_trip", "multi_leg"] | None = None
+    trip_type: TripType | None = None
     legs: list[LegIn] = Field(min_length=1, max_length=8)
     passengers: int = Field(ge=1, le=100)
     checked_bags: int = Field(default=0, ge=0, le=50)
@@ -324,7 +439,11 @@ class LegOut(BaseModel):
     sequence: int
     origin_icao: str
     destination_icao: str
-    depart_at: datetime
+    depart_at: datetime  # the instant, UTC
+    depart_local: str | None  # the same instant as wall-clock time at the origin: naive `YYYY-MM-DDTHH:MM:SS`
+    origin_timezone: str | None  # IANA zone `depart_local` is expressed in (null only on legacy rows with no known zone)
+    origin: AirportBrief
+    destination: AirportBrief
     distance_nm: int | None
     is_international: bool
 
@@ -332,8 +451,8 @@ class LegOut(BaseModel):
 class RfqOut(BaseModel):
     id: uuid.UUID
     reference: str
-    kind: str
-    status: str
+    kind: RfqKind
+    status: RfqStatus
     sent_at: datetime | None
     replied_at: datetime | None
     listing: Listing | None
@@ -358,7 +477,7 @@ class ContractOut(BaseModel):
 class PaymentLinkOut(BaseModel):
     url: str
     host: str
-    status: str
+    status: PaymentLinkStatus
     host_approved: bool  # the host is on the operator's admin-approved list
     changed_since_first: bool  # a later quote on this RFQ whose payment host or total differs from the first quote
 
@@ -367,7 +486,7 @@ class QuoteOut(BaseModel):
     id: uuid.UUID
     rfq_id: uuid.UUID
     trip_id: uuid.UUID
-    status: str
+    status: QuoteStatus
     operator: QuoteOperator | None  # member-only
     listing: Listing | None
     total_amount_cents: int | None  # copied from the operator PDF, never estimated
@@ -387,8 +506,8 @@ class ManifestBrief(BaseModel):
 
 class TripOut(BaseModel):
     id: uuid.UUID
-    status: str
-    trip_type: str
+    status: TripStatus
+    trip_type: TripType
     passengers: int
     checked_bags: int
     carry_on_bags: int
@@ -429,7 +548,7 @@ class MatchTypeOut(BaseModel):
 
 
 class MatchCategoryOut(BaseModel):
-    category: str
+    category: AircraftCategory
     types: list[MatchTypeOut]
 
 
@@ -458,10 +577,14 @@ class GroundRfqIn(BaseModel):
 
 # --------------------------------------------------------------------------- manifest / flight / weather
 class PassengerIn(BaseModel):
+    """`id` set: update that passenger; `id_number` omitted keeps the stored number (it is never returned in full).
+    `id` omitted: a new passenger, `id_number` required."""
+
+    id: uuid.UUID | None = None
     full_name: str = Field(min_length=1, max_length=200)
     date_of_birth: date
-    id_type: Literal["real_id", "passport"]
-    id_number: str = Field(min_length=1, max_length=64)
+    id_type: PaxIdType
+    id_number: str | None = Field(default=None, min_length=1, max_length=64)
     id_expiry: date
     id_issuer: str = Field(min_length=1, max_length=64)
     weight_lbs: int | None = Field(default=None, ge=1, le=700)
@@ -472,9 +595,10 @@ class ManifestPut(BaseModel):
 
 
 class PassengerOut(BaseModel):
+    id: uuid.UUID
     full_name: str
     date_of_birth: str
-    id_type: str
+    id_type: PaxIdType
     id_number_last4: str
     id_expiry: date | None
     id_issuer: str | None
@@ -484,7 +608,7 @@ class PassengerOut(BaseModel):
 class ManifestOut(BaseModel):
     due_at: datetime
     submitted_at: datetime | None
-    required_id_type: str
+    required_id_type: PaxIdType
     expected_passengers: int
     passengers: list[PassengerOut]
 
@@ -517,7 +641,7 @@ class Position(BaseModel):
 
 class LegTrack(BaseModel):
     sequence: int
-    status: str
+    status: FlightStatus
     position: Position | None
 
 
@@ -528,11 +652,11 @@ class TrackOut(BaseModel):
 # --------------------------------------------------------------------------- admin
 class ApprovalOut(ORM):
     id: uuid.UUID
-    kind: str
+    kind: ApprovalKind
     subject_type: str
     subject_id: str
     required_role: str
-    status: str
+    status: ApprovalStatus
     requested_by: str
     decided_by: uuid.UUID | None
     decided_at: datetime | None
@@ -561,9 +685,9 @@ class AdminKycSubmission(BaseModel):
     account_id: uuid.UUID
     scope: Literal["account", "member"] = "account"
     subject_user_id: uuid.UUID | None = None
-    kind: str
+    kind: Literal["individual", "business"]
     holder_name: str
-    status: str
+    status: KycStatus
     vendor: str | None
     vendor_result: dict | None
     decision_note: str | None
@@ -574,19 +698,24 @@ class AdminKycSubmission(BaseModel):
 class AdminOperatorOut(BaseModel):
     id: uuid.UUID
     dba_name: str
-    certificate_type: str
-    safety_rating: str
+    certificate_type: CertificateType
+    safety_rating: SafetyRating
     is_excluded: bool
-    go_live_status: str
+    go_live_status: GoLiveStatus
     aircraft_count: int
     contact_count: int
     pending_contact_count: int = 0  # contacts added after go-live that still need admin confirmation
     payment_hosts: list[str] = []
 
 
+class GoLiveRequestOut(BaseModel):
+    operator: AdminOperatorOut  # now `pending_ceo`
+    approval: ApprovalOut  # the `operator_go_live` approval to decide via POST /admin/approvals/{id}/decide
+
+
 class IngestRunOut(ORM):
     id: uuid.UUID
-    dataset: str
+    dataset: IngestDataset
     filename: str
     rows_read: int
     rows_loaded: int
@@ -610,8 +739,8 @@ class AgentActionOut(ORM):
     id: uuid.UUID
     agent: str
     event: str
-    status: str
-    permission_level: str
+    status: AgentActionStatus
+    permission_level: Literal["READ", "DRAFT", "EXECUTE"]
     model: str | None
     input_tokens: int
     output_tokens: int
@@ -624,7 +753,7 @@ class AgentActionOut(ORM):
 class JobOut(ORM):
     id: uuid.UUID
     kind: str
-    status: str
+    status: JobStatus
     attempts: int
     max_attempts: int
     run_at: datetime
@@ -636,10 +765,10 @@ class AdminQuoteReview(BaseModel):
     id: uuid.UUID
     trip_id: uuid.UUID
     rfq_id: uuid.UUID
-    status: str
+    status: QuoteStatus
     flags: list[str]
     parse_confidence: float | None
-    pdf_url: str | None
+    pdf_url: str | None  # short-lived signed URL bound to this document and the admin viewing it; null if no PDF is stored
     payment_host: str | None = None
     payment_host_approved: bool | None = None
     payment_host_approval_id: uuid.UUID | None = None  # decide it via POST /admin/approvals/{id}/decide
@@ -712,3 +841,37 @@ class QuarantinedMessageOut(BaseModel):
 
 class PaymentHostsIn(BaseModel):
     hosts: list[str] = Field(max_length=20)
+
+
+# --------------------------------------------------------------------------- operator manifest link
+class OperatorManifestLeg(BaseModel):
+    sequence: int
+    origin_icao: str
+    destination_icao: str
+    depart_local: str | None
+    origin_timezone: str | None
+
+
+class OperatorManifestPassenger(BaseModel):
+    full_name: str
+    date_of_birth: str
+    id_type: PaxIdType
+    id_number: str
+    id_expiry: date | None
+    id_issuer: str | None
+    weight_lbs: int | None
+
+
+class OperatorManifestOut(BaseModel):
+    """What an operator contact sees through a secure link. Contains passenger PII: never cached, never emailed."""
+
+    trip_reference: str  # the RFQ reference the operator already knows (EXJ-XXXXXX)
+    legs: list[OperatorManifestLeg]
+    submitted_at: datetime | None
+    expires_at: datetime
+    expected_passengers: int
+    passengers: list[OperatorManifestPassenger]
+
+
+class RevokeLinksOut(BaseModel):
+    revoked: int

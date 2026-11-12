@@ -7,7 +7,7 @@ from sqlalchemy.orm import Session
 
 from .. import clock, ratelimit
 from ..jobs import handler
-from . import flight_service, kyc_service, manifest_service, quote_service, rfq_service
+from . import flight_service, kyc_service, manifest_links, manifest_service, quote_service, rfq_service
 
 
 @handler("rfq.dispatch")
@@ -48,3 +48,9 @@ def _expire(db: Session, p: dict) -> None:
 @handler("ratelimit.cleanup")
 def _ratelimit_cleanup(db: Session, p: dict) -> None:
     ratelimit.cleanup()
+
+
+@handler("manifest.deliver")
+def _manifest_deliver(db: Session, p: dict) -> None:
+    actor = p.get("actor_user_id")
+    manifest_links.deliver_to_operator(db, uuid.UUID(p["trip_id"]), uuid.UUID(actor) if actor else None)

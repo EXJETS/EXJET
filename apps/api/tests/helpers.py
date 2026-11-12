@@ -69,8 +69,19 @@ def seed_all(db, admin_email: str = "admin@example.com") -> tuple[User, dict[str
     return admin, ops
 
 
-def signup(client, email: str, name: str = "Pat Member", account_type: str = "individual"):
-    return client.post("/v1/auth/signup", json={"email": email, "password": PASSWORD, "full_name": name, "account_type": account_type})
+VERIFY_SUBJECT = "Confirm your email address for EXJET"
+
+
+def signup(client, email: str, name: str = "Pat Member", account_type: str = "individual", *, keep_verification_mail: bool = False):
+    """Signup through the API. The verification email every new signup sends is removed from the fake outbox afterwards so
+    the many tests that count or inspect outbound mail are not about it; test_email_verification.py keeps it."""
+    r = client.post("/v1/auth/signup", json={"email": email, "password": PASSWORD, "full_name": name, "account_type": account_type})
+    if not keep_verification_mail:
+        from exjet_api.providers import get_mail
+
+        outbox = get_mail().outbox
+        outbox[:] = [x for x in outbox if x[0].subject != VERIFY_SUBJECT]
+    return r
 
 
 def login(client, email: str):
@@ -196,3 +207,20 @@ FORBIDDEN_MEMBER_DATA = ("Test Operator", "N00TST", "ops-a@", "ops-b@", "ops-c@"
 def assert_no_member_data(text: str) -> None:
     for needle in FORBIDDEN_MEMBER_DATA:
         assert needle not in text, f"member-only data leaked: {needle!r}"
+
+
+def manifest_pax(i, **kw) -> dict:
+    d = {"full_name": f"Passenger {i}", "date_of_birth": "1980-05-05", "id_type": "real_id", "id_number": f"D123456{i}",
+         "id_expiry": "2099-01-01", "id_issuer": "NJ"}
+    d.update(kw)
+    return d
+
+
+def to_manifest_due(db, member, adm, **kw):
+    """Quote stage, then accept, acknowledge the contract and mark paid: the trip is `manifest_due`."""
+    s = to_quote_stage(db, member, adm, **kw)
+    q = member.get(f"/v1/trips/{s['trip_id']}/quotes").json()[0]
+    assert member.post(f"/v1/quotes/{q['id']}/accept").status_code == 200
+    assert member.post(f"/v1/contracts/{q['contract']['id']}/acknowledge").status_code == 200
+    assert member.post(f"/v1/quotes/{q['id']}/payment/mark-paid").json()["status"] == "manifest_due"
+    return s

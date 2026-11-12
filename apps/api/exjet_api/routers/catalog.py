@@ -11,7 +11,7 @@ from .. import schemas as S
 from ..deps import get_session, optional_viewer
 from ..entitlements import Viewer
 from ..errors import not_found
-from ..models import AircraftCategory, AircraftType, Airport, EmptyLeg
+from ..models import AircraftCategory, AircraftType, Airport, EmptyLeg, Fbo
 from ..serializers import Builder
 from ..supply import sellable_aircraft
 
@@ -45,6 +45,17 @@ def airports(q: str = Query("", max_length=80), limit: int = Query(25, ge=1, le=
     else:
         stmt = stmt.order_by(Airport.icao)
     return db.execute(stmt.limit(limit)).scalars().all()
+
+
+@router.get("/airports/{icao}/fbos", response_model=list[S.FboOut])
+def airport_fbos(icao: str, viewer: Viewer = Depends(optional_viewer), db: Session = Depends(get_session)):
+    """FBOs at an airport (for ground requests). Names are public; phone and email only for entitled viewers."""
+    ap = db.execute(select(Airport).where(func.upper(Airport.icao) == icao.strip().upper())).scalar_one_or_none()
+    if ap is None:
+        raise not_found("Airport not found.")
+    ent = Builder(db, viewer).entitled
+    rows = db.execute(select(Fbo).where(Fbo.airport_id == ap.id).order_by(Fbo.name)).scalars().all()
+    return [S.FboOut(id=f.id, name=f.name, phone=f.phone if ent else None, email=f.email if ent else None) for f in rows]
 
 
 @router.get("/categories", response_model=list[S.CategoryOut])

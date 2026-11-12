@@ -20,6 +20,7 @@ from ..ratelimit import hit
 from ..serializers import Builder
 from ..services import intake_llm, rfq_service
 from ..services import trips as T
+from ..timeutil import to_local_str
 
 router = APIRouter(prefix="/trips", tags=["trips"])
 PRE_FLIGHT = {TripStatus.draft.value, TripStatus.rfq_sent.value, TripStatus.quoted.value, TripStatus.contracted.value,
@@ -42,11 +43,26 @@ def intake(body: S.IntakeIn, viewer: Viewer = Depends(require_member), db: Sessi
         input_tokens=(usage or {}).get("input_tokens", 0), output_tokens=(usage or {}).get("output_tokens", 0),
     )
     db.commit()
+    unresolved = list(draft.unresolved)
+
+    def draft_leg(i: int, leg) -> S.LegDraftIO:
+        origin = refs.get(leg.origin_icao or "")
+        tz = origin.timezone if origin else None
+        local = to_local_str(leg.depart_at, tz) if leg.depart_at else None
+        depart_at = leg.depart_at
+        if depart_at is not None and local is None:
+            # The parser treated the time as UTC because the airport has no zone on file. That is a guess: do not return it.
+            depart_at = None
+            if f"legs[{i}].depart_at" not in unresolved:
+                unresolved.append(f"legs[{i}].depart_at")
+        return S.LegDraftIO(origin_icao=leg.origin_icao, destination_icao=leg.destination_icao, depart_at=depart_at,
+                            depart_date=leg.depart_date, depart_local=local, origin_timezone=tz if local else None)
+
+    legs_out = [draft_leg(i, l) for i, l in enumerate(draft.legs)]
     return S.TripDraftOut(
-        trip_type=draft.trip_type, legs=[S.LegDraftIO(origin_icao=l.origin_icao, destination_icao=l.destination_icao,
-                                                       depart_at=l.depart_at, depart_date=l.depart_date) for l in draft.legs],
+        trip_type=draft.trip_type, legs=legs_out,
         passengers=draft.passengers, checked_bags=draft.checked_bags, carry_on_bags=draft.carry_on_bags,
-        golf_bags=draft.golf_bags, ski_bags=draft.ski_bags, unresolved=draft.unresolved, confidence=draft.confidence,
+        golf_bags=draft.golf_bags, ski_bags=draft.ski_bags, unresolved=unresolved, confidence=draft.confidence,
         interpretation_notes=draft.notes, candidates=draft.candidates,
     )
 

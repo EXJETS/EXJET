@@ -198,6 +198,8 @@ class User(TimestampMixin, Base):
     # checks it, so bumping revokes every outstanding session for this user.
     session_version: Mapped[int] = mapped_column(Integer, default=0, server_default="0")
     signup_source: Mapped[str | None] = mapped_column(String(64))  # organic, outreach:<campaign>, referral
+    # Set when the person proves control of the mailbox (single-use emailed token). Staging/prod refuse login until set.
+    email_verified_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     memberships: Mapped[list[AccountMember]] = relationship(back_populates="user")
 
     @validates("email")
@@ -482,6 +484,8 @@ class TripLeg(TimestampMixin, Base):
     depart_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))  # local time intent stored as UTC
     distance_nm: Mapped[int | None] = mapped_column(Integer)
     is_international: Mapped[bool] = mapped_column(Boolean, default=False)
+    # IANA zone of the ORIGIN airport that `depart_at` was interpreted in when the leg was saved (null on legacy rows).
+    origin_timezone: Mapped[str | None] = mapped_column(String(64))
     trip: Mapped[Trip] = relationship(back_populates="legs")
 
 
@@ -638,7 +642,7 @@ class EmailMessage(TimestampMixin, Base):
     # Inbound only: the mail provider's authentication verdict {dmarc_pass, spf, dkim}. Missing = not authenticated.
     auth_result: Mapped[dict | None] = mapped_column(JSON)
     quarantine_reason: Mapped[str | None] = mapped_column(String(64))
-    purpose: Mapped[str] = mapped_column(String(32))  # rfq | rfq_chase | quote_to_member | manifest | lifecycle | outreach | seat_invite | password_reset | account_notice
+    purpose: Mapped[str] = mapped_column(String(32))  # rfq | rfq_chase | quote_to_member | manifest | lifecycle | outreach | seat_invite | password_reset | account_notice | email_verification
     rfq_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("rfqs.id"), index=True)
     approval_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("approvals.id"))
     status: Mapped[str] = mapped_column(String(16), default="queued")  # queued|sent|failed|received|blocked|quarantined|rejected
@@ -827,3 +831,35 @@ class EnterpriseInquiry(TimestampMixin, Base):
     company: Mapped[str] = mapped_column(EncryptedStr)
     seats: Mapped[int] = mapped_column(Integer)
     notes: Mapped[str | None] = mapped_column(EncryptedStr)
+    # Named contact for the follow-up (null on rows written before these columns existed). All encrypted.
+    contact_name: Mapped[str | None] = mapped_column(EncryptedStr)
+    contact_email: Mapped[str | None] = mapped_column(EncryptedStr)
+    contact_phone: Mapped[str | None] = mapped_column(EncryptedStr)
+
+
+class EmailVerificationToken(TimestampMixin, Base):
+    """Single-use, expiring. Only the SHA-256 of the token is stored."""
+
+    __tablename__ = "email_verification_tokens"
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=_uuid)
+    user_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
+    token_hash: Mapped[str] = mapped_column(String(64), unique=True)
+    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    used_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
+
+class ManifestAccessLink(TimestampMixin, Base):
+    """Secure link by which ONE operator contact reads a submitted manifest. Only the SHA-256 of the token is stored;
+    the link expires, can be revoked (admin, or automatically when the manifest changes) and every use is audited."""
+
+    __tablename__ = "manifest_access_links"
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=_uuid)
+    manifest_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("manifests.id", ondelete="CASCADE"), index=True)
+    rfq_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("rfqs.id"))
+    recipient: Mapped[str] = mapped_column(String(320))  # normalized operator contact address this token was issued to
+    token_hash: Mapped[str] = mapped_column(String(64), unique=True)
+    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    revoked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    sent_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    view_count: Mapped[int] = mapped_column(Integer, default=0, server_default="0")
+    last_viewed_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))

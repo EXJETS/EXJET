@@ -27,12 +27,13 @@ def test_operator_go_live_flows_through_approval_rows(db, make_client):
     b = ops["B"]
     assert b.go_live_status == "draft"
     r = adm.post(f"/v1/admin/operators/{b.id}/request-go-live")
-    assert r.status_code == 201 and r.json()["kind"] == "operator_go_live" and r.json()["status"] == "pending"
+    assert r.status_code == 201 and r.json()["approval"]["kind"] == "operator_go_live" and r.json()["approval"]["status"] == "pending"
+    assert r.json()["operator"]["id"] == str(b.id) and r.json()["operator"]["go_live_status"] == "pending_ceo"
     assert adm.post(f"/v1/admin/operators/{b.id}/request-go-live").json()["error"]["code"] == "invalid_state"
     db.refresh(b)
     assert b.go_live_status == "pending_ceo"
     assert adm.get("/v1/admin/approvals", params={"status": "pending"}).json()[0]["subject_id"] == str(b.id)
-    d = adm.post(f"/v1/admin/approvals/{r.json()['id']}/decide", json={"decision": "approved", "note": "ok"})
+    d = adm.post(f"/v1/admin/approvals/{r.json()['approval']['id']}/decide", json={"decision": "approved", "note": "ok"})
     assert d.status_code == 200 and d.json()["decided_by"] == str(admin.id)
     db.refresh(b)
     assert b.go_live_status == "live"
@@ -49,7 +50,7 @@ def test_rejected_go_live_returns_to_draft_and_incomplete_operators_are_refused(
     adm = make_client()
     login(adm, "admin@example.com")
     op = make_operator(db, admin, "Quiet Charter Co", live=False)
-    ap = adm.post(f"/v1/admin/operators/{op.id}/request-go-live").json()
+    ap = adm.post(f"/v1/admin/operators/{op.id}/request-go-live").json()["approval"]
     adm.post(f"/v1/admin/approvals/{ap['id']}/decide", json={"decision": "rejected", "note": "no"})
     db.refresh(op)
     assert op.go_live_status == "draft"
@@ -177,9 +178,9 @@ def test_enterprise_inquiry_is_recorded_without_a_price(db, client):
     plans = client.get("/v1/billing/plans").json()
     ent = next(p for p in plans if p["plan"] == "enterprise")
     assert ent["unit_amount_cents"] is None and ent["inquiry_only"] is True
-    assert client.post("/v1/billing/enterprise-inquiry", json={"company": "Test Co", "seats": 12}).status_code == 401
+    assert client.post("/v1/billing/enterprise-inquiry", json={"company": "Test Co", "seats": 12, "contact_name": "C", "contact_email": "c@example.com"}).status_code == 401
     signup(client, "e@example.com")
-    assert client.post("/v1/billing/enterprise-inquiry", json={"company": "Test Co", "seats": 12, "notes": "hi"}).status_code == 202
+    assert client.post("/v1/billing/enterprise-inquiry", json={"company": "Test Co", "seats": 12, "notes": "hi", "contact_name": "Casey Contact", "contact_email": "casey@example.com"}).status_code == 202
     from exjet_api.models import EnterpriseInquiry
 
     inq = db.execute(select(EnterpriseInquiry)).scalar_one()
@@ -251,7 +252,9 @@ def test_trip_creation_validation(db, client):
     body = future_trip_body()
     assert client.post("/v1/trips", json={**body, "legs": [{**body["legs"][0], "destination_icao": "KXXX"}]}).json()["error"]["code"] == "unknown_airport"
     assert client.post("/v1/trips", json={**body, "legs": [{**body["legs"][0], "destination_icao": "KTEB"}]}).json()["error"]["code"] == "invalid_leg"
-    assert client.post("/v1/trips", json={**body, "legs": [{**body["legs"][0], "depart_at": "2099-01-01T10:00:00"}]}).json()["error"]["code"] == "invalid_departure"
+    for bad in ("2099-01-01", "2099-01-01 10:00", "tomorrow", "2099-W01"):  # only YYYY-MM-DDTHH:MM[:SS] with an optional offset
+        r = client.post("/v1/trips", json={**body, "legs": [{**body["legs"][0], "depart_at": bad}]})
+        assert r.status_code == 422 and r.json()["error"]["code"] == "validation_error", bad
     assert client.post("/v1/trips", json={**body, "passengers": 0}).status_code == 422
     assert client.post("/v1/trips", json={**body, "legs": []}).status_code == 422
     anon = client

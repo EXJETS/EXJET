@@ -17,6 +17,7 @@ Purposes
 - quote_to_member, lifecycle to members of the trip's/own account only.
 - seat_invite                to the email of a pending, unexpired SeatInvitation, sent on behalf of the account owner.
 - password_reset, account_notice   to the address of an existing active user (transactional).
+- email_verification         to the address of an existing active user whose email is not yet verified (transactional).
 - outreach                   requires an approved `outreach_campaign` approval id.
 """
 from __future__ import annotations
@@ -54,7 +55,7 @@ from .supply import operator_sellable
 
 OPERATOR_FACING = {"rfq", "rfq_chase", "manifest"}
 MEMBER_FACING = {"quote_to_member", "lifecycle"}
-SELF_SERVICE = {"seat_invite", "password_reset", "account_notice"}
+SELF_SERVICE = {"seat_invite", "password_reset", "account_notice", "email_verification"}
 PURPOSES = OPERATOR_FACING | MEMBER_FACING | SELF_SERVICE | {"outreach"}
 GROUND_KINDS = {RfqKind.rental_car.value, RfqKind.chauffeur.value}
 
@@ -93,6 +94,11 @@ def _authorize(db: Session, purpose, recipients, rfq, actor_user_id, approval_id
             return "single_recipient_required"
         u = db.execute(select(User).where(func.lower(User.email) == recipients[0])).scalar_one_or_none()
         return None if u is not None and u.is_active else "recipient_not_user"
+    if purpose == "email_verification":
+        if len(recipients) != 1:
+            return "single_recipient_required"
+        u = db.execute(select(User).where(func.lower(User.email) == recipients[0])).scalar_one_or_none()
+        return None if u is not None and u.is_active and u.email_verified_at is None else "recipient_not_unverified_user"
     if purpose == "seat_invite":
         inv = db.get(SeatInvitation, invitation_id) if invitation_id else None
         if inv is None or inv.accepted_at or inv.revoked_at or inv.expires_at < clock.now():

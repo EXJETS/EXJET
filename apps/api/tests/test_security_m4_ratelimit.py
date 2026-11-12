@@ -134,7 +134,7 @@ def test_enterprise_inquiry_limit(db, client, monkeypatch):
     seed_all(db)
     signup(client, "e@example.com")
     _limit(monkeypatch, "enterprise_inquiry_user", 2)
-    codes = [client.post("/v1/billing/enterprise-inquiry", json={"company": "C", "seats": 3}).status_code for _ in range(3)]
+    codes = [client.post("/v1/billing/enterprise-inquiry", json={"company": "C", "seats": 3, "contact_name": "C", "contact_email": "c@example.com"}).status_code for _ in range(3)]
     assert codes == [202, 202, 429]
 
 

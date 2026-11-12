@@ -13,7 +13,7 @@ from .config import get_settings
 from .errors import ApiError
 from .guardrails import GuardrailViolation
 from .providers import assert_safe_for_env
-from .routers import admin, auth, billing, catalog, dev, flight, kyc, quotes, trips
+from .routers import admin, auth, billing, catalog, dev, flight, kyc, operator, quotes, trips
 from .security import CSRF_HEADER, CSRF_VALUE
 
 log = logging.getLogger("exjet.api")
@@ -88,7 +88,7 @@ def create_app() -> FastAPI:
     def healthz():
         return {"status": "ok"}
 
-    routers = [auth.router, kyc.router, billing.router, catalog.router, trips.router, flight.router, quotes.router, admin.router]
+    routers = [auth.router, kyc.router, billing.router, catalog.router, trips.router, flight.router, quotes.router, operator.router, admin.router]
     if dev_like:
         routers.append(dev.router)  # the dev router is not mounted at all in staging/prod
     for r in routers:

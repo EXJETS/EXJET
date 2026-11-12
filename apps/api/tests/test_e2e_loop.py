@@ -173,13 +173,16 @@ def test_full_product_loop(db, client, make_client):
     done = member.post(f"/v1/trips/{tid}/manifest/submit")
     assert done.status_code == 200 and done.json()["submitted_at"]
     assert member.get(f"/v1/trips/{tid}").json()["status"] == "scheduled"
-    assert member.put(f"/v1/trips/{tid}/manifest", json={"passengers": []}).status_code == 409
 
     # ---- reminders fire only while the manifest is outstanding (submitted: nothing sent)
     clock.set_now(first_dep - timedelta(hours=25))
+    before_member = len(get_mail().sent_to("pat@example.com"))
     before = len(get_mail().outbox)
     run_jobs()
-    assert len(get_mail().outbox) == before
+    assert len(get_mail().sent_to("pat@example.com")) == before_member  # no reminder to the member
+    (link_mail,) = get_mail().outbox[before:]  # the one new message is the operator's secure manifest link
+    assert link_mail[0].to == ["ops-a@example.com"] and "/operator/manifest?token=" in link_mail[0].body_text
+    assert "Passenger 1" not in link_mail[0].body_text and "D123456" not in link_mail[0].body_text  # no passenger PII by email
 
     # ---- flight watch
     assert member.get(f"/v1/trips/{tid}/track").json()["legs"] == [{"sequence": 0, "status": "scheduled", "position": None}]

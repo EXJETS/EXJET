@@ -52,7 +52,8 @@ def ensure_admin(db: Session, email: str, password: str) -> User:
     email = normalize_email(email)
     u = db.execute(select(User).where(User.email == email)).scalar_one_or_none()
     if u is None:
-        u = User(email=email, password_hash=hash_password(password), role="admin", full_name="Dev Admin")
+        u = User(email=email, password_hash=hash_password(password), role="admin", full_name="Dev Admin",
+                 email_verified_at=clock.now())  # the seed is dev/test only; a real admin verifies like anyone else
         db.add(u)
         db.flush()
     return u

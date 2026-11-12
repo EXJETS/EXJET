@@ -82,7 +82,7 @@ def test_jobs_payload_carries_ids_only_and_ground_details_live_in_an_encrypted_c
 def test_audit_log_never_holds_free_text(db, client):
     seed_all(db)
     signup(client, "p@example.com")
-    client.post("/v1/billing/enterprise-inquiry", json={"company": "Acme Secret Corp", "seats": 5, "notes": "merger rumor"})
+    client.post("/v1/billing/enterprise-inquiry", json={"company": "Acme Secret Corp", "seats": 5, "notes": "merger rumor", "contact_name": "Zed Zeta", "contact_email": "zed@example.com", "contact_phone": "+1 555 010 9999"})
     for (detail,) in db.execute(text("select detail from audit_log")).all():
         assert "Acme" not in str(detail) and "merger" not in str(detail)
 

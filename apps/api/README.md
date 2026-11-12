@@ -41,8 +41,9 @@ providers, and never touch the network. Test PDFs are generated with `reportlab`
 ```
 exjet_api/
   main.py            app, middleware (CSRF header, CORS, security headers on every response), error envelope
-  routers/           auth (sessions, password reset, seat invitations), kyc, billing, catalog, trips, quotes (+documents), flight (manifest/weather/track), admin, dev
-  services/          trips, rfq, quote ingest, kyc, billing, manifest, flight watch, job handlers
+  routers/           auth (sessions, email verification, password reset, seat invitations), kyc, billing, catalog (+FBOs), trips, quotes (+documents), flight (manifest/weather/track), operator (secure manifest link), admin, dev
+  services/          trips, rfq, quote ingest, kyc, billing, manifest, manifest_links (operator secure links), flight watch, job handlers
+  timeutil.py        origin-airport wall time <-> UTC (DST rules below)
   entitlements.py    the one place entitlement is computed (account KYC + subscription + this member's own identity)
   opname.py          the one operator-name normalizer and exclusion matcher (ingest and supply share it)
   emailnorm.py       the one email normalizer and strict From-header parser
@@ -55,7 +56,7 @@ exjet_api/
   jobs.py / worker.py  Postgres queue (SKIP LOCKED, backoff, dedupe_key); run_pending() for tests
   providers/         interface + fake per provider; real clients where built; clearly marked stubs otherwise
   seed_dev.py        dev seed (refuses staging/prod); seed_data.py holds the fixtures
-alembic/             migrations (0001 initial, 0002 widens agent_actions.status, 0003 security controls)
+alembic/             migrations (0001 initial, 0002 widens agent_actions.status, 0003 security controls, 0004 member app integration)
 ```
 
 ## Environment variables
@@ -81,7 +82,8 @@ Names only; see `.env.example`. All are prefixed `EXJET_`.
 | `RFQ_FROM_ADDRESS`, `EXCLUDED_OPERATORS`, `MAX_FUEL_STOPS`, `MANIFEST_DUE_HOURS` | product rules |
 | `EXCLUDED_OPERATOR_ALIASES`, `EXCLUDED_CERTIFICATES` | comma separated extra exclusions (trade names, affiliates, certificate numbers). Empty by default: the founder fills them |
 | `RFQ_DAILY_CAP`, `GROUND_RFQ_DAILY_CAP` | per account, rolling 24 hours (defaults 40 and 10) |
-| `SEAT_INVITE_TTL_HOURS`, `PASSWORD_RESET_TTL_MINUTES` | token lifetimes (72 h, 30 min) |
+| `SEAT_INVITE_TTL_HOURS`, `PASSWORD_RESET_TTL_MINUTES`, `EMAIL_VERIFICATION_TTL_HOURS` | token lifetimes (72 h, 30 min, 48 h) |
+| `MANIFEST_LINK_TTL_HOURS`, `MANIFEST_LINK_MAX_VIEWS` | operator manifest link lifetime (72 h) and reads per link (10; set 1 for strictly one view) |
 | `PDF_MAX_BYTES`, `PDF_MAX_PAGES`, `PDF_MAX_CHARS`, `PDF_TIMEOUT_SECONDS` | attachment parsing bounds (10 MB, 50, 400000, 20 s) |
 | `STRIPE_*`, `FLIGHTAWARE_API_KEY`, `GMAIL_SERVICE_ACCOUNT_JSON` | secrets for the real providers once built |
 | `SEED_ADMIN_EMAIL`, `SEED_ADMIN_PASSWORD` | read only by `seed_dev` |
@@ -97,6 +99,31 @@ Names only; see `.env.example`. All are prefixed `EXJET_`.
 6. KYC: the vendor check only moves a submission to `in_review`; a before-flush guard refuses `approved` without an approved, human-decided `kyc_final` approval. KYC documents are admin-only via short-lived signed URLs and audited.
 7. Plan prices are constants in `services/billing_service.py`; there is no endpoint that edits them. Billing events are idempotent, time-ordered and state-checked.
 8. Logs never include PII: handlers log exception class names only, validation errors never echo values.
+
+## Contract notes for the member app
+
+**Departure times.** `depart_at` on `POST /v1/trips` and `PATCH /v1/trips/{id}` is either an instant with an offset or a naive wall-clock
+time (`YYYY-MM-DDTHH:MM[:SS]`) that is read in the ORIGIN airport's IANA time zone (`exjet_api/timeutil.py`). It is stored as UTC.
+Rules: an airport with no zone, or one `zoneinfo` does not know, is refused with 422 `airport_timezone_unknown` (no guess, no UTC fallback);
+a wall time inside a DST gap (02:30 on spring-forward day) is 422 `nonexistent_local_time`; a wall time that occurs twice (01:30 on
+fall-back day) takes the first occurrence (the daylight offset, `fold=0`), and sending an offset selects the second. Responses carry
+`depart_at` (UTC), `depart_local` (naive wall time at the origin), `origin_timezone`, and `origin` / `destination` airport objects
+(`icao, name, city, state, latitude, longitude, timezone`) on every leg. The seed sets a zone for every seeded airport; ingested airports
+come from the founder file (`timezone` column of `airports_fbos`).
+
+**Manifest.** `PUT /v1/trips/{id}/manifest` upserts by passenger `id` (see ARCHITECTURE). Full ID numbers are write-only. Operators receive the
+manifest only through `GET /v1/operator/manifest?token=`; the email carries the RFQ reference, route and date and no passenger details.
+Tokens are per recipient, stored as SHA-256, expire after `MANIFEST_LINK_TTL_HOURS`, are revoked when the manifest changes or is submitted
+again, or by `POST /v1/admin/trips/{id}/manifest/revoke-links`; each use writes `audit_log` (`manifest.link_accessed`: ip, time, token id).
+
+**Email verification.** Signup mails a single-use link (`{APP_BASE_URL}/verify-email?token=`, purpose `email_verification`). `POST /v1/auth/verify-email`
+verifies and signs in. In staging/prod login answers 403 `email_not_verified` until then; dev/test keep the immediate session. Accounts that existed
+before migration 0004 have no `email_verified_at` and must verify (resend endpoint) before they can log in outside dev/test; the dev seed admin is verified.
+
+**Fake billing (dev/test).** `checkout_url` is `{APP_BASE_URL}/dev/checkout?session=…&plan=…`, the portal URL `{APP_BASE_URL}/dev/billing-portal?customer=…`.
+The member app renders those pages only in dev/test and completes a checkout with `POST /v1/dev/complete-checkout` {account_id, plan}.
+
+**Enums.** All status-like response fields are `Literal` types (`exjet_api/schemas.py`, top), so OpenAPI declares exact enums.
 
 ## Security controls
 

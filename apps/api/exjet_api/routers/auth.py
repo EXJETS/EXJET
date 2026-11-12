@@ -20,6 +20,7 @@ from ..guardrails import GuardrailViolation
 from ..models import (
     Account,
     AccountMember,
+    EmailVerificationToken,
     KycSubmission,
     PasswordResetToken,
     SeatInvitation,
@@ -47,7 +48,7 @@ router = APIRouter(tags=["auth"])
 def build_me(viewer: Viewer) -> S.Me:
     u, a, sub, m = viewer.user, viewer.account, viewer.subscription, viewer.member
     return S.Me(
-        user=S.UserOut(id=u.id, email=u.email, full_name=u.full_name, role=u.role),
+        user=S.UserOut(id=u.id, email=u.email, full_name=u.full_name, role=u.role, email_verified=u.email_verified_at is not None),
         account=S.AccountOut(id=a.id, type=a.type, display_name=a.display_name, seats=a.seats, kyc_status=a.kyc_status) if a else None,
         subscription=S.SubscriptionOut(plan=sub.plan, status=sub.status, current_period_end=sub.current_period_end) if sub else None,
         member=S.MemberOut(is_owner=m.is_owner, identity_status=member_identity_status(a, m), is_suspended=m.is_suspended) if m else None,
@@ -74,12 +75,32 @@ def _try_mail(db: Session, **kw) -> None:
         pass
 
 
+def _issue_verification(db: Session, user: User) -> None:
+    """New single-use token (older unused ones are withdrawn) and the emailed link. Mail failure never changes the HTTP answer."""
+    s = get_settings()
+    now = clock.now()
+    for old in db.execute(select(EmailVerificationToken).where(EmailVerificationToken.user_id == user.id,
+                                                               EmailVerificationToken.used_at.is_(None))).scalars():
+        old.used_at = now
+    token, digest = new_token()
+    db.add(EmailVerificationToken(user_id=user.id, token_hash=digest, expires_at=now + timedelta(hours=s.email_verification_ttl_hours)))
+    db.flush()
+    link = f"{s.app_base_url}/verify-email?token={token}"
+    _try_mail(
+        db, purpose="email_verification", to=[user.email], subject="Confirm your email address for EXJET",
+        body=("Confirm your email address to finish creating your EXJET account. The link works once and expires in "
+              f"{s.email_verification_ttl_hours} hours.\n\n{link}\n\n"
+              "If you did not create an EXJET account, ignore this message.\n\nEXJET"),
+        stored_body="Email verification link sent (token not stored).")
+
+
 # --------------------------------------------------------------------------- signup / login / logout
 @router.post("/auth/signup", response_model=S.Me, status_code=201, responses={202: {"model": S.SignupPending}})
 def signup(body: S.SignupIn, request: Request, response: Response, db: Session = Depends(get_session)):
     """New email: account created. In dev/test the caller is logged in at once (201 Me). Everywhere else the answer is
-    the same 202 for a new and for an existing email, and the caller signs in with the password (L3).
-    An existing email gets an `account_notice` email and no change."""
+    the same 202 for a new and for an existing email, and the caller confirms the emailed verification link, then signs in (L3).
+    An existing email gets an `account_notice` email and no change. A new email always gets an `email_verification` message
+    (in dev/test too, so the flow is testable; there the session is issued at once and login does not require verification)."""
     settings = get_settings()
     hit("signup_ip", client_ip(request))
     pw_hash = hash_password(body.password)  # hashed on both paths: no timing difference between new and existing
@@ -100,6 +121,7 @@ def signup(body: S.SignupIn, request: Request, response: Response, db: Session =
     db.add_all([user, account])
     db.flush()
     db.add(AccountMember(account_id=account.id, user_id=user.id, is_owner=True))
+    _issue_verification(db, user)
     db.commit()
     if not settings.is_dev_like:
         return JSONResponse(S.SignupPending().model_dump(), status_code=202)
@@ -115,11 +137,48 @@ def login(body: S.LoginIn, request: Request, response: Response, db: Session = D
     ok = verify_password(body.password, user.password_hash if user else None)
     if not ok or user is None or not user.is_active:
         raise ApiError(401, "invalid_credentials", "Email or password is incorrect.")
+    if user.email_verified_at is None and not get_settings().is_dev_like:
+        # Only after the password matched, so this does not reveal which emails have accounts.
+        raise ApiError(403, "email_not_verified", "Confirm your email address first. Use the link we emailed, or request a new one.")
     if needs_rehash(user.password_hash):
         user.password_hash = hash_password(body.password)
         db.commit()
     _set_cookie(response, user)
     return build_me(load_viewer(db, user))
+
+
+@router.post("/auth/verify-email", response_model=S.Me)
+def verify_email(body: S.VerifyEmailIn, request: Request, response: Response, db: Session = Depends(get_session)):
+    """Redeem the emailed single-use token: marks the email verified and signs the person in (every environment)."""
+    hit("verify_email_ip", client_ip(request))
+    row = db.execute(select(EmailVerificationToken).where(EmailVerificationToken.token_hash == token_hash(body.token))
+                     .with_for_update()).scalar_one_or_none()
+    now = clock.now()
+    if row is None or row.used_at is not None or row.expires_at < now:
+        raise ApiError(409, "invalid_token", "This verification link is invalid or has expired.")
+    user = db.get(User, row.user_id)
+    if user is None or not user.is_active:
+        raise ApiError(409, "invalid_token", "This verification link is invalid or has expired.")
+    row.used_at = now
+    if user.email_verified_at is None:
+        user.email_verified_at = now
+    audit(db, actor=f"user:{user.id}", action="auth.email_verified", subject_type="user", subject_id=user.id)
+    db.commit()
+    _set_cookie(response, user)
+    return build_me(load_viewer(db, user))
+
+
+@router.post("/auth/verify-email/resend", response_model=S.Accepted, status_code=202)
+def resend_verification(body: S.ResendVerificationIn, request: Request, db: Session = Depends(get_session)):
+    """Always 202 'check_your_email', whether or not the email has an unverified account."""
+    hit("verify_email_resend_ip", client_ip(request))
+    hit("verify_email_resend_email", body.email)
+    user = db.execute(select(User).where(User.email == body.email)).scalar_one_or_none()
+    if user is not None and user.is_active and user.email_verified_at is None:
+        _issue_verification(db, user)
+        audit(db, actor="system", action="auth.verification_resent", subject_type="user", subject_id=user.id)
+    db.commit()
+    return S.Accepted(status="check_your_email")
 
 
 @router.post("/auth/logout", status_code=204)

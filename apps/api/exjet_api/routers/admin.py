@@ -22,6 +22,7 @@ from ..models import (
     ApprovalStatus,
     Document,
     EmailMessage,
+    EnterpriseInquiry,
     GoLiveStatus,
     IngestRun,
     Job,
@@ -35,9 +36,10 @@ from ..models import (
     Subscription,
     SubscriptionStatus,
     Suppression,
+    Trip,
     User,
 )
-from ..services import kyc_service, quote_checks, quote_service, suppression
+from ..services import kyc_service, manifest_links, quote_checks, quote_service, suppression
 from ..services.documents import signed_document_url
 from ..supply import is_excluded_operator
 
@@ -166,7 +168,7 @@ def operators(db: Session = Depends(get_session)):
     ]
 
 
-@router.post("/operators/{operator_id}/request-go-live", response_model=S.ApprovalOut, status_code=201)
+@router.post("/operators/{operator_id}/request-go-live", response_model=S.GoLiveRequestOut, status_code=201)
 def request_go_live(operator_id: uuid.UUID, viewer: Viewer = Depends(require_admin), db: Session = Depends(get_session)):
     op = db.get(Operator, operator_id)
     if op is None:
@@ -184,7 +186,7 @@ def request_go_live(operator_id: uuid.UUID, viewer: Viewer = Depends(require_adm
     db.add(ap)
     op.go_live_status = GoLiveStatus.pending_ceo.value
     db.commit()
-    return ap
+    return S.GoLiveRequestOut(operator=_operator_out(db, op), approval=S.ApprovalOut.model_validate(ap))
 
 
 # --------------------------------------------------------------------------- ingest (owned by the data agent)
@@ -254,7 +256,11 @@ def jobs(status: str | None = None, limit: int = Query(100, ge=1, le=500), db: S
 
 
 # --------------------------------------------------------------------------- quote review
-def _review_item(db: Session, q: Quote, pdf_url: str | None) -> S.AdminQuoteReview:
+def _review_item(db: Session, q: Quote, viewer_id: uuid.UUID) -> S.AdminQuoteReview:
+    """One builder for list, detail and resolve, so `pdf_url` (a signed URL bound to the document and this admin) is
+    populated the same way everywhere."""
+    doc = db.get(Document, q.source_document_id) if q.source_document_id else None
+    pdf_url = signed_document_url(doc, viewer_id) if doc is not None else None
     link = q.payment_link
     ap = db.execute(select(Approval).where(Approval.kind == "payment_host", Approval.subject_type == "quote",
                                            Approval.subject_id == str(q.id), Approval.status == ApprovalStatus.pending.value)
@@ -269,11 +275,16 @@ def _review_item(db: Session, q: Quote, pdf_url: str | None) -> S.AdminQuoteRevi
 @router.get("/quotes", response_model=list[S.AdminQuoteReview])
 def review_quotes(status: str = QuoteStatus.needs_review.value, viewer: Viewer = Depends(require_admin),
                   db: Session = Depends(get_session)):
-    out = []
-    for q in db.execute(select(Quote).where(Quote.status == status).order_by(Quote.created_at)).scalars():
-        url = signed_document_url(db.get(Document, q.source_document_id), viewer.user.id) if q.source_document_id else None
-        out.append(_review_item(db, q, url))
-    return out
+    return [_review_item(db, q, viewer.user.id)
+            for q in db.execute(select(Quote).where(Quote.status == status).order_by(Quote.created_at)).scalars()]
+
+
+@router.get("/quotes/{quote_id}", response_model=S.AdminQuoteReview)
+def review_quote(quote_id: uuid.UUID, viewer: Viewer = Depends(require_admin), db: Session = Depends(get_session)):
+    q = db.get(Quote, quote_id)
+    if q is None:
+        raise not_found("Quote not found.")
+    return _review_item(db, q, viewer.user.id)
 
 
 @router.post("/quotes/{quote_id}/resolve", response_model=S.AdminQuoteReview)
@@ -287,7 +298,7 @@ def resolve_quote(quote_id: uuid.UUID, body: S.ResolveQuoteIn, viewer: Viewer = 
                                 admin_id=viewer.user.id)
     audit(db, actor=f"user:{viewer.user.id}", action="quote.resolved", subject_type="quote", subject_id=q.id, detail={"reject": body.reject})
     db.commit()
-    return _review_item(db, q, None)
+    return _review_item(db, q, viewer.user.id)
 
 
 # --------------------------------------------------------------------------- operator onboarding: payment hosts, contacts
@@ -384,3 +395,32 @@ def deactivate_user(user_id: uuid.UUID, viewer: Viewer = Depends(require_admin),
     u.session_version += 1
     audit(db, actor=f"user:{viewer.user.id}", action="user.deactivated", subject_type="user", subject_id=u.id)
     db.commit()
+
+
+# --------------------------------------------------------------------------- manifest links
+@router.post("/trips/{trip_id}/manifest/revoke-links", response_model=S.RevokeLinksOut)
+def revoke_manifest_links(trip_id: uuid.UUID, viewer: Viewer = Depends(require_admin), db: Session = Depends(get_session)):
+    """Withdraw every operator link issued for this trip's manifest (they stop working at once)."""
+    trip = db.get(Trip, trip_id)
+    if trip is None or trip.manifest is None:
+        raise not_found("Manifest not found.")
+    n = manifest_links.revoke_links(db, trip.manifest, actor=f"user:{viewer.user.id}", reason="admin")
+    audit(db, actor=f"user:{viewer.user.id}", action="manifest.revoke_links_requested", subject_type="trip", subject_id=trip.id,
+          detail={"revoked": n})
+    db.commit()
+    return S.RevokeLinksOut(revoked=n)
+
+
+# --------------------------------------------------------------------------- enterprise inquiries
+@router.get("/enterprise-inquiries", response_model=list[S.EnterpriseInquiryOut])
+def enterprise_inquiries(limit: int = Query(100, ge=1, le=500), viewer: Viewer = Depends(require_admin),
+                         db: Session = Depends(get_session)):
+    """Enterprise has no price: an inquiry waits here for the CEO to follow up. Contains personal contact details, so
+    each read is audited (counts only)."""
+    rows = db.execute(select(EnterpriseInquiry).order_by(EnterpriseInquiry.created_at.desc()).limit(limit)).scalars().all()
+    audit(db, actor=f"user:{viewer.user.id}", action="enterprise_inquiries.listed", subject_type="enterprise_inquiry",
+          detail={"count": len(rows)})
+    db.commit()
+    return [S.EnterpriseInquiryOut(id=r.id, created_at=r.created_at, account_id=r.account_id, user_id=r.user_id, company=r.company,
+                                   seats=r.seats, notes=r.notes, contact_name=r.contact_name, contact_email=r.contact_email,
+                                   contact_phone=r.contact_phone) for r in rows]

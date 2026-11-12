@@ -85,7 +85,8 @@ def test_outside_dev_new_and_existing_emails_get_the_identical_answer(db, make_c
     existing = signup(b, "brand-new@example.com")
     assert (new.status_code, new.json()) == (existing.status_code, existing.json()) == (202, {"status": "check_your_email"})
     assert a.get("/v1/me").status_code == 401  # no session: the person signs in with their password
-    assert login_ok(make_client(), "brand-new@example.com")
+    refused = make_client().post("/v1/auth/login", json={"email": "brand-new@example.com", "password": PASSWORD})
+    assert refused.status_code == 403 and refused.json()["error"]["code"] == "email_not_verified"  # verify first (test_email_verification.py)
 
 
 def login_ok(c, email):
