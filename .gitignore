@@ -46,3 +46,7 @@ __pycache__/
 .pytest_cache/
 .ruff_cache/
 var/
+
+# founder data: never commit (public repo, contains contacts)
+data/raw/*
+!data/raw/.gitkeep

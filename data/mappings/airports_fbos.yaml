@@ -1,0 +1,39 @@
+# Column mapping for the airports_fbos dataset (files named airports_fbos*.csv / .xlsx / .json).
+# One row per airport, or one row per airport+FBO (repeat the airport columns for each FBO).
+# See operators.yaml for the matching rules.
+dataset: airports_fbos
+fields:
+  icao:
+    required: true
+    aliases: [icao code, icao id, airport icao, airport code, ident, airport identifier]
+  name:
+    required: true
+    aliases: [airport, airport name, facility name, field name]
+  latitude:
+    required: true
+    aliases: [lat, latitude deg, latitude decimal, airport latitude]
+  longitude:
+    required: true
+    aliases: [lon, lng, long, longitude deg, longitude decimal, airport longitude]
+  iata:
+    aliases: [iata code, iata id]
+  faa_lid:
+    aliases: [faa, faa id, faa code, lid, location identifier, faa identifier]
+  city:
+    aliases: [municipality, airport city, served city]
+  state:
+    aliases: [state code, region, province, st]
+  country:
+    aliases: [country code, nation]
+  elevation_ft:
+    aliases: [elevation, elev, elevation feet, field elevation]
+  longest_runway_ft:
+    aliases: [longest runway, runway length, longest runway length, max runway, longest runway feet, runway ft]
+  timezone:
+    aliases: [time zone, tz, tz name]
+  fbo_name:
+    aliases: [fbo, fbo name, fixed base operator, handler, ground handler]
+  fbo_phone:
+    aliases: [fbo telephone, fbo phone number]
+  fbo_email:
+    aliases: [fbo e mail, fbo contact email]

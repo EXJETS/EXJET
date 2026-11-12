@@ -1,0 +1,87 @@
+[
+ {
+  "Tail": "N10TS",
+  "Operator Certificate": "0TST001A",
+  "Operator": "SYNTHETIC Test Operator A",
+  "Make": "SYNTHETIC Aerospace",
+  "Model": "TJ-100",
+  "Category": "light",
+  "Year": "2015",
+  "Seats": "6",
+  "Home Base": "KTST",
+  "Amenities": "WiFi; Lavatory"
+ },
+ {
+  "Tail": "N11TS",
+  "Operator Certificate": "0TST002B",
+  "Make": "SYNTHETIC Aerospace",
+  "Model": "TJ 100",
+  "Year": "2018",
+  "Seats": "6",
+  "Home Base": "KABC"
+ },
+ {
+  "Tail": "n00tst1",
+  "Operator Certificate": "0TST001A",
+  "Make": "SYNTHETIC Aerospace",
+  "Model": "TJ-200",
+  "Category": "midsize",
+  "Year": "2012",
+  "Seats": "8"
+ },
+ {
+  "Tail": "C-GTST1",
+  "Operator Certificate": "0TST004D",
+  "Make": "SYNTHETIC Aerospace",
+  "Model": "TJ-200",
+  "Year": "abc",
+  "Seats": "8"
+ },
+ {
+  "Tail": "N10TS",
+  "Operator Certificate": "0TST001A",
+  "Make": "SYNTHETIC Aerospace",
+  "Model": "TJ-100",
+  "Amenities": "duplicate same operator"
+ },
+ {
+  "Tail": "N10TS",
+  "Operator Certificate": "0TST002B",
+  "Make": "SYNTHETIC Aerospace",
+  "Model": "TJ-100",
+  "Amenities": "duplicate tail other operator"
+ },
+ {
+  "Tail": "N00TST2",
+  "Operator Certificate": "0TST900X",
+  "Make": "SYNTHETIC Aerospace",
+  "Model": "TJ-100",
+  "Category": "light"
+ },
+ {
+  "Tail": "N00TST3",
+  "Operator": "Flexjet LLC",
+  "Make": "SYNTHETIC Aerospace",
+  "Model": "TJ-100",
+  "Category": "light"
+ },
+ {
+  "Tail": "N00TST4",
+  "Operator Certificate": "0TST777Z",
+  "Make": "SYNTHETIC Aerospace",
+  "Model": "TJ-100",
+  "Category": "light"
+ },
+ {
+  "Operator Certificate": "0TST001A",
+  "Make": "SYNTHETIC Aerospace",
+  "Model": "TJ-100",
+  "Category": "light"
+ },
+ {
+  "Tail": "N00TST5",
+  "Operator Certificate": "0TST003C",
+  "Make": "SYNTHETIC Aerospace",
+  "Model": "TJ-300"
+ }
+]

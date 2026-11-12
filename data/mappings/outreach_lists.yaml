@@ -1,0 +1,22 @@
+# Column mapping for the outreach_lists dataset (files named outreach_lists*.csv / .xlsx / .json).
+# Prospect lists supplied by the founder. Never scraped.
+# See operators.yaml for the matching rules.
+dataset: outreach_lists
+fields:
+  email:
+    required: true
+    aliases: [e mail, email address, work email, contact email, business email, e-mail address]
+  full_name:
+    aliases: [name, contact name, contact, person, prospect name]
+  first_name:
+    aliases: [first, given name, fname]
+  last_name:
+    aliases: [last, surname, family name, lname]
+  company:
+    aliases: [company name, organization, organisation, employer, account, firm, family office]
+  title:
+    aliases: [job title, position, role]
+  segment:
+    aliases: [list, list name, audience, category, persona, group]
+  state:
+    aliases: [state code, region, st]

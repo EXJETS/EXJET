@@ -1,0 +1,9 @@
+ICAO,Airport Name,Latitude,Longitude,IATA,City,State,Elevation,Longest Runway,Time Zone,FBO,FBO Phone,FBO Email
+KTST,SYNTHETIC Test Field,10.0,20.0,TST,Testville,TX,600,7000,America/Chicago,SYNTHETIC FBO One,214-555-0100,fbo1@example.com
+KTST,SYNTHETIC Test Field,10.0,20.0,TST,Testville,TX,600,7000,America/Chicago,SYNTHETIC FBO Two,,
+KTST,SYNTHETIC Test Field,10.0,20.0,TST,Testville,TX,600,7000,America/Chicago,SYNTHETIC FBO One,214-555-0100,fbo1@example.com
+KABC,SYNTHETIC Second Field,11.0,21.0,ABC,Abcville,CA,50,5500,America/Los_Angeles,SYNTHETIC FBO Three,214-555-0103,not-an-email
+TOOLONG,SYNTHETIC Bad Code Field,12.0,22.0,,Nowhere,TX,,,,,,
+KMIS,SYNTHETIC Missing Latitude Field,,23.0,,Nowhere,TX,,,,,,
+KBAD,SYNTHETIC Bad Latitude Field,123.0,24.0,,Nowhere,TX,,,,,,
+ZZZZ,SYNTHETIC Far Field,13.0,25.0,,Faraway,,10,4000,,,,

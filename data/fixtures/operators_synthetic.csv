@@ -1,0 +1,14 @@
+DBA Name,Legal Name,Certificate Number,Cert Type,Rating,Base Airport,Country,Contact Name,Contact Title,Contact Email,Contact Phone,Rating Source,ARGUS Account Id,Internal Notes
+SYNTHETIC Test Operator A,SYNTHETIC Test Operator A LLC,0tst001a,Part 135,ARGUS Platinum,KTST,US,SYNTHETIC Contact A1,Dispatcher,rfq.a@example.com,(214) 555-0101,ARGUS,SYN-1,note one
+SYNTHETIC Test Operator B,SYNTHETIC Test Operator B LLC,0TST002B,135,Gold Plus,KABC,US,SYNTHETIC Contact B1,,RFQ.B@EXAMPLE.COM,214.555.0102,Wyvern,SYN-2,
+SYNTHETIC Test Operator C,,0TST003C,121,Wyvern Wingman,,,,,,,,SYN-3,
+SYNTHETIC Test Operator D,,0TST004D,foreign,,BAD,CA,SYNTHETIC Contact D1,,bad-email,12345,,SYN-4,
+Net Jets,,0TST900X,135,Platinum,KTST,US,SYNTHETIC Excluded Contact,,excluded.contact@example.com,,,,
+NetJets Aviation Inc,,,135,,,US,,,,,,,
+Flexjet LLC,,,135,,,US,,,,,,,
+Nicholas Air Inc,,,135,,,US,,,,,,,
+SYNTHETIC Test Operator A,,0TST001A,135,,,,SYNTHETIC Contact A2,,rfq.a2@example.com,,,,duplicate certificate
+SYNTHETIC Test Operator B LLC,,,135,,,,,,,,,,duplicate name no certificate
+,,0TST005E,135,Gold,,,,,,,,,missing dba
+SYNTHETIC Test Operator F,,,,,,,SYNTHETIC Contact F1,,rfq.f@example.com,,,,
+SYNTHETIC Test Operator G,,0TST007G,135,Platinum+,KABC,US,SYNTHETIC Contact G1,,rfq.g@example.com,+44 20 7946 0958,,,

@@ -1,0 +1,35 @@
+# Column mapping for the aircraft dataset (files named aircraft*.csv / .xlsx / .json).
+# See operators.yaml for the matching rules.
+# `required_any` is a list of groups; each group needs at least one of its fields to be mapped.
+dataset: aircraft
+fields:
+  tail_number:
+    required: true
+    aliases: [tail, tail no, tail num, tail number, n number, n no, registration, registration number, reg, reg no, n-number]
+  operator_certificate_number:
+    aliases: [certificate, certificate no, certificate number, cert, cert no, cert number, operator certificate, operator cert, operator certificate no, air carrier certificate, faa certificate]
+  operator_name:
+    aliases: [operator, operator name, operator dba, dba, dba name, owner operator, company, company name, carrier]
+  manufacturer:
+    required: true
+    aliases: [make, mfr, mfg, maker, aircraft make, aircraft manufacturer, manufacturer name]
+  model:
+    required: true
+    aliases: [aircraft model, model name, type model, variant]
+  category:
+    aliases: [aircraft category, class, size, size category, jet category, aircraft class]
+  icao_type_code:
+    aliases: [icao type, icao type code, type code, icao designator, aircraft type code]
+  year_of_manufacture:
+    aliases: [year, yom, year built, manufacture year, year of manufacture, model year, built]
+  year_refurbished:
+    aliases: [refurb year, refurbished, refurbished year, year refurbished, interior year, refurb]
+  passenger_seats:
+    aliases: [seats, pax, passengers, pax capacity, seat count, passenger capacity, seating, number of seats]
+  home_airport_icao:
+    aliases: [home base, home airport, base, base airport, home icao, base icao, home airport icao]
+  amenities:
+    aliases: [features, amenity, amenities list, cabin amenities, options]
+required_any:
+  - [operator_certificate_number, operator_name]
+ignored: [rating source, safety rating source, rating provider]

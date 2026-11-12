@@ -1,0 +1,13 @@
+# Founder-editable aliases that map a file's make/model spelling to the canonical aircraft type.
+# Aircraft types are matched on normalised manufacturer + model (case, spaces and punctuation ignored).
+# Use an alias only when the same type is spelled differently in the file than in aircraft_types.
+#
+# aliases:
+#   - manufacturer: "Example Aerospace Corp"     # as it appears in the file
+#     model: "EX-100 Mk II"
+#     canonical_manufacturer: "Example Aerospace"  # as stored in aircraft_types
+#     canonical_model: "EX-100"
+#
+# A type that matches nothing is created with only the fields the file provides and listed in
+# DATA_REPORT.md as needing specs. Specs are never guessed.
+aliases: []

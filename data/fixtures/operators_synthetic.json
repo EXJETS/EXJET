@@ -1,0 +1,110 @@
+[
+ {
+  "DBA Name": "SYNTHETIC Test Operator A",
+  "Legal Name": "SYNTHETIC Test Operator A LLC",
+  "Certificate Number": "0tst001a",
+  "Cert Type": "Part 135",
+  "Rating": "ARGUS Platinum",
+  "Base Airport": "KTST",
+  "Country": "US",
+  "Contact Name": "SYNTHETIC Contact A1",
+  "Contact Title": "Dispatcher",
+  "Contact Email": "rfq.a@example.com",
+  "Contact Phone": "(214) 555-0101",
+  "Rating Source": "ARGUS",
+  "ARGUS Account Id": "SYN-1",
+  "Internal Notes": "note one"
+ },
+ {
+  "DBA Name": "SYNTHETIC Test Operator B",
+  "Legal Name": "SYNTHETIC Test Operator B LLC",
+  "Certificate Number": "0TST002B",
+  "Cert Type": "135",
+  "Rating": "Gold Plus",
+  "Base Airport": "KABC",
+  "Country": "US",
+  "Contact Name": "SYNTHETIC Contact B1",
+  "Contact Email": "RFQ.B@EXAMPLE.COM",
+  "Contact Phone": "214.555.0102",
+  "Rating Source": "Wyvern",
+  "ARGUS Account Id": "SYN-2"
+ },
+ {
+  "DBA Name": "SYNTHETIC Test Operator C",
+  "Certificate Number": "0TST003C",
+  "Cert Type": "121",
+  "Rating": "Wyvern Wingman",
+  "ARGUS Account Id": "SYN-3"
+ },
+ {
+  "DBA Name": "SYNTHETIC Test Operator D",
+  "Certificate Number": "0TST004D",
+  "Cert Type": "foreign",
+  "Base Airport": "BAD",
+  "Country": "CA",
+  "Contact Name": "SYNTHETIC Contact D1",
+  "Contact Email": "bad-email",
+  "Contact Phone": "12345",
+  "ARGUS Account Id": "SYN-4"
+ },
+ {
+  "DBA Name": "Net Jets",
+  "Certificate Number": "0TST900X",
+  "Cert Type": "135",
+  "Rating": "Platinum",
+  "Base Airport": "KTST",
+  "Country": "US",
+  "Contact Name": "SYNTHETIC Excluded Contact",
+  "Contact Email": "excluded.contact@example.com"
+ },
+ {
+  "DBA Name": "NetJets Aviation Inc",
+  "Cert Type": "135",
+  "Country": "US"
+ },
+ {
+  "DBA Name": "Flexjet LLC",
+  "Cert Type": "135",
+  "Country": "US"
+ },
+ {
+  "DBA Name": "Nicholas Air Inc",
+  "Cert Type": "135",
+  "Country": "US"
+ },
+ {
+  "DBA Name": "SYNTHETIC Test Operator A",
+  "Certificate Number": "0TST001A",
+  "Cert Type": "135",
+  "Contact Name": "SYNTHETIC Contact A2",
+  "Contact Email": "rfq.a2@example.com",
+  "Internal Notes": "duplicate certificate"
+ },
+ {
+  "DBA Name": "SYNTHETIC Test Operator B LLC",
+  "Cert Type": "135",
+  "Internal Notes": "duplicate name no certificate"
+ },
+ {
+  "Certificate Number": "0TST005E",
+  "Cert Type": "135",
+  "Rating": "Gold",
+  "Internal Notes": "missing dba"
+ },
+ {
+  "DBA Name": "SYNTHETIC Test Operator F",
+  "Contact Name": "SYNTHETIC Contact F1",
+  "Contact Email": "rfq.f@example.com"
+ },
+ {
+  "DBA Name": "SYNTHETIC Test Operator G",
+  "Certificate Number": "0TST007G",
+  "Cert Type": "135",
+  "Rating": "Platinum+",
+  "Base Airport": "KABC",
+  "Country": "US",
+  "Contact Name": "SYNTHETIC Contact G1",
+  "Contact Email": "rfq.g@example.com",
+  "Contact Phone": "+44 20 7946 0958"
+ }
+]
