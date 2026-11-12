@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ExternalLink, FileText } from "lucide-react";
+import { Download, ExternalLink } from "lucide-react";
 import { api, apiUrl, type Trip } from "@/lib/api";
 import { useAction } from "@/hooks/use-api";
 import { acceptedQuote, formatWhen } from "@/lib/rules";
@@ -33,7 +33,7 @@ export function ContractSection({ trip, locked, onChange }: { trip: Trip; locked
         </dl>
         {c ? (
           <>
-            <div><a className="btn" href={apiUrl(c.pdf_url) ?? "#"} target="_blank" rel="noopener noreferrer"><FileText size={16} aria-hidden /> View contract PDF</a></div>
+            <div><a className="btn" href={apiUrl(c.pdf_url) ?? "#"} download><Download size={16} aria-hidden /> Download contract PDF</a></div>
             {c.acknowledged_at ? (
               <Chip tone="ok">Acknowledged {formatWhen(c.acknowledged_at)}</Chip>
             ) : (
@@ -55,6 +55,9 @@ export function PaymentSection({ trip, locked, onChange }: { trip: Trip; locked:
   const [confirm, setConfirm] = useState(false);
   const paid = useAction(api.markPaid);
   const link = q?.payment_link;
+  // The API sets changed_since_first relative to the quotes still in play, so accepting one can clear it. Also compare with every
+  // other quote from the same operator on this trip, declined or not.
+  const hostChanged = !!link && (link.changed_since_first || trip.quotes.some((x) => x.id !== q?.id && x.operator?.dba_name === q?.operator?.dba_name && x.payment_link && x.payment_link.host !== link.host));
   const ackd = !!q?.contract?.acknowledged_at;
   const done = ["paid", "manifest_due", "scheduled", "in_flight", "completed"].includes(trip.status);
   if (locked || !q) {
@@ -73,10 +76,12 @@ export function PaymentSection({ trip, locked, onChange }: { trip: Trip; locked:
     <Card id="payment" num="06" title="Payment">
       <div style={{ display: "grid", gap: 12 }}>
         <Banner>Payment is made directly to the operator. EXJET does not process flight payments and cannot see the status of your payment.</Banner>
+        {link && !link.host_approved ? <Banner tone="problem" live>The payment site <span className="mono">{link.host}</span> is not approved for this operator. EXJET is reviewing it. Do not pay through this link; the pay button is disabled.</Banner> : null}
+        {hostChanged ? <Banner tone="wait" live>Warning: the payment site in this quote is different from the one in the operator&apos;s earlier quote. Confirm the host with the operator before paying.</Banner> : null}
         {link ? (
           <dl className="kv">
             <dt>Pay to</dt><dd>{q.operator?.dba_name}</dd>
-            <dt>Payment site</dt><dd className="mono">{link.host}</dd>
+            <dt>Payment site</dt><dd className="mono" style={{ fontSize: 16, fontWeight: 700 }}>{link.host}</dd>
             <dt>Amount</dt><dd><Money cents={q.total_amount_cents} currency={q.currency} /> <span className="muted small">per the operator&apos;s quote</span></dd>
           </dl>
         ) : <Banner tone="wait">The operator has not provided a payment link yet.</Banner>}
@@ -85,11 +90,11 @@ export function PaymentSection({ trip, locked, onChange }: { trip: Trip; locked:
         ) : (
           <>
             <div className="actions">
-              {link && ackd ? (
+              {link && ackd && link.host_approved ? (
                 <a className="btn btn-primary" href={link.url} target="_blank" rel="noopener noreferrer">Pay operator <ExternalLink size={14} aria-hidden /><span className="sr-only"> (opens {link.host} in a new tab)</span></a>
               ) : <button className="btn btn-primary" disabled>Pay operator</button>}
               {!confirm ? (
-                <button className="btn" disabled={!link || !ackd} onClick={() => setConfirm(true)}>I have paid</button>
+                <button className="btn" disabled={!link || !ackd || !link.host_approved} onClick={() => setConfirm(true)}>I have paid</button>
               ) : (
                 <>
                   <button className="btn btn-primary" onClick={go} disabled={paid.pending}>{paid.pending ? "Saving" : "Confirm: I have paid the operator"}</button>

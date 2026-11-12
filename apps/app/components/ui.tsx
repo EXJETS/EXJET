@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { AlertTriangle, CheckCircle2, Info, Loader2, Lock } from "lucide-react";
 import type { ReactNode } from "react";
-import { ApiError } from "@/lib/api";
+import { ApiError, friendlyError } from "@/lib/api";
 import type { Query } from "@/hooks/use-api";
 import { STATUS_LABEL, statusTone, type Tone } from "@/lib/rules";
 
@@ -53,7 +53,7 @@ export function ErrorState({ error, onRetry }: { error: ApiError; onRetry?: () =
   return (
     <div className="state" role="alert">
       <strong>Could not load this data</strong>
-      <span>{error.message}</span>
+      <span>{friendlyError(error)}</span>
       {onRetry ? (
         <button className="btn btn-sm" onClick={onRetry}>
           Try again
@@ -80,7 +80,7 @@ export function ActionError({ error }: { error?: ApiError }) {
   // always rendered so the live region exists before the message
   return (
     <div aria-live="polite" role="status">
-      {error ? (error.isNotEntitled ? <EntitlementGate compact /> : <Banner tone="problem">{error.message}</Banner>) : null}
+      {error ? (error.isNotEntitled ? <EntitlementGate compact /> : <Banner tone="problem">{friendlyError(error)}</Banner>) : null}
     </div>
   );
 }

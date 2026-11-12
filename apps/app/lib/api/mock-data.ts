@@ -91,3 +91,13 @@ export const MOCK_LISTING_SEED: [string, number, string, number, number, number 
   ["dassault-falcon-7x", 2, "Teterboro", 12, 2014, 2022, "Gold+", ["Wi-Fi"]],
   ["bombardier-global-7500", 1, "Las Vegas", 17, 2022, null, "Platinum+", ["Wi-Fi", "Four living areas"]],
 ];
+
+/** IANA zone per mock airport (real zones). */
+export const MOCK_TZ: Record<string, string> = {
+  KTEB: "America/New_York", KHPN: "America/New_York", KJFK: "America/New_York", KBOS: "America/New_York", KPBI: "America/New_York",
+  KMIA: "America/New_York", KOPF: "America/New_York", KPDK: "America/New_York", KATL: "America/New_York", KIAD: "America/New_York",
+  KMDW: "America/Chicago", KORD: "America/Chicago", KDAL: "America/Chicago", KDFW: "America/Chicago", KHOU: "America/Chicago", KAUS: "America/Chicago",
+  KAPA: "America/Denver", KASE: "America/Denver", KEGE: "America/Denver", KTEX: "America/Denver", KSDL: "America/Phoenix",
+  KLAS: "America/Los_Angeles", KVNY: "America/Los_Angeles", KLAX: "America/Los_Angeles", KSFO: "America/Los_Angeles", KSNA: "America/Los_Angeles",
+  KSEA: "America/Los_Angeles", KBFI: "America/Los_Angeles", MMSD: "America/Mazatlan",
+};

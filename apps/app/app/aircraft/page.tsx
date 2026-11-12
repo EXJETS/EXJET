@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useState } from "react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { api, type AircraftType, type Category, type Listing } from "@/lib/api";
 import { useApi } from "@/hooks/use-api";
@@ -15,10 +15,12 @@ function Inner() {
   const { me } = useMe();
   const category = params.get("category");
   const type = params.get("type");
+  const home = params.get("home") ?? "";
+  const [cityDraft, setCityDraft] = useState(home);
 
   const cats = useApi<Category[]>("cats", api.categories);
   const types = useApi<AircraftType[]>(`types:${category ?? ""}`, () => api.aircraftTypes(category ?? undefined));
-  const listings = useApi<Listing[]>(type ? `ls:${type}:${me?.entitled ?? false}` : null, () => api.listings({ type_slug: type ?? undefined }));
+  const listings = useApi<Listing[]>(type ? `ls:${type}:${home}:${me?.entitled ?? false}` : null, () => api.listings({ type_slug: type ?? undefined, home: home || undefined }));
 
   const go = (next: Record<string, string | null>) => {
     const p = new URLSearchParams(params.toString());
@@ -60,6 +62,15 @@ function Inner() {
         {type ? (
           <Card title={`Aircraft: ${types.data?.find((t) => t.slug === type)?.model ?? type}`} flush>
             {!me?.entitled ? <div className="card-b"><EntitlementGate signedIn={!!me} /></div> : null}
+            <form className="card-b row" style={{ borderBottom: "1px solid var(--line)" }} onSubmit={(e) => { e.preventDefault(); go({ home: cityDraft.trim() || null }); }}>
+              <div className="field" style={{ maxWidth: 320 }}>
+                <label htmlFor="home">Home city</label>
+                <input id="home" className="input" value={cityDraft} onChange={(e) => setCityDraft(e.target.value)} placeholder="For example: Teterboro" />
+                <span className="help">Filters by the city or metro area where the aircraft is based.</span>
+              </div>
+              <button className="btn" type="submit">Filter</button>
+              {home ? <button className="btn btn-ghost" type="button" onClick={() => { setCityDraft(""); go({ home: null }); }}>Clear</button> : null}
+            </form>
             <Async q={listings} skeleton={<TableSkeleton rows={3} />}>
               {(list) => list.length === 0 ? <EmptyState title="No aircraft listed for this type" /> : <DataTable caption="Aircraft listings" columns={listingColumns(!!me?.entitled)} rows={list} rowKey={(l) => l.listing_id} />}
             </Async>

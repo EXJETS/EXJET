@@ -66,7 +66,7 @@ function Inner() {
       {step === "billing" ? (
         <div style={{ display: "grid", gap: 16 }}>
           <Banner tone="ok">Identity approved. Choose a membership to finish.</Banner>
-          <Plans />
+          {me.member && !me.member.is_owner ? <Banner tone="wait">Billing is managed by the account owner.</Banner> : <Plans />}
         </div>
       ) : null}
       {step === "ready" ? (

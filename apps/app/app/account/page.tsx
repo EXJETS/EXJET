@@ -1,14 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { api, type KycStatusResponse } from "@/lib/api";
 import { useAction, useApi } from "@/hooks/use-api";
 import { useMe } from "@/hooks/me";
 import { formatDate } from "@/lib/rules";
-import { ActionError, Async, Banner, Card, Chip, Field, PageHeader, StatusChip } from "@/components/ui";
+import { ActionError, Async, Card, Chip, PageHeader, StatusChip } from "@/components/ui";
 import { Plans } from "@/components/Plans";
+import { SeatsCard } from "@/components/SeatsCard";
+import { PasswordCard } from "@/components/PasswordCard";
 
 const PLAN_NAME: Record<string, string> = { individual: "Individual", family_office: "Family Office", enterprise: "Enterprise" };
 
@@ -18,11 +19,10 @@ export default function AccountPage() {
   const kyc = useApi<KycStatusResponse>(me ? "kyc-account" : null, api.kycStatus);
   const portal = useAction(api.portal);
   const logout = useAction(api.logout);
-  const invite = useAction(api.inviteSeat);
-  const [seatEmail, setSeatEmail] = useState("");
-  const [invited, setInvited] = useState<string | null>(null);
   if (!me) return null;
   const sub = me.subscription;
+  const isOwner = !me.member || me.member.is_owner;
+  const idStatus = me.member?.identity_status ?? me.account?.kyc_status ?? "not_started";
   const account = me.account ?? { id: "", type: "individual", display_name: me.user.full_name ?? me.user.email, seats: 1, kyc_status: "not_started" };
 
   async function openPortal() {
@@ -34,15 +34,6 @@ export default function AccountPage() {
     setMe(null);
     router.replace("/login");
   }
-  async function sendInvite(e: React.FormEvent) {
-    e.preventDefault();
-    const r = await invite.run(seatEmail);
-    if (r !== undefined) {
-      setInvited(seatEmail);
-      setSeatEmail("");
-    }
-  }
-
   return (
     <>
       <PageHeader title="Account" actions={<button className="btn" onClick={signOut} disabled={logout.pending}>Sign out</button>}>Profile, verification and membership.</PageHeader>
@@ -56,17 +47,9 @@ export default function AccountPage() {
               <dt>Seats</dt><dd>{account.seats}</dd>
             </dl>
           </Card>
-          {account.type === "family_office" ? (
-            <Card title="Seats">
-              <p className="muted" style={{ marginBottom: 12 }}>Family Office includes a second seat. Invite the second member by email.</p>
-              <form onSubmit={sendInvite} className="row">
-                <Field label="Second seat email" id="seat"><input id="seat" className="input" type="email" required value={seatEmail} onChange={(e) => setSeatEmail(e.target.value)} /></Field>
-                <button className="btn btn-primary" disabled={invite.pending || !seatEmail}>{invite.pending ? "Sending" : "Send invite"}</button>
-              </form>
-              <div style={{ marginTop: 8 }}><ActionError error={invite.error} />{invited ? <Banner tone="ok" live>Invite sent to {invited}.</Banner> : null}</div>
-            </Card>
-          ) : null}
-          <Card title="Identity verification" actions={<Chip tone={account.kyc_status === "approved" ? "ok" : account.kyc_status === "rejected" ? "problem" : "wait"}>{account.kyc_status === "approved" ? "Approved" : (account.kyc_status === "submitted" || account.kyc_status === "in_review") ? "In review" : account.kyc_status === "rejected" ? "Declined" : "Not started"}</Chip>}>
+          <SeatsCard isOwner={isOwner} accountType={account.type} />
+          <PasswordCard />
+          <Card title={isOwner ? "Identity verification" : "Your identity verification"} actions={<Chip tone={idStatus === "approved" ? "ok" : idStatus === "rejected" ? "problem" : "wait"}>{idStatus === "approved" ? "Approved" : (idStatus === "submitted" || idStatus === "in_review") ? "In review" : idStatus === "rejected" ? "Declined" : "Not started"}</Chip>}>
             <Async q={kyc} skeleton={<div className="skeleton" style={{ height: 40 }} />}>
               {(k) => (
                 <div style={{ display: "grid", gap: 8 }}>
@@ -77,7 +60,7 @@ export default function AccountPage() {
                       {k.latest_submission.decision_note ? (<><dt>Note</dt><dd>{k.latest_submission.decision_note}</dd></>) : null}
                     </dl>
                   ) : <p className="muted">No documents submitted.</p>}
-                  {account.kyc_status !== "approved" ? <div><Link className="btn" href="/onboarding">{(account.kyc_status === "submitted" || account.kyc_status === "in_review") ? "View status" : "Continue verification"}</Link></div> : null}
+                  {idStatus !== "approved" ? <div><Link className="btn" href="/onboarding">{(idStatus === "submitted" || idStatus === "in_review") ? "View status" : "Continue verification"}</Link></div> : null}
                 </div>
               )}
             </Async>
@@ -93,7 +76,7 @@ export default function AccountPage() {
                   <dt>Renews</dt><dd>{formatDate(sub.current_period_end)}</dd>
                 </dl>
                 <ActionError error={portal.error} />
-                <div><button className="btn" onClick={openPortal} disabled={portal.pending}>{portal.pending ? "Opening" : "Manage billing"}</button></div>
+                {isOwner ? <div><button className="btn" onClick={openPortal} disabled={portal.pending}>{portal.pending ? "Opening" : "Manage billing"}</button></div> : <p className="muted small">Billing is managed by the account owner.</p>}
               </div>
             ) : (
               <p className="muted">No active membership. Membership is required to send RFQs and see operator details.</p>
@@ -101,7 +84,7 @@ export default function AccountPage() {
           </Card>
         </div>
       </div>
-      {!sub ? (
+      {!sub && isOwner ? (
         <div style={{ marginTop: 16 }}>
           <h2 style={{ marginBottom: 12 }}>Membership plans</h2>
           <Plans />

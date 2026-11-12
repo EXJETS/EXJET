@@ -14,7 +14,7 @@ import type { Me } from "@/lib/api";
 // Mock tooling is only code-split in when NEXT_PUBLIC_API_MOCK=1 (inlined at build; dead code otherwise).
 const MockSwitcher = process.env.NEXT_PUBLIC_API_MOCK === "1" ? dynamic(() => import("./MockSwitcher").then((m) => m.MockSwitcher), { ssr: false }) : null;
 
-const BARE = ["/login", "/signup", "/legal"];
+const BARE = ["/login", "/signup", "/legal", "/verify-email", "/forgot-password", "/reset-password", "/operator"];
 const PUBLIC = ["/aircraft", "/empty-legs"];
 const isUnder = (p: string, base: string) => p === base || p.startsWith(base + "/");
 
@@ -28,6 +28,7 @@ const NAV = [
 
 export function membershipChip(me: Me | null) {
   if (!me) return <Chip tone="neutral" plain>Visitor</Chip>;
+  if (me.user.role === "admin") return <Chip tone="neutral" plain>Admin</Chip>;
   if (me.entitled) return <Chip tone="ok">Member{me.subscription ? ` · ${me.subscription.plan === "family_office" ? "Family Office" : me.subscription.plan === "enterprise" ? "Enterprise" : "Individual"}` : ""}</Chip>;
   const map: Record<string, [string, "wait" | "problem"]> = {
     kyc: ["Verification needed", "wait"],
@@ -35,7 +36,7 @@ export function membershipChip(me: Me | null) {
     billing: ["Membership needed", "wait"],
   };
   const [t, tone] = map[me.next_step] ?? ["Not entitled", "wait"];
-  return <Chip tone={me.account?.kyc_status === "rejected" ? "problem" : tone}>{me.account?.kyc_status === "rejected" ? "Verification declined" : t}</Chip>;
+  return <Chip tone={(me.member?.identity_status ?? me.account?.kyc_status) === "rejected" ? "problem" : tone}>{(me.member?.identity_status ?? me.account?.kyc_status) === "rejected" ? "Verification declined" : t}</Chip>;
 }
 
 export function AppFrame({ children }: { children: React.ReactNode }) {
@@ -47,7 +48,7 @@ export function AppFrame({ children }: { children: React.ReactNode }) {
   const needsAuth = !bare && !isPublic;
 
   useEffect(() => {
-    if (!loading && !me && needsAuth) router.replace(`/login?next=${encodeURIComponent(path)}`);
+    if (!loading && !me && needsAuth) router.replace(`/login?next=${encodeURIComponent(path + window.location.search)}`);
   }, [loading, me, needsAuth, path, router]);
 
   if (bare) {

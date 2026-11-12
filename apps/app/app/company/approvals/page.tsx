@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { ApprovalDecision } from "@/components/ApprovalDecision";
+import { PayloadView } from "@/components/PayloadView";
 import { api, type Approval } from "@/lib/api";
 import { useApi } from "@/hooks/use-api";
 import { formatWhen } from "@/lib/rules";
@@ -41,7 +42,7 @@ export default function ApprovalsPage() {
                   <dt>Requested by</dt><dd>{a.requested_by}</dd>
                   <dt>Requested</dt><dd>{formatWhen(a.created_at)}</dd>
                 </dl>
-                {a.payload ? <details className="report"><summary>Payload</summary><pre className="raw">{JSON.stringify(a.payload, null, 2)}</pre></details> : null}
+                <PayloadView kind={a.kind} payload={a.payload} />
                 <ApprovalDecision approval={a} onDone={q.reload} />
               </div>
             );

@@ -1,10 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import { useState } from "react";
-import { FileText } from "lucide-react";
-import { api, apiUrl, type AdminQuote } from "@/lib/api";
+import { Download } from "lucide-react";
+import { api, apiUrl, type AdminQuote, type Approval } from "@/lib/api";
 import { useAction, useApi } from "@/hooks/use-api";
-import { ActionError, Async, Banner, Card, EmptyState, Field, PageHeader, StatusChip } from "@/components/ui";
+import { ApprovalDecision } from "@/components/ApprovalDecision";
+import { ActionError, Async, Banner, Card, Chip, EmptyState, Field, PageHeader, StatusChip } from "@/components/ui";
 
 function Resolver({ q, onDone }: { q: AdminQuote; onDone: () => void }) {
   const [amount, setAmount] = useState("");
@@ -35,11 +37,23 @@ function Resolver({ q, onDone }: { q: AdminQuote; onDone: () => void }) {
   );
 }
 
+function HostDecision({ q, onDone }: { q: AdminQuote; onDone: () => void }) {
+  const approvals = useApi<Approval[]>(q.payment_host_approval_id ? "approvals:payment_host" : null, () => api.approvals(undefined, "payment_host"));
+  const a = approvals.data?.find((x) => x.id === q.payment_host_approval_id);
+  if (!q.payment_host_approval_id) return <Banner tone="wait">No payment_host approval is attached. Add the host to the operator under Operators.</Banner>;
+  if (!a) return <Banner>Loading the payment host approval.</Banner>;
+  return <ApprovalDecision approval={a} onDone={() => { approvals.reload(); onDone(); }} />;
+}
+
 export default function QuoteReviewPage() {
-  const q = useApi<AdminQuote[]>("admin-quotes", () => api.adminQuotes("needs_review"), { refreshMs: 10_000 });
+  const [status, setStatus] = useState("needs_review");
+  const q = useApi<AdminQuote[]>(`admin-quotes:${status}`, () => api.adminQuotes(status || undefined), { refreshMs: 10_000 });
   return (
     <>
-      <PageHeader title="Quote review">Quotes whose total could not be read from the operator document. Members cannot see them until a total is confirmed.</PageHeader>
+      <PageHeader title="Quote review">Quotes held for review: an unreadable total, or a payment site that is not approved for the operator. Members cannot see them until resolved.</PageHeader>
+      <div className="seg" role="group" aria-label="Filter" style={{ marginBottom: 16 }}>
+        {([["needs_review", "Needs review"], ["", "All"]] as const).map(([v, l]) => <button key={l} aria-pressed={status === v} onClick={() => setStatus(v)}>{l}</button>)}
+      </div>
       <Async q={q}>
         {(list) => list.length === 0 ? <Card><EmptyState title="No quotes need review" /></Card> : (
           <div className="stack">
@@ -48,11 +62,15 @@ export default function QuoteReviewPage() {
                 <div style={{ display: "grid", gap: 16 }}>
                   <dl className="kv">
                     <dt>Trip</dt><dd className="mono">{x.trip_id}</dd>
-                    <dt>Flags</dt><dd>{x.flags.length ? x.flags.join(", ") : "—"}</dd>
+                    <dt>Flags</dt><dd>{x.flags.length ? x.flags.map((f) => <Chip key={f} tone="wait" plain>{f.replace(/_/g, " ")}</Chip>) : "—"}</dd>
                     <dt>Parse confidence</dt><dd>{x.parse_confidence === null ? "—" : x.parse_confidence}</dd>
-                    <dt>Operator PDF</dt><dd>{x.pdf_url ? <a href={apiUrl(x.pdf_url) ?? "#"} target="_blank" rel="noopener noreferrer" style={{ display: "inline-flex", gap: 4, alignItems: "center" }}><FileText size={14} aria-hidden /> Open quote PDF</a> : <span className="muted">No PDF link</span>}</dd>
+                    <dt>Payment site</dt>
+                    <dd>{x.payment_host ? <><span className="mono" style={{ fontWeight: 700 }}>{x.payment_host}</span> {x.payment_host_approved ? <Chip tone="ok">Approved</Chip> : <Chip tone="problem">Not approved</Chip>}</> : <span className="muted">None found</span>}</dd>
+                    <dt>Operator PDF</dt><dd>{x.pdf_url ? <a href={apiUrl(x.pdf_url) ?? "#"} download style={{ display: "inline-flex", gap: 4, alignItems: "center" }}><Download size={14} aria-hidden /> Download quote PDF</a> : <span className="muted">No PDF link</span>}</dd>
                   </dl>
-                  <Resolver q={x} onDone={q.reload} />
+                  {x.payment_host && x.payment_host_approved === false ? <HostDecision q={x} onDone={q.reload} /> : null}
+                  {x.status === "needs_review" && x.payment_host_approved !== false ? <Resolver q={x} onDone={q.reload} /> : null}
+                  <p className="small muted">Approvals are also listed under <Link href="/company/approvals">Approvals</Link>.</p>
                 </div>
               </Card>
             ))}

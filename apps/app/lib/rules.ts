@@ -30,7 +30,7 @@ export function validatePassenger(p: ManifestRow, required: IdType, today = new 
   if (!p.full_name.trim() || p.full_name.trim().split(/\s+/).length < 2) e.full_name = "Full legal name (first and last)";
   if (!/^\d{4}-\d{2}-\d{2}$/.test(p.date_of_birth) || new Date(p.date_of_birth) > today) e.date_of_birth = "Valid date of birth";
   if (p.id_type !== required) e.id_type = `${idTypeLabel(required)} is required for this trip`;
-  if (!p.id_number.trim()) e.id_number = "ID number";
+  if (!p.id_number.trim() && !(p.id && p.id_number_last4)) e.id_number = "ID number";
   if (!/^\d{4}-\d{2}-\d{2}$/.test(p.id_expiry) || new Date(p.id_expiry) < today) e.id_expiry = "Unexpired ID required";
   if (!p.id_issuer.trim()) e.id_issuer = "Issuing state or country";
   return e;
@@ -41,7 +41,7 @@ export function manifestComplete(rows: ManifestRow[], required: IdType, pax: num
 }
 
 export function emptyPassenger(required: IdType): ManifestRow {
-  return { full_name: "", date_of_birth: "", id_type: required, id_number: "", id_number_last4: null, id_expiry: "", id_issuer: "" };
+  return { id: null, full_name: "", date_of_birth: "", id_type: required, id_number: "", id_number_last4: null, id_expiry: "", id_issuer: "" };
 }
 
 // ---- stage rail ----
@@ -133,11 +133,20 @@ export function formatMoney(cents: number | null | undefined, currency = "USD"):
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const NAIVE = /^(\d{4})-(\d{2})-(\d{2})(?:[T ](\d{2}):(\d{2}))?/;
 
-/** Departure times: the API returns the airport-local wall time with its UTC offset. Show the wall time verbatim. */
-export function formatDeparture(s: string | null | undefined): string {
-  if (!s) return "—";
-  const m = NAIVE.exec(s);
-  return m ? `${MONTHS[Number(m[2]) - 1]} ${Number(m[3])}, ${m[1]}${m[4] ? ` ${m[4]}:${m[5]}` : ""}` : s;
+/** Wall-clock text for a leg: `depart_local` (naive, at the origin airport) with the zone abbreviation from the instant. */
+export function formatLegDeparture(leg: { depart_local: string | null; depart_at: string; origin_timezone: string | null }): string {
+  const wall = leg.depart_local ?? leg.depart_at;
+  const m = NAIVE.exec(wall);
+  if (!m) return wall;
+  let abbr = "";
+  if (leg.origin_timezone) {
+    try {
+      abbr = new Intl.DateTimeFormat("en-US", { timeZone: leg.origin_timezone, timeZoneName: "short" }).formatToParts(new Date(leg.depart_at)).find((p) => p.type === "timeZoneName")?.value ?? "";
+    } catch {
+      abbr = "";
+    }
+  }
+  return `${MONTHS[Number(m[2]) - 1]} ${Number(m[3])}, ${m[1]}${m[4] ? ` ${m[4]}:${m[5]}` : ""}${abbr ? ` ${abbr}` : ""}`;
 }
 
 /** Instants (due dates, sent/replied times) are shown in the viewer's zone; strings with no offset are shown verbatim. */

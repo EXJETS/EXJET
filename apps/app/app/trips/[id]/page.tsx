@@ -8,7 +8,7 @@ import { ArrowLeft } from "lucide-react";
 import { api, type EmptyLeg, type MatchResult, type Trip } from "@/lib/api";
 import { useMe } from "@/hooks/me";
 import { useAction, useApi } from "@/hooks/use-api";
-import { acceptedQuote, currentStageIndex, formatDeparture, STATUS_LABEL, tripTitle } from "@/lib/rules";
+import { acceptedQuote, currentStageIndex, formatLegDeparture, STATUS_LABEL, tripTitle } from "@/lib/rules";
 import { ActionError, Banner, Card, EntitlementGate, ErrorState, StatusChip } from "@/components/ui";
 import { PageSkeleton } from "@/components/Shell";
 import { StageRail } from "@/components/trip/StageRail";
@@ -29,9 +29,9 @@ function RouteSummary({ trip }: { trip: Trip }) {
         {trip.legs.map((l, i) => (
           <div className="leg" key={i}>
             <span className="seq">{i + 1}</span>
-            <span className="route"><span className="mono">{l.origin_icao}</span> to <span className="mono">{l.destination_icao}</span></span>
+            <span className="route"><span className="mono">{l.origin_icao}</span> <span className="muted small">{l.origin.name}</span> to <span className="mono">{l.destination_icao}</span> <span className="muted small">{l.destination.name}</span></span>
             <span className="muted">
-              {formatDeparture(l.depart_at)}
+              {formatLegDeparture(l)}
               {" · "}
               {dist?.[i]?.distance_nm ? <span className="mono">{dist[i].distance_nm.toLocaleString("en-US")} nm</span> : match.loading ? "…" : "distance n/a"}
             </span>

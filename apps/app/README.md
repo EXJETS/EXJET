@@ -27,6 +27,23 @@ The browser always calls `/v1/...` on the app's own origin. `next.config.ts` rew
 The API's own CORS + credentials (allowed origins `http://localhost:3001`) is also sufficient for direct calls: set
 `NEXT_PUBLIC_API_URL=http://localhost:8000` to bypass the proxy. The default is the proxy.
 
+## Test pages and flags
+
+- `/dev/checkout` and `/dev/billing-portal` stand in for the billing provider in dev. They render only when `NEXT_PUBLIC_DEV_BILLING=1`
+  (set at build time) or in mock mode; a production build without the flag returns 404 for them.
+- `NEXT_PUBLIC_API_MOCK=1` turns on the in-memory SYNTHETIC mock (MOCK DATA badge, persona switcher).
+
+## End-to-end suites
+
+- `npm run e2e` runs against the mock (Chromium, 1440 and 390).
+- `npm run e2e:api` runs against the real API and the `exjet_e2e` database (1440 and 390): `e2e/api/start-api.sh` drops and recreates the
+  schema, migrates, seeds, and starts the API through `e2e/api/serve.py`. That wrapper adds one test-only route, `GET /v1/e2e/outbox`
+  (the fake mail provider's outbox), because tokens for email verification, seat invitations and operator manifest links exist only in sent
+  mail. Nothing in `apps/api` is modified. Specs: `journey` (member loop, operator secure link, entitlement checks, password reset),
+  `fraud` (inbound checks, payment host approval), `seats` (invitation, per-person entitlement).
+- The API rate-limits logins and signups per address, so the admin session is created once in global setup and reused. Set `E2E_REUSE=1`
+  to run against servers you started yourself (no database reset).
+
 ## Types
 
 `lib/api/schema.d.ts` is generated (openapi-typescript) and committed. `lib/api/types.ts` holds thin named aliases and

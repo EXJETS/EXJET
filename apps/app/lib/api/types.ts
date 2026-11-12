@@ -24,6 +24,7 @@ export type OperatorContact = S["ContactOut"];
 export type EmptyLeg = S["EmptyLegOut"];
 export type TripDraft = S["TripCreate"];
 export type TripIntake = S["TripDraftOut"];
+export type DraftLeg = S["LegDraftIO"];
 export type LegDraft = S["LegDraftIO"];
 export type LegInput = S["LegIn"];
 export type Leg = S["LegOut"];
@@ -53,17 +54,33 @@ export type Job = S["JobOut"];
 export type AgentAction = S["AgentActionOut"];
 export type EnterpriseInquiry = S["EnterpriseInquiryIn"];
 
-// Enums the schema leaves as plain strings (values from the API implementation and ARCHITECTURE.md).
-export type KycStatus = "not_started" | "submitted" | "in_review" | "approved" | "rejected";
+// Exact unions come straight from the schema (closed Literal types in the API).
+export type KycStatus = Me["account"] extends infer A ? (A extends { kyc_status: infer K } ? K : never) : never;
 export type NextStep = Me["next_step"];
-export type TripType = "one_way" | "round_trip" | "multi_leg";
-export type TripStatus = "draft" | "rfq_sent" | "quoted" | "contracted" | "paid" | "manifest_due" | "scheduled" | "in_flight" | "completed" | "cancelled";
-export type KycDocType = "passport" | "drivers_license" | "business_doc";
+export type TripType = Trip["trip_type"];
+export type TripStatus = Trip["status"];
+export type KycDocType = "passport" | "drivers_license" | "business_doc"; // multipart field; the schema types doc_types as string[]
 export type IdType = S["PassengerIn"]["id_type"];
-export type GoLiveStatus = "draft" | "pending_ceo" | "live" | "suspended";
+export type GoLiveStatus = AdminOperator["go_live_status"];
+export type ApprovalKind = Approval["kind"];
 
-/** Manifest row as edited in the form: the ID number is write-only (the API returns only the last 4). */
+export type SignupPending = S["SignupPending"];
+export type SeatsOut = S["SeatsOut"];
+export type SeatMember = S["SeatMemberOut"];
+export type SeatInvitation = S["SeatInvitationOut"];
+export type Fbo = S["FboOut"];
+export type PaymentLink = S["PaymentLinkOut"];
+export type OperatorManifest = S["OperatorManifestOut"];
+export type Suppression = S["SuppressionOut"];
+export type SuppressionBody = S["SuppressionIn"];
+export type QuarantinedMessage = S["QuarantinedMessageOut"];
+export type EnterpriseInquiryRecord = S["EnterpriseInquiryOut"];
+export type GoLiveRequest = S["GoLiveRequestOut"];
+export type AirportBrief = S["AirportBrief"];
+
+/** Manifest row as edited in the form. `id_number` is optional for passengers already on file (API returns last 4 only). */
 export interface ManifestRow {
+  id: string | null;
   full_name: string;
   date_of_birth: string;
   id_type: IdType;
@@ -72,3 +89,6 @@ export interface ManifestRow {
   id_expiry: string;
   id_issuer: string;
 }
+
+/** Present in the API's docs (Manifest.sent_to_operator_at) but not yet in the OpenAPI schema; read defensively. */
+export const sentToOperatorAt = (m: unknown): string | null => (m as { sent_to_operator_at?: string | null } | null)?.sent_to_operator_at ?? null;

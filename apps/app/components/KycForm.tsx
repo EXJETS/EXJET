@@ -3,11 +3,14 @@
 import { useState } from "react";
 import { api, type KycDocType } from "@/lib/api";
 import { useAction } from "@/hooks/use-api";
+import { useMe } from "@/hooks/me";
 import { ActionError, Banner, Field } from "./ui";
 
 interface Row { doc_type: KycDocType; file: File | null }
 
 export function KycForm({ onDone, rejectedNote }: { onDone: () => void; rejectedNote?: string | null }) {
+  const { me } = useMe();
+  const individualOnly = !!me?.member && !me.member.is_owner;
   const [kind, setKind] = useState<"individual" | "business">("individual");
   const [holder, setHolder] = useState("");
   const [bizName, setBizName] = useState("");
@@ -45,7 +48,8 @@ export function KycForm({ onDone, rejectedNote }: { onDone: () => void; rejected
       <div className="card-b" style={{ display: "grid", gap: 16 }}>
         {rejectedNote ? <Banner tone="problem" live>Your last submission was not approved: {rejectedNote}</Banner> : null}
         <p className="muted">Documents are encrypted, used only for verification, and visible only to EXJET compliance staff.</p>
-        <div role="radiogroup" aria-label="Verification type" className="seg" style={{ width: "fit-content" }}>
+        {individualOnly ? <p className="muted">Invited members complete an individual identity check.</p> : null}
+        <div role="radiogroup" aria-label="Verification type" className="seg" style={{ width: "fit-content", display: individualOnly ? "none" : undefined }}>
           <button type="button" role="radio" aria-checked={kind === "individual"} onClick={() => switchKind("individual")}>Individual</button>
           <button type="button" role="radio" aria-checked={kind === "business"} onClick={() => switchKind("business")}>Business</button>
         </div>

@@ -44,8 +44,8 @@ test("member journey: signup to flight view", async ({ page }) => {
   await expect(page.getByText("$750")).toBeVisible();
   await shot(page, "04-membership");
   await page.getByRole("button", { name: "Choose Individual" }).click();
-  await expect(page.getByRole("button", { name: "Complete mock checkout" })).toBeVisible();
-  await page.getByRole("button", { name: "Complete mock checkout" }).click();
+  await expect(page.getByRole("button", { name: "Complete test checkout" })).toBeVisible();
+  await page.getByRole("button", { name: "Complete test checkout" }).click();
   await expect(page.getByRole("heading", { name: "You are set" })).toBeVisible();
 
   // 4. request a trip from plain language
@@ -77,7 +77,7 @@ test("member journey: signup to flight view", async ({ page }) => {
   await page.locator("#quotes").getByRole("button", { name: "Confirm accept" }).click();
 
   // 7. contract + payment
-  await expect(page.locator("#contract").getByRole("link", { name: /View contract PDF/ })).toBeVisible();
+  await expect(page.locator("#contract").getByRole("link", { name: /Download contract PDF/ })).toBeVisible();
   await page.locator("#contract").getByLabel(/I have read the operator/).check();
   await page.locator("#contract").getByRole("button", { name: "Acknowledge contract" }).click();
   await expect(page.locator("#contract").getByText(/Acknowledged/)).toBeVisible();

@@ -1,16 +1,26 @@
-import { get, post, put, patch, request, apiUrl } from "./client";
+import { get, post, put, patch, del, request, apiUrl } from "./client";
 import type * as T from "./types";
 
 export { ApiError, isMock, apiUrl, API_BASE, setApiHandlers } from "./client";
+export { friendlyError } from "./errors";
 export type * from "./types";
+export { sentToOperatorAt } from "./types";
 
 export const api = {
   // auth + account
-  signup: (b: T.SignupBody) => post<T.Me>("/auth/signup", b, { quiet401: true }),
+  signup: (b: T.SignupBody) => post<T.Me | T.SignupPending>("/auth/signup", b, { quiet401: true }),
+  verifyEmail: (token: string) => post<T.Me>("/auth/verify-email", { token }, { quiet401: true }),
+  resendVerification: (email: string) => post<T.SignupPending>("/auth/verify-email/resend", { email }, { quiet401: true }),
+  changePassword: (current_password: string, new_password: string) => post<null>("/auth/password", { current_password, new_password }),
+  resetRequest: (email: string) => post<T.SignupPending>("/auth/password/reset-request", { email }, { quiet401: true }),
+  resetPassword: (token: string, new_password: string) => post<null>("/auth/password/reset", { token, new_password }, { quiet401: true }),
   login: (b: { email: string; password: string }) => post<T.Me>("/auth/login", b, { quiet401: true }),
   logout: () => post<null>("/auth/logout", undefined, { quiet401: true }),
   me: () => get<T.Me>("/me", { quiet401: true }),
-  inviteSeat: (email: string) => post<unknown>("/account/seats", { email }),
+  inviteSeat: (email: string) => post<T.SignupPending>("/account/seats", { email }),
+  seats: () => get<T.SeatsOut>("/account/seats"),
+  revokeInvitation: (id: string) => del<null>(`/account/seats/invitations/${id}`),
+  acceptSeat: (token: string) => post<T.Me>("/account/seats/accept", { token }),
   // kyc
   submitKyc: (form: FormData) => request<{ id: string; status: string }>("POST", "/kyc/submissions", { form }),
   kycStatus: () => get<T.KycStatusResponse>("/kyc/status"),
@@ -20,6 +30,9 @@ export const api = {
   portal: () => post<{ url: string }>("/billing/portal"),
   enterpriseInquiry: (b: T.EnterpriseInquiry) => post<null>("/billing/enterprise-inquiry", b, { quiet401: true }),
   // catalog
+  fbos: (icao: string) => get<T.Fbo[]>(`/airports/${encodeURIComponent(icao)}/fbos`),
+  operatorManifest: (token: string) => get<T.OperatorManifest>("/operator/manifest", { query: { token }, quiet401: true }),
+  devCompleteCheckout: (account_id: string, plan: string) => post<unknown>("/dev/complete-checkout", { account_id, plan }),
   airports: (q: string) => get<T.Airport[]>("/airports", { query: { q }, quiet401: true }),
   categories: () => get<T.Category[]>("/categories", { quiet401: true }),
   aircraftTypes: (category?: string) => get<T.AircraftType[]>("/aircraft-types", { query: { category }, quiet401: true }),
@@ -56,12 +69,22 @@ export const api = {
   kycSubmissions: (status?: string) => get<T.KycSubmissionDetail[]>("/admin/kyc/submissions", { query: { status } }),
   kycSubmission: (id: string) => get<T.KycSubmissionDetail>(`/admin/kyc/submissions/${id}`),
   adminOperators: () => get<T.AdminOperator[]>("/admin/operators"),
-  requestGoLive: (id: string) => post<T.Approval>(`/admin/operators/${id}/request-go-live`),
+  requestGoLive: (id: string) => post<T.GoLiveRequest>(`/admin/operators/${id}/request-go-live`),
   ingest: (form: FormData) => request<T.IngestRun>("POST", "/admin/ingest", { form }),
   ingestRuns: () => get<T.IngestRun[]>("/admin/ingest/runs"),
   metrics: () => get<T.Metrics>("/admin/metrics"),
   agentActions: () => get<T.AgentAction[]>("/admin/agent-actions"),
   jobs: () => get<T.Job[]>("/admin/jobs"),
+  adminQuote: (id: string) => get<T.AdminQuote>(`/admin/quotes/${id}`),
+  setPaymentHosts: (id: string, hosts: string[]) => put<T.AdminOperator>(`/admin/operators/${id}/payment-hosts`, { hosts }),
+  confirmContactRfq: (opId: string, cid: string) => post<null>(`/admin/operators/${opId}/contacts/${cid}/confirm-rfq`),
+  suppressions: () => get<T.Suppression[]>("/admin/suppressions"),
+  addSuppression: (b: T.SuppressionBody) => post<T.Suppression>("/admin/suppressions", b),
+  deleteSuppression: (id: string) => del<null>(`/admin/suppressions/${id}`),
+  quarantined: () => get<T.QuarantinedMessage[]>("/admin/inbound/quarantined"),
+  enterpriseInquiries: () => get<T.EnterpriseInquiryRecord[]>("/admin/enterprise-inquiries"),
+  deactivateUser: (id: string) => post<null>(`/admin/users/${id}/deactivate`),
+  revokeManifestLinks: (tripId: string) => post<{ revoked: number }>(`/admin/trips/${tripId}/manifest/revoke-links`),
   adminQuotes: (status?: string) => get<T.AdminQuote[]>("/admin/quotes", { query: { status } }),
   resolveQuote: (id: string, b: T.ResolveQuoteBody) => post<T.AdminQuote>(`/admin/quotes/${id}/resolve`, b),
 };

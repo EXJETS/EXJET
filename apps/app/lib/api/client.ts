@@ -120,4 +120,5 @@ export async function request<T>(method: string, path: string, opts: RequestOpti
 export const get = <T>(path: string, opts?: RequestOptions) => request<T>("GET", path, opts);
 export const post = <T>(path: string, body?: unknown, opts?: RequestOptions) => request<T>("POST", path, { ...opts, body });
 export const put = <T>(path: string, body?: unknown, opts?: RequestOptions) => request<T>("PUT", path, { ...opts, body });
+export const del = <T>(path: string, opts?: RequestOptions) => request<T>("DELETE", path, opts);
 export const patch = <T>(path: string, body?: unknown, opts?: RequestOptions) => request<T>("PATCH", path, { ...opts, body });

@@ -20,12 +20,12 @@ export default defineConfig({
     { name: "api-mobile-390", use: { viewport: { width: 390, height: 844 }, hasTouch: true, launchOptions } },
   ],
   webServer: [
-    { command: "bash e2e/api/start-api.sh", url: "http://localhost:8000/v1/billing/plans", reuseExistingServer: false, timeout: 180_000, stdout: "ignore" },
+    { command: "bash e2e/api/start-api.sh", url: "http://localhost:8000/v1/billing/plans", reuseExistingServer: !!process.env.E2E_REUSE, timeout: 180_000, stdout: "ignore" },
     {
-      // No NEXT_PUBLIC_API_MOCK here: this build can never use the mock.
-      command: `NEXT_DIST_DIR=.next-api API_ORIGIN=http://localhost:8000 npx next build && NEXT_DIST_DIR=.next-api API_ORIGIN=http://localhost:8000 npx next start -p ${PORT}`,
+      // No NEXT_PUBLIC_API_MOCK here: this build can never use the mock. NEXT_PUBLIC_DEV_BILLING=1 enables the /dev/checkout test page.
+      command: `NEXT_PUBLIC_DEV_BILLING=1 NEXT_DIST_DIR=.next-api API_ORIGIN=http://localhost:8000 npx next build && NEXT_DIST_DIR=.next-api API_ORIGIN=http://localhost:8000 npx next start -p ${PORT}`,
       url: `http://localhost:${PORT}/login`,
-      reuseExistingServer: false,
+      reuseExistingServer: !!process.env.E2E_REUSE, // set E2E_REUSE=1 to iterate against servers already running (no DB reset)
       timeout: 240_000,
     },
   ],

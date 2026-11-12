@@ -16,6 +16,8 @@ function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const login = useAction(api.login);
+  const resend = useAction(api.resendVerification);
+  const [resent, setResent] = useState(false);
 
   async function submit(e: React.FormEvent) {
     e.preventDefault();
@@ -35,11 +37,18 @@ function LoginForm() {
         <input id="password" className="input" type="password" autoComplete="current-password" required value={password} onChange={(e) => setPassword(e.target.value)} />
       </Field>
       <ActionError error={login.error} />
+      {login.error?.code === "email_not_verified" ? (
+        <div className="actions">
+          <button type="button" className="btn btn-sm" disabled={resend.pending || !email} onClick={async () => { if (await resend.run(email)) setResent(true); }}>Resend verification email</button>
+          {resent ? <span className="help" role="status">Sent, if the account is waiting for verification.</span> : null}
+        </div>
+      ) : null}
       <button className="btn btn-primary btn-block" type="submit" disabled={login.pending || !email || !password}>
         {login.pending ? "Signing in" : "Sign in"}
       </button>
+      <p className="small"><Link href="/forgot-password">Forgot your password?</Link></p>
       <p className="muted small">
-        New to EXJET? <Link href="/signup">Create an account</Link>. You can also <Link href="/aircraft">browse aircraft</Link> without one.
+        New to EXJET? <Link href={params.get("next") ? `/signup?next=${encodeURIComponent(params.get("next") as string)}` : "/signup"}>Create an account</Link>. You can also <Link href="/aircraft">browse aircraft</Link> without one.
       </p>
     </form>
   );

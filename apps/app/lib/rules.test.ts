@@ -49,3 +49,21 @@ describe("isUnresolved", () => {
     expect(isUnresolved(["legs[1].depart_at"], "depart_at", 0)).toBe(false);
   });
 });
+
+import { friendlyError } from "./api/errors";
+import { formatLegDeparture } from "./rules";
+
+describe("friendlyError", () => {
+  it("maps rate limit and cap codes to plain language", () => {
+    expect(friendlyError({ code: "rfq_daily_cap_reached", message: "x" })).toMatch(/limit/i);
+    expect(friendlyError({ code: "duplicate_ground_rfq", message: "x" })).toMatch(/already/i);
+    expect(friendlyError({ code: "unmapped", message: "API words" })).toBe("API words");
+  });
+});
+
+describe("formatLegDeparture", () => {
+  it("shows the origin wall time with the zone abbreviation", () => {
+    const t = formatLegDeparture({ depart_local: "2026-11-13T09:00:00", depart_at: "2026-11-13T14:00:00Z", origin_timezone: "America/New_York" });
+    expect(t).toBe("Nov 13, 2026 09:00 EST");
+  });
+});

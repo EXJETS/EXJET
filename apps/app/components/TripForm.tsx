@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Plus, Trash2, Wand2 } from "lucide-react";
-import { api, ApiError, type TripIntake, type TripType } from "@/lib/api";
+import { api, type TripIntake, type TripType } from "@/lib/api";
 import { useAction } from "@/hooks/use-api";
 import { isUnresolved } from "@/lib/rules";
 import { AirportChip, AirportInput } from "./AirportInput";
@@ -29,19 +29,8 @@ interface Form {
 }
 const initial: Form = { trip_type: "one_way", legs: [blankLeg()], passengers: "", checked_bags: "0", carry_on_bags: "0", golf_bags: "0", ski_bags: "0" };
 
-/** `2026-11-13T09:00:00-05:00` -> `09:00` (airport-local wall time, offset ignored). */
+/** `2026-11-13T09:00:00` (naive local) or with an offset -> `09:00` (airport-local wall time). */
 const wallTime = (s: string | null | undefined) => (s && /T(\d{2}:\d{2})/.exec(s)?.[1]) || "";
-
-/**
- * The API requires departure times with a UTC offset and only the server knows each airport's zone, so manually
- * entered times are resolved through POST /trips/intake (deterministic parse of "ORIGIN to DEST on DATE TIME").
- */
-async function resolveDeparture(l: FormLeg): Promise<string> {
-  const r = await api.intake(`${l.origin} to ${l.dest} on ${l.date} ${l.time || "09:00"}, 1 passenger`);
-  const at = r.legs[0]?.depart_at;
-  if (!at) throw new ApiError(422, "invalid_departure", `Could not resolve the departure time for ${l.origin} to ${l.dest}. Check the airports and date.`);
-  return at;
-}
 
 export function TripForm() {
   const router = useRouter();
@@ -59,7 +48,8 @@ export function TripForm() {
   const [note, setNote] = useState<string | null>(null);
   const intake = useAction(api.intake);
   const create = useAction(async (f: Form) => {
-    const legs = await Promise.all(f.legs.map(async (l) => ({ origin_icao: l.origin, destination_icao: l.dest, depart_at: await resolveDeparture(l) })));
+    // Naive wall-clock time at the ORIGIN airport; the API reads it in that airport's zone.
+    const legs = f.legs.map((l) => ({ origin_icao: l.origin, destination_icao: l.dest, depart_at: `${l.date}T${l.time}` }));
     const n = (s: string) => Math.max(0, Number(s) || 0);
     return api.createTrip({ trip_type: f.trip_type, legs, passengers: Number(f.passengers), checked_bags: n(f.checked_bags), carry_on_bags: n(f.carry_on_bags), golf_bags: n(f.golf_bags), ski_bags: n(f.ski_bags), raw_request: text.trim() || null });
   });
@@ -83,7 +73,7 @@ export function TripForm() {
     if (!r) return;
     setForm({
       trip_type: r.trip_type as TripType,
-      legs: r.legs.length ? r.legs.map((l) => ({ origin: l.origin_icao ?? "", dest: l.destination_icao ?? "", date: l.depart_date ?? (l.depart_at ? l.depart_at.slice(0, 10) : ""), time: wallTime(l.depart_at) })) : [blankLeg()],
+      legs: r.legs.length ? r.legs.map((l) => ({ origin: l.origin_icao ?? "", dest: l.destination_icao ?? "", date: l.depart_date ?? (l.depart_local ? l.depart_local.slice(0, 10) : ""), time: wallTime(l.depart_local ?? l.depart_at) })) : [blankLeg()],
       passengers: r.passengers ? String(r.passengers) : "",
       checked_bags: String(r.checked_bags ?? 0),
       carry_on_bags: String(r.carry_on_bags ?? 0),

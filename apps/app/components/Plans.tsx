@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { api, type Plan } from "@/lib/api";
 import { useAction, useApi } from "@/hooks/use-api";
+import { useMe } from "@/hooks/me";
 import { ActionError, Async, Banner, Field } from "./ui";
 
 export function Plans({ currentPlan }: { currentPlan?: string }) {
@@ -71,21 +72,27 @@ export function EnterpriseInquiryForm() {
   const [seats, setSeats] = useState("5");
   const [notes, setNotes] = useState("");
   const [sent, setSent] = useState(false);
+  const { me } = useMe();
+  const [name, setName] = useState(me?.user.full_name ?? "");
+  const [email, setEmail] = useState(me?.user.email ?? "");
+  const [phone, setPhone] = useState("");
   const inquiry = useAction(api.enterpriseInquiry);
   async function submit(e: React.FormEvent) {
     e.preventDefault();
-    const r = await inquiry.run({ company, seats: Number(seats) || 1, notes });
+    const r = await inquiry.run({ company, seats: Number(seats) || 1, notes: notes.trim() || null, contact_name: name, contact_email: email, contact_phone: phone.trim() || null });
     if (r !== undefined) setSent(true);
   }
   if (sent) return <Banner tone="ok" live>Inquiry received. EXJET will contact you by email.</Banner>;
   return (
     <form className="card card-b" onSubmit={submit} style={{ display: "grid", gap: 12, maxWidth: 520 }}>
       <h2>Enterprise inquiry</h2>
+      <div className="grid2"><Field label="Contact name" id="inq-name"><input id="inq-name" className="input" required value={name} onChange={(e) => setName(e.target.value)} /></Field><Field label="Contact email" id="inq-email"><input id="inq-email" className="input" type="email" required value={email} onChange={(e) => setEmail(e.target.value)} /></Field></div>
+      <Field label="Phone (optional)" id="inq-phone"><input id="inq-phone" className="input" type="tel" value={phone} onChange={(e) => setPhone(e.target.value)} /></Field>
       <Field label="Company" id="inq-company"><input id="inq-company" className="input" required value={company} onChange={(e) => setCompany(e.target.value)} /></Field>
       <Field label="Seats" id="inq-seats"><input id="inq-seats" className="input" type="number" min={1} value={seats} onChange={(e) => setSeats(e.target.value)} inputMode="numeric" /></Field>
       <Field label="Notes" id="inq-notes"><textarea id="inq-notes" className="textarea" value={notes} onChange={(e) => setNotes(e.target.value)} /></Field>
       <ActionError error={inquiry.error} />
-      <div><button className="btn btn-primary" disabled={inquiry.pending || !company}>{inquiry.pending ? "Sending" : "Send inquiry"}</button></div>
+      <div><button className="btn btn-primary" disabled={inquiry.pending || !company || !name || !email}>{inquiry.pending ? "Sending" : "Send inquiry"}</button></div>
     </form>
   );
 }
