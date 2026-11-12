@@ -50,3 +50,14 @@ var/
 # founder data: never commit (public repo, contains contacts)
 data/raw/*
 !data/raw/.gitkeep
+
+# nested apps
+node_modules/
+.next/
+out/
+.env
+.env.*
+!.env.example
+*.tsbuildinfo
+test-results/
+playwright-report/
