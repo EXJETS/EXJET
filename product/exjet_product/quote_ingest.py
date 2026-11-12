@@ -365,7 +365,7 @@ def find_payment_link(texts: list[str], extra_urls: list[str] | None = None) -> 
 
 def find_contracting_party(pages: list[str]) -> str | None:
     full = "\n".join(pages)
-    m = re.search(r"(?:charterer|customer|client|lessee|member)\s*[:\-]\s*([A-Z][A-Za-z.'\- ]{2,80}?)(?:\n|,|\(|$)", full)
+    m = re.search(r"(?:charterer|customer|client|lessee|member)\s*[:\-]\s*([A-Z][A-Za-z.'\- ]{2,80}?)(?:\n|,|\(|$)", full, re.I)
     return m[1].strip() if m else None
 
 

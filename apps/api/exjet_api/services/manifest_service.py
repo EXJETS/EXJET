@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import uuid
-from datetime import date
+from datetime import date, timedelta
 
 from exjet_product.flight_watch import next_watch_at
 from exjet_product.manifest import PassengerInput, validate_manifest
@@ -61,8 +61,9 @@ def put_manifest(db: Session, trip: Trip, body: S.ManifestPut) -> None:
     for p in db.execute(select(Passenger).where(Passenger.trip_id == trip.id)).scalars():
         db.delete(p)
     db.flush()
-    for p in body.passengers:
-        db.add(Passenger(trip_id=trip.id, full_name=p.full_name, date_of_birth=p.date_of_birth.isoformat(), id_type=p.id_type,
+    base = clock.now()
+    for i, p in enumerate(body.passengers):
+        db.add(Passenger(created_at=base + timedelta(microseconds=i), trip_id=trip.id, full_name=p.full_name, date_of_birth=p.date_of_birth.isoformat(), id_type=p.id_type,
                          id_number=p.id_number, id_expiry=p.id_expiry, id_issuer=p.id_issuer, weight_lbs=p.weight_lbs))
     db.flush()
 

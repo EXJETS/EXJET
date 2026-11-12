@@ -58,7 +58,7 @@ function personaMe(p: Persona): Me | null {
   };
 }
 
-function seed(persona: Persona = "entitled"): Db {
+function seed(persona: Persona = "visitor"): Db {
   return {
     persona,
     me: personaMe(persona),
@@ -127,7 +127,7 @@ export function mockSetPersona(p: Persona) {
   save();
 }
 export function mockReset() {
-  cache = seed("visitor");
+  cache = seed();
   save();
 }
 /** Make every sent RFQ reply now (as if the operator answered quotes@). */
@@ -914,7 +914,8 @@ export async function mockRequest(method: string, path: string, opts: RequestOpt
     if (!m) continue;
     try {
       const data = await r.h(m, opts);
-      return { status: r.status ?? 200, data: data === undefined ? null : data };
+      // Clone like a real network response so React never sees in-place mutation of cached objects.
+      return { status: r.status ?? 200, data: data === undefined || data === null ? null : JSON.parse(JSON.stringify(data)) };
     } catch (e) {
       if (e instanceof MockErr) return { status: e.status, data: { error: { code: e.code, message: e.message } } };
       throw e;

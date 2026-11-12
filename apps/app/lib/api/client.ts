@@ -24,13 +24,12 @@ export class ApiError extends Error {
   }
 }
 
-type Handlers = { onUnauthorized: (path: string) => void };
+type Handlers = { onUnauthorized: () => void };
 const handlers: Handlers = {
-  onUnauthorized(path) {
+  onUnauthorized() {
     if (typeof window === "undefined") return;
     if (window.location.pathname.startsWith("/login") || window.location.pathname.startsWith("/signup")) return;
     const next = encodeURIComponent(window.location.pathname + window.location.search);
-    void path;
     // Central redirect outside React; a full navigation also clears client state.
     // eslint-disable-next-line @next/next/no-location-assign-relative-destination
     window.location.href = `/login?next=${next}`;
@@ -67,9 +66,12 @@ export function apiUrl(u: string | null | undefined): string | null {
   return `${API_BASE}${u.startsWith("/") ? "" : "/"}${u}`;
 }
 
+const loadMock = process.env.NEXT_PUBLIC_API_MOCK === "1" ? () => import("./mock") : null;
+
 async function transport(method: string, path: string, opts: RequestOptions): Promise<{ status: number; data: unknown }> {
-  if (isMock()) {
-    const { mockRequest } = await import("./mock");
+  // Literal env check so the bundler removes the mock (and its data) from builds without the flag.
+  if (loadMock) {
+    const { mockRequest } = await loadMock();
     return mockRequest(method, path, opts);
   }
   const headers: Record<string, string> = {};
@@ -107,7 +109,7 @@ export async function request<T>(method: string, path: string, opts: RequestOpti
   const code = env?.error?.code ?? (status === 401 ? "unauthenticated" : status === 403 ? "forbidden" : "http_error");
   const message = env?.error?.message ?? `Request failed (${status}).`;
   const err = new ApiError(status, code, message);
-  if (status === 401 && !opts.quiet401) handlers.onUnauthorized(path);
+  if (status === 401 && !opts.quiet401) handlers.onUnauthorized();
   throw err;
 }
 

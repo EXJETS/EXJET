@@ -6,6 +6,8 @@ import { isMock } from "@/lib/api";
 import { useMe } from "@/hooks/me";
 import { PageHeader, Card, Banner } from "@/components/ui";
 
+const loadMock = process.env.NEXT_PUBLIC_API_MOCK === "1" ? () => import("@/lib/api/mock") : null;
+
 /** Stand-in for the billing provider's hosted checkout. Exists only in mock mode. */
 function Inner() {
   const params = useSearchParams();
@@ -13,7 +15,8 @@ function Inner() {
   const { me, setMe } = useMe();
   const plan = params.get("plan") ?? "individual";
   async function pay() {
-    const { mockSetSubscription } = await import("@/lib/api/mock");
+    if (!loadMock) return;
+    const { mockSetSubscription } = await loadMock();
     const next = mockSetSubscription(plan);
     if (next) setMe(next);
     router.replace("/onboarding?checkout=success");

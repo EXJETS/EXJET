@@ -295,3 +295,6 @@ details.report summary { cursor: pointer; font-weight: 500; min-height: 32px; di
 .ul-plain { list-style: none; padding: 0; margin: 0; }
 .ul-plain li { padding: 8px 0; border-bottom: 1px solid var(--line); display: flex; justify-content: space-between; gap: 12px; align-items: center; }
 .ul-plain li:last-child { border-bottom: 0; }
+
+/* grid/flex children must be allowed to shrink so tables and rails scroll internally instead of widening the page */
+.card, .tbl-wrap, .banner, .rail, .gate, .steps, .stack, .grid2, .grid3, .grid4, .content > *, .content form, .content section, .content nav { min-width: 0; max-width: 100%; }

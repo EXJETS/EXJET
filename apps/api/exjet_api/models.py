@@ -631,7 +631,7 @@ class AgentAction(TimestampMixin, Base):
     cost_usd_micros: Mapped[int] = mapped_column(Integer, default=0)
     permission_level: Mapped[str] = mapped_column(String(8), default="DRAFT")  # READ | DRAFT | EXECUTE
     approval_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("approvals.id"))
-    status: Mapped[str] = mapped_column(String(16), default="done", index=True)  # queued|running|awaiting_approval|done|failed|blocked
+    status: Mapped[str] = mapped_column(String(24), default="done", index=True)  # queued|running|awaiting_approval|done|failed|blocked
     account_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("accounts.id"), index=True)
     error: Mapped[str | None] = mapped_column(Text)
 

@@ -4,8 +4,9 @@ from __future__ import annotations
 import logging
 import signal
 import time
-from datetime import datetime, timezone
+from datetime import datetime
 
+from . import clock
 from .db import session_factory
 from .jobs import claim_next, enqueue, run_job, _ensure_handlers
 from .providers import assert_safe_for_env
@@ -17,7 +18,7 @@ EXPIRE_EVERY_SECONDS = 3600
 
 
 def schedule_periodic(now: datetime | None = None) -> None:
-    now = now or datetime.now(timezone.utc)
+    now = now or clock.now()
     ts = int(now.timestamp())
     with session_factory()() as db:
         enqueue(db, "mail.poll_inbox", {}, dedupe_key=f"mail.poll_inbox:{ts // INBOX_EVERY_SECONDS}")

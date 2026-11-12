@@ -8,12 +8,13 @@ from __future__ import annotations
 import logging
 import uuid
 from collections.abc import Callable
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 
 from sqlalchemy import select, update
 from sqlalchemy.dialects.postgresql import insert as pg_insert
 from sqlalchemy.orm import Session
 
+from . import clock
 from .db import session_factory
 from .models import Job, JobStatus
 
@@ -40,8 +41,7 @@ def enqueue(db: Session, kind: str, payload: dict | None = None, *, run_at: date
     """Insert a job. If `dedupe_key` already exists the call is a no-op and returns None."""
     values = {"id": uuid.uuid4(), "kind": kind, "payload": payload or {}, "status": JobStatus.queued.value,
               "attempts": 0, "max_attempts": max_attempts, "dedupe_key": dedupe_key}
-    if run_at is not None:
-        values["run_at"] = run_at
+    values["run_at"] = run_at or clock.now()
     stmt = pg_insert(Job).values(**values)
     if dedupe_key:
         stmt = stmt.on_conflict_do_nothing(index_elements=[Job.dedupe_key])
@@ -56,7 +56,7 @@ def backoff_seconds(attempts: int) -> int:
 
 def claim_next(db: Session, now: datetime | None = None) -> Job | None:
     """Claim one due job (status -> running, attempts + 1). Commits the claim."""
-    now = now or datetime.now(timezone.utc)
+    now = now or clock.now()
     db.execute(
         update(Job).where(Job.status == JobStatus.running.value, Job.locked_at < now - STALE_LOCK)
         .values(status=JobStatus.queued.value, locked_at=None)
@@ -95,7 +95,7 @@ def _finish(job_id: uuid.UUID, *, ok: bool, error: str | None, now: datetime) ->
 
 
 def run_job(job: Job, now: datetime | None = None) -> bool:
-    now = now or datetime.now(timezone.utc)
+    now = now or clock.now()
     fn = HANDLERS.get(job.kind)
     if fn is None:
         _finish(job.id, ok=False, error=f"no handler for kind {job.kind}", now=now)

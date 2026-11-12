@@ -2,11 +2,12 @@
 fields (operator, tail number, contacts) takes the viewer and nulls them unless the viewer is entitled."""
 from __future__ import annotations
 
-from datetime import datetime, timedelta, timezone
+from datetime import datetime, timedelta
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from . import clock
 from . import schemas as S
 from .entitlements import Viewer, can_see_member_fields
 from .models import Aircraft, Airport, Contract, EmptyLeg, PaymentLink, Quote, Rfq, Trip
@@ -84,7 +85,7 @@ class Builder:
 
     # ------------------------------------------------------------------ trip
     def weather_available(self, t: Trip, now: datetime | None = None) -> bool:
-        now = now or datetime.now(timezone.utc)
+        now = now or clock.now()
         return t.status != "cancelled" and any(
             now - timedelta(hours=6) <= leg.depart_at <= now + WEATHER_HORIZON for leg in t.legs
         )

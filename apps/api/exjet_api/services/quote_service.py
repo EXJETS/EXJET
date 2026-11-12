@@ -349,7 +349,9 @@ def mark_paid(db: Session, q: Quote) -> Trip:
     trip.status = TripStatus.manifest_due.value
     due = compute_due_at(first, get_settings().manifest_due_hours)
     if trip.manifest is None:
-        db.add(Manifest(trip_id=trip.id, due_at=due))
+        m = Manifest(trip_id=trip.id, due_at=due)
+        db.add(m)
+        trip.manifest = m
     now = clock.now()
     future = [t for t in reminder_times(first) if t > now]
     if not future and first > now:

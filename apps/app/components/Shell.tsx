@@ -12,7 +12,7 @@ import { Chip, Skeleton } from "./ui";
 import type { Me } from "@/lib/api";
 
 // Mock tooling is only code-split in when NEXT_PUBLIC_API_MOCK=1 (inlined at build; dead code otherwise).
-const MockSwitcher = isMock() ? dynamic(() => import("./MockSwitcher").then((m) => m.MockSwitcher), { ssr: false }) : null;
+const MockSwitcher = process.env.NEXT_PUBLIC_API_MOCK === "1" ? dynamic(() => import("./MockSwitcher").then((m) => m.MockSwitcher), { ssr: false }) : null;
 
 const BARE = ["/login", "/signup", "/legal"];
 const PUBLIC = ["/aircraft", "/empty-legs"];

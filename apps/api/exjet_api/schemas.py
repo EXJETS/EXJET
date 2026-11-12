@@ -225,7 +225,7 @@ class TripDraftOut(BaseModel):
     ski_bags: int
     unresolved: list[str]
     confidence: float
-    notes: list[str] = []
+    interpretation_notes: list[str] = []
     candidates: dict[str, list[str]] = {}
 
 

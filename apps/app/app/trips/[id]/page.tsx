@@ -37,13 +37,11 @@ function RouteSummary({ trip }: { trip: Trip }) {
         ))}
       </div>
       <div className="card-b" style={{ borderTop: "1px solid var(--line)" }}>
-        <dl className="kv" style={{ gridTemplateColumns: "repeat(auto-fit, minmax(120px, max-content))", gap: "4px 24px" }}>
-          <dt>Passengers</dt><dd>{trip.passengers}</dd>
-          <dt>Checked</dt><dd>{trip.checked_bags}</dd>
-          <dt>Carry-on</dt><dd>{trip.carry_on_bags}</dd>
-          <dt>Golf</dt><dd>{trip.golf_bags}</dd>
-          <dt>Ski</dt><dd>{trip.ski_bags}</dd>
-        </dl>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "12px 32px" }}>
+          {([["Passengers", trip.passengers], ["Checked bags", trip.checked_bags], ["Carry-on", trip.carry_on_bags], ["Golf bags", trip.golf_bags], ["Ski bags", trip.ski_bags]] as const).map(([l, v]) => (
+            <div key={l}><div className="eyebrow">{l}</div><div style={{ fontWeight: 500 }}>{v}</div></div>
+          ))}
+        </div>
       </div>
     </Card>
   );

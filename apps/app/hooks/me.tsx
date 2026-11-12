@@ -24,12 +24,14 @@ async function fetchMe(): Promise<Me | null> {
 export function MeProvider({ children }: { children: React.ReactNode }) {
   const q = useApi<Me | null>("me", fetchMe);
   const [override, setOverride] = useState<{ v: Me | null } | undefined>();
-  const { reload } = q;
 
   const refresh = useCallback(async () => {
-    setOverride(undefined);
-    reload();
-  }, [reload]);
+    try {
+      setOverride({ v: await fetchMe() });
+    } catch {
+      /* keep the current value; the next navigation retries */
+    }
+  }, []);
   const setMe = useCallback((m: Me | null) => setOverride({ v: m }), []);
 
   const me = override ? override.v : (q.data ?? null);
