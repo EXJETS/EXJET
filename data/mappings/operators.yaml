@@ -1,0 +1,37 @@
+# Column mapping for the operators dataset (files named operators*.csv / .xlsx / .json).
+#
+# Each target field lists header aliases. Matching ignores case, spaces and punctuation
+# ("DBA Name", "dba_name" and "D.B.A. name" are the same header). Matching is exact after that
+# normalisation: nothing is fuzzy-guessed. Edit aliases freely; no code change is needed.
+# `required: true` means the column must exist in the file. `satisfied_by` lists other fields
+# that may stand in for the column at column level (rows are still validated one by one).
+# `ignored` headers are dropped silently (used for columns that must never be stored).
+dataset: operators
+fields:
+  dba_name:
+    required: true
+    satisfied_by: [legal_name]
+    aliases: [dba, dba name, doing business as, operator, operator name, trade name, brand name, company, company name, name]
+  legal_name:
+    aliases: [legal, legal name, legal entity, entity name, registered name, certificate holder, certificate holder name]
+  certificate_number:
+    aliases: [certificate, certificate no, certificate num, cert, cert no, cert number, air carrier certificate, air carrier certificate number, part 135 certificate, faa certificate, faa certificate number, operating certificate, ocn]
+  certificate_type:
+    aliases: [cert type, certificate kind, operating authority, authority, part, faa part, regulation]
+  safety_rating:
+    aliases: [rating, safety, safety rating, safety level, safety tier]
+  base_airport_icao:
+    aliases: [base, base airport, home base, base icao, home airport, hub, base airport icao]
+  country:
+    aliases: [country code, operator country, nation]
+  contact_name:
+    aliases: [contact, contact person, contact full name, rfq contact, rfq contact name, charter contact name, dispatcher]
+  contact_title:
+    aliases: [contact job title, contact role, rfq contact title, job title]
+  contact_email:
+    aliases: [email, e mail, contact e mail, rfq email, rfq contact email, charter email, quotes email, dispatch email, operator email]
+  contact_phone:
+    aliases: [phone, telephone, tel, contact telephone, contact phone number, rfq phone, charter phone, dispatch phone]
+  receives_rfq:
+    aliases: [rfq, rfq recipient, receives rfqs, send rfq, rfq contact flag]
+ignored: [rating source, safety rating source, rating provider, rating vendor, rating agency, rating issuer]

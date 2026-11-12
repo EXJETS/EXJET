@@ -1,0 +1,7 @@
+node_modules
+.next
+.next-api
+e2e/api/.tmp
+*.tsbuildinfo
+playwright-report
+test-results

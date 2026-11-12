@@ -1,0 +1,12 @@
+# Founder-editable operator name overrides. Operator names are normalised to the DBA you supply here.
+#
+# Format (legal or source name -> DBA). Keys match case/spacing/punctuation-insensitively and are
+# checked against both the file's DBA column and its legal-name column. The DBA on the right is
+# stored exactly as written.
+#
+# overrides:
+#   "Example Aviation Holdings LLC": "Example Air"
+#   "EXAMPLE AIR SERVICES INC": "Example Air"
+#
+# Empty to start: with no override, the DBA column value is used as supplied (whitespace tidied).
+overrides: {}

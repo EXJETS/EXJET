@@ -1,0 +1,1166 @@
+/**
+ * In-memory mock of the EXJET API v1. Loaded ONLY when NEXT_PUBLIC_API_MOCK=1 (dynamic import from client.ts).
+ * All data is SYNTHETIC. State persists in localStorage so a page reload keeps the session.
+ */
+import { isUsIcao, requiredIdType } from "../rules";
+import { MOCK_AIRPORTS, MOCK_CATEGORIES, MOCK_LISTING_SEED, MOCK_OPERATORS, MOCK_TYPES, MOCK_TZ } from "./mock-data";
+import type {
+  AdminOperator, AgentAction, Approval, IngestRun, Job, KycSubmissionDetail, Listing, ManifestPassengerIn, Me, MatchResult, Quote, Rfq, EnterpriseInquiryRecord,
+  Trip, TripIntake, TripStatus,
+} from "./types";
+import type { RequestOptions } from "./client";
+
+export type Persona = "visitor" | "member" | "entitled" | "admin";
+
+interface TripRec extends Trip {
+  manifest_passengers: (ManifestPassengerIn & { id: string; id_number: string })[];
+  position_progress: number | null;
+}
+interface Db {
+  persona: Persona;
+  me: Me | null;
+  seq: number;
+  trips: TripRec[];
+  kyc: { submittedAt: number; id: string } | null;
+  seats: string[];
+  invites: { id: string; email: string; created_at: string; expires_at: string }[];
+  quarantined: { id: string; received_at: string | null; from_address: string; subject: string; reason: string | null; dmarc_pass: boolean | null; spf: string | null; dkim: string | null; approval_id: string | null }[];
+  inquiries: EnterpriseInquiryRecord[];
+  suppressions: { id: string; email: string; reason: "unsubscribe" | "bounce" | "complaint" | "legal" | "manual"; source: string | null; created_at: string }[];
+  approvals: Approval[];
+  kycRows: KycSubmissionDetail[];
+  operators: AdminOperator[];
+  ingestRuns: IngestRun[];
+  jobs: Job[];
+  actions: AgentAction[];
+}
+
+const KEY = "exjet-mock-db-v2";
+const SYN_DOC = "/mock/synthetic-document.pdf";
+const EXCLUDED = ["netjets", "flexjet", "nicholas air"];
+
+const ago = (min: number) => new Date(Date.now() - min * 60_000).toISOString();
+
+function personaMe(p: Persona): Me | null {
+  if (p === "visitor") return null;
+  const base: Me = {
+    user: { id: "usr_syn_1", email: "member@example.com", full_name: "SYNTHETIC Member", role: "member", email_verified: true },
+    account: { id: "acc_syn_1", type: "individual", display_name: "SYNTHETIC Member", seats: 1, kyc_status: "not_started" },
+    subscription: null,
+    member: { is_owner: true, identity_status: "not_started", is_suspended: false },
+    entitled: false,
+    next_step: "kyc",
+  };
+  if (p === "member") return base;
+  const sub: NonNullable<Me["subscription"]> = { plan: "individual", status: "active", current_period_end: new Date(Date.now() + 20 * 86_400_000).toISOString() };
+  if (p === "entitled") return { ...base, account: { ...base.account!, kyc_status: "approved" }, subscription: sub, member: { is_owner: true, identity_status: "approved", is_suspended: false }, entitled: true, next_step: "ready" };
+  return {
+    user: { id: "usr_syn_admin", email: "admin@example.com", full_name: "SYNTHETIC Admin", role: "admin", email_verified: true },
+    account: { id: "acc_syn_admin", type: "individual", display_name: "SYNTHETIC Admin", seats: 1, kyc_status: "approved" },
+    subscription: sub,
+    member: { is_owner: true, identity_status: "approved", is_suspended: false },
+    entitled: true,
+    next_step: "ready",
+  };
+}
+
+function seed(persona: Persona = "visitor"): Db {
+  return {
+    persona,
+    me: personaMe(persona),
+    seq: 1,
+    trips: [],
+    kyc: null,
+    seats: [],
+    invites: [],
+    suppressions: [{ id: "sup_1", email: "unsubscribed@example.com", reason: "unsubscribe", source: "inbound", created_at: ago(2000) }],
+    approvals: [
+      { id: "apr_1", kind: "kyc_final", status: "pending", summary: "KYC final decision: SYNTHETIC Applicant One (individual, passport)", subject_type: "kyc_submission", subject_id: "kyc_1", required_role: "admin", requested_by: "system:kyc", decided_by: null, created_at: ago(95), decided_at: null, decision_note: null, payload: { vendor_result: "document check passed (synthetic)" } },
+      { id: "apr_2", kind: "operator_go_live", status: "pending", summary: "Go-live for SYNTHETIC Test Operator C", subject_type: "operator", subject_id: "op_syn_c", required_role: "ceo", requested_by: "admin", decided_by: null, created_at: ago(300), decided_at: null, decision_note: null, payload: { rfq_dispatch_policy: true } },
+      { id: "apr_4", kind: "payment_host", status: "pending", summary: "Payment site pay.other-example.com for SYNTHETIC Test Operator A", subject_type: "quote", subject_id: "qte_syn", required_role: "admin", requested_by: "system:quote_ingest", decided_by: null, created_at: ago(40), decided_at: null, decision_note: null, payload: { operator: "SYNTHETIC Test Operator A", host: "pay.other-example.com", approved_hosts: ["pay.example.com"], quote_number: "SYN-Q-0099" } },
+      { id: "apr_5", kind: "inbound_review", status: "pending", summary: "Held inbound email from unknown-sender@example.net", subject_type: "email_message", subject_id: "qm_1", required_role: "admin", requested_by: "system:inbound", decided_by: null, created_at: ago(120), decided_at: null, decision_note: null, payload: { from: "unknown-sender@example.net", reason: "sender_not_a_known_contact", dmarc_pass: false } },
+      { id: "apr_3", kind: "operator_go_live", status: "approved", summary: "Go-live for SYNTHETIC Test Operator A", subject_type: "operator", subject_id: "op_syn_a", required_role: "ceo", requested_by: "admin", decided_by: "admin", created_at: ago(4000), decided_at: ago(3900), decision_note: "Certificate verified (synthetic).", payload: null },
+    ],
+    quarantined: [
+      { id: "qm_1", received_at: ago(120), from_address: "unknown-sender@example.net", subject: "Re: [EXJ-AB12CD] Charter request", reason: "sender_not_a_known_contact", dmarc_pass: false, spf: "fail", dkim: "none", approval_id: "apr_5" },
+    ],
+    inquiries: [
+      { id: "inq_1", created_at: ago(900), account_id: null, user_id: "usr_syn_9", company: "SYNTHETIC Holdings", seats: 12, notes: "Teams in three offices.", contact_name: "SYNTHETIC Contact", contact_email: "contact@example.com", contact_phone: null },
+    ],
+    kycRows: [
+      { id: "kyc_1", account_id: "acc_syn_9", scope: "account", status: "in_review", kind: "individual", holder_name: "SYNTHETIC Applicant One", created_at: ago(95), decision_note: null, vendor: "fake", vendor_result: { document_authentic: true, selfie_match: true }, documents: [{ id: "doc_1", doc_type: "passport", filename: "synthetic-passport.pdf", content_type: "application/pdf", size_bytes: 600, url: SYN_DOC }] },
+    ],
+    operators: [
+      { id: "op_syn_a", dba_name: MOCK_OPERATORS[0].dba_name, certificate_type: "135", safety_rating: "Gold", is_excluded: false, go_live_status: "live", aircraft_count: 5, contact_count: 1, payment_hosts: ["pay.example.com"], pending_contact_count: 0 },
+      { id: "op_syn_b", dba_name: MOCK_OPERATORS[1].dba_name, certificate_type: "135", safety_rating: "Platinum", is_excluded: false, go_live_status: "live", aircraft_count: 5, contact_count: 1, payment_hosts: ["pay.example.com"], pending_contact_count: 0 },
+      { id: "op_syn_c", dba_name: MOCK_OPERATORS[2].dba_name, certificate_type: "135", safety_rating: "Not rated", is_excluded: false, go_live_status: "pending_ceo", aircraft_count: 4, contact_count: 1, payment_hosts: [], pending_contact_count: 1 },
+    ],
+    ingestRuns: [
+      { id: "run_1", dataset: "operators", filename: "synthetic-operators.csv", rows_read: 4, rows_loaded: 3, rows_updated: 0, rows_rejected: 1, duplicates_merged: 0, created_at: ago(1500), report: { rejected: [{ row: 4, reason: "Operator excluded by policy" }] } },
+    ],
+    jobs: [
+      { id: "job_1", kind: "mail.poll_inbox", status: "done", attempts: 1, max_attempts: 5, run_at: ago(2), last_error: null, created_at: ago(2) },
+      { id: "job_2", kind: "kyc.vendor_check", status: "done", attempts: 1, max_attempts: 5, run_at: ago(96), last_error: null, created_at: ago(97) },
+      { id: "job_3", kind: "flight.watch", status: "failed", attempts: 3, max_attempts: 3, run_at: ago(40), last_error: "Provider timeout (synthetic)", created_at: ago(180) },
+    ],
+    actions: [
+      { id: "act_1", agent: "operations", event: "rfq.chase", status: "blocked", permission_level: "READ", model: null, input_tokens: 0, output_tokens: 0, cost_usd_micros: 0, account_id: null, error: "No approval record for outreach purpose (synthetic)", created_at: ago(60) },
+    ],
+  };
+}
+
+let cache: Db | null = null;
+function db(): Db {
+  if (cache) return cache;
+  try {
+    const raw = typeof localStorage !== "undefined" ? localStorage.getItem(KEY) : null;
+    if (raw) {
+      cache = JSON.parse(raw) as Db;
+      return cache;
+    }
+  } catch {
+    /* ignore */
+  }
+  cache = seed();
+  return cache;
+}
+function save() {
+  try {
+    localStorage.setItem(KEY, JSON.stringify(cache));
+  } catch {
+    /* ignore */
+  }
+}
+
+// ---------- dev controls (used by the mock switcher) ----------
+export function mockPersona(): Persona {
+  return db().persona;
+}
+export function mockSetPersona(p: Persona) {
+  const d = db();
+  d.persona = p;
+  d.me = personaMe(p);
+  save();
+}
+export function mockReset() {
+  cache = seed();
+  save();
+}
+/** Make every sent RFQ reply now (as if the operator answered quotes@). */
+export function mockSimulateReplies() {
+  const d = db();
+  d.trips.forEach((t) => settleReplies(t, true));
+  save();
+}
+export function mockSetSubscription(plan: string): Me | null {
+  const d = db();
+  if (!d.me) return null;
+  d.me.subscription = { plan: plan as NonNullable<Me["subscription"]>["plan"], status: "active", current_period_end: new Date(Date.now() + 30 * 86_400_000).toISOString() };
+  if (plan === "family_office") d.me.account!.seats = 2;
+  const kycOk = d.me.account!.kyc_status === "approved";
+  d.me.entitled = kycOk;
+  if (d.me.member) d.me.member.identity_status = d.me.account!.kyc_status;
+  d.me.next_step = kycOk ? "ready" : (d.me.account!.kyc_status === "in_review" || d.me.account!.kyc_status === "submitted") ? "kyc_pending" : "kyc";
+  save();
+  return d.me;
+}
+export function mockAdvanceFlight() {
+  const d = db();
+  const t = [...d.trips].reverse().find((x) => ["scheduled", "in_flight"].includes(x.status));
+  if (!t) return false;
+  t.status = "in_flight";
+  t.position_progress = Math.min(0.9, (t.position_progress ?? 0.1) + 0.3);
+  save();
+  return true;
+}
+
+// ---------- helpers ----------
+const sleep = (ms: number) => new Promise((r) => setTimeout(r, ms));
+class MockErr {
+  constructor(public status: number, public code: string, public message: string) {}
+}
+const fail = (status: number, code: string, message: string): never => {
+  throw new MockErr(status, code, message);
+};
+const nid = (p: string) => `${p}_${db().seq++}_${Math.random().toString(36).slice(2, 7)}`;
+
+function needAuth(): Me {
+  const m = db().me;
+  if (!m) fail(401, "unauthenticated", "Sign in to continue.");
+  return m as Me;
+}
+function needAdmin(): Me {
+  const m = needAuth();
+  if (m.user.role !== "admin") fail(403, "forbidden", "Admin access required.");
+  return m;
+}
+function needEntitled(): Me {
+  const m = needAuth();
+  if (!m.entitled) fail(403, "not_entitled", "KYC approval and an active membership are required.");
+  return m;
+}
+const entitled = () => !!db().me?.entitled;
+
+function haversineNm(a: { lat: number; lon: number }, b: { lat: number; lon: number }) {
+  const R = 3440.065;
+  const r = (x: number) => (x * Math.PI) / 180;
+  const dLat = r(b.lat - a.lat);
+  const dLon = r(b.lon - a.lon);
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(r(a.lat)) * Math.cos(r(b.lat)) * Math.sin(dLon / 2) ** 2;
+  return 2 * R * Math.asin(Math.sqrt(h));
+}
+// Coordinates used only by the mock matcher/track (real airport locations, approximate).
+const COORDS: Record<string, [number, number]> = {
+  KTEB: [40.85, -74.06], KHPN: [41.07, -73.71], KJFK: [40.64, -73.78], KBOS: [42.36, -71.01], KPBI: [26.68, -80.1],
+  KMIA: [25.79, -80.29], KOPF: [25.91, -80.28], KPDK: [33.88, -84.3], KATL: [33.64, -84.43], KMDW: [41.79, -87.75],
+  KORD: [41.98, -87.9], KDAL: [32.85, -96.85], KDFW: [32.9, -97.04], KHOU: [29.65, -95.28], KAUS: [30.2, -97.67],
+  KAPA: [39.57, -104.85], KASE: [39.22, -106.87], KEGE: [39.64, -106.92], KSDL: [33.62, -111.91], KLAS: [36.08, -115.15],
+  KVNY: [34.21, -118.49], KLAX: [33.94, -118.41], KSFO: [37.62, -122.38], KSNA: [33.68, -117.87], KTEX: [37.95, -107.91],
+  KSEA: [47.45, -122.31], KBFI: [47.53, -122.3], KIAD: [38.95, -77.46], MMSD: [23.15, -109.72],
+};
+const pt = (icao: string) => {
+  const c = COORDS[icao];
+  return c ? { lat: c[0], lon: c[1] } : null;
+};
+const ROUTING = 1.07;
+
+function tzOffsetMin(tz: string, instantMs: number): number {
+  const f = new Intl.DateTimeFormat("en-US", { timeZone: tz, hourCycle: "h23", year: "numeric", month: "2-digit", day: "2-digit", hour: "2-digit", minute: "2-digit", second: "2-digit" });
+  const g = (t: string) => Number(f.formatToParts(new Date(instantMs)).find((x) => x.type === t)?.value);
+  return (Date.UTC(g("year"), g("month") - 1, g("day"), g("hour"), g("minute"), g("second")) - instantMs) / 60000;
+}
+/** Naive wall time at `tz` -> UTC instant (fall-back ambiguity resolves to the first occurrence in the real API; close enough here). */
+function localToInstant(local: string, tz: string): Date {
+  const asUtc = Date.parse(`${local.slice(0, 16)}:00Z`);
+  let t = asUtc - tzOffsetMin(tz, asUtc) * 60000;
+  t = asUtc - tzOffsetMin(tz, t) * 60000;
+  return new Date(t);
+}
+const airportBrief = (icao: string) => {
+  const a = MOCK_AIRPORTS.find((x) => x.icao === icao);
+  const c = COORDS[icao];
+  return { icao, name: a?.name ?? icao, city: a?.city ?? null, state: a?.state ?? null, latitude: c ? c[0] : 0, longitude: c ? c[1] : 0, timezone: MOCK_TZ[icao] ?? null };
+};
+
+function legDistance(o: string, d: string): number | null {
+  const a = pt(o), b = pt(d);
+  return a && b ? Math.round(haversineNm(a, b) * ROUTING) : null;
+}
+
+function viewListing(l: Listing): Listing {
+  if (entitled()) return l;
+  return { ...l, tail_number: null, operator: null };
+}
+
+let LISTINGS: Listing[] | null = null;
+function allListings(): Listing[] {
+  if (LISTINGS) return LISTINGS;
+  LISTINGS = MOCK_LISTING_SEED.map(([slug, opIdx, home, seats, year, refurb, rating, amenities], i) => {
+    const t = MOCK_TYPES.find((x) => x.slug === slug)!;
+    const op = MOCK_OPERATORS[opIdx];
+    return {
+      listing_id: `lst_syn_${String(i + 1).padStart(3, "0")}`,
+      type: { slug: t.slug, manufacturer: t.manufacturer, model: t.model, category: t.category as Listing["type"]["category"] },
+      year_of_manufacture: year,
+      year_refurbished: refurb,
+      passenger_seats: seats,
+      home_city: home,
+      amenities,
+      photos: [],
+      safety_rating: rating as Listing["safety_rating"],
+      tail_number: `N00TST${i + 1}`,
+      operator: { id: op.id, dba_name: op.dba_name, certificate_type: op.certificate_type as "135", contacts: [op.contact] },
+    };
+  });
+  return LISTINGS;
+}
+
+// ---------- matching ----------
+function matchTrip(t: Trip) {
+  const dists = t.legs.map((l) => legDistance(l.origin_icao, l.destination_icao) ?? 0);
+  const rejected: { slug: string; reasons: string[] }[] = [];
+  const byCat = new Map<string, MatchResult["categories"][number]["types"]>();
+  const apt = (c: string) => MOCK_AIRPORTS.find((a) => a.icao === c);
+  for (const ty of MOCK_TYPES) {
+    const reasons: string[] = [];
+    if (t.passengers > ty.max_passengers) reasons.push("passengers_exceed_capacity");
+    const cuft = t.checked_bags * 5 + t.carry_on_bags * 2 + t.golf_bags * 6 + t.ski_bags * 4;
+    if (cuft > ty.baggage_cuft) reasons.push("baggage_exceeds_capacity");
+    const payload = Math.max(0.8, 1 - Math.max(0, t.passengers - 4) * 0.02);
+    const eff = ty.range_nm * payload;
+    let stops: 0 | 1 = 0;
+    let fuel: string | null = null;
+    let timeMin = 0;
+    for (const [i, l] of t.legs.entries()) {
+      for (const c of [l.origin_icao, l.destination_icao]) {
+        const a = apt(c);
+        if (!a || a.longest_runway_ft === null) {
+          reasons.push("airport_data_missing");
+          continue;
+        }
+        const need = ty.min_runway_ft * (1 + 0.03 * ((a.elevation_ft ?? 0) / 1000));
+        if (a.longest_runway_ft < need) reasons.push(`runway_too_short_${c}`);
+      }
+      const d = dists[i];
+      if (!d) {
+        reasons.push("distance_unknown");
+        continue;
+      }
+      if (d <= eff) {
+        timeMin += Math.round((d / ty.cruise_speed_kts) * 60 + 20);
+      } else {
+        const o = pt(l.origin_icao)!, de = pt(l.destination_icao)!;
+        let best: { icao: string; total: number } | null = null;
+        for (const a of MOCK_AIRPORTS) {
+          const p = pt(a.icao);
+          if (!p || a.icao === l.origin_icao || a.icao === l.destination_icao) continue;
+          if ((a.longest_runway_ft ?? 0) < ty.min_runway_ft) continue;
+          const d1 = haversineNm(o, p) * ROUTING, d2 = haversineNm(p, de) * ROUTING;
+          if (d1 <= eff && d2 <= eff && (!best || d1 + d2 < best.total)) best = { icao: a.icao, total: d1 + d2 };
+        }
+        if (best) {
+          stops = 1;
+          fuel = best.icao;
+          timeMin += Math.round((best.total / ty.cruise_speed_kts) * 60 + 50);
+        } else reasons.push("range_exceeded");
+      }
+    }
+    if (reasons.length) {
+      rejected.push({ slug: ty.slug, reasons: [...new Set(reasons)] });
+      continue;
+    }
+    const lc = allListings().filter((x) => x.type.slug === ty.slug && (x.passenger_seats ?? 0) >= t.passengers).length;
+    const arr = byCat.get(ty.category) ?? [];
+    arr.push({ slug: ty.slug, model: ty.model, stops, fuel_stop_icao: fuel, flight_time_minutes: timeMin, listing_count: lc, legs: t.legs.map((_, i) => ({ sequence: i, stops, fuel_stop_icao: fuel, flight_time_minutes: Math.round(timeMin / t.legs.length) })) });
+    byCat.set(ty.category, arr);
+  }
+  return {
+    legs: t.legs.map((l, i) => ({ sequence: i, origin_icao: l.origin_icao, destination_icao: l.destination_icao, distance_nm: dists[i] || null })),
+    categories: MOCK_CATEGORIES.filter((c) => byCat.has(c.category)).map((c) => ({ category: c.category, types: byCat.get(c.category)! })),
+    rejected,
+  };
+}
+
+// ---------- quotes / replies ----------
+function settleReplies(t: TripRec, force = false) {
+  if (t.status !== "rfq_sent" && t.status !== "quoted") return;
+  const now = Date.now();
+  let changed = false;
+  t.rfqs.forEach((r, i) => {
+    if (r.kind !== "charter" || r.status !== "sent" || !r.sent_at) return;
+    if (!force && now - new Date(r.sent_at).getTime() < 3000) return;
+    if (i >= 2) return; // later RFQs stay unanswered so the table shows a waiting state
+    r.status = "replied";
+    r.replied_at = new Date().toISOString();
+    const n = t.quotes.length + 1;
+    const total = i === 0 ? 1_234_500 : 1_456_700;
+    const l = r.listing!;
+    const q: Quote = {
+      id: nid("qte"),
+      rfq_id: r.id,
+      trip_id: t.id,
+      status: "ready",
+      operator: l.operator ? { dba_name: l.operator.dba_name } : null,
+      listing: l,
+      total_amount_cents: total,
+      currency: "USD",
+      valid_until: new Date(Date.now() + 72 * 3_600_000).toISOString(),
+      operator_quote_number: `SYN-Q-${String(n).padStart(4, "0")}`,
+      line_items: [
+        { description: "Charter flight, all legs (SYNTHETIC)", amount_cents: total - 123_400, page: 1 },
+        { description: "Taxes and segment fees (SYNTHETIC)", amount_cents: 123_400, page: 2 },
+      ],
+      quote_pdf_url: "/mock/synthetic-quote.pdf",
+      contract: { id: nid("ctr"), pdf_url: "/mock/synthetic-contract.pdf", acknowledged_at: null },
+      payment_link: { url: `https://pay.example.com/synthetic/${r.reference}`, host: "pay.example.com", status: "pending", host_approved: true, changed_since_first: false, first_host: "pay.example.com" },
+    };
+    t.quotes.push(q);
+    changed = true;
+  });
+  if (changed && t.status === "rfq_sent") t.status = "quoted";
+  if (changed) save();
+}
+
+function tripView(t: TripRec): Trip {
+  settleReplies(t);
+  const { manifest_passengers: _mp, position_progress: _pp, ...rest } = t;
+  void _mp; void _pp;
+  const e = entitled();
+  const tv: Trip = {
+    ...rest,
+    rfqs: rest.rfqs.map((r) => ({ ...r, listing: r.listing ? viewListing(r.listing) : null })),
+    quotes: e ? rest.quotes : [],
+    weather_available: ["manifest_due", "scheduled", "in_flight", "completed"].includes(t.status),
+  };
+  return JSON.parse(JSON.stringify(tv));
+}
+
+function findTrip(id: string): TripRec {
+  const t = db().trips.find((x) => x.id === id);
+  if (!t) fail(404, "not_found", "Trip not found.");
+  return t as TripRec;
+}
+
+// ---------- intake parser (deterministic, regex based; stands in for the LLM parser) ----------
+function resolveAirport(frag: string): string | null {
+  const s = frag.toLowerCase().trim();
+  if (!s) return null;
+  for (const a of MOCK_AIRPORTS) {
+    if (s === a.icao.toLowerCase() || s === a.iata?.toLowerCase()) return a.icao;
+  }
+  for (const a of MOCK_AIRPORTS) {
+    const nameW = a.name.toLowerCase();
+    if (s.includes((a.city ?? "").toLowerCase()) || nameW.includes(s) || s.includes(nameW.split(" ")[0])) return a.icao;
+  }
+  return null;
+}
+const DOW = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday"];
+function parseWhen(text: string, afterDate?: string): { date: string | null; time: string | null } {
+  const t = text.toLowerCase();
+  let date: string | null = null;
+  const iso = /(\d{4}-\d{2}-\d{2})/.exec(t);
+  if (iso) date = iso[1];
+  const dow = new RegExp(`(next\\s+)?(${DOW.join("|")})`).exec(t);
+  if (!date && dow) {
+    const base = afterDate ? new Date(afterDate + "T12:00:00") : new Date();
+    const target = DOW.indexOf(dow[2]);
+    let diff = (target - base.getDay() + 7) % 7;
+    if (diff === 0) diff = 7;
+    base.setDate(base.getDate() + diff);
+    date = `${base.getFullYear()}-${String(base.getMonth() + 1).padStart(2, "0")}-${String(base.getDate()).padStart(2, "0")}`;
+  }
+  let time: string | null = null;
+  const tm = /(\d{1,2})(?::(\d{2}))?\s*(am|pm)\b/.exec(t) ?? /\b(\d{1,2}):(\d{2})\b/.exec(t);
+  if (tm) {
+    let h = Number(tm[1]);
+    const mm = tm[2] ?? "00";
+    const ap = tm[3];
+    if (ap === "pm" && h < 12) h += 12;
+    if (ap === "am" && h === 12) h = 0;
+    time = `${String(h).padStart(2, "0")}:${mm}`;
+  }
+  return { date, time };
+}
+function intake(text: string): TripIntake {
+  const unresolved: string[] = [];
+  const t = text.trim();
+  const low = t.toLowerCase();
+  const m = /(.+?)\s+to\s+(.+?)(?:\s+(?:next|on|this|tomorrow|at|\d{4}-)|,|$)/i.exec(t);
+  const o = m ? resolveAirport(m[1]) : null;
+  const d = m ? resolveAirport(m[2]) : null;
+  if (!o) unresolved.push("legs[0].origin_icao");
+  if (!d) unresolved.push("legs[0].destination_icao");
+  const w = parseWhen(t);
+  const mk = (org: string | null, date: string | null, time: string | null): TripIntake["legs"][number] => {
+    const tz = org ? MOCK_TZ[org] ?? null : null;
+    const local = date && time ? `${date}T${time}:00` : null;
+    return { origin_icao: org, destination_icao: null, depart_at: local && tz ? localToInstant(local, tz).toISOString() : null, depart_local: local && tz ? local : null, origin_timezone: tz, depart_date: date };
+  };
+  const legs: TripIntake["legs"] = [{ ...mk(o, w.date, w.time), destination_icao: d }];
+  if (!w.date || !w.time) unresolved.push("legs[0].depart_at");
+  let tripType: TripIntake["trip_type"] = "one_way";
+  if (/round\s*trip|return|back/.test(low)) {
+    tripType = "round_trip";
+    const ret = /(?:return(?:ing)?|back)\s+(.*)$/i.exec(t);
+    const rw = ret ? parseWhen(ret[1], w.date ?? undefined) : { date: null, time: null };
+    legs.push({ ...mk(d, rw.date, rw.time ?? "09:00"), destination_icao: o });
+    if (!rw.date) unresolved.push("legs[1].depart_at");
+  }
+  const num = (re: RegExp) => {
+    const x = re.exec(low);
+    return x ? Number(x[1]) : 0;
+  };
+  const pax = num(/(\d+)\s*(?:passengers?|pax|people|travell?ers|guests)/);
+  if (!pax) unresolved.push("passengers");
+  const candidates: Record<string, string[]> = {};
+  if (!d && m && /chicago/i.test(m[2])) candidates["legs[0].destination_icao"] = ["KMDW", "KORD"];
+  return {
+    trip_type: tripType,
+    legs,
+    passengers: pax || null,
+    checked_bags: num(/(\d+)\s*(?:checked|suitcases?)/),
+    carry_on_bags: num(/(\d+)\s*carry/),
+    golf_bags: num(/(\d+)\s*golf/),
+    ski_bags: num(/(\d+)\s*ski/),
+    unresolved,
+    confidence: Math.max(0.2, 0.95 - unresolved.length * 0.2),
+    interpretation_notes: w.date && /next\s+\w+day/i.test(low) ? [`Interpreted the date as ${w.date}; confirm it.`] : [],
+    candidates,
+  };
+}
+
+// ---------- router ----------
+type Handler = (m: RegExpExecArray, o: RequestOptions) => unknown | Promise<unknown>;
+interface Route { method: string; re: RegExp; h: Handler; status?: number }
+const routes: Route[] = [];
+const route = (method: string, pattern: string, h: Handler, status = 200) =>
+  routes.push({ method, re: new RegExp(`^${pattern.replace(/\{(\w+)\}/g, "([^/]+)")}$`), h, status });
+
+const EMAILS = new Set<string>();
+route("POST", "/auth/signup", (_m, o) => {
+  const b = o.body as { email: string; password: string; full_name: string; account_type: "individual" | "family_office" };
+  if (!b.email || !b.password || !b.full_name) fail(422, "validation_error", "Email, password and full name are required.");
+  if (b.password.length < 10) fail(422, "validation_error", "Password must be at least 10 characters.");
+  const key = b.email.trim().toLowerCase();
+  // An existing email gets the same 202 as a new signup in staging/prod (no enumeration). The mock behaves like dev for new emails.
+  if (EMAILS.has(key) && db().me?.user.email.toLowerCase() !== key) return { status: "check_your_email" };
+  EMAILS.add(key);
+  const d = db();
+  d.persona = "member";
+  d.me = {
+    user: { id: nid("usr"), email: b.email, full_name: b.full_name, role: "member", email_verified: false },
+    account: { id: nid("acc"), type: b.account_type, display_name: b.full_name, seats: b.account_type === "family_office" ? 2 : 1, kyc_status: "not_started" },
+    subscription: null,
+    member: { is_owner: true, identity_status: "not_started", is_suspended: false },
+    entitled: false,
+    next_step: "kyc",
+  };
+  d.kyc = null;
+  save();
+  return d.me;
+}, 201);
+route("POST", "/auth/verify-email", (_m, o) => {
+  const t = (o.body as { token: string }).token;
+  if (t !== "mock-verify") fail(409, "invalid_token", "This link is invalid, expired or already used.");
+  const d = db();
+  d.persona = "entitled";
+  d.me = personaMe("entitled");
+  save();
+  return d.me;
+});
+route("POST", "/auth/verify-email/resend", () => ({ status: "check_your_email" }), 202);
+route("POST", "/auth/password", (_m, o) => {
+  needAuth();
+  const b = o.body as { current_password: string; new_password: string };
+  if (b.new_password.length < 10) fail(422, "validation_error", "new_password: at least 10 characters");
+  return null;
+}, 204);
+route("POST", "/auth/password/reset-request", () => ({ status: "check_your_email" }), 202);
+route("POST", "/auth/password/reset", (_m, o) => {
+  if ((o.body as { token: string }).token !== "mock-reset") fail(409, "invalid_token", "This link is invalid, expired or already used.");
+  return null;
+}, 204);
+route("POST", "/auth/login", (_m, o) => {
+  const b = o.body as { email: string; password: string };
+  if (!b.email || !b.password) fail(401, "invalid_credentials", "Email or password is incorrect.");
+  const d = db();
+  if (!d.me) {
+    d.persona = "entitled";
+    d.me = { ...personaMe("entitled")!, user: { ...personaMe("entitled")!.user, email: b.email } };
+    save();
+  }
+  return d.me;
+});
+route("POST", "/auth/logout", () => {
+  const d = db();
+  d.persona = "visitor";
+  d.me = null;
+  save();
+  return null;
+}, 204);
+function refreshKyc() {
+  const d = db();
+  if (d.me && d.kyc && d.me.account!.kyc_status === "in_review" && Date.now() - d.kyc.submittedAt > 4000) {
+    d.me.account!.kyc_status = "approved";
+    if (d.me.member) d.me.member.identity_status = "approved";
+    d.me.next_step = d.me.subscription?.status === "active" ? "ready" : "billing";
+    d.me.entitled = d.me.subscription?.status === "active";
+    save();
+  }
+}
+route("GET", "/me", () => {
+  refreshKyc();
+  return needAuth();
+});
+route("POST", "/account/seats", (_m, o) => {
+  const m = needAuth();
+  if (m.account!.type === "individual") fail(409, "seat_not_available", "This plan has a single seat.");
+  if (m.subscription?.status !== "active") fail(409, "subscription_required", "An active membership is required first.");
+  if (m.account!.kyc_status !== "approved") fail(409, "kyc_required", "Complete the identity check first.");
+  const email = (o.body as { email: string }).email;
+  if (!email) fail(422, "validation_error", "email: required");
+  const d = db();
+  if (1 + d.invites.length >= m.account!.seats) fail(409, "seat_limit_reached", "All seats are used or reserved.");
+  d.invites.push({ id: nid("inv"), email, created_at: new Date().toISOString(), expires_at: new Date(Date.now() + 7 * 86_400_000).toISOString() });
+  save();
+  return { status: "invitation_queued" };
+}, 202);
+route("GET", "/account/seats", () => {
+  const m = needAuth();
+  if (m.member && !m.member.is_owner) fail(403, "forbidden", "Only the account owner manages seats.");
+  const d = db();
+  return {
+    account_id: m.account!.id, seats: m.account!.seats,
+    members: [{ user_id: m.user.id, email: m.user.email, full_name: m.user.full_name, is_owner: true, identity_status: m.member?.identity_status ?? m.account!.kyc_status, is_suspended: false }],
+    invitations: d.invites,
+  };
+});
+route("DELETE", "/account/seats/invitations/{id}", (m) => {
+  needAuth();
+  db().invites = db().invites.filter((i) => i.id !== m[1]);
+  save();
+  return null;
+}, 204);
+route("POST", "/account/seats/accept", (_m, o) => {
+  const m = needAuth();
+  if ((o.body as { token: string }).token !== "mock-seat") fail(409, "invalid_token", "This invitation is invalid, expired or already used.");
+  const d = db();
+  d.me = { ...m, member: { is_owner: false, identity_status: "not_started", is_suspended: false }, entitled: false, next_step: "kyc", account: { ...m.account!, type: "family_office", seats: 2, kyc_status: "approved" } };
+  save();
+  return d.me;
+});
+
+route("POST", "/kyc/submissions", (_m, o) => {
+  const m = needAuth();
+  const f = o.form;
+  if (!f || !f.get("holder_name")) fail(422, "validation_error", "Account holder name is required.");
+  if (f!.getAll("files").length === 0) fail(422, "validation_error", "At least one document is required.");
+  const d = db();
+  const id = nid("kyc");
+  d.kyc = { id, submittedAt: Date.now() };
+  m.account!.kyc_status = "in_review";
+  m.next_step = "kyc_pending";
+  save();
+  return { id, status: "submitted" };
+}, 201);
+route("GET", "/kyc/status", () => {
+  const m = needAuth();
+  refreshKyc();
+  const d = db();
+  return {
+    scope: m.member && !m.member.is_owner ? "member" : "account",
+    kyc_status: m.member && !m.member.is_owner ? m.member.identity_status : m.account!.kyc_status,
+    latest_submission: d.kyc ? { id: d.kyc.id, status: m.account!.kyc_status, created_at: new Date(d.kyc.submittedAt).toISOString(), decision_note: null } : null,
+  };
+});
+
+route("GET", "/billing/plans", () => [
+  { plan: "individual", name: "Individual", unit_amount_cents: 75000, interval: "month", seats: 1, inquiry_only: false },
+  { plan: "family_office", name: "Family Office", unit_amount_cents: 100000, interval: "month", seats: 2, inquiry_only: false },
+  { plan: "enterprise", name: "Enterprise", unit_amount_cents: null, interval: null, seats: null, inquiry_only: true },
+]);
+route("POST", "/billing/checkout", (_m, o) => {
+  needAuth();
+  const plan = (o.body as { plan: string }).plan;
+  return { checkout_url: `/dev/checkout?session=mock&plan=${encodeURIComponent(plan)}` };
+});
+route("POST", "/billing/portal", () => {
+  needAuth();
+  return { url: "/dev/billing-portal?customer=mock" };
+});
+route("POST", "/billing/enterprise-inquiry", (_m, o) => {
+  const b = o.body as { company: string; seats: number; notes?: string | null; contact_name: string; contact_email: string; contact_phone?: string | null };
+  if (!b.company || !b.contact_email) fail(422, "validation_error", "company and contact_email are required.");
+  db().inquiries.unshift({ id: nid("inq"), created_at: new Date().toISOString(), account_id: db().me?.account?.id ?? null, user_id: db().me?.user.id ?? "anon", company: b.company, seats: b.seats, notes: b.notes ?? null, contact_name: b.contact_name, contact_email: b.contact_email, contact_phone: b.contact_phone ?? null });
+  save();
+  return null;
+}, 202);
+
+route("GET", "/airports", (_m, o) => {
+  const q = String(o.query?.q ?? "").toLowerCase().trim();
+  if (!q) return [];
+  return MOCK_AIRPORTS.filter((a) => [a.icao, a.iata ?? "", a.name, a.city ?? ""].some((s) => s.toLowerCase().includes(q))).slice(0, 8);
+});
+route("GET", "/categories", () =>
+  MOCK_CATEGORIES.map((c) => ({ ...c, type_count: MOCK_TYPES.filter((t) => t.category === c.category).length })));
+const typeView = (t: (typeof MOCK_TYPES)[number]) => ({
+  slug: t.slug, manufacturer: t.manufacturer, model: t.model, category: t.category,
+  max_passengers: t.max_passengers, range_nm: t.range_nm, cruise_speed_kts: t.cruise_speed_kts, baggage_cuft: t.baggage_cuft,
+});
+route("GET", "/aircraft-types", (_m, o) => MOCK_TYPES.filter((t) => !o.query?.category || t.category === o.query.category).map(typeView));
+route("GET", "/aircraft-types/{slug}", (m) => {
+  const t = MOCK_TYPES.find((x) => x.slug === m[1]);
+  if (!t) fail(404, "not_found", "Aircraft type not found.");
+  return typeView(t!);
+});
+route("GET", "/listings", (_m, o) =>
+  allListings()
+    .filter((l) => (!o.query?.type_slug || l.type.slug === o.query.type_slug) && (!o.query?.category || l.type.category === o.query.category) && (!o.query?.home || entitled() ? true : (l.home_city ?? "").toLowerCase().includes(String(o.query.home).toLowerCase())) && (!o.query?.home || !entitled() || (l.home_city ?? "").toLowerCase().includes(String(o.query.home).toLowerCase())))
+    .map(viewListing));
+route("GET", "/empty-legs", () => {
+  const L = allListings();
+  const mk = (i: number, o: string, d: string, fromDays: number) => ({
+    id: `el_syn_${i}`,
+    origin: o,
+    destination: d,
+    available_from: new Date(Date.now() + fromDays * 86_400_000).toISOString(),
+    available_to: new Date(Date.now() + (fromDays + 2) * 86_400_000).toISOString(),
+    listing: viewListing(L[i]),
+  });
+  return [mk(2, "KTEB", "KPBI", 2), mk(7, "KTEB", "KBOS", 3), mk(8, "KVNY", "KLAS", 4), mk(13, "KLAS", "KVNY", 5)];
+});
+
+route("POST", "/trips/intake", (_m, o) => {
+  needAuth();
+  const text = (o.body as { text: string }).text ?? "";
+  if (text.trim().length < 5) fail(422, "validation_error", "Describe the trip in a sentence.");
+  return intake(text);
+});
+route("POST", "/trips", (_m, o) => {
+  needAuth();
+  const b = o.body as { trip_type?: Trip["trip_type"]; legs: { origin_icao: string; destination_icao: string; depart_at: string }[]; passengers: number; checked_bags?: number; carry_on_bags?: number; golf_bags?: number; ski_bags?: number };
+  if (!b.legs?.length || b.legs.some((l) => !l.origin_icao || !l.destination_icao || !l.depart_at)) fail(422, "validation_error", "Every leg needs an origin, destination and departure.");
+  if (!(b.passengers >= 1)) fail(422, "validation_error", "At least one passenger is required.");
+  const legs = b.legs.map((l, i) => {
+    const hasOffset = /(Z|[+-]\d{2}:?\d{2})$/.test(l.depart_at);
+    if (!hasOffset && !/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2})?$/.test(l.depart_at)) fail(422, "validation_error", `legs.${i}.depart_at: use YYYY-MM-DDTHH:MM`);
+    const tz = MOCK_TZ[l.origin_icao];
+    if (!tz) fail(422, "airport_timezone_unknown", "The origin airport has no known time zone.");
+    const instant = hasOffset ? new Date(l.depart_at) : localToInstant(l.depart_at, tz);
+    const parts = new Intl.DateTimeFormat("sv-SE", { timeZone: tz, dateStyle: "short", timeStyle: "medium" }).format(instant).replace(" ", "T");
+    return {
+      sequence: i, origin_icao: l.origin_icao, destination_icao: l.destination_icao, depart_at: instant.toISOString(), depart_local: parts, origin_timezone: tz,
+      origin: airportBrief(l.origin_icao), destination: airportBrief(l.destination_icao),
+      distance_nm: legDistance(l.origin_icao, l.destination_icao), is_international: !(isUsIcao(l.origin_icao) && isUsIcao(l.destination_icao)),
+    };
+  });
+  const t: TripRec = {
+    id: nid("trp"),
+    status: "draft",
+    trip_type: b.trip_type ?? (b.legs.length > 1 ? "multi_leg" : "one_way"),
+    passengers: b.passengers,
+    checked_bags: b.checked_bags ?? 0,
+    carry_on_bags: b.carry_on_bags ?? 0,
+    golf_bags: b.golf_bags ?? 0,
+    ski_bags: b.ski_bags ?? 0,
+    notes: null,
+    accepted_quote_id: null,
+    legs,
+    rfqs: [],
+    quotes: [],
+    manifest: null,
+    weather_available: false,
+    created_at: new Date().toISOString(),
+    manifest_passengers: [],
+    position_progress: null,
+  };
+  db().trips.push(t);
+  save();
+  return tripView(t);
+}, 201);
+route("GET", "/trips", () => {
+  needAuth();
+  return db().trips.map(tripView).reverse();
+});
+route("GET", "/trips/{id}", (m) => {
+  needAuth();
+  return tripView(findTrip(m[1]));
+});
+route("PATCH", "/trips/{id}", (m, o) => {
+  needAuth();
+  const t = findTrip(m[1]);
+  if (t.status !== "draft") fail(409, "invalid_state", "Only draft trips can be edited.");
+  Object.assign(t, o.body);
+  save();
+  return tripView(t);
+});
+route("POST", "/trips/{id}/cancel", (m) => {
+  needAuth();
+  const t = findTrip(m[1]);
+  if (["in_flight", "completed", "cancelled"].includes(t.status)) fail(409, "invalid_state", "This trip can no longer be cancelled.");
+  t.status = "cancelled";
+  save();
+  return tripView(t);
+});
+route("GET", "/trips/{id}/match", (m) => {
+  needAuth();
+  return matchTrip(findTrip(m[1]));
+});
+route("GET", "/trips/{id}/listings", (m, o) => {
+  needAuth();
+  const t = findTrip(m[1]);
+  const mr = matchTrip(t);
+  const ok = new Set(mr.categories.flatMap((c) => c.types.map((x) => x.slug)));
+  return allListings()
+    .filter((l) => ok.has(l.type.slug) && (!o.query?.type_slug || l.type.slug === o.query.type_slug) && (l.passenger_seats ?? 0) >= t.passengers)
+    .map(viewListing);
+});
+route("POST", "/trips/{id}/rfqs", (m, o) => {
+  needEntitled();
+  const t = findTrip(m[1]);
+  if (!["draft", "rfq_sent", "quoted"].includes(t.status)) fail(409, "invalid_state", "RFQs can no longer be sent for this trip.");
+  const ids = (o.body as { listing_ids: string[] }).listing_ids ?? [];
+  if (!ids.length) fail(422, "validation_error", "Select at least one aircraft.");
+  const out: Rfq[] = [];
+  for (const id of ids) {
+    const l = allListings().find((x) => x.listing_id === id);
+    if (!l) fail(422, "validation_error", "Unknown listing.");
+    if (t.rfqs.some((r) => r.listing?.listing_id === id && r.kind === "charter")) continue;
+    const r: Rfq = {
+      id: nid("rfq"),
+      reference: `EXJ-${Math.random().toString(36).slice(2, 8).toUpperCase()}`,
+      kind: "charter",
+      status: "sent",
+      sent_at: new Date().toISOString(),
+      replied_at: null,
+      listing: l ?? null,
+    };
+    t.rfqs.push(r);
+    out.push(r);
+  }
+  if (t.status === "draft") t.status = "rfq_sent";
+  save();
+  return out.map((r) => ({ ...r }));
+}, 201);
+route("GET", "/airports/{icao}/fbos", (m) => {
+  const icao = m[1].toUpperCase();
+  if (!MOCK_AIRPORTS.some((a) => a.icao === icao)) fail(404, "not_found", "Airport not found.");
+  const e = entitled();
+  return [1, 2].map((n) => ({ id: `fbo_${icao}_${n}`, name: `SYNTHETIC FBO ${n === 1 ? "One" : "Two"} ${icao}`, phone: e ? `+1 555 020 00${n}${n}` : null, email: e ? `fbo${n}-${icao.toLowerCase()}@example.com` : null }));
+});
+route("POST", "/trips/{id}/ground-rfqs", (m, o) => {
+  needEntitled();
+  const t = findTrip(m[1]);
+  const b = o.body as { kind: "rental_car" | "chauffeur"; leg_sequence: number; fbo_id: string; details?: string | null };
+  if (!b.fbo_id) fail(422, "validation_error", "fbo_id: required");
+  if ((b.details ?? "").length > 500) fail(422, "validation_error", "details: at most 500 characters");
+  if (t.rfqs.some((x) => x.kind === b.kind && (x as Rfq & { fbo?: string; leg?: number }).fbo === b.fbo_id && (x as Rfq & { leg?: number }).leg === b.leg_sequence)) fail(409, "duplicate_ground_rfq", "A request for this service already exists.");
+  const r = { id: nid("rfq"), reference: `EXJ-${Math.random().toString(36).slice(2, 8).toUpperCase()}`, kind: b.kind, status: "sent" as const, sent_at: new Date().toISOString(), replied_at: null, listing: null, fbo: b.fbo_id, leg: b.leg_sequence };
+  t.rfqs.push(r);
+  save();
+  return r;
+}, 201);
+
+route("GET", "/trips/{id}/quotes", (m) => {
+  needEntitled();
+  const t = findTrip(m[1]);
+  settleReplies(t);
+  return JSON.parse(JSON.stringify(t.quotes));
+});
+function findQuote(id: string): [TripRec, Quote] {
+  for (const t of db().trips) {
+    const q = t.quotes.find((x) => x.id === id);
+    if (q) return [t, q];
+  }
+  return fail(404, "not_found", "Quote not found.");
+}
+route("POST", "/quotes/{id}/accept", (m) => {
+  needEntitled();
+  const [t, q] = findQuote(m[1]);
+  if (q.status !== "ready") fail(409, "invalid_state", "This quote cannot be accepted.");
+  if (!q.contract) fail(409, "invalid_state", "This quote has no contract document yet.");
+  t.quotes.forEach((x) => (x.status = x.id === q.id ? "accepted" : "declined"));
+  t.accepted_quote_id = q.id;
+  t.status = "contracted";
+  save();
+  return tripView(t);
+});
+route("POST", "/quotes/{id}/decline", (m) => {
+  needEntitled();
+  const [, q] = findQuote(m[1]);
+  if (q.status !== "ready") fail(409, "invalid_state", "This quote cannot be declined.");
+  q.status = "declined";
+  save();
+  return q;
+});
+route("POST", "/contracts/{id}/acknowledge", (m) => {
+  needEntitled();
+  for (const t of db().trips) {
+    const q = t.quotes.find((x) => x.contract?.id === m[1]);
+    if (q?.contract) {
+      if (q.status !== "accepted") fail(409, "invalid_state", "Accept the quote before acknowledging its contract.");
+      q.contract.acknowledged_at = new Date().toISOString();
+      save();
+      return { id: q.contract.id, acknowledged_at: q.contract.acknowledged_at };
+    }
+  }
+  return fail(404, "not_found", "Contract not found.");
+});
+route("POST", "/quotes/{id}/payment/mark-paid", (m) => {
+  needEntitled();
+  const [t, q] = findQuote(m[1]);
+  if (q.payment_link && !q.payment_link.host_approved) fail(409, "payment_host_not_approved", "The payment site is not approved for this operator.");
+  if (q.status !== "accepted" || t.status !== "contracted") fail(409, "invalid_state", "Accept the quote first.");
+  if (!q.contract?.acknowledged_at) fail(409, "invalid_state", "Acknowledge the contract first.");
+  if (q.payment_link) q.payment_link.status = "member_marked_paid";
+  const first = t.legs[0].depart_at ?? new Date().toISOString();
+  const dep = new Date(first);
+  t.manifest = { due_at: new Date(dep.getTime() - 24 * 3_600_000).toISOString(), submitted_at: null, sent_to_operator_at: null };
+  t.status = "manifest_due";
+  save();
+  return tripView(t);
+});
+
+interface MockPax extends ManifestPassengerIn { id: string; id_number: string }
+function manifestView(t: TripRec) {
+  if (!t.manifest) fail(409, "invalid_state", "The manifest opens after payment is marked.");
+  const icaos = t.legs.flatMap((l) => [l.origin_icao, l.destination_icao]);
+  const m = t.manifest as { due_at: string; submitted_at: string | null; sent_to_operator_at?: string | null };
+  return {
+    due_at: m.due_at, submitted_at: m.submitted_at, required_id_type: requiredIdType(icaos), expected_passengers: t.passengers,
+    sent_to_operator_at: m.sent_to_operator_at ?? null,
+    passengers: (t.manifest_passengers as MockPax[]).map((p) => ({ id: p.id, full_name: p.full_name, date_of_birth: p.date_of_birth, id_type: p.id_type, id_number_last4: p.id_number.slice(-4), id_expiry: p.id_expiry, id_issuer: p.id_issuer, weight_lbs: p.weight_lbs ?? null })),
+  };
+}
+route("GET", "/trips/{id}/manifest", (m) => {
+  needEntitled();
+  return manifestView(findTrip(m[1]));
+});
+route("PUT", "/trips/{id}/manifest", (m, o) => {
+  needEntitled();
+  const t = findTrip(m[1]);
+  const view0 = manifestView(t);
+  if (t.manifest?.submitted_at && t.status !== "scheduled") fail(409, "invalid_state", "The manifest can no longer be changed.");
+  const ps = (o.body as { passengers: ManifestPassengerIn[] }).passengers;
+  const req = view0.required_id_type;
+  if (ps.some((p) => p.id_type !== req)) fail(422, "manifest_invalid", `ID type must be ${req === "passport" ? "passport" : "REAL ID"} for this trip.`);
+  const old = t.manifest_passengers as MockPax[];
+  const seen = new Set<string>();
+  const next: MockPax[] = ps.map((p) => {
+    if (p.id) {
+      if (seen.has(p.id)) fail(422, "duplicate_passenger_id", "A passenger id is repeated.");
+      seen.add(p.id);
+      const prev = old.find((x) => x.id === p.id);
+      if (!prev) fail(422, "unknown_passenger", "Unknown passenger id.");
+      return { ...p, id: p.id, id_number: p.id_number?.trim() ? p.id_number : prev!.id_number };
+    }
+    if (!p.id_number?.trim()) fail(422, "manifest_invalid", "id_number is required for a new passenger.");
+    return { ...p, id: nid("pax"), id_number: p.id_number as string };
+  });
+  t.manifest_passengers = next;
+  if (t.manifest?.submitted_at) {
+    // Editing a submitted manifest before departure reopens it and revokes the operator's links.
+    t.manifest.submitted_at = null;
+    (t.manifest as { sent_to_operator_at?: string | null }).sent_to_operator_at = null;
+    t.status = "manifest_due";
+  }
+  save();
+  return manifestView(t);
+});
+route("POST", "/trips/{id}/manifest/submit", (m) => {
+  needEntitled();
+  const t = findTrip(m[1]);
+  const mv = manifestView(t);
+  if (t.manifest_passengers.length !== t.passengers) fail(422, "manifest_invalid", `One passenger record per passenger is required (${t.passengers}).`);
+  if (t.manifest_passengers.some((p) => p.id_type !== mv.required_id_type)) fail(422, "manifest_invalid", `ID type must be ${mv.required_id_type === "passport" ? "passport" : "REAL ID"} for this trip.`);
+  t.manifest!.submitted_at = new Date().toISOString();
+  (t.manifest as { sent_to_operator_at?: string | null }).sent_to_operator_at = new Date().toISOString();
+  t.status = "scheduled";
+  save();
+  return manifestView(t);
+});
+route("GET", "/operator/manifest", (_m, o) => {
+  // Mock: the token "mock-operator" opens the most recent submitted manifest. Anything else is an invalid link.
+  const t = [...db().trips].reverse().find((x) => x.manifest?.submitted_at);
+  if (o.query?.token !== "mock-operator" || !t) fail(404, "invalid_link", "This link is invalid or has expired.");
+  const tt = t as TripRec;
+  return {
+    trip_reference: tt.rfqs[0]?.reference ?? "EXJ-MOCK00",
+    legs: tt.legs.map((l) => ({ sequence: l.sequence, origin_icao: l.origin_icao, destination_icao: l.destination_icao, depart_local: l.depart_local, origin_timezone: l.origin_timezone })),
+    submitted_at: tt.manifest!.submitted_at, expires_at: new Date(Date.now() + 72 * 3_600_000).toISOString(), expected_passengers: tt.passengers,
+    passengers: (tt.manifest_passengers as MockPax[]).map((p) => ({ full_name: p.full_name, date_of_birth: p.date_of_birth, id_type: p.id_type, id_number: p.id_number, id_expiry: p.id_expiry, id_issuer: p.id_issuer, weight_lbs: p.weight_lbs ?? null })),
+  };
+});
+route("GET", "/trips/{id}/weather", (m) => {
+  needEntitled();
+  const t = findTrip(m[1]);
+  return {
+    legs: t.legs.map((l, i) => ({
+      sequence: i,
+      origin: { icao: l.origin_icao, metar: `METAR ${l.origin_icao} 121551Z 28010KT 10SM FEW050 12/03 A3012 (SYNTHETIC)`, taf: `TAF ${l.origin_icao} 121130Z 1212/1318 28010KT P6SM SCT050 (SYNTHETIC)` },
+      destination: { icao: l.destination_icao, metar: `METAR ${l.destination_icao} 121553Z 24006KT 10SM CLR 19/07 A3003 (SYNTHETIC)`, taf: `TAF ${l.destination_icao} 121130Z 1212/1318 24008KT P6SM SKC (SYNTHETIC)` },
+      summary: "Synthetic summary: VFR conditions at both ends, no significant weather.",
+    })),
+  };
+});
+route("GET", "/trips/{id}/track", (m) => {
+  needEntitled();
+  const t = findTrip(m[1]);
+  return { legs: t.legs.map((l, i) => {
+    const a = pt(l.origin_icao), b = pt(l.destination_icao);
+    if (t.status === "in_flight" && i === 0 && a && b && t.position_progress !== null) {
+      const p = t.position_progress;
+      return { sequence: i, status: "airborne", position: { lat: +(a.lat + (b.lat - a.lat) * p).toFixed(4), lon: +(a.lon + (b.lon - a.lon) * p).toFixed(4), altitude_ft: 41000, groundspeed_kts: 462, heading: 270, at: new Date().toISOString() } };
+    }
+    return { sequence: i, status: t.status === "completed" ? "landed" : "scheduled", position: null };
+  }) };
+});
+
+// ----- admin -----
+route("GET", "/admin/approvals", (_m, o) => {
+  needAdmin();
+  return db().approvals.filter((a) => (!o.query?.status || a.status === o.query.status) && (!o.query?.kind || a.kind === o.query.kind));
+});
+route("POST", "/admin/approvals/{id}/decide", (m, o) => {
+  needAdmin();
+  const a = db().approvals.find((x) => x.id === m[1]);
+  if (!a) fail(404, "not_found", "Approval not found.");
+  if (a!.status !== "pending") fail(409, "invalid_state", "This approval has already been decided.");
+  const b = o.body as { decision: "approved" | "rejected"; note: string };
+  if (!b.note?.trim()) fail(422, "validation_error", "A decision note is required.");
+  a!.status = b.decision;
+  a!.decision_note = b.note;
+  a!.decided_at = new Date().toISOString();
+  const k = db().kycRows.find((x) => x.id === a!.subject_id);
+  if (k) {
+    k.status = b.decision;
+    k.decision_note = b.note;
+  }
+  const op = db().operators.find((x) => x.id === a!.subject_id);
+  if (op && a!.kind === "operator_go_live") op.go_live_status = b.decision === "approved" ? "live" : "draft";
+  save();
+  return a;
+});
+route("GET", "/admin/kyc/submissions", (_m, o) => {
+  needAdmin();
+  return db().kycRows.filter((k) => !o.query?.status || k.status === o.query.status);
+});
+route("GET", "/admin/kyc/submissions/{id}", (m) => {
+  needAdmin();
+  const k = db().kycRows.find((x) => x.id === m[1]);
+  if (!k) fail(404, "not_found", "Submission not found.");
+  return k;
+});
+route("GET", "/admin/operators", () => {
+  needAdmin();
+  return db().operators;
+});
+route("POST", "/admin/operators/{id}/request-go-live", (m) => {
+  needAdmin();
+  const op = db().operators.find((x) => x.id === m[1]);
+  if (!op) fail(404, "not_found", "Operator not found.");
+  if (op!.go_live_status === "live") fail(409, "invalid_state", "Operator is already live.");
+  op!.go_live_status = "pending_ceo";
+  if (!db().approvals.some((a) => a.subject_id === op!.id && a.status === "pending")) {
+    db().approvals.unshift({ id: nid("apr"), kind: "operator_go_live", status: "pending", summary: `Go-live for ${op!.dba_name}`, subject_type: "operator", subject_id: op!.id, required_role: "ceo", requested_by: "admin", decided_by: null, created_at: new Date().toISOString(), decided_at: null, decision_note: null, payload: null });
+  }
+  save();
+  return { operator: op, approval: db().approvals.find((a) => a.subject_id === op!.id && a.status === "pending") };
+});
+route("POST", "/admin/ingest", async (_m, o) => {
+  needAdmin();
+  const f = o.form;
+  const dataset = String(f?.get("dataset") ?? "");
+  const file = f?.get("file");
+  if (!dataset || !(file instanceof File)) fail(422, "validation_error", "Dataset and file are required.");
+  const text = await (file as File).text();
+  const lines = text.split(/\r?\n/).filter((l) => l.trim());
+  const rows = lines.slice(1);
+  const rejections: { row: number; reason: string }[] = [];
+  rows.forEach((r, i) => {
+    if (EXCLUDED.some((x) => r.toLowerCase().includes(x))) rejections.push({ row: i + 2, reason: "Operator excluded by policy" });
+    else if (r.split(",").length < 2) rejections.push({ row: i + 2, reason: "Missing required columns" });
+  });
+  const run: IngestRun = {
+    id: nid("run"), dataset: dataset as IngestRun["dataset"], filename: (file as File).name, rows_read: rows.length,
+    rows_loaded: rows.length - rejections.length, rows_updated: 0, rows_rejected: rejections.length, duplicates_merged: 0,
+    created_at: new Date().toISOString(), report: { rejected: rejections },
+  };
+  db().ingestRuns.unshift(run);
+  save();
+  return run;
+}, 201);
+route("GET", "/admin/ingest/runs", () => {
+  needAdmin();
+  return db().ingestRuns;
+});
+route("GET", "/admin/metrics", () => {
+  needAdmin();
+  const by = { individual: 3, family_office: 1 };
+  const mrr = by.individual * 75000 + by.family_office * 100000;
+  const rfqs = db().trips.flatMap((t) => t.rfqs).filter((r) => r.kind === "charter");
+  return {
+    mrr_cents: mrr,
+    arr_cents: mrr * 12,
+    members_by_plan: by,
+    kyc_queue: db().kycRows.filter((k) => k.status === "in_review" || k.status === "submitted").length,
+    rfq_to_quote_rate: rfqs.length ? rfqs.filter((r) => r.status === "replied").length / rfqs.length : null,
+    median_operator_response_minutes: null,
+  };
+});
+route("GET", "/admin/quotes", () => {
+  needAdmin();
+  return [];
+});
+route("POST", "/admin/quotes/{id}/resolve", () => {
+  needAdmin();
+  return fail(404, "not_found", "Quote not found.");
+});
+route("GET", "/admin/quotes/{id}", () => {
+  needAdmin();
+  return fail(404, "not_found", "Quote not found.");
+});
+route("PUT", "/admin/operators/{id}/payment-hosts", (m, o) => {
+  needAdmin();
+  const op = db().operators.find((x) => x.id === m[1]);
+  if (!op) fail(404, "not_found", "Operator not found.");
+  op!.payment_hosts = (o.body as { hosts: string[] }).hosts;
+  save();
+  return op;
+});
+route("POST", "/admin/operators/{id}/contacts/{cid}/confirm-rfq", (m) => {
+  needAdmin();
+  const op = db().operators.find((x) => x.id === m[1]);
+  if (op && op.pending_contact_count) op.pending_contact_count -= 1;
+  save();
+  return null;
+}, 204);
+route("GET", "/admin/suppressions", () => {
+  needAdmin();
+  return db().suppressions;
+});
+route("POST", "/admin/suppressions", (_m, o) => {
+  needAdmin();
+  const b = o.body as { email: string; reason?: "unsubscribe" | "bounce" | "complaint" | "legal" | "manual" };
+  if (db().suppressions.some((x) => x.email.toLowerCase() === b.email.toLowerCase())) fail(409, "already_suppressed", "This address is already suppressed.");
+  const row = { id: nid("sup"), email: b.email, reason: b.reason ?? "manual", source: "admin", created_at: new Date().toISOString() };
+  db().suppressions.unshift(row);
+  save();
+  return row;
+}, 201);
+route("DELETE", "/admin/suppressions/{id}", (m) => {
+  needAdmin();
+  db().suppressions = db().suppressions.filter((x) => x.id !== m[1]);
+  save();
+  return null;
+}, 204);
+route("GET", "/admin/inbound/quarantined", () => {
+  needAdmin();
+  return db().quarantined;
+});
+route("GET", "/admin/enterprise-inquiries", () => {
+  needAdmin();
+  return db().inquiries;
+});
+route("POST", "/admin/users/{id}/deactivate", () => {
+  needAdmin();
+  return null;
+}, 204);
+route("POST", "/admin/trips/{id}/manifest/revoke-links", () => {
+  needAdmin();
+  return { revoked: 0 };
+});
+route("POST", "/dev/complete-checkout", (_m, o) => {
+  const b = o.body as { account_id: string; plan: string };
+  const next = mockSetSubscription(b.plan);
+  if (!next) fail(404, "not_found", "No account.");
+  return { completed: true };
+});
+route("GET", "/admin/agent-actions", () => {
+  needAdmin();
+  return db().actions;
+});
+route("GET", "/admin/jobs", () => {
+  needAdmin();
+  return db().jobs;
+});
+
+export async function mockRequest(method: string, path: string, opts: RequestOptions): Promise<{ status: number; data: unknown }> {
+  await sleep(120);
+  for (const r of routes) {
+    if (r.method !== method) continue;
+    const m = r.re.exec(path);
+    if (!m) continue;
+    try {
+      const data = await r.h(m, opts);
+      // Clone like a real network response so React never sees in-place mutation of cached objects.
+      return { status: r.status ?? 200, data: data === undefined || data === null ? null : JSON.parse(JSON.stringify(data)) };
+    } catch (e) {
+      if (e instanceof MockErr) return { status: e.status, data: { error: { code: e.code, message: e.message } } };
+      throw e;
+    }
+  }
+  return { status: 404, data: { error: { code: "not_found", message: `No mock route for ${method} ${path}` } } };
+}
+
+export type { TripStatus };

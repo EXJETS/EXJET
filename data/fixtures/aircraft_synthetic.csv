@@ -1,0 +1,12 @@
+Tail,Operator Certificate,Operator,Make,Model,Category,Year,Seats,Home Base,Amenities
+N10TS,0TST001A,SYNTHETIC Test Operator A,SYNTHETIC Aerospace,TJ-100,light,2015,6,KTST,WiFi; Lavatory
+N11TS,0TST002B,,SYNTHETIC Aerospace,TJ 100,,2018,6,KABC,
+n00tst1,0TST001A,,SYNTHETIC Aerospace,TJ-200,midsize,2012,8,,
+C-GTST1,0TST004D,,SYNTHETIC Aerospace,TJ-200,,abc,8,,
+N10TS,0TST001A,,SYNTHETIC Aerospace,TJ-100,,,,,duplicate same operator
+N10TS,0TST002B,,SYNTHETIC Aerospace,TJ-100,,,,,duplicate tail other operator
+N00TST2,0TST900X,,SYNTHETIC Aerospace,TJ-100,light,,,,
+N00TST3,,Flexjet LLC,SYNTHETIC Aerospace,TJ-100,light,,,,
+N00TST4,0TST777Z,,SYNTHETIC Aerospace,TJ-100,light,,,,
+,0TST001A,,SYNTHETIC Aerospace,TJ-100,light,,,,
+N00TST5,0TST003C,,SYNTHETIC Aerospace,TJ-300,,,,,

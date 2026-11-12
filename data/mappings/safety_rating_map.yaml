@@ -1,0 +1,12 @@
+# Safety rating normalisation. The stored value is always one of:
+#   Not rated | Gold | Gold+ | Platinum | Platinum+
+# The rating source is never stored or reported. Vendor words below are stripped before matching
+# ("ARGUS Platinum" -> Platinum). Add vendor words here if a new one appears in a file.
+source_tokens: [argus, wyvern, isbao, is-bao, is bao, aric, arg/us]
+
+# Extra exact mappings (after vendor words are stripped, lowercased, punctuation removed).
+# A value that matches nothing becomes "Not rated" and is flagged; it is never guessed.
+# Example (only if the founder confirms the equivalence):
+#   aliases:
+#     wingman: "Gold"
+aliases: {}

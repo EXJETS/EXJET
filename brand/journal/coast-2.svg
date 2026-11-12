@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" fill="none">
+<defs>
+ <linearGradient id="ground" x1="0" y1="0" x2="720" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#f5f5f2"/><stop offset="1" stop-color="#ccd0d0"/></linearGradient>
+ <linearGradient id="silver" x1="100" y1="40" x2="580" y2="390" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset=".45" stop-color="#e8e9e6"/><stop offset="1" stop-color="#9da5a7"/></linearGradient>
+ <linearGradient id="stone" x1="120" y1="80" x2="550" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#a9b1b3"/><stop offset="1" stop-color="#454f54"/></linearGradient>
+ <linearGradient id="night" x1="0" y1="0" x2="720" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#303a40"/><stop offset="1" stop-color="#11191e"/></linearGradient>
+ <radialGradient id="globe" cx=".32" cy=".26" r=".8"><stop stop-color="#f5f6f2"/><stop offset=".45" stop-color="#bfc7c7"/><stop offset=".8" stop-color="#5b6a70"/><stop offset="1" stop-color="#243139"/></radialGradient>
+ <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse"><path d="M72 0H0V72" stroke="#58636a" stroke-opacity=".09"/></pattern>
+</defs>
+<path fill="url(#ground)" d="M0 0h720v440H0z"/>
+<path fill="url(#grid)" d="M0 0h720v440H0z"/>
+ <g transform="translate(110 -24) rotate(16 360 220)">
+ <path d="M-50 125C100 20 188 26 278 132S424 212 503 140 677 65 790 160V-60H-50Z" fill="url(#silver)"/>
+ <path d="M-50 143C100 38 188 44 278 150S424 230 503 158 677 83 790 178" stroke="#fff" stroke-width="2"/>
+ <path d="M-50 168C100 63 188 69 278 175S424 255 503 183 677 108 790 203M-50 196C100 91 188 97 278 203S424 283 503 211 677 136 790 231M-50 228C100 123 188 129 278 235S424 315 503 243 677 168 790 263M-50 264C100 159 188 165 278 271S424 351 503 279 677 204 790 299" stroke="#839195" stroke-opacity=".25"/>
+ <path d="M180 320c-30-32 5-69 45-62 36 7 87 45 66 72-22 29-82 23-111-10Z" fill="url(#stone)"/>
+ <path d="M165 330c-39-43 7-91 62-80 46 10 108 57 80 91-30 37-107 29-142-11Z" stroke="#fff" stroke-opacity=".8"/>
+ </g><path d="M24 40V24h16M680 24h16v16M24 400v16h16M680 416h16v-16" stroke="#fff" stroke-opacity=".6"/>
+</svg>

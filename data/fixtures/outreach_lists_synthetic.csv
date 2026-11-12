@@ -1,0 +1,8 @@
+Email,First Name,Last Name,Company,Title,Segment,State
+alice.synthetic@example.com,SYNTHETIC Alice,Prospect,SYNTHETIC Family Office One,Principal,family_office,TX
+ALICE.SYNTHETIC@EXAMPLE.COM,SYNTHETIC Alice,Prospect,,,,
+bob.synthetic@example.com,,,SYNTHETIC Co,,uhnw,NY
+not-an-email,SYNTHETIC Bad,Email,SYNTHETIC Co,,uhnw,NY
+,SYNTHETIC No,Email,SYNTHETIC Co,,uhnw,NY
+carol.synthetic@example.com,SYNTHETIC Carol,Excluded,NetJets Aviation,,uhnw,NY
+dave.synthetic@example.com,SYNTHETIC Dave,Prospect,SYNTHETIC Co,,uhnw,Texas
