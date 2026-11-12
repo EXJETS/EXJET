@@ -9,6 +9,7 @@ from pathlib import Path
 import yaml
 
 from ..config import get_settings
+from ..opname import excluded_certificate_set
 from .normalize import RATING_VALUES, compact, fold, type_key
 
 DATASETS = ("airports_fbos", "operators", "aircraft", "outreach_lists")  # dependency order
@@ -48,12 +49,13 @@ class DatasetMapping:
 @dataclass
 class IngestConfig:
     mappings_dir: Path
-    excluded: list[str]
+    excluded: list[str]  # names + aliases (shared matcher: exjet_api.opname)
     dba_overrides: dict[str, str]  # folded source name -> DBA
     type_aliases: dict[str, tuple[str, str]]  # type_key(file) -> (canonical manufacturer, canonical model)
     rating_aliases: dict[str, str]
     rating_source_tokens: list[str]
     mappings: dict[str, DatasetMapping]
+    excluded_certificates: frozenset[str] = frozenset()  # normalized certificate numbers (config)
 
     def is_source_token_header(self, header: str) -> bool:
         """True when a column header names a rating vendor (reports must never show these)."""
@@ -108,7 +110,7 @@ def _load_mapping(path: Path, dataset: str) -> DatasetMapping:
 def load_config(mappings_dir: Path | None = None, excluded: list[str] | None = None) -> IngestConfig:
     mdir = Path(mappings_dir) if mappings_dir else default_data_dir() / "mappings"
     if excluded is None:
-        excluded = [x.strip() for x in get_settings().excluded_operators.split(",") if x.strip()]
+        excluded = get_settings().all_excluded_names
 
     overrides_raw = (_load_yaml(mdir / "dba_overrides.yaml").get("overrides")) or {}
     if not isinstance(overrides_raw, dict):
@@ -142,6 +144,7 @@ def load_config(mappings_dir: Path | None = None, excluded: list[str] | None = N
     return IngestConfig(
         mappings_dir=mdir,
         excluded=excluded,
+        excluded_certificates=frozenset(excluded_certificate_set(get_settings().excluded_certificates)),
         dba_overrides=overrides,
         type_aliases=type_aliases,
         rating_aliases=rating_aliases,

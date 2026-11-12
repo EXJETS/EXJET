@@ -24,6 +24,11 @@ BACKOFF_BASE_SECONDS = 30
 BACKOFF_MAX_SECONDS = 3600
 STALE_LOCK = timedelta(minutes=10)
 
+class NonRetryable(Exception):
+    """Raised by a handler for a job that can never succeed (a poisoned input). The job is marked failed at once
+    instead of being retried with backoff until max_attempts."""
+
+
 Handler = Callable[[Session, dict], None]
 HANDLERS: dict[str, Handler] = {}
 
@@ -75,7 +80,7 @@ def claim_next(db: Session, now: datetime | None = None) -> Job | None:
     return job
 
 
-def _finish(job_id: uuid.UUID, *, ok: bool, error: str | None, now: datetime) -> None:
+def _finish(job_id: uuid.UUID, *, ok: bool, error: str | None, now: datetime, retry: bool = True) -> None:
     with session_factory()() as db:
         job = db.get(Job, job_id)
         if job is None:
@@ -86,7 +91,7 @@ def _finish(job_id: uuid.UUID, *, ok: bool, error: str | None, now: datetime) ->
             job.last_error = None
         else:
             job.last_error = (error or "error")[:2000]
-            if job.attempts >= job.max_attempts:
+            if not retry or job.attempts >= job.max_attempts:
                 job.status = JobStatus.failed.value
             else:
                 job.status = JobStatus.queued.value
@@ -101,7 +106,7 @@ def _safe_error(e: Exception) -> str:
     from .guardrails import GuardrailViolation
     from .providers.errors import ProviderError
 
-    if isinstance(e, (ProviderError, GuardrailViolation, ApiError, NotImplementedError)):
+    if isinstance(e, (ProviderError, GuardrailViolation, ApiError, NotImplementedError, NonRetryable)):
         return f"{type(e).__name__}: {str(e)[:300]}"
     return type(e).__name__
 
@@ -118,7 +123,7 @@ def run_job(job: Job, now: datetime | None = None) -> bool:
             db.commit()
     except Exception as e:  # noqa: BLE001 - any handler failure is retried with backoff
         log.warning("job %s (%s) failed: %s", job.id, job.kind, type(e).__name__)
-        _finish(job.id, ok=False, error=_safe_error(e), now=now)
+        _finish(job.id, ok=False, error=_safe_error(e), now=now, retry=not isinstance(e, NonRetryable))
         return False
     _finish(job.id, ok=True, error=None, now=now)
     return True

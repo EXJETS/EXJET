@@ -9,7 +9,9 @@ from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 REFERENCE_ALPHABET = "ABCDEFGHJKMNPQRSTUVWXYZ23456789"  # no 0/O/1/I/L
 REFERENCE_RE = re.compile(r"\bEXJ-([A-HJKMNP-Z2-9]{6})\b")
-MAX_FREE_TEXT = 1000
+MAX_FREE_TEXT = 500
+LINK_REMOVED = "[link removed]"
+EMAIL_REMOVED = "[email removed]"
 
 
 def generate_reference() -> str:
@@ -23,12 +25,34 @@ def extract_reference(text: str | None) -> str | None:
     return f"EXJ-{m.group(1)}" if m else None
 
 
-def clean_free_text(s: str | None) -> str:
-    """Member-supplied text goes into an email body: drop control characters and cap the length."""
+_OBFUSCATED_DOT = re.compile(r"\s*[\[\(\{]\s*(?:\.|dot)\s*[\]\)\}]\s*", re.IGNORECASE)
+_OBFUSCATED_AT = re.compile(r"\s*[\[\(\{]\s*(?:@|at)\s*[\]\)\}]\s*", re.IGNORECASE)
+_URL = re.compile(
+    r"(?:\b(?:https?|ftp|hxxps?)://|\bwww\.)[^\s<>\"']+"  # scheme or www
+    r"|\b(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z]{2,}\b(?::\d+)?(?:/[^\s<>\"']*)?",  # bare domain, optional path
+    re.IGNORECASE,
+)
+_EMAIL = re.compile(r"[\w.+'\-]+@[\w\-]+(?:\.[\w\-]+)*", re.IGNORECASE)
+
+
+def defang(s: str) -> str:
+    """Remove URLs, bare domains and email addresses from member-supplied text (also in obfuscated forms such as
+    `example[.]com` or `hxxp://`). The recipient never receives a clickable destination chosen by the member."""
+    s = _OBFUSCATED_AT.sub("@", _OBFUSCATED_DOT.sub(".", s))
+    s = _EMAIL.sub(EMAIL_REMOVED, s)
+    return _URL.sub(LINK_REMOVED, s)
+
+
+def clean_free_text(s: str | None, limit: int = MAX_FREE_TEXT) -> str:
+    """Member-supplied text goes into an email to a third party: drop control characters, remove URLs and email
+    addresses, collapse whitespace and cap the length (500)."""
     if not s:
         return ""
     s = "".join(ch for ch in s if ch == "\n" or (ch.isprintable() and ord(ch) < 0x10000))
-    return " ".join(s.split())[:MAX_FREE_TEXT]
+    return " ".join(defang(s).split())[:limit]
+
+
+MEMBER_TEXT_NOTICE = "(written by the member, not by EXJET; unverified, links and addresses removed)"
 
 
 @dataclass(frozen=True)
@@ -102,7 +126,7 @@ def build_rfq_email(c: RfqContext) -> tuple[str, str]:
         a, b = c.empty_leg_window
         lines.append(f"Empty leg window you listed: {a:%Y-%m-%d %H:%M} to {b:%Y-%m-%d %H:%M} UTC")
     if c.notes:
-        lines += ["", f"Member notes: {clean_free_text(c.notes)}"]
+        lines += ["", f"Member-provided note {MEMBER_TEXT_NOTICE}: {clean_free_text(c.notes)}"]
     lines += [
         "",
         "If you can operate this trip, please reply to this email and keep the reference "
@@ -146,7 +170,7 @@ def build_ground_rfq_email(c: GroundRfqContext) -> tuple[str, str]:
         f"Reference: {c.reference}",
     ]
     if c.details:
-        lines += [f"Details: {clean_free_text(c.details)}"]
+        lines += [f"Member-provided details {MEMBER_TEXT_NOTICE}: {clean_free_text(c.details)}"]
     lines += [
         "",
         f"Please reply with a quote as a PDF, any agreement issued in the member's name "

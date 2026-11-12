@@ -82,6 +82,9 @@ OPERATORS: list[tuple] = [
     ("C", "SYNTHETIC Test Operator C", "SYNTH-C", "Gold+", "live", False, "KDAL"),
     ("X", "SYNTHETIC Excluded Operator", "SYNTH-X", "Not rated", "live", True, "KMIA"),
 ]
+# Payment hosts an admin has "approved" for the synthetic operators, so the dev loop (and the e2e test, whose PDFs link to
+# pay.example.com) runs. Real operators get their hosts at onboarding or on first quote review; none are invented.
+SYNTHETIC_PAYMENT_HOSTS: list[str] = ["pay.example.com"]
 # tail, operator key, type slug, year, refurbished, seats, home icao, amenities
 AIRCRAFT: list[tuple] = [
     ("N00TST1", "A", "cessna-citation-xls-plus", 2016, 2022, 8, "KTEB", ["wifi", "lavatory"]),

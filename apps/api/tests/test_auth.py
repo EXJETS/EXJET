@@ -34,7 +34,8 @@ def test_enterprise_cannot_self_signup(client):
 def test_duplicate_email_and_bad_credentials(client):
     signup(client, "dup@example.com")
     r = signup(client, "DUP@example.com")
-    assert r.status_code == 409 and r.json()["error"]["code"] == "email_taken"
+    # L3: no 409 email_taken (it enumerated accounts). The existing-email case is a uniform 202.
+    assert r.status_code == 202 and r.json() == {"status": "check_your_email"}
     bad = client.post("/v1/auth/login", json={"email": "dup@example.com", "password": "wrong-password-1"})
     assert bad.status_code == 401 and bad.json()["error"]["code"] == "invalid_credentials"
     nouser = client.post("/v1/auth/login", json={"email": "nobody@example.com", "password": PASSWORD})

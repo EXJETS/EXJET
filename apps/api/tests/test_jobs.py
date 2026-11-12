@@ -106,7 +106,7 @@ def test_worker_schedules_periodic_jobs_once_per_bucket(db):
     worker.schedule_periodic(now)
     worker.schedule_periodic(now + timedelta(seconds=10))
     kinds = [j.kind for j in db.execute(select(Job)).scalars()]
-    assert sorted(kinds) == ["mail.poll_inbox", "rfq.expire"]
+    assert sorted(kinds) == ["mail.poll_inbox", "ratelimit.cleanup", "rfq.expire"]
 
 
 def test_rfq_expire_job(db, client, make_client):

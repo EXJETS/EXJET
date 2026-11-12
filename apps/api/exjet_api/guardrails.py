@@ -4,7 +4,7 @@ from __future__ import annotations
 from sqlalchemy import event, select
 from sqlalchemy.orm import Session, attributes
 
-from .models import Account, Approval, ApprovalStatus, KycStatus, KycSubmission
+from .models import Account, AccountMember, Approval, ApprovalStatus, KycStatus, KycSubmission
 
 
 class GuardrailViolation(Exception):
@@ -25,8 +25,11 @@ def approved_approval(db: Session, kind: str, subject_type: str, subject_id: str
     ).scalar_one_or_none()
 
 
-def kyc_has_admin_approval(db: Session, account_id) -> bool:
-    ids = [str(i) for i in db.execute(select(KycSubmission.id).where(KycSubmission.account_id == account_id)).scalars()]
+def kyc_has_admin_approval(db: Session, account_id, user_id=None) -> bool:
+    """An approved, human-decided kyc_final exists for the account's own check (user_id None) or for that member's."""
+    q = select(KycSubmission.id).where(KycSubmission.account_id == account_id)
+    q = q.where(KycSubmission.subject_user_id.is_(None)) if user_id is None else q.where(KycSubmission.subject_user_id == user_id)
+    ids = [str(i) for i in db.execute(q).scalars()]
     if not ids:
         return False
     return db.execute(
@@ -59,3 +62,6 @@ def _enforce_state_guards(session: Session, flush_context, instances) -> None:
             if isinstance(obj, Account) and _became(obj, "kyc_status", KycStatus.approved.value):
                 if not kyc_has_admin_approval(session, obj.id):
                     raise GuardrailViolation("kyc_requires_admin_decision")
+            if isinstance(obj, AccountMember) and not obj.is_owner and _became(obj, "identity_status", KycStatus.approved.value):
+                if not kyc_has_admin_approval(session, obj.account_id, obj.user_id):
+                    raise GuardrailViolation("member_identity_requires_admin_decision")

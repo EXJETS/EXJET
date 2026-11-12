@@ -8,11 +8,13 @@ from exjet_api.models import (
     Aircraft,
     AircraftType,
     Airport,
+    Approval,
     Fbo,
     IngestRun,
     Operator,
     OperatorContact,
     OutreachContact,
+    User,
 )
 
 COUNTS = ("rows_read", "loaded", "updated", "unchanged", "rejected", "duplicates_merged")
@@ -308,6 +310,12 @@ def test_rerun_never_blanks_or_downgrades_existing_data(session, ingest, tmp_pat
 def test_go_live_status_never_changed_by_reload(session, ingest):
     ingest("operators", "operators_synthetic.csv")
     op = session.scalar(select(Operator).where(Operator.certificate_number == "0TST001A"))
+    # L5: "live" without an approved go-live approval row is not sellable, so the fixture records the approval too.
+    ceo = User(email="ceo@example.com", password_hash="x", role="admin")
+    session.add(ceo)
+    session.flush()
+    session.add(Approval(kind="operator_go_live", subject_type="operator", subject_id=str(op.id), requested_by="test",
+                         status="approved", summary="fixture go-live", decided_by=ceo.id))
     op.go_live_status = "live"
     session.commit()
     ingest("operators", "operators_synthetic.csv")

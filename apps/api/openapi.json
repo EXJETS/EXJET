@@ -1,6 +1,19 @@
 {
   "components": {
     "schemas": {
+      "Accepted": {
+        "properties": {
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ],
+        "title": "Accepted",
+        "type": "object"
+      },
       "AccountOut": {
         "properties": {
           "display_name": {
@@ -125,9 +138,30 @@
             "title": "Kind",
             "type": "string"
           },
+          "scope": {
+            "default": "account",
+            "enum": [
+              "account",
+              "member"
+            ],
+            "title": "Scope",
+            "type": "string"
+          },
           "status": {
             "title": "Status",
             "type": "string"
+          },
+          "subject_user_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Subject User Id"
           },
           "vendor": {
             "anyOf": [
@@ -198,6 +232,19 @@
             "title": "Is Excluded",
             "type": "boolean"
           },
+          "payment_hosts": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Payment Hosts",
+            "type": "array"
+          },
+          "pending_contact_count": {
+            "default": 0,
+            "title": "Pending Contact Count",
+            "type": "integer"
+          },
           "safety_rating": {
             "title": "Safety Rating",
             "type": "string"
@@ -240,6 +287,40 @@
               }
             ],
             "title": "Parse Confidence"
+          },
+          "payment_host": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payment Host"
+          },
+          "payment_host_approval_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payment Host Approval Id"
+          },
+          "payment_host_approved": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payment Host Approved"
           },
           "pdf_url": {
             "anyOf": [
@@ -995,8 +1076,35 @@
             "title": "Body",
             "type": "string"
           },
+          "dkim": {
+            "default": "pass",
+            "enum": [
+              "pass",
+              "fail",
+              "none"
+            ],
+            "title": "Dkim",
+            "type": "string"
+          },
+          "dmarc_pass": {
+            "default": true,
+            "title": "Dmarc Pass",
+            "type": "boolean"
+          },
           "from_address": {
             "title": "From Address",
+            "type": "string"
+          },
+          "spf": {
+            "default": "pass",
+            "enum": [
+              "pass",
+              "fail",
+              "softfail",
+              "neutral",
+              "none"
+            ],
+            "title": "Spf",
             "type": "string"
           },
           "subject": {
@@ -1111,7 +1219,7 @@
           "details": {
             "anyOf": [
               {
-                "maxLength": 1000,
+                "maxLength": 500,
                 "type": "string"
               },
               {
@@ -1354,6 +1462,15 @@
                 "type": "null"
               }
             ]
+          },
+          "scope": {
+            "default": "account",
+            "enum": [
+              "account",
+              "member"
+            ],
+            "title": "Scope",
+            "type": "string"
           }
         },
         "required": [
@@ -2088,6 +2205,16 @@
             "title": "Entitled",
             "type": "boolean"
           },
+          "member": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/MemberOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
           "next_step": {
             "enum": [
               "kyc",
@@ -2120,6 +2247,36 @@
           "next_step"
         ],
         "title": "Me",
+        "type": "object"
+      },
+      "MemberOut": {
+        "properties": {
+          "identity_status": {
+            "enum": [
+              "not_started",
+              "submitted",
+              "in_review",
+              "approved",
+              "rejected"
+            ],
+            "title": "Identity Status",
+            "type": "string"
+          },
+          "is_owner": {
+            "title": "Is Owner",
+            "type": "boolean"
+          },
+          "is_suspended": {
+            "default": false,
+            "title": "Is Suspended",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "is_owner",
+          "identity_status"
+        ],
+        "title": "MemberOut",
         "type": "object"
       },
       "MetricsOut": {
@@ -2305,11 +2462,93 @@
         "title": "PassengerOut",
         "type": "object"
       },
+      "PasswordChangeIn": {
+        "properties": {
+          "current_password": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Current Password",
+            "type": "string"
+          },
+          "new_password": {
+            "maxLength": 128,
+            "minLength": 10,
+            "title": "New Password",
+            "type": "string"
+          }
+        },
+        "required": [
+          "current_password",
+          "new_password"
+        ],
+        "title": "PasswordChangeIn",
+        "type": "object"
+      },
+      "PasswordResetIn": {
+        "properties": {
+          "new_password": {
+            "maxLength": 128,
+            "minLength": 10,
+            "title": "New Password",
+            "type": "string"
+          },
+          "token": {
+            "maxLength": 200,
+            "minLength": 20,
+            "title": "Token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "token",
+          "new_password"
+        ],
+        "title": "PasswordResetIn",
+        "type": "object"
+      },
+      "PasswordResetRequestIn": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "title": "PasswordResetRequestIn",
+        "type": "object"
+      },
+      "PaymentHostsIn": {
+        "properties": {
+          "hosts": {
+            "items": {
+              "type": "string"
+            },
+            "maxItems": 20,
+            "title": "Hosts",
+            "type": "array"
+          }
+        },
+        "required": [
+          "hosts"
+        ],
+        "title": "PaymentHostsIn",
+        "type": "object"
+      },
       "PaymentLinkOut": {
         "properties": {
+          "changed_since_first": {
+            "title": "Changed Since First",
+            "type": "boolean"
+          },
           "host": {
             "title": "Host",
             "type": "string"
+          },
+          "host_approved": {
+            "title": "Host Approved",
+            "type": "boolean"
           },
           "status": {
             "title": "Status",
@@ -2323,7 +2562,9 @@
         "required": [
           "url",
           "host",
-          "status"
+          "status",
+          "host_approved",
+          "changed_since_first"
         ],
         "title": "PaymentLinkOut",
         "type": "object"
@@ -2466,6 +2707,104 @@
           "at"
         ],
         "title": "Position",
+        "type": "object"
+      },
+      "QuarantinedMessageOut": {
+        "properties": {
+          "approval_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Approval Id"
+          },
+          "dkim": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dkim"
+          },
+          "dmarc_pass": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Dmarc Pass"
+          },
+          "from_address": {
+            "title": "From Address",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "received_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Received At"
+          },
+          "spf": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Spf"
+          },
+          "subject": {
+            "title": "Subject",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "received_at",
+          "from_address",
+          "subject",
+          "reason",
+          "dmarc_pass",
+          "spf",
+          "dkim",
+          "approval_id"
+        ],
+        "title": "QuarantinedMessageOut",
         "type": "object"
       },
       "QuoteOperator": {
@@ -2767,6 +3106,21 @@
         "title": "RfqOut",
         "type": "object"
       },
+      "SeatAcceptIn": {
+        "properties": {
+          "token": {
+            "maxLength": 200,
+            "minLength": 20,
+            "title": "Token",
+            "type": "string"
+          }
+        },
+        "required": [
+          "token"
+        ],
+        "title": "SeatAcceptIn",
+        "type": "object"
+      },
       "SeatIn": {
         "properties": {
           "email": {
@@ -2780,28 +3134,129 @@
         "title": "SeatIn",
         "type": "object"
       },
-      "SeatOut": {
+      "SeatInvitationOut": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "created_at",
+          "expires_at"
+        ],
+        "title": "SeatInvitationOut",
+        "type": "object"
+      },
+      "SeatInviteOut": {
+        "description": "Always the same answer, whether or not the email has an EXJET login.",
+        "properties": {
+          "status": {
+            "const": "invitation_queued",
+            "default": "invitation_queued",
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "title": "SeatInviteOut",
+        "type": "object"
+      },
+      "SeatMemberOut": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "full_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Full Name"
+          },
+          "identity_status": {
+            "title": "Identity Status",
+            "type": "string"
+          },
+          "is_owner": {
+            "title": "Is Owner",
+            "type": "boolean"
+          },
+          "is_suspended": {
+            "title": "Is Suspended",
+            "type": "boolean"
+          },
+          "user_id": {
+            "format": "uuid",
+            "title": "User Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "user_id",
+          "email",
+          "full_name",
+          "is_owner",
+          "identity_status",
+          "is_suspended"
+        ],
+        "title": "SeatMemberOut",
+        "type": "object"
+      },
+      "SeatsOut": {
         "properties": {
           "account_id": {
             "format": "uuid",
             "title": "Account Id",
             "type": "string"
           },
+          "invitations": {
+            "items": {
+              "$ref": "#/components/schemas/SeatInvitationOut"
+            },
+            "title": "Invitations",
+            "type": "array"
+          },
+          "members": {
+            "items": {
+              "$ref": "#/components/schemas/SeatMemberOut"
+            },
+            "title": "Members",
+            "type": "array"
+          },
           "seats": {
             "title": "Seats",
-            "type": "integer"
-          },
-          "seats_used": {
-            "title": "Seats Used",
             "type": "integer"
           }
         },
         "required": [
           "account_id",
-          "seats_used",
-          "seats"
+          "seats",
+          "members",
+          "invitations"
         ],
-        "title": "SeatOut",
+        "title": "SeatsOut",
         "type": "object"
       },
       "SignupIn": {
@@ -2850,6 +3305,19 @@
           "account_type"
         ],
         "title": "SignupIn",
+        "type": "object"
+      },
+      "SignupPending": {
+        "description": "Uniform signup answer outside dev/test: identical whether or not the email already has an account.",
+        "properties": {
+          "status": {
+            "const": "check_your_email",
+            "default": "check_your_email",
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "title": "SignupPending",
         "type": "object"
       },
       "StationWeather": {
@@ -2918,6 +3386,73 @@
           "current_period_end"
         ],
         "title": "SubscriptionOut",
+        "type": "object"
+      },
+      "SuppressionIn": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "reason": {
+            "default": "manual",
+            "enum": [
+              "unsubscribe",
+              "bounce",
+              "complaint",
+              "legal",
+              "manual"
+            ],
+            "title": "Reason",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "title": "SuppressionIn",
+        "type": "object"
+      },
+      "SuppressionOut": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "reason": {
+            "title": "Reason",
+            "type": "string"
+          },
+          "source": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Source"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "reason",
+          "source",
+          "created_at"
+        ],
+        "title": "SuppressionOut",
         "type": "object"
       },
       "TrackOut": {
@@ -3434,9 +3969,28 @@
   "openapi": "3.1.0",
   "paths": {
     "/v1/account/seats": {
+      "get": {
+        "operationId": "list_seats_v1_account_seats_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SeatsOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "List Seats",
+        "tags": [
+          "auth"
+        ]
+      },
       "post": {
-        "description": "Add the second Family Office seat. The person must already have an EXJET login with an empty\npersonal account (no subscription, no identity check started, no trips); that empty account is removed.",
-        "operationId": "add_seat_v1_account_seats_post",
+        "description": "Invite a person to a seat. Never reveals whether the email has an EXJET login: the answer is always the same\n202. Nothing changes for the invitee until they sign in with the invited email and explicitly accept.",
+        "operationId": "invite_seat_v1_account_seats_post",
         "requestBody": {
           "content": {
             "application/json": {
@@ -3448,11 +4002,11 @@
           "required": true
         },
         "responses": {
-          "201": {
+          "202": {
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/SeatOut"
+                  "$ref": "#/components/schemas/SeatInviteOut"
                 }
               }
             },
@@ -3469,7 +4023,85 @@
             "description": "Validation Error"
           }
         },
-        "summary": "Add Seat",
+        "summary": "Invite Seat",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/v1/account/seats/accept": {
+      "post": {
+        "description": "The invitee, signed in with the invited email, explicitly accepts. Only now is a membership created.",
+        "operationId": "accept_invitation_v1_account_seats_accept_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeatAcceptIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Me"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Accept Invitation",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/v1/account/seats/invitations/{invitation_id}": {
+      "delete": {
+        "operationId": "revoke_invitation_v1_account_seats_invitations__invitation_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "invitation_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Invitation Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Revoke Invitation",
         "tags": [
           "auth"
         ]
@@ -3685,6 +4317,31 @@
           }
         },
         "summary": "Decide",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/inbound/quarantined": {
+      "get": {
+        "operationId": "quarantined_v1_admin_inbound_quarantined_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/QuarantinedMessageOut"
+                  },
+                  "title": "Response Quarantined V1 Admin Inbound Quarantined Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Quarantined",
         "tags": [
           "admin"
         ]
@@ -3988,6 +4645,107 @@
         ]
       }
     },
+    "/v1/admin/operators/{operator_id}/contacts/{contact_id}/confirm-rfq": {
+      "post": {
+        "description": "Contacts added to a live operator by ingest start with receives_rfq=false; an admin turns RFQs on.",
+        "operationId": "confirm_rfq_contact_v1_admin_operators__operator_id__contacts__contact_id__confirm_rfq_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "operator_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Operator Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "path",
+            "name": "contact_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Contact Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Confirm Rfq Contact",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/operators/{operator_id}/payment-hosts": {
+      "put": {
+        "description": "Replace the operator's approved payment hosts (set at onboarding). Links to any other host go to review.",
+        "operationId": "set_payment_hosts_v1_admin_operators__operator_id__payment_hosts_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "operator_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Operator Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PaymentHostsIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminOperatorOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Set Payment Hosts",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
     "/v1/admin/operators/{operator_id}/request-go-live": {
       "post": {
         "operationId": "request_go_live_v1_admin_operators__operator_id__request_go_live_post",
@@ -4080,7 +4838,7 @@
     },
     "/v1/admin/quotes/{quote_id}/resolve": {
       "post": {
-        "description": "Set the total on a needs_review quote. The amount must appear verbatim in the operator's PDF.",
+        "description": "Set the total on a needs_review quote. The amount must appear verbatim in the operator's PDF, and the quote's\npayment host must already be approved (decide its `payment_host` approval first).",
         "operationId": "resolve_quote_v1_admin_quotes__quote_id__resolve_post",
         "parameters": [
           {
@@ -4127,6 +4885,167 @@
           }
         },
         "summary": "Resolve Quote",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/suppressions": {
+      "get": {
+        "operationId": "list_suppressions_v1_admin_suppressions_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 200,
+              "maximum": 1000,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/SuppressionOut"
+                  },
+                  "title": "Response List Suppressions V1 Admin Suppressions Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "List Suppressions",
+        "tags": [
+          "admin"
+        ]
+      },
+      "post": {
+        "operationId": "add_suppression_v1_admin_suppressions_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SuppressionIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SuppressionOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Add Suppression",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/suppressions/{suppression_id}": {
+      "delete": {
+        "operationId": "remove_suppression_v1_admin_suppressions__suppression_id__delete",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "suppression_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Suppression Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Remove Suppression",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/users/{user_id}/deactivate": {
+      "post": {
+        "description": "Deactivate a login and revoke every session it holds (session_version is bumped).",
+        "operationId": "deactivate_user_v1_admin_users__user_id__deactivate_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "user_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "User Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Deactivate User",
         "tags": [
           "admin"
         ]
@@ -4330,6 +5249,7 @@
     },
     "/v1/auth/logout": {
       "post": {
+        "description": "Ends ALL of this user's sessions (the session version is bumped), not just this browser's.",
         "operationId": "logout_v1_auth_logout_post",
         "responses": {
           "204": {
@@ -4342,8 +5262,120 @@
         ]
       }
     },
+    "/v1/auth/password": {
+      "post": {
+        "description": "Change the password (current one required). Every other session is revoked; this one gets a fresh cookie.",
+        "operationId": "change_password_v1_auth_password_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordChangeIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Change Password",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/v1/auth/password/reset": {
+      "post": {
+        "operationId": "password_reset_v1_auth_password_reset_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordResetIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Password Reset",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/v1/auth/password/reset-request": {
+      "post": {
+        "description": "Always 202 'check_your_email', whether or not the email has an account.",
+        "operationId": "password_reset_request_v1_auth_password_reset_request_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/PasswordResetRequestIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Accepted"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Password Reset Request",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
     "/v1/auth/signup": {
       "post": {
+        "description": "New email: account created. In dev/test the caller is logged in at once (201 Me). Everywhere else the answer is\nthe same 202 for a new and for an existing email, and the caller signs in with the password (L3).\nAn existing email gets an `account_notice` email and no change.",
         "operationId": "signup_v1_auth_signup_post",
         "requestBody": {
           "content": {
@@ -4365,6 +5397,16 @@
               }
             },
             "description": "Successful Response"
+          },
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SignupPending"
+                }
+              }
+            },
+            "description": "Accepted"
           },
           "422": {
             "content": {
@@ -4426,7 +5468,7 @@
     },
     "/v1/billing/enterprise-inquiry": {
       "post": {
-        "description": "Enterprise has no price. The inquiry is recorded for the CEO to follow up; nothing is quoted.",
+        "description": "Enterprise has no price. The inquiry is recorded for the CEO to follow up; nothing is quoted.\nThe free text is stored encrypted in enterprise_inquiries; audit_log carries only the inquiry id.",
         "operationId": "enterprise_inquiry_v1_billing_enterprise_inquiry_post",
         "requestBody": {
           "content": {
@@ -4785,6 +5827,7 @@
     },
     "/v1/kyc/submissions": {
       "post": {
+        "description": "The OWNER submits the account's check (individual or business). An invited member submits only their own\nindividual identity (their personal entitlement depends on it); they cannot touch the account's check.",
         "operationId": "submit_v1_kyc_submissions_post",
         "requestBody": {
           "content": {

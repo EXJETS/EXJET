@@ -31,20 +31,28 @@ def load_viewer(db: Session, user: User) -> Viewer:
     ).unique().scalar_one_or_none()
     if row is None:
         return Viewer(user=user)
-    return Viewer(user=user, account=row.account, subscription=row.account.subscription)
+    return Viewer(user=user, account=row.account, subscription=row.account.subscription, member=row)
+
+
+def user_from_cookie(request: Request, db: Session) -> User | None:
+    """The user behind a valid session cookie: signature, expiry, is_active AND the session version must match.
+    Bumping users.session_version (logout, password change, deactivation) revokes every outstanding token."""
+    token = request.cookies.get(SESSION_COOKIE)
+    if not token:
+        return None
+    decoded = decode_session_token(token)
+    if decoded is None:
+        return None
+    uid, sv = decoded
+    user = db.get(User, uid)
+    if user is None or not user.is_active or user.session_version != sv:
+        return None
+    return user
 
 
 def optional_viewer(request: Request, db: Session = Depends(get_session)) -> Viewer:
-    token = request.cookies.get(SESSION_COOKIE)
-    if not token:
-        return ANONYMOUS
-    uid = decode_session_token(token)
-    if uid is None:
-        return ANONYMOUS
-    user = db.get(User, uid)
-    if user is None or not user.is_active:
-        return ANONYMOUS
-    return load_viewer(db, user)
+    user = user_from_cookie(request, db)
+    return ANONYMOUS if user is None else load_viewer(db, user)
 
 
 def require_viewer(viewer: Viewer = Depends(optional_viewer)) -> Viewer:
@@ -65,6 +73,12 @@ def require_entitled(viewer: Viewer = Depends(require_member)) -> Viewer:
     return viewer
 
 
+def require_owner(viewer: Viewer = Depends(require_member)) -> Viewer:
+    if not viewer.is_owner:
+        raise forbidden("Only the account owner can do this.")
+    return viewer
+
+
 def require_admin(viewer: Viewer = Depends(require_viewer)) -> Viewer:
     if not viewer.is_admin:
         raise forbidden("Administrator access required.")
@@ -72,7 +86,7 @@ def require_admin(viewer: Viewer = Depends(require_viewer)) -> Viewer:
 
 
 def require_dev_env() -> None:
-    if get_settings().env not in ("dev", "test"):
+    if not get_settings().is_dev_like:
         raise not_found()
 
 

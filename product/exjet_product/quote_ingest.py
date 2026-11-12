@@ -6,12 +6,13 @@ the quote needs human review. Any figure from another source (an LLM) must pass 
 """
 from __future__ import annotations
 
-import io
 import re
 from dataclasses import dataclass, field
 from datetime import UTC, datetime
 from decimal import Decimal, InvalidOperation
 from urllib.parse import urlsplit
+
+from .pdf_safe import PdfExtract, PdfLimitError, extract_bounded  # noqa: F401  (PdfLimitError is re-exported)
 
 READY_THRESHOLD = 0.8
 
@@ -81,33 +82,14 @@ class DocumentAnalysis:
 
 
 # ----------------------------------------------------------------------------- PDF
-def extract_pdf_pages(data: bytes) -> list[str]:
-    from pypdf import PdfReader
-
-    try:
-        reader = PdfReader(io.BytesIO(data))
-        return [(p.extract_text() or "") for p in reader.pages]
-    except Exception:  # noqa: BLE001 - corrupt or encrypted PDF: treated as unreadable, never raised to callers
-        return []
+def extract_pdf(data: bytes, **limits) -> PdfExtract:
+    """Pages and link annotations from ONE bounded parse in a resource-limited subprocess (see pdf_safe).
+    Raises PdfLimitError on a size/page/text/time/memory breach; a corrupt PDF yields empty pages."""
+    return extract_bounded(data, **limits)
 
 
-def extract_pdf_links(data: bytes) -> list[str]:
-    from pypdf import PdfReader
-
-    out: list[str] = []
-    try:
-        reader = PdfReader(io.BytesIO(data))
-        for page in reader.pages:
-            for annot in page.get("/Annots") or []:
-                obj = annot.get_object()
-                action = obj.get("/A")
-                if action is not None:
-                    uri = action.get_object().get("/URI")
-                    if uri:
-                        out.append(str(uri))
-    except Exception:  # noqa: BLE001
-        return out
-    return out
+def extract_pdf_pages(data: bytes, **limits) -> list[str]:
+    return extract_pdf(data, **limits).pages
 
 
 # ----------------------------------------------------------------------------- money
@@ -369,14 +351,16 @@ def find_contracting_party(pages: list[str]) -> str | None:
     return m[1].strip() if m else None
 
 
-def analyze_pdf(data: bytes, filename: str = "") -> DocumentAnalysis:
-    pages = extract_pdf_pages(data)
+def analyze_pdf(data: bytes, filename: str = "", **limits) -> DocumentAnalysis:
+    """Parse once (bounded), classify, extract. Raises PdfLimitError when the document breaks a bound."""
+    parsed = extract_pdf(data, **limits)
+    pages = parsed.pages
     doc_type = classify_document(pages, filename) if any(p.strip() for p in pages) else DOC_OTHER
     ex = extract_quote(pages) if doc_type == DOC_QUOTE else None
     return DocumentAnalysis(
         doc_type=doc_type,
         pages=pages,
         extraction=ex,
-        links=extract_pdf_links(data),
+        links=parsed.links,
         contracting_party=find_contracting_party(pages) if doc_type == DOC_CONTRACT else None,
     )

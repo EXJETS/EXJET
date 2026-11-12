@@ -43,12 +43,13 @@ def pdf_bytes(lines: list[str], links: list[tuple[str, str]] | None = None) -> b
     return buf.getvalue()
 
 
-def quote_pdf(total: str = "$45,200.00", extra: list[str] | None = None) -> bytes:
+def quote_pdf(total: str = "$45,200.00", extra: list[str] | None = None,
+              pay_url: str = "https://pay.example.com/checkout/synthetic-123") -> bytes:
     return pdf_bytes([
         "SYNTHETIC Test Operator Quote", "Charter Quotation", "Quote No: Q-TEST-0001", "Valid until: December 31, 2099",
         "Aircraft charter ........ $41,000.00", "Fuel and handling ........ $4,200.00", "Subtotal: $45,200.00",
         f"Total Charter Cost: {total}", *(extra or []),
-    ], links=[("Pay online", "https://pay.example.com/checkout/synthetic-123")])
+    ], links=[("Pay online", pay_url)])
 
 
 def contract_pdf(name: str = "Pat Member") -> bytes:
@@ -76,10 +77,11 @@ def login(client, email: str):
     return client.post("/v1/auth/login", json={"email": email, "password": PASSWORD})
 
 
-def make_entitled(db, client, admin: User, email: str = "member@example.com", name: str = "Pat Member") -> Account:
+def make_entitled(db, client, admin: User, email: str = "member@example.com", name: str = "Pat Member",
+                  account_type: str = "individual") -> Account:
     """Signs up through the API, then grants KYC approval the legitimate way (approval row, then status)
     and an active subscription."""
-    r = signup(client, email, name)
+    r = signup(client, email, name, account_type)
     assert r.status_code == 201, r.text
     acct = db.get(Account, uuid.UUID(r.json()["account"]["id"]))
     user = db.execute(select(User).where(User.email == email)).scalar_one()
@@ -90,17 +92,48 @@ def make_entitled(db, client, admin: User, email: str = "member@example.com", na
                     status="approved", decided_by=admin.id, decided_at=datetime.now(UTC), summary="test"))
     db.flush()
     acct.kyc_status = "approved"
-    db.add(Subscription(account_id=acct.id, plan="individual", status="active", provider="fake", unit_amount_cents=75000,
+    db.add(Subscription(account_id=acct.id, plan=account_type, status="active", provider="fake",
+                        unit_amount_cents=100000 if account_type == "family_office" else 75000,
                         current_period_end=datetime.now(UTC) + timedelta(days=30)))
     db.commit()
     return acct
+
+
+def make_family_office(db, client, admin: User, email: str = "owner@example.com", name: str = "Olivia Owner") -> Account:
+    return make_entitled(db, client, admin, email, name, account_type="family_office")
+
+
+def invite_token(mail, email: str) -> str:
+    """The raw invitation token from the (fake) email sent to `email`."""
+    import re
+
+    msgs = mail.sent_to(email)
+    assert msgs, f"no email was sent to {email}"
+    return re.search(r"token=([\w-]+)", msgs[-1].body_text).group(1)
+
+
+def approve_member_identity(db, admin: User, account_id, user_id, holder_name: str = "Sam Member") -> None:
+    """Gives an invited member an approved identity the legitimate way (submission, approval row, then status)."""
+    from exjet_api.models import AccountMember
+
+    sub = KycSubmission(account_id=account_id, submitted_by=user_id, subject_user_id=user_id, kind="individual",
+                        holder_name=holder_name, status="approved")
+    db.add(sub)
+    db.flush()
+    db.add(Approval(kind="kyc_final", subject_type="kyc_submission", subject_id=str(sub.id), requested_by="system",
+                    status="approved", decided_by=admin.id, decided_at=datetime.now(UTC), summary="test"))
+    db.flush()
+    m = db.execute(select(AccountMember).where(AccountMember.account_id == account_id, AccountMember.user_id == user_id)).scalar_one()
+    m.identity_status = "approved"
+    db.commit()
 
 
 def make_operator(db, admin: User, name: str, *, live: bool = True, excluded: bool = False, email: str | None = None,
                   tail: str | None = None, type_slug: str = "cessna-citation-xls-plus", seats: int = 8, home: str = "KTEB") -> Operator:
     from exjet_api.models import AircraftType
 
-    op = Operator(dba_name=name, legal_name=f"{name} LLC", certificate_number=f"T-{uuid.uuid4().hex[:8]}", is_excluded=excluded)
+    op = Operator(dba_name=name, legal_name=f"{name} LLC", certificate_number=f"T-{uuid.uuid4().hex[:8]}", is_excluded=excluded,
+                  payment_hosts=["pay.example.com"])
     db.add(op)
     db.flush()
     db.add(OperatorContact(operator_id=op.id, name="Test Contact", email=email or f"{uuid.uuid4().hex[:8]}@example.com", receives_rfq=True))
@@ -149,9 +182,10 @@ def to_quote_stage(db, member, adm, *, email="pat@example.com", name="Pat Member
     return {"admin": admin, "account": acct, "trip_id": tid, "listing_id": lid, "rfq": rfq, "ref": ref, "ops": ops}
 
 
-def inbound(adm, sender: str, subject: str, body: str, attachments: list[dict] | None = None):
+def inbound(adm, sender: str, subject: str, body: str, attachments: list[dict] | None = None, **extra):
+    """Simulate an operator reply. `extra` may carry dmarc_pass / spf / dkim to simulate authentication results."""
     r = adm.post("/v1/dev/inbound-email", json={"from_address": sender, "subject": subject, "body": body,
-                                                "attachments": attachments or []})
+                                                "attachments": attachments or [], **extra})
     assert r.status_code == 202, r.text
     run_jobs()
 

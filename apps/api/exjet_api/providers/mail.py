@@ -31,16 +31,28 @@ class Attachment:
     data: bytes
 
 
+@dataclass(frozen=True)
+class InboundAuth:
+    """The mail provider's authentication verdict for an inbound message (from the Authentication-Results the
+    receiving provider stamped, never from headers the sender can forge). `dmarc_pass` means DMARC passed WITH
+    alignment to the From domain. Default is fail-closed: a message without a verdict is unauthenticated."""
+
+    dmarc_pass: bool = False
+    spf: str = "none"  # pass | fail | softfail | neutral | none | temperror | permerror
+    dkim: str = "none"  # pass | fail | none | temperror | permerror
+
+
 @dataclass
 class InboundEmail:
     provider_message_id: str
     thread_id: str | None
-    from_address: str
+    from_address: str  # raw From header value
     to: list[str]
     subject: str
     body_text: str
     attachments: list[Attachment] = field(default_factory=list)
     received_at: datetime = field(default_factory=lambda: datetime.now(UTC))
+    auth: InboundAuth = field(default_factory=InboundAuth)
 
 
 class MailProvider(Protocol):
@@ -76,7 +88,9 @@ class FakeMail:
         return out
 
     def sent_to(self, address: str) -> list[OutboundMessage]:
-        return [m for m, _ in self.outbox if address.lower() in [a.lower() for a in m.to]]
+        from ..emailnorm import normalize_email
+
+        return [m for m, _ in self.outbox if normalize_email(address) in [normalize_email(a) for a in m.to]]
 
 
 class GmailMail:

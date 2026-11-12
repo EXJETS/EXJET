@@ -22,8 +22,14 @@ _PICKS = {
 }
 
 
+FAKE_ONLY_IN_DEV = ("billing_provider", "kyc_provider", "mail_provider", "adsb_provider")
+
+
 def _pick(attr: str):
-    value = getattr(get_settings(), attr)
+    settings = get_settings()
+    value = getattr(settings, attr)
+    if value == "fake" and not settings.is_dev_like:
+        raise RuntimeError(f"fake {attr} is refused when EXJET_ENV={settings.env}")
     try:
         return _PICKS[attr][value]()
     except KeyError as e:
@@ -76,9 +82,11 @@ def reset_providers() -> None:
 
 
 def assert_safe_for_env() -> None:
-    """Refuse to boot staging/prod on fakes or without secrets."""
+    """Refuse to boot anywhere but dev/test on fakes or without secrets (env is a closed set with no default)."""
     s = get_settings()
-    if s.env in ("staging", "prod"):
-        fakes = [a for a in ("billing_provider", "kyc_provider", "mail_provider", "adsb_provider") if getattr(s, a) == "fake"]
+    if not s.is_dev_like:
+        fakes = [a for a in FAKE_ONLY_IN_DEV if getattr(s, a) == "fake"]
+        if s.weather_provider == "fake":
+            fakes.append("weather_provider")
         if fakes or not s.jwt_secret or not s.pii_key:
-            raise RuntimeError("staging/prod require real providers, EXJET_JWT_SECRET and EXJET_PII_KEY")
+            raise RuntimeError(f"{s.env} requires real providers, EXJET_JWT_SECRET and EXJET_PII_KEY")

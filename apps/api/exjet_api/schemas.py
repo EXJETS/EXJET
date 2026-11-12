@@ -8,14 +8,17 @@ from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict, Field, field_validator
 
+from .emailnorm import normalize_email
+
 _EMAIL_RE = re.compile(r"^[^@\s]{1,64}@[^@\s]+\.[^@\s]{2,}$")
 
 
 def _email(v: str) -> str:
-    v = v.strip().lower()
-    if len(v) > 320 or not _EMAIL_RE.match(v):
+    """The single normalizer (strip, NFKC, lowercase, IDNA domain) applied to every email in a request."""
+    n = normalize_email(v)
+    if not n or len(n) > 320 or not _EMAIL_RE.match(n):
         raise ValueError("invalid email address")
-    return v
+    return n
 
 
 class ORM(BaseModel):
@@ -61,12 +64,44 @@ class SubscriptionOut(BaseModel):
     current_period_end: datetime | None
 
 
+class MemberOut(BaseModel):
+    is_owner: bool
+    identity_status: Literal["not_started", "submitted", "in_review", "approved", "rejected"]
+    is_suspended: bool = False
+
+
 class Me(BaseModel):
     user: UserOut
     account: AccountOut | None
     subscription: SubscriptionOut | None
+    member: MemberOut | None = None  # this person's seat on the account (owner inherits the account KYC result)
     entitled: bool
     next_step: Literal["kyc", "kyc_pending", "billing", "ready"]
+
+
+class SignupPending(BaseModel):
+    """Uniform signup answer outside dev/test: identical whether or not the email already has an account."""
+
+    status: Literal["check_your_email"] = "check_your_email"
+
+
+class PasswordChangeIn(BaseModel):
+    current_password: str = Field(min_length=1, max_length=128)
+    new_password: str = Field(min_length=10, max_length=128)
+
+
+class PasswordResetRequestIn(BaseModel):
+    email: str
+    _v = field_validator("email")(_email)
+
+
+class PasswordResetIn(BaseModel):
+    token: str = Field(min_length=20, max_length=200)
+    new_password: str = Field(min_length=10, max_length=128)
+
+
+class Accepted(BaseModel):
+    status: str
 
 
 class SeatIn(BaseModel):
@@ -74,10 +109,37 @@ class SeatIn(BaseModel):
     _v = field_validator("email")(_email)
 
 
-class SeatOut(BaseModel):
+class SeatInviteOut(BaseModel):
+    """Always the same answer, whether or not the email has an EXJET login."""
+
+    status: Literal["invitation_queued"] = "invitation_queued"
+
+
+class SeatMemberOut(BaseModel):
+    user_id: uuid.UUID
+    email: str
+    full_name: str | None
+    is_owner: bool
+    identity_status: str
+    is_suspended: bool
+
+
+class SeatInvitationOut(BaseModel):
+    id: uuid.UUID
+    email: str
+    created_at: datetime
+    expires_at: datetime
+
+
+class SeatsOut(BaseModel):
     account_id: uuid.UUID
-    seats_used: int
-    seats: int
+    seats: int  # seats the current plan provides
+    members: list[SeatMemberOut]
+    invitations: list[SeatInvitationOut]  # pending only
+
+
+class SeatAcceptIn(BaseModel):
+    token: str = Field(min_length=20, max_length=200)
 
 
 # --------------------------------------------------------------------------- kyc
@@ -94,8 +156,9 @@ class KycLatest(BaseModel):
 
 
 class KycStatusOut(BaseModel):
-    kyc_status: str
+    kyc_status: str  # for the owner: the account result; for an invited member: their own identity result
     latest_submission: KycLatest | None
+    scope: Literal["account", "member"] = "account"
 
 
 # --------------------------------------------------------------------------- billing
@@ -296,6 +359,8 @@ class PaymentLinkOut(BaseModel):
     url: str
     host: str
     status: str
+    host_approved: bool  # the host is on the operator's admin-approved list
+    changed_since_first: bool  # a later quote on this RFQ whose payment host or total differs from the first quote
 
 
 class QuoteOut(BaseModel):
@@ -388,7 +453,7 @@ class GroundRfqIn(BaseModel):
     kind: Literal["rental_car", "chauffeur"]
     leg_sequence: int = Field(ge=0, le=20)
     fbo_id: uuid.UUID
-    details: str | None = Field(default=None, max_length=1000)
+    details: str | None = Field(default=None, max_length=500)
 
 
 # --------------------------------------------------------------------------- manifest / flight / weather
@@ -494,6 +559,8 @@ class AdminDocument(BaseModel):
 class AdminKycSubmission(BaseModel):
     id: uuid.UUID
     account_id: uuid.UUID
+    scope: Literal["account", "member"] = "account"
+    subject_user_id: uuid.UUID | None = None
     kind: str
     holder_name: str
     status: str
@@ -513,6 +580,8 @@ class AdminOperatorOut(BaseModel):
     go_live_status: str
     aircraft_count: int
     contact_count: int
+    pending_contact_count: int = 0  # contacts added after go-live that still need admin confirmation
+    payment_hosts: list[str] = []
 
 
 class IngestRunOut(ORM):
@@ -571,6 +640,9 @@ class AdminQuoteReview(BaseModel):
     flags: list[str]
     parse_confidence: float | None
     pdf_url: str | None
+    payment_host: str | None = None
+    payment_host_approved: bool | None = None
+    payment_host_approval_id: uuid.UUID | None = None  # decide it via POST /admin/approvals/{id}/decide
 
 
 class ResolveQuoteIn(BaseModel):
@@ -593,6 +665,10 @@ class DevInboundEmail(BaseModel):
     body: str = ""
     thread_id: str | None = None
     attachments: list[DevAttachment] = []
+    # The provider's authentication verdict, simulated. Defaults model a normal authenticated operator reply.
+    dmarc_pass: bool = True
+    spf: Literal["pass", "fail", "softfail", "neutral", "none"] = "pass"
+    dkim: Literal["pass", "fail", "none"] = "pass"
 
 
 class DevCompleteCheckout(BaseModel):
@@ -605,3 +681,34 @@ class Empty(BaseModel):
 
 
 JsonDict = dict[str, Any]
+
+
+# --------------------------------------------------------------------------- admin: suppressions, users, quarantine
+class SuppressionIn(BaseModel):
+    email: str
+    reason: Literal["unsubscribe", "bounce", "complaint", "legal", "manual"] = "manual"
+    _v = field_validator("email")(_email)
+
+
+class SuppressionOut(ORM):
+    id: uuid.UUID
+    email: str
+    reason: str
+    source: str | None
+    created_at: datetime
+
+
+class QuarantinedMessageOut(BaseModel):
+    id: uuid.UUID
+    received_at: datetime | None
+    from_address: str
+    subject: str
+    reason: str | None
+    dmarc_pass: bool | None
+    spf: str | None
+    dkim: str | None
+    approval_id: uuid.UUID | None
+
+
+class PaymentHostsIn(BaseModel):
+    hosts: list[str] = Field(max_length=20)

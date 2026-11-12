@@ -2,21 +2,29 @@ from __future__ import annotations
 
 import uuid
 
-from fastapi import APIRouter, Depends, Response
+from fastapi import APIRouter, Depends, Request, Response
 from fastapi.responses import RedirectResponse
-from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from .. import schemas as S
 from ..audit import audit
-from ..deps import get_owned_trip, get_session, require_entitled, require_viewer
+from ..deps import (
+    get_owned_trip,
+    get_session,
+    load_viewer,
+    require_entitled,
+    require_viewer,
+    user_from_cookie,
+)
 from ..entitlements import Viewer
 from ..errors import forbidden, not_found
+from ..filetypes import FILE_RESPONSE_HEADERS, KYC_TYPES, content_disposition
 from ..models import Contract, Document, Quote, Trip
 from ..providers import get_storage
 from ..security import verify_blob
 from ..serializers import Builder
 from ..services import quote_service as Q
+from ..services.documents import signed_document_url
 
 router = APIRouter(tags=["quotes"])
 
@@ -69,38 +77,50 @@ def _document_account_id(db: Session, doc: Document):
     return None  # kyc_submission and unlinked email attachments: admin only
 
 
+def authorize_document(db: Session, viewer: Viewer, doc: Document) -> None:
+    """Admins read any document; a member reads documents of their own account, while entitled."""
+    if viewer.is_admin:
+        return
+    acct = _document_account_id(db, doc)
+    if acct is None or viewer.account is None or acct != viewer.account.id:
+        raise not_found("Document not found.")  # no existence leak across accounts
+    if not viewer.entitled:
+        raise forbidden("An active membership is required to view operator documents.")
+
+
 @router.get("/documents/{document_id}")
 def get_document(document_id: uuid.UUID, viewer: Viewer = Depends(require_viewer), db: Session = Depends(get_session)):
     doc = db.get(Document, document_id)
     if doc is None:
         raise not_found("Document not found.")
-    if not viewer.is_admin:
-        acct = _document_account_id(db, doc)
-        if acct is None or viewer.account is None or acct != viewer.account.id:
-            raise not_found("Document not found.")  # no existence leak across accounts
-        if not viewer.entitled:
-            raise forbidden("An active membership is required to view operator documents.")
+    authorize_document(db, viewer, doc)
     if doc.kind == "kyc" or doc.owner_type == "kyc_submission":
         audit(db, actor=f"user:{viewer.user.id}", action="kyc_document_access", subject_type="document", subject_id=doc.id,
               detail={"owner_id": str(doc.owner_id)})
-    url = get_storage().signed_url(doc.storage_key, 120)
+    url = signed_document_url(doc, viewer.user.id)
     db.commit()
-    return RedirectResponse(url, status_code=302, headers={"Cache-Control": "no-store"})
+    return RedirectResponse(url, status_code=302, headers={"Cache-Control": "private, no-store"})
 
 
 @router.get("/files/{token}", include_in_schema=False)
-def serve_file(token: str, db: Session = Depends(get_session)):
-    """Serves a local-storage object for a short-lived signed token (dev/local storage only)."""
+def serve_file(token: str, request: Request, db: Session = Depends(get_session)):
+    """Serves a local-storage object. The signed token binds the storage key, the DOCUMENT id and the VIEWER's user id
+    and expires; the caller must be signed in as that same user, and still be allowed to read the document (L7).
+    Files are always a download, never rendered from this origin (H1)."""
+    user = user_from_cookie(request, db)
     payload = verify_blob(token)
-    if not payload or "k" not in payload:
+    if user is None or not payload or not {"k", "d", "u"} <= payload.keys() or payload["u"] != str(user.id):
         raise not_found()
-    doc = db.execute(select(Document).where(Document.storage_key == payload["k"]).limit(1)).scalar_one_or_none()
-    if doc is None:
+    try:
+        doc = db.get(Document, uuid.UUID(payload["d"]))
+    except ValueError:
+        raise not_found() from None
+    if doc is None or doc.storage_key != payload["k"]:
         raise not_found()
+    authorize_document(db, load_viewer(db, user), doc)
     try:
         data = get_storage().get(doc.storage_key)
     except FileNotFoundError:
         raise not_found() from None
-    return Response(data, media_type=doc.content_type, headers={
-        "Cache-Control": "no-store", "X-Content-Type-Options": "nosniff",
-        "Content-Disposition": f'inline; filename="{doc.filename}"'})
+    ctype = doc.content_type if doc.content_type in KYC_TYPES else "application/octet-stream"
+    return Response(data, media_type=ctype, headers={**FILE_RESPONSE_HEADERS, "Content-Disposition": content_disposition(doc.filename)})

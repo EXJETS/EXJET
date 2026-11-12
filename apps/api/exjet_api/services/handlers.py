@@ -5,7 +5,7 @@ import uuid
 
 from sqlalchemy.orm import Session
 
-from .. import clock
+from .. import clock, ratelimit
 from ..jobs import handler
 from . import flight_service, kyc_service, manifest_service, quote_service, rfq_service
 
@@ -22,7 +22,7 @@ def _poll(db: Session, p: dict) -> None:
 
 @handler("quote.ingest")
 def _ingest(db: Session, p: dict) -> None:
-    quote_service.ingest_message(db, uuid.UUID(p["message_id"]))
+    quote_service.ingest_message(db, uuid.UUID(p["message_id"]), released=bool(p.get("released")))
 
 
 @handler("kyc.vendor_check")
@@ -43,3 +43,8 @@ def _watch(db: Session, p: dict) -> None:
 @handler("rfq.expire")
 def _expire(db: Session, p: dict) -> None:
     rfq_service.expire_stale(db, clock.now())
+
+
+@handler("ratelimit.cleanup")
+def _ratelimit_cleanup(db: Session, p: dict) -> None:
+    ratelimit.cleanup()

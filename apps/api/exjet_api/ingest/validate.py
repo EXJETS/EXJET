@@ -36,6 +36,12 @@ Raw = dict[str, str | None]
 EXCLUDED = "excluded_operator"
 
 
+def _opname_cert(cert: str) -> str:
+    from ..opname import normalize_certificate as _nc
+
+    return _nc(cert)
+
+
 def _too_long(values: dict[str, str | None], limits: dict[str, int]) -> str | None:
     for f, limit in limits.items():
         v = values.get(f)
@@ -69,6 +75,10 @@ def _state(raw: Raw, n: int, flags: list[Flag]) -> str | None:
 def validate_operator(n: int, raw: Raw, cfg: IngestConfig, ctx: ValidationContext) -> Row | Reject:
     dba_raw, legal = raw.get("dba_name"), raw.get("legal_name")
     cert = normalize_certificate(raw.get("certificate_number"))
+
+    if cert and _opname_cert(cert) in cfg.excluded_certificates:  # excluded by certificate number (config)
+        ctx.excluded_certs.add(cert)
+        return Reject(n, EXCLUDED, "operator certificate is on the exclusion list")
 
     for name in (dba_raw, legal):
         if excluded_match(name, cfg.excluded):
@@ -170,7 +180,8 @@ def validate_operator(n: int, raw: Raw, cfg: IngestConfig, ctx: ValidationContex
 def validate_aircraft(n: int, raw: Raw, cfg: IngestConfig, ctx: ValidationContext) -> Row | Reject:
     op_name = raw.get("operator_name")
     op_cert = normalize_certificate(raw.get("operator_certificate_number"))
-    if excluded_match(op_name, cfg.excluded) or (op_cert and op_cert in ctx.excluded_certs):
+    if (excluded_match(op_name, cfg.excluded) or (op_cert and op_cert in ctx.excluded_certs)
+            or (op_cert and _opname_cert(op_cert) in cfg.excluded_certificates)):
         return Reject(n, EXCLUDED, "aircraft belongs to an excluded operator")
 
     flags: list[Flag] = []

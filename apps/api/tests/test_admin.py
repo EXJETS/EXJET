@@ -4,8 +4,10 @@ from datetime import UTC
 from helpers import (
     PASSWORD,
     future_trip_body,
+    invite_token,
     login,
     make_entitled,
+    make_family_office,
     make_operator,
     run_jobs,
     seed_all,
@@ -178,23 +180,32 @@ def test_enterprise_inquiry_is_recorded_without_a_price(db, client):
     assert client.post("/v1/billing/enterprise-inquiry", json={"company": "Test Co", "seats": 12}).status_code == 401
     signup(client, "e@example.com")
     assert client.post("/v1/billing/enterprise-inquiry", json={"company": "Test Co", "seats": 12, "notes": "hi"}).status_code == 202
+    from exjet_api.models import EnterpriseInquiry
+
+    inq = db.execute(select(EnterpriseInquiry)).scalar_one()
+    assert inq.seats == 12 and inq.company == "Test Co" and inq.notes == "hi"
     row = db.execute(select(AuditLog).where(AuditLog.action == "enterprise_inquiry")).scalar_one()
-    assert row.detail["seats"] == 12
+    assert row.detail == {"inquiry_id": str(inq.id)}  # M2: no free text in audit_log
 
 
 def test_family_office_second_seat(db, client, make_client):
-    seed_all(db)
-    signup(client, "owner@example.com", account_type="family_office")
+    """C2: a second seat is an invitation the invitee explicitly accepts (attack cases: test_security_seats.py)."""
+    admin, _ = seed_all(db)
+    make_family_office(db, client, admin, "owner@example.com")
     spouse = make_client()
-    assert client.post("/v1/account/seats", json={"email": "spouse@example.com"}).status_code == 404  # no login yet
     signup(spouse, "spouse@example.com", "Spouse Member")
     r = client.post("/v1/account/seats", json={"email": "spouse@example.com"})
-    assert r.status_code == 201 and r.json() == {"account_id": client.get("/v1/me").json()["account"]["id"], "seats_used": 2, "seats": 2}
-    assert spouse.get("/v1/me").json()["account"]["id"] == client.get("/v1/me").json()["account"]["id"]
+    assert r.status_code == 202 and r.json() == {"status": "invitation_queued"}
+    # nothing changes for the invitee until they accept
+    assert spouse.get("/v1/me").json()["account"]["id"] != client.get("/v1/me").json()["account"]["id"]
+    token = invite_token(get_mail(), "spouse@example.com")
+    acc = spouse.post("/v1/account/seats/accept", json={"token": token})
+    assert acc.status_code == 200 and acc.json()["account"]["id"] == client.get("/v1/me").json()["account"]["id"]
+    assert acc.json()["entitled"] is False and acc.json()["next_step"] == "kyc"  # their own identity check is still due
     third = make_client()
     signup(third, "third@example.com")
     assert client.post("/v1/account/seats", json={"email": "third@example.com"}).json()["error"]["code"] == "seat_limit_reached"
-    # a spouse sees the owner's trips
+    # a member sees the account's trips
     tid = client.post("/v1/trips", json=future_trip_body()).json()["id"]
     assert spouse.get(f"/v1/trips/{tid}").status_code == 200
     # individual accounts have no extra seat

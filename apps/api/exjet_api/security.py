@@ -1,10 +1,9 @@
-"""Password hashing (argon2id), signed session JWT, in-process rate limiting."""
+"""Password hashing (argon2id), signed session JWT with a revocable session version, signed download tokens."""
 from __future__ import annotations
 
-import threading
-import time
+import hashlib
+import secrets
 import uuid
-from collections import defaultdict, deque
 from datetime import UTC, datetime, timedelta
 
 import jwt
@@ -12,7 +11,6 @@ from argon2 import PasswordHasher
 from argon2.exceptions import InvalidHashError, VerificationError, VerifyMismatchError
 
 from .config import get_settings
-from .errors import ApiError
 
 SESSION_COOKIE = "exjet_session"
 CSRF_HEADER = "x-requested-with"
@@ -47,57 +45,48 @@ def needs_rehash(password_hash: str) -> bool:
     return _hasher.check_needs_rehash(password_hash)
 
 
-def create_session_token(user_id: uuid.UUID) -> str:
+def create_session_token(user_id: uuid.UUID, session_version: int = 0) -> str:
     now = datetime.now(UTC)
     exp = now + timedelta(minutes=get_settings().session_minutes)
-    return jwt.encode({"sub": str(user_id), "iat": now, "exp": exp, "jti": uuid.uuid4().hex}, jwt_secret(), algorithm="HS256")
+    return jwt.encode({"typ": "session", "sub": str(user_id), "sv": session_version, "iat": now, "exp": exp, "jti": uuid.uuid4().hex},
+                      jwt_secret(), algorithm="HS256")
 
 
-def decode_session_token(token: str) -> uuid.UUID | None:
+def decode_session_token(token: str) -> tuple[uuid.UUID, int] | None:
+    """(user id, session version the token was issued with). The caller compares the version to the user row."""
     try:
-        payload = jwt.decode(token, jwt_secret(), algorithms=["HS256"], options={"require": ["exp", "sub"]})
-        return uuid.UUID(payload["sub"])
+        payload = jwt.decode(token, jwt_secret(), algorithms=["HS256"], options={"require": ["exp", "sub", "sv"]})
+        sv = payload["sv"]
+        if payload.get("typ") != "session" or not isinstance(sv, int):
+            return None
+        return uuid.UUID(payload["sub"]), sv
     except (jwt.PyJWTError, ValueError, KeyError):
         return None
 
 
+def new_token() -> tuple[str, str]:
+    """(token to email, sha256 hex to store). The raw token is never stored."""
+    t = secrets.token_urlsafe(32)
+    return t, token_hash(t)
+
+
+def token_hash(token: str) -> str:
+    return hashlib.sha256(token.encode()).hexdigest()
+
+
 def sign_blob(payload: dict, ttl_seconds: int) -> str:
-    """Short-lived signed token (used for local-storage download URLs)."""
+    """Short-lived signed token (local-storage download URLs: bound to document id + viewer id)."""
     exp = datetime.now(UTC) + timedelta(seconds=ttl_seconds)
-    return jwt.encode({**payload, "exp": exp}, jwt_secret(), algorithm="HS256")
+    return jwt.encode({**payload, "typ": "blob", "exp": exp}, jwt_secret(), algorithm="HS256")
 
 
 def verify_blob(token: str) -> dict | None:
     try:
-        return jwt.decode(token, jwt_secret(), algorithms=["HS256"], options={"require": ["exp"]})
+        data = jwt.decode(token, jwt_secret(), algorithms=["HS256"], options={"require": ["exp"]})
     except jwt.PyJWTError:
         return None
+    return data if data.get("typ") == "blob" else None
 
 
 def cookie_secure() -> bool:
     return get_settings().env not in ("dev", "test")
-
-
-class RateLimiter:
-    """Sliding-window limiter, per process. Good enough for one API instance; use a shared store to scale out."""
-
-    def __init__(self) -> None:
-        self._hits: dict[str, deque[float]] = defaultdict(deque)
-        self._lock = threading.Lock()
-
-    def check(self, key: str, limit: int, window_seconds: int) -> None:
-        now = time.monotonic()
-        with self._lock:
-            q = self._hits[key]
-            while q and now - q[0] > window_seconds:
-                q.popleft()
-            if len(q) >= limit:
-                raise ApiError(429, "rate_limited", "Too many attempts. Try again in a few minutes.")
-            q.append(now)
-
-    def reset(self) -> None:
-        with self._lock:
-            self._hits.clear()
-
-
-auth_limiter = RateLimiter()

@@ -129,7 +129,8 @@ def test_full_product_loop(db, client, make_client):
     assert q["operator_quote_number"] == "Q-TEST-0001" and q["operator"]["dba_name"] == "SYNTHETIC Test Operator A"
     assert [i["amount_cents"] for i in q["line_items"]] == [4_100_000, 420_000]
     assert q["contract"]["acknowledged_at"] is None
-    assert q["payment_link"] == {"url": "https://pay.example.com/checkout/synthetic-123", "host": "pay.example.com", "status": "pending"}
+    assert q["payment_link"] == {"url": "https://pay.example.com/checkout/synthetic-123", "host": "pay.example.com", "status": "pending",
+                                 "host_approved": True, "changed_since_first": False}
     assert member.get(f"/v1/trips/{tid}").json()["status"] == "quoted"
     notes = get_mail().sent_to("pat@example.com")
     assert len(notes) == 1 and "SYNTHETIC" not in notes[0].body_text and "$" not in notes[0].body_text  # no operator, no amount

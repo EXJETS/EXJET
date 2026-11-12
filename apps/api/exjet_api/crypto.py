@@ -28,6 +28,15 @@ def decrypt(token: str) -> str:
     return _fernet().decrypt(token.encode()).decode()
 
 
+def encrypt_bytes(data: bytes) -> bytes:
+    """File bytes at rest (local storage). Same key as the PII columns."""
+    return _fernet().encrypt(data)
+
+
+def decrypt_bytes(token: bytes) -> bytes:
+    return _fernet().decrypt(token)
+
+
 class EncryptedStr(TypeDecorator):
     """String column stored encrypted. Not searchable; add a separate hash column if lookup is needed."""
 
