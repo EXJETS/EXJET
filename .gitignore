@@ -61,3 +61,6 @@ out/
 *.tsbuildinfo
 test-results/
 playwright-report/
+
+# agent worktrees
+.claude/worktrees/
