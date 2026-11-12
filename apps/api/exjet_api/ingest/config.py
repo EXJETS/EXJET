@@ -9,7 +9,7 @@ from pathlib import Path
 import yaml
 
 from ..config import get_settings
-from ..opname import excluded_certificate_set, split_csv
+from ..opname import excluded_certificate_set
 from .normalize import RATING_VALUES, compact, fold, type_key
 
 DATASETS = ("airports_fbos", "operators", "aircraft", "outreach_lists")  # dependency order
@@ -110,8 +110,7 @@ def _load_mapping(path: Path, dataset: str) -> DatasetMapping:
 def load_config(mappings_dir: Path | None = None, excluded: list[str] | None = None) -> IngestConfig:
     mdir = Path(mappings_dir) if mappings_dir else default_data_dir() / "mappings"
     if excluded is None:
-        s = get_settings()
-        excluded = split_csv(s.excluded_operators) + split_csv(s.excluded_operator_aliases)
+        excluded = get_settings().all_excluded_names
 
     overrides_raw = (_load_yaml(mdir / "dba_overrides.yaml").get("overrides")) or {}
     if not isinstance(overrides_raw, dict):

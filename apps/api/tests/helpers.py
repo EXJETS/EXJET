@@ -43,12 +43,13 @@ def pdf_bytes(lines: list[str], links: list[tuple[str, str]] | None = None) -> b
     return buf.getvalue()
 
 
-def quote_pdf(total: str = "$45,200.00", extra: list[str] | None = None) -> bytes:
+def quote_pdf(total: str = "$45,200.00", extra: list[str] | None = None,
+              pay_url: str = "https://pay.example.com/checkout/synthetic-123") -> bytes:
     return pdf_bytes([
         "SYNTHETIC Test Operator Quote", "Charter Quotation", "Quote No: Q-TEST-0001", "Valid until: December 31, 2099",
         "Aircraft charter ........ $41,000.00", "Fuel and handling ........ $4,200.00", "Subtotal: $45,200.00",
         f"Total Charter Cost: {total}", *(extra or []),
-    ], links=[("Pay online", "https://pay.example.com/checkout/synthetic-123")])
+    ], links=[("Pay online", pay_url)])
 
 
 def contract_pdf(name: str = "Pat Member") -> bytes:
@@ -181,9 +182,10 @@ def to_quote_stage(db, member, adm, *, email="pat@example.com", name="Pat Member
     return {"admin": admin, "account": acct, "trip_id": tid, "listing_id": lid, "rfq": rfq, "ref": ref, "ops": ops}
 
 
-def inbound(adm, sender: str, subject: str, body: str, attachments: list[dict] | None = None):
+def inbound(adm, sender: str, subject: str, body: str, attachments: list[dict] | None = None, **extra):
+    """Simulate an operator reply. `extra` may carry dmarc_pass / spf / dkim to simulate authentication results."""
     r = adm.post("/v1/dev/inbound-email", json={"from_address": sender, "subject": subject, "body": body,
-                                                "attachments": attachments or []})
+                                                "attachments": attachments or [], **extra})
     assert r.status_code == 202, r.text
     run_jobs()
 

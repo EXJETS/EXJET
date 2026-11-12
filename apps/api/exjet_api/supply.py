@@ -23,13 +23,11 @@ from .opname import (
     excluded_sql_regex,
     match_excluded_name,
     normalize_certificate,
-    split_csv,
 )
 
 
 def excluded_names() -> list[str]:
-    s = get_settings()
-    return split_csv(s.excluded_operators) + split_csv(s.excluded_operator_aliases)
+    return get_settings().all_excluded_names
 
 
 def excluded_certificates() -> set[str]:

@@ -422,6 +422,15 @@ class Fbo(TimestampMixin, Base):
     email: Mapped[str | None] = mapped_column(String(320))
     airport: Mapped[Airport] = relationship(back_populates="fbos")
 
+    @validates("email")
+    def _norm_email(self, _key, value):
+        if value is None or not str(value).strip():
+            return None
+        n = normalize_email(value)
+        if not n:
+            raise ValueError("invalid email address")
+        return n
+
 
 class EmptyLeg(TimestampMixin, Base):
     """Operator-supplied repositioning flight. RFQ only. No price is stored or shown."""
@@ -753,6 +762,13 @@ class OutreachContact(TimestampMixin, Base):
     state: Mapped[str | None] = mapped_column(String(2))
     verification_status: Mapped[str] = mapped_column(String(16), default="unverified")
     source_file: Mapped[str | None] = mapped_column(String(255))
+
+    @validates("email")
+    def _norm_email(self, _key, value):
+        n = normalize_email(value)
+        if not n:
+            raise ValueError("invalid email address")
+        return n
 
 
 # --------------------------------------------------------------------------- security tables

@@ -37,6 +37,14 @@ _CONFUSABLES = {
     "ᴜ": "u", "ᴠ": "v", "ᴡ": "w", "ʏ": "y", "ᴢ": "z", "ø": "o", "đ": "d", "ł": "l", "ħ": "h",
 }
 _CONF_TABLE = str.maketrans(_CONFUSABLES)
+# Capital lookalikes must be folded BEFORE casefold (casefold turns Greek capital Nu into nu, which no longer looks like N).
+_UPPER_CONFUSABLES = {
+    "\u0391": "A", "\u0392": "B", "\u0395": "E", "\u0396": "Z", "\u0397": "H", "\u0399": "I", "\u039a": "K", "\u039c": "M",
+    "\u039d": "N", "\u039f": "O", "\u03a1": "P", "\u03a4": "T", "\u03a5": "Y", "\u03a7": "X",  # Greek
+    "\u0410": "A", "\u0412": "B", "\u0415": "E", "\u041a": "K", "\u041c": "M", "\u041d": "H", "\u041e": "O", "\u0420": "P",
+    "\u0421": "C", "\u0422": "T", "\u0425": "X", "\u0406": "I", "\u0408": "J", "\u0405": "S",  # Cyrillic
+}
+_UPPER_TABLE = str.maketrans(_UPPER_CONFUSABLES)
 _NON_ALNUM = re.compile(r"[^a-z0-9]+")
 
 
@@ -46,7 +54,7 @@ def normalize_operator_name(value: str | None) -> str:
         return ""
     s = unicodedata.normalize("NFKD", value)
     s = "".join(c for c in s if not unicodedata.combining(c) and unicodedata.category(c) not in ("Cf", "Cc"))
-    s = s.casefold().translate(_CONF_TABLE)
+    s = s.translate(_UPPER_TABLE).casefold().translate(_CONF_TABLE)
     s = unicodedata.normalize("NFKD", s)  # confusable targets such as "ø" may leave marks
     s = "".join(c for c in s if not unicodedata.combining(c))
     tokens = _NON_ALNUM.sub(" ", s).split()

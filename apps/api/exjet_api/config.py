@@ -10,6 +10,9 @@ from pydantic import ValidationError, field_validator
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 ENVIRONMENTS = ("dev", "test", "staging", "prod")
+# The founder's standing exclusions. They apply whatever EXJET_EXCLUDED_OPERATORS says (an empty or copied-from-example
+# value cannot switch the guardrail off); the env var and the alias list only ADD names.
+BASELINE_EXCLUDED = ("NetJets", "Flexjet", "Nicholas Air")
 
 
 class Settings(BaseSettings):
@@ -77,6 +80,16 @@ class Settings(BaseSettings):
     @property
     def is_dev_like(self) -> bool:
         return self.env in ("dev", "test")
+
+    @property
+    def all_excluded_names(self) -> list[str]:
+        """Baseline + configured names + aliases, de-duplicated by case-insensitive spelling."""
+        out: list[str] = []
+        for n in [*BASELINE_EXCLUDED, *self.excluded_operators.split(","), *self.excluded_operator_aliases.split(",")]:
+            n = n.strip()
+            if n and n.lower() not in {x.lower() for x in out}:
+                out.append(n)
+        return out
 
 
 @lru_cache

@@ -34,7 +34,7 @@ brand/        Brand assets and rules carried from the October site (marks, type,
 |---|---|
 | Visitor (no session) | Browse categories, aircraft types, anonymized tail listings |
 | Member, not entitled | Same as visitor, plus account, KYC, billing |
-| **Entitled member** = account `kyc_status == approved` AND subscription `status == active` | See operator name, tail number, operator contacts; send RFQs; see quotes |
+| **Entitled member** = account `kyc_status == approved` AND subscription `status == active` AND this member's own identity approved (the owner inherits the account result; an invited member passes their own individual check) AND not suspended | See operator name, tail number, operator contacts; send RFQs; see quotes |
 | Admin (CEO) | Company OS, approvals, KYC final decision, data upload |
 
 Entitlement is computed in one place, `exjet_api/entitlements.py`, and applied in the response layer:
@@ -110,14 +110,15 @@ Errors: `{"error": {"code": "snake_case", "message": "..."}}`. 401 unauthenticat
 FastAPI serves `/openapi.json`; `apps/api/openapi.json` is exported in CI and is the typed source for the frontend.
 
 Auth and account
-- `POST /auth/signup` {email, password, full_name, account_type: individual|family_office, signup_source?} → 201 Me
-- `POST /auth/login` {email, password} → Me · `POST /auth/logout` → 204 · `GET /me` → Me
-- Me = {user:{id,email,full_name,role}, account:{id,type,display_name,seats,kyc_status}, subscription:{plan,status,current_period_end}|null, entitled: bool, next_step: "kyc"|"kyc_pending"|"billing"|"ready"}
-- `POST /account/seats` {email} (family office second seat) → 201
+- `POST /auth/signup` {email, password, full_name, account_type: individual|family_office, signup_source?} → dev/test: 201 Me (new email, logged in) or 202 {status:"check_your_email"} (email already registered); staging/prod: 202 {status:"check_your_email"} for both, no session is issued
+- `POST /auth/login` {email, password} → Me · `POST /auth/logout` → 204 (ends ALL of the user's sessions) · `GET /me` → Me
+- `POST /auth/password` {current_password, new_password} → 204 (revokes other sessions) · `POST /auth/password/reset-request` {email} → 202 (uniform) · `POST /auth/password/reset` {token, new_password} → 204
+- Me = {user:{id,email,full_name,role}, account:{id,type,display_name,seats,kyc_status}, subscription:{plan,status,current_period_end}|null, member:{is_owner,identity_status,is_suspended}|null, entitled: bool, next_step: "kyc"|"kyc_pending"|"billing"|"ready"}
+- Seats are invitations. `POST /account/seats` {email} (owner only; family_office/enterprise; subscription active; account KYC approved; members + pending < plan seats) → 202 {status:"invitation_queued"} (identical whether or not the email has a login) · `GET /account/seats` → {account_id, seats, members[], invitations[]} · `DELETE /account/seats/invitations/{id}` → 204 · `POST /account/seats/accept` {token} (signed in as the invited email) → Me
 
 KYC
-- `POST /kyc/submissions` multipart: kind (individual|business), holder_name, business_name?, business_tax_id?, files[] with doc_types[] (passport|drivers_license|business_doc) → 201 {id,status}
-- `GET /kyc/status` → {kyc_status, latest_submission:{id,status,created_at,decision_note}|null}
+- `POST /kyc/submissions` (owner: the account's check, individual or business; invited member: their own individual check only) multipart: kind (individual|business), holder_name, business_name?, business_tax_id?, files[] with doc_types[] (passport|drivers_license|business_doc) → 201 {id,status}
+- `GET /kyc/status` → {kyc_status, latest_submission:{id,status,created_at,decision_note}|null, scope:"account"|"member"}
 
 Billing (membership only)
 - `GET /billing/plans` → [{plan,name,unit_amount_cents,interval:"month",seats}] (Individual 75000, Family Office 100000; Enterprise is inquiry and has no price)
@@ -142,10 +143,10 @@ Trips
 - Trip = {id,status,trip_type,passengers,bags…,legs[],rfqs[],quotes[],manifest:{due_at,submitted_at}|null,weather_available:bool}
 
 Quotes, contract, payment
-- `GET /trips/{id}/quotes` → [Quote]; Quote = {id,status,operator:{dba_name},listing,total_amount_cents|null,currency,valid_until,operator_quote_number,line_items[],quote_pdf_url,contract:{id,pdf_url,acknowledged_at}|null,payment_link:{url,host,status}|null}
+- `GET /trips/{id}/quotes` → [Quote]; Quote = {id,status,operator:{dba_name},listing,total_amount_cents|null,currency,valid_until,operator_quote_number,line_items[],quote_pdf_url,contract:{id,pdf_url,acknowledged_at}|null,payment_link:{url,host,status,host_approved,changed_since_first}|null}
 - `POST /quotes/{id}/accept` → Trip (contracted; other quotes declined) · `POST /quotes/{id}/decline`
 - `POST /contracts/{id}/acknowledge` · `POST /quotes/{id}/payment/mark-paid` → Trip (paid → manifest_due)
-- `GET /documents/{id}` → 302 short-lived signed URL (owner account or admin only; audited for KYC)
+- `GET /documents/{id}` → 302 short-lived signed URL bound to document id + viewer (owner account or admin only; audited for KYC); the file is always served as an attachment (see Security controls)
 
 Manifest and flight
 - `GET /trips/{id}/manifest` → {due_at, submitted_at, required_id_type, passengers:[…]} · `PUT /trips/{id}/manifest` {passengers:[{full_name,date_of_birth,id_type,id_number,id_expiry,id_issuer,weight_lbs?}]} · `POST /trips/{id}/manifest/submit`
@@ -159,4 +160,33 @@ Admin / Company OS (role admin)
 - `POST /admin/ingest` multipart {dataset, file} → IngestRun · `GET /admin/ingest/runs`
 - `GET /admin/metrics` → {mrr_cents, arr_cents, members_by_plan, kyc_queue, rfq_to_quote_rate, median_operator_response_minutes}
 - `GET /admin/agent-actions` · `GET /admin/jobs`
-- Dev/test only (`env in dev,test`): `POST /dev/inbound-email` simulates an operator reply to quotes@ with attachments; `POST /dev/run-jobs`.
+- Also: `PUT /admin/operators/{id}/payment-hosts` · `POST /admin/operators/{id}/contacts/{cid}/confirm-rfq` · `GET|POST /admin/suppressions`, `DELETE /admin/suppressions/{id}` · `GET /admin/inbound/quarantined` · `POST /admin/users/{id}/deactivate`. New approval kinds decided through `POST /admin/approvals/{id}/decide`: `payment_host`, `inbound_review`, `seat_overage`, `legal_notice`.
+- Dev/test only (`env in dev,test`; the router is not mounted at all otherwise): `POST /dev/inbound-email` simulates an operator reply to quotes@ with attachments and the provider's authentication verdict (`dmarc_pass`, `spf`, `dkim`); `POST /dev/run-jobs`.
+
+## Security controls
+
+Added after the security review (findings C1 to L9). Each control is enforced in code and covered by `apps/api/tests/test_security_*.py`.
+
+**Environment.** `EXJET_ENV` is required and must be `dev`, `test`, `staging` or `prod`; startup fails with a clear message otherwise (no default, no free string). Fake providers, the published dev secrets, the dev router, `/docs` and `/openapi.json` exist only when `env in (dev, test)`; the dev router is not mounted in staging/prod. Non-dev refuses fake providers and requires `EXJET_JWT_SECRET` and `EXJET_PII_KEY`; session cookies are `Secure` outside dev/test; `EXJET_CORS_ORIGINS` may not contain `*`. The fake billing webhook secret is random per process. Every API response carries `X-Content-Type-Options: nosniff`, `X-Frame-Options: DENY`, `Content-Security-Policy: frame-ancestors 'none'`, `Referrer-Policy: no-referrer` (and HSTS outside dev/test).
+
+**Inbound quotes and payment links (C1).** A reply produces a member-visible quote only if: its From header parses (strict `email.utils`) to exactly one address; that address equals, after `normalize_email`, a stored `OperatorContact` of the RFQ's operator that was a recipient of that RFQ (no domain trust; for ground requests the FBO address); the mail provider reports an aligned DMARC pass (`InboundAuth.dmarc_pass`, default fail-closed), otherwise the message is `quarantined` with an `inbound_review` approval for an admin; attachments are PDFs only and parse within bounds; and the payment link host is in `Operator.payment_hosts` (admin-approved at onboarding or through a `payment_host` approval), otherwise the quote is `needs_review`. A later quote never expires or hides an earlier one; if its host or total differs it is `needs_review` (flag `differs_from_earlier_quote`) and both remain. The API reports `payment_link.host_approved` and `changed_since_first`. `accept` and `mark-paid` re-check the host.
+
+**Seats and identity (C2).** Seats are invitations (`seat_invitations`: normalized email, SHA-256 of the token, expiry, accepted/revoked). Nothing about an invitee's account changes until they sign in with the invited email and accept; an account with a KYC submission, subscription, trip or other member is never deleted or merged (only a brand-new empty personal account is dropped, with the invitee's explicit accept). Plan seats come from the paid plan (`billing_service.plan_seats`); members plus pending invitations never exceed them, at invite time, at accept time and when a plan changes (extra members are suspended and a `seat_overage` approval is opened). Entitlement is per person (see Roles). An invited member submits their own individual KYC (`kyc_submissions.subject_user_id`); an admin decides it through the same `kyc_final` approval; a before-flush guard refuses `identity_status = approved` without it.
+
+**Files (H1, L7, M2).** Stored content types are sniffed from magic bytes, never taken from the uploader or an email header. Operator attachments: PDF only. KYC: PDF, JPEG, PNG. Everything else is not stored. Every served file is `Content-Disposition: attachment` (RFC 6266), `X-Content-Type-Options: nosniff`, `Content-Security-Policy: sandbox; default-src 'none'`, `Cache-Control: private, no-store`. Download tokens are bound to the storage key, the document id and the viewer's user id and are redeemed only by that signed-in user, who must still be allowed to read the document. Storage keys are random (`<prefix>/<owner>/<uuid>`); the original filename lives only in `documents.filename`. Local storage encrypts file bytes with the PII key (Fernet); the S3 provider, when built, must enforce private buckets and server-side encryption.
+
+**Outbound mail (H3, M1, L8).** One ground request per (trip, FBO, kind, leg) (unique index, 409). Per-account rolling 24 hour caps: `rfq_daily_cap` (40) and `ground_rfq_daily_cap` (10), 429. Member free text in outbound operator/FBO mail has URLs, bare domains and email addresses removed, is capped at 500 characters and is labelled member-provided; RFQs use the KYC-verified holder name. `mailer.send` normalizes and case-folds every recipient before the suppression check, never commits the caller's transaction, and records blocked/failed sends in its own transaction. Suppressions have a unique index on `lower(email)`, a `suppress()` service, admin add/list/remove (audited), and an inbound handler that suppresses authenticated senders replying with unsubscribe, complaint or legal keywords (legal and complaint also open an admin item).
+
+**PII at rest (M2).** `EncryptedStr`: `accounts.display_name`, `email_messages.body_text`, `trips.raw_request`, `trips.notes`, `rfqs.details` (ground request text), `passengers.id_issuer`, enterprise inquiry company/notes (`enterprise_inquiries`; `audit_log` holds only the inquiry id). `jobs.payload` carries ids only. One-time tokens (seat invitation, password reset) are stored hashed and kept out of the stored email body. Accepted exceptions, with reasons: `users.email` stays plaintext (it is the login identifier and is looked up by equality; it is never exposed to operators) and operator contacts stay plaintext (business contacts that must be matched exactly against inbound senders and are member-gated at the API).
+
+**Sessions (M3).** The session JWT carries `users.session_version`; every request compares it with the row. Logout (all sessions), password change, password reset and admin deactivation bump it. Password reset uses a single-use, expiring, hashed token delivered through `mailer` (purpose `password_reset`); the request answer is always 202.
+
+**Rate limits (M4).** Postgres fixed-window counters (`rate_limits`, upsert in a separate transaction, shared by all workers, periodic `ratelimit.cleanup` job). The client address is the socket peer unless `EXJET_TRUSTED_PROXY_HOPS` > 0, in which case it is the entry that many positions from the right of `X-Forwarded-For`. Limits (see `ratelimit.LIMITS`): login (IP and email), signup, password reset (IP and email), password change, seat invite and accept, KYC upload, enterprise inquiry, trip intake, RFQ and ground RFQ creation.
+
+**Attachment parsing (M5).** Size (10 MB), pages (50) and extracted text length are capped; the PDF is parsed once in a child process with CPU and address-space rlimits, an empty environment and a wall-clock timeout (`exjet_product.pdf_safe`). A breach quarantines the message with an admin item and finishes the job (never retried; `jobs.NonRetryable` exists for the same purpose).
+
+**Exclusions (M6).** `exjet_api/opname.py` is the single normalizer and matcher: NFKD, accents, format characters, casefold, Cyrillic/Greek/fullwidth lookalike folding, punctuation and corporate suffixes. The ingest layer (`ingest/normalize.excluded_match`) and the supply layer use the same function; the SQL filter uses a regex generated from it against `operators.name_norm` / `legal_name_norm`, kept current by a mapper listener, so the three agree. Configuration: `EXJET_EXCLUDED_OPERATORS` (NetJets, Flexjet, Nicholas Air), `EXJET_EXCLUDED_OPERATOR_ALIASES` and `EXJET_EXCLUDED_CERTIFICATES` (both EMPTY by default: the founder fills these with trade names, affiliates and certificate numbers; none are invented here). Matching is token-boundary aware: "Nicholas Aircraft Services" and "Net Zero Air" do not match. An operator is sellable only if it is live AND an approved, human-decided `operator_go_live` approval exists. Contacts added to a live operator by ingest default to `receives_rfq = false` until an admin confirms them.
+
+**Billing (L9).** Provider events are applied at most once (`billing_events` ledger by event id), within a timestamp tolerance (not more than 5 minutes in the future, not older than 3 days), in provider time order (`subscriptions.last_event_at`), and through a state machine: a canceled subscription is reopened only by a fresh `checkout.completed`.
+
+**Listings (L1).** Visitors and non-entitled members can narrow `GET /listings?home=` by city or metro only; an airport code is ignored, so the filter cannot reveal which tail is based where.
