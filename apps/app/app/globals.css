@@ -303,3 +303,9 @@ details.report summary { cursor: pointer; font-weight: 500; min-height: 32px; di
 .inline-list .tbl th { background: #f0f0f0; }
 .rfq-bar { position: sticky; bottom: 0; z-index: 10; background: var(--paper); border-top: 1px solid var(--ink); padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
 @media (max-width: 880px) { .rfq-bar { bottom: calc(var(--tab-h) + env(safe-area-inset-bottom)); box-shadow: 0 -6px 12px rgba(0,0,0,0.06); } .rfq-bar .btn { width: 100%; } }
+@media (max-width: 880px) {
+  .rfq-bar { flex-wrap: nowrap; padding: 8px 12px; }
+  .rfq-bar .rfq-note { display: none; }
+  .rfq-bar .btn { width: auto; flex: 1; }
+  .typerow > :nth-child(3), .typerow > :nth-child(4) { text-align: left; }
+}

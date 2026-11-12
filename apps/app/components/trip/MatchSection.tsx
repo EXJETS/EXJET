@@ -84,7 +84,7 @@ export function MatchSection({ trip, onSent, emptyLegId }: { trip: Trip; onSent:
             {m.categories.length > 0 && !slug ? <p className="muted small" style={{ padding: "12px 16px", borderTop: "1px solid var(--line)" }}>Select an aircraft type to see matching aircraft.</p> : null}
             {entitled && canSend ? (
               <div className="rfq-bar">
-                <span aria-live="polite"><strong>{sel.size}</strong> selected. RFQs go to the operators of the selected aircraft. No price is committed.</span>
+                <span aria-live="polite"><strong>{sel.size}</strong> selected<span className="rfq-note">. RFQs go to the operators of the selected aircraft. No price is committed.</span></span>
                 <button className="btn btn-primary" disabled={sel.size === 0 || send.pending} onClick={go}>{send.pending ? "Sending" : `Send RFQ${sel.size > 1 ? `s (${sel.size})` : ""}`}</button>
               </div>
             ) : null}

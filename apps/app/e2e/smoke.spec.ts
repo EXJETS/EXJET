@@ -142,11 +142,11 @@ test("visitor gate and company OS", async ({ page }) => {
   await expect(page.getByText("Median operator response")).toBeVisible();
   await shot(page, "15-company-overview");
   await page.goto("/company/approvals");
-  await page.getByRole("button", { name: "kyc decision" }).click();
+  await page.getByRole("button", { name: "kyc final" }).click();
   await shot(page, "16-company-approvals");
   await page.goto("/company/kyc");
   await page.getByRole("link", { name: "SYNTHETIC Applicant One" }).first().click();
-  await expect(page.getByRole("heading", { name: "Vendor signals" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "Vendor result" })).toBeVisible();
   await shot(page, "17-company-kyc-detail");
   await page.goto("/company/operators");
   await expect(page.getByText("SYNTHETIC Test Operator C")).toBeVisible();
