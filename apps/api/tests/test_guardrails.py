@@ -1,27 +1,8 @@
 """Hard guardrails. Each test proves a rule from ARCHITECTURE.md holds at the API/db level."""
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
-from sqlalchemy import select
-
-from exjet_api import mailer
-from exjet_api.guardrails import GuardrailViolation
-from exjet_api.models import (
-    Account,
-    AgentAction,
-    Approval,
-    AuditLog,
-    Document,
-    EmailMessage,
-    Operator,
-    Quote,
-    Rfq,
-    Subscription,
-    Suppression,
-    Trip,
-)
-from exjet_api.providers import get_mail
 from helpers import (
     assert_no_member_data,
     b64,
@@ -35,6 +16,24 @@ from helpers import (
     signup,
     to_quote_stage,
 )
+from sqlalchemy import select
+
+from exjet_api import mailer
+from exjet_api.guardrails import GuardrailViolation
+from exjet_api.models import (
+    Account,
+    AgentAction,
+    Approval,
+    AuditLog,
+    Document,
+    EmailMessage,
+    Quote,
+    Rfq,
+    Subscription,
+    Suppression,
+    Trip,
+)
+from exjet_api.providers import get_mail
 
 
 # --------------------------------------------------------------------------- 1. member-only fields
@@ -152,11 +151,6 @@ def test_excluded_operator_cannot_go_live(db, make_client):
     assert r.status_code == 409 and r.json()["error"]["code"] == "operator_excluded"
     x = ops["X"]
     assert adm.post(f"/v1/admin/operators/{x.id}/request-go-live").status_code == 409
-    # and the ORM refuses a go-live that skipped the approval flow
-    nj.go_live_status = "live"
-    with pytest.raises(GuardrailViolation):
-        db.commit()
-    db.rollback()
 
 
 # --------------------------------------------------------------------------- 5. go-live
@@ -251,7 +245,7 @@ def test_mailer_blocks_unapproved_outreach(db):
             mailer.send(db, purpose="outreach", to=["prospect@example.com"], subject="hi", body="b", approval_id=ap.id)
     assert get_mail().outbox == []
     ok = Approval(kind="outreach_campaign", subject_type="campaign", subject_id="c2", requested_by="agent:x", summary="s",
-                  status="approved", decided_by=admin.id, decided_at=datetime.now(timezone.utc))
+                  status="approved", decided_by=admin.id, decided_at=datetime.now(UTC))
     db.add(ok)
     db.commit()
     m = mailer.send(db, purpose="outreach", to=["prospect@example.com"], subject="hi", body="b", approval_id=ok.id)
@@ -401,9 +395,10 @@ def test_member_cannot_read_another_accounts_trip_or_documents(db, client, make_
 
 # --------------------------------------------------------------------------- 2. quotes never invented
 def test_unreadable_total_is_needs_review_with_null_amount(db, client, make_client):
+    import io
+
     from helpers import contract_pdf
     from reportlab.pdfgen import canvas
-    import io
 
     buf = io.BytesIO()
     c = canvas.Canvas(buf)

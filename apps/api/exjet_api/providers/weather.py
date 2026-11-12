@@ -35,11 +35,11 @@ class AviationWeather:
             r = self._client.get(f"{AWC_BASE}/{path}", params={"ids": icao, "format": "raw"})
         except httpx.HTTPError as e:
             raise ProviderError(f"weather request failed: {type(e).__name__}") from e
-        if r.status_code == 204 or not r.text.strip():
-            return None
+        if r.status_code == 204:
+            return None  # the station exists but has no report
         if r.status_code != 200:
             raise ProviderError(f"weather service returned {r.status_code}")
-        return r.text.strip()
+        return r.text.strip() or None
 
     def metar(self, icao: str) -> str | None:
         return self._get("metar", icao)

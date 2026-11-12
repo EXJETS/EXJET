@@ -48,7 +48,7 @@ from ..providers.storage import safe_filename
 from ..supply import operator_sellable
 
 MAX_ATTACHMENT_BYTES = 15 * 1024 * 1024
-DECLINE_RE = re.compile(r"\b(unable to|not available|unavailable|cannot (?:accommodate|operate|support)|can't (?:accommodate|operate)|pass on this|no availability|regret)\b", re.I)
+DECLINE_RE = re.compile(r"\b(unable to|not available|unavailable|cannot (?:accommodate|operate|support)|can't (?:accommodate|operate)|pass on this|no availability|regret)\b", re.IGNORECASE)
 
 
 # --------------------------------------------------------------------------- inbox polling
@@ -356,11 +356,20 @@ def mark_paid(db: Session, q: Quote) -> Trip:
     future = [t for t in reminder_times(first) if t > now]
     if not future and first > now:
         future = [now]
-    for i, t in enumerate(future):
+    for t in future:
         enqueue(db, "manifest.remind", {"trip_id": str(trip.id)}, run_at=t, dedupe_key=f"manifest.remind:{trip.id}:{int(t.timestamp())}")
     db.flush()
     return trip
 
 
-__all__ = ["poll_inbox", "ingest_message", "resolve_quote", "accept_quote", "decline_quote", "acknowledge_contract",
-           "mark_paid", "owned_quote", "quote_flags"]
+__all__ = [
+    "accept_quote",
+    "acknowledge_contract",
+    "decline_quote",
+    "ingest_message",
+    "mark_paid",
+    "owned_quote",
+    "poll_inbox",
+    "quote_flags",
+    "resolve_quote",
+]

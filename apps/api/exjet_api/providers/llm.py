@@ -56,7 +56,7 @@ class AnthropicLlm:
         except anthropic.APIError as e:
             raise ProviderError(f"anthropic call failed: {type(e).__name__}") from e
         text = "".join(b.text for b in msg.content if getattr(b, "type", "") == "text")
-        m = re.search(r"\{.*\}", text, re.S)
+        m = re.search(r"\{.*\}", text, re.DOTALL)
         if not m:
             raise ProviderError("llm returned no JSON object")
         try:

@@ -41,3 +41,11 @@ testpaths = ["tests", "../../product/tests"]
 
 [tool.ruff]
 line-length = 110
+extend-exclude = ["alembic/versions"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["B008", "E501", "E741", "UP042"]  # E501: formatter-owned; B008: FastAPI Depends()/File()/Form() in defaults is the framework's idiom
+
+[tool.ruff.lint.per-file-ignores]
+"tests/conftest.py" = ["E402"]  # env vars must be set before exjet_api is imported

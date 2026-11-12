@@ -2,11 +2,10 @@ from __future__ import annotations
 
 import uuid
 
+from exjet_product.weather import summarize_leg
 from fastapi import APIRouter, Depends
 from sqlalchemy import select
 from sqlalchemy.orm import Session
-
-from exjet_product.weather import summarize_leg
 
 from .. import schemas as S
 from ..deps import get_owned_trip, get_session, require_member

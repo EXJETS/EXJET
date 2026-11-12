@@ -1,4 +1,4 @@
-from datetime import timezone
+from datetime import UTC
 
 from pdfs import QUOTE_LINES, blank_pdf, make_pdf
 
@@ -15,7 +15,7 @@ def test_clean_quote_is_ready_with_verified_total():
     ex = a.extraction
     assert ex.total_cents == 4_520_000 and ex.currency == "USD"
     assert ex.quote_number == "Q-2026-0042"
-    assert ex.valid_until and ex.valid_until.tzinfo == timezone.utc and ex.valid_until.day == 20
+    assert ex.valid_until and ex.valid_until.tzinfo == UTC and ex.valid_until.day == 20
     assert [i.amount_cents for i in ex.line_items] == [3_800_000, 420_000, 300_000]
     assert ex.confidence >= Q.READY_THRESHOLD and ex.ready and ex.flags == []
     assert all(i.page == 1 for i in ex.line_items)

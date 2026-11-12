@@ -16,7 +16,7 @@ Purposes
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -149,7 +149,7 @@ def send(
         db.commit()
         raise
     msg.status = "sent"
-    msg.sent_at = datetime.now(timezone.utc)
+    msg.sent_at = datetime.now(UTC)
     msg.provider_message_id = res.provider_message_id
     msg.thread_id = res.thread_id
     db.flush()

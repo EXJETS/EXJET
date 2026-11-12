@@ -1,8 +1,8 @@
 from logging.config import fileConfig
 
-from alembic import context
 from sqlalchemy import create_engine, pool
 
+from alembic import context
 from exjet_api import models  # noqa: F401  (registers tables on Base.metadata)
 from exjet_api.config import get_settings
 from exjet_api.crypto import EncryptedStr

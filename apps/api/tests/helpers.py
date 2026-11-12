@@ -4,7 +4,7 @@ from __future__ import annotations
 import base64
 import io
 import uuid
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from reportlab.lib.pagesizes import letter
 from reportlab.pdfgen import canvas
@@ -13,7 +13,6 @@ from sqlalchemy import select
 from exjet_api import jobs
 from exjet_api.models import (
     Account,
-    AccountMember,
     Aircraft,
     Approval,
     KycSubmission,
@@ -22,7 +21,6 @@ from exjet_api.models import (
     Subscription,
     User,
 )
-from exjet_api.security import hash_password
 from exjet_api.seed_dev import ensure_admin, make_operator_live, seed_reference, seed_synthetic
 
 PASSWORD = "correct-horse-battery-1"
@@ -89,11 +87,11 @@ def make_entitled(db, client, admin: User, email: str = "member@example.com", na
     db.add(sub)
     db.flush()
     db.add(Approval(kind="kyc_final", subject_type="kyc_submission", subject_id=str(sub.id), requested_by="system",
-                    status="approved", decided_by=admin.id, decided_at=datetime.now(timezone.utc), summary="test"))
+                    status="approved", decided_by=admin.id, decided_at=datetime.now(UTC), summary="test"))
     db.flush()
     acct.kyc_status = "approved"
     db.add(Subscription(account_id=acct.id, plan="individual", status="active", provider="fake", unit_amount_cents=75000,
-                        current_period_end=datetime.now(timezone.utc) + timedelta(days=30)))
+                        current_period_end=datetime.now(UTC) + timedelta(days=30)))
     db.commit()
     return acct
 
@@ -121,7 +119,7 @@ def run_jobs() -> int:
 
 
 def future_trip_body(origin="KTEB", dest="KMDW", pax=4, days=10, hour=14) -> dict:
-    dep = (datetime.now(timezone.utc) + timedelta(days=days)).replace(hour=hour, minute=0, second=0, microsecond=0)
+    dep = (datetime.now(UTC) + timedelta(days=days)).replace(hour=hour, minute=0, second=0, microsecond=0)
     return {"legs": [{"origin_icao": origin, "destination_icao": dest, "depart_at": dep.isoformat()}], "passengers": pax,
             "checked_bags": 2}
 

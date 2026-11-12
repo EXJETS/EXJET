@@ -1,21 +1,30 @@
 """The whole product loop through the HTTP API with fake providers:
 signup -> KYC -> vendor check -> admin approval -> checkout -> intake -> match -> listings -> RFQ ->
 operator reply with PDFs -> quote ingest -> accept -> contract -> mark paid -> manifest -> flight watch + weather."""
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
+from exjet_product.flight_watch import FlightSnapshot
+from helpers import (
+    PASSWORD,  # noqa: F401
+    PNG,
+    b64,
+    contract_pdf,
+    login,
+    quote_pdf,
+    run_jobs,
+    seed_all,
+    signup,
+)
 from sqlalchemy import select
 
 from exjet_api import clock
 from exjet_api.models import AgentAction, EmailMessage, Job
 from exjet_api.providers import get_adsb, get_mail, get_weather
 from exjet_api.providers.billing import FakeBilling
-from exjet_product.flight_watch import FlightSnapshot
-from helpers import PNG, b64, contract_pdf, login, quote_pdf, run_jobs, seed_all, signup
-from helpers import PASSWORD  # noqa: F401
 
 
 def test_full_product_loop(db, client, make_client):
-    clock.set_now(datetime(2026, 11, 12, 15, 0, tzinfo=timezone.utc))  # Thursday
+    clock.set_now(datetime(2026, 11, 12, 15, 0, tzinfo=UTC))  # Thursday
     admin, ops = seed_all(db)
     member = client
     adm = make_client()
@@ -72,7 +81,7 @@ def test_full_product_loop(db, client, make_client):
     tid = trip["id"]
     assert trip["status"] == "draft" and trip["legs"][0]["distance_nm"] and trip["manifest"] is None
     first_dep = datetime.fromisoformat(trip["legs"][0]["depart_at"])
-    assert first_dep == datetime(2026, 11, 20, 14, 0, tzinfo=timezone.utc)
+    assert first_dep == datetime(2026, 11, 20, 14, 0, tzinfo=UTC)
 
     # ---- match + listings
     m = member.get(f"/v1/trips/{tid}/match").json()

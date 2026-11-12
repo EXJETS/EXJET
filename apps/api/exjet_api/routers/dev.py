@@ -9,7 +9,8 @@ import uuid
 from fastapi import APIRouter, Depends
 from sqlalchemy.orm import Session
 
-from .. import jobs, schemas as S
+from .. import jobs
+from .. import schemas as S
 from ..deps import get_session, require_dev_env
 from ..errors import ApiError, conflict
 from ..jobs import enqueue

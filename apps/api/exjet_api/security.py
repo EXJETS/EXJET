@@ -5,7 +5,7 @@ import threading
 import time
 import uuid
 from collections import defaultdict, deque
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import jwt
 from argon2 import PasswordHasher
@@ -48,7 +48,7 @@ def needs_rehash(password_hash: str) -> bool:
 
 
 def create_session_token(user_id: uuid.UUID) -> str:
-    now = datetime.now(timezone.utc)
+    now = datetime.now(UTC)
     exp = now + timedelta(minutes=get_settings().session_minutes)
     return jwt.encode({"sub": str(user_id), "iat": now, "exp": exp, "jti": uuid.uuid4().hex}, jwt_secret(), algorithm="HS256")
 
@@ -63,7 +63,7 @@ def decode_session_token(token: str) -> uuid.UUID | None:
 
 def sign_blob(payload: dict, ttl_seconds: int) -> str:
     """Short-lived signed token (used for local-storage download URLs)."""
-    exp = datetime.now(timezone.utc) + timedelta(seconds=ttl_seconds)
+    exp = datetime.now(UTC) + timedelta(seconds=ttl_seconds)
     return jwt.encode({**payload, "exp": exp}, jwt_secret(), algorithm="HS256")
 
 

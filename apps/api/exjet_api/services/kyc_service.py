@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import hashlib
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -68,7 +68,7 @@ def apply_final_decision(db: Session, approval: Approval, decision: str, admin_i
     if sub is None:
         return
     acct = db.get(Account, sub.account_id)
-    sub.reviewed_by, sub.reviewed_at, sub.decision_note = admin_id, datetime.now(timezone.utc), note
+    sub.reviewed_by, sub.reviewed_at, sub.decision_note = admin_id, datetime.now(UTC), note
     if decision == "approved":
         sub.status = KycStatus.approved.value
         db.flush()  # approval row is already flushed; the guard checks it when the account flips

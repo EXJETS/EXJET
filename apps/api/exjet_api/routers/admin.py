@@ -8,7 +8,8 @@ from fastapi import APIRouter, Depends, File, Form, Query, UploadFile
 from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
-from .. import clock, schemas as S
+from .. import clock
+from .. import schemas as S
 from ..audit import audit
 from ..deps import get_session, require_admin
 from ..entitlements import Viewer
@@ -162,19 +163,21 @@ def request_go_live(operator_id: uuid.UUID, viewer: Viewer = Depends(require_adm
 @router.post("/ingest", response_model=S.IngestRunOut)
 def ingest(dataset: str = Form(...), file: UploadFile = File(...), viewer: Viewer = Depends(require_admin),
            db: Session = Depends(get_session)):
-    """Delegates to exjet_api.ingest.run_dataset(db, dataset=, filename=, content=, started_by=) -> IngestRun.
-    That package is owned by the data agent; until it exists this returns 501."""
+    """Delegates to exjet_api.ingest.run_ingest (owned by the data agent). Row-level problems are reported in the
+    run; an unreadable file or unknown dataset is a 422."""
     try:
         mod = importlib.import_module("exjet_api.ingest")
-        run = getattr(mod, "run_dataset")
-    except (ImportError, AttributeError):
+    except ImportError:
         raise ApiError(501, "ingest_unavailable", "The ingest pipeline is not installed in this build.") from None
     data = file.file.read(50 * 1024 * 1024 + 1)
     if len(data) > 50 * 1024 * 1024:
         raise ApiError(422, "file_too_large", "File exceeds 50 MB.")
-    result = run(db, dataset=dataset, filename=file.filename or "upload", content=data, started_by=f"user:{viewer.user.id}")
-    db.commit()
-    return result
+    try:
+        run = mod.run_ingest(db, dataset, data, file.filename or "upload", f"user:{viewer.user.id}", write_report=False)
+    except mod.IngestError as e:
+        db.rollback()
+        raise ApiError(422, "ingest_failed", str(e)[:300]) from e
+    return run
 
 
 @router.get("/ingest/runs", response_model=list[S.IngestRunOut])

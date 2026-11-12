@@ -13,7 +13,8 @@ from datetime import timedelta
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from . import clock, seed_data as D
+from . import clock
+from . import seed_data as D
 from .config import get_settings
 from .db import session_factory
 from .models import (

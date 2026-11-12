@@ -6,7 +6,8 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy import func, or_, select
 from sqlalchemy.orm import Session
 
-from .. import clock, schemas as S
+from .. import clock
+from .. import schemas as S
 from ..deps import get_session, optional_viewer
 from ..entitlements import Viewer
 from ..errors import not_found

@@ -4,7 +4,14 @@ from __future__ import annotations
 import uuid
 from datetime import datetime
 
-from exjet_product.rfq import GroundRfqContext, RfqContext, RfqLeg, build_ground_rfq_email, build_rfq_email, generate_reference
+from exjet_product.rfq import (
+    GroundRfqContext,
+    RfqContext,
+    RfqLeg,
+    build_ground_rfq_email,
+    build_rfq_email,
+    generate_reference,
+)
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
@@ -14,7 +21,19 @@ from ..entitlements import is_entitled
 from ..errors import conflict, not_found, unprocessable
 from ..guardrails import GuardrailViolation
 from ..jobs import enqueue
-from ..models import Account, Aircraft, Airport, EmptyLeg, Fbo, Rfq, RfqKind, RfqStatus, Trip, TripStatus, User
+from ..models import (
+    Account,
+    Aircraft,
+    Airport,
+    EmptyLeg,
+    Fbo,
+    Rfq,
+    RfqKind,
+    RfqStatus,
+    Trip,
+    TripStatus,
+    User,
+)
 from ..supply import operator_sellable, sellable_aircraft
 from .trips import feasible_tails
 

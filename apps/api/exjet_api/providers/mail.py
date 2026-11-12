@@ -3,7 +3,7 @@ from __future__ import annotations
 
 import uuid
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from typing import Protocol
 
 from .errors import NotImplementedProvider
@@ -40,7 +40,7 @@ class InboundEmail:
     subject: str
     body_text: str
     attachments: list[Attachment] = field(default_factory=list)
-    received_at: datetime = field(default_factory=lambda: datetime.now(timezone.utc))
+    received_at: datetime = field(default_factory=lambda: datetime.now(UTC))
 
 
 class MailProvider(Protocol):

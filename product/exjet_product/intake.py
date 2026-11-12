@@ -9,7 +9,7 @@ from __future__ import annotations
 import re
 from collections.abc import Sequence
 from dataclasses import dataclass, field
-from datetime import date, datetime, time, timedelta, timezone
+from datetime import UTC, date, datetime, time, timedelta
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 from .types import AirportRef
@@ -37,7 +37,7 @@ NAME_SUFFIXES = {
     "airport", "international", "intl", "regional", "municipal", "executive", "field", "county", "airfield",
     "metropolitan", "metro", "memorial", "national", "airpark", "air", "terminal", "jetport", "airstrip",
 }
-RETURN_RE = re.compile(r"\b(?:return(?:ing|s)?|come back|coming back|back on|round[- ]?trip|and back)\b", re.I)
+RETURN_RE = re.compile(r"\b(?:return(?:ing|s)?|come back|coming back|back on|round[- ]?trip|and back)\b", re.IGNORECASE)
 FROM_WORDS = {"from", "leaving", "departing", "ex"}
 TO_WORDS = {"to", "into", "towards", "toward"}
 TOKEN_RE = re.compile(r"[A-Za-z0-9']+")
@@ -117,7 +117,7 @@ def _find_mentions(text: str, airports: Sequence[AirportRef]) -> list[_Mention]:
         found.append(_Mention(i, j, codes, toks[i][1], toks[j - 1][2]))
 
     for n in range(5, 0, -1):
-        for i in range(0, len(toks) - n + 1):
+        for i in range(len(toks) - n + 1):
             if any(used[i : i + n]):
                 continue
             key = " ".join(low[i : i + n])
@@ -247,7 +247,7 @@ def _localize(d: date, t: time, airport: AirportRef | None, notes: list[str]) ->
         except ZoneInfoNotFoundError:
             pass
     notes.append("Airport time zone unknown; departure time treated as UTC.")
-    return datetime.combine(d, t, tzinfo=timezone.utc)
+    return datetime.combine(d, t, tzinfo=UTC)
 
 
 # ----------------------------------------------------------------------------- counts
@@ -270,7 +270,7 @@ def _consume(pattern: str, text: str) -> tuple[int | None, str]:
             hit = True
         return " " * (m.end() - m.start())
 
-    out = re.sub(pattern, repl, text, flags=re.I)
+    out = re.sub(pattern, repl, text, flags=re.IGNORECASE)
     return (total if hit else None), out
 
 
@@ -281,12 +281,12 @@ def parse_passengers(text: str, notes: list[str]) -> int | None:
         r"\b(?:for|with)\s+" + _NUM + r"\s+(?:of us|in total|total)\b",
     ]
     for p in pats:
-        m = re.search(p, text, re.I)
+        m = re.search(p, text, re.IGNORECASE)
         if m:
             n = _to_int(m[1])
             if n is not None and 1 <= n <= 100:
                 return n
-    if re.search(r"\b(just me|by myself|solo|alone)\b", text, re.I):
+    if re.search(r"\b(just me|by myself|solo|alone)\b", text, re.IGNORECASE):
         notes.append("Read 'just me' as 1 passenger.")
         return 1
     return None

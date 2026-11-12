@@ -1,4 +1,4 @@
-from datetime import date, datetime, timezone
+from datetime import UTC, date, datetime
 
 from exjet_product import manifest as M
 
@@ -17,10 +17,10 @@ def test_required_id_type():
 
 
 def test_due_and_reminders():
-    dep = datetime(2026, 12, 1, 15, 0, tzinfo=timezone.utc)
-    assert M.compute_due_at(dep) == datetime(2026, 11, 30, 15, 0, tzinfo=timezone.utc)
+    dep = datetime(2026, 12, 1, 15, 0, tzinfo=UTC)
+    assert M.compute_due_at(dep) == datetime(2026, 11, 30, 15, 0, tzinfo=UTC)
     r = M.reminder_times(dep)
-    assert r == [datetime(2026, 11, 29, 15, 0, tzinfo=timezone.utc), datetime(2026, 11, 30, 13, 0, tzinfo=timezone.utc)]
+    assert r == [datetime(2026, 11, 29, 15, 0, tzinfo=UTC), datetime(2026, 11, 30, 13, 0, tzinfo=UTC)]
 
 
 def test_valid_manifest():

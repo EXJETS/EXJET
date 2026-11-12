@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import select
 from sqlalchemy.orm import Session
@@ -70,19 +70,19 @@ def apply_event(db: Session, ev: BillingEvent) -> None:
         sub.status = SubscriptionStatus.active.value
         sub.provider_customer_id = ev.customer_id or sub.provider_customer_id
         sub.provider_subscription_id = ev.subscription_id or sub.provider_subscription_id
-        sub.current_period_end = datetime.fromtimestamp(ev.current_period_end_ts, timezone.utc) if ev.current_period_end_ts else None
+        sub.current_period_end = datetime.fromtimestamp(ev.current_period_end_ts, UTC) if ev.current_period_end_ts else None
         sub.canceled_at = None
         acct.seats = PLANS[plan]["seats"]
         acct.type = plan
     elif sub is not None and ev.type == "subscription.renewed":
         sub.status = SubscriptionStatus.active.value
         if ev.current_period_end_ts:
-            sub.current_period_end = datetime.fromtimestamp(ev.current_period_end_ts, timezone.utc)
+            sub.current_period_end = datetime.fromtimestamp(ev.current_period_end_ts, UTC)
     elif sub is not None and ev.type == "payment.failed":
         sub.status = SubscriptionStatus.past_due.value
     elif sub is not None and ev.type == "subscription.canceled":
         sub.status = SubscriptionStatus.canceled.value
-        sub.canceled_at = datetime.now(timezone.utc)
+        sub.canceled_at = datetime.now(UTC)
     else:
         return
     record_agent_action(db, agent="billing", event=f"billing.{ev.type}", input={"event_id": ev.id},

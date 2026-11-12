@@ -22,17 +22,17 @@ os.environ.update({
 for k in ("EXJET_LLM_MODEL_FAST", "EXJET_ANTHROPIC_API_KEY"):
     os.environ.pop(k, None)
 
-import pytest  # noqa: E402
-from alembic import command  # noqa: E402
-from alembic.config import Config  # noqa: E402
-from fastapi.testclient import TestClient  # noqa: E402
-from sqlalchemy import text  # noqa: E402
+import pytest
+from alembic.config import Config
+from fastapi.testclient import TestClient
+from sqlalchemy import text
 
-from exjet_api import clock  # noqa: E402
-from exjet_api.config import get_settings  # noqa: E402
-from exjet_api.db import Base, get_engine, session_factory  # noqa: E402
-from exjet_api.providers import reset_providers  # noqa: E402
-from exjet_api.security import auth_limiter  # noqa: E402
+from alembic import command
+from exjet_api import clock
+from exjet_api.config import get_settings
+from exjet_api.db import Base, get_engine, session_factory
+from exjet_api.providers import reset_providers
+from exjet_api.security import auth_limiter
 
 API_DIR = Path(__file__).resolve().parents[1]
 

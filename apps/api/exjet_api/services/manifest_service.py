@@ -9,10 +9,11 @@ from exjet_product.manifest import PassengerInput, validate_manifest
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from .. import clock, schemas as S
+from .. import clock
+from .. import schemas as S
 from ..errors import ApiError, conflict
 from ..jobs import enqueue
-from ..models import Manifest, Passenger, Trip, TripStatus
+from ..models import Passenger, Trip, TripStatus
 from .trips import required_pax_id_type
 
 EDITABLE = {TripStatus.manifest_due.value}

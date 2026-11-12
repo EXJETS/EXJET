@@ -94,6 +94,18 @@ def _finish(job_id: uuid.UUID, *, ok: bool, error: str | None, now: datetime) ->
         db.commit()
 
 
+def _safe_error(e: Exception) -> str:
+    """Exception text can carry PII (database errors echo bound parameters), so only our own exception
+    types contribute a message; everything else is recorded as its class name."""
+    from .errors import ApiError
+    from .guardrails import GuardrailViolation
+    from .providers.errors import ProviderError
+
+    if isinstance(e, (ProviderError, GuardrailViolation, ApiError, NotImplementedError)):
+        return f"{type(e).__name__}: {str(e)[:300]}"
+    return type(e).__name__
+
+
 def run_job(job: Job, now: datetime | None = None) -> bool:
     now = now or clock.now()
     fn = HANDLERS.get(job.kind)
@@ -106,7 +118,7 @@ def run_job(job: Job, now: datetime | None = None) -> bool:
             db.commit()
     except Exception as e:  # noqa: BLE001 - any handler failure is retried with backoff
         log.warning("job %s (%s) failed: %s", job.id, job.kind, type(e).__name__)
-        _finish(job.id, ok=False, error=f"{type(e).__name__}: {str(e)[:500]}", now=now)
+        _finish(job.id, ok=False, error=_safe_error(e), now=now)
         return False
     _finish(job.id, ok=True, error=None, now=now)
     return True

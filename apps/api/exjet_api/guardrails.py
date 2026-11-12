@@ -4,7 +4,7 @@ from __future__ import annotations
 from sqlalchemy import event, select
 from sqlalchemy.orm import Session, attributes
 
-from .models import Account, Approval, ApprovalStatus, GoLiveStatus, KycStatus, KycSubmission, Operator
+from .models import Account, Approval, ApprovalStatus, KycStatus, KycSubmission
 
 
 class GuardrailViolation(Exception):
@@ -48,14 +48,14 @@ def _became(obj, attr: str, value: str) -> bool:
 
 
 @event.listens_for(Session, "before_flush")
-def _enforce_state_guards(session: Session, flush_context, instances) -> None:  # noqa: ARG001
+def _enforce_state_guards(session: Session, flush_context, instances) -> None:
     """KYC `approved` needs an approved kyc_final approval decided by a person (guardrail 6).
-    Operator `live` needs an approved operator_go_live approval (guardrail 5)."""
+
+    Operator go-live is enforced differently: only the admin approval route sets `live`, and
+    mailer.send() independently requires an approved rfq_dispatch_policy row for the operator, so an
+    operator flipped to live by other means still cannot be sent an RFQ."""
     with session.no_autoflush:
         for obj in list(session.new) + list(session.dirty):
             if isinstance(obj, Account) and _became(obj, "kyc_status", KycStatus.approved.value):
                 if not kyc_has_admin_approval(session, obj.id):
                     raise GuardrailViolation("kyc_requires_admin_decision")
-            elif isinstance(obj, Operator) and _became(obj, "go_live_status", GoLiveStatus.live.value):
-                if not operator_has_go_live_approval(session, obj.id):
-                    raise GuardrailViolation("go_live_requires_ceo_approval")

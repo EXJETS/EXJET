@@ -1,4 +1,4 @@
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 import pytest
 
@@ -54,4 +54,4 @@ def types():
 @pytest.fixture
 def now():
     """Thursday 2026-11-12 10:00 in New York."""
-    return datetime(2026, 11, 12, 15, 0, tzinfo=timezone.utc)
+    return datetime(2026, 11, 12, 15, 0, tzinfo=UTC)

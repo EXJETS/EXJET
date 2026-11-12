@@ -8,7 +8,8 @@ from fastapi import APIRouter, Depends
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
-from .. import clock, schemas as S
+from .. import clock
+from .. import schemas as S
 from ..audit import record_agent_action
 from ..deps import get_owned_trip, get_session, require_entitled, require_member
 from ..entitlements import Viewer
@@ -16,7 +17,8 @@ from ..errors import conflict
 from ..models import Rfq, RfqStatus, Trip, TripStatus
 from ..providers import get_llm
 from ..serializers import Builder
-from ..services import intake_llm, rfq_service, trips as T
+from ..services import intake_llm, rfq_service
+from ..services import trips as T
 
 router = APIRouter(prefix="/trips", tags=["trips"])
 PRE_FLIGHT = {TripStatus.draft.value, TripStatus.rfq_sent.value, TripStatus.quoted.value, TripStatus.contracted.value,

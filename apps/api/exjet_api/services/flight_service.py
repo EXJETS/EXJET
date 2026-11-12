@@ -3,7 +3,13 @@ from __future__ import annotations
 
 import uuid
 
-from exjet_product.flight_watch import STATUS_LANDED, STATUS_SCHEDULED, STATUS_UNKNOWN, derive_trip_status, next_watch_at
+from exjet_product.flight_watch import (
+    STATUS_LANDED,
+    STATUS_SCHEDULED,
+    STATUS_UNKNOWN,
+    derive_trip_status,
+    next_watch_at,
+)
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 

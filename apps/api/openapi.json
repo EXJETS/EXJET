@@ -1,0 +1,5793 @@
+{
+  "components": {
+    "schemas": {
+      "AccountOut": {
+        "properties": {
+          "display_name": {
+            "title": "Display Name",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "kyc_status": {
+            "title": "Kyc Status",
+            "type": "string"
+          },
+          "seats": {
+            "title": "Seats",
+            "type": "integer"
+          },
+          "type": {
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "display_name",
+          "seats",
+          "kyc_status"
+        ],
+        "title": "AccountOut",
+        "type": "object"
+      },
+      "AdminDocument": {
+        "properties": {
+          "content_type": {
+            "title": "Content Type",
+            "type": "string"
+          },
+          "doc_type": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Doc Type"
+          },
+          "filename": {
+            "title": "Filename",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "size_bytes": {
+            "title": "Size Bytes",
+            "type": "integer"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "doc_type",
+          "filename",
+          "content_type",
+          "size_bytes",
+          "url"
+        ],
+        "title": "AdminDocument",
+        "type": "object"
+      },
+      "AdminKycSubmission": {
+        "properties": {
+          "account_id": {
+            "format": "uuid",
+            "title": "Account Id",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "decision_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision Note"
+          },
+          "documents": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/AdminDocument"
+            },
+            "title": "Documents",
+            "type": "array"
+          },
+          "holder_name": {
+            "title": "Holder Name",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "vendor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vendor"
+          },
+          "vendor_result": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Vendor Result"
+          }
+        },
+        "required": [
+          "id",
+          "account_id",
+          "kind",
+          "holder_name",
+          "status",
+          "vendor",
+          "vendor_result",
+          "decision_note",
+          "created_at"
+        ],
+        "title": "AdminKycSubmission",
+        "type": "object"
+      },
+      "AdminOperatorOut": {
+        "properties": {
+          "aircraft_count": {
+            "title": "Aircraft Count",
+            "type": "integer"
+          },
+          "certificate_type": {
+            "title": "Certificate Type",
+            "type": "string"
+          },
+          "contact_count": {
+            "title": "Contact Count",
+            "type": "integer"
+          },
+          "dba_name": {
+            "title": "Dba Name",
+            "type": "string"
+          },
+          "go_live_status": {
+            "title": "Go Live Status",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "is_excluded": {
+            "title": "Is Excluded",
+            "type": "boolean"
+          },
+          "safety_rating": {
+            "title": "Safety Rating",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "dba_name",
+          "certificate_type",
+          "safety_rating",
+          "is_excluded",
+          "go_live_status",
+          "aircraft_count",
+          "contact_count"
+        ],
+        "title": "AdminOperatorOut",
+        "type": "object"
+      },
+      "AdminQuoteReview": {
+        "properties": {
+          "flags": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Flags",
+            "type": "array"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "parse_confidence": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Parse Confidence"
+          },
+          "pdf_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Pdf Url"
+          },
+          "rfq_id": {
+            "format": "uuid",
+            "title": "Rfq Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "trip_id": {
+            "format": "uuid",
+            "title": "Trip Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "trip_id",
+          "rfq_id",
+          "status",
+          "flags",
+          "parse_confidence",
+          "pdf_url"
+        ],
+        "title": "AdminQuoteReview",
+        "type": "object"
+      },
+      "AgentActionOut": {
+        "properties": {
+          "account_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Account Id"
+          },
+          "agent": {
+            "title": "Agent",
+            "type": "string"
+          },
+          "cost_usd_micros": {
+            "title": "Cost Usd Micros",
+            "type": "integer"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Error"
+          },
+          "event": {
+            "title": "Event",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "input_tokens": {
+            "title": "Input Tokens",
+            "type": "integer"
+          },
+          "model": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Model"
+          },
+          "output_tokens": {
+            "title": "Output Tokens",
+            "type": "integer"
+          },
+          "permission_level": {
+            "title": "Permission Level",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "agent",
+          "event",
+          "status",
+          "permission_level",
+          "model",
+          "input_tokens",
+          "output_tokens",
+          "cost_usd_micros",
+          "account_id",
+          "error",
+          "created_at"
+        ],
+        "title": "AgentActionOut",
+        "type": "object"
+      },
+      "AircraftTypeOut": {
+        "properties": {
+          "baggage_cuft": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Baggage Cuft"
+          },
+          "cabin_height_ft": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cabin Height Ft"
+          },
+          "cabin_length_ft": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cabin Length Ft"
+          },
+          "cabin_width_ft": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cabin Width Ft"
+          },
+          "category": {
+            "title": "Category",
+            "type": "string"
+          },
+          "cruise_speed_kts": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Cruise Speed Kts"
+          },
+          "icao_type_code": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Icao Type Code"
+          },
+          "manufacturer": {
+            "title": "Manufacturer",
+            "type": "string"
+          },
+          "max_passengers": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Max Passengers"
+          },
+          "min_runway_ft": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Min Runway Ft"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "range_nm": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Range Nm"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug",
+          "manufacturer",
+          "model",
+          "category",
+          "max_passengers",
+          "range_nm",
+          "cruise_speed_kts",
+          "min_runway_ft",
+          "baggage_cuft",
+          "cabin_length_ft",
+          "cabin_width_ft",
+          "cabin_height_ft",
+          "icao_type_code"
+        ],
+        "title": "AircraftTypeOut",
+        "type": "object"
+      },
+      "AirportOut": {
+        "properties": {
+          "city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "City"
+          },
+          "elevation_ft": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Elevation Ft"
+          },
+          "iata": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Iata"
+          },
+          "icao": {
+            "title": "Icao",
+            "type": "string"
+          },
+          "longest_runway_ft": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Longest Runway Ft"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "state": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "State"
+          }
+        },
+        "required": [
+          "icao",
+          "iata",
+          "name",
+          "city",
+          "state",
+          "elevation_ft",
+          "longest_runway_ft"
+        ],
+        "title": "AirportOut",
+        "type": "object"
+      },
+      "ApprovalOut": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "decided_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decided At"
+          },
+          "decided_by": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decided By"
+          },
+          "decision_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision Note"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "payload": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payload"
+          },
+          "requested_by": {
+            "title": "Requested By",
+            "type": "string"
+          },
+          "required_role": {
+            "title": "Required Role",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "subject_id": {
+            "title": "Subject Id",
+            "type": "string"
+          },
+          "subject_type": {
+            "title": "Subject Type",
+            "type": "string"
+          },
+          "summary": {
+            "title": "Summary",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "subject_type",
+          "subject_id",
+          "required_role",
+          "status",
+          "requested_by",
+          "decided_by",
+          "decided_at",
+          "summary",
+          "payload",
+          "decision_note",
+          "created_at"
+        ],
+        "title": "ApprovalOut",
+        "type": "object"
+      },
+      "Body_ingest_v1_admin_ingest_post": {
+        "properties": {
+          "dataset": {
+            "title": "Dataset",
+            "type": "string"
+          },
+          "file": {
+            "contentMediaType": "application/octet-stream",
+            "title": "File",
+            "type": "string"
+          }
+        },
+        "required": [
+          "dataset",
+          "file"
+        ],
+        "title": "Body_ingest_v1_admin_ingest_post",
+        "type": "object"
+      },
+      "Body_submit_v1_kyc_submissions_post": {
+        "properties": {
+          "business_name": {
+            "anyOf": [
+              {
+                "maxLength": 200,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Business Name"
+          },
+          "business_tax_id": {
+            "anyOf": [
+              {
+                "maxLength": 64,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Business Tax Id"
+          },
+          "doc_types": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Doc Types",
+            "type": "array"
+          },
+          "files": {
+            "items": {
+              "contentMediaType": "application/octet-stream",
+              "type": "string"
+            },
+            "title": "Files",
+            "type": "array"
+          },
+          "holder_name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Holder Name",
+            "type": "string"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          }
+        },
+        "required": [
+          "kind",
+          "holder_name",
+          "files",
+          "doc_types"
+        ],
+        "title": "Body_submit_v1_kyc_submissions_post",
+        "type": "object"
+      },
+      "CategoryOut": {
+        "properties": {
+          "category": {
+            "title": "Category",
+            "type": "string"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "type_count": {
+            "title": "Type Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "category",
+          "name",
+          "type_count"
+        ],
+        "title": "CategoryOut",
+        "type": "object"
+      },
+      "CheckoutIn": {
+        "properties": {
+          "plan": {
+            "enum": [
+              "individual",
+              "family_office"
+            ],
+            "title": "Plan",
+            "type": "string"
+          }
+        },
+        "required": [
+          "plan"
+        ],
+        "title": "CheckoutIn",
+        "type": "object"
+      },
+      "CheckoutOut": {
+        "properties": {
+          "checkout_url": {
+            "title": "Checkout Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "checkout_url"
+        ],
+        "title": "CheckoutOut",
+        "type": "object"
+      },
+      "ContactOut": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          }
+        },
+        "required": [
+          "name",
+          "title",
+          "email",
+          "phone"
+        ],
+        "title": "ContactOut",
+        "type": "object"
+      },
+      "ContractOut": {
+        "properties": {
+          "acknowledged_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Acknowledged At"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "pdf_url": {
+            "title": "Pdf Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "pdf_url",
+          "acknowledged_at"
+        ],
+        "title": "ContractOut",
+        "type": "object"
+      },
+      "DecideIn": {
+        "properties": {
+          "decision": {
+            "enum": [
+              "approved",
+              "rejected"
+            ],
+            "title": "Decision",
+            "type": "string"
+          },
+          "note": {
+            "anyOf": [
+              {
+                "maxLength": 2000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Note"
+          }
+        },
+        "required": [
+          "decision"
+        ],
+        "title": "DecideIn",
+        "type": "object"
+      },
+      "DevAttachment": {
+        "properties": {
+          "content_base64": {
+            "title": "Content Base64",
+            "type": "string"
+          },
+          "content_type": {
+            "default": "application/pdf",
+            "title": "Content Type",
+            "type": "string"
+          },
+          "filename": {
+            "title": "Filename",
+            "type": "string"
+          }
+        },
+        "required": [
+          "filename",
+          "content_base64"
+        ],
+        "title": "DevAttachment",
+        "type": "object"
+      },
+      "DevCompleteCheckout": {
+        "properties": {
+          "account_id": {
+            "format": "uuid",
+            "title": "Account Id",
+            "type": "string"
+          },
+          "plan": {
+            "enum": [
+              "individual",
+              "family_office"
+            ],
+            "title": "Plan",
+            "type": "string"
+          }
+        },
+        "required": [
+          "account_id",
+          "plan"
+        ],
+        "title": "DevCompleteCheckout",
+        "type": "object"
+      },
+      "DevInboundEmail": {
+        "properties": {
+          "attachments": {
+            "default": [],
+            "items": {
+              "$ref": "#/components/schemas/DevAttachment"
+            },
+            "title": "Attachments",
+            "type": "array"
+          },
+          "body": {
+            "default": "",
+            "title": "Body",
+            "type": "string"
+          },
+          "from_address": {
+            "title": "From Address",
+            "type": "string"
+          },
+          "subject": {
+            "title": "Subject",
+            "type": "string"
+          },
+          "thread_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Thread Id"
+          },
+          "to": {
+            "default": [
+              "quotes@exjet.com"
+            ],
+            "items": {
+              "type": "string"
+            },
+            "title": "To",
+            "type": "array"
+          }
+        },
+        "required": [
+          "from_address",
+          "subject"
+        ],
+        "title": "DevInboundEmail",
+        "type": "object"
+      },
+      "EmptyLegOut": {
+        "properties": {
+          "available_from": {
+            "format": "date-time",
+            "title": "Available From",
+            "type": "string"
+          },
+          "available_to": {
+            "format": "date-time",
+            "title": "Available To",
+            "type": "string"
+          },
+          "destination": {
+            "title": "Destination",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "listing": {
+            "$ref": "#/components/schemas/Listing"
+          },
+          "origin": {
+            "title": "Origin",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "origin",
+          "destination",
+          "available_from",
+          "available_to",
+          "listing"
+        ],
+        "title": "EmptyLegOut",
+        "type": "object"
+      },
+      "EnterpriseInquiryIn": {
+        "properties": {
+          "company": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Company",
+            "type": "string"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "maxLength": 2000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "seats": {
+            "maximum": 10000.0,
+            "minimum": 1.0,
+            "title": "Seats",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "company",
+          "seats"
+        ],
+        "title": "EnterpriseInquiryIn",
+        "type": "object"
+      },
+      "GroundRfqIn": {
+        "properties": {
+          "details": {
+            "anyOf": [
+              {
+                "maxLength": 1000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Details"
+          },
+          "fbo_id": {
+            "format": "uuid",
+            "title": "Fbo Id",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "rental_car",
+              "chauffeur"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "leg_sequence": {
+            "maximum": 20.0,
+            "minimum": 0.0,
+            "title": "Leg Sequence",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "kind",
+          "leg_sequence",
+          "fbo_id"
+        ],
+        "title": "GroundRfqIn",
+        "type": "object"
+      },
+      "HTTPValidationError": {
+        "properties": {
+          "detail": {
+            "items": {
+              "$ref": "#/components/schemas/ValidationError"
+            },
+            "title": "Detail",
+            "type": "array"
+          }
+        },
+        "title": "HTTPValidationError",
+        "type": "object"
+      },
+      "IngestRunOut": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "dataset": {
+            "title": "Dataset",
+            "type": "string"
+          },
+          "duplicates_merged": {
+            "title": "Duplicates Merged",
+            "type": "integer"
+          },
+          "filename": {
+            "title": "Filename",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "report": {
+            "anyOf": [
+              {
+                "additionalProperties": true,
+                "type": "object"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Report"
+          },
+          "rows_loaded": {
+            "title": "Rows Loaded",
+            "type": "integer"
+          },
+          "rows_read": {
+            "title": "Rows Read",
+            "type": "integer"
+          },
+          "rows_rejected": {
+            "title": "Rows Rejected",
+            "type": "integer"
+          },
+          "rows_updated": {
+            "title": "Rows Updated",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "dataset",
+          "filename",
+          "rows_read",
+          "rows_loaded",
+          "rows_updated",
+          "rows_rejected",
+          "duplicates_merged",
+          "report",
+          "created_at"
+        ],
+        "title": "IngestRunOut",
+        "type": "object"
+      },
+      "IntakeIn": {
+        "properties": {
+          "text": {
+            "maxLength": 2000,
+            "minLength": 3,
+            "title": "Text",
+            "type": "string"
+          }
+        },
+        "required": [
+          "text"
+        ],
+        "title": "IntakeIn",
+        "type": "object"
+      },
+      "JobOut": {
+        "properties": {
+          "attempts": {
+            "title": "Attempts",
+            "type": "integer"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "last_error": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Error"
+          },
+          "max_attempts": {
+            "title": "Max Attempts",
+            "type": "integer"
+          },
+          "run_at": {
+            "format": "date-time",
+            "title": "Run At",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "kind",
+          "status",
+          "attempts",
+          "max_attempts",
+          "run_at",
+          "last_error",
+          "created_at"
+        ],
+        "title": "JobOut",
+        "type": "object"
+      },
+      "KycLatest": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "decision_note": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Decision Note"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "created_at",
+          "decision_note"
+        ],
+        "title": "KycLatest",
+        "type": "object"
+      },
+      "KycStatusOut": {
+        "properties": {
+          "kyc_status": {
+            "title": "Kyc Status",
+            "type": "string"
+          },
+          "latest_submission": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/KycLatest"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          }
+        },
+        "required": [
+          "kyc_status",
+          "latest_submission"
+        ],
+        "title": "KycStatusOut",
+        "type": "object"
+      },
+      "KycSubmissionOut": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "status"
+        ],
+        "title": "KycSubmissionOut",
+        "type": "object"
+      },
+      "LegDraftIO": {
+        "properties": {
+          "depart_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Depart At"
+          },
+          "depart_date": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Depart Date"
+          },
+          "destination_icao": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Destination Icao"
+          },
+          "origin_icao": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Origin Icao"
+          }
+        },
+        "title": "LegDraftIO",
+        "type": "object"
+      },
+      "LegIn": {
+        "properties": {
+          "depart_at": {
+            "format": "date-time",
+            "title": "Depart At",
+            "type": "string"
+          },
+          "destination_icao": {
+            "maxLength": 4,
+            "minLength": 4,
+            "title": "Destination Icao",
+            "type": "string"
+          },
+          "origin_icao": {
+            "maxLength": 4,
+            "minLength": 4,
+            "title": "Origin Icao",
+            "type": "string"
+          }
+        },
+        "required": [
+          "origin_icao",
+          "destination_icao",
+          "depart_at"
+        ],
+        "title": "LegIn",
+        "type": "object"
+      },
+      "LegOut": {
+        "properties": {
+          "depart_at": {
+            "format": "date-time",
+            "title": "Depart At",
+            "type": "string"
+          },
+          "destination_icao": {
+            "title": "Destination Icao",
+            "type": "string"
+          },
+          "distance_nm": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distance Nm"
+          },
+          "is_international": {
+            "title": "Is International",
+            "type": "boolean"
+          },
+          "origin_icao": {
+            "title": "Origin Icao",
+            "type": "string"
+          },
+          "sequence": {
+            "title": "Sequence",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "sequence",
+          "origin_icao",
+          "destination_icao",
+          "depart_at",
+          "distance_nm",
+          "is_international"
+        ],
+        "title": "LegOut",
+        "type": "object"
+      },
+      "LegTrack": {
+        "properties": {
+          "position": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Position"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "sequence": {
+            "title": "Sequence",
+            "type": "integer"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "sequence",
+          "status",
+          "position"
+        ],
+        "title": "LegTrack",
+        "type": "object"
+      },
+      "LegWeather": {
+        "properties": {
+          "destination": {
+            "$ref": "#/components/schemas/StationWeather"
+          },
+          "origin": {
+            "$ref": "#/components/schemas/StationWeather"
+          },
+          "sequence": {
+            "title": "Sequence",
+            "type": "integer"
+          },
+          "summary": {
+            "title": "Summary",
+            "type": "string"
+          }
+        },
+        "required": [
+          "sequence",
+          "origin",
+          "destination",
+          "summary"
+        ],
+        "title": "LegWeather",
+        "type": "object"
+      },
+      "LineItemOut": {
+        "properties": {
+          "amount_cents": {
+            "title": "Amount Cents",
+            "type": "integer"
+          },
+          "description": {
+            "title": "Description",
+            "type": "string"
+          },
+          "page": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Page"
+          }
+        },
+        "required": [
+          "description",
+          "amount_cents"
+        ],
+        "title": "LineItemOut",
+        "type": "object"
+      },
+      "Listing": {
+        "properties": {
+          "amenities": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Amenities",
+            "type": "array"
+          },
+          "home_city": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Home City"
+          },
+          "listing_id": {
+            "format": "uuid",
+            "title": "Listing Id",
+            "type": "string"
+          },
+          "operator": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ListingOperator"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "passenger_seats": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Passenger Seats"
+          },
+          "photos": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Photos",
+            "type": "array"
+          },
+          "safety_rating": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Safety Rating"
+          },
+          "tail_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Tail Number"
+          },
+          "type": {
+            "$ref": "#/components/schemas/ListingType"
+          },
+          "year_of_manufacture": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year Of Manufacture"
+          },
+          "year_refurbished": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Year Refurbished"
+          }
+        },
+        "required": [
+          "listing_id",
+          "type",
+          "year_of_manufacture",
+          "year_refurbished",
+          "passenger_seats",
+          "home_city",
+          "amenities",
+          "photos",
+          "safety_rating",
+          "tail_number",
+          "operator"
+        ],
+        "title": "Listing",
+        "type": "object"
+      },
+      "ListingOperator": {
+        "properties": {
+          "certificate_type": {
+            "title": "Certificate Type",
+            "type": "string"
+          },
+          "contacts": {
+            "items": {
+              "$ref": "#/components/schemas/ContactOut"
+            },
+            "title": "Contacts",
+            "type": "array"
+          },
+          "dba_name": {
+            "title": "Dba Name",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "dba_name",
+          "certificate_type",
+          "contacts"
+        ],
+        "title": "ListingOperator",
+        "type": "object"
+      },
+      "ListingType": {
+        "properties": {
+          "category": {
+            "title": "Category",
+            "type": "string"
+          },
+          "manufacturer": {
+            "title": "Manufacturer",
+            "type": "string"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug",
+          "manufacturer",
+          "model",
+          "category"
+        ],
+        "title": "ListingType",
+        "type": "object"
+      },
+      "LoginIn": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 128,
+            "minLength": 1,
+            "title": "Password",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email",
+          "password"
+        ],
+        "title": "LoginIn",
+        "type": "object"
+      },
+      "ManifestBrief": {
+        "properties": {
+          "due_at": {
+            "format": "date-time",
+            "title": "Due At",
+            "type": "string"
+          },
+          "submitted_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Submitted At"
+          }
+        },
+        "required": [
+          "due_at",
+          "submitted_at"
+        ],
+        "title": "ManifestBrief",
+        "type": "object"
+      },
+      "ManifestOut": {
+        "properties": {
+          "due_at": {
+            "format": "date-time",
+            "title": "Due At",
+            "type": "string"
+          },
+          "expected_passengers": {
+            "title": "Expected Passengers",
+            "type": "integer"
+          },
+          "passengers": {
+            "items": {
+              "$ref": "#/components/schemas/PassengerOut"
+            },
+            "title": "Passengers",
+            "type": "array"
+          },
+          "required_id_type": {
+            "title": "Required Id Type",
+            "type": "string"
+          },
+          "submitted_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Submitted At"
+          }
+        },
+        "required": [
+          "due_at",
+          "submitted_at",
+          "required_id_type",
+          "expected_passengers",
+          "passengers"
+        ],
+        "title": "ManifestOut",
+        "type": "object"
+      },
+      "ManifestPut": {
+        "properties": {
+          "passengers": {
+            "items": {
+              "$ref": "#/components/schemas/PassengerIn"
+            },
+            "maxItems": 100,
+            "title": "Passengers",
+            "type": "array"
+          }
+        },
+        "required": [
+          "passengers"
+        ],
+        "title": "ManifestPut",
+        "type": "object"
+      },
+      "MatchCategoryOut": {
+        "properties": {
+          "category": {
+            "title": "Category",
+            "type": "string"
+          },
+          "types": {
+            "items": {
+              "$ref": "#/components/schemas/MatchTypeOut"
+            },
+            "title": "Types",
+            "type": "array"
+          }
+        },
+        "required": [
+          "category",
+          "types"
+        ],
+        "title": "MatchCategoryOut",
+        "type": "object"
+      },
+      "MatchLegOut": {
+        "properties": {
+          "destination_icao": {
+            "title": "Destination Icao",
+            "type": "string"
+          },
+          "distance_nm": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Distance Nm"
+          },
+          "origin_icao": {
+            "title": "Origin Icao",
+            "type": "string"
+          },
+          "sequence": {
+            "title": "Sequence",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "sequence",
+          "origin_icao",
+          "destination_icao",
+          "distance_nm"
+        ],
+        "title": "MatchLegOut",
+        "type": "object"
+      },
+      "MatchOut": {
+        "properties": {
+          "categories": {
+            "items": {
+              "$ref": "#/components/schemas/MatchCategoryOut"
+            },
+            "title": "Categories",
+            "type": "array"
+          },
+          "legs": {
+            "items": {
+              "$ref": "#/components/schemas/MatchLegOut"
+            },
+            "title": "Legs",
+            "type": "array"
+          },
+          "rejected": {
+            "items": {
+              "$ref": "#/components/schemas/RejectedOut"
+            },
+            "title": "Rejected",
+            "type": "array"
+          }
+        },
+        "required": [
+          "legs",
+          "categories",
+          "rejected"
+        ],
+        "title": "MatchOut",
+        "type": "object"
+      },
+      "MatchTypeLeg": {
+        "properties": {
+          "flight_time_minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Flight Time Minutes"
+          },
+          "fuel_stop_icao": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fuel Stop Icao"
+          },
+          "sequence": {
+            "title": "Sequence",
+            "type": "integer"
+          },
+          "stops": {
+            "title": "Stops",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "sequence",
+          "stops",
+          "fuel_stop_icao",
+          "flight_time_minutes"
+        ],
+        "title": "MatchTypeLeg",
+        "type": "object"
+      },
+      "MatchTypeOut": {
+        "properties": {
+          "flight_time_minutes": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Flight Time Minutes"
+          },
+          "fuel_stop_icao": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Fuel Stop Icao"
+          },
+          "legs": {
+            "items": {
+              "$ref": "#/components/schemas/MatchTypeLeg"
+            },
+            "title": "Legs",
+            "type": "array"
+          },
+          "listing_count": {
+            "title": "Listing Count",
+            "type": "integer"
+          },
+          "model": {
+            "title": "Model",
+            "type": "string"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          },
+          "stops": {
+            "enum": [
+              0,
+              1
+            ],
+            "title": "Stops",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "slug",
+          "model",
+          "stops",
+          "fuel_stop_icao",
+          "flight_time_minutes",
+          "listing_count",
+          "legs"
+        ],
+        "title": "MatchTypeOut",
+        "type": "object"
+      },
+      "Me": {
+        "properties": {
+          "account": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AccountOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "entitled": {
+            "title": "Entitled",
+            "type": "boolean"
+          },
+          "next_step": {
+            "enum": [
+              "kyc",
+              "kyc_pending",
+              "billing",
+              "ready"
+            ],
+            "title": "Next Step",
+            "type": "string"
+          },
+          "subscription": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/SubscriptionOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "user": {
+            "$ref": "#/components/schemas/UserOut"
+          }
+        },
+        "required": [
+          "user",
+          "account",
+          "subscription",
+          "entitled",
+          "next_step"
+        ],
+        "title": "Me",
+        "type": "object"
+      },
+      "MetricsOut": {
+        "properties": {
+          "arr_cents": {
+            "title": "Arr Cents",
+            "type": "integer"
+          },
+          "kyc_queue": {
+            "title": "Kyc Queue",
+            "type": "integer"
+          },
+          "median_operator_response_minutes": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Median Operator Response Minutes"
+          },
+          "members_by_plan": {
+            "additionalProperties": {
+              "type": "integer"
+            },
+            "title": "Members By Plan",
+            "type": "object"
+          },
+          "mrr_cents": {
+            "title": "Mrr Cents",
+            "type": "integer"
+          },
+          "rfq_to_quote_rate": {
+            "anyOf": [
+              {
+                "type": "number"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Rfq To Quote Rate"
+          }
+        },
+        "required": [
+          "mrr_cents",
+          "arr_cents",
+          "members_by_plan",
+          "kyc_queue",
+          "rfq_to_quote_rate",
+          "median_operator_response_minutes"
+        ],
+        "title": "MetricsOut",
+        "type": "object"
+      },
+      "PassengerIn": {
+        "properties": {
+          "date_of_birth": {
+            "format": "date",
+            "title": "Date Of Birth",
+            "type": "string"
+          },
+          "full_name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Full Name",
+            "type": "string"
+          },
+          "id_expiry": {
+            "format": "date",
+            "title": "Id Expiry",
+            "type": "string"
+          },
+          "id_issuer": {
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Id Issuer",
+            "type": "string"
+          },
+          "id_number": {
+            "maxLength": 64,
+            "minLength": 1,
+            "title": "Id Number",
+            "type": "string"
+          },
+          "id_type": {
+            "enum": [
+              "real_id",
+              "passport"
+            ],
+            "title": "Id Type",
+            "type": "string"
+          },
+          "weight_lbs": {
+            "anyOf": [
+              {
+                "maximum": 700.0,
+                "minimum": 1.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Weight Lbs"
+          }
+        },
+        "required": [
+          "full_name",
+          "date_of_birth",
+          "id_type",
+          "id_number",
+          "id_expiry",
+          "id_issuer"
+        ],
+        "title": "PassengerIn",
+        "type": "object"
+      },
+      "PassengerOut": {
+        "properties": {
+          "date_of_birth": {
+            "title": "Date Of Birth",
+            "type": "string"
+          },
+          "full_name": {
+            "title": "Full Name",
+            "type": "string"
+          },
+          "id_expiry": {
+            "anyOf": [
+              {
+                "format": "date",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id Expiry"
+          },
+          "id_issuer": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Id Issuer"
+          },
+          "id_number_last4": {
+            "title": "Id Number Last4",
+            "type": "string"
+          },
+          "id_type": {
+            "title": "Id Type",
+            "type": "string"
+          },
+          "weight_lbs": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Weight Lbs"
+          }
+        },
+        "required": [
+          "full_name",
+          "date_of_birth",
+          "id_type",
+          "id_number_last4",
+          "id_expiry",
+          "id_issuer",
+          "weight_lbs"
+        ],
+        "title": "PassengerOut",
+        "type": "object"
+      },
+      "PaymentLinkOut": {
+        "properties": {
+          "host": {
+            "title": "Host",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url",
+          "host",
+          "status"
+        ],
+        "title": "PaymentLinkOut",
+        "type": "object"
+      },
+      "PlanOut": {
+        "properties": {
+          "inquiry_only": {
+            "default": false,
+            "title": "Inquiry Only",
+            "type": "boolean"
+          },
+          "interval": {
+            "anyOf": [
+              {
+                "const": "month",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Interval"
+          },
+          "name": {
+            "title": "Name",
+            "type": "string"
+          },
+          "plan": {
+            "title": "Plan",
+            "type": "string"
+          },
+          "seats": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Seats"
+          },
+          "unit_amount_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Unit Amount Cents"
+          }
+        },
+        "required": [
+          "plan",
+          "name",
+          "unit_amount_cents",
+          "interval",
+          "seats"
+        ],
+        "title": "PlanOut",
+        "type": "object"
+      },
+      "PortalOut": {
+        "properties": {
+          "url": {
+            "title": "Url",
+            "type": "string"
+          }
+        },
+        "required": [
+          "url"
+        ],
+        "title": "PortalOut",
+        "type": "object"
+      },
+      "Position": {
+        "properties": {
+          "altitude_ft": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Altitude Ft"
+          },
+          "at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "At"
+          },
+          "groundspeed_kts": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Groundspeed Kts"
+          },
+          "heading": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Heading"
+          },
+          "lat": {
+            "title": "Lat",
+            "type": "number"
+          },
+          "lon": {
+            "title": "Lon",
+            "type": "number"
+          }
+        },
+        "required": [
+          "lat",
+          "lon",
+          "altitude_ft",
+          "groundspeed_kts",
+          "heading",
+          "at"
+        ],
+        "title": "Position",
+        "type": "object"
+      },
+      "QuoteOperator": {
+        "properties": {
+          "dba_name": {
+            "title": "Dba Name",
+            "type": "string"
+          }
+        },
+        "required": [
+          "dba_name"
+        ],
+        "title": "QuoteOperator",
+        "type": "object"
+      },
+      "QuoteOut": {
+        "properties": {
+          "contract": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ContractOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "line_items": {
+            "items": {
+              "$ref": "#/components/schemas/LineItemOut"
+            },
+            "title": "Line Items",
+            "type": "array"
+          },
+          "listing": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Listing"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "operator": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/QuoteOperator"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "operator_quote_number": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Operator Quote Number"
+          },
+          "payment_link": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/PaymentLinkOut"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "quote_pdf_url": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Quote Pdf Url"
+          },
+          "rfq_id": {
+            "format": "uuid",
+            "title": "Rfq Id",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "total_amount_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Amount Cents"
+          },
+          "trip_id": {
+            "format": "uuid",
+            "title": "Trip Id",
+            "type": "string"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          }
+        },
+        "required": [
+          "id",
+          "rfq_id",
+          "trip_id",
+          "status",
+          "operator",
+          "listing",
+          "total_amount_cents",
+          "currency",
+          "valid_until",
+          "operator_quote_number",
+          "line_items",
+          "quote_pdf_url",
+          "contract",
+          "payment_link"
+        ],
+        "title": "QuoteOut",
+        "type": "object"
+      },
+      "RejectedOut": {
+        "properties": {
+          "reasons": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Reasons",
+            "type": "array"
+          },
+          "slug": {
+            "title": "Slug",
+            "type": "string"
+          }
+        },
+        "required": [
+          "slug",
+          "reasons"
+        ],
+        "title": "RejectedOut",
+        "type": "object"
+      },
+      "ResolveQuoteIn": {
+        "properties": {
+          "reject": {
+            "default": false,
+            "title": "Reject",
+            "type": "boolean"
+          },
+          "total_amount_cents": {
+            "exclusiveMinimum": 0.0,
+            "title": "Total Amount Cents",
+            "type": "integer"
+          },
+          "valid_until": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Valid Until"
+          }
+        },
+        "required": [
+          "total_amount_cents"
+        ],
+        "title": "ResolveQuoteIn",
+        "type": "object"
+      },
+      "RfqCreateIn": {
+        "properties": {
+          "empty_leg_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Empty Leg Id"
+          },
+          "listing_ids": {
+            "items": {
+              "format": "uuid",
+              "type": "string"
+            },
+            "maxItems": 10,
+            "minItems": 1,
+            "title": "Listing Ids",
+            "type": "array"
+          }
+        },
+        "required": [
+          "listing_ids"
+        ],
+        "title": "RfqCreateIn",
+        "type": "object"
+      },
+      "RfqOut": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "title": "Kind",
+            "type": "string"
+          },
+          "listing": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/Listing"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "reference": {
+            "title": "Reference",
+            "type": "string"
+          },
+          "replied_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Replied At"
+          },
+          "sent_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sent At"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "reference",
+          "kind",
+          "status",
+          "sent_at",
+          "replied_at",
+          "listing"
+        ],
+        "title": "RfqOut",
+        "type": "object"
+      },
+      "SeatIn": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          }
+        },
+        "required": [
+          "email"
+        ],
+        "title": "SeatIn",
+        "type": "object"
+      },
+      "SeatOut": {
+        "properties": {
+          "account_id": {
+            "format": "uuid",
+            "title": "Account Id",
+            "type": "string"
+          },
+          "seats": {
+            "title": "Seats",
+            "type": "integer"
+          },
+          "seats_used": {
+            "title": "Seats Used",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "account_id",
+          "seats_used",
+          "seats"
+        ],
+        "title": "SeatOut",
+        "type": "object"
+      },
+      "SignupIn": {
+        "properties": {
+          "account_type": {
+            "enum": [
+              "individual",
+              "family_office"
+            ],
+            "title": "Account Type",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "full_name": {
+            "maxLength": 200,
+            "minLength": 1,
+            "title": "Full Name",
+            "type": "string"
+          },
+          "password": {
+            "maxLength": 128,
+            "minLength": 10,
+            "title": "Password",
+            "type": "string"
+          },
+          "signup_source": {
+            "anyOf": [
+              {
+                "pattern": "^[a-z0-9:_\\-]{1,64}$",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Signup Source"
+          }
+        },
+        "required": [
+          "email",
+          "password",
+          "full_name",
+          "account_type"
+        ],
+        "title": "SignupIn",
+        "type": "object"
+      },
+      "StationWeather": {
+        "properties": {
+          "icao": {
+            "title": "Icao",
+            "type": "string"
+          },
+          "metar": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Metar"
+          },
+          "taf": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Taf"
+          }
+        },
+        "required": [
+          "icao",
+          "metar",
+          "taf"
+        ],
+        "title": "StationWeather",
+        "type": "object"
+      },
+      "SubscriptionOut": {
+        "properties": {
+          "current_period_end": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Current Period End"
+          },
+          "plan": {
+            "title": "Plan",
+            "type": "string"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "plan",
+          "status",
+          "current_period_end"
+        ],
+        "title": "SubscriptionOut",
+        "type": "object"
+      },
+      "TrackOut": {
+        "properties": {
+          "legs": {
+            "items": {
+              "$ref": "#/components/schemas/LegTrack"
+            },
+            "title": "Legs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "legs"
+        ],
+        "title": "TrackOut",
+        "type": "object"
+      },
+      "TripCreate": {
+        "properties": {
+          "carry_on_bags": {
+            "default": 0,
+            "maximum": 50.0,
+            "minimum": 0.0,
+            "title": "Carry On Bags",
+            "type": "integer"
+          },
+          "checked_bags": {
+            "default": 0,
+            "maximum": 50.0,
+            "minimum": 0.0,
+            "title": "Checked Bags",
+            "type": "integer"
+          },
+          "golf_bags": {
+            "default": 0,
+            "maximum": 50.0,
+            "minimum": 0.0,
+            "title": "Golf Bags",
+            "type": "integer"
+          },
+          "legs": {
+            "items": {
+              "$ref": "#/components/schemas/LegIn"
+            },
+            "maxItems": 8,
+            "minItems": 1,
+            "title": "Legs",
+            "type": "array"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "maxLength": 2000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "passengers": {
+            "maximum": 100.0,
+            "minimum": 1.0,
+            "title": "Passengers",
+            "type": "integer"
+          },
+          "raw_request": {
+            "anyOf": [
+              {
+                "maxLength": 2000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Raw Request"
+          },
+          "ski_bags": {
+            "default": 0,
+            "maximum": 50.0,
+            "minimum": 0.0,
+            "title": "Ski Bags",
+            "type": "integer"
+          },
+          "trip_type": {
+            "anyOf": [
+              {
+                "enum": [
+                  "one_way",
+                  "round_trip",
+                  "multi_leg"
+                ],
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Trip Type"
+          }
+        },
+        "required": [
+          "legs",
+          "passengers"
+        ],
+        "title": "TripCreate",
+        "type": "object"
+      },
+      "TripDraftOut": {
+        "properties": {
+          "candidates": {
+            "additionalProperties": {
+              "items": {
+                "type": "string"
+              },
+              "type": "array"
+            },
+            "default": {},
+            "title": "Candidates",
+            "type": "object"
+          },
+          "carry_on_bags": {
+            "title": "Carry On Bags",
+            "type": "integer"
+          },
+          "checked_bags": {
+            "title": "Checked Bags",
+            "type": "integer"
+          },
+          "confidence": {
+            "title": "Confidence",
+            "type": "number"
+          },
+          "golf_bags": {
+            "title": "Golf Bags",
+            "type": "integer"
+          },
+          "interpretation_notes": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Interpretation Notes",
+            "type": "array"
+          },
+          "legs": {
+            "items": {
+              "$ref": "#/components/schemas/LegDraftIO"
+            },
+            "title": "Legs",
+            "type": "array"
+          },
+          "passengers": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Passengers"
+          },
+          "ski_bags": {
+            "title": "Ski Bags",
+            "type": "integer"
+          },
+          "trip_type": {
+            "title": "Trip Type",
+            "type": "string"
+          },
+          "unresolved": {
+            "items": {
+              "type": "string"
+            },
+            "title": "Unresolved",
+            "type": "array"
+          }
+        },
+        "required": [
+          "trip_type",
+          "legs",
+          "passengers",
+          "checked_bags",
+          "carry_on_bags",
+          "golf_bags",
+          "ski_bags",
+          "unresolved",
+          "confidence"
+        ],
+        "title": "TripDraftOut",
+        "type": "object"
+      },
+      "TripOut": {
+        "properties": {
+          "accepted_quote_id": {
+            "anyOf": [
+              {
+                "format": "uuid",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Accepted Quote Id"
+          },
+          "carry_on_bags": {
+            "title": "Carry On Bags",
+            "type": "integer"
+          },
+          "checked_bags": {
+            "title": "Checked Bags",
+            "type": "integer"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "golf_bags": {
+            "title": "Golf Bags",
+            "type": "integer"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "legs": {
+            "items": {
+              "$ref": "#/components/schemas/LegOut"
+            },
+            "title": "Legs",
+            "type": "array"
+          },
+          "manifest": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/ManifestBrief"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "passengers": {
+            "title": "Passengers",
+            "type": "integer"
+          },
+          "quotes": {
+            "items": {
+              "$ref": "#/components/schemas/QuoteOut"
+            },
+            "title": "Quotes",
+            "type": "array"
+          },
+          "rfqs": {
+            "items": {
+              "$ref": "#/components/schemas/RfqOut"
+            },
+            "title": "Rfqs",
+            "type": "array"
+          },
+          "ski_bags": {
+            "title": "Ski Bags",
+            "type": "integer"
+          },
+          "status": {
+            "title": "Status",
+            "type": "string"
+          },
+          "trip_type": {
+            "title": "Trip Type",
+            "type": "string"
+          },
+          "weather_available": {
+            "title": "Weather Available",
+            "type": "boolean"
+          }
+        },
+        "required": [
+          "id",
+          "status",
+          "trip_type",
+          "passengers",
+          "checked_bags",
+          "carry_on_bags",
+          "golf_bags",
+          "ski_bags",
+          "notes",
+          "accepted_quote_id",
+          "legs",
+          "rfqs",
+          "quotes",
+          "manifest",
+          "weather_available",
+          "created_at"
+        ],
+        "title": "TripOut",
+        "type": "object"
+      },
+      "TripPatch": {
+        "properties": {
+          "carry_on_bags": {
+            "anyOf": [
+              {
+                "maximum": 50.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Carry On Bags"
+          },
+          "checked_bags": {
+            "anyOf": [
+              {
+                "maximum": 50.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Checked Bags"
+          },
+          "golf_bags": {
+            "anyOf": [
+              {
+                "maximum": 50.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Golf Bags"
+          },
+          "legs": {
+            "anyOf": [
+              {
+                "items": {
+                  "$ref": "#/components/schemas/LegIn"
+                },
+                "maxItems": 8,
+                "minItems": 1,
+                "type": "array"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Legs"
+          },
+          "notes": {
+            "anyOf": [
+              {
+                "maxLength": 2000,
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Notes"
+          },
+          "passengers": {
+            "anyOf": [
+              {
+                "maximum": 100.0,
+                "minimum": 1.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Passengers"
+          },
+          "ski_bags": {
+            "anyOf": [
+              {
+                "maximum": 50.0,
+                "minimum": 0.0,
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ski Bags"
+          }
+        },
+        "title": "TripPatch",
+        "type": "object"
+      },
+      "UserOut": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "full_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Full Name"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "role": {
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "full_name",
+          "role"
+        ],
+        "title": "UserOut",
+        "type": "object"
+      },
+      "ValidationError": {
+        "properties": {
+          "ctx": {
+            "title": "Context",
+            "type": "object"
+          },
+          "input": {
+            "title": "Input"
+          },
+          "loc": {
+            "items": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "integer"
+                }
+              ]
+            },
+            "title": "Location",
+            "type": "array"
+          },
+          "msg": {
+            "title": "Message",
+            "type": "string"
+          },
+          "type": {
+            "title": "Error Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "loc",
+          "msg",
+          "type"
+        ],
+        "title": "ValidationError",
+        "type": "object"
+      },
+      "WeatherOut": {
+        "properties": {
+          "legs": {
+            "items": {
+              "$ref": "#/components/schemas/LegWeather"
+            },
+            "title": "Legs",
+            "type": "array"
+          }
+        },
+        "required": [
+          "legs"
+        ],
+        "title": "WeatherOut",
+        "type": "object"
+      }
+    }
+  },
+  "info": {
+    "title": "EXJET API",
+    "version": "0.1.0"
+  },
+  "openapi": "3.1.0",
+  "paths": {
+    "/v1/account/seats": {
+      "post": {
+        "description": "Add the second Family Office seat. The person must already have an EXJET login with an empty\npersonal account (no subscription, no identity check started, no trips); that empty account is removed.",
+        "operationId": "add_seat_v1_account_seats_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SeatIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SeatOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Add Seat",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/v1/admin/agent-actions": {
+      "get": {
+        "operationId": "agent_actions_v1_admin_agent_actions_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "agent",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Agent"
+            }
+          },
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 500,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AgentActionOut"
+                  },
+                  "title": "Response Agent Actions V1 Admin Agent Actions Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Agent Actions",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/approvals": {
+      "get": {
+        "operationId": "approvals_v1_admin_approvals_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "in": "query",
+            "name": "kind",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Kind"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 500,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/ApprovalOut"
+                  },
+                  "title": "Response Approvals V1 Admin Approvals Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Approvals",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/approvals/{approval_id}/decide": {
+      "post": {
+        "operationId": "decide_v1_admin_approvals__approval_id__decide_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "approval_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Approval Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DecideIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Decide",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/ingest": {
+      "post": {
+        "description": "Delegates to exjet_api.ingest.run_ingest (owned by the data agent). Row-level problems are reported in the\nrun; an unreadable file or unknown dataset is a 422.",
+        "operationId": "ingest_v1_admin_ingest_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_ingest_v1_admin_ingest_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/IngestRunOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Ingest",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/ingest/runs": {
+      "get": {
+        "operationId": "ingest_runs_v1_admin_ingest_runs_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 200,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/IngestRunOut"
+                  },
+                  "title": "Response Ingest Runs V1 Admin Ingest Runs Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Ingest Runs",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/jobs": {
+      "get": {
+        "operationId": "jobs_v1_admin_jobs_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 100,
+              "maximum": 500,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/JobOut"
+                  },
+                  "title": "Response Jobs V1 Admin Jobs Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Jobs",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/kyc/submissions": {
+      "get": {
+        "operationId": "kyc_list_v1_admin_kyc_submissions_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AdminKycSubmission"
+                  },
+                  "title": "Response Kyc List V1 Admin Kyc Submissions Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Kyc List",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/kyc/submissions/{submission_id}": {
+      "get": {
+        "operationId": "kyc_detail_v1_admin_kyc_submissions__submission_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "submission_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Submission Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminKycSubmission"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Kyc Detail",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/metrics": {
+      "get": {
+        "operationId": "metrics_v1_admin_metrics_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MetricsOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Metrics",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/operators": {
+      "get": {
+        "operationId": "operators_v1_admin_operators_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AdminOperatorOut"
+                  },
+                  "title": "Response Operators V1 Admin Operators Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Operators",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/operators/{operator_id}/request-go-live": {
+      "post": {
+        "operationId": "request_go_live_v1_admin_operators__operator_id__request_go_live_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "operator_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Operator Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ApprovalOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Request Go Live",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/quotes": {
+      "get": {
+        "operationId": "review_quotes_v1_admin_quotes_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "default": "needs_review",
+              "title": "Status",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AdminQuoteReview"
+                  },
+                  "title": "Response Review Quotes V1 Admin Quotes Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Review Quotes",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/quotes/{quote_id}/resolve": {
+      "post": {
+        "description": "Set the total on a needs_review quote. The amount must appear verbatim in the operator's PDF.",
+        "operationId": "resolve_quote_v1_admin_quotes__quote_id__resolve_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "quote_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Quote Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ResolveQuoteIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminQuoteReview"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Resolve Quote",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/aircraft-types": {
+      "get": {
+        "operationId": "aircraft_types_v1_aircraft_types_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Category"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AircraftTypeOut"
+                  },
+                  "title": "Response Aircraft Types V1 Aircraft Types Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Aircraft Types",
+        "tags": [
+          "catalog"
+        ]
+      }
+    },
+    "/v1/aircraft-types/{slug}": {
+      "get": {
+        "operationId": "aircraft_type_v1_aircraft_types__slug__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "slug",
+            "required": true,
+            "schema": {
+              "title": "Slug",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AircraftTypeOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Aircraft Type",
+        "tags": [
+          "catalog"
+        ]
+      }
+    },
+    "/v1/airports": {
+      "get": {
+        "operationId": "airports_v1_airports_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "default": "",
+              "maxLength": 80,
+              "title": "Q",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 25,
+              "maximum": 100,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/AirportOut"
+                  },
+                  "title": "Response Airports V1 Airports Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Airports",
+        "tags": [
+          "catalog"
+        ]
+      }
+    },
+    "/v1/auth/login": {
+      "post": {
+        "operationId": "login_v1_auth_login_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LoginIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Me"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Login",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/v1/auth/logout": {
+      "post": {
+        "operationId": "logout_v1_auth_logout_post",
+        "responses": {
+          "204": {
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Logout",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/v1/auth/signup": {
+      "post": {
+        "operationId": "signup_v1_auth_signup_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SignupIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Me"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Signup",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/v1/billing/checkout": {
+      "post": {
+        "operationId": "checkout_v1_billing_checkout_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CheckoutIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CheckoutOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Checkout",
+        "tags": [
+          "billing"
+        ]
+      }
+    },
+    "/v1/billing/enterprise-inquiry": {
+      "post": {
+        "description": "Enterprise has no price. The inquiry is recorded for the CEO to follow up; nothing is quoted.",
+        "operationId": "enterprise_inquiry_v1_billing_enterprise_inquiry_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/EnterpriseInquiryIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Enterprise Inquiry",
+        "tags": [
+          "billing"
+        ]
+      }
+    },
+    "/v1/billing/plans": {
+      "get": {
+        "operationId": "plans_v1_billing_plans_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/PlanOut"
+                  },
+                  "title": "Response Plans V1 Billing Plans Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Plans",
+        "tags": [
+          "billing"
+        ]
+      }
+    },
+    "/v1/billing/portal": {
+      "post": {
+        "operationId": "portal_v1_billing_portal_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PortalOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Portal",
+        "tags": [
+          "billing"
+        ]
+      }
+    },
+    "/v1/billing/webhook": {
+      "post": {
+        "operationId": "webhook_v1_billing_webhook_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Webhook",
+        "tags": [
+          "billing"
+        ]
+      }
+    },
+    "/v1/categories": {
+      "get": {
+        "operationId": "categories_v1_categories_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/CategoryOut"
+                  },
+                  "title": "Response Categories V1 Categories Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Categories",
+        "tags": [
+          "catalog"
+        ]
+      }
+    },
+    "/v1/contracts/{contract_id}/acknowledge": {
+      "post": {
+        "operationId": "acknowledge_v1_contracts__contract_id__acknowledge_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "contract_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Contract Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ContractOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Acknowledge",
+        "tags": [
+          "quotes"
+        ]
+      }
+    },
+    "/v1/dev/complete-checkout": {
+      "post": {
+        "description": "Completes a fake checkout (stands in for the provider's webhook).",
+        "operationId": "complete_checkout_v1_dev_complete_checkout_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevCompleteCheckout"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Complete Checkout",
+        "tags": [
+          "dev"
+        ]
+      }
+    },
+    "/v1/dev/inbound-email": {
+      "post": {
+        "operationId": "inbound_email_v1_dev_inbound_email_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/DevInboundEmail"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "202": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Inbound Email",
+        "tags": [
+          "dev"
+        ]
+      }
+    },
+    "/v1/dev/run-jobs": {
+      "post": {
+        "operationId": "run_jobs_v1_dev_run_jobs_post",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Run Jobs",
+        "tags": [
+          "dev"
+        ]
+      }
+    },
+    "/v1/documents/{document_id}": {
+      "get": {
+        "operationId": "get_document_v1_documents__document_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "document_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Document Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {}
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Document",
+        "tags": [
+          "quotes"
+        ]
+      }
+    },
+    "/v1/empty-legs": {
+      "get": {
+        "description": "Operator-supplied repositioning flights. Never carries a price.",
+        "operationId": "empty_legs_v1_empty_legs_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/EmptyLegOut"
+                  },
+                  "title": "Response Empty Legs V1 Empty Legs Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Empty Legs",
+        "tags": [
+          "catalog"
+        ]
+      }
+    },
+    "/v1/kyc/status": {
+      "get": {
+        "operationId": "status_v1_kyc_status_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KycStatusOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Status",
+        "tags": [
+          "kyc"
+        ]
+      }
+    },
+    "/v1/kyc/submissions": {
+      "post": {
+        "operationId": "submit_v1_kyc_submissions_post",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "$ref": "#/components/schemas/Body_submit_v1_kyc_submissions_post"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/KycSubmissionOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Submit",
+        "tags": [
+          "kyc"
+        ]
+      }
+    },
+    "/v1/listings": {
+      "get": {
+        "operationId": "listings_v1_listings_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "type_slug",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type Slug"
+            }
+          },
+          {
+            "in": "query",
+            "name": "category",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Category"
+            }
+          },
+          {
+            "in": "query",
+            "name": "home",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Home"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Listing"
+                  },
+                  "title": "Response Listings V1 Listings Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Listings",
+        "tags": [
+          "catalog"
+        ]
+      }
+    },
+    "/v1/me": {
+      "get": {
+        "operationId": "me_v1_me_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Me"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "Me",
+        "tags": [
+          "auth"
+        ]
+      }
+    },
+    "/v1/quotes/{quote_id}/accept": {
+      "post": {
+        "operationId": "accept_v1_quotes__quote_id__accept_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "quote_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Quote Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Accept",
+        "tags": [
+          "quotes"
+        ]
+      }
+    },
+    "/v1/quotes/{quote_id}/decline": {
+      "post": {
+        "operationId": "decline_v1_quotes__quote_id__decline_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "quote_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Quote Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/QuoteOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Decline",
+        "tags": [
+          "quotes"
+        ]
+      }
+    },
+    "/v1/quotes/{quote_id}/payment/mark-paid": {
+      "post": {
+        "operationId": "mark_paid_v1_quotes__quote_id__payment_mark_paid_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "quote_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Quote Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Mark Paid",
+        "tags": [
+          "quotes"
+        ]
+      }
+    },
+    "/v1/trips": {
+      "get": {
+        "operationId": "list_trips_v1_trips_get",
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/TripOut"
+                  },
+                  "title": "Response List Trips V1 Trips Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          }
+        },
+        "summary": "List Trips",
+        "tags": [
+          "trips"
+        ]
+      },
+      "post": {
+        "operationId": "create_trip_v1_trips_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripCreate"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Trip",
+        "tags": [
+          "trips"
+        ]
+      }
+    },
+    "/v1/trips/intake": {
+      "post": {
+        "description": "Parse plain language into a TripDraft. Nothing is saved.",
+        "operationId": "intake_v1_trips_intake_post",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/IntakeIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripDraftOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Intake",
+        "tags": [
+          "trips"
+        ]
+      }
+    },
+    "/v1/trips/{trip_id}": {
+      "get": {
+        "operationId": "get_trip_v1_trips__trip_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Trip",
+        "tags": [
+          "trips"
+        ]
+      },
+      "patch": {
+        "operationId": "patch_trip_v1_trips__trip_id__patch",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/TripPatch"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Patch Trip",
+        "tags": [
+          "trips"
+        ]
+      }
+    },
+    "/v1/trips/{trip_id}/cancel": {
+      "post": {
+        "operationId": "cancel_trip_v1_trips__trip_id__cancel_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TripOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Cancel Trip",
+        "tags": [
+          "trips"
+        ]
+      }
+    },
+    "/v1/trips/{trip_id}/ground-rfqs": {
+      "post": {
+        "operationId": "create_ground_rfq_v1_trips__trip_id__ground_rfqs_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GroundRfqIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RfqOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Ground Rfq",
+        "tags": [
+          "trips"
+        ]
+      }
+    },
+    "/v1/trips/{trip_id}/listings": {
+      "get": {
+        "operationId": "trip_listings_v1_trips__trip_id__listings_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "type_slug",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Type Slug"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/Listing"
+                  },
+                  "title": "Response Trip Listings V1 Trips  Trip Id  Listings Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Trip Listings",
+        "tags": [
+          "trips"
+        ]
+      }
+    },
+    "/v1/trips/{trip_id}/manifest": {
+      "get": {
+        "operationId": "get_manifest_v1_trips__trip_id__manifest_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManifestOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Get Manifest",
+        "tags": [
+          "manifest-flight"
+        ]
+      },
+      "put": {
+        "operationId": "put_manifest_v1_trips__trip_id__manifest_put",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/ManifestPut"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManifestOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Put Manifest",
+        "tags": [
+          "manifest-flight"
+        ]
+      }
+    },
+    "/v1/trips/{trip_id}/manifest/submit": {
+      "post": {
+        "operationId": "submit_manifest_v1_trips__trip_id__manifest_submit_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ManifestOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Submit Manifest",
+        "tags": [
+          "manifest-flight"
+        ]
+      }
+    },
+    "/v1/trips/{trip_id}/match": {
+      "get": {
+        "operationId": "match_v1_trips__trip_id__match_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/MatchOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Match",
+        "tags": [
+          "trips"
+        ]
+      }
+    },
+    "/v1/trips/{trip_id}/quotes": {
+      "get": {
+        "operationId": "trip_quotes_v1_trips__trip_id__quotes_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/QuoteOut"
+                  },
+                  "title": "Response Trip Quotes V1 Trips  Trip Id  Quotes Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Trip Quotes",
+        "tags": [
+          "quotes"
+        ]
+      }
+    },
+    "/v1/trips/{trip_id}/rfqs": {
+      "post": {
+        "operationId": "create_rfqs_v1_trips__trip_id__rfqs_post",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RfqCreateIn"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/RfqOut"
+                  },
+                  "title": "Response Create Rfqs V1 Trips  Trip Id  Rfqs Post",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Create Rfqs",
+        "tags": [
+          "trips"
+        ]
+      }
+    },
+    "/v1/trips/{trip_id}/track": {
+      "get": {
+        "description": "Reads the last stored flight watch result; it never calls the tracking provider (cost and rate limits).",
+        "operationId": "track_v1_trips__trip_id__track_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TrackOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Track",
+        "tags": [
+          "manifest-flight"
+        ]
+      }
+    },
+    "/v1/trips/{trip_id}/weather": {
+      "get": {
+        "operationId": "weather_v1_trips__trip_id__weather_get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WeatherOut"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Weather",
+        "tags": [
+          "manifest-flight"
+        ]
+      }
+    }
+  }
+}

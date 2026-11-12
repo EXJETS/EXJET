@@ -9,7 +9,7 @@ from __future__ import annotations
 import io
 import re
 from dataclasses import dataclass, field
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from decimal import Decimal, InvalidOperation
 from urllib.parse import urlsplit
 
@@ -20,11 +20,11 @@ DOC_CONTRACT = "contract"
 DOC_OTHER = "other"
 
 MONEY_RE = re.compile(r"(?:(\$)\s*|\bUSD\s*)(\d{1,3}(?:,\d{3})+|\d+)(?:\.(\d{1,2}))?(?!\d)|(\d{1,3}(?:,\d{3})*|\d+)\.(\d{2})(?!\d)")
-SUBTOTAL_RE = re.compile(r"sub[\s-]*total", re.I)
+SUBTOTAL_RE = re.compile(r"sub[\s-]*total", re.IGNORECASE)
 TOTAL_LABELS: list[tuple[int, re.Pattern]] = [
-    (3, re.compile(r"\b(?:grand\s+total|total\s+due|amount\s+due|total\s+amount\s+due)\b", re.I)),
-    (2, re.compile(r"\b(?:total\s+(?:charter\s+)?(?:price|amount|cost|quote|fare|charter)|quote\s+total|total\s+charter\s+cost)\b", re.I)),
-    (1, re.compile(r"\btotal\b(?!\s+(?:tax|taxes|fees?|flight|time|passengers?|pax|distance|miles|hours))", re.I)),
+    (3, re.compile(r"\b(?:grand\s+total|total\s+due|amount\s+due|total\s+amount\s+due)\b", re.IGNORECASE)),
+    (2, re.compile(r"\b(?:total\s+(?:charter\s+)?(?:price|amount|cost|quote|fare|charter)|quote\s+total|total\s+charter\s+cost)\b", re.IGNORECASE)),
+    (1, re.compile(r"\btotal\b(?!\s+(?:tax|taxes|fees?|flight|time|passengers?|pax|distance|miles|hours))", re.IGNORECASE)),
 ]
 NON_USD = [("EUR", re.compile(r"€|\bEUR\b")), ("GBP", re.compile(r"£|\bGBP\b")), ("CAD", re.compile(r"\bCAD\b|\bC\$")),
            ("MXN", re.compile(r"\bMXN\b"))]
@@ -195,7 +195,7 @@ def _parse_date(s: str) -> datetime | None:
                 if mo is None:
                     continue
                 d, y = int(m[2]), int(m[3])
-            return datetime(y, mo, d, 23, 59, 59, tzinfo=timezone.utc)
+            return datetime(y, mo, d, 23, 59, 59, tzinfo=UTC)
         except ValueError:
             continue
     return None
@@ -255,7 +255,7 @@ def extract_quote(pages: list[str]) -> QuoteExtraction:
             cents = parse_money_match(m)
             if cents is None or len(re.findall(r"[A-Za-z]", desc)) < 3:
                 continue
-            if re.search(r"\b(valid|expires?|deposit due|invoice)\b", desc, re.I):
+            if re.search(r"\b(valid|expires?|deposit due|invoice)\b", desc, re.IGNORECASE):
                 continue
             if amount_in_text(cents, full) and len(ex.line_items) < 40:
                 ex.line_items.append(LineItem(desc[:160], cents, pi))
@@ -266,9 +266,9 @@ def extract_quote(pages: list[str]) -> QuoteExtraction:
         ex.flags.append("total_not_verified")
 
     # metadata
-    if m := re.search(r"(?:valid\s+(?:until|through)|expires?(?:\s+on)?|expiration(?:\s+date)?|offer\s+valid\s+(?:until|through))\s*[:\-]?\s*(.{0,40})", full, re.I):
+    if m := re.search(r"(?:valid\s+(?:until|through)|expires?(?:\s+on)?|expiration(?:\s+date)?|offer\s+valid\s+(?:until|through))\s*[:\-]?\s*(.{0,40})", full, re.IGNORECASE):
         ex.valid_until = _parse_date(m[1])
-    if m := re.search(r"(?:quote|quotation|proposal|estimate)\s*(?:no\.?|number|#|id)\s*[:#]?\s*([A-Z0-9][A-Z0-9\-]{2,30})", full, re.I):
+    if m := re.search(r"(?:quote|quotation|proposal|estimate)\s*(?:no\.?|number|#|id)\s*[:#]?\s*([A-Z0-9][A-Z0-9\-]{2,30})", full, re.IGNORECASE):
         ex.quote_number = m[1].upper()
 
     # confidence
@@ -321,7 +321,7 @@ def verify_llm_extraction(data: dict, pages: list[str], model: str) -> QuoteExtr
 
 
 # ----------------------------------------------------------------------------- links
-_URL_RE = re.compile(r"https?://[^\s<>\"'\)\]]+", re.I)
+_URL_RE = re.compile(r"https?://[^\s<>\"'\)\]]+", re.IGNORECASE)
 PAYMENT_HOST_HINTS = ("paynode", "stripe.com", "square.link", "squareup.com", "paypal.", "authorize.net", "checkout.", "pay.", "payments.", "invoice")
 PAYMENT_PATH_HINTS = ("pay", "checkout", "invoice", "bill")
 
@@ -353,7 +353,7 @@ def find_payment_link(texts: list[str], extra_urls: list[str] | None = None) -> 
             score += 3
         if any(h in parts.path.lower() for h in PAYMENT_PATH_HINTS):
             score += 2
-        if re.search(r"\bpay(?:ment)?\b|\bpay online\b|secure payment", ctx, re.I):
+        if re.search(r"\bpay(?:ment)?\b|\bpay online\b|secure payment", ctx, re.IGNORECASE):
             score += 2
         order += 1
         if score >= 2 and (best is None or score > best[0]):
@@ -365,7 +365,7 @@ def find_payment_link(texts: list[str], extra_urls: list[str] | None = None) -> 
 
 def find_contracting_party(pages: list[str]) -> str | None:
     full = "\n".join(pages)
-    m = re.search(r"(?:charterer|customer|client|lessee|member)\s*[:\-]\s*([A-Z][A-Za-z.'\- ]{2,80}?)(?:\n|,|\(|$)", full, re.I)
+    m = re.search(r"(?:charterer|customer|client|lessee|member)\s*[:\-]\s*([A-Z][A-Za-z.'\- ]{2,80}?)(?:\n|,|\(|$)", full, re.IGNORECASE)
     return m[1].strip() if m else None
 
 

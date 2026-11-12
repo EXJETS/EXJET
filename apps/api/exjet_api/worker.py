@@ -8,7 +8,7 @@ from datetime import datetime
 
 from . import clock
 from .db import session_factory
-from .jobs import claim_next, enqueue, run_job, _ensure_handlers
+from .jobs import _ensure_handlers, claim_next, enqueue, run_job
 from .providers import assert_safe_for_env
 
 log = logging.getLogger("exjet.worker")

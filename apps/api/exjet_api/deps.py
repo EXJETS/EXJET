@@ -11,7 +11,7 @@ from sqlalchemy.orm import Session, joinedload
 from .config import get_settings
 from .db import session_factory
 from .entitlements import ANONYMOUS, Viewer
-from .errors import ApiError, forbidden, not_entitled, not_found, unauthenticated
+from .errors import forbidden, not_entitled, not_found, unauthenticated
 from .models import Account, AccountMember, Trip, User
 from .security import SESSION_COOKIE, decode_session_token
 

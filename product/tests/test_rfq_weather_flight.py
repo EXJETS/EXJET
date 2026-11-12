@@ -1,4 +1,4 @@
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 from exjet_product import flight_watch as F
 from exjet_product import rfq as R
@@ -6,7 +6,7 @@ from exjet_product import weather as W
 
 
 def ctx(**kw):
-    leg = R.RfqLeg("KTEB", "Teterboro Airport", "KVNY", "Van Nuys Airport", datetime(2026, 11, 13, 14, 0, tzinfo=timezone.utc), "America/New_York")
+    leg = R.RfqLeg("KTEB", "Teterboro Airport", "KVNY", "Van Nuys Airport", datetime(2026, 11, 13, 14, 0, tzinfo=UTC), "America/New_York")
     base = dict(reference="EXJ-ABC234", legs=(leg,), passengers=6, checked_bags=4, carry_on_bags=0, golf_bags=2, ski_bags=0,
                 member_name="Jane Q. Member", aircraft_type="Cessna Citation XLS+")
     base.update(kw)
@@ -41,7 +41,7 @@ def test_free_text_is_cleaned():
 
 def test_ground_email():
     s, b = R.build_ground_rfq_email(R.GroundRfqContext("EXJ-ABC234", "chauffeur", "KVNY", "Van Nuys Airport",
-                                                      datetime(2026, 11, 13, 20, 0, tzinfo=timezone.utc), "America/Los_Angeles",
+                                                      datetime(2026, 11, 13, 20, 0, tzinfo=UTC), "America/Los_Angeles",
                                                       "Test FBO", "Jane Member", "3 passengers, 4 bags"))
     assert "Chauffeur" in s and "EXJ-ABC234" in s and "3 passengers" in b
 
@@ -71,7 +71,7 @@ def test_flight_status_derivation():
 
 
 def test_watch_schedule():
-    dep = datetime(2026, 11, 13, 14, 0, tzinfo=timezone.utc)
+    dep = datetime(2026, 11, 13, 14, 0, tzinfo=UTC)
     assert F.next_watch_at(dep - timedelta(hours=10), dep, dep, "scheduled") == dep - timedelta(hours=2)
     assert F.next_watch_at(dep, dep, dep, "in_flight") == dep + F.ACTIVE_INTERVAL
     assert F.next_watch_at(dep, dep, dep, "completed") is None

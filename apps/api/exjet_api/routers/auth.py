@@ -10,7 +10,15 @@ from ..deps import get_session, load_viewer, require_member, require_viewer
 from ..entitlements import Viewer, next_step
 from ..errors import ApiError, conflict, not_found
 from ..models import Account, AccountMember, Subscription, Trip, User
-from ..security import SESSION_COOKIE, auth_limiter, cookie_secure, create_session_token, hash_password, needs_rehash, verify_password
+from ..security import (
+    SESSION_COOKIE,
+    auth_limiter,
+    cookie_secure,
+    create_session_token,
+    hash_password,
+    needs_rehash,
+    verify_password,
+)
 
 router = APIRouter(tags=["auth"])
 

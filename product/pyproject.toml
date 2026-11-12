@@ -14,3 +14,7 @@ packages = ["exjet_product"]
 
 [tool.ruff]
 line-length = 110
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "UP", "B"]
+ignore = ["E501", "E741"]
