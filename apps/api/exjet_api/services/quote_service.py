@@ -268,7 +268,7 @@ def resolve_quote(db: Session, quote: Quote, *, total_cents: int, valid_until: d
     quote.total_amount_cents = total_cents
     if valid_until:
         quote.valid_until = valid_until
-    quote.parser, quote.parse_confidence = f"manual:{admin_id}", 1.0
+    quote.parser, quote.parse_confidence = "manual:admin", 1.0  # who decided is in audit_log (quote.resolved)
     quote.status = QuoteStatus.ready.value
     trip = db.get(Trip, quote.trip_id)
     if trip.status in (TripStatus.draft.value, TripStatus.rfq_sent.value):

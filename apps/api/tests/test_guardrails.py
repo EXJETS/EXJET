@@ -460,7 +460,7 @@ def test_quote_from_unknown_sender_or_unmatched_reference_is_not_ingested(db, cl
     inbound(adm, "attacker@evil.example", f"Re: [{ref}] quote", "pay here", atts)
     inbound(adm, "ops-a@example.com", "Re: [EXJ-ZZZZZZ] quote", "wrong ref", atts)
     assert db.execute(select(Quote)).scalars().all() == []
-    reasons = [a.output["reason"] for a in db.execute(select(AgentAction).where(AgentAction.agent == "quote_ingest")).scalars()]
+    reasons = [a.output.get("reason") for a in db.execute(select(AgentAction).where(AgentAction.agent == "quote_ingest")).scalars()]
     assert "sender_not_on_rfq" in reasons and "no_rfq_match" in reasons
     # same domain as the contact is accepted (a colleague replying)
     inbound(adm, "dispatch@example.com", f"Re: [{ref}] quote", "attached", atts)

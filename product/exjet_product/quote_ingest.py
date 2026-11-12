@@ -298,7 +298,7 @@ def verify_llm_extraction(data: dict, pages: list[str], model: str) -> QuoteExtr
         return None
     if total <= 0 or not amount_in_text(total, full):
         return None
-    ex = QuoteExtraction(total_cents=total, parser=f"llm:{model}", confidence=0.85)
+    ex = QuoteExtraction(total_cents=total, parser=f"llm:{model}"[:32], confidence=0.85)
     cur = str(data.get("currency") or "USD").upper()
     ex.currency = cur if re.fullmatch(r"[A-Z]{3}", cur) else "USD"
     if ex.currency != "USD":
