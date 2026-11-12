@@ -114,7 +114,6 @@ export function Async<T>({ q, children, skeleton, empty }: { q: Query<T>; childr
     return <ErrorState error={q.error} onRetry={q.reload} />;
   }
   if (q.loading || q.data === undefined) return <>{skeleton ?? <TableSkeleton />}</>;
-  void empty;
   return <>{children(q.data)}</>;
 }
 

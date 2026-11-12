@@ -7,7 +7,7 @@ import { api, apiUrl, type Approval, type KycSubmissionDetail } from "@/lib/api"
 import { useApi } from "@/hooks/use-api";
 import { formatWhen } from "@/lib/rules";
 import { Async, Banner, Card, Chip, DataTable, PageHeader, StatusChip } from "@/components/ui";
-import { ApprovalDecision } from "../../approvals/page";
+import { ApprovalDecision } from "@/components/ApprovalDecision";
 
 export default function KycDetail() {
   const { id } = useParams<{ id: string }>();

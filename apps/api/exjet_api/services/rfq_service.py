@@ -2,14 +2,13 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime, timezone
+from datetime import datetime
 
 from exjet_product.rfq import GroundRfqContext, RfqContext, RfqLeg, build_ground_rfq_email, build_rfq_email, generate_reference
 from sqlalchemy import select
-from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
-from .. import mailer
+from .. import clock, mailer
 from ..audit import record_agent_action
 from ..entitlements import is_entitled
 from ..errors import conflict, not_found, unprocessable
@@ -142,7 +141,7 @@ def dispatch_rfq(db: Session, rfq_id: uuid.UUID, leg_sequence: int | None = None
         trip = db.get(Trip, rfq.trip_id)
         return _fail(db, rfq, trip, v.code)
     rfq.status = RfqStatus.sent.value
-    rfq.sent_at = datetime.now(timezone.utc)
+    rfq.sent_at = clock.now()
     rfq.thread_id = msg.thread_id
     if trip.status == TripStatus.draft.value:
         trip.status = TripStatus.rfq_sent.value
@@ -166,5 +165,3 @@ def expire_stale(db: Session, now: datetime, rfq_ttl_hours: int = 72) -> int:
         n += 1
     return n
 
-
-__all__ = ["create_charter_rfqs", "create_ground_rfq", "dispatch_rfq", "expire_stale", "IntegrityError"]
