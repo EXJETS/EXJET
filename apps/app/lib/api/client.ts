@@ -31,6 +31,8 @@ const handlers: Handlers = {
     if (window.location.pathname.startsWith("/login") || window.location.pathname.startsWith("/signup")) return;
     const next = encodeURIComponent(window.location.pathname + window.location.search);
     void path;
+    // Central redirect outside React; a full navigation also clears client state.
+    // eslint-disable-next-line @next/next/no-location-assign-relative-destination
     window.location.href = `/login?next=${next}`;
   },
 };
