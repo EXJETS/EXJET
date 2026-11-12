@@ -22,7 +22,10 @@ function Inner() {
 
   const go = (next: Record<string, string | null>) => {
     const p = new URLSearchParams(params.toString());
-    for (const [k, v] of Object.entries(next)) (v ? p.set(k, v) : p.delete(k));
+    for (const [k, v] of Object.entries(next)) {
+      if (v) p.set(k, v);
+      else p.delete(k);
+    }
     router.replace(`${path}${p.toString() ? `?${p}` : ""}`, { scroll: false });
   };
 

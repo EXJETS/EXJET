@@ -31,7 +31,7 @@ const handlers: Handlers = {
     if (window.location.pathname.startsWith("/login") || window.location.pathname.startsWith("/signup")) return;
     const next = encodeURIComponent(window.location.pathname + window.location.search);
     void path;
-    window.location.assign(`/login?next=${next}`);
+    window.location.href = `/login?next=${next}`;
   },
 };
 export function setApiHandlers(h: Partial<Handlers>) {

@@ -1,7 +1,8 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useCallback, useContext, useMemo, useState } from "react";
 import { api, ApiError, type Me } from "@/lib/api";
+import { useApi } from "./use-api";
 
 interface MeCtx {
   me: Me | null;
@@ -11,26 +12,29 @@ interface MeCtx {
 }
 const Ctx = createContext<MeCtx | null>(null);
 
+async function fetchMe(): Promise<Me | null> {
+  try {
+    return await api.me();
+  } catch (e) {
+    if (e instanceof ApiError && e.status === 401) return null;
+    throw e;
+  }
+}
+
 export function MeProvider({ children }: { children: React.ReactNode }) {
-  const [me, setMe] = useState<Me | null>(null);
-  const [loading, setLoading] = useState(true);
+  const q = useApi<Me | null>("me", fetchMe);
+  const [override, setOverride] = useState<{ v: Me | null } | undefined>();
+  const { reload } = q;
 
   const refresh = useCallback(async () => {
-    try {
-      setMe(await api.me());
-    } catch (e) {
-      if (e instanceof ApiError && e.status === 401) setMe(null);
-    } finally {
-      setLoading(false);
-    }
-  }, []);
+    setOverride(undefined);
+    reload();
+  }, [reload]);
+  const setMe = useCallback((m: Me | null) => setOverride({ v: m }), []);
 
-  useEffect(() => {
-    // initial session lookup; setState happens after the awaited request
-    void refresh();
-  }, [refresh]);
-
-  const value = useMemo(() => ({ me, loading, refresh, setMe }), [me, loading, refresh]);
+  const me = override ? override.v : (q.data ?? null);
+  const loading = !override && q.data === undefined && !q.error;
+  const value = useMemo(() => ({ me, loading, refresh, setMe }), [me, loading, refresh, setMe]);
   return <Ctx.Provider value={value}>{children}</Ctx.Provider>;
 }
 

@@ -80,8 +80,8 @@ export function AirportInput({ id, label, value, onChange, flag }: { id: string;
       {flag ? <span className="flag-note">Needs your input</span> : null}
       {open ? (
         <ul className="combo-list" id={lid} role="listbox" aria-label={`${label} suggestions`} style={{ top: "auto", marginTop: 0 }}>
-          {results.loading ? <li aria-disabled="true" className="muted">Searching</li> : null}
-          {!results.loading && list.length === 0 ? <li aria-disabled="true" className="muted">No airports found</li> : null}
+          {results.loading ? <li className="muted">Searching</li> : null}
+          {!results.loading && list.length === 0 ? <li className="muted">No airports found</li> : null}
           {list.map((a, i) => (
             <li key={a.icao} id={`${lid}-${i}`} role="option" aria-selected={i === active} onMouseDown={(e) => { e.preventDefault(); pick(a); }}>
               <span className="code">{a.icao}</span>

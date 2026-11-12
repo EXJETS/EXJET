@@ -108,7 +108,7 @@ export function EntitlementGate({ compact, signedIn = true }: { compact?: boolea
 }
 
 /** Renders loading, error (incl. 403 not_entitled gate) and data states for a Query. */
-export function Async<T>({ q, children, skeleton, empty }: { q: Query<T>; children: (d: T) => ReactNode; skeleton?: ReactNode; empty?: (d: T) => boolean | ReactNode }) {
+export function Async<T>({ q, children, skeleton }: { q: Query<T>; children: (d: T) => ReactNode; skeleton?: ReactNode; empty?: (d: T) => boolean | ReactNode }) {
   if (q.error) {
     if (q.error.isNotEntitled) return <div className="card-b"><EntitlementGate /></div>;
     return <ErrorState error={q.error} onRetry={q.reload} />;
