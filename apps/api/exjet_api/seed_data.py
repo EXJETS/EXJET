@@ -106,3 +106,15 @@ EMPTY_LEGS: list[tuple] = [
     ("N00TST1", "KTEB", "KPBI", 7, 3),
     ("N00TST5", "KDAL", "KAUS", 10, 2),
 ]
+
+# icao, name, phone, email. CLEARLY SYNTHETIC (example.com, 555 numbers) so the ground-request flow works in dev without an
+# ingest step. Real FBOs come from the founder's airports_fbos file.
+FBOS: list[tuple] = [
+    ("KTEB", "SYNTHETIC FBO A", "+1-555-0150", "fbo-a-kteb@example.com"),
+    ("KTEB", "SYNTHETIC FBO B", "+1-555-0151", "fbo-b-kteb@example.com"),
+    ("KMDW", "SYNTHETIC FBO A", "+1-555-0152", "fbo-a-kmdw@example.com"),
+    ("KVNY", "SYNTHETIC FBO A", "+1-555-0153", "fbo-a-kvny@example.com"),
+    ("KDAL", "SYNTHETIC FBO A", "+1-555-0154", "fbo-a-kdal@example.com"),
+    ("KPBI", "SYNTHETIC FBO A", "+1-555-0155", "fbo-a-kpbi@example.com"),
+    ("KHPN", "SYNTHETIC FBO A", "+1-555-0156", "fbo-a-khpn@example.com"),
+]

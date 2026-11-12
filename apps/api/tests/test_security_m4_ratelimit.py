@@ -108,7 +108,7 @@ def test_password_reset_limits(db, client, monkeypatch):
     _limit(monkeypatch, "password_reset_email", 2)
     codes = [client.post("/v1/auth/password/reset-request", json={"email": "r@example.com"}).status_code for _ in range(3)]
     assert codes == [202, 202, 429]
-    _limit(monkeypatch, "password_reset_ip", 2)
+    _limit(monkeypatch, "password_reset_ip", 5)  # the three requests above already counted against this address
     codes = [client.post("/v1/auth/password/reset", json={"token": "x" * 43, "new_password": PASSWORD}).status_code for _ in range(3)]
     assert codes == [409, 409, 429]
 

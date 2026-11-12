@@ -24,6 +24,7 @@ from .models import (
     Airport,
     Approval,
     EmptyLeg,
+    Fbo,
     GoLiveStatus,
     Operator,
     OperatorContact,
@@ -100,6 +101,12 @@ def seed_synthetic(db: Session, admin: User) -> dict[str, Operator]:
             db.add(ac)
             db.flush()
         tails[tail] = ac
+    airports = {a.icao: a for a in db.execute(select(Airport)).scalars()}
+    have_fbo = {(f.airport_id, f.name) for f in db.execute(select(Fbo)).scalars()}
+    for icao, name, phone, email in D.FBOS:
+        ap = airports.get(icao)
+        if ap is not None and (ap.id, name) not in have_fbo:
+            db.add(Fbo(airport_id=ap.id, name=name, phone=phone, email=email))
     if not db.execute(select(EmptyLeg.id).limit(1)).first():
         now = clock.now()
         for tail, o, d, start, window in D.EMPTY_LEGS:

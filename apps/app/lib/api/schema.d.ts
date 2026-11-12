@@ -275,6 +275,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/admin/operators/{operator_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Operator Detail
+         * @description Operator with its contacts, so `confirm-rfq` can be driven from the UI.
+         */
+        get: operations["operator_detail_v1_admin_operators__operator_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/admin/operators/{operator_id}/contacts/{contact_id}/confirm-rfq": {
         parameters: {
             query?: never;
@@ -422,6 +442,44 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/admin/trips": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Admin Trips */
+        get: operations["admin_trips_v1_admin_trips_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/trips/{trip_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Admin Trip
+         * @description A trip with its legs, requests, quotes and a manifest SUMMARY: counts and operator-link state, never passenger data,
+         *     notes or the member's free text.
+         */
+        get: operations["admin_trip_v1_admin_trips__trip_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/admin/trips/{trip_id}/manifest/revoke-links": {
         parameters: {
             query?: never;
@@ -436,6 +494,26 @@ export interface paths {
          * @description Withdraw every operator link issued for this trip's manifest (they stop working at once).
          */
         post: operations["revoke_manifest_links_v1_admin_trips__trip_id__manifest_revoke_links_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/users": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Admin Users
+         * @description Logins, newest first. Email, role, status and the account's type and KYC status only: no names, phones or documents.
+         */
+        get: operations["admin_users_v1_admin_users_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -844,6 +922,29 @@ export interface paths {
         put?: never;
         /** Inbound Email */
         post: operations["inbound_email_v1_dev_inbound_email_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/dev/outbox": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Outbox
+         * @description Recent messages the FAKE mail provider "sent", newest first, with the real body (verification, invitation, reset and
+         *     manifest links) so an end-to-end run can follow them without a shim. Dev/test only: this router is not mounted otherwise.
+         *     The outbox lives in this process's memory, so it shows mail sent by requests and by jobs run through POST /dev/run-jobs;
+         *     a separate worker process has its own outbox.
+         */
+        get: operations["outbox_v1_dev_outbox_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -1313,6 +1414,26 @@ export interface components {
              */
             type: "individual" | "family_office" | "enterprise";
         };
+        /** AdminContactOut */
+        AdminContactOut: {
+            /** Email */
+            email: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Name */
+            name: string | null;
+            /** Pending Confirmation */
+            pending_confirmation: boolean;
+            /** Phone */
+            phone: string | null;
+            /** Receives Rfq */
+            receives_rfq: boolean;
+            /** Title */
+            title: string | null;
+        };
         /** AdminDocument */
         AdminDocument: {
             /** Content Type */
@@ -1381,6 +1502,93 @@ export interface components {
             vendor_result: {
                 [key: string]: unknown;
             } | null;
+        };
+        /** AdminManifestAccess */
+        AdminManifestAccess: {
+            /** Action */
+            action: string;
+            /**
+             * At
+             * Format: date-time
+             */
+            at: string;
+            /** Ip */
+            ip: string | null;
+            /** Reason */
+            reason: string | null;
+            /** Token Id */
+            token_id: string | null;
+        };
+        /** AdminManifestLink */
+        AdminManifestLink: {
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Expires At
+             * Format: date-time
+             */
+            expires_at: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Last Viewed At */
+            last_viewed_at: string | null;
+            /** Recipient */
+            recipient: string;
+            /** Revoked At */
+            revoked_at: string | null;
+            /** Sent At */
+            sent_at: string | null;
+            /** View Count */
+            view_count: number;
+        };
+        /** AdminOperatorDetail */
+        AdminOperatorDetail: {
+            /** Aircraft Count */
+            aircraft_count: number;
+            /**
+             * Certificate Type
+             * @enum {string}
+             */
+            certificate_type: "135" | "121" | "foreign";
+            /** Contact Count */
+            contact_count: number;
+            /** Contacts */
+            contacts: components["schemas"]["AdminContactOut"][];
+            /** Dba Name */
+            dba_name: string;
+            /**
+             * Go Live Status
+             * @enum {string}
+             */
+            go_live_status: "draft" | "pending_ceo" | "live" | "suspended";
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Is Excluded */
+            is_excluded: boolean;
+            /**
+             * Payment Hosts
+             * @default []
+             */
+            payment_hosts: string[];
+            /**
+             * Pending Contact Count
+             * @default 0
+             */
+            pending_contact_count: number;
+            /**
+             * Safety Rating
+             * @enum {string}
+             */
+            safety_rating: "Not rated" | "Gold" | "Gold+" | "Platinum" | "Platinum+";
         };
         /** AdminOperatorOut */
         AdminOperatorOut: {
@@ -1457,6 +1665,225 @@ export interface components {
              * Format: uuid
              */
             trip_id: string;
+        };
+        /** AdminTripDetail */
+        AdminTripDetail: {
+            /**
+             * Account Id
+             * Format: uuid
+             */
+            account_id: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Legs */
+            legs: components["schemas"]["AdminTripLeg"][];
+            manifest: components["schemas"]["AdminTripManifest"] | null;
+            /** Passengers */
+            passengers: number;
+            /** Quotes */
+            quotes: components["schemas"]["AdminTripQuote"][];
+            /** Rfqs */
+            rfqs: components["schemas"]["AdminTripRfq"][];
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "draft" | "rfq_sent" | "quoted" | "contracted" | "paid" | "manifest_due" | "scheduled" | "in_flight" | "completed" | "cancelled";
+            /**
+             * Trip Type
+             * @enum {string}
+             */
+            trip_type: "one_way" | "round_trip" | "multi_leg";
+        };
+        /** AdminTripItem */
+        AdminTripItem: {
+            /**
+             * Account Id
+             * Format: uuid
+             */
+            account_id: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Legs */
+            legs: components["schemas"]["AdminTripLeg"][];
+            /** Passengers */
+            passengers: number;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "draft" | "rfq_sent" | "quoted" | "contracted" | "paid" | "manifest_due" | "scheduled" | "in_flight" | "completed" | "cancelled";
+            /**
+             * Trip Type
+             * @enum {string}
+             */
+            trip_type: "one_way" | "round_trip" | "multi_leg";
+        };
+        /** AdminTripLeg */
+        AdminTripLeg: {
+            /**
+             * Depart At
+             * Format: date-time
+             */
+            depart_at: string;
+            /** Depart Local */
+            depart_local: string | null;
+            /** Destination Icao */
+            destination_icao: string;
+            /** Origin Icao */
+            origin_icao: string;
+            /** Origin Timezone */
+            origin_timezone: string | null;
+            /** Sequence */
+            sequence: number;
+        };
+        /**
+         * AdminTripManifest
+         * @description No passenger details: a count and the state of the operator links.
+         */
+        AdminTripManifest: {
+            /**
+             * Due At
+             * Format: date-time
+             */
+            due_at: string;
+            /** Links */
+            links: components["schemas"]["AdminManifestLink"][];
+            /** Passengers On File */
+            passengers_on_file: number;
+            /** Recent Access */
+            recent_access: components["schemas"]["AdminManifestAccess"][];
+            /** Sent To Operator At */
+            sent_to_operator_at: string | null;
+            /** Submitted At */
+            submitted_at: string | null;
+        };
+        /** AdminTripPage */
+        AdminTripPage: {
+            /** Items */
+            items: components["schemas"]["AdminTripItem"][];
+            /** Next Cursor */
+            next_cursor: string | null;
+        };
+        /** AdminTripQuote */
+        AdminTripQuote: {
+            /** Changed Since First */
+            changed_since_first: boolean;
+            /** Currency */
+            currency: string;
+            /** First Payment Host */
+            first_payment_host: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Payment Host */
+            payment_host: string | null;
+            /**
+             * Rfq Id
+             * Format: uuid
+             */
+            rfq_id: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "received" | "needs_review" | "ready" | "accepted" | "declined" | "expired";
+            /** Total Amount Cents */
+            total_amount_cents: number | null;
+        };
+        /** AdminTripRfq */
+        AdminTripRfq: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "charter" | "empty_leg" | "rental_car" | "chauffeur";
+            /** Operator Name */
+            operator_name: string | null;
+            /** Reference */
+            reference: string;
+            /** Replied At */
+            replied_at: string | null;
+            /** Sent At */
+            sent_at: string | null;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "queued" | "sent" | "replied" | "declined" | "expired" | "failed";
+        };
+        /** AdminUserAccount */
+        AdminUserAccount: {
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /**
+             * Kyc Status
+             * @enum {string}
+             */
+            kyc_status: "not_started" | "submitted" | "in_review" | "approved" | "rejected";
+            /**
+             * Type
+             * @enum {string}
+             */
+            type: "individual" | "family_office" | "enterprise";
+        };
+        /** AdminUserOut */
+        AdminUserOut: {
+            account: components["schemas"]["AdminUserAccount"] | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /** Email */
+            email: string;
+            /** Email Verified */
+            email_verified: boolean;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Is Active */
+            is_active: boolean;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "member" | "admin";
+        };
+        /** AdminUserPage */
+        AdminUserPage: {
+            /** Items */
+            items: components["schemas"]["AdminUserOut"][];
+            /** Next Cursor */
+            next_cursor: string | null;
         };
         /** AgentActionOut */
         AgentActionOut: {
@@ -1755,6 +2182,22 @@ export interface components {
              *       "quotes@exjet.com"
              *     ]
              */
+            to: string[];
+        };
+        /** DevOutboxMessage */
+        DevOutboxMessage: {
+            /** Body Text */
+            body_text: string;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /** Purpose */
+            purpose: string | null;
+            /** Subject */
+            subject: string;
+            /** To */
             to: string[];
         };
         /** EmptyLegOut */
@@ -2142,6 +2585,8 @@ export interface components {
              * Format: date-time
              */
             due_at: string;
+            /** Sent To Operator At */
+            sent_to_operator_at: string | null;
             /** Submitted At */
             submitted_at: string | null;
         };
@@ -2161,6 +2606,8 @@ export interface components {
              * @enum {string}
              */
             required_id_type: "real_id" | "passport";
+            /** Sent To Operator At */
+            sent_to_operator_at: string | null;
             /** Submitted At */
             submitted_at: string | null;
         };
@@ -2415,6 +2862,8 @@ export interface components {
         PaymentLinkOut: {
             /** Changed Since First */
             changed_since_first: boolean;
+            /** First Host */
+            first_host: string | null;
             /** Host */
             host: string;
             /** Host Approved */
@@ -3409,6 +3858,37 @@ export interface operations {
             };
         };
     };
+    operator_detail_v1_admin_operators__operator_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                operator_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminOperatorDetail"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     confirm_rfq_contact_v1_admin_operators__operator_id__contacts__contact_id__confirm_rfq_post: {
         parameters: {
             query?: never;
@@ -3695,6 +4175,70 @@ export interface operations {
             };
         };
     };
+    admin_trips_v1_admin_trips_get: {
+        parameters: {
+            query?: {
+                status?: string | null;
+                limit?: number;
+                cursor?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminTripPage"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    admin_trip_v1_admin_trips__trip_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                trip_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminTripDetail"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     revoke_manifest_links_v1_admin_trips__trip_id__manifest_revoke_links_post: {
         parameters: {
             query?: never;
@@ -3713,6 +4257,39 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["RevokeLinksOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    admin_users_v1_admin_users_get: {
+        parameters: {
+            query?: {
+                q?: string;
+                limit?: number;
+                cursor?: string | null;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminUserPage"];
                 };
             };
             /** @description Validation Error */
@@ -4377,6 +4954,39 @@ export interface operations {
             };
         };
     };
+    outbox_v1_dev_outbox_get: {
+        parameters: {
+            query?: {
+                to?: string | null;
+                purpose?: string | null;
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["DevOutboxMessage"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     run_jobs_v1_dev_run_jobs_post: {
         parameters: {
             query?: never;
@@ -4556,8 +5166,8 @@ export interface operations {
     };
     operator_manifest_v1_operator_manifest_get: {
         parameters: {
-            query: {
-                token: string;
+            query?: {
+                token?: string;
             };
             header?: never;
             path?: never;

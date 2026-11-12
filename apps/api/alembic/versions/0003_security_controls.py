@@ -12,8 +12,8 @@ application cannot decrypt, so any pre-existing dev rows in those columns must b
 before running the new code. Rows that CAN be derived are backfilled: operators.name_norm / legal_name_norm,
 owners' account_members.identity_status (from the account KYC status), lower-cased suppressions.
 
-Downgrade: reverses the schema. accounts.display_name and passengers.id_issuer are narrowed back to VARCHAR with
-left(); encrypted values would be truncated, so downgrade only on a database without real data.
+Downgrade: reverses the schema. accounts.display_name and passengers.id_issuer stay TEXT (see the note in downgrade());
+columns and tables added here are dropped with their data.
 """
 import sqlalchemy as sa
 from sqlalchemy.dialects import postgresql
@@ -171,8 +171,7 @@ def downgrade() -> None:
     op.drop_column("account_members", "is_suspended")
     op.drop_column("account_members", "identity_status")
 
-    op.alter_column("passengers", "id_issuer", existing_type=sa.Text(), type_=sa.String(64), existing_nullable=True,
-                    postgresql_using="left(id_issuer, 64)")
-    op.alter_column("accounts", "display_name", existing_type=sa.Text(), type_=sa.String(200), existing_nullable=False,
-                    postgresql_using="left(display_name, 200)")
+    # accounts.display_name and passengers.id_issuer are NOT narrowed back: after this revision they hold Fernet tokens,
+    # which are longer than the old VARCHAR limits, so narrowing would either fail (StringDataRightTruncation) or truncate
+    # the ciphertext into garbage. TEXT is a superset of the old type, so keeping it loses nothing and the schema stays valid.
     op.drop_column("users", "session_version")

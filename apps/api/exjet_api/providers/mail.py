@@ -16,6 +16,8 @@ class OutboundMessage:
     subject: str
     body_text: str
     thread_id: str | None = None
+    purpose: str | None = None  # set by mailer.send; lets the dev outbox filter by purpose
+    created_at: datetime | None = None  # set by the fake provider when it "sends"
 
 
 @dataclass
@@ -76,6 +78,7 @@ class FakeMail:
             self.fail_next_send = False
             from .errors import ProviderError
             raise ProviderError("simulated send failure")
+        msg.created_at = datetime.now(UTC)
         res = SentResult(provider_message_id=f"fakemsg_{uuid.uuid4().hex[:16]}", thread_id=msg.thread_id or f"fakethr_{uuid.uuid4().hex[:12]}")
         self.outbox.append((msg, res))
         return res

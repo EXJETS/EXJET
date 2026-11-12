@@ -123,6 +123,16 @@ before migration 0004 have no `email_verified_at` and must verify (resend endpoi
 **Fake billing (dev/test).** `checkout_url` is `{APP_BASE_URL}/dev/checkout?session=…&plan=…`, the portal URL `{APP_BASE_URL}/dev/billing-portal?customer=…`.
 The member app renders those pages only in dev/test and completes a checkout with `POST /v1/dev/complete-checkout` {account_id, plan}.
 
+**Reversible migrations.** `alembic downgrade base` works on a database with data (tested in `tests/test_api_gaps.py`): 0002 maps statuses longer than 16 characters (`awaiting_approval` becomes `pending_approval`) before narrowing; 0003 keeps `accounts.display_name` and `passengers.id_issuer` as TEXT instead of truncating encrypted values; 0005 gives rows with a NULL aircraft category the sentinel `unclassified` before restoring NOT NULL. Downgrading drops the columns and tables added by later revisions together with their data.
+
+**Inbound mail from a non-contact.** Stored as a `quarantined` message (`sender_not_contact`) with an `inbound_review` approval and listed under `/admin/inbound/quarantined`. Approval never trusts the sender by itself: on release the exact-contact rule runs again, and the message is accepted only if the sender is a stored contact of the RFQ's operator that an admin confirmed through `POST /admin/operators/{id}/contacts/{cid}/confirm-rfq`. Otherwise it is rejected.
+
+**Payment host baseline.** `rfqs.first_payment_host` is written once, when the first payment link arrives on an RFQ. `payment_link.first_host` exposes it and `changed_since_first` compares to it.
+
+**Types without a category.** Ingest loads an aircraft whose new type has no category and flags `type_needs_category`; `aircraft_types.category` is nullable and such types are excluded from matching and every public listing/category endpoint. Ingest also flags `airport_timezone_missing` and `invalid_timezone` for airports.
+
+**Dev outbox.** `GET /v1/dev/outbox` (dev/test only) reads the in-process fake mail outbox. Jobs run by a separate `python -m exjet_api.worker` have their own outbox: use `POST /v1/dev/run-jobs` for end-to-end runs. `seed_dev` adds SYNTHETIC FBOs (`SYNTHETIC FBO A/B`).
+
 **Enums.** All status-like response fields are `Literal` types (`exjet_api/schemas.py`, top), so OpenAPI declares exact enums.
 
 ## Security controls

@@ -104,7 +104,7 @@ class Builder:
                                    acknowledged_at=contract.acknowledged_at) if contract else None,
             payment_link=S.PaymentLinkOut(
                 url=link.url, host=link.host, status=link.status, host_approved=QC.payment_host_approved(self.db, q),
-                changed_since_first=QC.changed_since_first(self.db, q)) if link else None,
+                changed_since_first=QC.changed_since_first(self.db, q), first_host=rfq.first_payment_host) if link else None,
         )
 
     # ------------------------------------------------------------------ trip
@@ -127,7 +127,8 @@ class Builder:
             legs=[self.leg(leg) for leg in t.legs],
             rfqs=[self.rfq(r) for r in sorted(t.rfqs, key=lambda x: x.created_at)],
             quotes=quotes,
-            manifest=S.ManifestBrief(due_at=m.due_at, submitted_at=m.submitted_at) if m else None,
+            manifest=S.ManifestBrief(due_at=m.due_at, submitted_at=m.submitted_at,
+                                     sent_to_operator_at=m.sent_to_operator_at) if m else None,
             weather_available=self.weather_available(t), created_at=t.created_at,
         )
 

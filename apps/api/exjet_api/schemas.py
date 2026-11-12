@@ -115,8 +115,10 @@ class SignupPending(BaseModel):
     status: Literal["check_your_email"] = "check_your_email"
 
 
+# Token-shaped inputs carry NO length constraint on purpose: a malformed token must get the same uniform invalid-token
+# answer as an unknown one (never a 422 that tells a prober the shape was wrong).
 class VerifyEmailIn(BaseModel):
-    token: str = Field(min_length=20, max_length=200)
+    token: str
 
 
 class ResendVerificationIn(BaseModel):
@@ -135,7 +137,7 @@ class PasswordResetRequestIn(BaseModel):
 
 
 class PasswordResetIn(BaseModel):
-    token: str = Field(min_length=20, max_length=200)
+    token: str
     new_password: str = Field(min_length=10, max_length=128)
 
 
@@ -178,7 +180,7 @@ class SeatsOut(BaseModel):
 
 
 class SeatAcceptIn(BaseModel):
-    token: str = Field(min_length=20, max_length=200)
+    token: str
 
 
 # --------------------------------------------------------------------------- kyc
@@ -479,7 +481,10 @@ class PaymentLinkOut(BaseModel):
     host: str
     status: PaymentLinkStatus
     host_approved: bool  # the host is on the operator's admin-approved list
-    changed_since_first: bool  # a later quote on this RFQ whose payment host or total differs from the first quote
+    # True when this quote's payment host (or total) differs from the FIRST payment host / quote ever received on this RFQ.
+    # Stable: it does not move when quotes are declined or accepted.
+    changed_since_first: bool
+    first_host: str | None  # the first payment host ever received on this RFQ (stored at the first quote), for the UI warning
 
 
 class QuoteOut(BaseModel):
@@ -502,6 +507,7 @@ class QuoteOut(BaseModel):
 class ManifestBrief(BaseModel):
     due_at: datetime
     submitted_at: datetime | None
+    sent_to_operator_at: datetime | None  # when the operator was emailed the secure manifest link
 
 
 class TripOut(BaseModel):
@@ -608,6 +614,7 @@ class PassengerOut(BaseModel):
 class ManifestOut(BaseModel):
     due_at: datetime
     submitted_at: datetime | None
+    sent_to_operator_at: datetime | None
     required_id_type: PaxIdType
     expected_passengers: int
     passengers: list[PassengerOut]
@@ -875,3 +882,137 @@ class OperatorManifestOut(BaseModel):
 
 class RevokeLinksOut(BaseModel):
     revoked: int
+
+
+# --------------------------------------------------------------------------- admin: operator detail, users, trips
+class AdminContactOut(BaseModel):
+    id: uuid.UUID
+    name: str | None
+    title: str | None
+    email: str
+    phone: str | None
+    receives_rfq: bool
+    # live operator, contact not yet confirmed for RFQs: confirm with POST /admin/operators/{id}/contacts/{cid}/confirm-rfq
+    pending_confirmation: bool
+
+
+class AdminOperatorDetail(AdminOperatorOut):
+    contacts: list[AdminContactOut]
+
+
+class AdminUserAccount(BaseModel):
+    id: uuid.UUID
+    type: AccountType
+    kyc_status: KycStatus
+
+
+class AdminUserOut(BaseModel):
+    id: uuid.UUID
+    email: str
+    role: UserRole
+    is_active: bool
+    email_verified: bool
+    account: AdminUserAccount | None
+    created_at: datetime
+
+
+class AdminUserPage(BaseModel):
+    items: list[AdminUserOut]
+    next_cursor: str | None  # pass back as ?cursor= for the next page; null at the end
+
+
+class AdminTripLeg(BaseModel):
+    sequence: int
+    origin_icao: str
+    destination_icao: str
+    depart_at: datetime
+    depart_local: str | None
+    origin_timezone: str | None
+
+
+class AdminTripItem(BaseModel):
+    id: uuid.UUID
+    account_id: uuid.UUID
+    status: TripStatus
+    trip_type: TripType
+    passengers: int
+    legs: list[AdminTripLeg]
+    created_at: datetime
+
+
+class AdminTripPage(BaseModel):
+    items: list[AdminTripItem]
+    next_cursor: str | None
+
+
+class AdminTripRfq(BaseModel):
+    id: uuid.UUID
+    reference: str
+    kind: RfqKind
+    status: RfqStatus
+    operator_name: str | None
+    sent_at: datetime | None
+    replied_at: datetime | None
+
+
+class AdminTripQuote(BaseModel):
+    id: uuid.UUID
+    rfq_id: uuid.UUID
+    status: QuoteStatus
+    total_amount_cents: int | None
+    currency: str
+    payment_host: str | None
+    first_payment_host: str | None
+    changed_since_first: bool
+
+
+class AdminManifestLink(BaseModel):
+    id: uuid.UUID
+    recipient: str  # the operator contact address the link was issued to
+    created_at: datetime
+    sent_at: datetime | None
+    expires_at: datetime
+    revoked_at: datetime | None
+    view_count: int
+    last_viewed_at: datetime | None
+
+
+class AdminManifestAccess(BaseModel):
+    at: datetime
+    action: str  # manifest.link_accessed | manifest.link_denied
+    token_id: str | None
+    ip: str | None
+    reason: str | None
+
+
+class AdminTripManifest(BaseModel):
+    """No passenger details: a count and the state of the operator links."""
+
+    due_at: datetime
+    submitted_at: datetime | None
+    sent_to_operator_at: datetime | None
+    passengers_on_file: int
+    links: list[AdminManifestLink]
+    recent_access: list[AdminManifestAccess]
+
+
+class AdminTripDetail(BaseModel):
+    id: uuid.UUID
+    account_id: uuid.UUID
+    status: TripStatus
+    trip_type: TripType
+    passengers: int
+    legs: list[AdminTripLeg]
+    rfqs: list[AdminTripRfq]
+    quotes: list[AdminTripQuote]
+    manifest: AdminTripManifest | None
+    created_at: datetime
+
+
+# --------------------------------------------------------------------------- dev
+class DevOutboxMessage(BaseModel):
+    to: list[str]
+    subject: str
+    purpose: str | None
+    body_text: str  # the real body as handed to the (fake) provider, including one-time links
+    created_at: datetime

@@ -84,6 +84,7 @@ def sellable_aircraft_stmt():
         .where(
             and_(
                 Aircraft.is_active.is_(True),
+                AircraftType.category.is_not(None),  # an unclassified type is never listed or matched
                 Operator.is_excluded.is_(False),
                 Operator.go_live_status == GoLiveStatus.live.value,
                 _has_approval_filter(),

@@ -342,17 +342,19 @@ def test_fbo_lookup_is_public_but_contacts_are_member_only(db, client, make_clie
     anon = make_client()
     r = anon.get("/v1/airports/kteb/fbos")
     assert r.status_code == 200
-    assert [f["name"] for f in r.json()] == ["SYNTHETIC FBO One", "SYNTHETIC FBO Two"]
+    mine = [f for f in r.json() if f["name"] in ("SYNTHETIC FBO One", "SYNTHETIC FBO Two")]  # the seed adds FBO A and B too
+    assert [f["name"] for f in mine] == ["SYNTHETIC FBO One", "SYNTHETIC FBO Two"]
     assert all(f["phone"] is None and f["email"] is None and f["id"] for f in r.json())
     assert "555-0111" not in r.text and "one@example.com" not in r.text
     signup(client, "nm@example.com")  # a member who is not entitled
-    assert client.get("/v1/airports/KTEB/fbos").json()[0]["email"] is None
+    assert all(f["email"] is None for f in client.get("/v1/airports/KTEB/fbos").json())
     ent = make_client()
     make_entitled(db, ent, admin, "ent@example.com")
-    got = ent.get("/v1/airports/KTEB/fbos").json()
-    assert got[0]["phone"] == "+1-555-0111" and got[0]["email"] == "one@example.com" and got[1]["phone"] is None
+    got = {f["name"]: f for f in ent.get("/v1/airports/KTEB/fbos").json()}
+    assert got["SYNTHETIC FBO One"]["phone"] == "+1-555-0111" and got["SYNTHETIC FBO One"]["email"] == "one@example.com"
+    assert got["SYNTHETIC FBO Two"]["phone"] is None
     assert anon.get("/v1/airports/KZZZ/fbos").status_code == 404
-    assert anon.get("/v1/airports/KMDW/fbos").json() == []
+    assert anon.get("/v1/airports/KSEA/fbos").json() == []  # an airport with none on file
 
 
 # --------------------------------------------------------------------------- 8. enterprise inquiry

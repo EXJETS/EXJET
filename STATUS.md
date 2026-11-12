@@ -10,11 +10,11 @@ Design docs: `ARCHITECTURE.md`, `DECISIONS.md`. Data: `DATA_REPORT.md`. Repo hyg
 | 1. Audit + build subagents | Done | `.claude/agents/` (8 subagents) |
 | 2. Architecture, schema, API contract | Done | `ARCHITECTURE.md`, `apps/api/exjet_api/models.py` (30 tables), `apps/api/openapi.json` |
 | 3. Data ingest pipeline | Built, **no founder data loaded** | `apps/api/exjet_api/ingest/`, 157 tests. `/data/raw` is empty |
-| 4. Product loop | API done on fake providers; member app built; **integration in progress** | 286 API tests incl. end-to-end loop and guardrails; app passes lint, build, unit and mock e2e |
+| 4. Product loop | **Done on fake providers and synthetic data.** Real providers not connected | 564 API tests; app lint, typecheck, 18 unit tests; real-API browser suite 6/6 (journey, fraud, seats) at 1440px and 390px |
 | 5. Marketing site | Not started | |
 | 6. Agent framework | Tables only (`agent_actions`, `approvals`, `jobs`) | |
 | 7 to 11. Agent orgs | Not started | |
-| 12. Company OS | First screens (overview, approvals, KYC review, operators, data upload, jobs, agent actions) | |
+| 12. Company OS | Partial: overview, approvals, KYC review, operators and payment hosts, quote review, quarantined mail, suppressions, enterprise inquiries, data upload, jobs, agent actions | Admin users and trips views exist in the API but not yet in the UI |
 | 13. Full tests, evals, Lighthouse | Partial (unit, integration, guardrail, mock e2e) | |
 | 14. Vercel staging | Not started; needs Vercel team access | |
 
@@ -36,18 +36,15 @@ Real integrations, each behind an interface and currently raising on use:
 
 Product gaps:
 7. FAA registry sync job (no data source chosen)
-8. Manifest delivery to the operator (passenger PII by email needs a design decision)
-9. Family Office second-seat invite (only attaches an existing login)
-10. In-app notifications (members learn of quotes by email and by opening the trip)
-11. Plan prices are code constants; `config/plans.yaml` and `config/models.yaml` do not exist yet
-12. Rate limiting is single-instance, in memory
-13. Legal Terms page is a placeholder pending counsel; AOG disclaimer sentence is present
-14. Seed airport and aircraft-type figures were entered from memory for development and must be replaced by founder data or verified sources before any public page uses them
+8. In-app notifications (members learn of quotes by email and by opening the trip)
+9. Plan prices are code constants; `config/plans.yaml` and `config/models.yaml` do not exist yet
+10. Legal Terms page is a placeholder pending counsel; AOG disclaimer sentence is present
+11. Seed airport and aircraft-type figures were entered from memory for development and must be replaced by founder data or verified sources before any public page uses them
+12. Company OS has no screens yet for admin users, admin trips, manifest-link revoke, or confirming an operator's pending contacts (API endpoints exist)
+13. Unknown-sender mail on a known RFQ reference creates one admin review item each, with no cap; needs dedupe or a rate limit
+14. The mock-data module is still emitted (unreachable) in production app bundles
 
-Open review items:
-15. Member app is being connected to the real API; several response shapes were guessed while both were built in parallel
-16. Security review of the API in progress
-17. 4 lint findings in `apps/api` to clear
+Security: a review found 2 critical, 3 high, 6 medium and 9 low issues; all were fixed with regression tests (see "Security controls" in `ARCHITECTURE.md`). The reviewer's original probes have not yet been re-run against the fixed code.
 
 ## Legacy and repo hygiene
 

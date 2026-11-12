@@ -93,7 +93,8 @@ def mission_for(trip: Trip) -> MissionRequest:
 
 
 def run_match(db: Session, trip: Trip) -> MatchResult:
-    types = [type_ref(t) for t in db.execute(select(AircraftType)).scalars()]
+    # A type with no category (ingest could not classify it) is never matched.
+    types = [type_ref(t) for t in db.execute(select(AircraftType).where(AircraftType.category.is_not(None))).scalars()]
     return match_mission(mission_for(trip), types, load_airports(db), max_fuel_stops=get_settings().max_fuel_stops)
 
 

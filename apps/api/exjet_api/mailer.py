@@ -197,7 +197,7 @@ def send(
         raise GuardrailViolation(violation)
 
     try:
-        res = get_mail().send(OutboundMessage(settings.rfq_from_address, recipients, msg.subject, body, msg.thread_id))
+        res = get_mail().send(OutboundMessage(settings.rfq_from_address, recipients, msg.subject, body, msg.thread_id, purpose))
     except ProviderError:
         _record_independently(msg, status="failed", reason="provider_error", actor=actor, purpose=purpose)
         raise

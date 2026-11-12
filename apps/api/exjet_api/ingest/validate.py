@@ -248,6 +248,16 @@ def validate_aircraft(n: int, raw: Raw, cfg: IngestConfig, ctx: ValidationContex
 _US_ICAO_PREFIXES = ("K", "PA", "PH", "PG", "PW", "PM", "PO", "PF", "TJ", "TI")
 
 
+def _valid_iana(name: str) -> bool:
+    from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
+
+    try:
+        ZoneInfo(name)
+    except (ZoneInfoNotFoundError, ValueError, OSError):
+        return False
+    return True
+
+
 def validate_airport(n: int, raw: Raw, cfg: IngestConfig, ctx: ValidationContext) -> Row | Reject:
     flags: list[Flag] = []
     icao = normalize_icao(raw.get("icao"))
@@ -286,6 +296,13 @@ def validate_airport(n: int, raw: Raw, cfg: IngestConfig, ctx: ValidationContext
                 )
             )
 
+    tz = (raw.get("timezone") or "").strip() or None
+    if tz is None:
+        flags.append(Flag(n, "airport_timezone_missing", "no IANA time zone; departures from this airport cannot be set until one is supplied"))
+    elif not _valid_iana(tz):
+        flags.append(Flag(n, "invalid_timezone", "not a valid IANA time zone name; left empty"))
+        tz = None
+
     fbo_name = raw.get("fbo_name")
     fbo = None
     if fbo_name:
@@ -311,7 +328,7 @@ def validate_airport(n: int, raw: Raw, cfg: IngestConfig, ctx: ValidationContext
         "longitude": lon,
         "elevation_ft": _int_field(raw, "elevation_ft", -2000, 30000, n, flags),
         "longest_runway_ft": _int_field(raw, "longest_runway_ft", 100, 40000, n, flags),
-        "timezone": raw.get("timezone"),
+        "timezone": tz,
         "fbo": fbo,
     }
     bad = _too_long(data, {"name": 200, "city": 120, "faa_lid": 4, "timezone": 64})

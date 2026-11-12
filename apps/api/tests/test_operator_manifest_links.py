@@ -90,12 +90,13 @@ def test_the_link_returns_the_manifest_and_every_access_is_audited(db, client, m
     assert db.get(ManifestAccessLink, link.id).view_count == 2
 
 
-def test_bad_tokens_get_the_same_404_and_a_malformed_one_is_a_422(db, client, make_client):
+def test_bad_tokens_get_the_same_404_whatever_their_shape(db, client, make_client):
     anon = make_client()
     r = anon.get("/v1/operator/manifest", params={"token": "z" * 43})
     assert r.status_code == 404 and r.json()["error"]["code"] == "invalid_link"
-    assert anon.get("/v1/operator/manifest", params={"token": "short"}).status_code == 422
-    assert anon.get("/v1/operator/manifest").status_code == 422
+    for bad in ({"token": "short"}, {"token": ""}, {}, {"token": "x" * 5000}):  # malformed or missing: same uniform answer
+        r = anon.get("/v1/operator/manifest", params=bad)
+        assert r.status_code == 404 and r.json()["error"]["code"] == "invalid_link", bad
 
 
 def test_link_expires_after_the_ttl(db, client, make_client):

@@ -50,8 +50,9 @@ def test_same_domain_colleague_mailbox_is_not_trusted(db, client, make_client):
     adm, s = _stage(db, client, make_client)
     inbound(adm, "anyone@example.com", f"Re: [{s['ref']}] quote", "pay", ATT())
     assert _quotes(db) == []
-    reasons = [a.output.get("reason") for a in db.execute(select(AgentAction).where(AgentAction.event == "quote.rejected_sender")).scalars()]
-    assert reasons == ["sender_not_a_recipient_contact"]
+    msg = db.execute(select(EmailMessage).where(EmailMessage.from_address == "anyone@example.com")).scalar_one()
+    assert msg.status == "quarantined" and msg.quarantine_reason == "sender_not_contact"  # held for an admin, never a quote
+    assert db.execute(select(AgentAction).where(AgentAction.event == "quote.rejected_sender")).scalars().all() == []
 
 
 def test_contact_of_another_operator_cannot_answer_this_rfq(db, client, make_client):

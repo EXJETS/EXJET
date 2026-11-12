@@ -372,7 +372,7 @@ function settleReplies(t: TripRec, force = false) {
       ],
       quote_pdf_url: "/mock/synthetic-quote.pdf",
       contract: { id: nid("ctr"), pdf_url: "/mock/synthetic-contract.pdf", acknowledged_at: null },
-      payment_link: { url: `https://pay.example.com/synthetic/${r.reference}`, host: "pay.example.com", status: "pending", host_approved: true, changed_since_first: false },
+      payment_link: { url: `https://pay.example.com/synthetic/${r.reference}`, host: "pay.example.com", status: "pending", host_approved: true, changed_since_first: false, first_host: "pay.example.com" },
     };
     t.quotes.push(q);
     changed = true;
@@ -875,7 +875,7 @@ route("POST", "/quotes/{id}/payment/mark-paid", (m) => {
   if (q.payment_link) q.payment_link.status = "member_marked_paid";
   const first = t.legs[0].depart_at ?? new Date().toISOString();
   const dep = new Date(first);
-  t.manifest = { due_at: new Date(dep.getTime() - 24 * 3_600_000).toISOString(), submitted_at: null };
+  t.manifest = { due_at: new Date(dep.getTime() - 24 * 3_600_000).toISOString(), submitted_at: null, sent_to_operator_at: null };
   t.status = "manifest_due";
   save();
   return tripView(t);

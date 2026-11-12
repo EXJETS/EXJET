@@ -27,7 +27,7 @@ def test_report_has_every_required_section_per_dataset(load_all, cfg):
         "### Unmapped columns",
         "### Flags",
         "### Operators with no RFQ contact email (2)",
-        "### Aircraft types created that need specs (2)",
+        "### Aircraft types created that need specs (3)",
     ):
         assert heading in md, heading
     assert "| 13 | 6 | 0 | 0 | 5 | 2 |" in md  # operators: read, loaded, updated, unchanged, rejected, merged

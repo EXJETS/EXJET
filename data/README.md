@@ -54,9 +54,9 @@ Optional: `category`, `icao_type_code`, `year_of_manufacture`, `year_refurbished
 Upsert key: tail number. The operator must already be loaded (certificate number first, then DBA name).
 Non-US-format tails load but are flagged for review (foreign-equivalent operators are allowed).
 The make/model is matched to `aircraft_types` on normalised manufacturer + model. A type that does not exist is
-created from the file with only the fields given and listed in the report as **needing specs**. The schema
-requires a `category` for a new type, so a row for an unknown type with no `category` is rejected
-(`aircraft_type_category_required`) rather than guessed.
+created from the file with only the fields given and listed in the report as **needing specs**. A new type with
+no `category` still loads, flagged `type_needs_category`; it stays out of matching and all public listings until a
+category is supplied. Categories are never guessed.
 
 ### outreach_lists
 Required: `email`.

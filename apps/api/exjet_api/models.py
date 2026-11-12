@@ -361,7 +361,8 @@ class AircraftType(TimestampMixin, Base):
     slug: Mapped[str] = mapped_column(String(80), unique=True)
     manufacturer: Mapped[str] = mapped_column(String(80))
     model: Mapped[str] = mapped_column(String(80))
-    category: Mapped[str] = mapped_column(String(24), index=True)
+    # NULL = the founder file gave none (ingest flags `type_needs_category`). Such a type is never matched or listed.
+    category: Mapped[str | None] = mapped_column(String(24), index=True)
     max_passengers: Mapped[int | None] = mapped_column(Integer)
     range_nm: Mapped[int | None] = mapped_column(Integer)  # with typical pax, NBAA IFR reserves
     cruise_speed_kts: Mapped[int | None] = mapped_column(Integer)
@@ -513,6 +514,7 @@ class Rfq(TimestampMixin, Base):
     replied_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     last_chased_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     thread_id: Mapped[str | None] = mapped_column(String(128), index=True)
+    first_payment_host: Mapped[str | None] = mapped_column(String(255))  # first payment host ever received on this RFQ (never changes)
     leg_sequence: Mapped[int | None] = mapped_column(Integer)  # ground requests
     details: Mapped[str | None] = mapped_column(EncryptedStr)  # member free text for ground requests (never in jobs.payload)
     trip: Mapped[Trip] = relationship(back_populates="rfqs")

@@ -93,7 +93,7 @@ def test_cli_dry_run_writes_nothing_and_does_not_touch_report(cli_env, raw_dir, 
     out = capsys.readouterr().out
     assert "DRY RUN" in out and "## aircraft" in out
     # operators loaded earlier in the same dry run are visible to the aircraft step: 4 aircraft load
-    assert "aircraft        Aircraft_2026.json: read 11, loaded 4" in out
+    assert "aircraft        Aircraft_2026.json: read 11, loaded 5" in out
     session.expire_all()
     assert session.scalar(select(func.count()).select_from(Operator)) == 0
     assert session.scalar(select(func.count()).select_from(IngestRun)) == 0

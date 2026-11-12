@@ -59,6 +59,71 @@
         "title": "AccountOut",
         "type": "object"
       },
+      "AdminContactOut": {
+        "properties": {
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Name"
+          },
+          "pending_confirmation": {
+            "title": "Pending Confirmation",
+            "type": "boolean"
+          },
+          "phone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Phone"
+          },
+          "receives_rfq": {
+            "title": "Receives Rfq",
+            "type": "boolean"
+          },
+          "title": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Title"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "title",
+          "email",
+          "phone",
+          "receives_rfq",
+          "pending_confirmation"
+        ],
+        "title": "AdminContactOut",
+        "type": "object"
+      },
       "AdminDocument": {
         "properties": {
           "content_type": {
@@ -221,6 +286,224 @@
           "created_at"
         ],
         "title": "AdminKycSubmission",
+        "type": "object"
+      },
+      "AdminManifestAccess": {
+        "properties": {
+          "action": {
+            "title": "Action",
+            "type": "string"
+          },
+          "at": {
+            "format": "date-time",
+            "title": "At",
+            "type": "string"
+          },
+          "ip": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Ip"
+          },
+          "reason": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Reason"
+          },
+          "token_id": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Token Id"
+          }
+        },
+        "required": [
+          "at",
+          "action",
+          "token_id",
+          "ip",
+          "reason"
+        ],
+        "title": "AdminManifestAccess",
+        "type": "object"
+      },
+      "AdminManifestLink": {
+        "properties": {
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "expires_at": {
+            "format": "date-time",
+            "title": "Expires At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "last_viewed_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Last Viewed At"
+          },
+          "recipient": {
+            "title": "Recipient",
+            "type": "string"
+          },
+          "revoked_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Revoked At"
+          },
+          "sent_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sent At"
+          },
+          "view_count": {
+            "title": "View Count",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "id",
+          "recipient",
+          "created_at",
+          "sent_at",
+          "expires_at",
+          "revoked_at",
+          "view_count",
+          "last_viewed_at"
+        ],
+        "title": "AdminManifestLink",
+        "type": "object"
+      },
+      "AdminOperatorDetail": {
+        "properties": {
+          "aircraft_count": {
+            "title": "Aircraft Count",
+            "type": "integer"
+          },
+          "certificate_type": {
+            "enum": [
+              "135",
+              "121",
+              "foreign"
+            ],
+            "title": "Certificate Type",
+            "type": "string"
+          },
+          "contact_count": {
+            "title": "Contact Count",
+            "type": "integer"
+          },
+          "contacts": {
+            "items": {
+              "$ref": "#/components/schemas/AdminContactOut"
+            },
+            "title": "Contacts",
+            "type": "array"
+          },
+          "dba_name": {
+            "title": "Dba Name",
+            "type": "string"
+          },
+          "go_live_status": {
+            "enum": [
+              "draft",
+              "pending_ceo",
+              "live",
+              "suspended"
+            ],
+            "title": "Go Live Status",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "is_excluded": {
+            "title": "Is Excluded",
+            "type": "boolean"
+          },
+          "payment_hosts": {
+            "default": [],
+            "items": {
+              "type": "string"
+            },
+            "title": "Payment Hosts",
+            "type": "array"
+          },
+          "pending_contact_count": {
+            "default": 0,
+            "title": "Pending Contact Count",
+            "type": "integer"
+          },
+          "safety_rating": {
+            "enum": [
+              "Not rated",
+              "Gold",
+              "Gold+",
+              "Platinum",
+              "Platinum+"
+            ],
+            "title": "Safety Rating",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "dba_name",
+          "certificate_type",
+          "safety_rating",
+          "is_excluded",
+          "go_live_status",
+          "aircraft_count",
+          "contact_count",
+          "contacts"
+        ],
+        "title": "AdminOperatorDetail",
         "type": "object"
       },
       "AdminOperatorOut": {
@@ -406,6 +689,587 @@
           "pdf_url"
         ],
         "title": "AdminQuoteReview",
+        "type": "object"
+      },
+      "AdminTripDetail": {
+        "properties": {
+          "account_id": {
+            "format": "uuid",
+            "title": "Account Id",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "legs": {
+            "items": {
+              "$ref": "#/components/schemas/AdminTripLeg"
+            },
+            "title": "Legs",
+            "type": "array"
+          },
+          "manifest": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AdminTripManifest"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "passengers": {
+            "title": "Passengers",
+            "type": "integer"
+          },
+          "quotes": {
+            "items": {
+              "$ref": "#/components/schemas/AdminTripQuote"
+            },
+            "title": "Quotes",
+            "type": "array"
+          },
+          "rfqs": {
+            "items": {
+              "$ref": "#/components/schemas/AdminTripRfq"
+            },
+            "title": "Rfqs",
+            "type": "array"
+          },
+          "status": {
+            "enum": [
+              "draft",
+              "rfq_sent",
+              "quoted",
+              "contracted",
+              "paid",
+              "manifest_due",
+              "scheduled",
+              "in_flight",
+              "completed",
+              "cancelled"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "trip_type": {
+            "enum": [
+              "one_way",
+              "round_trip",
+              "multi_leg"
+            ],
+            "title": "Trip Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "account_id",
+          "status",
+          "trip_type",
+          "passengers",
+          "legs",
+          "rfqs",
+          "quotes",
+          "manifest",
+          "created_at"
+        ],
+        "title": "AdminTripDetail",
+        "type": "object"
+      },
+      "AdminTripItem": {
+        "properties": {
+          "account_id": {
+            "format": "uuid",
+            "title": "Account Id",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "legs": {
+            "items": {
+              "$ref": "#/components/schemas/AdminTripLeg"
+            },
+            "title": "Legs",
+            "type": "array"
+          },
+          "passengers": {
+            "title": "Passengers",
+            "type": "integer"
+          },
+          "status": {
+            "enum": [
+              "draft",
+              "rfq_sent",
+              "quoted",
+              "contracted",
+              "paid",
+              "manifest_due",
+              "scheduled",
+              "in_flight",
+              "completed",
+              "cancelled"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "trip_type": {
+            "enum": [
+              "one_way",
+              "round_trip",
+              "multi_leg"
+            ],
+            "title": "Trip Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "account_id",
+          "status",
+          "trip_type",
+          "passengers",
+          "legs",
+          "created_at"
+        ],
+        "title": "AdminTripItem",
+        "type": "object"
+      },
+      "AdminTripLeg": {
+        "properties": {
+          "depart_at": {
+            "format": "date-time",
+            "title": "Depart At",
+            "type": "string"
+          },
+          "depart_local": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Depart Local"
+          },
+          "destination_icao": {
+            "title": "Destination Icao",
+            "type": "string"
+          },
+          "origin_icao": {
+            "title": "Origin Icao",
+            "type": "string"
+          },
+          "origin_timezone": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Origin Timezone"
+          },
+          "sequence": {
+            "title": "Sequence",
+            "type": "integer"
+          }
+        },
+        "required": [
+          "sequence",
+          "origin_icao",
+          "destination_icao",
+          "depart_at",
+          "depart_local",
+          "origin_timezone"
+        ],
+        "title": "AdminTripLeg",
+        "type": "object"
+      },
+      "AdminTripManifest": {
+        "description": "No passenger details: a count and the state of the operator links.",
+        "properties": {
+          "due_at": {
+            "format": "date-time",
+            "title": "Due At",
+            "type": "string"
+          },
+          "links": {
+            "items": {
+              "$ref": "#/components/schemas/AdminManifestLink"
+            },
+            "title": "Links",
+            "type": "array"
+          },
+          "passengers_on_file": {
+            "title": "Passengers On File",
+            "type": "integer"
+          },
+          "recent_access": {
+            "items": {
+              "$ref": "#/components/schemas/AdminManifestAccess"
+            },
+            "title": "Recent Access",
+            "type": "array"
+          },
+          "sent_to_operator_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sent To Operator At"
+          },
+          "submitted_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Submitted At"
+          }
+        },
+        "required": [
+          "due_at",
+          "submitted_at",
+          "sent_to_operator_at",
+          "passengers_on_file",
+          "links",
+          "recent_access"
+        ],
+        "title": "AdminTripManifest",
+        "type": "object"
+      },
+      "AdminTripPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AdminTripItem"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ],
+        "title": "AdminTripPage",
+        "type": "object"
+      },
+      "AdminTripQuote": {
+        "properties": {
+          "changed_since_first": {
+            "title": "Changed Since First",
+            "type": "boolean"
+          },
+          "currency": {
+            "title": "Currency",
+            "type": "string"
+          },
+          "first_payment_host": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Payment Host"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "payment_host": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Payment Host"
+          },
+          "rfq_id": {
+            "format": "uuid",
+            "title": "Rfq Id",
+            "type": "string"
+          },
+          "status": {
+            "enum": [
+              "received",
+              "needs_review",
+              "ready",
+              "accepted",
+              "declined",
+              "expired"
+            ],
+            "title": "Status",
+            "type": "string"
+          },
+          "total_amount_cents": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Total Amount Cents"
+          }
+        },
+        "required": [
+          "id",
+          "rfq_id",
+          "status",
+          "total_amount_cents",
+          "currency",
+          "payment_host",
+          "first_payment_host",
+          "changed_since_first"
+        ],
+        "title": "AdminTripQuote",
+        "type": "object"
+      },
+      "AdminTripRfq": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "kind": {
+            "enum": [
+              "charter",
+              "empty_leg",
+              "rental_car",
+              "chauffeur"
+            ],
+            "title": "Kind",
+            "type": "string"
+          },
+          "operator_name": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Operator Name"
+          },
+          "reference": {
+            "title": "Reference",
+            "type": "string"
+          },
+          "replied_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Replied At"
+          },
+          "sent_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sent At"
+          },
+          "status": {
+            "enum": [
+              "queued",
+              "sent",
+              "replied",
+              "declined",
+              "expired",
+              "failed"
+            ],
+            "title": "Status",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "reference",
+          "kind",
+          "status",
+          "operator_name",
+          "sent_at",
+          "replied_at"
+        ],
+        "title": "AdminTripRfq",
+        "type": "object"
+      },
+      "AdminUserAccount": {
+        "properties": {
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "kyc_status": {
+            "enum": [
+              "not_started",
+              "submitted",
+              "in_review",
+              "approved",
+              "rejected"
+            ],
+            "title": "Kyc Status",
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "individual",
+              "family_office",
+              "enterprise"
+            ],
+            "title": "Type",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "type",
+          "kyc_status"
+        ],
+        "title": "AdminUserAccount",
+        "type": "object"
+      },
+      "AdminUserOut": {
+        "properties": {
+          "account": {
+            "anyOf": [
+              {
+                "$ref": "#/components/schemas/AdminUserAccount"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "email": {
+            "title": "Email",
+            "type": "string"
+          },
+          "email_verified": {
+            "title": "Email Verified",
+            "type": "boolean"
+          },
+          "id": {
+            "format": "uuid",
+            "title": "Id",
+            "type": "string"
+          },
+          "is_active": {
+            "title": "Is Active",
+            "type": "boolean"
+          },
+          "role": {
+            "enum": [
+              "member",
+              "admin"
+            ],
+            "title": "Role",
+            "type": "string"
+          }
+        },
+        "required": [
+          "id",
+          "email",
+          "role",
+          "is_active",
+          "email_verified",
+          "account",
+          "created_at"
+        ],
+        "title": "AdminUserOut",
+        "type": "object"
+      },
+      "AdminUserPage": {
+        "properties": {
+          "items": {
+            "items": {
+              "$ref": "#/components/schemas/AdminUserOut"
+            },
+            "title": "Items",
+            "type": "array"
+          },
+          "next_cursor": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Next Cursor"
+          }
+        },
+        "required": [
+          "items",
+          "next_cursor"
+        ],
+        "title": "AdminUserPage",
         "type": "object"
       },
       "AgentActionOut": {
@@ -1304,6 +2168,50 @@
           "subject"
         ],
         "title": "DevInboundEmail",
+        "type": "object"
+      },
+      "DevOutboxMessage": {
+        "properties": {
+          "body_text": {
+            "title": "Body Text",
+            "type": "string"
+          },
+          "created_at": {
+            "format": "date-time",
+            "title": "Created At",
+            "type": "string"
+          },
+          "purpose": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Purpose"
+          },
+          "subject": {
+            "title": "Subject",
+            "type": "string"
+          },
+          "to": {
+            "items": {
+              "type": "string"
+            },
+            "title": "To",
+            "type": "array"
+          }
+        },
+        "required": [
+          "to",
+          "subject",
+          "purpose",
+          "body_text",
+          "created_at"
+        ],
+        "title": "DevOutboxMessage",
         "type": "object"
       },
       "EmptyLegOut": {
@@ -2375,6 +3283,18 @@
             "title": "Due At",
             "type": "string"
           },
+          "sent_to_operator_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sent To Operator At"
+          },
           "submitted_at": {
             "anyOf": [
               {
@@ -2390,7 +3310,8 @@
         },
         "required": [
           "due_at",
-          "submitted_at"
+          "submitted_at",
+          "sent_to_operator_at"
         ],
         "title": "ManifestBrief",
         "type": "object"
@@ -2421,6 +3342,18 @@
             "title": "Required Id Type",
             "type": "string"
           },
+          "sent_to_operator_at": {
+            "anyOf": [
+              {
+                "format": "date-time",
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "Sent To Operator At"
+          },
           "submitted_at": {
             "anyOf": [
               {
@@ -2437,6 +3370,7 @@
         "required": [
           "due_at",
           "submitted_at",
+          "sent_to_operator_at",
           "required_id_type",
           "expected_passengers",
           "passengers"
@@ -3168,8 +4102,6 @@
             "type": "string"
           },
           "token": {
-            "maxLength": 200,
-            "minLength": 20,
             "title": "Token",
             "type": "string"
           }
@@ -3217,6 +4149,17 @@
             "title": "Changed Since First",
             "type": "boolean"
           },
+          "first_host": {
+            "anyOf": [
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ],
+            "title": "First Host"
+          },
           "host": {
             "title": "Host",
             "type": "string"
@@ -3244,7 +4187,8 @@
           "host",
           "status",
           "host_approved",
-          "changed_since_first"
+          "changed_since_first",
+          "first_host"
         ],
         "title": "PaymentLinkOut",
         "type": "object"
@@ -3842,8 +4786,6 @@
       "SeatAcceptIn": {
         "properties": {
           "token": {
-            "maxLength": 200,
-            "minLength": 20,
             "title": "Token",
             "type": "string"
           }
@@ -4729,8 +5671,6 @@
       "VerifyEmailIn": {
         "properties": {
           "token": {
-            "maxLength": 200,
-            "minLength": 20,
             "title": "Token",
             "type": "string"
           }
@@ -5492,6 +6432,50 @@
         ]
       }
     },
+    "/v1/admin/operators/{operator_id}": {
+      "get": {
+        "description": "Operator with its contacts, so `confirm-rfq` can be driven from the UI.",
+        "operationId": "operator_detail_v1_admin_operators__operator_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "operator_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Operator Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminOperatorDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Operator Detail",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
     "/v1/admin/operators/{operator_id}/contacts/{contact_id}/confirm-rfq": {
       "post": {
         "description": "Contacts added to a live operator by ingest start with receives_rfq=false; an admin turns RFQs on.",
@@ -5904,6 +6888,127 @@
         ]
       }
     },
+    "/v1/admin/trips": {
+      "get": {
+        "operationId": "admin_trips_v1_admin_trips_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "status",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Status"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 200,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminTripPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Admin Trips",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/trips/{trip_id}": {
+      "get": {
+        "description": "A trip with its legs, requests, quotes and a manifest SUMMARY: counts and operator-link state, never passenger data,\nnotes or the member's free text.",
+        "operationId": "admin_trip_v1_admin_trips__trip_id__get",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "trip_id",
+            "required": true,
+            "schema": {
+              "format": "uuid",
+              "title": "Trip Id",
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminTripDetail"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Admin Trip",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
     "/v1/admin/trips/{trip_id}/manifest/revoke-links": {
       "post": {
         "description": "Withdraw every operator link issued for this trip's manifest (they stop working at once).",
@@ -5943,6 +7048,79 @@
           }
         },
         "summary": "Revoke Manifest Links",
+        "tags": [
+          "admin"
+        ]
+      }
+    },
+    "/v1/admin/users": {
+      "get": {
+        "description": "Logins, newest first. Email, role, status and the account's type and KYC status only: no names, phones or documents.",
+        "operationId": "admin_users_v1_admin_users_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "q",
+            "required": false,
+            "schema": {
+              "default": "",
+              "maxLength": 100,
+              "title": "Q",
+              "type": "string"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 200,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          },
+          {
+            "in": "query",
+            "name": "cursor",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Cursor"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AdminUserPage"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Admin Users",
         "tags": [
           "admin"
         ]
@@ -6783,6 +7961,88 @@
         ]
       }
     },
+    "/v1/dev/outbox": {
+      "get": {
+        "description": "Recent messages the FAKE mail provider \"sent\", newest first, with the real body (verification, invitation, reset and\nmanifest links) so an end-to-end run can follow them without a shim. Dev/test only: this router is not mounted otherwise.\nThe outbox lives in this process's memory, so it shows mail sent by requests and by jobs run through POST /dev/run-jobs;\na separate worker process has its own outbox.",
+        "operationId": "outbox_v1_dev_outbox_get",
+        "parameters": [
+          {
+            "in": "query",
+            "name": "to",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "To"
+            }
+          },
+          {
+            "in": "query",
+            "name": "purpose",
+            "required": false,
+            "schema": {
+              "anyOf": [
+                {
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "title": "Purpose"
+            }
+          },
+          {
+            "in": "query",
+            "name": "limit",
+            "required": false,
+            "schema": {
+              "default": 50,
+              "maximum": 200,
+              "minimum": 1,
+              "title": "Limit",
+              "type": "integer"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "items": {
+                    "$ref": "#/components/schemas/DevOutboxMessage"
+                  },
+                  "title": "Response Outbox V1 Dev Outbox Get",
+                  "type": "array"
+                }
+              }
+            },
+            "description": "Successful Response"
+          },
+          "422": {
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/HTTPValidationError"
+                }
+              }
+            },
+            "description": "Validation Error"
+          }
+        },
+        "summary": "Outbox",
+        "tags": [
+          "dev"
+        ]
+      }
+    },
     "/v1/dev/run-jobs": {
       "post": {
         "operationId": "run_jobs_v1_dev_run_jobs_post",
@@ -7046,10 +8306,10 @@
           {
             "in": "query",
             "name": "token",
-            "required": true,
+            "required": false,
             "schema": {
-              "maxLength": 200,
-              "minLength": 20,
+              "default": "",
+              "maxLength": 100000,
               "title": "Token",
               "type": "string"
             }

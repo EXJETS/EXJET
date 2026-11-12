@@ -24,10 +24,10 @@ test("inbound fraud checks and payment host approval", async ({ browser }, info)
   expect(await quotes(), "failed DMARC: no member-visible quote").toEqual([]);
 
   const q = await (await adminApi.get("/v1/admin/inbound/quarantined")).json() as { from_address: string; dmarc_pass: boolean | null; approval_id: string | null; reason: string | null }[];
-  // A sender that is not a stored contact is rejected outright: a blocked agent action (no quarantine row, no approval).
-  expect(q.some((m) => m.from_address.includes(attacker))).toBe(false);
-  const actions = await (await adminApi.get("/v1/admin/agent-actions", { params: { limit: "200" } })).json() as { event: string; status: string }[];
-  expect(actions.some((a) => a.event === "quote.rejected_sender" && a.status === "blocked")).toBe(true);
+  // A sender that is not a stored contact is quarantined for admin review; it never becomes a member-visible quote.
+  expect(q.some((m) => m.from_address.includes(attacker) && m.reason === "sender_not_contact" && m.approval_id !== null)).toBe(true);
+
+
   expect(q.some((m) => m.from_address.includes(contactEmail.split("@")[0]) && m.dmarc_pass === false)).toBe(true);
   const reviews = await (await adminApi.get("/v1/admin/approvals", { params: { status: "pending", kind: "inbound_review" } })).json() as unknown[];
   expect(reviews.length).toBeGreaterThanOrEqual(1);
@@ -52,8 +52,7 @@ test("inbound fraud checks and payment host approval", async ({ browser }, info)
   await expect(admin.getByText("dmarc not passed").first()).toBeVisible();
   await expect(admin.getByText("fail", { exact: true }).first()).toBeVisible();
   await shot(admin, "30-fraud-quarantined");
-  await admin.goto("/company/agent-actions");
-  await expect(admin.getByText("quote.rejected_sender").first()).toBeVisible();
+  await expect(admin.getByText("sender not contact").first()).toBeVisible();
   await admin.goto("/company/approvals");
   await admin.getByRole("button", { name: "inbound review" }).first().click();
   await expect(admin.getByText(/held: the sender|inbound email was held/i).first()).toBeVisible();

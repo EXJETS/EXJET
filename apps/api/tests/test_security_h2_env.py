@@ -65,6 +65,7 @@ def test_non_dev_apps_have_no_docs_openapi_or_dev_router(monkeypatch, env):
     monkeypatch.setenv("EXJET_ENV", "test")
     get_settings.cache_clear()
     assert c.post("/v1/dev/run-jobs").status_code == 404 and c.post("/v1/dev/inbound-email", json={}).status_code == 404
+    assert c.get("/v1/dev/outbox").status_code == 404  # the mail outbox is not even routed outside dev/test
 
 
 @pytest.mark.parametrize("env", ["dev", "test"])
@@ -101,6 +102,7 @@ def test_non_dev_refuses_fakes_dev_secrets_and_insecure_cookies(monkeypatch, env
 def test_dev_endpoints_check_the_environment_too(monkeypatch, client):
     monkeypatch.setenv("EXJET_ENV", "prod")
     get_settings.cache_clear()
+    assert client.get("/v1/dev/outbox").status_code == 404
     assert client.post("/v1/dev/run-jobs").status_code == 404  # defense in depth for a router mounted under dev/test
 
 

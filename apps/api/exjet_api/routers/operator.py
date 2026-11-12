@@ -14,13 +14,13 @@ router = APIRouter(prefix="/operator", tags=["operator"])
 
 
 @router.get("/manifest", response_model=S.OperatorManifestOut)
-def operator_manifest(request: Request, response: Response, token: str = Query(min_length=20, max_length=200),
+def operator_manifest(request: Request, response: Response, token: str = Query(default="", max_length=100000),
                       db: Session = Depends(get_session)):
     """The submitted manifest for one trip, for the operator contact the link was issued to. Rate limited per client
     address and per token; every use of a known token is written to audit_log (ip, time, token id)."""
     ip = client_ip(request)
     hit("operator_manifest_ip", ip)
-    hit("operator_manifest_token", token_hash(token)[:32])
+    hit("operator_manifest_token", token_hash(token)[:32])  # a malformed or missing token is just another unknown token
     response.headers["X-Robots-Tag"] = "noindex, nofollow"
     response.headers["Cache-Control"] = "no-store"
     return manifest_links.read_via_link(db, token, ip)

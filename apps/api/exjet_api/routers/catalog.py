@@ -60,13 +60,14 @@ def airport_fbos(icao: str, viewer: Viewer = Depends(optional_viewer), db: Sessi
 
 @router.get("/categories", response_model=list[S.CategoryOut])
 def categories(db: Session = Depends(get_session)):
-    counts = dict(db.execute(select(AircraftType.category, func.count()).group_by(AircraftType.category)).all())
+    counts = dict(db.execute(select(AircraftType.category, func.count()).where(AircraftType.category.is_not(None))
+                             .group_by(AircraftType.category)).all())
     return [S.CategoryOut(category=c.value, name=CATEGORY_NAMES[c.value], type_count=counts.get(c.value, 0)) for c in AircraftCategory]
 
 
 @router.get("/aircraft-types", response_model=list[S.AircraftTypeOut])
 def aircraft_types(category: str | None = None, db: Session = Depends(get_session)):
-    stmt = select(AircraftType).order_by(AircraftType.category, AircraftType.model)
+    stmt = select(AircraftType).where(AircraftType.category.is_not(None)).order_by(AircraftType.category, AircraftType.model)
     if category:
         stmt = stmt.where(AircraftType.category == category)
     return db.execute(stmt).scalars().all()
@@ -74,7 +75,7 @@ def aircraft_types(category: str | None = None, db: Session = Depends(get_sessio
 
 @router.get("/aircraft-types/{slug}", response_model=S.AircraftTypeOut)
 def aircraft_type(slug: str, db: Session = Depends(get_session)):
-    t = db.execute(select(AircraftType).where(AircraftType.slug == slug)).scalar_one_or_none()
+    t = db.execute(select(AircraftType).where(AircraftType.slug == slug, AircraftType.category.is_not(None))).scalar_one_or_none()
     if t is None:
         raise not_found("Aircraft type not found.")
     return t

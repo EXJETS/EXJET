@@ -456,7 +456,9 @@ def test_quote_from_unknown_sender_or_unmatched_reference_is_not_ingested(db, cl
     inbound(adm, "ops-a@example.com", "Re: [EXJ-ZZZZZZ] quote", "wrong ref", atts)
     assert db.execute(select(Quote)).scalars().all() == []
     reasons = [a.output.get("reason") for a in db.execute(select(AgentAction).where(AgentAction.agent == "quote_ingest")).scalars()]
-    assert "sender_not_a_recipient_contact" in reasons and "no_rfq_match" in reasons
+    assert "no_rfq_match" in reasons
+    quarantined = db.execute(select(EmailMessage).where(EmailMessage.from_address == "attacker@evil.example")).scalar_one()
+    assert quarantined.status == "quarantined" and quarantined.quarantine_reason == "sender_not_contact"  # kept for review, no quote
     # C1: a colleague mailbox on the contact's domain is NOT trusted (the old test accepted it: that was the hole).
     inbound(adm, "dispatch@example.com", f"Re: [{ref}] quote", "attached", atts)
     assert db.execute(select(Quote)).scalars().all() == []

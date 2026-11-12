@@ -131,6 +131,18 @@ def _sender_ok(db: Session, rfq: Rfq, sender: str | None) -> bool:
     return fbo is not None and normalize_email(fbo.email) == sender
 
 
+def _sender_confirmed_after_review(db: Session, msg: EmailMessage, rfq: Rfq, sender: str) -> bool:
+    """Only for a message that was quarantined as `sender_not_contact` and then released by an admin: the sender is accepted
+    only if they are a stored contact of the RFQ's operator that an admin has explicitly confirmed for RFQs through the
+    existing contact confirmation path (`receives_rfq = true`). Approving the review alone never creates trust, an unknown
+    address stays rejected, and ground (FBO) requests have no such path."""
+    if msg.quarantine_reason != "sender_not_contact" or rfq.operator_id is None:
+        return False
+    return db.execute(select(OperatorContact.id).where(
+        OperatorContact.operator_id == rfq.operator_id, func.lower(OperatorContact.email) == sender,
+        OperatorContact.receives_rfq.is_(True)).limit(1)).first() is not None
+
+
 def _match_rfq(db: Session, msg: EmailMessage) -> Rfq | None:
     from exjet_product.rfq import extract_reference
 
@@ -211,7 +223,12 @@ def ingest_message(db: Session, message_id: uuid.UUID, *, released: bool = False
     if sender is None:
         return _reject(db, msg, rfq, trip, "sender_malformed")
     if not _sender_ok(db, rfq, sender):
-        return _reject(db, msg, rfq, trip, "sender_not_a_recipient_contact")
+        if not released:
+            # Keep the message for a person instead of dropping it. Approving the review item does NOT make the sender
+            # trusted: the exact-contact rule is re-checked on release (see _sender_confirmed_after_review).
+            return _quarantine(db, msg, rfq, trip, "sender_not_contact")
+        if not _sender_confirmed_after_review(db, msg, rfq, sender):
+            return _reject(db, msg, rfq, trip, "sender_not_a_recipient_contact")
     if rfq.operator is not None and not operator_sellable(rfq.operator, db):
         record_agent_action(db, agent="quote_ingest", event="quote.rejected_operator", input={"rfq_id": str(rfq.id)},
                             output={"reason": "operator_not_live_or_excluded"}, status="blocked", permission_level="READ",
@@ -301,6 +318,8 @@ def ingest_message(db: Session, message_id: uuid.UUID, *, released: bool = False
     host = QC.normalize_host(link.host) if link else ""
     if link:
         db.add(PaymentLink(quote_id=quote.id, url=link.url, host=host or link.host, status=PaymentLinkStatus.pending.value))
+        if rfq.first_payment_host is None:  # the baseline for `changed_since_first`; written once, never updated
+            rfq.first_payment_host = host or link.host
     else:
         flags.append("no_payment_link")
     db.flush()

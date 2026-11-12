@@ -263,15 +263,6 @@ def load_aircraft(
             key = type_key(man, model)
         t = types.get(key)
         if t is None:
-            if not d["category"]:
-                stats.rejects.append(
-                    Reject(
-                        row.n,
-                        "aircraft_type_category_required",
-                        "type not in aircraft_types and the file gives no category (schema requires one)",
-                    )
-                )
-                continue
             base = slugify(f"{man} {model}") or "type"
             slug, i = base[:80], 2
             while slug in slugs:
@@ -289,6 +280,9 @@ def load_aircraft(
             types[key] = t
             slugs.add(slug)
             created_types.add(key)
+        if t.category is None:
+            # Loaded, but the type has no category: it is excluded from matching and public listings until one is supplied.
+            stats.flags.append(Flag(row.n, "type_needs_category", "aircraft type has no category; supply one (never guessed)"))
         missing = [f for f in SPEC_FIELDS if getattr(t, f) is None] + (
             [] if t.icao_type_code else ["icao_type_code"]
         )

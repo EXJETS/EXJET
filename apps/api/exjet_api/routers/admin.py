@@ -5,7 +5,7 @@ import statistics
 import uuid
 
 from fastapi import APIRouter, Depends, File, Form, Query, UploadFile
-from sqlalchemy import func, select
+from sqlalchemy import and_, func, or_, select
 from sqlalchemy.orm import Session
 
 from .. import clock
@@ -15,11 +15,13 @@ from ..deps import get_session, require_admin
 from ..entitlements import Viewer
 from ..errors import ApiError, conflict, not_found
 from ..models import (
+    Account,
     AccountMember,
     AgentAction,
     Aircraft,
     Approval,
     ApprovalStatus,
+    AuditLog,
     Document,
     EmailMessage,
     EnterpriseInquiry,
@@ -28,8 +30,10 @@ from ..models import (
     Job,
     KycStatus,
     KycSubmission,
+    ManifestAccessLink,
     Operator,
     OperatorContact,
+    Passenger,
     Quote,
     QuoteStatus,
     Rfq,
@@ -166,6 +170,22 @@ def operators(db: Session = Depends(get_session)):
                            payment_hosts=sorted(quote_checks.operator_hosts(o)))
         for o in db.execute(select(Operator).order_by(Operator.dba_name)).scalars()
     ]
+
+
+@router.get("/operators/{operator_id}", response_model=S.AdminOperatorDetail)
+def operator_detail(operator_id: uuid.UUID, db: Session = Depends(get_session)):
+    """Operator with its contacts, so `confirm-rfq` can be driven from the UI."""
+    op = db.get(Operator, operator_id)
+    if op is None:
+        raise not_found("Operator not found.")
+    live = op.go_live_status == GoLiveStatus.live.value
+    contacts = db.execute(select(OperatorContact).where(OperatorContact.operator_id == op.id)
+                          .order_by(OperatorContact.created_at, OperatorContact.email)).scalars().all()
+    base = _operator_out(db, op)
+    return S.AdminOperatorDetail(
+        **base.model_dump(),
+        contacts=[S.AdminContactOut(id=c.id, name=c.name, title=c.title, email=c.email, phone=c.phone, receives_rfq=c.receives_rfq,
+                                    pending_confirmation=live and not c.receives_rfq) for c in contacts])
 
 
 @router.post("/operators/{operator_id}/request-go-live", response_model=S.GoLiveRequestOut, status_code=201)
@@ -424,3 +444,122 @@ def enterprise_inquiries(limit: int = Query(100, ge=1, le=500), viewer: Viewer =
     return [S.EnterpriseInquiryOut(id=r.id, created_at=r.created_at, account_id=r.account_id, user_id=r.user_id, company=r.company,
                                    seats=r.seats, notes=r.notes, contact_name=r.contact_name, contact_email=r.contact_email,
                                    contact_phone=r.contact_phone) for r in rows]
+
+
+# --------------------------------------------------------------------------- users and trips (reads are audited)
+def _encode_cursor(created_at, row_id) -> str:
+    import base64
+
+    return base64.urlsafe_b64encode(f"{created_at.isoformat()}|{row_id}".encode()).decode().rstrip("=")
+
+
+def _decode_cursor(cursor: str | None):
+    import base64
+    from datetime import datetime
+
+    if not cursor:
+        return None
+    try:
+        raw = base64.urlsafe_b64decode(cursor + "=" * (-len(cursor) % 4)).decode()
+        ts, rid = raw.split("|", 1)
+        return datetime.fromisoformat(ts), uuid.UUID(rid)
+    except (ValueError, UnicodeDecodeError):
+        raise ApiError(422, "invalid_cursor", "The cursor is not valid.") from None
+
+
+def _page(db: Session, model, stmt, limit: int, cursor: str | None):
+    """Keyset pagination on (created_at desc, id desc). Returns (rows, next_cursor)."""
+    c = _decode_cursor(cursor)
+    if c is not None:
+        ts, rid = c
+        stmt = stmt.where(or_(model.created_at < ts, and_(model.created_at == ts, model.id < rid)))
+    rows = db.execute(stmt.order_by(model.created_at.desc(), model.id.desc()).limit(limit + 1)).scalars().all()
+    more = len(rows) > limit
+    rows = rows[:limit]
+    return rows, (_encode_cursor(rows[-1].created_at, rows[-1].id) if more and rows else None)
+
+
+@router.get("/users", response_model=S.AdminUserPage)
+def admin_users(q: str = Query("", max_length=100), limit: int = Query(50, ge=1, le=200), cursor: str | None = None,
+                viewer: Viewer = Depends(require_admin), db: Session = Depends(get_session)):
+    """Logins, newest first. Email, role, status and the account's type and KYC status only: no names, phones or documents."""
+    stmt = select(User)
+    q = q.strip()
+    if q:
+        esc = q.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_")
+        stmt = stmt.where(User.email.ilike(f"%{esc}%", escape="\\"))
+    users, nxt = _page(db, User, stmt, limit, cursor)
+    accts = {m.user_id: a for m, a in db.execute(select(AccountMember, Account).join(Account, Account.id == AccountMember.account_id)
+                                                  .where(AccountMember.user_id.in_([u.id for u in users]))).all()} if users else {}
+    audit(db, actor=f"user:{viewer.user.id}", action="admin.users_listed", subject_type="user",
+          detail={"count": len(users), "filtered": bool(q)})  # the search text itself may be an email: not stored
+    db.commit()
+    return S.AdminUserPage(items=[
+        S.AdminUserOut(id=u.id, email=u.email, role=u.role, is_active=u.is_active, email_verified=u.email_verified_at is not None,
+                       account=S.AdminUserAccount(id=accts[u.id].id, type=accts[u.id].type, kyc_status=accts[u.id].kyc_status)
+                       if u.id in accts else None, created_at=u.created_at) for u in users], next_cursor=nxt)
+
+
+def _admin_legs(trip: Trip) -> list[S.AdminTripLeg]:
+    from ..timeutil import to_local_str
+
+    out = []
+    for leg in trip.legs:
+        local = to_local_str(leg.depart_at, leg.origin_timezone)
+        out.append(S.AdminTripLeg(sequence=leg.sequence, origin_icao=leg.origin_icao, destination_icao=leg.destination_icao,
+                                  depart_at=leg.depart_at, depart_local=local, origin_timezone=leg.origin_timezone if local else None))
+    return out
+
+
+@router.get("/trips", response_model=S.AdminTripPage)
+def admin_trips(status: str | None = None, limit: int = Query(50, ge=1, le=200), cursor: str | None = None,
+                viewer: Viewer = Depends(require_admin), db: Session = Depends(get_session)):
+    stmt = select(Trip)
+    if status:
+        stmt = stmt.where(Trip.status == status)
+    trips, nxt = _page(db, Trip, stmt, limit, cursor)
+    audit(db, actor=f"user:{viewer.user.id}", action="admin.trips_listed", subject_type="trip", detail={"count": len(trips)})
+    db.commit()
+    return S.AdminTripPage(items=[S.AdminTripItem(id=t.id, account_id=t.account_id, status=t.status, trip_type=t.trip_type,
+                                                  passengers=t.passengers, legs=_admin_legs(t), created_at=t.created_at)
+                                  for t in trips], next_cursor=nxt)
+
+
+@router.get("/trips/{trip_id}", response_model=S.AdminTripDetail)
+def admin_trip(trip_id: uuid.UUID, viewer: Viewer = Depends(require_admin), db: Session = Depends(get_session)):
+    """A trip with its legs, requests, quotes and a manifest SUMMARY: counts and operator-link state, never passenger data,
+    notes or the member's free text."""
+    t = db.get(Trip, trip_id)
+    if t is None:
+        raise not_found("Trip not found.")
+    rfqs = sorted(t.rfqs, key=lambda r: r.created_at)
+    quotes = sorted(t.quotes, key=lambda x: x.created_at)
+    manifest = None
+    m = t.manifest
+    if m is not None:
+        links = db.execute(select(ManifestAccessLink).where(ManifestAccessLink.manifest_id == m.id)
+                           .order_by(ManifestAccessLink.created_at)).scalars().all()
+        link_ids = {str(link.id) for link in links}
+        events = [e for e in db.execute(select(AuditLog).where(AuditLog.subject_type == "manifest", AuditLog.subject_id == str(m.id),
+                                                               AuditLog.action.in_(["manifest.link_accessed", "manifest.link_denied"]))
+                                        .order_by(AuditLog.at.desc()).limit(50)).scalars() if (e.detail or {}).get("token_id") in link_ids]
+        manifest = S.AdminTripManifest(
+            due_at=m.due_at, submitted_at=m.submitted_at, sent_to_operator_at=m.sent_to_operator_at,
+            passengers_on_file=db.execute(select(func.count()).select_from(Passenger).where(Passenger.trip_id == t.id)).scalar_one(),
+            links=[S.AdminManifestLink(id=link.id, recipient=link.recipient, created_at=link.created_at, sent_at=link.sent_at,
+                                       expires_at=link.expires_at, revoked_at=link.revoked_at, view_count=link.view_count,
+                                       last_viewed_at=link.last_viewed_at) for link in links],
+            recent_access=[S.AdminManifestAccess(at=e.at, action=e.action, token_id=(e.detail or {}).get("token_id"),
+                                                 ip=(e.detail or {}).get("ip"), reason=(e.detail or {}).get("reason")) for e in events])
+    audit(db, actor=f"user:{viewer.user.id}", action="admin.trip_viewed", subject_type="trip", subject_id=t.id)
+    db.commit()
+    return S.AdminTripDetail(
+        id=t.id, account_id=t.account_id, status=t.status, trip_type=t.trip_type, passengers=t.passengers, legs=_admin_legs(t),
+        rfqs=[S.AdminTripRfq(id=r.id, reference=r.reference, kind=r.kind, status=r.status,
+                             operator_name=r.operator.dba_name if r.operator is not None else None, sent_at=r.sent_at,
+                             replied_at=r.replied_at) for r in rfqs],
+        quotes=[S.AdminTripQuote(id=x.id, rfq_id=x.rfq_id, status=x.status, total_amount_cents=x.total_amount_cents, currency=x.currency,
+                                 payment_host=x.payment_link.host if x.payment_link else None,
+                                 first_payment_host=x.rfq.first_payment_host,
+                                 changed_since_first=quote_checks.changed_since_first(db, x)) for x in quotes],
+        manifest=manifest, created_at=t.created_at)

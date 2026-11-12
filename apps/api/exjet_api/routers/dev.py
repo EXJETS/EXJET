@@ -9,7 +9,7 @@ import binascii
 import time
 import uuid
 
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.orm import Session
 
 from .. import jobs
@@ -44,6 +44,33 @@ def inbound_email(body: S.DevInboundEmail, db: Session = Depends(get_session)):
     enqueue(db, "mail.poll_inbox", {}, dedupe_key=f"mail.poll_inbox:dev:{time.time_ns()}")
     db.commit()
     return {"queued": True}
+
+
+@router.get("/outbox", response_model=list[S.DevOutboxMessage])
+def outbox(to: str | None = None, purpose: str | None = None, limit: int = Query(50, ge=1, le=200)):
+    """Recent messages the FAKE mail provider "sent", newest first, with the real body (verification, invitation, reset and
+    manifest links) so an end-to-end run can follow them without a shim. Dev/test only: this router is not mounted otherwise.
+    The outbox lives in this process's memory, so it shows mail sent by requests and by jobs run through POST /dev/run-jobs;
+    a separate worker process has its own outbox."""
+    from datetime import UTC, datetime
+
+    from ..emailnorm import normalize_email
+
+    mail = get_mail()
+    if not isinstance(mail, FakeMail):
+        raise conflict("not_fake_mail", "The outbox needs the fake mail provider.")
+    want = normalize_email(to) if to else None
+    out = []
+    for msg, _ in reversed(mail.outbox):
+        if want and want not in [normalize_email(a) for a in msg.to]:
+            continue
+        if purpose and msg.purpose != purpose:
+            continue
+        out.append(S.DevOutboxMessage(to=list(msg.to), subject=msg.subject, purpose=msg.purpose, body_text=msg.body_text,
+                                      created_at=msg.created_at or datetime.now(UTC)))
+        if len(out) >= limit:
+            break
+    return out
 
 
 @router.post("/run-jobs")

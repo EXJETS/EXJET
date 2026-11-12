@@ -9,7 +9,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from ..guardrails import approved_approval
-from ..models import Operator, PaymentLink, Quote, QuoteStatus
+from ..models import Operator, PaymentLink, Quote, QuoteStatus, Rfq
 
 _HOST_RE = re.compile(r"^(?=.{1,253}$)([a-z0-9](?:[a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]{2,63}$")
 
@@ -59,9 +59,13 @@ def differs_from(db: Session, first: Quote, host: str | None, total: int | None)
 
 
 def changed_since_first(db: Session, quote: Quote) -> bool:
-    """A later quote on the same RFQ whose payment host or total differs from the first one."""
-    first = first_quote(db, quote.rfq_id)
+    """Stable, relative to the FIRST thing ever received on the RFQ (not to the quotes currently in play): the payment host
+    differs from `Rfq.first_payment_host` (stored when the first payment link arrived), or the total differs from the
+    earliest quote's. Declining or accepting quotes never moves the baseline."""
+    first = db.execute(select(Quote).where(Quote.rfq_id == quote.rfq_id).order_by(Quote.created_at, Quote.id).limit(1)).scalar_one_or_none()
     if first is None or first.id == quote.id:
         return False
     link = quote.payment_link
-    return differs_from(db, first, link.host if link else None, quote.total_amount_cents)
+    first_host = normalize_host(db.get(Rfq, quote.rfq_id).first_payment_host)
+    host_changed = bool(first_host) and link is not None and normalize_host(link.host) != first_host
+    return host_changed or first.total_amount_cents != quote.total_amount_cents

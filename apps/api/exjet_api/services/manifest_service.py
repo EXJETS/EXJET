@@ -26,7 +26,7 @@ def manifest_out(db: Session, trip: Trip) -> S.ManifestOut:
         raise conflict("manifest_not_available", "A manifest is available once payment is marked.")
     pax = db.execute(select(Passenger).where(Passenger.trip_id == trip.id).order_by(Passenger.created_at)).scalars().all()
     return S.ManifestOut(
-        due_at=m.due_at, submitted_at=m.submitted_at, required_id_type=required_pax_id_type(trip),
+        due_at=m.due_at, submitted_at=m.submitted_at, sent_to_operator_at=m.sent_to_operator_at, required_id_type=required_pax_id_type(trip),
         expected_passengers=trip.passengers,
         passengers=[S.PassengerOut(id=p.id, full_name=p.full_name, date_of_birth=p.date_of_birth, id_type=p.id_type,
                                    id_number_last4=p.id_number[-4:], id_expiry=p.id_expiry, id_issuer=p.id_issuer,

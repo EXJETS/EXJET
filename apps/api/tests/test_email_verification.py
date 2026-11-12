@@ -63,7 +63,8 @@ def test_verify_marks_the_email_verified_signs_in_and_is_single_use(db, client, 
     again = make_client().post("/v1/auth/verify-email", json={"token": tok})
     assert again.status_code == 409 and again.json()["error"]["code"] == "invalid_token"
     assert make_client().post("/v1/auth/verify-email", json={"token": "x" * 43}).json()["error"]["code"] == "invalid_token"
-    assert make_client().post("/v1/auth/verify-email", json={"token": "short"}).status_code == 422
+    short = make_client().post("/v1/auth/verify-email", json={"token": "short"})  # malformed: the same uniform answer
+    assert short.status_code == 409 and short.json()["error"]["code"] == "invalid_token"
 
 
 def test_expired_token_is_refused(db, client, make_client):

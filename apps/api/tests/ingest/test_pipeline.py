@@ -134,20 +134,19 @@ def test_excluded_operator_aircraft_and_contacts_rejected(session, load_all):
 
 def test_aircraft_load_types_tails_and_flags(session, load_all):
     run = load_all()["aircraft"]
-    assert (run.rows_read, run.rows_loaded, run.rows_rejected, run.duplicates_merged) == (11, 4, 6, 1)
+    assert (run.rows_read, run.rows_loaded, run.rows_rejected, run.duplicates_merged) == (11, 5, 5, 1)
     assert reasons(run) == {
         (7, "duplicate_tail_conflicting_operator"),
         (8, "excluded_operator"),
         (9, "excluded_operator"),
         (10, "unknown_operator"),
         (11, "missing_required:tail_number"),
-        (12, "aircraft_type_category_required"),
     }
     tails = {a.tail_number: a for a in session.scalars(select(Aircraft))}
-    assert set(tails) == {"N10TS", "N11TS", "N00TST1", "C-GTST1"}
+    assert set(tails) == {"N10TS", "N11TS", "N00TST1", "C-GTST1", "N00TST5"}
     assert tails["N10TS"].amenities == ["WiFi", "Lavatory"] and tails["N10TS"].year_of_manufacture == 2015
     assert tails["C-GTST1"].year_of_manufacture is None  # invalid year left empty, flagged
-    assert run.report["flags"]["non_us_tail"]["rows"] == [4, 5]  # only tails that were loaded
+    assert run.report["flags"]["non_us_tail"]["rows"] == [4, 5, 12]  # only tails that were loaded
     assert "N10TS" not in " ".join(run.report["flags"])  # flags carry codes and rows, never tails
     assert tails["N11TS"].type_id == tails["N10TS"].type_id  # "TJ 100" matched "TJ-100"
     assert tails["N11TS"].operator.certificate_number == "0TST002B"
@@ -156,7 +155,7 @@ def test_aircraft_load_types_tails_and_flags(session, load_all):
 def test_unknown_aircraft_type_created_with_only_file_fields_and_flagged(session, load_all):
     run = load_all()["aircraft"]
     types = {t.model: t for t in session.scalars(select(AircraftType))}
-    assert set(types) == {"TJ-100", "TJ-200"}
+    assert set(types) == {"TJ-100", "TJ-200", "TJ-300"}
     t = types["TJ-100"]
     assert (t.category, t.slug) == ("light", "synthetic-aerospace-tj-100")
     for f in (
@@ -172,7 +171,7 @@ def test_unknown_aircraft_type_created_with_only_file_fields_and_flagged(session
     ):
         assert getattr(t, f) is None, f
     needing = {x["type"]: x for x in run.report["types_needing_specs"]}
-    assert set(needing) == {"SYNTHETIC Aerospace TJ-100", "SYNTHETIC Aerospace TJ-200"}
+    assert set(needing) == {"SYNTHETIC Aerospace TJ-100", "SYNTHETIC Aerospace TJ-200", "SYNTHETIC Aerospace TJ-300"}
     assert "range_nm" in needing["SYNTHETIC Aerospace TJ-100"]["missing"]
 
 
@@ -193,8 +192,8 @@ def test_existing_type_matched_by_normalised_manufacturer_and_model(session, ing
     session.commit()
     ingest("operators", "operators_synthetic.csv")
     run = ingest("aircraft", "aircraft_synthetic.csv")
-    assert count(session, AircraftType) == 2  # only TJ-200 created
-    assert {x["type"] for x in run.report["types_needing_specs"]} == {"SYNTHETIC Aerospace TJ-200"}
+    assert count(session, AircraftType) == 3  # TJ-200 and the category-less TJ-300 created
+    assert {x["type"] for x in run.report["types_needing_specs"]} == {"SYNTHETIC Aerospace TJ-200", "SYNTHETIC Aerospace TJ-300"}
     existing = session.scalar(select(AircraftType).where(AircraftType.slug == "existing"))
     assert existing.range_nm == 1000  # untouched
 
@@ -438,3 +437,28 @@ def test_dry_run_matches_real_run(session, ingest):
     real = ingest("operators", "operators_synthetic.csv").report
     for k in COUNTS + ("rejects", "flags", "duplicates"):
         assert dry[k] == real[k], k
+
+
+def test_type_without_category_is_loaded_and_flagged_not_guessed(session, load_all):
+    run = load_all()["aircraft"]
+    t = session.scalar(select(AircraftType).where(AircraftType.model == "TJ-300"))
+    assert t is not None and t.category is None  # never guessed
+    assert run.report["flags"]["type_needs_category"]["count"] == 1
+    assert session.scalar(select(Aircraft).where(Aircraft.tail_number == "N00TST5")).type_id == t.id
+    assert "aircraft_type_category_required" not in run.report["rejects_by_reason"]
+
+
+def test_airport_timezone_flags(session, ingest, tmp_path):
+    f = tmp_path / "airports.csv"
+    f.write_text(
+        "icao,name,latitude,longitude,timezone\n"
+        "KAAA,Has Zone,40.0,-74.0,America/New_York\n"
+        "KBBB,No Zone,41.0,-75.0,\n"
+        "KCCC,Bad Zone,42.0,-76.0,Mars/Olympus\n"
+    )
+    run = ingest("airports_fbos", f)
+    assert run.rows_loaded == 3
+    flags = run.report["flags"]
+    assert flags["airport_timezone_missing"]["count"] == 1 and flags["invalid_timezone"]["count"] == 1
+    zones = {a.icao: a.timezone for a in session.scalars(select(Airport))}
+    assert zones == {"KAAA": "America/New_York", "KBBB": None, "KCCC": None}  # an invalid name is not stored
