@@ -11,15 +11,53 @@ export interface paths {
             path?: never;
             cookie?: never;
         };
+        /** List Seats */
+        get: operations["list_seats_v1_account_seats_get"];
+        put?: never;
+        /**
+         * Invite Seat
+         * @description Invite a person to a seat. Never reveals whether the email has an EXJET login: the answer is always the same
+         *     202. Nothing changes for the invitee until they sign in with the invited email and explicitly accept.
+         */
+        post: operations["invite_seat_v1_account_seats_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/account/seats/accept": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
         get?: never;
         put?: never;
         /**
-         * Add Seat
-         * @description Add the second Family Office seat. The person must already have an EXJET login with an empty
-         *     personal account (no subscription, no identity check started, no trips); that empty account is removed.
+         * Accept Invitation
+         * @description The invitee, signed in with the invited email, explicitly accepts. Only now is a membership created.
          */
-        post: operations["add_seat_v1_account_seats_post"];
+        post: operations["accept_invitation_v1_account_seats_accept_post"];
         delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/account/seats/invitations/{invitation_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Revoke Invitation */
+        delete: operations["revoke_invitation_v1_account_seats_invitations__invitation_id__delete"];
         options?: never;
         head?: never;
         patch?: never;
@@ -70,6 +108,44 @@ export interface paths {
         put?: never;
         /** Decide */
         post: operations["decide_v1_admin_approvals__approval_id__decide_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/enterprise-inquiries": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Enterprise Inquiries
+         * @description Enterprise has no price: an inquiry waits here for the CEO to follow up. Contains personal contact details, so
+         *     each read is audited (counts only).
+         */
+        get: operations["enterprise_inquiries_v1_admin_enterprise_inquiries_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/inbound/quarantined": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Quarantined */
+        get: operations["quarantined_v1_admin_inbound_quarantined_get"];
+        put?: never;
+        post?: never;
         delete?: never;
         options?: never;
         head?: never;
@@ -199,6 +275,46 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/admin/operators/{operator_id}/contacts/{contact_id}/confirm-rfq": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Confirm Rfq Contact
+         * @description Contacts added to a live operator by ingest start with receives_rfq=false; an admin turns RFQs on.
+         */
+        post: operations["confirm_rfq_contact_v1_admin_operators__operator_id__contacts__contact_id__confirm_rfq_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/operators/{operator_id}/payment-hosts": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        /**
+         * Set Payment Hosts
+         * @description Replace the operator's approved payment hosts (set at onboarding). Links to any other host go to review.
+         */
+        put: operations["set_payment_hosts_v1_admin_operators__operator_id__payment_hosts_put"];
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/admin/operators/{operator_id}/request-go-live": {
         parameters: {
             query?: never;
@@ -233,6 +349,23 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/admin/quotes/{quote_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** Review Quote */
+        get: operations["review_quote_v1_admin_quotes__quote_id__get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/admin/quotes/{quote_id}/resolve": {
         parameters: {
             query?: never;
@@ -244,9 +377,85 @@ export interface paths {
         put?: never;
         /**
          * Resolve Quote
-         * @description Set the total on a needs_review quote. The amount must appear verbatim in the operator's PDF.
+         * @description Set the total on a needs_review quote. The amount must appear verbatim in the operator's PDF, and the quote's
+         *     payment host must already be approved (decide its `payment_host` approval first).
          */
         post: operations["resolve_quote_v1_admin_quotes__quote_id__resolve_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/suppressions": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /** List Suppressions */
+        get: operations["list_suppressions_v1_admin_suppressions_get"];
+        put?: never;
+        /** Add Suppression */
+        post: operations["add_suppression_v1_admin_suppressions_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/suppressions/{suppression_id}": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        post?: never;
+        /** Remove Suppression */
+        delete: operations["remove_suppression_v1_admin_suppressions__suppression_id__delete"];
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/trips/{trip_id}/manifest/revoke-links": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Revoke Manifest Links
+         * @description Withdraw every operator link issued for this trip's manifest (they stop working at once).
+         */
+        post: operations["revoke_manifest_links_v1_admin_trips__trip_id__manifest_revoke_links_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/admin/users/{user_id}/deactivate": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Deactivate User
+         * @description Deactivate a login and revoke every session it holds (session_version is bumped).
+         */
+        post: operations["deactivate_user_v1_admin_users__user_id__deactivate_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -304,6 +513,26 @@ export interface paths {
         patch?: never;
         trace?: never;
     };
+    "/v1/airports/{icao}/fbos": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Airport Fbos
+         * @description FBOs at an airport (for ground requests). Names are public; phone and email only for entitled viewers.
+         */
+        get: operations["airport_fbos_v1_airports__icao__fbos_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
     "/v1/auth/login": {
         parameters: {
             query?: never;
@@ -330,8 +559,68 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Logout */
+        /**
+         * Logout
+         * @description Ends ALL of this user's sessions (the session version is bumped), not just this browser's.
+         */
         post: operations["logout_v1_auth_logout_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/password": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Change Password
+         * @description Change the password (current one required). Every other session is revoked; this one gets a fresh cookie.
+         */
+        post: operations["change_password_v1_auth_password_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/password/reset": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /** Password Reset */
+        post: operations["password_reset_v1_auth_password_reset_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/password/reset-request": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Password Reset Request
+         * @description Always 202 'check_your_email', whether or not the email has an account.
+         */
+        post: operations["password_reset_request_v1_auth_password_reset_request_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -347,8 +636,54 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Signup */
+        /**
+         * Signup
+         * @description New email: account created. In dev/test the caller is logged in at once (201 Me). Everywhere else the answer is
+         *     the same 202 for a new and for an existing email, and the caller confirms the emailed verification link, then signs in (L3).
+         *     An existing email gets an `account_notice` email and no change. A new email always gets an `email_verification` message
+         *     (in dev/test too, so the flow is testable; there the session is issued at once and login does not require verification).
+         */
         post: operations["signup_v1_auth_signup_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/verify-email": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Verify Email
+         * @description Redeem the emailed single-use token: marks the email verified and signs the person in (every environment).
+         */
+        post: operations["verify_email_v1_auth_verify_email_post"];
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/auth/verify-email/resend": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        get?: never;
+        put?: never;
+        /**
+         * Resend Verification
+         * @description Always 202 'check_your_email', whether or not the email has an unverified account.
+         */
+        post: operations["resend_verification_v1_auth_verify_email_resend_post"];
         delete?: never;
         options?: never;
         head?: never;
@@ -384,6 +719,7 @@ export interface paths {
         /**
          * Enterprise Inquiry
          * @description Enterprise has no price. The inquiry is recorded for the CEO to follow up; nothing is quoted.
+         *     The free text is stored encrypted in enterprise_inquiries; audit_log carries only the inquiry id.
          */
         post: operations["enterprise_inquiry_v1_billing_enterprise_inquiry_post"];
         delete?: never;
@@ -594,7 +930,11 @@ export interface paths {
         };
         get?: never;
         put?: never;
-        /** Submit */
+        /**
+         * Submit
+         * @description The OWNER submits the account's check (individual or business). An invited member submits only their own
+         *     individual identity (their personal entitlement depends on it); they cannot touch the account's check.
+         */
         post: operations["submit_v1_kyc_submissions_post"];
         delete?: never;
         options?: never;
@@ -628,6 +968,27 @@ export interface paths {
         };
         /** Me */
         get: operations["me_v1_me_get"];
+        put?: never;
+        post?: never;
+        delete?: never;
+        options?: never;
+        head?: never;
+        patch?: never;
+        trace?: never;
+    };
+    "/v1/operator/manifest": {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        /**
+         * Operator Manifest
+         * @description The submitted manifest for one trip, for the operator contact the link was issued to. Rate limited per client
+         *     address and per token; every use of a known token is written to audit_log (ip, time, token id).
+         */
+        get: operations["operator_manifest_v1_operator_manifest_get"];
         put?: never;
         post?: never;
         delete?: never;
@@ -921,6 +1282,15 @@ export interface paths {
 export type webhooks = Record<string, never>;
 export interface components {
     schemas: {
+        /** Accepted */
+        Accepted: {
+            /**
+             * Status
+             * @default check_your_email
+             * @constant
+             */
+            status: "check_your_email";
+        };
         /** AccountOut */
         AccountOut: {
             /** Display Name */
@@ -930,12 +1300,18 @@ export interface components {
              * Format: uuid
              */
             id: string;
-            /** Kyc Status */
-            kyc_status: string;
+            /**
+             * Kyc Status
+             * @enum {string}
+             */
+            kyc_status: "not_started" | "submitted" | "in_review" | "approved" | "rejected";
             /** Seats */
             seats: number;
-            /** Type */
-            type: string;
+            /**
+             * Type
+             * @enum {string}
+             */
+            type: "individual" | "family_office" | "enterprise";
         };
         /** AdminDocument */
         AdminDocument: {
@@ -981,10 +1357,24 @@ export interface components {
              * Format: uuid
              */
             id: string;
-            /** Kind */
-            kind: string;
-            /** Status */
-            status: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "individual" | "business";
+            /**
+             * Scope
+             * @default account
+             * @enum {string}
+             */
+            scope: "account" | "member";
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "not_started" | "submitted" | "in_review" | "approved" | "rejected";
+            /** Subject User Id */
+            subject_user_id?: string | null;
             /** Vendor */
             vendor: string | null;
             /** Vendor Result */
@@ -996,14 +1386,20 @@ export interface components {
         AdminOperatorOut: {
             /** Aircraft Count */
             aircraft_count: number;
-            /** Certificate Type */
-            certificate_type: string;
+            /**
+             * Certificate Type
+             * @enum {string}
+             */
+            certificate_type: "135" | "121" | "foreign";
             /** Contact Count */
             contact_count: number;
             /** Dba Name */
             dba_name: string;
-            /** Go Live Status */
-            go_live_status: string;
+            /**
+             * Go Live Status
+             * @enum {string}
+             */
+            go_live_status: "draft" | "pending_ceo" | "live" | "suspended";
             /**
              * Id
              * Format: uuid
@@ -1011,8 +1407,21 @@ export interface components {
             id: string;
             /** Is Excluded */
             is_excluded: boolean;
-            /** Safety Rating */
-            safety_rating: string;
+            /**
+             * Payment Hosts
+             * @default []
+             */
+            payment_hosts: string[];
+            /**
+             * Pending Contact Count
+             * @default 0
+             */
+            pending_contact_count: number;
+            /**
+             * Safety Rating
+             * @enum {string}
+             */
+            safety_rating: "Not rated" | "Gold" | "Gold+" | "Platinum" | "Platinum+";
         };
         /** AdminQuoteReview */
         AdminQuoteReview: {
@@ -1025,6 +1434,12 @@ export interface components {
             id: string;
             /** Parse Confidence */
             parse_confidence: number | null;
+            /** Payment Host */
+            payment_host?: string | null;
+            /** Payment Host Approval Id */
+            payment_host_approval_id?: string | null;
+            /** Payment Host Approved */
+            payment_host_approved?: boolean | null;
             /** Pdf Url */
             pdf_url: string | null;
             /**
@@ -1032,8 +1447,11 @@ export interface components {
              * Format: uuid
              */
             rfq_id: string;
-            /** Status */
-            status: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "received" | "needs_review" | "ready" | "accepted" | "declined" | "expired";
             /**
              * Trip Id
              * Format: uuid
@@ -1068,10 +1486,16 @@ export interface components {
             model: string | null;
             /** Output Tokens */
             output_tokens: number;
-            /** Permission Level */
-            permission_level: string;
-            /** Status */
-            status: string;
+            /**
+             * Permission Level
+             * @enum {string}
+             */
+            permission_level: "READ" | "DRAFT" | "EXECUTE";
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "queued" | "running" | "awaiting_approval" | "done" | "failed" | "blocked";
         };
         /** AircraftTypeOut */
         AircraftTypeOut: {
@@ -1083,8 +1507,11 @@ export interface components {
             cabin_length_ft: number | null;
             /** Cabin Width Ft */
             cabin_width_ft: number | null;
-            /** Category */
-            category: string;
+            /**
+             * Category
+             * @enum {string}
+             */
+            category: "turboprop" | "very_light" | "light" | "midsize" | "super_midsize" | "heavy" | "ultra_long_range" | "airliner";
             /** Cruise Speed Kts */
             cruise_speed_kts: number | null;
             /** Icao Type Code */
@@ -1101,6 +1528,26 @@ export interface components {
             range_nm: number | null;
             /** Slug */
             slug: string;
+        };
+        /**
+         * AirportBrief
+         * @description Enough to label an airport and draw a schematic: no runway or elevation data.
+         */
+        AirportBrief: {
+            /** City */
+            city: string | null;
+            /** Icao */
+            icao: string;
+            /** Latitude */
+            latitude: number;
+            /** Longitude */
+            longitude: number;
+            /** Name */
+            name: string;
+            /** State */
+            state: string | null;
+            /** Timezone */
+            timezone: string | null;
         };
         /** AirportOut */
         AirportOut: {
@@ -1137,8 +1584,11 @@ export interface components {
              * Format: uuid
              */
             id: string;
-            /** Kind */
-            kind: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "kyc_final" | "operator_go_live" | "outreach_campaign" | "rfq_dispatch_policy" | "plan_change" | "refund" | "content_publish" | "merge" | "deploy" | "payment_host" | "inbound_review" | "seat_overage" | "legal_notice";
             /** Payload */
             payload: {
                 [key: string]: unknown;
@@ -1147,8 +1597,11 @@ export interface components {
             requested_by: string;
             /** Required Role */
             required_role: string;
-            /** Status */
-            status: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "pending" | "approved" | "rejected";
             /** Subject Id */
             subject_id: string;
             /** Subject Type */
@@ -1180,8 +1633,11 @@ export interface components {
         };
         /** CategoryOut */
         CategoryOut: {
-            /** Category */
-            category: string;
+            /**
+             * Category
+             * @enum {string}
+             */
+            category: "turboprop" | "very_light" | "light" | "midsize" | "super_midsize" | "heavy" | "ultra_long_range" | "airliner";
             /** Name */
             name: string;
             /** Type Count */
@@ -1270,8 +1726,25 @@ export interface components {
              * @default
              */
             body: string;
+            /**
+             * Dkim
+             * @default pass
+             * @enum {string}
+             */
+            dkim: "pass" | "fail" | "none";
+            /**
+             * Dmarc Pass
+             * @default true
+             */
+            dmarc_pass: boolean;
             /** From Address */
             from_address: string;
+            /**
+             * Spf
+             * @default pass
+             * @enum {string}
+             */
+            spf: "pass" | "fail" | "softfail" | "neutral" | "none";
             /** Subject */
             subject: string;
             /** Thread Id */
@@ -1311,10 +1784,67 @@ export interface components {
         EnterpriseInquiryIn: {
             /** Company */
             company: string;
+            /** Contact Email */
+            contact_email: string;
+            /** Contact Name */
+            contact_name: string;
+            /** Contact Phone */
+            contact_phone?: string | null;
             /** Notes */
             notes?: string | null;
             /** Seats */
             seats: number;
+        };
+        /** EnterpriseInquiryOut */
+        EnterpriseInquiryOut: {
+            /** Account Id */
+            account_id: string | null;
+            /** Company */
+            company: string;
+            /** Contact Email */
+            contact_email: string | null;
+            /** Contact Name */
+            contact_name: string | null;
+            /** Contact Phone */
+            contact_phone: string | null;
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Notes */
+            notes: string | null;
+            /** Seats */
+            seats: number;
+            /**
+             * User Id
+             * Format: uuid
+             */
+            user_id: string;
+        };
+        /** FboOut */
+        FboOut: {
+            /** Email */
+            email: string | null;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Name */
+            name: string;
+            /** Phone */
+            phone: string | null;
+        };
+        /** GoLiveRequestOut */
+        GoLiveRequestOut: {
+            approval: components["schemas"]["ApprovalOut"];
+            operator: components["schemas"]["AdminOperatorOut"];
         };
         /** GroundRfqIn */
         GroundRfqIn: {
@@ -1345,8 +1875,11 @@ export interface components {
              * Format: date-time
              */
             created_at: string;
-            /** Dataset */
-            dataset: string;
+            /**
+             * Dataset
+             * @enum {string}
+             */
+            dataset: "operators" | "aircraft" | "airports_fbos" | "outreach_lists";
             /** Duplicates Merged */
             duplicates_merged: number;
             /** Filename */
@@ -1399,8 +1932,11 @@ export interface components {
              * Format: date-time
              */
             run_at: string;
-            /** Status */
-            status: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "queued" | "running" | "done" | "failed";
         };
         /** KycLatest */
         KycLatest: {
@@ -1416,14 +1952,26 @@ export interface components {
              * Format: uuid
              */
             id: string;
-            /** Status */
-            status: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "not_started" | "submitted" | "in_review" | "approved" | "rejected";
         };
         /** KycStatusOut */
         KycStatusOut: {
-            /** Kyc Status */
-            kyc_status: string;
+            /**
+             * Kyc Status
+             * @enum {string}
+             */
+            kyc_status: "not_started" | "submitted" | "in_review" | "approved" | "rejected";
             latest_submission: components["schemas"]["KycLatest"] | null;
+            /**
+             * Scope
+             * @default account
+             * @enum {string}
+             */
+            scope: "account" | "member";
         };
         /** KycSubmissionOut */
         KycSubmissionOut: {
@@ -1432,8 +1980,11 @@ export interface components {
              * Format: uuid
              */
             id: string;
-            /** Status */
-            status: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "not_started" | "submitted" | "in_review" | "approved" | "rejected";
         };
         /** LegDraftIO */
         LegDraftIO: {
@@ -1441,12 +1992,21 @@ export interface components {
             depart_at?: string | null;
             /** Depart Date */
             depart_date?: string | null;
+            /** Depart Local */
+            depart_local?: string | null;
             /** Destination Icao */
             destination_icao?: string | null;
             /** Origin Icao */
             origin_icao?: string | null;
+            /** Origin Timezone */
+            origin_timezone?: string | null;
         };
-        /** LegIn */
+        /**
+         * LegIn
+         * @description `depart_at` is either an instant with an offset (`2026-12-04T14:00:00-05:00`, `...Z`) or a naive wall-clock time
+         *     (`2026-12-04T14:00` or `...T14:00:00`) that is interpreted in the ORIGIN airport's time zone. Nothing else is accepted
+         *     (a bare date, a space instead of `T`, a week number).
+         */
         LegIn: {
             /**
              * Depart At
@@ -1465,14 +2025,20 @@ export interface components {
              * Format: date-time
              */
             depart_at: string;
+            /** Depart Local */
+            depart_local: string | null;
+            destination: components["schemas"]["AirportBrief"];
             /** Destination Icao */
             destination_icao: string;
             /** Distance Nm */
             distance_nm: number | null;
             /** Is International */
             is_international: boolean;
+            origin: components["schemas"]["AirportBrief"];
             /** Origin Icao */
             origin_icao: string;
+            /** Origin Timezone */
+            origin_timezone: string | null;
             /** Sequence */
             sequence: number;
         };
@@ -1481,8 +2047,11 @@ export interface components {
             position: components["schemas"]["Position"] | null;
             /** Sequence */
             sequence: number;
-            /** Status */
-            status: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "scheduled" | "airborne" | "landed" | "unknown";
         };
         /** LegWeather */
         LegWeather: {
@@ -1519,7 +2088,7 @@ export interface components {
             /** Photos */
             photos: string[];
             /** Safety Rating */
-            safety_rating: string | null;
+            safety_rating: ("Not rated" | "Gold" | "Gold+" | "Platinum" | "Platinum+") | null;
             /** Tail Number */
             tail_number: string | null;
             type: components["schemas"]["ListingType"];
@@ -1530,8 +2099,11 @@ export interface components {
         };
         /** ListingOperator */
         ListingOperator: {
-            /** Certificate Type */
-            certificate_type: string;
+            /**
+             * Certificate Type
+             * @enum {string}
+             */
+            certificate_type: "135" | "121" | "foreign";
             /** Contacts */
             contacts: components["schemas"]["ContactOut"][];
             /** Dba Name */
@@ -1544,8 +2116,11 @@ export interface components {
         };
         /** ListingType */
         ListingType: {
-            /** Category */
-            category: string;
+            /**
+             * Category
+             * @enum {string}
+             */
+            category: "turboprop" | "very_light" | "light" | "midsize" | "super_midsize" | "heavy" | "ultra_long_range" | "airliner";
             /** Manufacturer */
             manufacturer: string;
             /** Model */
@@ -1581,8 +2156,11 @@ export interface components {
             expected_passengers: number;
             /** Passengers */
             passengers: components["schemas"]["PassengerOut"][];
-            /** Required Id Type */
-            required_id_type: string;
+            /**
+             * Required Id Type
+             * @enum {string}
+             */
+            required_id_type: "real_id" | "passport";
             /** Submitted At */
             submitted_at: string | null;
         };
@@ -1593,8 +2171,11 @@ export interface components {
         };
         /** MatchCategoryOut */
         MatchCategoryOut: {
-            /** Category */
-            category: string;
+            /**
+             * Category
+             * @enum {string}
+             */
+            category: "turboprop" | "very_light" | "light" | "midsize" | "super_midsize" | "heavy" | "ultra_long_range" | "airliner";
             /** Types */
             types: components["schemas"]["MatchTypeOut"][];
         };
@@ -1654,6 +2235,7 @@ export interface components {
             account: components["schemas"]["AccountOut"] | null;
             /** Entitled */
             entitled: boolean;
+            member?: components["schemas"]["MemberOut"] | null;
             /**
              * Next Step
              * @enum {string}
@@ -1661,6 +2243,21 @@ export interface components {
             next_step: "kyc" | "kyc_pending" | "billing" | "ready";
             subscription: components["schemas"]["SubscriptionOut"] | null;
             user: components["schemas"]["UserOut"];
+        };
+        /** MemberOut */
+        MemberOut: {
+            /**
+             * Identity Status
+             * @enum {string}
+             */
+            identity_status: "not_started" | "submitted" | "in_review" | "approved" | "rejected";
+            /** Is Owner */
+            is_owner: boolean;
+            /**
+             * Is Suspended
+             * @default false
+             */
+            is_suspended: boolean;
         };
         /** MetricsOut */
         MetricsOut: {
@@ -1679,7 +2276,65 @@ export interface components {
             /** Rfq To Quote Rate */
             rfq_to_quote_rate: number | null;
         };
-        /** PassengerIn */
+        /** OperatorManifestLeg */
+        OperatorManifestLeg: {
+            /** Depart Local */
+            depart_local: string | null;
+            /** Destination Icao */
+            destination_icao: string;
+            /** Origin Icao */
+            origin_icao: string;
+            /** Origin Timezone */
+            origin_timezone: string | null;
+            /** Sequence */
+            sequence: number;
+        };
+        /**
+         * OperatorManifestOut
+         * @description What an operator contact sees through a secure link. Contains passenger PII: never cached, never emailed.
+         */
+        OperatorManifestOut: {
+            /** Expected Passengers */
+            expected_passengers: number;
+            /**
+             * Expires At
+             * Format: date-time
+             */
+            expires_at: string;
+            /** Legs */
+            legs: components["schemas"]["OperatorManifestLeg"][];
+            /** Passengers */
+            passengers: components["schemas"]["OperatorManifestPassenger"][];
+            /** Submitted At */
+            submitted_at: string | null;
+            /** Trip Reference */
+            trip_reference: string;
+        };
+        /** OperatorManifestPassenger */
+        OperatorManifestPassenger: {
+            /** Date Of Birth */
+            date_of_birth: string;
+            /** Full Name */
+            full_name: string;
+            /** Id Expiry */
+            id_expiry: string | null;
+            /** Id Issuer */
+            id_issuer: string | null;
+            /** Id Number */
+            id_number: string;
+            /**
+             * Id Type
+             * @enum {string}
+             */
+            id_type: "real_id" | "passport";
+            /** Weight Lbs */
+            weight_lbs: number | null;
+        };
+        /**
+         * PassengerIn
+         * @description `id` set: update that passenger; `id_number` omitted keeps the stored number (it is never returned in full).
+         *     `id` omitted: a new passenger, `id_number` required.
+         */
         PassengerIn: {
             /**
              * Date Of Birth
@@ -1688,6 +2343,8 @@ export interface components {
             date_of_birth: string;
             /** Full Name */
             full_name: string;
+            /** Id */
+            id?: string | null;
             /**
              * Id Expiry
              * Format: date
@@ -1696,7 +2353,7 @@ export interface components {
             /** Id Issuer */
             id_issuer: string;
             /** Id Number */
-            id_number: string;
+            id_number?: string | null;
             /**
              * Id Type
              * @enum {string}
@@ -1711,23 +2368,62 @@ export interface components {
             date_of_birth: string;
             /** Full Name */
             full_name: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
             /** Id Expiry */
             id_expiry: string | null;
             /** Id Issuer */
             id_issuer: string | null;
             /** Id Number Last4 */
             id_number_last4: string;
-            /** Id Type */
-            id_type: string;
+            /**
+             * Id Type
+             * @enum {string}
+             */
+            id_type: "real_id" | "passport";
             /** Weight Lbs */
             weight_lbs: number | null;
         };
+        /** PasswordChangeIn */
+        PasswordChangeIn: {
+            /** Current Password */
+            current_password: string;
+            /** New Password */
+            new_password: string;
+        };
+        /** PasswordResetIn */
+        PasswordResetIn: {
+            /** New Password */
+            new_password: string;
+            /** Token */
+            token: string;
+        };
+        /** PasswordResetRequestIn */
+        PasswordResetRequestIn: {
+            /** Email */
+            email: string;
+        };
+        /** PaymentHostsIn */
+        PaymentHostsIn: {
+            /** Hosts */
+            hosts: string[];
+        };
         /** PaymentLinkOut */
         PaymentLinkOut: {
+            /** Changed Since First */
+            changed_since_first: boolean;
             /** Host */
             host: string;
-            /** Status */
-            status: string;
+            /** Host Approved */
+            host_approved: boolean;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "pending" | "member_marked_paid" | "operator_confirmed";
             /** Url */
             url: string;
         };
@@ -1742,8 +2438,11 @@ export interface components {
             interval: "month" | null;
             /** Name */
             name: string;
-            /** Plan */
-            plan: string;
+            /**
+             * Plan
+             * @enum {string}
+             */
+            plan: "individual" | "family_office" | "enterprise";
             /** Seats */
             seats: number | null;
             /** Unit Amount Cents */
@@ -1768,6 +2467,30 @@ export interface components {
             lat: number;
             /** Lon */
             lon: number;
+        };
+        /** QuarantinedMessageOut */
+        QuarantinedMessageOut: {
+            /** Approval Id */
+            approval_id: string | null;
+            /** Dkim */
+            dkim: string | null;
+            /** Dmarc Pass */
+            dmarc_pass: boolean | null;
+            /** From Address */
+            from_address: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Reason */
+            reason: string | null;
+            /** Received At */
+            received_at: string | null;
+            /** Spf */
+            spf: string | null;
+            /** Subject */
+            subject: string;
         };
         /** QuoteOperator */
         QuoteOperator: {
@@ -1798,8 +2521,11 @@ export interface components {
              * Format: uuid
              */
             rfq_id: string;
-            /** Status */
-            status: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "received" | "needs_review" | "ready" | "accepted" | "declined" | "expired";
             /** Total Amount Cents */
             total_amount_cents: number | null;
             /**
@@ -1817,6 +2543,11 @@ export interface components {
             /** Slug */
             slug: string;
         };
+        /** ResendVerificationIn */
+        ResendVerificationIn: {
+            /** Email */
+            email: string;
+        };
         /** ResolveQuoteIn */
         ResolveQuoteIn: {
             /**
@@ -1828,6 +2559,11 @@ export interface components {
             total_amount_cents: number;
             /** Valid Until */
             valid_until?: string | null;
+        };
+        /** RevokeLinksOut */
+        RevokeLinksOut: {
+            /** Revoked */
+            revoked: number;
         };
         /** RfqCreateIn */
         RfqCreateIn: {
@@ -1843,8 +2579,11 @@ export interface components {
              * Format: uuid
              */
             id: string;
-            /** Kind */
-            kind: string;
+            /**
+             * Kind
+             * @enum {string}
+             */
+            kind: "charter" | "empty_leg" | "rental_car" | "chauffeur";
             listing: components["schemas"]["Listing"] | null;
             /** Reference */
             reference: string;
@@ -1852,25 +2591,88 @@ export interface components {
             replied_at: string | null;
             /** Sent At */
             sent_at: string | null;
-            /** Status */
-            status: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "queued" | "sent" | "replied" | "declined" | "expired" | "failed";
+        };
+        /** SeatAcceptIn */
+        SeatAcceptIn: {
+            /** Token */
+            token: string;
         };
         /** SeatIn */
         SeatIn: {
             /** Email */
             email: string;
         };
-        /** SeatOut */
-        SeatOut: {
+        /** SeatInvitationOut */
+        SeatInvitationOut: {
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /** Email */
+            email: string;
+            /**
+             * Expires At
+             * Format: date-time
+             */
+            expires_at: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+        };
+        /**
+         * SeatInviteOut
+         * @description Always the same answer, whether or not the email has an EXJET login.
+         */
+        SeatInviteOut: {
+            /**
+             * Status
+             * @default invitation_queued
+             * @constant
+             */
+            status: "invitation_queued";
+        };
+        /** SeatMemberOut */
+        SeatMemberOut: {
+            /** Email */
+            email: string;
+            /** Full Name */
+            full_name: string | null;
+            /**
+             * Identity Status
+             * @enum {string}
+             */
+            identity_status: "not_started" | "submitted" | "in_review" | "approved" | "rejected";
+            /** Is Owner */
+            is_owner: boolean;
+            /** Is Suspended */
+            is_suspended: boolean;
+            /**
+             * User Id
+             * Format: uuid
+             */
+            user_id: string;
+        };
+        /** SeatsOut */
+        SeatsOut: {
             /**
              * Account Id
              * Format: uuid
              */
             account_id: string;
+            /** Invitations */
+            invitations: components["schemas"]["SeatInvitationOut"][];
+            /** Members */
+            members: components["schemas"]["SeatMemberOut"][];
             /** Seats */
             seats: number;
-            /** Seats Used */
-            seats_used: number;
         };
         /** SignupIn */
         SignupIn: {
@@ -1888,6 +2690,18 @@ export interface components {
             /** Signup Source */
             signup_source?: string | null;
         };
+        /**
+         * SignupPending
+         * @description Uniform signup answer outside dev/test: identical whether or not the email already has an account.
+         */
+        SignupPending: {
+            /**
+             * Status
+             * @default check_your_email
+             * @constant
+             */
+            status: "check_your_email";
+        };
         /** StationWeather */
         StationWeather: {
             /** Icao */
@@ -1901,10 +2715,46 @@ export interface components {
         SubscriptionOut: {
             /** Current Period End */
             current_period_end: string | null;
-            /** Plan */
-            plan: string;
-            /** Status */
-            status: string;
+            /**
+             * Plan
+             * @enum {string}
+             */
+            plan: "individual" | "family_office" | "enterprise";
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "incomplete" | "active" | "past_due" | "canceled";
+        };
+        /** SuppressionIn */
+        SuppressionIn: {
+            /** Email */
+            email: string;
+            /**
+             * Reason
+             * @default manual
+             * @enum {string}
+             */
+            reason: "unsubscribe" | "bounce" | "complaint" | "legal" | "manual";
+        };
+        /** SuppressionOut */
+        SuppressionOut: {
+            /**
+             * Created At
+             * Format: date-time
+             */
+            created_at: string;
+            /** Email */
+            email: string;
+            /**
+             * Id
+             * Format: uuid
+             */
+            id: string;
+            /** Reason */
+            reason: string;
+            /** Source */
+            source: string | null;
         };
         /** TrackOut */
         TrackOut: {
@@ -1972,8 +2822,11 @@ export interface components {
             passengers: number | null;
             /** Ski Bags */
             ski_bags: number;
-            /** Trip Type */
-            trip_type: string;
+            /**
+             * Trip Type
+             * @enum {string}
+             */
+            trip_type: "one_way" | "round_trip" | "multi_leg";
             /** Unresolved */
             unresolved: string[];
         };
@@ -2010,10 +2863,16 @@ export interface components {
             rfqs: components["schemas"]["RfqOut"][];
             /** Ski Bags */
             ski_bags: number;
-            /** Status */
-            status: string;
-            /** Trip Type */
-            trip_type: string;
+            /**
+             * Status
+             * @enum {string}
+             */
+            status: "draft" | "rfq_sent" | "quoted" | "contracted" | "paid" | "manifest_due" | "scheduled" | "in_flight" | "completed" | "cancelled";
+            /**
+             * Trip Type
+             * @enum {string}
+             */
+            trip_type: "one_way" | "round_trip" | "multi_leg";
             /** Weather Available */
             weather_available: boolean;
         };
@@ -2038,6 +2897,8 @@ export interface components {
         UserOut: {
             /** Email */
             email: string;
+            /** Email Verified */
+            email_verified: boolean;
             /** Full Name */
             full_name: string | null;
             /**
@@ -2045,8 +2906,11 @@ export interface components {
              * Format: uuid
              */
             id: string;
-            /** Role */
-            role: string;
+            /**
+             * Role
+             * @enum {string}
+             */
+            role: "member" | "admin";
         };
         /** ValidationError */
         ValidationError: {
@@ -2060,6 +2924,11 @@ export interface components {
             msg: string;
             /** Error Type */
             type: string;
+        };
+        /** VerifyEmailIn */
+        VerifyEmailIn: {
+            /** Token */
+            token: string;
         };
         /** WeatherOut */
         WeatherOut: {
@@ -2075,7 +2944,27 @@ export interface components {
 }
 export type $defs = Record<string, never>;
 export interface operations {
-    add_seat_v1_account_seats_post: {
+    list_seats_v1_account_seats_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SeatsOut"];
+                };
+            };
+        };
+    };
+    invite_seat_v1_account_seats_post: {
         parameters: {
             query?: never;
             header?: never;
@@ -2089,13 +2978,75 @@ export interface operations {
         };
         responses: {
             /** @description Successful Response */
-            201: {
+            202: {
                 headers: {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["SeatOut"];
+                    "application/json": components["schemas"]["SeatInviteOut"];
                 };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    accept_invitation_v1_account_seats_accept_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SeatAcceptIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Me"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    revoke_invitation_v1_account_seats_invitations__invitation_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                invitation_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
             /** @description Validation Error */
             422: {
@@ -2205,6 +3156,57 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    enterprise_inquiries_v1_admin_enterprise_inquiries_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["EnterpriseInquiryOut"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    quarantined_v1_admin_inbound_quarantined_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["QuarantinedMessageOut"][];
                 };
             };
         };
@@ -2407,6 +3409,71 @@ export interface operations {
             };
         };
     };
+    confirm_rfq_contact_v1_admin_operators__operator_id__contacts__contact_id__confirm_rfq_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                operator_id: string;
+                contact_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    set_payment_hosts_v1_admin_operators__operator_id__payment_hosts_put: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                operator_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PaymentHostsIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminOperatorOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     request_go_live_v1_admin_operators__operator_id__request_go_live_post: {
         parameters: {
             query?: never;
@@ -2424,7 +3491,7 @@ export interface operations {
                     [name: string]: unknown;
                 };
                 content: {
-                    "application/json": components["schemas"]["ApprovalOut"];
+                    "application/json": components["schemas"]["GoLiveRequestOut"];
                 };
             };
             /** @description Validation Error */
@@ -2469,6 +3536,37 @@ export interface operations {
             };
         };
     };
+    review_quote_v1_admin_quotes__quote_id__get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                quote_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["AdminQuoteReview"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     resolve_quote_v1_admin_quotes__quote_id__resolve_post: {
         parameters: {
             query?: never;
@@ -2492,6 +3590,159 @@ export interface operations {
                 content: {
                     "application/json": components["schemas"]["AdminQuoteReview"];
                 };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    list_suppressions_v1_admin_suppressions_get: {
+        parameters: {
+            query?: {
+                limit?: number;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SuppressionOut"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    add_suppression_v1_admin_suppressions_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["SuppressionIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            201: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SuppressionOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    remove_suppression_v1_admin_suppressions__suppression_id__delete: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                suppression_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    revoke_manifest_links_v1_admin_trips__trip_id__manifest_revoke_links_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                trip_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["RevokeLinksOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    deactivate_user_v1_admin_users__user_id__deactivate_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                user_id: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
             };
             /** @description Validation Error */
             422: {
@@ -2598,6 +3849,37 @@ export interface operations {
             };
         };
     };
+    airport_fbos_v1_airports__icao__fbos_get: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path: {
+                icao: string;
+            };
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["FboOut"][];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     login_v1_auth_login_post: {
         parameters: {
             query?: never;
@@ -2649,6 +3931,101 @@ export interface operations {
             };
         };
     };
+    change_password_v1_auth_password_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PasswordChangeIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    password_reset_v1_auth_password_reset_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PasswordResetIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            204: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content?: never;
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    password_reset_request_v1_auth_password_reset_request_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["PasswordResetRequestIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Accepted"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
     signup_v1_auth_signup_post: {
         parameters: {
             query?: never;
@@ -2669,6 +4046,81 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Me"];
+                };
+            };
+            /** @description Accepted */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["SignupPending"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    verify_email_v1_auth_verify_email_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["VerifyEmailIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Me"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
+                };
+            };
+        };
+    };
+    resend_verification_v1_auth_verify_email_resend_post: {
+        parameters: {
+            query?: never;
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody: {
+            content: {
+                "application/json": components["schemas"]["ResendVerificationIn"];
+            };
+        };
+        responses: {
+            /** @description Successful Response */
+            202: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["Accepted"];
                 };
             };
             /** @description Validation Error */
@@ -3098,6 +4550,37 @@ export interface operations {
                 };
                 content: {
                     "application/json": components["schemas"]["Me"];
+                };
+            };
+        };
+    };
+    operator_manifest_v1_operator_manifest_get: {
+        parameters: {
+            query: {
+                token: string;
+            };
+            header?: never;
+            path?: never;
+            cookie?: never;
+        };
+        requestBody?: never;
+        responses: {
+            /** @description Successful Response */
+            200: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["OperatorManifestOut"];
+                };
+            };
+            /** @description Validation Error */
+            422: {
+                headers: {
+                    [name: string]: unknown;
+                };
+                content: {
+                    "application/json": components["schemas"]["HTTPValidationError"];
                 };
             };
         };
