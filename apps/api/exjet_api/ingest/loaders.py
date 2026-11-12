@@ -314,7 +314,7 @@ def load_airports(session: Session, units: list[Row], airports: dict[str, Row]) 
     seen: dict[str, Airport] = {}
     fbo_counts = {"loaded": 0, "updated": 0, "unchanged": 0}
 
-    for icao, arow in airports.items():
+    for arow in airports.values():
         for f in arow.flags:
             if f.code.startswith("merge_conflict"):
                 stats.flags.append(f)

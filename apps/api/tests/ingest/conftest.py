@@ -16,9 +16,9 @@ assert TEST_DB_URL.rsplit("/", 1)[-1] == "exjet_data_test", "ingest tests must o
 
 os.environ.setdefault("EXJET_ENV", "test")
 
-from exjet_api import models  # noqa: F401  (registers every table on Base)
-from exjet_api.db import Base
-from exjet_api.ingest import load_config, run_ingest
+from exjet_api import models  # noqa: F401, E402  (registers every table on Base)
+from exjet_api.db import Base  # noqa: E402
+from exjet_api.ingest import load_config, run_ingest  # noqa: E402
 
 REPO = Path(__file__).resolve().parents[4]
 FIXTURES = REPO / "data" / "fixtures"
