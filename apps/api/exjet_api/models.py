@@ -27,12 +27,16 @@ from sqlalchemy import (
     String,
     Text,
     UniqueConstraint,
+    event,
     func,
+    text,
 )
-from sqlalchemy.orm import Mapped, mapped_column, relationship
+from sqlalchemy.orm import Mapped, mapped_column, relationship, validates
 
 from .crypto import EncryptedStr
 from .db import Base
+from .emailnorm import normalize_email
+from .opname import normalize_operator_name
 
 
 # --------------------------------------------------------------------------- enums
@@ -190,8 +194,18 @@ class User(TimestampMixin, Base):
     full_name: Mapped[str | None] = mapped_column(EncryptedStr)
     phone: Mapped[str | None] = mapped_column(EncryptedStr)
     is_active: Mapped[bool] = mapped_column(Boolean, default=True)
+    # Bumped on logout, password change/reset and deactivation. The session JWT carries it and every request
+    # checks it, so bumping revokes every outstanding session for this user.
+    session_version: Mapped[int] = mapped_column(Integer, default=0, server_default="0")
     signup_source: Mapped[str | None] = mapped_column(String(64))  # organic, outreach:<campaign>, referral
     memberships: Mapped[list[AccountMember]] = relationship(back_populates="user")
+
+    @validates("email")
+    def _norm_email(self, _key, value):
+        n = normalize_email(value)
+        if not n:
+            raise ValueError("invalid email address")
+        return n
 
 
 class Account(TimestampMixin, Base):
@@ -200,7 +214,7 @@ class Account(TimestampMixin, Base):
     __tablename__ = "accounts"
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=_uuid)
     type: Mapped[str] = mapped_column(String(24), default=AccountType.individual.value)
-    display_name: Mapped[str] = mapped_column(String(200))
+    display_name: Mapped[str] = mapped_column(EncryptedStr)  # holds the member's full name: encrypted
     seats: Mapped[int] = mapped_column(Integer, default=1)
     kyc_status: Mapped[str] = mapped_column(String(16), default=KycStatus.not_started.value, index=True)
     business_name: Mapped[str | None] = mapped_column(EncryptedStr)
@@ -216,6 +230,13 @@ class AccountMember(TimestampMixin, Base):
     account_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("accounts.id", ondelete="CASCADE"), index=True)
     user_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
     is_owner: Mapped[bool] = mapped_column(Boolean, default=False)
+    # Per-person identity. The owner inherits the account KYC result (see entitlements.member_identity_approved);
+    # an invited member must pass their own individual check before they are personally entitled.
+    identity_status: Mapped[str] = mapped_column(String(16), default=KycStatus.not_started.value,
+                                                 server_default=KycStatus.not_started.value)
+    # Set when the plan has fewer seats than members (downgrade): the extra members are not entitled until an
+    # admin resolves the `seat_overage` approval.
+    is_suspended: Mapped[bool] = mapped_column(Boolean, default=False, server_default=text("false"))
     account: Mapped[Account] = relationship(back_populates="members")
     user: Mapped[User] = relationship(back_populates="memberships")
 
@@ -225,6 +246,8 @@ class KycSubmission(TimestampMixin, Base):
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=_uuid)
     account_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("accounts.id", ondelete="CASCADE"), index=True)
     submitted_by: Mapped[uuid.UUID] = mapped_column(ForeignKey("users.id"))
+    # NULL: the account's own check (owner, individual or business). Set: an invited member's personal identity check.
+    subject_user_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("users.id"), index=True)
     kind: Mapped[str] = mapped_column(String(16))  # individual | business
     holder_name: Mapped[str] = mapped_column(EncryptedStr)
     status: Mapped[str] = mapped_column(String(16), default=KycStatus.submitted.value, index=True)
@@ -255,7 +278,21 @@ class Subscription(TimestampMixin, Base):
     unit_amount_cents: Mapped[int] = mapped_column(Integer)
     current_period_end: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     canceled_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    # Provider time of the newest billing event applied. Older events never overwrite newer state.
+    last_event_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     account: Mapped[Account] = relationship(back_populates="subscription")
+
+
+class BillingEventRecord(Base):
+    """Idempotency ledger: a provider event id is applied at most once."""
+
+    __tablename__ = "billing_events"
+    event_id: Mapped[str] = mapped_column(String(128), primary_key=True)
+    event_type: Mapped[str] = mapped_column(String(48))
+    account_id: Mapped[uuid.UUID | None] = mapped_column()
+    event_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    outcome: Mapped[str] = mapped_column(String(24), default="applied")  # applied | ignored_stale | ignored_state
+    received_at: Mapped[datetime] = mapped_column(DateTime(timezone=True), server_default=func.now())
 
 
 # --------------------------------------------------------------------------- supply (ingested, never invented)
@@ -274,8 +311,22 @@ class Operator(TimestampMixin, Base):
     is_excluded: Mapped[bool] = mapped_column(Boolean, default=False, index=True)
     go_live_status: Mapped[str] = mapped_column(String(16), default=GoLiveStatus.draft.value, index=True)
     source_file: Mapped[str | None] = mapped_column(String(255))
+    # Hosts the operator's payment links may use. Set by an admin at onboarding or on first review of a quote
+    # (Approval kind `payment_host`). A quote whose link host is not listed never reaches a member.
+    payment_hosts: Mapped[list | None] = mapped_column(JSON, default=list, server_default=text("'[]'::json"))
+    # normalize_operator_name() of dba_name / legal_name, maintained by the listener below. The SQL exclusion
+    # filter reads these so it agrees exactly with the Python matcher (guardrail 3).
+    name_norm: Mapped[str | None] = mapped_column(Text)
+    legal_name_norm: Mapped[str | None] = mapped_column(Text)
     contacts: Mapped[list[OperatorContact]] = relationship(back_populates="operator", cascade="all, delete-orphan")
     aircraft: Mapped[list[Aircraft]] = relationship(back_populates="operator")
+
+
+@event.listens_for(Operator, "before_insert")
+@event.listens_for(Operator, "before_update")
+def _operator_norm_names(_mapper, _conn, op: Operator) -> None:
+    op.name_norm = normalize_operator_name(op.dba_name)
+    op.legal_name_norm = normalize_operator_name(op.legal_name)
 
 
 class OperatorContact(TimestampMixin, Base):
@@ -291,6 +342,13 @@ class OperatorContact(TimestampMixin, Base):
     phone: Mapped[str | None] = mapped_column(String(40))
     receives_rfq: Mapped[bool] = mapped_column(Boolean, default=True)
     operator: Mapped[Operator] = relationship(back_populates="contacts")
+
+    @validates("email")
+    def _norm_email(self, _key, value):
+        n = normalize_email(value)
+        if not n:
+            raise ValueError("invalid email address")
+        return n
 
 
 class AircraftType(TimestampMixin, Base):
@@ -392,8 +450,8 @@ class Trip(TimestampMixin, Base):
     carry_on_bags: Mapped[int] = mapped_column(Integer, default=0)
     golf_bags: Mapped[int] = mapped_column(Integer, default=0)
     ski_bags: Mapped[int] = mapped_column(Integer, default=0)
-    raw_request: Mapped[str | None] = mapped_column(Text)  # the member's plain-language request
-    notes: Mapped[str | None] = mapped_column(Text)
+    raw_request: Mapped[str | None] = mapped_column(EncryptedStr)  # the member's plain-language request
+    notes: Mapped[str | None] = mapped_column(EncryptedStr)
     accepted_quote_id: Mapped[uuid.UUID | None] = mapped_column()
     legs: Mapped[list[TripLeg]] = relationship(
         back_populates="trip", cascade="all, delete-orphan", order_by="TripLeg.sequence"
@@ -422,7 +480,12 @@ class Rfq(TimestampMixin, Base):
     """One request to one operator for one tail (or a ground service at an FBO). Sent from quotes@."""
 
     __tablename__ = "rfqs"
-    __table_args__ = (UniqueConstraint("trip_id", "aircraft_id", "kind"),)
+    __table_args__ = (
+        UniqueConstraint("trip_id", "aircraft_id", "kind"),
+        # one ground request per (trip, FBO, kind, leg): the member cannot repeat-send the same FBO
+        Index("uq_rfqs_ground", "trip_id", "fbo_id", "kind", "leg_sequence", unique=True,
+              postgresql_where=text("fbo_id IS NOT NULL")),
+    )
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=_uuid)
     trip_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("trips.id", ondelete="CASCADE"), index=True)
     kind: Mapped[str] = mapped_column(String(16), default=RfqKind.charter.value)
@@ -437,6 +500,8 @@ class Rfq(TimestampMixin, Base):
     replied_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     last_chased_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
     thread_id: Mapped[str | None] = mapped_column(String(128), index=True)
+    leg_sequence: Mapped[int | None] = mapped_column(Integer)  # ground requests
+    details: Mapped[str | None] = mapped_column(EncryptedStr)  # member free text for ground requests (never in jobs.payload)
     trip: Mapped[Trip] = relationship(back_populates="rfqs")
     aircraft: Mapped[Aircraft | None] = relationship()
     operator: Mapped[Operator | None] = relationship()
@@ -518,7 +583,7 @@ class Passenger(TimestampMixin, Base):
     id_type: Mapped[str] = mapped_column(String(12))  # REAL ID domestic, passport international
     id_number: Mapped[str] = mapped_column(EncryptedStr)
     id_expiry: Mapped[date | None] = mapped_column(Date)
-    id_issuer: Mapped[str | None] = mapped_column(String(64))  # state or country
+    id_issuer: Mapped[str | None] = mapped_column(EncryptedStr)  # state or country
     weight_lbs: Mapped[int | None] = mapped_column(Integer)
     trip: Mapped[Trip] = relationship(back_populates="passengers_list")
 
@@ -560,11 +625,14 @@ class EmailMessage(TimestampMixin, Base):
     from_address: Mapped[str] = mapped_column(String(320))
     to_addresses: Mapped[list] = mapped_column(JSON)
     subject: Mapped[str] = mapped_column(String(998))
-    body_text: Mapped[str | None] = mapped_column(Text)
-    purpose: Mapped[str] = mapped_column(String(32))  # rfq | rfq_chase | quote_to_member | manifest | lifecycle | outreach
+    body_text: Mapped[str | None] = mapped_column(EncryptedStr)
+    # Inbound only: the mail provider's authentication verdict {dmarc_pass, spf, dkim}. Missing = not authenticated.
+    auth_result: Mapped[dict | None] = mapped_column(JSON)
+    quarantine_reason: Mapped[str | None] = mapped_column(String(64))
+    purpose: Mapped[str] = mapped_column(String(32))  # rfq | rfq_chase | quote_to_member | manifest | lifecycle | outreach | seat_invite | password_reset | account_notice
     rfq_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("rfqs.id"), index=True)
     approval_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("approvals.id"))
-    status: Mapped[str] = mapped_column(String(16), default="queued")  # queued|sent|failed|received|blocked
+    status: Mapped[str] = mapped_column(String(16), default="queued")  # queued|sent|failed|received|blocked|quarantined|rejected
     sent_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
 
@@ -575,7 +643,7 @@ class Approval(TimestampMixin, Base):
     __tablename__ = "approvals"
     __table_args__ = (Index("ix_approvals_subject", "subject_type", "subject_id"),)
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=_uuid)
-    kind: Mapped[str] = mapped_column(String(32), index=True)  # kyc_final | operator_go_live | outreach_campaign | rfq_dispatch_policy | plan_change | refund | content_publish | merge | deploy
+    kind: Mapped[str] = mapped_column(String(32), index=True)  # kyc_final | operator_go_live | outreach_campaign | rfq_dispatch_policy | plan_change | refund | content_publish | merge | deploy | payment_host | inbound_review | seat_overage | legal_notice
     subject_type: Mapped[str] = mapped_column(String(32))
     subject_id: Mapped[str] = mapped_column(String(64))
     required_role: Mapped[str] = mapped_column(String(16), default="ceo")  # ceo | director
@@ -592,10 +660,18 @@ class Suppression(TimestampMixin, Base):
     """Global do-not-email list. Checked before every send."""
 
     __tablename__ = "suppressions"
+    __table_args__ = (Index("uq_suppressions_email_lower", text("lower(email)"), unique=True),)
     id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=_uuid)
-    email: Mapped[str] = mapped_column(String(320), unique=True)
+    email: Mapped[str] = mapped_column(String(320), unique=True)  # normalize_email() form
     reason: Mapped[str] = mapped_column(String(32))  # unsubscribe | bounce | complaint | legal | manual
     source: Mapped[str | None] = mapped_column(String(64))
+
+    @validates("email")
+    def _norm_email(self, _key, value):
+        n = normalize_email(value)
+        if not n:
+            raise ValueError("invalid email address")
+        return n
 
 
 class Job(TimestampMixin, Base):
@@ -677,3 +753,61 @@ class OutreachContact(TimestampMixin, Base):
     state: Mapped[str | None] = mapped_column(String(2))
     verification_status: Mapped[str] = mapped_column(String(16), default="unverified")
     source_file: Mapped[str | None] = mapped_column(String(255))
+
+
+# --------------------------------------------------------------------------- security tables
+class SeatInvitation(TimestampMixin, Base):
+    """An owner's invitation for one email to take a seat. Only the SHA-256 of the token is stored.
+    Membership is created only when the invitee, logged in with the invited email, accepts."""
+
+    __tablename__ = "seat_invitations"
+    __table_args__ = (Index("ix_seat_invitations_email", "email"),)
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=_uuid)
+    account_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("accounts.id", ondelete="CASCADE"), index=True)
+    email: Mapped[str] = mapped_column(String(320))  # normalize_email() form
+    token_hash: Mapped[str] = mapped_column(String(64), unique=True)
+    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    accepted_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    accepted_by: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("users.id"))
+    revoked_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+    invited_by: Mapped[uuid.UUID] = mapped_column(ForeignKey("users.id"))
+
+    @validates("email")
+    def _norm_email(self, _key, value):
+        n = normalize_email(value)
+        if not n:
+            raise ValueError("invalid email address")
+        return n
+
+
+class PasswordResetToken(TimestampMixin, Base):
+    """Single-use, expiring. Only the SHA-256 of the token is stored."""
+
+    __tablename__ = "password_reset_tokens"
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=_uuid)
+    user_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True)
+    token_hash: Mapped[str] = mapped_column(String(64), unique=True)
+    expires_at: Mapped[datetime] = mapped_column(DateTime(timezone=True))
+    used_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
+
+
+class RateLimit(Base):
+    """Fixed-window counters shared by every API worker (see ratelimit.py)."""
+
+    __tablename__ = "rate_limits"
+    __table_args__ = (Index("ix_rate_limits_window", "window_start"),)
+    key: Mapped[str] = mapped_column(String(200), primary_key=True)
+    window_start: Mapped[datetime] = mapped_column(DateTime(timezone=True), primary_key=True)
+    count: Mapped[int] = mapped_column(Integer, default=0)
+
+
+class EnterpriseInquiry(TimestampMixin, Base):
+    """Free text from an enterprise inquiry lives here (encrypted); audit_log carries only the id."""
+
+    __tablename__ = "enterprise_inquiries"
+    id: Mapped[uuid.UUID] = mapped_column(primary_key=True, default=_uuid)
+    account_id: Mapped[uuid.UUID | None] = mapped_column(ForeignKey("accounts.id", ondelete="SET NULL"))
+    user_id: Mapped[uuid.UUID] = mapped_column(ForeignKey("users.id"))
+    company: Mapped[str] = mapped_column(EncryptedStr)
+    seats: Mapped[int] = mapped_column(Integer)
+    notes: Mapped[str | None] = mapped_column(EncryptedStr)

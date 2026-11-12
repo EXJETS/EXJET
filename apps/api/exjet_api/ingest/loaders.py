@@ -22,6 +22,7 @@ from ..models import (
     OperatorContact,
     OutreachContact,
 )
+from ..opname import normalize_certificate as _opname_cert
 from .config import IngestConfig
 from .normalize import compact, excluded_match, name_key, slugify, type_key
 from .types import Flag, LoadStats, Reject, Row
@@ -71,11 +72,13 @@ def load_operators(session: Session, rows: list[Row], cfg: IngestConfig, filenam
     for o in existing:
         by_name[name_key(o.dba_name)].append(o)
     no_rfq: list[int] = []
+    pending_confirm: list[int] = []
     contacts_loaded = contacts_updated = 0
 
     for row in rows:
         d = row.data
-        if excluded_match(d["dba_name"], cfg.excluded) or excluded_match(d["legal_name"], cfg.excluded):
+        if (excluded_match(d["dba_name"], cfg.excluded) or excluded_match(d["legal_name"], cfg.excluded)
+                or (d["certificate_number"] and _opname_cert(d["certificate_number"]) in cfg.excluded_certificates)):
             stats.rejects.append(Reject(row.n, "excluded_operator", "blocked again at load"))
             continue
         cert, nk = d["certificate_number"], name_key(d["dba_name"])
@@ -137,6 +140,7 @@ def load_operators(session: Session, rows: list[Row], cfg: IngestConfig, filenam
                 by_cert[cert] = op
             status = "updated" if changed else "unchanged"
 
+        is_live = op.go_live_status == GoLiveStatus.live.value
         for c in d["contacts"]:
             ec = session.scalar(
                 select(OperatorContact).where(
@@ -144,12 +148,30 @@ def load_operators(session: Session, rows: list[Row], cfg: IngestConfig, filenam
                 )
             )
             if ec is None:
+                if is_live and c.get("receives_rfq"):
+                    # A live operator already has CEO approval for the contacts it had. A contact that arrives
+                    # later must not silently become an RFQ recipient: it waits for admin confirmation.
+                    c = {**c, "receives_rfq": False}
+                    pending_confirm.extend(row.rows[:1])
+                    stats.flags.append(
+                        Flag(row.n, "new_contact_pending_confirmation",
+                             "new contact on a live operator: receives_rfq set to false until an admin confirms it")
+                    )
                 session.add(OperatorContact(operator_id=op.id, **c))
                 contacts_loaded += 1
                 status = "loaded" if status == "loaded" else "updated"
-            elif _apply(ec, {k: v for k, v in c.items() if k != "email"}):
-                contacts_updated += 1
-                status = _combine(status, "updated")
+            else:
+                upd = {k: v for k, v in c.items() if k != "email"}
+                if is_live and upd.get("receives_rfq") and not ec.receives_rfq:
+                    upd["receives_rfq"] = False  # a file cannot promote a contact to RFQ recipient on a live operator
+                    pending_confirm.extend(row.rows[:1])
+                    stats.flags.append(
+                        Flag(row.n, "contact_rfq_change_pending_confirmation",
+                             "file asks to enable RFQs for a contact on a live operator: left off until an admin confirms")
+                    )
+                if _apply(ec, upd):
+                    contacts_updated += 1
+                    status = _combine(status, "updated")
         session.flush()
         has_rfq = session.scalar(
             select(func.count())
@@ -161,7 +183,8 @@ def load_operators(session: Session, rows: list[Row], cfg: IngestConfig, filenam
             stats.flags.append(Flag(row.n, "operator_no_rfq_contact_email", "no RFQ contact email on file"))
         _tally(stats, status)
     stats.extras.update(
-        contacts_loaded=contacts_loaded, contacts_updated=contacts_updated, operators_no_rfq_rows=no_rfq
+        contacts_loaded=contacts_loaded, contacts_updated=contacts_updated, operators_no_rfq_rows=no_rfq,
+        contacts_pending_confirmation_rows=pending_confirm,
     )
     return stats
 
@@ -185,7 +208,7 @@ def load_aircraft(
     for row in rows:
         d = row.data
         cert, nk = d["operator_certificate_number"], name_key(d["operator_name"])
-        if cert and cert in excluded_certs:
+        if cert and (cert in excluded_certs or _opname_cert(cert) in cfg.excluded_certificates):
             stats.rejects.append(
                 Reject(row.n, "excluded_operator", "aircraft belongs to an excluded operator")
             )
@@ -218,7 +241,8 @@ def load_aircraft(
                 Reject(row.n, "unknown_operator", "operator not in database; load operators first")
             )
             continue
-        if op.is_excluded or excluded_match(op.dba_name, cfg.excluded):
+        if (op.is_excluded or excluded_match(op.dba_name, cfg.excluded)
+                or (op.certificate_number and _opname_cert(op.certificate_number) in cfg.excluded_certificates)):
             stats.rejects.append(
                 Reject(row.n, "excluded_operator", "aircraft belongs to an excluded operator")
             )

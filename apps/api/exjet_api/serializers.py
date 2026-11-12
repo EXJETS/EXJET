@@ -11,6 +11,7 @@ from . import clock
 from . import schemas as S
 from .entitlements import Viewer, can_see_member_fields
 from .models import Aircraft, Airport, Contract, EmptyLeg, PaymentLink, Quote, Rfq, Trip
+from .services import quote_checks as QC
 from .supply import operator_sellable
 
 WEATHER_HORIZON = timedelta(hours=36)  # TAFs cover roughly 30 hours
@@ -80,7 +81,9 @@ class Builder:
             quote_pdf_url=f"/v1/documents/{q.source_document_id}" if ent and q.source_document_id else None,
             contract=S.ContractOut(id=contract.id, pdf_url=f"/v1/documents/{contract.document_id}",
                                    acknowledged_at=contract.acknowledged_at) if contract else None,
-            payment_link=S.PaymentLinkOut(url=link.url, host=link.host, status=link.status) if link else None,
+            payment_link=S.PaymentLinkOut(
+                url=link.url, host=link.host, status=link.status, host_approved=QC.payment_host_approved(self.db, q),
+                changed_since_first=QC.changed_since_first(self.db, q)) if link else None,
         )
 
     # ------------------------------------------------------------------ trip
@@ -111,7 +114,7 @@ class Builder:
 
 
 def listing_visible(ac: Aircraft) -> bool:
-    return ac.is_active and operator_sellable(ac.operator)
+    return ac.is_active and operator_sellable(ac.operator)  # session-bound: also needs the go-live approval row
 
 
 def payment_link_for(db: Session, quote_id) -> PaymentLink | None:

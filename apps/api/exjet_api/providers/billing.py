@@ -4,13 +4,17 @@ from __future__ import annotations
 import hashlib
 import hmac
 import json
+import secrets
 import uuid
 from dataclasses import dataclass
 from typing import Protocol
 
+from .. import clock
 from .errors import NotImplementedProvider, ProviderError
 
-FAKE_WEBHOOK_SECRET = "fake-billing-webhook-secret"  # test double only; not a credential
+# Random per process: nothing about the fake provider's signature is guessable or published. Tests and the dev
+# endpoints sign through FakeBilling.sign(), in the same process.
+FAKE_WEBHOOK_SECRET = secrets.token_hex(32)
 
 
 @dataclass(frozen=True)
@@ -29,6 +33,7 @@ class BillingEvent:
     customer_id: str | None = None
     subscription_id: str | None = None
     current_period_end_ts: int | None = None
+    created_ts: int | None = None  # provider event time (unix seconds)
 
 
 class BillingProvider(Protocol):
@@ -60,11 +65,13 @@ class FakeBilling:
         return hmac.new(FAKE_WEBHOOK_SECRET.encode(), body, hashlib.sha256).hexdigest()
 
     def make_event(self, event_type: str, account_id: uuid.UUID, plan: str | None = None,
-                   period_end_ts: int | None = None) -> tuple[bytes, str]:
+                   period_end_ts: int | None = None, *, event_id: str | None = None,
+                   created_ts: int | None = None) -> tuple[bytes, str]:
         payload = {
-            "id": f"fakeevt_{uuid.uuid4().hex[:12]}", "type": event_type, "account_id": str(account_id), "plan": plan,
-            "customer_id": f"fakecus_{account_id.hex[:16]}", "subscription_id": f"fakesub_{account_id.hex[:16]}",
-            "current_period_end_ts": period_end_ts,
+            "id": event_id or f"fakeevt_{uuid.uuid4().hex[:12]}", "type": event_type, "account_id": str(account_id),
+            "plan": plan, "customer_id": f"fakecus_{account_id.hex[:16]}",
+            "subscription_id": f"fakesub_{account_id.hex[:16]}", "current_period_end_ts": period_end_ts,
+            "created_ts": created_ts if created_ts is not None else int(clock.now().timestamp()),
         }
         body = json.dumps(payload).encode()
         return body, self.sign(body)
@@ -76,7 +83,7 @@ class FakeBilling:
         return BillingEvent(
             id=d["id"], type=d["type"], account_id=uuid.UUID(d["account_id"]), plan=d.get("plan"),
             customer_id=d.get("customer_id"), subscription_id=d.get("subscription_id"),
-            current_period_end_ts=d.get("current_period_end_ts"),
+            current_period_end_ts=d.get("current_period_end_ts"), created_ts=d.get("created_ts"),
         )
 
 

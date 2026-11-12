@@ -23,6 +23,12 @@ CATEGORY_NAMES = {
 }
 
 
+def _is_airport_code(db: Session, h: str) -> bool:
+    """True when `h` is an airport identifier (ICAO, IATA or FAA LID)."""
+    return db.execute(select(Airport.id).where(or_(func.lower(Airport.icao) == h, func.lower(Airport.iata) == h,
+                                                   func.lower(Airport.faa_lid) == h)).limit(1)).first() is not None
+
+
 def _like(q: str) -> str:
     return "%" + q.replace("\\", "\\\\").replace("%", "\\%").replace("_", "\\_") + "%"
 
@@ -68,9 +74,13 @@ def listings(type_slug: str | None = None, category: str | None = None, home: st
              viewer: Viewer = Depends(optional_viewer), db: Session = Depends(get_session)):
     b = Builder(db, viewer)
     rows = sellable_aircraft(db, type_slug=type_slug, category=category)
-    if home:
-        h = home.strip().lower()
+    h = (home or "").strip().lower()
+    if h and b.entitled:
         rows = [a for a in rows if (a.home_airport_icao or "").lower() == h or h in (b.city(a.home_airport_icao) or "").lower()]
+    elif h and not _is_airport_code(db, h):
+        # Visitors and non-entitled members may narrow by city / metro only. An exact airport filter (ICAO or IATA
+        # code) is ignored: it would let anyone probe which tail is based at which airport (L1).
+        rows = [a for a in rows if h in (b.city(a.home_airport_icao) or "").lower()]
     return [b.listing(a) for a in rows]
 
 

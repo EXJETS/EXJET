@@ -8,6 +8,9 @@ from collections.abc import Iterable
 from datetime import date, datetime
 from typing import Any
 
+from ..emailnorm import normalize_email as _shared_normalize_email
+from ..opname import match_excluded_name
+
 RATING_VALUES = ("Not rated", "Gold", "Gold+", "Platinum", "Platinum+")
 CERT_TYPES = ("135", "121", "foreign")
 
@@ -71,27 +74,12 @@ def name_key(value: str | None) -> str:
 def excluded_match(name: str | None, excluded: Iterable[str]) -> str | None:
     """Return the excluded operator a name matches, else None.
 
-    Case, spacing and punctuation are ignored. "Net Jets", "NetJets Aviation Inc", "FLEXJET, LLC" and
-    "Nicholas-Air Inc" all match; "Nicholas Aircraft Services" does not (token boundary respected).
+    Delegates to exjet_api.opname.match_excluded_name, the matcher the supply layer also uses, so the two layers
+    cannot disagree. Case, spacing, punctuation, accents, zero-width characters, fullwidth forms, common
+    Cyrillic/Greek lookalikes and corporate suffixes are ignored. "Net Jets", "NetJets Aviation Inc",
+    "FLEXJET, LLC" and "Nicholas-Air Inc" all match; "Nicholas Aircraft Services" does not (token boundary respected).
     """
-    tokens = fold(name).split()
-    if not tokens:
-        return None
-    for ex in excluded:
-        target = compact(ex)
-        if not target:
-            continue
-        for i in range(len(tokens)):
-            acc = ""
-            for j in range(i, len(tokens)):
-                acc += tokens[j]
-                if acc == target:
-                    return ex
-                if len(acc) > len(target):
-                    break
-        if len(target) >= 7 and any(t.startswith(target) for t in tokens):
-            return ex
-    return None
+    return match_excluded_name(name, excluded)
 
 
 # ----------------------------------------------------------------------------- identifiers
@@ -154,7 +142,8 @@ def normalize_email(value: str | None) -> tuple[str | None, bool]:
     s = s.strip().lower()
     s = s.removeprefix("mailto:")
     if len(s) <= 320 and _EMAIL.match(s):
-        return s, True
+        canon = _shared_normalize_email(s)  # NFKC, lowercase, IDNA domain: the one normalizer used everywhere
+        return (canon, True) if canon else (None, False)
     return None, False
 
 

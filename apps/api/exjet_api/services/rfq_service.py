@@ -2,7 +2,7 @@
 from __future__ import annotations
 
 import uuid
-from datetime import datetime
+from datetime import datetime, timedelta
 
 from exjet_product.rfq import (
     GroundRfqContext,
@@ -12,17 +12,20 @@ from exjet_product.rfq import (
     build_rfq_email,
     generate_reference,
 )
-from sqlalchemy import select
+from sqlalchemy import func, select
+from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 
 from .. import clock, mailer
 from ..audit import record_agent_action
+from ..config import get_settings
 from ..entitlements import is_entitled
-from ..errors import conflict, not_found, unprocessable
+from ..errors import ApiError, conflict, not_found, unprocessable
 from ..guardrails import GuardrailViolation
 from ..jobs import enqueue
 from ..models import (
     Account,
+    AccountMember,
     Aircraft,
     Airport,
     EmptyLeg,
@@ -32,9 +35,9 @@ from ..models import (
     RfqStatus,
     Trip,
     TripStatus,
-    User,
 )
 from ..supply import operator_sellable, sellable_aircraft
+from .identity import verified_holder_name
 from .trips import feasible_tails
 
 OPEN_FOR_RFQ = {TripStatus.draft.value, TripStatus.rfq_sent.value, TripStatus.quoted.value}
@@ -48,6 +51,12 @@ def _new_reference(db: Session) -> str:
     raise RuntimeError("could not allocate an RFQ reference")
 
 
+def _rfqs_last_24h(db: Session, account_id: uuid.UUID, kinds: list[str]) -> int:
+    since = clock.now() - timedelta(hours=24)
+    return db.execute(select(func.count()).select_from(Rfq).join(Trip, Trip.id == Rfq.trip_id)
+                      .where(Trip.account_id == account_id, Rfq.kind.in_(kinds), Rfq.created_at >= since)).scalar_one()
+
+
 def create_charter_rfqs(db: Session, trip: Trip, listing_ids: list[uuid.UUID], empty_leg_id: uuid.UUID | None) -> list[Rfq]:
     if trip.status not in OPEN_FOR_RFQ:
         raise conflict("invalid_state", "RFQs can only be sent before a quote is accepted.")
@@ -59,6 +68,9 @@ def create_charter_rfqs(db: Session, trip: Trip, listing_ids: list[uuid.UUID], e
         if leg is None or leg.aircraft_id not in listing_ids:
             raise not_found("Empty leg not found.")
     out: list[Rfq] = []
+    sent_today = _rfqs_last_24h(db, trip.account_id, [RfqKind.charter.value, RfqKind.empty_leg.value])
+    new_count = 0
+    cap = get_settings().rfq_daily_cap
     for lid in dict.fromkeys(listing_ids):
         ac: Aircraft | None = feasible.get(lid)
         if ac is None:
@@ -72,6 +84,9 @@ def create_charter_rfqs(db: Session, trip: Trip, listing_ids: list[uuid.UUID], e
         if existing is not None:
             out.append(existing)
             continue
+        if sent_today + new_count + 1 > cap:
+            raise ApiError(429, "rfq_daily_cap_reached", "This account has reached its daily limit for quote requests. Try again tomorrow.")
+        new_count += 1
         recipients = [c.email for c in ac.operator.contacts if c.receives_rfq]
         rfq = Rfq(trip_id=trip.id, kind=kind, aircraft_id=ac.id, operator_id=ac.operator_id, reference=_new_reference(db),
                   empty_leg_id=leg.id if kind == RfqKind.empty_leg.value else None, recipients=recipients,
@@ -93,12 +108,20 @@ def create_ground_rfq(db: Session, trip: Trip, kind: str, leg_sequence: int, fbo
         raise not_found("FBO not found.")
     if not fbo.email:
         raise conflict("fbo_no_email", "This FBO has no email on file, so a request cannot be sent.")
+    if db.execute(select(Rfq.id).where(Rfq.trip_id == trip.id, Rfq.fbo_id == fbo.id, Rfq.kind == kind,
+                                       Rfq.leg_sequence == leg_sequence).limit(1)).first() is not None:
+        raise conflict("duplicate_ground_rfq", "A request of this kind has already been sent to this FBO for this leg.")
+    if _rfqs_last_24h(db, trip.account_id, [RfqKind.rental_car.value, RfqKind.chauffeur.value]) + 1 > get_settings().ground_rfq_daily_cap:
+        raise ApiError(429, "ground_rfq_daily_cap_reached", "This account has reached its daily limit for ground requests.")
     rfq = Rfq(trip_id=trip.id, kind=kind, fbo_id=fbo.id, reference=_new_reference(db), recipients=[fbo.email],
-              status=RfqStatus.queued.value)
+              status=RfqStatus.queued.value, leg_sequence=leg_sequence, details=(details or None))
     db.add(rfq)
-    db.flush()
-    enqueue(db, "rfq.dispatch", {"rfq_id": str(rfq.id), "leg_sequence": leg_sequence, "details": details or ""},
-            dedupe_key=f"rfq.dispatch:{rfq.id}")
+    try:
+        db.flush()
+    except IntegrityError:  # lost a race with an identical request: the unique index is the backstop
+        db.rollback()
+        raise conflict("duplicate_ground_rfq", "A request of this kind has already been sent to this FBO for this leg.") from None
+    enqueue(db, "rfq.dispatch", {"rfq_id": str(rfq.id)}, dedupe_key=f"rfq.dispatch:{rfq.id}")  # ids only: no member text in jobs.payload
     return rfq
 
 
@@ -124,15 +147,20 @@ def dispatch_rfq(db: Session, rfq_id: uuid.UUID, leg_sequence: int | None = None
         db.commit()
         return
     account = db.get(Account, trip.account_id)
-    if not is_entitled(account, account.subscription):
+    actor = db.execute(select(AccountMember).where(AccountMember.account_id == account.id,
+                                                   AccountMember.user_id == trip.created_by)).scalar_one_or_none()
+    if not is_entitled(account, account.subscription, actor):
         return _fail(db, rfq, trip, "member_not_entitled")
     if not rfq.recipients:
         return _fail(db, rfq, trip, "no_recipients", status="failed")
-    member = db.get(User, trip.created_by)
     airports = _airports(db, {c for leg in trip.legs for c in (leg.origin_icao, leg.destination_icao)})
-    name = member.full_name or account.display_name
+    name = verified_holder_name(db, account.id, trip.created_by)  # the KYC-verified name, never the self-chosen full_name
+    if not name:
+        return _fail(db, rfq, trip, "no_verified_identity")
 
     if rfq.kind in (RfqKind.rental_car.value, RfqKind.chauffeur.value):
+        leg_sequence = rfq.leg_sequence if rfq.leg_sequence is not None else leg_sequence
+        details = rfq.details if rfq.details is not None else details
         leg = next((x for x in trip.legs if x.sequence == (leg_sequence or 0)), trip.legs[0])
         fbo = db.get(Fbo, rfq.fbo_id)
         ap = airports[leg.destination_icao]
@@ -171,8 +199,6 @@ def dispatch_rfq(db: Session, rfq_id: uuid.UUID, leg_sequence: int | None = None
 
 def expire_stale(db: Session, now: datetime, rfq_ttl_hours: int = 72) -> int:
     """Expire sent RFQs with no reply after the TTL, and quotes past valid_until."""
-    from datetime import timedelta
-
     from ..models import Quote, QuoteStatus
 
     n = 0

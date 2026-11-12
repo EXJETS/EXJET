@@ -19,6 +19,15 @@ from .security import CSRF_HEADER, CSRF_VALUE
 log = logging.getLogger("exjet.api")
 CSRF_EXEMPT = {"/v1/billing/webhook"}  # authenticated by the provider's signature, not a cookie
 SAFE_METHODS = {"GET", "HEAD", "OPTIONS"}
+# On every response. File downloads set a stricter CSP of their own first (setdefault keeps it).
+SECURITY_HEADERS = {
+    "X-Content-Type-Options": "nosniff",
+    "X-Frame-Options": "DENY",
+    "Content-Security-Policy": "frame-ancestors 'none'",
+    "Referrer-Policy": "no-referrer",
+    "Cross-Origin-Opener-Policy": "same-origin",
+    "Permissions-Policy": "camera=(), microphone=(), geolocation=()",
+}
 
 
 def envelope(status: int, code: str, message: str, headers: dict | None = None) -> JSONResponse:
@@ -27,8 +36,10 @@ def envelope(status: int, code: str, message: str, headers: dict | None = None) 
 
 def create_app() -> FastAPI:
     settings = get_settings()
-    app = FastAPI(title="EXJET API", version="0.1.0", openapi_url="/openapi.json",
-                  docs_url=None if settings.env in ("staging", "prod") else "/docs", redoc_url=None)
+    dev_like = settings.is_dev_like
+    # /docs and /openapi.json exist only in dev/test. The typed contract for staging/prod is the committed openapi.json.
+    app = FastAPI(title="EXJET API", version="0.1.0", openapi_url="/openapi.json" if dev_like else None,
+                  docs_url="/docs" if dev_like else None, redoc_url=None)
 
     @app.middleware("http")
     async def csrf_and_headers(request: Request, call_next):
@@ -36,7 +47,10 @@ def create_app() -> FastAPI:
             if request.headers.get(CSRF_HEADER) != CSRF_VALUE:
                 return envelope(403, "csrf_failed", "Missing or invalid X-Requested-With header.")
         response = await call_next(request)
-        response.headers.setdefault("X-Content-Type-Options", "nosniff")
+        for k, v in SECURITY_HEADERS.items():
+            response.headers.setdefault(k, v)
+        if not dev_like:
+            response.headers.setdefault("Strict-Transport-Security", "max-age=63072000; includeSubDomains")
         if request.url.path.startswith("/v1"):
             response.headers.setdefault("Cache-Control", "no-store")
         return response
@@ -74,8 +88,10 @@ def create_app() -> FastAPI:
     def healthz():
         return {"status": "ok"}
 
-    for r in (auth.router, kyc.router, billing.router, catalog.router, trips.router, flight.router, quotes.router,
-              admin.router, dev.router):
+    routers = [auth.router, kyc.router, billing.router, catalog.router, trips.router, flight.router, quotes.router, admin.router]
+    if dev_like:
+        routers.append(dev.router)  # the dev router is not mounted at all in staging/prod
+    for r in routers:
         app.include_router(r, prefix="/v1")
     return app
 

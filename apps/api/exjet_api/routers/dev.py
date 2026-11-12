@@ -1,4 +1,7 @@
-"""Dev/test only (env in dev,test): simulate an operator reply and drive jobs. 404 in staging/prod."""
+"""Dev/test only (env in dev,test): simulate an operator reply and drive jobs. Not even mounted in staging/prod.
+
+The simulated reply must come from a stored operator contact address to be accepted by quote ingest; it carries the mail
+provider's authentication verdict (`dmarc_pass`, `spf`, `dkim`), default pass, so tests can also simulate failure."""
 from __future__ import annotations
 
 import base64
@@ -16,7 +19,7 @@ from ..errors import ApiError, conflict
 from ..jobs import enqueue
 from ..providers import get_billing, get_mail
 from ..providers.billing import FakeBilling
-from ..providers.mail import Attachment, FakeMail, InboundEmail
+from ..providers.mail import Attachment, FakeMail, InboundAuth, InboundEmail
 from ..services import billing_service
 
 router = APIRouter(prefix="/dev", tags=["dev"], dependencies=[Depends(require_dev_env)])
@@ -36,7 +39,8 @@ def inbound_email(body: S.DevInboundEmail, db: Session = Depends(get_session)):
         atts.append(Attachment(a.filename, a.content_type, data))
     mail.inject_inbound(InboundEmail(
         provider_message_id=f"fakein_{uuid.uuid4().hex[:16]}", thread_id=body.thread_id, from_address=body.from_address,
-        to=body.to, subject=body.subject, body_text=body.body, attachments=atts))
+        to=body.to, subject=body.subject, body_text=body.body, attachments=atts,
+        auth=InboundAuth(dmarc_pass=body.dmarc_pass, spf=body.spf, dkim=body.dkim)))
     enqueue(db, "mail.poll_inbox", {}, dedupe_key=f"mail.poll_inbox:dev:{time.time_ns()}")
     db.commit()
     return {"queued": True}

@@ -99,6 +99,10 @@ def build_run_report(
         "contacts": {
             "loaded": stats.extras.get("contacts_loaded", 0),
             "updated": stats.extras.get("contacts_updated", 0),
+            "pending_admin_confirmation": {
+                "count": len(set(stats.extras.get("contacts_pending_confirmation_rows", []))),
+                "rows": _rows_summary(stats.extras.get("contacts_pending_confirmation_rows", [])),
+            },
         }
         if dataset == "operators"
         else None,
@@ -269,6 +273,15 @@ def render_run(rep: dict[str, Any], started_by: str, at: datetime | None) -> lis
             "",
             "RFQs must reach a real contact. These operators cannot receive an RFQ until one is supplied. "
             + ("Source rows: " + ", ".join(map(str, o["rows"])) if o["rows"] else "None."),
+            "",
+        ]
+    pend = (rep.get("contacts") or {}).get("pending_admin_confirmation")
+    if pend and pend["count"]:
+        out += [
+            f"### Contacts awaiting admin confirmation ({pend['count']})",
+            "",
+            "These contacts were added to operators that are already live. They do not receive RFQs until an admin "
+            "confirms them in Company OS. Source rows: " + ", ".join(map(str, pend["rows"])),
             "",
         ]
     if ds == "aircraft":

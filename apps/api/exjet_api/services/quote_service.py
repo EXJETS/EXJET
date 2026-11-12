@@ -1,4 +1,17 @@
-"""Inbound mail -> stored documents -> Quote / Contract / PaymentLink; accept, acknowledge, mark paid."""
+"""Inbound mail -> stored documents -> Quote / Contract / PaymentLink; accept, acknowledge, mark paid.
+
+Trust chain for an inbound reply (C1). Every step must hold before a member can see a quote:
+  1. the From header parses to exactly ONE address (strict parser);
+  2. that address equals, after normalization, a stored OperatorContact of the RFQ's operator (or the FBO's address for
+     ground requests) that was a recipient of THIS RFQ. No domain-level trust;
+  3. the mail provider reports an aligned DMARC pass (InboundAuth.dmarc_pass). Otherwise the message is quarantined and an
+     admin review item (`inbound_review`) is opened; it never yields a member-visible quote;
+  4. attachments are sniffed (PDF only), size-capped, and parsed once in a resource-limited subprocess;
+  5. the payment link host must be on the operator's admin-approved list (`Operator.payment_hosts`), else needs_review
+     with an admin `payment_host` approval;
+  6. a later quote never expires or hides an earlier one; if its payment host or total differs from the first quote it
+     goes to needs_review and both remain.
+"""
 from __future__ import annotations
 
 import hashlib
@@ -10,6 +23,7 @@ from exjet_product.manifest import compute_due_at, reminder_times
 from exjet_product.quote_ingest import (
     DOC_CONTRACT,
     DOC_QUOTE,
+    PdfLimitError,
     QuoteExtraction,
     amount_in_text,
     analyze_pdf,
@@ -17,21 +31,27 @@ from exjet_product.quote_ingest import (
     find_payment_link,
     verify_llm_extraction,
 )
-from sqlalchemy import select
+from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from .. import clock, mailer
 from ..audit import record_agent_action
 from ..config import get_settings
+from ..emailnorm import normalize_email, parse_single_address
 from ..errors import conflict, not_found
+from ..filetypes import OPERATOR_DOC_TYPES, sniff
 from ..guardrails import GuardrailViolation
 from ..jobs import enqueue
 from ..models import (
     AccountMember,
+    Approval,
     Contract,
     Document,
     EmailMessage,
+    Fbo,
     Manifest,
+    Operator,
+    OperatorContact,
     PaymentLink,
     PaymentLinkStatus,
     Quote,
@@ -44,11 +64,18 @@ from ..models import (
 )
 from ..providers import get_llm, get_mail, get_storage
 from ..providers.errors import ProviderError
-from ..providers.storage import safe_filename
+from ..providers.storage import new_key, safe_filename
 from ..supply import operator_sellable
+from . import quote_checks as QC
+from . import suppression
+from .identity import verified_holder_name
 
-MAX_ATTACHMENT_BYTES = 15 * 1024 * 1024
 DECLINE_RE = re.compile(r"\b(unable to|not available|unavailable|cannot (?:accommodate|operate|support)|can't (?:accommodate|operate)|pass on this|no availability|regret)\b", re.IGNORECASE)
+# Flags that keep a quote out of member view until an admin resolves it.
+BLOCKING_FLAGS = {"non_usd_currency", "ambiguous_total", "total_not_found", "total_not_verified", "no_quote_document",
+                  "payment_host_not_approved", "payment_host_unverified", "differs_from_earlier_quote"}
+HOST_FLAGS = {"payment_host_not_approved", "payment_host_unverified"}
+READY_THRESHOLD = 0.8
 
 
 # --------------------------------------------------------------------------- inbox polling
@@ -56,38 +83,52 @@ def poll_inbox(db: Session) -> int:
     """Pull new mail from the provider, store it, and queue quote.ingest for each message."""
     n = 0
     storage = get_storage()
+    settings = get_settings()
     for em in get_mail().fetch_inbound():
         if em.provider_message_id and db.execute(
             select(EmailMessage.id).where(EmailMessage.provider_message_id == em.provider_message_id)
         ).first():
             continue
+        sender = parse_single_address(em.from_address)  # exactly one well-formed address, or None
         msg = EmailMessage(
-            direction="inbound", mailbox=get_settings().rfq_from_address, provider_message_id=em.provider_message_id,
-            thread_id=em.thread_id, from_address=em.from_address.strip().lower(), to_addresses=em.to, subject=em.subject[:998],
-            body_text=em.body_text, purpose="inbound_reply", status="received", sent_at=em.received_at,
+            direction="inbound", mailbox=settings.rfq_from_address, provider_message_id=em.provider_message_id,
+            thread_id=em.thread_id, from_address=sender or (em.from_address or "").strip()[:320], to_addresses=em.to,
+            subject=em.subject[:998], body_text=em.body_text, purpose="inbound_reply", status="received", sent_at=em.received_at,
+            auth_result={"dmarc_pass": bool(em.auth.dmarc_pass), "spf": em.auth.spf, "dkim": em.auth.dkim},
         )
         db.add(msg)
         db.flush()
+        rejected = 0
         for att in em.attachments:
-            if len(att.data) > MAX_ATTACHMENT_BYTES:
+            ctype = sniff(att.data) if len(att.data) <= settings.pdf_max_bytes else None
+            if ctype not in OPERATOR_DOC_TYPES:  # only PDFs are stored; the claimed content type is ignored
+                rejected += 1
                 continue
-            key = f"email/{msg.id}/{uuid.uuid4().hex}-{safe_filename(att.filename)}"
-            storage.put(key, att.data, att.content_type)
+            key = new_key("email", msg.id)
+            storage.put(key, att.data, ctype)
             db.add(Document(kind="other", owner_type="email_message", owner_id=msg.id, storage_key=key,
-                            filename=safe_filename(att.filename), content_type=att.content_type,
+                            filename=safe_filename(att.filename), content_type=ctype,
                             size_bytes=len(att.data), sha256=hashlib.sha256(att.data).hexdigest()))
+        if rejected:
+            record_agent_action(db, agent="quote_ingest", event="quote.attachment_rejected", input={"message_id": str(msg.id)},
+                                output={"rejected": rejected, "reason": "not_pdf_or_too_large"}, status="blocked", permission_level="READ")
         enqueue(db, "quote.ingest", {"message_id": str(msg.id)}, dedupe_key=f"quote.ingest:{msg.id}")
         n += 1
     return n
 
 
-def _domain(addr: str) -> str:
-    return addr.rsplit("@", 1)[-1].lower()
-
-
-def _sender_ok(rfq: Rfq, sender: str) -> bool:
-    recips = [a.lower() for a in (rfq.recipients or [])]
-    return sender.lower() in recips or _domain(sender) in {_domain(a) for a in recips}
+def _sender_ok(db: Session, rfq: Rfq, sender: str | None) -> bool:
+    """The sender must be, exactly (normalized), a stored contact of the RFQ's operator that was a recipient of this
+    RFQ. For ground requests: the FBO address the request was sent to. No domain fallback."""
+    if not sender:
+        return False
+    if sender not in {normalize_email(a) for a in (rfq.recipients or [])}:
+        return False
+    if rfq.operator_id is not None:
+        return db.execute(select(OperatorContact.id).where(
+            OperatorContact.operator_id == rfq.operator_id, func.lower(OperatorContact.email) == sender).limit(1)).first() is not None
+    fbo = db.get(Fbo, rfq.fbo_id) if rfq.fbo_id else None
+    return fbo is not None and normalize_email(fbo.email) == sender
 
 
 def _match_rfq(db: Session, msg: EmailMessage) -> Rfq | None:
@@ -101,6 +142,33 @@ def _match_rfq(db: Session, msg: EmailMessage) -> Rfq | None:
     if msg.thread_id:
         return db.execute(select(Rfq).where(Rfq.thread_id == msg.thread_id).limit(1)).scalar_one_or_none()
     return None
+
+
+def _quarantine(db: Session, msg: EmailMessage, rfq: Rfq, trip: Trip, reason: str) -> None:
+    """Keep the message, show no quote to anyone, and open an admin review item."""
+    msg.status, msg.quarantine_reason = "quarantined", reason[:64]
+    msg.rfq_id = rfq.id
+    auth = msg.auth_result or {}
+    ap = Approval(
+        kind="inbound_review", subject_type="email_message", subject_id=str(msg.id), required_role="ceo", requested_by="system",
+        summary=f"Quarantined inbound reply on RFQ {rfq.reference}: {reason}",
+        payload={"reason": reason, "rfq_id": str(rfq.id), "dmarc_pass": auth.get("dmarc_pass"), "spf": auth.get("spf"),
+                 "dkim": auth.get("dkim")})
+    db.add(ap)
+    db.flush()
+    record_agent_action(db, agent="quote_ingest", event="quote.quarantined", input={"message_id": str(msg.id), "rfq_id": str(rfq.id)},
+                        output={"reason": reason}, status="awaiting_approval", permission_level="READ",
+                        account_id=trip.account_id, approval_id=ap.id)
+
+
+def release_quarantined(db: Session, msg_id: uuid.UUID) -> None:
+    """An admin approved the review item: process the message once, treating the authentication verdict as vetted by a person.
+    Sender pinning, attachment checks and payment host pinning still apply."""
+    msg = db.get(EmailMessage, msg_id)
+    if msg is None or msg.status != "quarantined":
+        return
+    msg.status = "received"
+    enqueue(db, "quote.ingest", {"message_id": str(msg.id), "released": True}, dedupe_key=f"quote.ingest:{msg.id}:released")
 
 
 def _llm_extract(pages: list[str]) -> QuoteExtraction | None:
@@ -121,37 +189,57 @@ def _llm_extract(pages: list[str]) -> QuoteExtraction | None:
     return verify_llm_extraction(data, pages, llm.model or "unknown")
 
 
-def ingest_message(db: Session, message_id: uuid.UUID) -> None:
+def _reject(db: Session, msg: EmailMessage, rfq: Rfq, trip: Trip, reason: str) -> None:
+    msg.status = "rejected"
+    record_agent_action(db, agent="quote_ingest", event="quote.rejected_sender", input={"message_id": str(msg.id), "rfq_id": str(rfq.id)},
+                        output={"reason": reason}, status="blocked", permission_level="READ", account_id=trip.account_id)
+
+
+def ingest_message(db: Session, message_id: uuid.UUID, *, released: bool = False) -> None:
     msg = db.get(EmailMessage, message_id)
-    if msg is None or msg.direction != "inbound":
-        return
+    if msg is None or msg.direction != "inbound" or msg.status != "received":
+        return  # quarantined / rejected / already handled messages are not re-processed
+    if not released and suppression.handle_inbound_keywords(db, msg, parse_single_address(msg.from_address)):
+        return  # unsubscribe / complaint / legal notice: sender suppressed, not a quote
     rfq = _match_rfq(db, msg)
     if rfq is None:
         record_agent_action(db, agent="quote_ingest", event="quote.unmatched", input={"message_id": str(msg.id)},
                             output={"reason": "no_rfq_match"}, status="blocked", permission_level="READ")
         return
     trip = db.get(Trip, rfq.trip_id)
-    if not _sender_ok(rfq, msg.from_address):
-        record_agent_action(db, agent="quote_ingest", event="quote.rejected_sender", input={"message_id": str(msg.id), "rfq_id": str(rfq.id)},
-                            output={"reason": "sender_not_on_rfq"}, status="blocked", permission_level="READ", account_id=trip.account_id)
-        return
-    if rfq.operator is not None and not operator_sellable(rfq.operator):
+    sender = parse_single_address(msg.from_address)
+    if sender is None:
+        return _reject(db, msg, rfq, trip, "sender_malformed")
+    if not _sender_ok(db, rfq, sender):
+        return _reject(db, msg, rfq, trip, "sender_not_a_recipient_contact")
+    if rfq.operator is not None and not operator_sellable(rfq.operator, db):
         record_agent_action(db, agent="quote_ingest", event="quote.rejected_operator", input={"rfq_id": str(rfq.id)},
                             output={"reason": "operator_not_live_or_excluded"}, status="blocked", permission_level="READ",
                             account_id=trip.account_id)
         return
+    if not released and (msg.auth_result or {}).get("dmarc_pass") is not True:
+        return _quarantine(db, msg, rfq, trip, "dmarc_not_passed")
     msg.rfq_id = rfq.id
-    rfq.replied_at = clock.now()
-    if rfq.status in (RfqStatus.sent.value, RfqStatus.queued.value):
-        rfq.status = RfqStatus.replied.value
 
     storage = get_storage()
+    settings = get_settings()
     docs = db.execute(select(Document).where(Document.owner_type == "email_message", Document.owner_id == msg.id)).scalars().all()
     analyses = []
     for d in docs:
-        if d.content_type != "application/pdf" and not d.filename.lower().endswith(".pdf"):
+        if d.content_type not in OPERATOR_DOC_TYPES:
             continue
-        analyses.append((d, analyze_pdf(storage.get(d.storage_key), d.filename)))
+        try:
+            analyses.append((d, analyze_pdf(storage.get(d.storage_key), d.filename, max_bytes=settings.pdf_max_bytes,
+                                            max_pages=settings.pdf_max_pages, max_chars=settings.pdf_max_chars,
+                                            timeout=settings.pdf_timeout_seconds)))
+        except PdfLimitError as e:
+            # A poisoned document: quarantine for a person and finish the job (it is never retried).
+            if released:
+                return _reject(db, msg, rfq, trip, f"pdf_{e.reason}")
+            return _quarantine(db, msg, rfq, trip, f"pdf_{e.reason}")
+    rfq.replied_at = clock.now()
+    if rfq.status in (RfqStatus.sent.value, RfqStatus.queued.value):
+        rfq.status = RfqStatus.replied.value
     quote_docs = [(d, a) for d, a in analyses if a.doc_type == DOC_QUOTE]
     contract_docs = [(d, a) for d, a in analyses if a.doc_type == DOC_CONTRACT]
 
@@ -202,25 +290,43 @@ def ingest_message(db: Session, message_id: uuid.UUID) -> None:
         cdoc.kind, cdoc.owner_type, cdoc.owner_id = "contract", "contract", contract.id
         pages_for_links += ca.pages
         extra_urls += ca.links
-        member = db.get(User, trip.created_by)
-        last = (member.full_name or "").split()[-1].lower() if member and member.full_name else ""
+        holder = verified_holder_name(db, trip.account_id, trip.created_by)
+        last = holder.split()[-1].lower() if holder else ""
         if ca.contracting_party and last and last not in ca.contracting_party.lower():
             flags.append("contract_party_mismatch")
     else:
         flags.append("no_contract_document")
 
     link = find_payment_link(pages_for_links, extra_urls)
+    host = QC.normalize_host(link.host) if link else ""
     if link:
-        db.add(PaymentLink(quote_id=quote.id, url=link.url, host=link.host, status=PaymentLinkStatus.pending.value))
+        db.add(PaymentLink(quote_id=quote.id, url=link.url, host=host or link.host, status=PaymentLinkStatus.pending.value))
     else:
         flags.append("no_payment_link")
+    db.flush()
+    db.refresh(quote)
+
+    # --- payment host pinning: the link must go to a host an admin approved for this operator
+    host_approval: Approval | None = None
+    if link and not QC.payment_host_approved(db, quote):
+        flags.append("payment_host_not_approved" if quote.operator_id is not None else "payment_host_unverified")
+        op = db.get(Operator, quote.operator_id) if quote.operator_id else None
+        host_approval = Approval(
+            kind="payment_host", subject_type="quote", subject_id=str(quote.id), required_role="ceo", requested_by="system",
+            summary=f"Approve payment host {host or '(invalid)'} for {op.dba_name if op else 'a ground service'}?",
+            payload={"operator_id": str(op.id) if op else None, "host": host})
+        db.add(host_approval)
+        db.flush()
+    # --- never auto-supersede: a quote that differs from the first one waits for an admin, and both remain
+    first = QC.first_quote(db, rfq.id, exclude_id=quote.id)
+    if first is not None and QC.differs_from(db, first, host, quote.total_amount_cents):
+        flags.append("differs_from_earlier_quote")
+    if BLOCKING_FLAGS & set(flags):
+        quote.status = QuoteStatus.needs_review.value
     parsed["flags"] = flags
     quote.parsed = parsed
 
     if quote.status == QuoteStatus.ready.value:
-        for old in db.execute(select(Quote).where(Quote.rfq_id == rfq.id, Quote.id != quote.id,
-                                                  Quote.status.in_([QuoteStatus.ready.value, QuoteStatus.received.value]))).scalars():
-            old.status = QuoteStatus.expired.value  # superseded by a newer quote on the same RFQ
         if trip.status in (TripStatus.draft.value, TripStatus.rfq_sent.value):
             trip.status = TripStatus.quoted.value
         _notify_member(db, trip, rfq)
@@ -228,6 +334,7 @@ def ingest_message(db: Session, message_id: uuid.UUID) -> None:
         db, agent="quote_ingest", event="quote.ingest", input={"message_id": str(msg.id), "rfq_id": str(rfq.id)},
         output={"quote_id": str(quote.id), "status": quote.status, "has_total": quote.total_amount_cents is not None,
                 "flags": flags}, permission_level="DRAFT", account_id=trip.account_id,
+        approval_id=host_approval.id if host_approval else None,
         status="done" if quote.status == QuoteStatus.ready.value else "awaiting_approval",
     )
 
@@ -261,20 +368,61 @@ def resolve_quote(db: Session, quote: Quote, *, total_cents: int, valid_until: d
         return quote
     if quote.source_document_id is None:
         raise unprocessable("no_source_document", "This quote has no PDF to verify the amount against.")
+    if not QC.payment_host_approved(db, quote):
+        raise conflict("payment_host_not_approved", "Approve the payment host (payment_host approval) before releasing this quote.")
     doc = db.get(Document, quote.source_document_id)
-    pages = extract_pdf_pages(get_storage().get(doc.storage_key))
+    s_ = get_settings()
+    try:
+        pages = extract_pdf_pages(get_storage().get(doc.storage_key), max_bytes=s_.pdf_max_bytes, max_pages=s_.pdf_max_pages,
+                                  max_chars=s_.pdf_max_chars, timeout=s_.pdf_timeout_seconds)
+    except PdfLimitError:
+        raise unprocessable("document_unreadable", "The operator's PDF exceeds parsing limits and cannot be verified.") from None
     if not amount_in_text(total_cents, "\n".join(pages)):
         raise unprocessable("amount_not_in_document", "That amount does not appear in the operator's PDF.")
     quote.total_amount_cents = total_cents
     if valid_until:
         quote.valid_until = valid_until
     quote.parser, quote.parse_confidence = "manual:admin", 1.0  # who decided is in audit_log (quote.resolved)
+    parsed = dict(quote.parsed or {})
+    parsed["flags"] = [f for f in (parsed.get("flags") or []) if f not in BLOCKING_FLAGS]  # a person has resolved them
+    quote.parsed = parsed
     quote.status = QuoteStatus.ready.value
     trip = db.get(Trip, quote.trip_id)
     if trip.status in (TripStatus.draft.value, TripStatus.rfq_sent.value):
         trip.status = TripStatus.quoted.value
     _notify_member(db, trip, db.get(Rfq, quote.rfq_id))
     return quote
+
+
+def decide_payment_host(db: Session, approval: Approval, approved: bool) -> None:
+    """Called when an admin decides a `payment_host` approval. Approve: the host joins the operator's approved list and the
+    quote is released if nothing else blocks it. Reject: the quote is declined."""
+    q = db.get(Quote, uuid.UUID(approval.subject_id))
+    if q is None:
+        return
+    if not approved:
+        if q.status in (QuoteStatus.needs_review.value, QuoteStatus.received.value):
+            q.status = QuoteStatus.declined.value
+        return
+    host = QC.normalize_host((approval.payload or {}).get("host"))
+    op = db.get(Operator, q.operator_id) if q.operator_id else None
+    if op is not None and host:
+        hosts = list(op.payment_hosts or [])
+        if host not in hosts:
+            hosts.append(host)
+            op.payment_hosts = hosts
+    db.flush()
+    parsed = dict(q.parsed or {})
+    parsed["flags"] = [f for f in (parsed.get("flags") or []) if f not in HOST_FLAGS]
+    q.parsed = parsed
+    remaining = BLOCKING_FLAGS & set(parsed["flags"])
+    if (q.status == QuoteStatus.needs_review.value and not remaining and q.total_amount_cents is not None
+            and (q.parse_confidence or 0) >= READY_THRESHOLD and QC.payment_host_approved(db, q)):
+        q.status = QuoteStatus.ready.value
+        trip = db.get(Trip, q.trip_id)
+        if trip.status in (TripStatus.draft.value, TripStatus.rfq_sent.value):
+            trip.status = TripStatus.quoted.value
+        _notify_member(db, trip, db.get(Rfq, q.rfq_id))
 
 
 # --------------------------------------------------------------------------- member actions
@@ -298,6 +446,8 @@ def accept_quote(db: Session, q: Quote) -> Trip:
         raise conflict("quote_expired", "This quote has expired.")
     if q.contract is None:
         raise conflict("contract_missing", "The operator has not provided a contract for this quote.")
+    if not QC.payment_host_approved(db, q):
+        raise conflict("payment_host_not_approved", "This quote's payment host has not been approved.")
     q.status = QuoteStatus.accepted.value
     for other in db.execute(select(Quote).where(Quote.trip_id == trip.id, Quote.id != q.id,
                             Quote.status.in_([QuoteStatus.ready.value, QuoteStatus.received.value, QuoteStatus.needs_review.value]))).scalars():
@@ -342,6 +492,8 @@ def mark_paid(db: Session, q: Quote) -> Trip:
         raise conflict("contract_not_acknowledged", "Acknowledge the contract before marking payment.")
     if q.payment_link is None:
         raise conflict("payment_link_missing", "The operator has not provided a payment link.")
+    if not QC.payment_host_approved(db, q):
+        raise conflict("payment_host_not_approved", "This quote's payment host has not been approved.")
     q.payment_link.status = PaymentLinkStatus.member_marked_paid.value
     q.payment_link.member_marked_paid_at = clock.now()
     trip.status = TripStatus.paid.value
@@ -364,6 +516,8 @@ def mark_paid(db: Session, q: Quote) -> Trip:
 
 __all__ = [
     "accept_quote",
+    "decide_payment_host",
+    "release_quarantined",
     "acknowledge_contract",
     "decline_quote",
     "ingest_message",

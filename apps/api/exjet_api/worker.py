@@ -15,6 +15,7 @@ log = logging.getLogger("exjet.worker")
 POLL_SECONDS = 2.0
 INBOX_EVERY_SECONDS = 60
 EXPIRE_EVERY_SECONDS = 3600
+RATELIMIT_CLEANUP_EVERY_SECONDS = 3600
 
 
 def schedule_periodic(now: datetime | None = None) -> None:
@@ -23,6 +24,7 @@ def schedule_periodic(now: datetime | None = None) -> None:
     with session_factory()() as db:
         enqueue(db, "mail.poll_inbox", {}, dedupe_key=f"mail.poll_inbox:{ts // INBOX_EVERY_SECONDS}")
         enqueue(db, "rfq.expire", {}, dedupe_key=f"rfq.expire:{ts // EXPIRE_EVERY_SECONDS}")
+        enqueue(db, "ratelimit.cleanup", {}, dedupe_key=f"ratelimit.cleanup:{ts // RATELIMIT_CLEANUP_EVERY_SECONDS}")
         db.commit()
 
 

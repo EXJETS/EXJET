@@ -32,7 +32,6 @@ from exjet_api import clock
 from exjet_api.config import get_settings
 from exjet_api.db import Base, get_engine, session_factory
 from exjet_api.providers import reset_providers
-from exjet_api.security import auth_limiter
 
 API_DIR = Path(__file__).resolve().parents[1]
 
@@ -58,7 +57,6 @@ def _schema():
 def _clean():
     yield
     clock.set_now(None)
-    auth_limiter.reset()
     reset_providers()
     get_settings.cache_clear()
     tables = ", ".join(f'"{t.name}"' for t in Base.metadata.sorted_tables)

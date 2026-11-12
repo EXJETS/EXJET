@@ -16,6 +16,7 @@ from ..entitlements import Viewer
 from ..errors import conflict
 from ..models import Rfq, RfqStatus, Trip, TripStatus
 from ..providers import get_llm
+from ..ratelimit import hit
 from ..serializers import Builder
 from ..services import intake_llm, rfq_service
 from ..services import trips as T
@@ -28,6 +29,7 @@ PRE_FLIGHT = {TripStatus.draft.value, TripStatus.rfq_sent.value, TripStatus.quot
 @router.post("/intake", response_model=S.TripDraftOut)
 def intake(body: S.IntakeIn, viewer: Viewer = Depends(require_member), db: Session = Depends(get_session)):
     """Parse plain language into a TripDraft. Nothing is saved."""
+    hit("intake_user", str(viewer.user.id))
     refs = T.load_airports(db)
     now = clock.now()
     draft = parse_trip_request(body.text, list(refs.values()), now)
@@ -127,6 +129,7 @@ def trip_listings(trip_id: uuid.UUID, type_slug: str | None = None, viewer: View
 
 @router.post("/{trip_id}/rfqs", response_model=list[S.RfqOut], status_code=201)
 def create_rfqs(trip_id: uuid.UUID, body: S.RfqCreateIn, viewer: Viewer = Depends(require_entitled), db: Session = Depends(get_session)):
+    hit("rfq_create_user", str(viewer.user.id))
     trip = get_owned_trip(db, viewer, trip_id)
     rfqs = rfq_service.create_charter_rfqs(db, trip, body.listing_ids, body.empty_leg_id)
     db.commit()
@@ -137,6 +140,7 @@ def create_rfqs(trip_id: uuid.UUID, body: S.RfqCreateIn, viewer: Viewer = Depend
 @router.post("/{trip_id}/ground-rfqs", response_model=S.RfqOut, status_code=201)
 def create_ground_rfq(trip_id: uuid.UUID, body: S.GroundRfqIn, viewer: Viewer = Depends(require_entitled),
                       db: Session = Depends(get_session)):
+    hit("ground_rfq_create_user", str(viewer.user.id))
     trip = get_owned_trip(db, viewer, trip_id)
     rfq = rfq_service.create_ground_rfq(db, trip, body.kind, body.leg_sequence, body.fbo_id, body.details)
     db.commit()

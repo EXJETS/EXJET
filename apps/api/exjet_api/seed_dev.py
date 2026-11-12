@@ -17,6 +17,7 @@ from . import clock
 from . import seed_data as D
 from .config import get_settings
 from .db import session_factory
+from .emailnorm import normalize_email
 from .models import (
     Aircraft,
     AircraftType,
@@ -48,9 +49,10 @@ def seed_reference(db: Session) -> None:
 
 
 def ensure_admin(db: Session, email: str, password: str) -> User:
-    u = db.execute(select(User).where(User.email == email.lower())).scalar_one_or_none()
+    email = normalize_email(email)
+    u = db.execute(select(User).where(User.email == email)).scalar_one_or_none()
     if u is None:
-        u = User(email=email.lower(), password_hash=hash_password(password), role="admin", full_name="Dev Admin")
+        u = User(email=email, password_hash=hash_password(password), role="admin", full_name="Dev Admin")
         db.add(u)
         db.flush()
     return u
@@ -76,13 +78,16 @@ def seed_synthetic(db: Session, admin: User) -> dict[str, Operator]:
         if op is None:
             op = Operator(dba_name=name, legal_name=f"{name} LLC", certificate_number=cert, certificate_type="135",
                           safety_rating=rating, base_airport_icao=base, is_excluded=excluded,
-                          go_live_status=GoLiveStatus.draft.value, source_file="synthetic")
+                          go_live_status=GoLiveStatus.draft.value, source_file="synthetic",
+                          payment_hosts=list(D.SYNTHETIC_PAYMENT_HOSTS))
             db.add(op)
             db.flush()
             for cname, title, email, phone in D.CONTACTS[key]:
                 db.add(OperatorContact(operator_id=op.id, name=cname, title=title, email=email, phone=phone))
             if status == "live":
                 make_operator_live(db, op, admin)
+        elif not op.payment_hosts:
+            op.payment_hosts = list(D.SYNTHETIC_PAYMENT_HOSTS)
         ops[key] = op
     tails: dict[str, Aircraft] = {}
     for tail, opkey, slug, year, refurb, seats, home, amenities in D.AIRCRAFT:

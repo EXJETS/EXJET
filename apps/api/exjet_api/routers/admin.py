@@ -15,11 +15,13 @@ from ..deps import get_session, require_admin
 from ..entitlements import Viewer
 from ..errors import ApiError, conflict, not_found
 from ..models import (
+    AccountMember,
     AgentAction,
     Aircraft,
     Approval,
     ApprovalStatus,
     Document,
+    EmailMessage,
     GoLiveStatus,
     IngestRun,
     Job,
@@ -32,9 +34,11 @@ from ..models import (
     Rfq,
     Subscription,
     SubscriptionStatus,
+    Suppression,
+    User,
 )
-from ..providers import get_storage
-from ..services import kyc_service, quote_service
+from ..services import kyc_service, quote_checks, quote_service, suppression
+from ..services.documents import signed_document_url
 from ..supply import is_excluded_operator
 
 router = APIRouter(prefix="/admin", tags=["admin"], dependencies=[Depends(require_admin)])
@@ -64,6 +68,8 @@ def decide(approval_id: uuid.UUID, body: S.DecideIn, viewer: Viewer = Depends(re
         sub = db.get(KycSubmission, uuid.UUID(ap.subject_id))
         if sub is None or sub.status != KycStatus.in_review.value:
             raise conflict("invalid_state", "The identity check is not awaiting a decision.")
+    if ap.kind == "payment_host" and db.get(Quote, uuid.UUID(ap.subject_id)) is None:
+        raise not_found("Quote not found.")
     if ap.kind == "operator_go_live" and body.decision == "approved":
         op = db.get(Operator, uuid.UUID(ap.subject_id))
         if op is None:
@@ -77,6 +83,23 @@ def decide(approval_id: uuid.UUID, body: S.DecideIn, viewer: Viewer = Depends(re
     db.flush()  # the guards read the persisted decision
     if ap.kind == "kyc_final":
         kyc_service.apply_final_decision(db, ap, body.decision, viewer.user.id, body.note)
+    elif ap.kind == "payment_host":
+        quote_service.decide_payment_host(db, ap, body.decision == "approved")
+    elif ap.kind == "inbound_review":
+        if body.decision == "approved":
+            quote_service.release_quarantined(db, uuid.UUID(ap.subject_id))
+        else:
+            msg = db.get(EmailMessage, uuid.UUID(ap.subject_id))
+            if msg is not None and msg.status == "quarantined":
+                msg.status = "rejected"
+    elif ap.kind == "seat_overage":
+        # approved: the CEO knowingly keeps the extra members. rejected: they stay suspended.
+        if body.decision == "approved":
+            for uid in (ap.payload or {}).get("suspended_user_ids", []):
+                m = db.execute(select(AccountMember).where(AccountMember.account_id == uuid.UUID(ap.subject_id),
+                                                           AccountMember.user_id == uuid.UUID(uid))).scalar_one_or_none()
+                if m is not None:
+                    m.is_suspended = False
     elif ap.kind == "operator_go_live":
         op = db.get(Operator, uuid.UUID(ap.subject_id))
         if body.decision == "approved":
@@ -101,8 +124,9 @@ def _holder(sub: KycSubmission, with_docs: bool, db: Session, admin_id: uuid.UUI
             audit(db, actor=f"user:{admin_id}", action="kyc_document_access", subject_type="document", subject_id=d.id,
                   detail={"submission_id": str(sub.id)})
             docs.append(S.AdminDocument(id=d.id, doc_type=d.doc_type, filename=d.filename, content_type=d.content_type,
-                                        size_bytes=d.size_bytes, url=get_storage().signed_url(d.storage_key, 120)))
-    return S.AdminKycSubmission(id=sub.id, account_id=sub.account_id, kind=sub.kind, holder_name=sub.holder_name, status=sub.status,
+                                        size_bytes=d.size_bytes, url=signed_document_url(d, admin_id)))
+    return S.AdminKycSubmission(id=sub.id, account_id=sub.account_id, scope="account" if sub.subject_user_id is None else "member",
+                                subject_user_id=sub.subject_user_id, kind=sub.kind, holder_name=sub.holder_name, status=sub.status,
                                 vendor=sub.vendor, vendor_result=sub.vendor_result, decision_note=sub.decision_note,
                                 created_at=sub.created_at, documents=docs)
 
@@ -130,10 +154,14 @@ def kyc_detail(submission_id: uuid.UUID, viewer: Viewer = Depends(require_admin)
 def operators(db: Session = Depends(get_session)):
     ac = dict(db.execute(select(Aircraft.operator_id, func.count()).group_by(Aircraft.operator_id)).all())
     ct = dict(db.execute(select(OperatorContact.operator_id, func.count()).group_by(OperatorContact.operator_id)).all())
+    pend = dict(db.execute(select(OperatorContact.operator_id, func.count()).where(OperatorContact.receives_rfq.is_(False))
+                           .group_by(OperatorContact.operator_id)).all())
     return [
         S.AdminOperatorOut(id=o.id, dba_name=o.dba_name, certificate_type=o.certificate_type, safety_rating=o.safety_rating,
                            is_excluded=is_excluded_operator(o), go_live_status=o.go_live_status,
-                           aircraft_count=ac.get(o.id, 0), contact_count=ct.get(o.id, 0))
+                           aircraft_count=ac.get(o.id, 0), contact_count=ct.get(o.id, 0),
+                           pending_contact_count=pend.get(o.id, 0) if o.go_live_status == GoLiveStatus.live.value else 0,
+                           payment_hosts=sorted(quote_checks.operator_hosts(o)))
         for o in db.execute(select(Operator).order_by(Operator.dba_name)).scalars()
     ]
 
@@ -226,20 +254,32 @@ def jobs(status: str | None = None, limit: int = Query(100, ge=1, le=500), db: S
 
 
 # --------------------------------------------------------------------------- quote review
+def _review_item(db: Session, q: Quote, pdf_url: str | None) -> S.AdminQuoteReview:
+    link = q.payment_link
+    ap = db.execute(select(Approval).where(Approval.kind == "payment_host", Approval.subject_type == "quote",
+                                           Approval.subject_id == str(q.id), Approval.status == ApprovalStatus.pending.value)
+                    .order_by(Approval.created_at.desc()).limit(1)).scalar_one_or_none()
+    return S.AdminQuoteReview(
+        id=q.id, trip_id=q.trip_id, rfq_id=q.rfq_id, status=q.status, flags=quote_service.quote_flags(q),
+        parse_confidence=q.parse_confidence, pdf_url=pdf_url, payment_host=link.host if link else None,
+        payment_host_approved=quote_checks.payment_host_approved(db, q) if link else None,
+        payment_host_approval_id=ap.id if ap else None)
+
+
 @router.get("/quotes", response_model=list[S.AdminQuoteReview])
-def review_quotes(status: str = QuoteStatus.needs_review.value, db: Session = Depends(get_session)):
+def review_quotes(status: str = QuoteStatus.needs_review.value, viewer: Viewer = Depends(require_admin),
+                  db: Session = Depends(get_session)):
     out = []
     for q in db.execute(select(Quote).where(Quote.status == status).order_by(Quote.created_at)).scalars():
-        out.append(S.AdminQuoteReview(id=q.id, trip_id=q.trip_id, rfq_id=q.rfq_id, status=q.status, flags=quote_service.quote_flags(q),
-                                      parse_confidence=q.parse_confidence,
-                                      pdf_url=get_storage().signed_url(db.get(Document, q.source_document_id).storage_key, 120)
-                                      if q.source_document_id else None))
+        url = signed_document_url(db.get(Document, q.source_document_id), viewer.user.id) if q.source_document_id else None
+        out.append(_review_item(db, q, url))
     return out
 
 
 @router.post("/quotes/{quote_id}/resolve", response_model=S.AdminQuoteReview)
 def resolve_quote(quote_id: uuid.UUID, body: S.ResolveQuoteIn, viewer: Viewer = Depends(require_admin), db: Session = Depends(get_session)):
-    """Set the total on a needs_review quote. The amount must appear verbatim in the operator's PDF."""
+    """Set the total on a needs_review quote. The amount must appear verbatim in the operator's PDF, and the quote's
+    payment host must already be approved (decide its `payment_host` approval first)."""
     q = db.get(Quote, quote_id)
     if q is None:
         raise not_found("Quote not found.")
@@ -247,5 +287,100 @@ def resolve_quote(quote_id: uuid.UUID, body: S.ResolveQuoteIn, viewer: Viewer = 
                                 admin_id=viewer.user.id)
     audit(db, actor=f"user:{viewer.user.id}", action="quote.resolved", subject_type="quote", subject_id=q.id, detail={"reject": body.reject})
     db.commit()
-    return S.AdminQuoteReview(id=q.id, trip_id=q.trip_id, rfq_id=q.rfq_id, status=q.status, flags=quote_service.quote_flags(q),
-                              parse_confidence=q.parse_confidence, pdf_url=None)
+    return _review_item(db, q, None)
+
+
+# --------------------------------------------------------------------------- operator onboarding: payment hosts, contacts
+@router.put("/operators/{operator_id}/payment-hosts", response_model=S.AdminOperatorOut)
+def set_payment_hosts(operator_id: uuid.UUID, body: S.PaymentHostsIn, viewer: Viewer = Depends(require_admin),
+                      db: Session = Depends(get_session)):
+    """Replace the operator's approved payment hosts (set at onboarding). Links to any other host go to review."""
+    op = db.get(Operator, operator_id)
+    if op is None:
+        raise not_found("Operator not found.")
+    hosts = []
+    for h in body.hosts:
+        n = quote_checks.normalize_host(h)
+        if not n:
+            raise ApiError(422, "invalid_host", "Each host must be a bare DNS host name such as pay.example.com.")
+        if n not in hosts:
+            hosts.append(n)
+    op.payment_hosts = hosts
+    audit(db, actor=f"user:{viewer.user.id}", action="operator.payment_hosts_set", subject_type="operator", subject_id=op.id,
+          detail={"count": len(hosts)})
+    db.commit()
+    return _operator_out(db, op)
+
+
+def _operator_out(db: Session, o: Operator) -> S.AdminOperatorOut:
+    return S.AdminOperatorOut(
+        id=o.id, dba_name=o.dba_name, certificate_type=o.certificate_type, safety_rating=o.safety_rating,
+        is_excluded=is_excluded_operator(o), go_live_status=o.go_live_status,
+        aircraft_count=db.execute(select(func.count()).select_from(Aircraft).where(Aircraft.operator_id == o.id)).scalar_one(),
+        contact_count=db.execute(select(func.count()).select_from(OperatorContact).where(OperatorContact.operator_id == o.id)).scalar_one(),
+        pending_contact_count=db.execute(select(func.count()).select_from(OperatorContact).where(
+            OperatorContact.operator_id == o.id, OperatorContact.receives_rfq.is_(False))).scalar_one()
+        if o.go_live_status == GoLiveStatus.live.value else 0,
+        payment_hosts=sorted(quote_checks.operator_hosts(o)))
+
+
+@router.post("/operators/{operator_id}/contacts/{contact_id}/confirm-rfq", status_code=204)
+def confirm_rfq_contact(operator_id: uuid.UUID, contact_id: uuid.UUID, viewer: Viewer = Depends(require_admin),
+                        db: Session = Depends(get_session)):
+    """Contacts added to a live operator by ingest start with receives_rfq=false; an admin turns RFQs on."""
+    c = db.get(OperatorContact, contact_id)
+    if c is None or c.operator_id != operator_id:
+        raise not_found("Contact not found.")
+    c.receives_rfq = True
+    audit(db, actor=f"user:{viewer.user.id}", action="operator.contact_rfq_confirmed", subject_type="operator_contact",
+          subject_id=c.id, detail={"operator_id": str(operator_id)})
+    db.commit()
+
+
+# --------------------------------------------------------------------------- suppressions
+@router.get("/suppressions", response_model=list[S.SuppressionOut])
+def list_suppressions(limit: int = Query(200, ge=1, le=1000), db: Session = Depends(get_session)):
+    return db.execute(select(Suppression).order_by(Suppression.created_at.desc()).limit(limit)).scalars().all()
+
+
+@router.post("/suppressions", response_model=S.SuppressionOut, status_code=201)
+def add_suppression(body: S.SuppressionIn, viewer: Viewer = Depends(require_admin), db: Session = Depends(get_session)):
+    row = suppression.suppress(db, body.email, body.reason, source=f"admin:{str(viewer.user.id)[:8]}", actor=f"user:{viewer.user.id}")
+    db.commit()
+    return row
+
+
+@router.delete("/suppressions/{suppression_id}", status_code=204)
+def remove_suppression(suppression_id: uuid.UUID, viewer: Viewer = Depends(require_admin), db: Session = Depends(get_session)):
+    if not suppression.unsuppress(db, suppression_id, actor=f"user:{viewer.user.id}"):
+        raise not_found("Suppression not found.")
+    db.commit()
+
+
+# --------------------------------------------------------------------------- inbound quarantine
+@router.get("/inbound/quarantined", response_model=list[S.QuarantinedMessageOut])
+def quarantined(db: Session = Depends(get_session)):
+    out = []
+    for m in db.execute(select(EmailMessage).where(EmailMessage.status == "quarantined").order_by(EmailMessage.created_at)).scalars():
+        ap = db.execute(select(Approval.id).where(Approval.kind == "inbound_review", Approval.subject_id == str(m.id),
+                                                  Approval.status == ApprovalStatus.pending.value).limit(1)).scalar_one_or_none()
+        a = m.auth_result or {}
+        out.append(S.QuarantinedMessageOut(id=m.id, received_at=m.sent_at, from_address=m.from_address, subject=m.subject,
+                                           reason=m.quarantine_reason, dmarc_pass=a.get("dmarc_pass"), spf=a.get("spf"),
+                                           dkim=a.get("dkim"), approval_id=ap))
+    return out
+
+
+# --------------------------------------------------------------------------- users
+@router.post("/users/{user_id}/deactivate", status_code=204)
+def deactivate_user(user_id: uuid.UUID, viewer: Viewer = Depends(require_admin), db: Session = Depends(get_session)):
+    """Deactivate a login and revoke every session it holds (session_version is bumped)."""
+    u = db.get(User, user_id)
+    if u is None:
+        raise not_found("User not found.")
+    if u.id == viewer.user.id:
+        raise conflict("cannot_deactivate_self", "You cannot deactivate your own login.")
+    u.is_active = False
+    u.session_version += 1
+    audit(db, actor=f"user:{viewer.user.id}", action="user.deactivated", subject_type="user", subject_id=u.id)
+    db.commit()
