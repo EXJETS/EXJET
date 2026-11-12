@@ -35,7 +35,7 @@ export const api = {
   cancelTrip: (id: string) => post<T.Trip>(`/trips/${id}/cancel`),
   match: (id: string) => get<T.MatchResult>(`/trips/${id}/match`),
   tripListings: (id: string, type_slug?: string) => get<T.Listing[]>(`/trips/${id}/listings`, { query: { type_slug } }),
-  sendRfqs: (id: string, listing_ids: string[]) => post<T.Rfq[]>(`/trips/${id}/rfqs`, { listing_ids }),
+  sendRfqs: (id: string, listing_ids: string[], empty_leg_id?: string) => post<T.Rfq[]>(`/trips/${id}/rfqs`, { listing_ids, ...(empty_leg_id ? { empty_leg_id } : {}) }),
   groundRfq: (id: string, b: T.GroundRfqBody) => post<T.Rfq>(`/trips/${id}/ground-rfqs`, b),
   // quotes, contract, payment
   quotes: (id: string) => get<T.Quote[]>(`/trips/${id}/quotes`),
@@ -45,23 +45,25 @@ export const api = {
   markPaid: (quoteId: string) => post<T.Trip>(`/quotes/${quoteId}/payment/mark-paid`),
   // manifest + flight
   manifest: (id: string) => get<T.Manifest>(`/trips/${id}/manifest`),
-  saveManifest: (id: string, passengers: T.ManifestPassenger[]) => put<T.Manifest>(`/trips/${id}/manifest`, { passengers }),
-  submitManifest: (id: string) => post<T.Trip>(`/trips/${id}/manifest/submit`),
+  saveManifest: (id: string, passengers: T.ManifestPassengerIn[]) => put<T.Manifest>(`/trips/${id}/manifest`, { passengers }),
+  submitManifest: (id: string) => post<T.Manifest>(`/trips/${id}/manifest/submit`),
   weather: (id: string) => get<T.WeatherResponse>(`/trips/${id}/weather`),
   track: (id: string) => get<T.TrackResponse>(`/trips/${id}/track`),
   // admin
-  approvals: (status?: string) => get<T.Approval[]>("/admin/approvals", { query: { status } }),
+  approvals: (status?: string, kind?: string) => get<T.Approval[]>("/admin/approvals", { query: { status, kind } }),
   decideApproval: (id: string, decision: "approved" | "rejected", note: string) =>
     post<T.Approval>(`/admin/approvals/${id}/decide`, { decision, note }),
-  kycSubmissions: (status?: string) => get<T.KycSubmissionRow[]>("/admin/kyc/submissions", { query: { status } }),
+  kycSubmissions: (status?: string) => get<T.KycSubmissionDetail[]>("/admin/kyc/submissions", { query: { status } }),
   kycSubmission: (id: string) => get<T.KycSubmissionDetail>(`/admin/kyc/submissions/${id}`),
   adminOperators: () => get<T.AdminOperator[]>("/admin/operators"),
-  requestGoLive: (id: string) => post<T.AdminOperator>(`/admin/operators/${id}/request-go-live`),
+  requestGoLive: (id: string) => post<T.Approval>(`/admin/operators/${id}/request-go-live`),
   ingest: (form: FormData) => request<T.IngestRun>("POST", "/admin/ingest", { form }),
   ingestRuns: () => get<T.IngestRun[]>("/admin/ingest/runs"),
   metrics: () => get<T.Metrics>("/admin/metrics"),
   agentActions: () => get<T.AgentAction[]>("/admin/agent-actions"),
   jobs: () => get<T.Job[]>("/admin/jobs"),
+  adminQuotes: (status?: string) => get<T.AdminQuote[]>("/admin/quotes", { query: { status } }),
+  resolveQuote: (id: string, b: T.ResolveQuoteBody) => post<T.AdminQuote>(`/admin/quotes/${id}/resolve`, b),
 };
 
 export { apiUrl as documentUrl };

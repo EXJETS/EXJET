@@ -9,6 +9,7 @@ const TABS = [
   { href: "/company", label: "Overview" },
   { href: "/company/approvals", label: "Approvals" },
   { href: "/company/kyc", label: "KYC queue" },
+  { href: "/company/quotes", label: "Quote review" },
   { href: "/company/operators", label: "Operators" },
   { href: "/company/data", label: "Data upload" },
   { href: "/company/jobs", label: "Jobs" },

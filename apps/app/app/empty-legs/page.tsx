@@ -20,7 +20,7 @@ export default function EmptyLegsPage() {
     {
       key: "go", label: "", hideLabel: true,
       render: (e) => {
-        const p = new URLSearchParams({ origin: e.origin, destination: e.destination, date: e.available_from.slice(0, 10), empty_leg: e.id });
+        const p = new URLSearchParams({ origin: e.origin, destination: e.destination, date: e.available_from.slice(0, 10), empty_leg: e.id, listing: e.listing.listing_id });
         return <Link className="btn btn-sm btn-primary" href={me ? `/request?${p}` : "/login?next=/empty-legs"}>Request via RFQ</Link>;
       },
     },

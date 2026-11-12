@@ -35,7 +35,7 @@ export function membershipChip(me: Me | null) {
     billing: ["Membership needed", "wait"],
   };
   const [t, tone] = map[me.next_step] ?? ["Not entitled", "wait"];
-  return <Chip tone={me.account.kyc_status === "rejected" ? "problem" : tone}>{me.account.kyc_status === "rejected" ? "Verification declined" : t}</Chip>;
+  return <Chip tone={me.account?.kyc_status === "rejected" ? "problem" : tone}>{me.account?.kyc_status === "rejected" ? "Verification declined" : t}</Chip>;
 }
 
 export function AppFrame({ children }: { children: React.ReactNode }) {

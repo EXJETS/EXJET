@@ -4,19 +4,16 @@ import { useState } from "react";
 import { api, type IngestRun } from "@/lib/api";
 import { useAction, useApi } from "@/hooks/use-api";
 import { formatWhen } from "@/lib/rules";
-import { ActionError, Async, Banner, Card, DataTable, EmptyState, Field, PageHeader, StatusChip, type Column } from "@/components/ui";
+import { ActionError, Async, Banner, Card, DataTable, EmptyState, Field, PageHeader, type Column } from "@/components/ui";
 
-// ASSUMED dataset keys. The API validates the value; these are suggestions only.
-const DATASETS = ["operators", "aircraft_types", "aircraft", "airports", "empty_legs"];
+// Dataset keys from the API ingest config (dependency order).
+const DATASETS = ["airports_fbos", "operators", "aircraft", "outreach_lists"];
 
 function Report({ run }: { run: IngestRun }) {
-  const rej = run.report?.rejections ?? [];
   return (
     <details className="report">
       <summary>Report</summary>
-      {rej.length ? (
-        <ul className="ul-plain">{rej.map((r, i) => <li key={i}><span className="mono">row {String(r.row)}</span><span className="small">{r.reason}</span></li>)}</ul>
-      ) : run.report ? <pre className="raw">{JSON.stringify(run.report, null, 2)}</pre> : <p className="muted small">No rejections recorded.</p>}
+      {run.report ? <pre className="raw">{JSON.stringify(run.report, null, 2)}</pre> : <p className="muted small">No report recorded.</p>}
     </details>
   );
 }
@@ -46,10 +43,11 @@ export default function DataPage() {
   const cols: Column<IngestRun>[] = [
     { key: "d", label: "Dataset", render: (r) => <span className="mono">{r.dataset}</span> },
     { key: "f", label: "File", render: (r) => r.filename ?? "—" },
-    { key: "s", label: "Status", render: (r) => <StatusChip status={r.status} /> },
-    { key: "l", label: "Loaded", num: true, render: (r) => r.loaded_count ?? "—" },
-    { key: "j", label: "Rejected", num: true, render: (r) => r.rejected_count ?? "—" },
-    { key: "t", label: "Started", render: (r) => formatWhen(r.started_at) },
+    { key: "rd", label: "Read", num: true, render: (r) => r.rows_read },
+    { key: "l", label: "Loaded", num: true, render: (r) => r.rows_loaded },
+    { key: "u", label: "Updated", num: true, render: (r) => r.rows_updated },
+    { key: "j", label: "Rejected", num: true, render: (r) => r.rows_rejected },
+    { key: "t", label: "When", render: (r) => formatWhen(r.created_at) },
     { key: "r", label: "Report", render: (r) => <Report run={r} /> },
   ];
   return (
@@ -70,7 +68,7 @@ export default function DataPage() {
           </div>
         </form>
         <ActionError error={ingest.error} />
-        {done ? <Banner tone="ok" live>Run {done.id} finished: {done.loaded_count ?? 0} loaded, {done.rejected_count ?? 0} rejected.</Banner> : null}
+        {done ? <Banner tone="ok" live>Run {done.id} finished: {done.rows_loaded} loaded, {done.rows_rejected} rejected.</Banner> : null}
         <Card title="Runs" flush>
           <Async q={runs}>{(list) => list.length === 0 ? <EmptyState title="No ingest runs yet" /> : <DataTable caption="Ingest runs" columns={cols} rows={list} rowKey={(r) => r.id} />}</Async>
         </Card>

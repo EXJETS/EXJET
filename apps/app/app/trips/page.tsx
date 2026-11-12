@@ -3,14 +3,14 @@
 import Link from "next/link";
 import { api, type Trip } from "@/lib/api";
 import { useApi } from "@/hooks/use-api";
-import { formatWhen, nextAction, tripTitle } from "@/lib/rules";
+import { formatDeparture, nextAction, tripTitle } from "@/lib/rules";
 import { Async, Card, DataTable, EmptyState, PageHeader, StatusChip, type Column } from "@/components/ui";
 
 export default function TripsPage() {
   const q = useApi<Trip[]>("trips", api.trips);
   const cols: Column<Trip>[] = [
     { key: "route", label: "Route", render: (t) => <Link className="rowlink mono" href={`/trips/${t.id}`}>{tripTitle(t)}</Link> },
-    { key: "dep", label: "Departs", render: (t) => formatWhen(t.legs[0]?.depart_at) },
+    { key: "dep", label: "Departs", render: (t) => formatDeparture(t.legs[0]?.depart_at) },
     { key: "pax", label: "Pax", num: true, render: (t) => t.passengers },
     { key: "status", label: "Status", render: (t) => <StatusChip status={t.status} /> },
     { key: "next", label: "Next action", render: (t) => <span>{nextAction(t)}</span> },

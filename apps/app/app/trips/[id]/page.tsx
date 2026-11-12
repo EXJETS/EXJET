@@ -1,13 +1,15 @@
 "use client";
 
 import Link from "next/link";
-import { useParams } from "next/navigation";
+import { Suspense } from "react";
+import { useParams, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { ArrowLeft } from "lucide-react";
-import { api, type MatchResult, type Trip } from "@/lib/api";
+import { api, type EmptyLeg, type MatchResult, type Trip } from "@/lib/api";
+import { useMe } from "@/hooks/me";
 import { useAction, useApi } from "@/hooks/use-api";
-import { acceptedQuote, currentStageIndex, formatWhen, STATUS_LABEL, tripTitle } from "@/lib/rules";
-import { ActionError, Banner, Card, ErrorState, StatusChip } from "@/components/ui";
+import { acceptedQuote, currentStageIndex, formatDeparture, STATUS_LABEL, tripTitle } from "@/lib/rules";
+import { ActionError, Banner, Card, EntitlementGate, ErrorState, StatusChip } from "@/components/ui";
 import { PageSkeleton } from "@/components/Shell";
 import { StageRail } from "@/components/trip/StageRail";
 import { MatchSection } from "@/components/trip/MatchSection";
@@ -29,9 +31,9 @@ function RouteSummary({ trip }: { trip: Trip }) {
             <span className="seq">{i + 1}</span>
             <span className="route"><span className="mono">{l.origin_icao}</span> to <span className="mono">{l.destination_icao}</span></span>
             <span className="muted">
-              {formatWhen(l.depart_at)}
+              {formatDeparture(l.depart_at)}
               {" · "}
-              {dist?.[i] ? <span className="mono">{dist[i].distance_nm.toLocaleString("en-US")} nm</span> : match.loading ? "…" : "distance n/a"}
+              {dist?.[i]?.distance_nm ? <span className="mono">{dist[i].distance_nm.toLocaleString("en-US")} nm</span> : match.loading ? "…" : "distance n/a"}
             </span>
           </div>
         ))}
@@ -47,8 +49,37 @@ function RouteSummary({ trip }: { trip: Trip }) {
   );
 }
 
-export default function TripPage() {
+function EmptyLegCard({ trip, emptyLegId, listingId, onSent }: { trip: Trip; emptyLegId: string; listingId: string; onSent: () => void }) {
+  const { me } = useMe();
+  const legs = useApi<EmptyLeg[]>(`empty-legs:${me?.entitled ?? false}`, api.emptyLegs);
+  const send = useAction(api.sendRfqs);
+  const el = legs.data?.find((x) => x.id === emptyLegId);
+  const sent = trip.rfqs.some((r) => r.listing?.listing_id === listingId);
+  async function go() {
+    const r = await send.run(trip.id, [listingId], emptyLegId);
+    if (r) onSent();
+  }
+  return (
+    <Card id="empty-leg" title="Empty leg request">
+      <div style={{ display: "grid", gap: 12 }}>
+        <p>
+          {el ? <>The aircraft on this empty leg: <strong>{el.listing.type.manufacturer} {el.listing.type.model}</strong>{el.listing.tail_number ? <> <span className="mono">{el.listing.tail_number}</span></> : null}. </> : null}
+          The RFQ goes to its operator, who quotes the flight. No price is listed for empty legs.
+        </p>
+        {!me?.entitled ? <EntitlementGate /> : sent ? <Banner tone="ok">RFQ sent for this empty leg.</Banner> : (
+          <div><button className="btn btn-primary" onClick={go} disabled={send.pending}>{send.pending ? "Sending" : "Send RFQ for this empty leg"}</button></div>
+        )}
+        <ActionError error={send.error} />
+      </div>
+    </Card>
+  );
+}
+
+function TripPageInner() {
   const { id } = useParams<{ id: string }>();
+  const sp = useSearchParams();
+  const emptyLegId = sp.get("empty_leg");
+  const emptyLegListing = sp.get("listing");
   const q = useApi<Trip>(`trip:${id}`, () => api.trip(id), { refreshMs: 4000, poll: (t) => t.status === "rfq_sent" });
   const cancel = useAction(api.cancelTrip);
   const [confirmCancel, setConfirmCancel] = useState(false);
@@ -95,7 +126,8 @@ export default function TripPage() {
       <RouteSummary trip={trip} />
       {!cancelled ? (
         <>
-          {canAddRfq ? <MatchSection trip={trip} onSent={q.reload} /> : <Card id="aircraft" num="02" title="Aircraft"><p className="muted">Aircraft selection is complete.</p></Card>}
+          {emptyLegId && emptyLegListing && canAddRfq ? <EmptyLegCard trip={trip} emptyLegId={emptyLegId} listingId={emptyLegListing} onSent={q.reload} /> : null}
+          {canAddRfq ? <MatchSection trip={trip} onSent={q.reload} emptyLegId={null} /> : <Card id="aircraft" num="02" title="Aircraft"><p className="muted">Aircraft selection is complete.</p></Card>}
           <RfqSection trip={trip} />
           <QuotesSection trip={trip} onChange={q.reload} />
           <ContractSection trip={trip} locked={!accepted} onChange={q.reload} />
@@ -107,4 +139,8 @@ export default function TripPage() {
       ) : null}
     </div>
   );
+}
+
+export default function TripPage() {
+  return <Suspense><TripPageInner /></Suspense>;
 }

@@ -10,7 +10,7 @@ export default function JobsPage() {
   const cols: Column<Job>[] = [
     { key: "k", label: "Kind", render: (j) => <span className="mono">{j.kind}</span> },
     { key: "s", label: "Status", render: (j) => <StatusChip status={j.status} /> },
-    { key: "a", label: "Attempts", num: true, render: (j) => j.attempts },
+    { key: "a", label: "Attempts", num: true, render: (j) => `${j.attempts} / ${j.max_attempts}` },
     { key: "r", label: "Run at", render: (j) => formatWhen(j.run_at) },
     { key: "e", label: "Last error", render: (j) => j.last_error ?? <span className="muted">—</span> },
   ];

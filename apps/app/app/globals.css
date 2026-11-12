@@ -298,3 +298,8 @@ details.report summary { cursor: pointer; font-weight: 500; min-height: 32px; di
 
 /* grid/flex children must be allowed to shrink so tables and rails scroll internally instead of widening the page */
 .card, .tbl-wrap, .banner, .rail, .gate, .steps, .stack, .grid2, .grid3, .grid4, .content > *, .content form, .content section, .content nav { min-width: 0; max-width: 100%; }
+
+.inline-list { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line-strong); background: #fafafa; box-shadow: inset 3px 0 0 var(--ink); }
+.inline-list .tbl th { background: #f0f0f0; }
+.rfq-bar { position: sticky; bottom: 0; z-index: 10; background: var(--paper); border-top: 1px solid var(--ink); padding: 10px 16px; display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+@media (max-width: 880px) { .rfq-bar { bottom: calc(var(--tab-h) + env(safe-area-inset-bottom)); box-shadow: 0 -6px 12px rgba(0,0,0,0.06); } .rfq-bar .btn { width: 100%; } }

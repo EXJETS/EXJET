@@ -93,3 +93,15 @@ export function AirportInput({ id, label, value, onChange, flag }: { id: string;
     </div>
   );
 }
+
+/** Small suggestion chip used for intake `candidates` (airport disambiguation). */
+export function AirportChip({ icao, onPick }: { icao: string; onPick: (icao: string) => void }) {
+  useApi<Airport[]>(cache.has(icao) ? null : `ap-known:${icao}`, () => api.airports(icao).then(remember));
+  const a = cache.get(icao);
+  return (
+    <button type="button" className="btn btn-sm" onClick={() => onPick(icao)}>
+      <span className="mono">{icao}</span>
+      {a ? <span className="muted small">{a.name}</span> : null}
+    </button>
+  );
+}

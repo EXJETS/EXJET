@@ -1,4 +1,4 @@
-import type { IdType, ManifestPassenger, Trip, TripStatus } from "./api/types";
+import type { IdType, ManifestRow, Trip, TripStatus } from "./api/types";
 
 /** ICAO prefixes of US states and territories (contiguous K, Alaska PA/PF/PO/PP/PK, Hawaii PH, Guam PG, PR/USVI TJ/TI). */
 const US_PREFIXES = ["K", "PA", "PF", "PO", "PP", "PK", "PH", "PG", "PM", "PW", "TJ", "TI"];
@@ -19,13 +19,13 @@ export function idTypeLabel(t: IdType | ""): string {
 }
 
 /** Force the ID type of every passenger to the required one. */
-export function enforceIdType(rows: ManifestPassenger[], required: IdType): ManifestPassenger[] {
+export function enforceIdType(rows: ManifestRow[], required: IdType): ManifestRow[] {
   return rows.map((r) => (r.id_type === required ? r : { ...r, id_type: required }));
 }
 
-export type PassengerErrors = Partial<Record<keyof ManifestPassenger, string>>;
+export type PassengerErrors = Partial<Record<keyof ManifestRow, string>>;
 
-export function validatePassenger(p: ManifestPassenger, required: IdType, today = new Date()): PassengerErrors {
+export function validatePassenger(p: ManifestRow, required: IdType, today = new Date()): PassengerErrors {
   const e: PassengerErrors = {};
   if (!p.full_name.trim() || p.full_name.trim().split(/\s+/).length < 2) e.full_name = "Full legal name (first and last)";
   if (!/^\d{4}-\d{2}-\d{2}$/.test(p.date_of_birth) || new Date(p.date_of_birth) > today) e.date_of_birth = "Valid date of birth";
@@ -36,12 +36,12 @@ export function validatePassenger(p: ManifestPassenger, required: IdType, today 
   return e;
 }
 
-export function manifestComplete(rows: ManifestPassenger[], required: IdType, pax: number): boolean {
+export function manifestComplete(rows: ManifestRow[], required: IdType, pax: number): boolean {
   return rows.length === pax && rows.every((r) => Object.keys(validatePassenger(r, required)).length === 0);
 }
 
-export function emptyPassenger(required: IdType): ManifestPassenger {
-  return { full_name: "", date_of_birth: "", id_type: required, id_number: "", id_expiry: "", id_issuer: "" };
+export function emptyPassenger(required: IdType): ManifestRow {
+  return { full_name: "", date_of_birth: "", id_type: required, id_number: "", id_number_last4: null, id_expiry: "", id_issuer: "" };
 }
 
 // ---- stage rail ----
@@ -50,7 +50,7 @@ export const STAGES = ["Request", "Aircraft", "RFQ", "Quotes", "Contract", "Paym
 export type Stage = (typeof STAGES)[number];
 
 export function acceptedQuote(trip: Trip) {
-  return trip.quotes.find((q) => q.status === "accepted") ?? null;
+  return trip.quotes.find((q) => q.id === trip.accepted_quote_id || q.status === "accepted") ?? null;
 }
 
 /** Index in STAGES of the stage the member should act on now. */
@@ -92,9 +92,9 @@ export const STATUS_LABEL: Record<string, string> = {
 
 export type Tone = "neutral" | "ok" | "wait" | "problem";
 export function statusTone(s: string): Tone {
-  if (["completed", "scheduled", "in_flight", "paid", "contracted", "approved", "live", "active", "succeeded", "replied", "ready", "accepted", "loaded"].includes(s)) return "ok";
-  if (["rfq_sent", "quoted", "manifest_due", "pending", "pending_approval", "queued", "sent", "running", "needs_review", "past_due", "incomplete"].includes(s)) return "wait";
-  if (["cancelled", "rejected", "failed", "declined", "expired", "canceled", "error", "blocked"].includes(s)) return "problem";
+  if (["completed", "scheduled", "in_flight", "paid", "contracted", "approved", "live", "active", "succeeded", "replied", "ready", "accepted", "loaded", "airborne", "landed", "done", "succeeded", "marked_paid"].includes(s)) return "ok";
+  if (["rfq_sent", "quoted", "manifest_due", "pending", "pending_approval", "queued", "sent", "running", "needs_review", "past_due", "incomplete", "submitted", "in_review", "pending_ceo", "received", "scheduled_wait"].includes(s)) return "wait";
+  if (["cancelled", "rejected", "failed", "declined", "expired", "canceled", "error", "blocked", "suspended"].includes(s)) return "problem";
   return "neutral";
 }
 
@@ -133,7 +133,14 @@ export function formatMoney(cents: number | null | undefined, currency = "USD"):
 const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 const NAIVE = /^(\d{4})-(\d{2})-(\d{2})(?:[T ](\d{2}):(\d{2}))?/;
 
-/** Naive local timestamps (no offset) are shown verbatim as airport-local; instants are shown in the viewer's zone. */
+/** Departure times: the API returns the airport-local wall time with its UTC offset. Show the wall time verbatim. */
+export function formatDeparture(s: string | null | undefined): string {
+  if (!s) return "—";
+  const m = NAIVE.exec(s);
+  return m ? `${MONTHS[Number(m[2]) - 1]} ${Number(m[3])}, ${m[1]}${m[4] ? ` ${m[4]}:${m[5]}` : ""}` : s;
+}
+
+/** Instants (due dates, sent/replied times) are shown in the viewer's zone; strings with no offset are shown verbatim. */
 export function formatWhen(s: string | null | undefined): string {
   if (!s) return "—";
   const hasZone = /(Z|[+-]\d{2}:?\d{2})$/.test(s);

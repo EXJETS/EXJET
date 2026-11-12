@@ -1,6 +1,10 @@
 import type { ApiErrorEnvelope } from "./types";
 
-export const API_BASE = (process.env.NEXT_PUBLIC_API_URL ?? "http://localhost:8000").replace(/\/+$/, "");
+/**
+ * Empty by default: requests go to same-origin `/v1/*`, which next.config.ts rewrites to the API (see README.md).
+ * Set NEXT_PUBLIC_API_URL only to call the API origin directly (needs the API's CORS + credentials).
+ */
+export const API_BASE = (process.env.NEXT_PUBLIC_API_URL ?? "").replace(/\/+$/, "");
 
 /** Mock mode exists only when NEXT_PUBLIC_API_MOCK=1 is set at build/dev time. */
 export function isMock(): boolean {

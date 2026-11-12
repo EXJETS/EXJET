@@ -23,6 +23,7 @@ export default function AccountPage() {
   const [invited, setInvited] = useState<string | null>(null);
   if (!me) return null;
   const sub = me.subscription;
+  const account = me.account ?? { id: "", type: "individual", display_name: me.user.full_name ?? me.user.email, seats: 1, kyc_status: "not_started" };
 
   async function openPortal() {
     const r = await portal.run();
@@ -49,13 +50,13 @@ export default function AccountPage() {
         <div className="stack">
           <Card title="Profile">
             <dl className="kv">
-              <dt>Name</dt><dd>{me.user.full_name}</dd>
+              <dt>Name</dt><dd>{me.user.full_name ?? "—"}</dd>
               <dt>Email</dt><dd>{me.user.email}</dd>
-              <dt>Account type</dt><dd>{PLAN_NAME[me.account.type] ?? me.account.type}</dd>
-              <dt>Seats</dt><dd>{me.account.seats}</dd>
+              <dt>Account type</dt><dd>{PLAN_NAME[account.type] ?? account.type}</dd>
+              <dt>Seats</dt><dd>{account.seats}</dd>
             </dl>
           </Card>
-          {me.account.type === "family_office" ? (
+          {account.type === "family_office" ? (
             <Card title="Seats">
               <p className="muted" style={{ marginBottom: 12 }}>Family Office includes a second seat. Invite the second member by email.</p>
               <form onSubmit={sendInvite} className="row">
@@ -65,7 +66,7 @@ export default function AccountPage() {
               <div style={{ marginTop: 8 }}><ActionError error={invite.error} />{invited ? <Banner tone="ok" live>Invite sent to {invited}.</Banner> : null}</div>
             </Card>
           ) : null}
-          <Card title="Identity verification" actions={<Chip tone={me.account.kyc_status === "approved" ? "ok" : me.account.kyc_status === "rejected" ? "problem" : "wait"}>{me.account.kyc_status === "approved" ? "Approved" : me.account.kyc_status === "pending" ? "In review" : me.account.kyc_status === "rejected" ? "Declined" : "Not started"}</Chip>}>
+          <Card title="Identity verification" actions={<Chip tone={account.kyc_status === "approved" ? "ok" : account.kyc_status === "rejected" ? "problem" : "wait"}>{account.kyc_status === "approved" ? "Approved" : (account.kyc_status === "submitted" || account.kyc_status === "in_review") ? "In review" : account.kyc_status === "rejected" ? "Declined" : "Not started"}</Chip>}>
             <Async q={kyc} skeleton={<div className="skeleton" style={{ height: 40 }} />}>
               {(k) => (
                 <div style={{ display: "grid", gap: 8 }}>
@@ -76,7 +77,7 @@ export default function AccountPage() {
                       {k.latest_submission.decision_note ? (<><dt>Note</dt><dd>{k.latest_submission.decision_note}</dd></>) : null}
                     </dl>
                   ) : <p className="muted">No documents submitted.</p>}
-                  {me.account.kyc_status !== "approved" ? <div><Link className="btn" href="/onboarding">{me.account.kyc_status === "pending" ? "View status" : "Continue verification"}</Link></div> : null}
+                  {account.kyc_status !== "approved" ? <div><Link className="btn" href="/onboarding">{(account.kyc_status === "submitted" || account.kyc_status === "in_review") ? "View status" : "Continue verification"}</Link></div> : null}
                 </div>
               )}
             </Async>

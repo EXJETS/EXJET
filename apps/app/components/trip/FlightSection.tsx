@@ -5,7 +5,7 @@ import { useApi } from "@/hooks/use-api";
 import { formatWhen } from "@/lib/rules";
 import { Async, Card, DataTable, EmptyState, StatusChip, type Column } from "../ui";
 
-type Row = { leg: number; route: string; status: string; pos: NonNullable<TrackResponse[number]["position"]> | null };
+type Row = { leg: number; route: string; status: string; pos: NonNullable<TrackResponse["legs"][number]["position"]> | null };
 
 export function FlightSection({ trip, locked }: { trip: Trip; locked: boolean }) {
   const active = !locked;
@@ -28,13 +28,13 @@ export function FlightSection({ trip, locked }: { trip: Trip; locked: boolean })
             <Async q={weather}>
               {(w) => (
                 <div style={{ display: "grid", gap: 16 }}>
-                  {w.map((leg, i) => (
+                  {w.legs.map((leg, i) => (
                     <div key={i} className="card">
                       <div className="card-h"><strong>Leg {i + 1} <span className="mono">{trip.legs[i]?.origin_icao} – {trip.legs[i]?.destination_icao}</span></strong></div>
                       <div className="card-b" style={{ display: "grid", gap: 12 }}>
                         {leg.summary ? <p>{leg.summary}</p> : null}
                         <div className="grid2">
-                          {([["Origin", trip.legs[i]?.origin_icao, leg.origin], ["Destination", trip.legs[i]?.destination_icao, leg.destination]] as const).map(([l, icao, w2]) => (
+                          {([["Origin", leg.origin.icao, leg.origin], ["Destination", leg.destination.icao, leg.destination]] as const).map(([l, icao, w2]) => (
                             <div key={l} style={{ display: "grid", gap: 6 }}>
                               <div className="eyebrow">{l} {icao}</div>
                               <div className="small muted">METAR</div><pre className="raw">{w2.metar ?? "No report"}</pre>
@@ -54,7 +54,7 @@ export function FlightSection({ trip, locked }: { trip: Trip; locked: boolean })
           <h3 id="tk-h" style={{ marginBottom: 8 }}>Live status</h3>
           <Async q={track}>
             {(t) => {
-              const rows: Row[] = t.map((l, i) => ({ leg: i, route: `${trip.legs[i]?.origin_icao ?? ""} – ${trip.legs[i]?.destination_icao ?? ""}`, status: l.status, pos: l.position }));
+              const rows: Row[] = t.legs.map((l, i) => ({ leg: i, route: `${trip.legs[i]?.origin_icao ?? ""} – ${trip.legs[i]?.destination_icao ?? ""}`, status: l.status, pos: l.position }));
               const cols: Column<Row>[] = [
                 { key: "leg", label: "Leg", render: (r) => <span><span className="mono">{r.leg + 1}</span> <span className="mono muted">{r.route}</span></span> },
                 { key: "st", label: "Status", render: (r) => <StatusChip status={r.status} /> },

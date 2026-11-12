@@ -23,16 +23,16 @@ export function Plans({ currentPlan }: { currentPlan?: string }) {
       <Async q={plans}>
         {(list) => (
           <div className="plans">
-            {list.map((p) => (
+            {list.filter((p) => !p.inquiry_only && p.unit_amount_cents !== null).map((p) => (
               <section key={p.plan} className="card plan" aria-label={`${p.name} plan`}>
                 <div className="card-b" style={{ flex: 1 }}>
                   <div className="eyebrow">{p.name}</div>
                   <p className="price">
-                    {new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format(p.unit_amount_cents / 100)}
+                    {new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 }).format((p.unit_amount_cents ?? 0) / 100)}
                     <span className="muted small" style={{ fontWeight: 400 }}> / month</span>
                   </p>
                   <ul>
-                    <li>{p.seats} {p.seats === 1 ? "seat" : "seats"}</li>
+                    <li>{p.seats ?? 1} {p.seats === 1 ? "seat" : "seats"}</li>
                     <li>Send RFQs to verified operators</li>
                     <li>Operator, tail and contact details</li>
                   </ul>
