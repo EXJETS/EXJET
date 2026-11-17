@@ -205,6 +205,15 @@ export function localBusinessJsonLd() {
     description: siteConfig.description,
     telephone: siteConfig.phone.primary.e164,
     email: siteConfig.email.general,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: 32.7826534,
+      longitude: -96.7953246,
+    },
+    areaServed: [
+      { "@type": "City", name: "Dallas", containedInPlace: { "@type": "State", name: "Texas" } },
+      { "@type": "Country", name: "United States" },
+    ],
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.streetAddress,

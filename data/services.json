@@ -221,7 +221,7 @@
   {
     "path": "/pricing",
     "title": "Private jet charter cost and pricing",
-    "description": "Understand charter costs with hourly reference inputs, route examples, fees and a complete trip calculation. Request a written itinerary-specific quote from EXJET.",
+    "description": "Understand charter costs with hourly reference inputs, route examples, fees and a complete trip calculation. Request a written EXJET quote.",
     "kicker": "Charter pricing",
     "kind": "service",
     "sections": [
@@ -619,7 +619,7 @@
   {
     "path": "/editorial-standards",
     "title": "EXJET editorial standards and sources",
-    "description": "Learn how EXJET presents aircraft, airport and charter information. Review source standards, estimate limitations and the distinction between guides and live quotes.",
+    "description": "See how EXJET presents aircraft, airport, and charter information, including sources, estimate limits, and how guides differ from quotes.",
     "kicker": "EXJET editorial",
     "kind": "legal",
     "sections": [
@@ -829,8 +829,8 @@
   {
     "path": "/starlink-installation",
     "title": "Starlink aviation installation consulting",
-    "seoTitle": "Starlink Aircraft Installation Consulting & Coordination | EXJET",
-    "description": "Plan Starlink installation for your business jet with EXJET. Review aircraft eligibility, installer proposals, downtime, cabin requirements and service activation.",
+    "seoTitle": "Starlink Installation Consulting | EXJET",
+    "description": "Plan Starlink installation with EXJET. Review aircraft eligibility, installer proposals, downtime, cabin needs, and service activation.",
     "kicker": "EXJET business aviation solutions",
     "kind": "service",
     "parent": {
@@ -1422,7 +1422,7 @@
     "path": "/engineering-stc",
     "title": "Engineering & STC. From requirement to approved scope.",
     "seoTitle": "Aircraft Engineering & STC Project Coordination | EXJET",
-    "description": "Plan aircraft modifications with EXJET. Coordinate engineering providers, STC applicability, installation scope and documentation for business and commercial aircraft.",
+    "description": "Plan aircraft modifications with EXJET. Coordinate engineering providers, STC fit, installation scope, and the records the project needs.",
     "kicker": "Business & commercial aviation",
     "kind": "service",
     "parent": {

@@ -6,7 +6,7 @@
     "citySlug": "dallas",
     "icao": "KDAL",
     "iata": "DAL",
-    "description": "A Dallas airport with commercial and general aviation facilities, two parallel runways, and multiple private aviation arrival points. Plan the flight and the ground transfer together.",
+    "description": "Dallas Love Field combines commercial and general aviation, with parallel runways and several private arrival points. Plan the flight and the transfer together.",
     "location": "Dallas, Texas, United States",
     "runways": [
       {
@@ -45,7 +45,7 @@
       {
         "heading": "Choosing the airport for your trip",
         "paragraphs": [
-          "A Dallas airport with commercial and general aviation facilities, two parallel runways, and multiple private aviation arrival points. Plan the flight and the ground transfer together.",
+          "Dallas Love Field combines commercial and general aviation, with parallel runways and several private arrival points. Plan the flight and the transfer together.",
           "Confirm the exact fixed-base operator, or FBO, before arranging your car. Dallas identifies several FBOs serving private and general aviation aircraft and directs travelers to obtain the correct meeting location from the aircraft operator. Give your driver the confirmed street address and facility name, rather than the airline terminal address."
         ]
       },
@@ -158,7 +158,7 @@
     "citySlug": "los-angeles",
     "icao": "KVNY",
     "iata": "VNY",
-    "description": "A general aviation airport in Los Angeles's San Fernando Valley, Van Nuys offers a distinct arrival point for trips whose ground itinerary fits this part of the region.",
+    "description": "Van Nuys is a general aviation airport in Los Angeles's San Fernando Valley, a distinct arrival when the ground trip fits this part of the region.",
     "location": "Van Nuys, Los Angeles, California, United States",
     "runways": [
       {
@@ -197,7 +197,7 @@
       {
         "heading": "Choosing the airport for your trip",
         "paragraphs": [
-          "A general aviation airport in Los Angeles's San Fernando Valley, Van Nuys offers a distinct arrival point for trips whose ground itinerary fits this part of the region.",
+          "Van Nuys is a general aviation airport in Los Angeles's San Fernando Valley, a distinct arrival when the ground trip fits this part of the region.",
           "Start with your actual Los Angeles destination. Van Nuys is in the San Fernando Valley, and Los Angeles World Airports identifies it as a general aviation airport. Send the hotel, office or venue address with your request so the airport choice can be assessed alongside the ground journey."
         ]
       },
@@ -291,7 +291,7 @@
       }
     ],
     "seoTitle": "Miami Opa-locka (OPF) Private Jet Charter | EXJET",
-    "metaDescription": "Plan aircraft charter at Miami-Opa Locka Executive Airport (OPF). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "metaDescription": "Plan aircraft charter at Miami-Opa Locka Executive Airport (OPF). Review the terminal, transfer and itinerary, then request an EXJET quote.",
     "faqs": [
       {
         "question": "Where do I meet my charter flight at OPF?",
@@ -311,7 +311,7 @@
     "icao": "KADS",
     "iata": "ADS",
     "timezone": "America/Chicago",
-    "description": "Addison is a general aviation option for North Dallas, Addison and the northern business corridor. Compare it with Love Field using the actual office or hotel address, rather than selecting an airport solely because it carries a Dallas label.",
+    "description": "Addison is a general aviation option for North Dallas and the northern corridor. Compare it with Love Field using the actual address.",
     "location": "Dallas / Addison",
     "planningNotes": [],
     "runways": [],
@@ -378,7 +378,7 @@
     "icao": "KHPN",
     "iata": "HPN",
     "timezone": "America/New_York",
-    "description": "Westchester County Airport is a mixed commercial and general aviation airport in White Plains. It provides a useful airport comparison for Westchester, nearby Connecticut and journeys continuing into the New York metropolitan area.",
+    "description": "Westchester County Airport mixes airline and general aviation service in White Plains. Compare it using the address you need to reach.",
     "location": "White Plains / New York",
     "planningNotes": [],
     "runways": [],
@@ -445,7 +445,7 @@
     "icao": "KDJT",
     "iata": "DJT",
     "timezone": "America/New_York",
-    "description": "The West Palm Beach airport formerly known as Palm Beach International now uses DJT / KDJT. Its official name is President Donald J. Trump International Airport. Older itineraries and search results may still refer to PBI / KPBI.",
+    "description": "The West Palm Beach airport formerly known as PBI now uses DJT / KDJT. Confirm that name on the itinerary and with the handler.",
     "location": "West Palm Beach",
     "planningNotes": [],
     "runways": [],
@@ -512,7 +512,7 @@
     "icao": "KASE",
     "iata": "ASE",
     "timezone": "America/Denver",
-    "description": "Aspen/Pitkin County Airport serves Aspen and the surrounding mountain area. Mountain weather, aircraft limitations and operating-hour restrictions make a flexible arrival plan especially valuable for charter travelers.",
+    "description": "Aspen/Pitkin County Airport serves Aspen and the nearby mountains. Weather, aircraft limits, and operating hours belong in the charter brief.",
     "location": "Aspen",
     "planningNotes": [],
     "runways": [],
@@ -579,7 +579,7 @@
     "icao": "KEGE",
     "iata": "EGE",
     "timezone": "America/Denver",
-    "description": "Eagle County Regional Airport is a gateway for Vail, Beaver Creek and the wider Eagle Valley. Charter planning should connect the flight with the mountain transfer and the baggage requirements of the whole group.",
+    "description": "Eagle County Regional Airport is a gateway for Vail, Beaver Creek, and the Eagle Valley. Plan the flight together with the mountain transfer.",
     "location": "Vail / Eagle County",
     "planningNotes": [],
     "runways": [],
@@ -646,7 +646,7 @@
     "icao": "KLAS",
     "iata": "LAS",
     "timezone": "America/Los_Angeles",
-    "description": "Harry Reid International is one option for a Las Vegas charter itinerary. Henderson Executive and North Las Vegas are alternative airports to discuss with the operator according to the aircraft and final destination.",
+    "description": "Harry Reid International is one Las Vegas option. Henderson Executive and North Las Vegas are alternatives to discuss for the address you need.",
     "location": "Las Vegas",
     "planningNotes": [],
     "runways": [],
@@ -693,7 +693,7 @@
       }
     ],
     "seoTitle": "Las Vegas Airport (LAS) Private Jet Charter | EXJET",
-    "metaDescription": "Plan aircraft charter at Harry Reid International Airport (LAS). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "metaDescription": "Plan aircraft charter at Harry Reid International Airport (LAS). Review the terminal, transfer and itinerary, then request an EXJET quote.",
     "faqs": [
       {
         "question": "Where do I meet my charter flight at LAS?",
@@ -713,7 +713,7 @@
     "icao": "KMDW",
     "iata": "MDW",
     "timezone": "America/Chicago",
-    "description": "Chicago Midway supports both airline and general aviation activity. Its published FBO facilities provide a starting point for arranging business jet arrivals, meetings and onward ground transport in Chicago.",
+    "description": "Chicago Midway supports both airline and general aviation activity. Its published FBO facilities provide a starting point for arranging business jet arrivals.",
     "location": "Chicago",
     "planningNotes": [],
     "runways": [],
@@ -760,7 +760,7 @@
       }
     ],
     "seoTitle": "Chicago Midway (MDW) Private Jet Charter | EXJET",
-    "metaDescription": "Plan aircraft charter at Chicago Midway International Airport (MDW). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "metaDescription": "Plan aircraft charter at Chicago Midway International Airport (MDW). Review the terminal, transfer and itinerary, then request an EXJET quote.",
     "faqs": [
       {
         "question": "Where do I meet my charter flight at MDW?",
@@ -780,7 +780,7 @@
     "icao": "KHOU",
     "iata": "HOU",
     "timezone": "America/Chicago",
-    "description": "William P. Hobby Airport is a Houston airport option for business jet charter. Select the airport and FBO around your Houston destination, the proposed aircraft and the complete ground journey.",
+    "description": "William P. Hobby Airport is one Houston option for business jet charter. Choose the airport and FBO around the address and the aircraft.",
     "location": "Houston",
     "planningNotes": [],
     "runways": [],
@@ -847,7 +847,7 @@
     "icao": "MMSD",
     "iata": "SJD",
     "timezone": "America/Mazatlan",
-    "description": "Los Cabos International Airport uses SJD / MMSD and serves San José del Cabo and Cabo San Lucas. It is distinct from Cabo San Lucas International Airport, so the exact airport should be explicit in a charter request.",
+    "description": "Los Cabos International (SJD / MMSD) serves San José del Cabo and Cabo San Lucas. It is not Cabo San Lucas International.",
     "location": "San José del Cabo / Los Cabos",
     "planningNotes": [],
     "runways": [],

@@ -65,6 +65,7 @@ export default function GroupCharterPage() {
           <div>
             <p>EXJET can coordinate the charter brief around passenger manifests, baggage and equipment needs, schedule changes, onboard service requests, and ground transfer requirements.</p>
             <p>Aircraft, operator, permits, onboard amenities, and ground services remain subject to availability and final confirmation.</p>
+            <p>Write the brief as a movement, not as a single aircraft type. Include every city, the time people must be on site, who may approve a change, and what has to travel in the hold. A sports roster and a corporate offsite fail for different reasons: one because the equipment was described too loosely, the other because the approval path was missing. EXJET uses that brief to ask licensed carriers for options. The carrier confirms seats, baggage, and whether the flight can be operated. If the group is larger than one cabin, say so at the start so two aircraft can be planned as one schedule.</p>
             <a className="large-contact-link large-contact-link--dark" href={`mailto:${siteConfig.email.charter}`}>{siteConfig.email.charter} <span>→</span></a>
           </div>
         </div>

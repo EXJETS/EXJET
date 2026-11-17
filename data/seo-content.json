@@ -289,7 +289,7 @@
   {
     "path": "/guides/part-135-vs-part-91",
     "title": "Part 135 vs Part 91: a charter passenger guide",
-    "description": "Understand the distinction between on-demand charter and private aircraft operations. Learn what operating authority and aircraft details to verify before booking.",
+    "description": "See how on-demand charter differs from private operations, and which authority and aircraft details to verify before a booking.",
     "kind": "article",
     "kicker": "EXJET flight planning",
     "sections": [
@@ -440,7 +440,7 @@
   {
     "path": "/group-charter/sports-teams",
     "title": "Sports team air charter",
-    "description": "Coordinate sports team charter with EXJET. Plan the traveling roster, equipment, schedule and transfers, then request appropriate aircraft and a complete proposal.",
+    "description": "Coordinate sports team charter with EXJET. Plan the roster, equipment, schedule, and transfers, then request aircraft and a full proposal.",
     "kind": "service",
     "kicker": "EXJET flight planning",
     "sections": [
@@ -612,7 +612,7 @@
   {
     "path": "/destinations/vail",
     "title": "Vail and Beaver Creek private jet charter",
-    "description": "Plan aircraft charter to Vail and Beaver Creek with airport, baggage and transfer guidance. Explore relevant route examples and request a trip-specific proposal from EXJET.",
+    "description": "Plan charter to Vail and Beaver Creek with airport, baggage, and transfer notes. See route examples and request an EXJET proposal.",
     "kind": "destination",
     "kicker": "EXJET flight planning",
     "sections": [
@@ -704,7 +704,7 @@
   {
     "path": "/destinations/palm-beach",
     "title": "Palm Beach private jet charter",
-    "description": "Plan aircraft charter to Palm Beach with airport, baggage and transfer guidance. Explore relevant route examples and request a trip-specific proposal from EXJET.",
+    "description": "Plan charter to Palm Beach with airport, baggage, and transfer notes. See route examples and request a proposal from EXJET.",
     "kind": "destination",
     "kicker": "EXJET flight planning",
     "sections": [
@@ -750,7 +750,7 @@
   {
     "path": "/aircraft-comparisons/challenger-350-vs-citation-latitude",
     "title": "Challenger 350 vs Citation Latitude for charter",
-    "description": "Compare Challenger 350 vs Citation Latitude for aircraft charter. Review mission fit, cabin questions and complete-trip costs before requesting aircraft options from EXJET.",
+    "description": "Compare the Challenger 350 and Citation Latitude for charter. Review the mission, cabin, and trip cost, then request options from EXJET.",
     "kind": "comparison",
     "kicker": "EXJET flight planning",
     "sections": [
@@ -840,7 +840,7 @@
   {
     "path": "/aircraft-comparisons/challenger-300-vs-challenger-350",
     "title": "Challenger 300 vs Challenger 350 for charter",
-    "description": "Compare Challenger 300 vs Challenger 350 for aircraft charter. Review mission fit, cabin questions and complete-trip costs before requesting aircraft options from EXJET.",
+    "description": "Compare the Challenger 300 and Challenger 350 for charter. Review the mission, cabin, and trip cost, then request options from EXJET.",
     "kind": "comparison",
     "kicker": "EXJET flight planning",
     "sections": [
@@ -921,7 +921,7 @@
   {
     "path": "/aircraft-comparisons/gulfstream-g650-vs-global-8000",
     "title": "Gulfstream G650 vs Global 8000 for charter",
-    "description": "Compare Gulfstream G650 vs Global 8000 for aircraft charter. Review mission fit, cabin questions and complete-trip costs before requesting aircraft options from EXJET.",
+    "description": "Compare Gulfstream G650 vs Global 8000 for aircraft charter. Review mission fit, cabin questions and trip costs before you request aircraft options from EXJET.",
     "kind": "comparison",
     "kicker": "EXJET flight planning",
     "sections": [
@@ -1492,7 +1492,7 @@
     "path": "/guides/corporate-charter-procurement",
     "title": "Corporate jet charter procurement checklist",
     "seoTitle": "Corporate Private Jet Charter Procurement Checklist | EXJET",
-    "description": "Compare charter proposals with a practical procurement checklist covering operator details, aircraft, total cost, approvals and change terms for executive travel.",
+    "description": "Compare charter proposals with a checklist for the operator, the aircraft, total cost, approvals, and what happens if the trip changes.",
     "kicker": "Executive & family travel",
     "kind": "article",
     "updated": "2026-10-20",
@@ -2001,8 +2001,8 @@
   {
     "path": "/guides/private-aviation-program-comparison",
     "title": "NetJets, Flexjet, VistaJet and charter: what to compare",
-    "seoTitle": "NetJets vs Flexjet vs VistaJet vs Charter: Comparison | EXJET",
-    "description": "Compare private aviation programs and on-demand charter by commitment, trip cost, aircraft fit and terms. A practical buying framework for EAs and family offices.",
+    "seoTitle": "Charter vs Fractional Programs | EXJET",
+    "description": "Compare private aviation programs and on-demand charter by commitment, trip cost, aircraft fit, and contract terms.",
     "kicker": "Executive & family travel",
     "kind": "article",
     "updated": "2026-10-20",
@@ -2129,7 +2129,7 @@
     "path": "/aircraft-performance/global-6000",
     "title": "Bombardier Global 6000 range, performance and specifications",
     "seoTitle": "Global 6000 Range, Performance & Specs | EXJET",
-    "description": "Compare Bombardier Global 6000 range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
+    "description": "Compare Bombardier Global 6000 range, cabin specifications and charter planning considerations for executive and family travel. Request an EXJET quote.",
     "kicker": "Aircraft performance reference",
     "kind": "article",
     "updated": "2026-10-20",
@@ -2259,7 +2259,7 @@
     "path": "/aircraft-performance/global-7500",
     "title": "Bombardier Global 7500 range, performance and specifications",
     "seoTitle": "Global 7500 Range, Performance & Specs | EXJET",
-    "description": "Compare Bombardier Global 7500 range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
+    "description": "Compare Bombardier Global 7500 range, cabin specifications and charter planning considerations for executive and family travel. Request an EXJET quote.",
     "kicker": "Aircraft performance reference",
     "kind": "article",
     "updated": "2026-10-20",
@@ -2381,7 +2381,7 @@
     "path": "/aircraft-performance/citation-longitude",
     "title": "Cessna Citation Longitude range, performance and specifications",
     "seoTitle": "Citation Longitude Range, Performance & Specs | EXJET",
-    "description": "Compare Cessna Citation Longitude range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
+    "description": "Compare Cessna Citation Longitude range, cabin specifications and charter planning considerations for executive and family travel. Request an EXJET quote.",
     "kicker": "Aircraft performance reference",
     "kind": "article",
     "updated": "2026-10-20",
@@ -2515,7 +2515,7 @@
     "path": "/aircraft-performance/citation-latitude",
     "title": "Cessna Citation Latitude range, performance and specifications",
     "seoTitle": "Citation Latitude Range, Performance & Specs | EXJET",
-    "description": "Compare Cessna Citation Latitude range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
+    "description": "Compare Cessna Citation Latitude range, cabin specifications and charter planning considerations for executive and family travel. Request an EXJET quote.",
     "kicker": "Aircraft performance reference",
     "kind": "article",
     "updated": "2026-10-20",
@@ -2649,7 +2649,7 @@
     "path": "/aircraft-performance/falcon-6x",
     "title": "Dassault Falcon 6X range, performance and specifications",
     "seoTitle": "Falcon 6X Range, Performance & Specs | EXJET",
-    "description": "Compare Dassault Falcon 6X range, cabin specifications and charter planning considerations for executive and family travel. Request an itinerary-specific EXJET quote.",
+    "description": "Compare Dassault Falcon 6X range, cabin specifications and charter planning considerations for executive and family travel. Request an EXJET quote.",
     "kicker": "Aircraft performance reference",
     "kind": "article",
     "updated": "2026-10-20",

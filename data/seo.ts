@@ -9,8 +9,8 @@ type SeoEntry = {
 
 export const pageSeo = {
   "/": {
-    title: "Business & Commercial Aviation Solutions | EXJET",
-    description: "EXJET supports business and commercial aviation with passenger and cargo charter, dry lease, ACMI, ownership, crew and aircraft technical services.",
+    title: "Dallas Private Jet Charter | EXJET",
+    description: "Dallas private jet charter for business and commercial aviation. EXJET arranges passenger and cargo flights, leasing, ownership and technical support.",
   },
   "/charter": {
     title: "Request a Private Jet Charter Quote | Flight Search | EXJET",
