@@ -10,7 +10,6 @@ export function AvinodeWidget({ compact = false }: { compact?: boolean }) {
   const frame = useRef<HTMLIFrameElement>(null);
   const [attempt, setAttempt] = useState(0);
   const [status, setStatus] = useState<WidgetStatus>("loading");
-  const [height, setHeight] = useState(460);
 
   useEffect(() => {
     const timer = window.setTimeout(() => {
@@ -22,9 +21,6 @@ export function AvinodeWidget({ compact = false }: { compact?: boolean }) {
   useEffect(() => {
     function receive(event: MessageEvent) {
       if (event.origin !== window.location.origin || event.source !== frame.current?.contentWindow || event.data?.type !== "exjet-avinode-widget") return;
-      if (typeof event.data.height === "number" && Number.isFinite(event.data.height)) {
-        setHeight(Math.max(260, Math.min(4000, event.data.height)));
-      }
       if (["loaded", "slow", "error"].includes(event.data.status)) {
         setStatus(event.data.status);
       }
@@ -35,7 +31,6 @@ export function AvinodeWidget({ compact = false }: { compact?: boolean }) {
 
   function retry() {
     setStatus("loading");
-    setHeight(460);
     setAttempt((current) => current + 1);
   }
 
@@ -56,7 +51,6 @@ export function AvinodeWidget({ compact = false }: { compact?: boolean }) {
         src={widgetPath}
         title="EXJET aircraft search and quote requests"
         className={styles.frame}
-        style={{ height }}
         onError={() => setStatus("error")}
       />
       <noscript><p className={styles.status}>Enable JavaScript to search aircraft, or contact EXJET to plan your flight.</p></noscript>

@@ -62,9 +62,20 @@ robots.txt and sitemap.xml, then repeat these checks on the public domain.
 
 ## Production integrations still required
 
-### Quote delivery
+### Quote and contact delivery
 
-The current request experience validates the form and prepares a structured email for the correct EXJET desk. Before accepting public traffic, connect the form to a reviewed server-side lead endpoint, add spam protection and rate limiting, and verify end-to-end delivery. The typed charter lead boundary is documented under `integration/`.
+Quote, contact, sales, operator, and empty-leg forms post to `POST /api/requests/`. The route validates the fields, drops a filled honeypot, and rate-limits by IP. A submission is stored only by delivering it. No credentials are in the repo. Set at least one of these in the Vercel project before the form can do more than ask the visitor to call:
+
+- `RESEND_API_KEY` — sends the request to the desk and a short confirmation to the visitor.
+- `RFQ_FROM_EMAIL` — from address. Defaults to `EXJET Flight Desk <requests@exjet.com>`.
+- `RFQ_CHARTER_RECIPIENTS` — charter, group, and empty-leg mail. Defaults to `charter@exjet.com`.
+- `RFQ_CARGO_RECIPIENTS` — cargo mail. Defaults to `cargo@exjet.com`.
+- `RFQ_GENERAL_RECIPIENTS` — contact, sales, and operator mail. Defaults to `sales@exjet.com`.
+- `LEAD_WEBHOOK_URL` and optional `LEAD_WEBHOOK_TOKEN` — JSON copy of the same request.
+- `TWILIO_ACCOUNT_SID`, `TWILIO_AUTH_TOKEN`, `TWILIO_FROM_NUMBER`, `RFQ_ALERT_PHONE_NUMBERS` — optional text alert. A text alone does not count as delivery.
+- Existing Avinode variables, when enabled, also receive charter and empty-leg trip leads. Cargo, contact, sales, and operator notes are not sent to Avinode.
+
+Until one durable channel succeeds, the form answers that online intake is not connected and shows the phone number and desk email. The phone number on the site stays `+1 407 747 5288`.
 
 ### Client accounts
 

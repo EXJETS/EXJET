@@ -1,5 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
+import { InquiryForm } from "@/components/InquiryForm";
+import { PriorityImage } from "@/components/PriorityImage";
 import { CaretRightIcon } from "@phosphor-icons/react/dist/ssr";
 import { BrokerNotice } from "@/components/BrokerNotice";
 import { ContentSections, ContentFaq } from "@/components/ContentSections";
@@ -47,7 +49,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
         {page.kind==="service" ? <div className="ex-intro-actions">{consultationHref ? <a className="button button--dark" href={consultationHref}>{page.consultation?.label}</a> : <Link className="button button--dark" href="/contact">Discuss your plans</Link>}<Link className="ex-inline-link" href={consultationHref ? "/services" : "/charter"}>{consultationHref ? "Explore all services" : "Find a flight"}<CaretRightIcon size={16} weight="light" aria-hidden="true" /></Link></div> : null}
       </header>
     </div>
-    {feature && page.kind!=="hub" ? <figure className="ex-feature-photo" ><Image src={feature.src} alt={feature.alt} width={feature.width} height={feature.height} priority sizes="100vw" /></figure> : null}
+    {feature && page.kind!=="hub" ? <figure className="ex-feature-photo" ><PriorityImage src={feature.src} alt={feature.alt} width={feature.width} height={feature.height} sizes="100vw" /></figure> : null}
     </div>
     {page.serviceCatalog ? <section className="ex-section ex-section--silver"><div className="ex-container"><div className="ex-section-heading"><h2>Explore our services</h2></div><ServicesGrid /></div></section> : null}
 
@@ -60,6 +62,6 @@ export function EditorialPage({ page }: { page: ContentPage }) {
       {page.faqs ? <ContentFaq faqs={page.faqs} /> : null}
     </div></div>
     {page.related?.length ? <ContentCollection paths={page.related.filter(path => path !== page.path)} title="Continue exploring." silver showImages={false} /> : null}
-    {page.kind!=="legal" ? <section className="ex-action-panel"><h2>{consultationHref ? "Plan your next aviation decision." : "Make it your itinerary."}</h2><p>{consultationHref ? "Share the aircraft, objectives and timing. EXJET will help define the next steps." : "Tell EXJET where you’re going, who’s travelling, and what matters along the way."}</p>{consultationHref ? <a href={consultationHref} className="button button--dark">{page.consultation?.label}</a> : <><Link href="/charter" className="button button--dark">Find a flight</Link><BrokerNotice /></>}</section> : null}
+    {page.kind!=="legal" ? <section className="ex-action-panel">{page.path === "/operator-partners" ? <InquiryForm intent="operator" source="/operator-partners/" heading="Introduce your operation." intro="Tell EXJET the certificate holder, the aircraft you operate, and where you fly. This introduction does not promise charter placement. EXJET reviews operating authority and aircraft details before discussing a trip." submitLabel="Send introduction" organizationLabel="Operator" /> : page.path === "/empty-legs/dallas" ? <InquiryForm intent="empty-leg" source="/empty-legs/dallas/" heading="Ask about a Dallas empty leg." intro="Share a flexible Dallas departure or arrival, the other city, and how many people are travelling. Empty-leg seats depend on an operator repositioning the aircraft. EXJET confirms availability, price, and the operating carrier before anything is booked." submitLabel="Request a Dallas empty leg" showTrip /> : <><h2>{consultationHref ? "Plan your next aviation decision." : "Make it your itinerary."}</h2><p>{consultationHref ? "Share the aircraft, objectives and timing. EXJET will help define the next steps." : "Tell EXJET where you’re going, who’s travelling, and what matters along the way."}</p>{consultationHref ? <a href={consultationHref} className="button button--dark">{page.consultation?.label}</a> : <><Link href="/charter/#charter-request" className="button button--dark">Request a quote</Link><BrokerNotice /></>}</>}</section> : null}
   </div>;
 }
