@@ -4,6 +4,10 @@
 .heading h1 { margin: 0; font-size: var(--ex-title-size,60px); font-weight: 400; line-height: 1.1; letter-spacing: -.045em; }
 .heading > a { font-size: .9375rem; }
 .search { scroll-margin-top: 88px; }
+.searchIntro { display: grid; gap: 8px; margin: 56px 0 18px; }
+.searchIntro p:first-child { margin: 0; color: #3c4146; font-size: 13px; font-weight: 500; letter-spacing: .14em; text-transform: uppercase; }
+.searchIntro h2 { margin: 0; font-family: var(--ex-display), Georgia, serif; font-size: clamp(36px, 4vw, 56px); font-weight: 400; letter-spacing: -.04em; line-height: 1; }
+.searchIntro p:last-child { max-width: 62ch; margin: 8px 0 0; color: #3c4146; font-size: 16px; line-height: 1.6; }
 .process { padding-top: 48px; }
 .process h2 { margin: 0 0 28px; font-size: 1.75rem; font-weight: 500; line-height: 1.2; letter-spacing: -.03em; }
 .process ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 0; padding: 0; list-style: none; }

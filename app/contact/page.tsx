@@ -29,8 +29,9 @@ export default function ContactPage() {
               intent="contact"
               source="/contact/"
               id="contact-form"
+              layout="panel"
               heading="Send a message."
-              intro="Use this form for a question that is not a full trip quote. Charter itineraries are better on the quote form, where you can include cities, dates, and passengers. Tell us who you are and what you need. An advisor replies from the Dallas office. The form works without JavaScript."
+              intro="Use this form for a question that is not a full trip quote. Charter itineraries belong on the quote form, with cities, dates, and passengers. An advisor replies from the Dallas office. The form works without JavaScript."
               submitLabel="Send message"
             />
             <p>If you already know the aircraft, the route, or the service, say so in the notes. Ownership, crew, maintenance, and interior questions go to the same desk and are routed from there. EXJET does not ask you to create an account to start a conversation.</p>
