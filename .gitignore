@@ -1,15 +1,5 @@
 # dependencies
 /node_modules
-/.pnp
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/versions
-
-# testing
-/coverage
 
 # next.js
 /.next/
@@ -18,7 +8,7 @@
 # production
 /build
 
-# misc
+# local
 .DS_Store
 *.pem
 
@@ -26,15 +16,24 @@
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-.pnpm-debug.log*
+pnpm-debug.log*
+.codex-dev.log
+.next-*.log
 
-# env files
-.env*.local
-.env
+# environment files
+.env*
+!.env.example
 
 # vercel
 .vercel
+.vercel-partner
 
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+.vercel
+.env*
+
+# Supabase CLI cache
+supabase/.temp/

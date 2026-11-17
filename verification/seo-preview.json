@@ -1,0 +1,1155 @@
+{
+  "mode": "preview",
+  "status": "PASS",
+  "html_pages_checked": 114,
+  "original_pages_preserved": 62,
+  "indexable_count": 0,
+  "sitemap_urls": 99,
+  "noindex_pages": [
+    "/",
+    "/about/",
+    "/accessibility/",
+    "/account/",
+    "/aircraft-comparisons/",
+    "/aircraft-comparisons/challenger-300-vs-challenger-350/",
+    "/aircraft-comparisons/challenger-350-vs-citation-latitude/",
+    "/aircraft-comparisons/gulfstream-g650-vs-global-8000/",
+    "/aircraft-management/",
+    "/aircraft/",
+    "/aircraft/challenger-300/",
+    "/aircraft/challenger-350/",
+    "/aircraft/citation-latitude/",
+    "/aircraft/citation-x/",
+    "/aircraft/falcon-2000lx/",
+    "/aircraft/falcon-900/",
+    "/aircraft/global-8000/",
+    "/aircraft/gulfstream-g650/",
+    "/airports/",
+    "/airports/kads/",
+    "/airports/kase/",
+    "/airports/kdal/",
+    "/airports/kdjt/",
+    "/airports/kege/",
+    "/airports/khou/",
+    "/airports/khpn/",
+    "/airports/klas/",
+    "/airports/kmdw/",
+    "/airports/kopf/",
+    "/airports/kteb/",
+    "/airports/kvny/",
+    "/airports/mmsd/",
+    "/articles/",
+    "/articles/charter-vs-aircraft-ownership-for-a-family-office/",
+    "/articles/choosing-a-private-charter-aircraft/",
+    "/articles/empty-leg-flights-explained/",
+    "/articles/first-private-charter-checklist/",
+    "/articles/flying-private-with-children/",
+    "/articles/gulfstream-g550-vs-boeing-bbj1-ownership/",
+    "/articles/planning-a-multigenerational-family-charter/",
+    "/articles/private-charter-for-executive-assistants/",
+    "/articles/private-charter-versus-jet-cards/",
+    "/articles/private-jet-travel-with-pets/",
+    "/articles/understanding-a-private-jet-charter-quote/",
+    "/cancellations/",
+    "/cargo/",
+    "/cargo/dallas/",
+    "/charter-terms/",
+    "/charter/",
+    "/contact/",
+    "/cookies/",
+    "/corporate-travel/",
+    "/destinations/",
+    "/destinations/aspen/",
+    "/destinations/cabo/",
+    "/destinations/palm-beach/",
+    "/destinations/vail/",
+    "/editorial-standards/",
+    "/empty-legs/",
+    "/empty-legs/dallas/",
+    "/faq/",
+    "/glossary/",
+    "/group-charter/",
+    "/group-charter/corporate-teams/",
+    "/group-charter/sports-teams/",
+    "/guides/",
+    "/guides/argus-wyvern/",
+    "/guides/part-135-vs-part-91/",
+    "/interior-completions/",
+    "/membership/",
+    "/pricing/",
+    "/privacy/",
+    "/private-jet-charter/",
+    "/private-jet-charter/dallas/",
+    "/routes/",
+    "/routes/dallas-to-aspen/",
+    "/routes/dallas-to-cabo/",
+    "/routes/dallas-to-chicago/",
+    "/routes/dallas-to-houston/",
+    "/routes/dallas-to-las-vegas/",
+    "/routes/dallas-to-los-angeles/",
+    "/routes/dallas-to-miami/",
+    "/routes/dallas-to-new-york/",
+    "/routes/dallas-to-palm-beach/",
+    "/routes/dallas-to-vail/",
+    "/routes/los-angeles-to-aspen/",
+    "/routes/los-angeles-to-cabo/",
+    "/routes/los-angeles-to-chicago/",
+    "/routes/los-angeles-to-las-vegas/",
+    "/routes/los-angeles-to-miami/",
+    "/routes/los-angeles-to-new-york/",
+    "/routes/los-angeles-to-palm-beach/",
+    "/routes/los-angeles-to-vail/",
+    "/routes/miami-to-aspen/",
+    "/routes/miami-to-cabo/",
+    "/routes/miami-to-chicago/",
+    "/routes/miami-to-houston/",
+    "/routes/new-york-to-aspen/",
+    "/routes/new-york-to-cabo/",
+    "/routes/new-york-to-chicago/",
+    "/routes/new-york-to-houston/",
+    "/routes/new-york-to-las-vegas/",
+    "/routes/new-york-to-miami/",
+    "/routes/new-york-to-palm-beach/",
+    "/routes/new-york-to-vail/",
+    "/safety/",
+    "/sales/",
+    "/sales/citation-m2/",
+    "/sales/global-7500/",
+    "/sales/phenom-300e/",
+    "/sales/praetor-600/",
+    "/search/",
+    "/terms/",
+    "/why-exjet/"
+  ],
+  "robots": "User-Agent: *\nDisallow: /\n\nSitemap: https://www.exjet.com/sitemap.xml\n",
+  "http_status": {},
+  "errors": [],
+  "metadata": [
+    {
+      "path": "/",
+      "title": "Private Jet Charter & Business Aviation | EXJET Dallas",
+      "description": "Arrange business jet charter worldwide with Dallas-based EXJET. Compare aircraft, routes and complete trip proposals with one dedicated point of contact.",
+      "h1": [
+        "Private jet charter & business aviation"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/about/",
+      "title": "About EXJET | Charter Brokerage Founded by Pilots",
+      "description": "Meet EXJET, a Dallas-based business aviation brokerage founded by pilots. Learn about our approach to aircraft sourcing, charter coordination and client service.",
+      "h1": [
+        "About EXJET business aviation"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/accessibility/",
+      "title": "Website Accessibility & Assistance | EXJET",
+      "description": "Find information about accessibility on the EXJET website and ways to request help with aircraft information, charter enquiries or the booking process.",
+      "h1": [
+        "Website accessibility"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/account/",
+      "title": "Client Access Preview | EXJET",
+      "description": "Access the private EXJET client portal preview for returning charter customers.",
+      "h1": [
+        "A personal point of contact."
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/aircraft-comparisons/",
+      "title": "Business Jet Charter Aircraft Comparisons | EXJET",
+      "description": "Compare charter aircraft by mission, cabin requirements and complete-trip value. Explore Challenger, Citation, Gulfstream and Global comparisons with EXJET.",
+      "h1": [
+        "Business jet aircraft comparisons"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/aircraft-comparisons/challenger-300-vs-challenger-350/",
+      "title": "Challenger 300 vs Challenger 350 for charter | EXJET",
+      "description": "Compare Challenger 300 vs Challenger 350 for aircraft charter. Review mission fit, cabin questions and complete-trip costs before requesting aircraft options from EXJET.",
+      "h1": [
+        "Challenger 300 vs Challenger 350 for charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/aircraft-comparisons/challenger-350-vs-citation-latitude/",
+      "title": "Challenger 350 vs Citation Latitude for charter | EXJET",
+      "description": "Compare Challenger 350 vs Citation Latitude for aircraft charter. Review mission fit, cabin questions and complete-trip costs before requesting aircraft options from EXJET.",
+      "h1": [
+        "Challenger 350 vs Citation Latitude for charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/aircraft-comparisons/gulfstream-g650-vs-global-8000/",
+      "title": "Gulfstream G650 vs Global 8000 for charter | EXJET",
+      "description": "Compare Gulfstream G650 vs Global 8000 for aircraft charter. Review mission fit, cabin questions and complete-trip costs before requesting aircraft options from EXJET.",
+      "h1": [
+        "Gulfstream G650 vs Global 8000 for charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/aircraft-management/",
+      "title": "Aircraft Management Planning & Owner Support | EXJET",
+      "description": "Discuss aircraft ownership, management objectives and operational priorities with EXJET. Define your brief and confirm the appropriate providers for your aircraft.",
+      "h1": [
+        "Aircraft management planning"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/aircraft/",
+      "title": "Business Jet Charter Aircraft & Cabin Guide | EXJET",
+      "description": "Compare Citation, Challenger, Gulfstream, Global and Falcon aircraft. Review cabins, mission planning and charter costs, then request options for your journey.",
+      "h1": [
+        "The right class.The right fit."
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/aircraft/challenger-300/",
+      "title": "Challenger 300 Charter: Cost & Cabin Guide | EXJET",
+      "description": "Explore Challenger 300 charter costs, cabin considerations and Dallas or New York mission planning. Compare aircraft options and request a tailored EXJET quote.",
+      "h1": [
+        "Challenger 300 charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/aircraft/challenger-350/",
+      "title": "Challenger 350 Charter: Cost & Cabin Guide | EXJET",
+      "description": "Explore Challenger 350 charter costs, cabin considerations and Dallas or New York mission planning. Compare aircraft options and request a tailored EXJET quote.",
+      "h1": [
+        "Challenger 350 charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/aircraft/citation-latitude/",
+      "title": "Citation Latitude Charter: Cost & Cabin Guide | EXJET",
+      "description": "Explore Citation Latitude charter costs, cabin considerations and Dallas or New York mission planning. Compare aircraft options and request a tailored EXJET quote.",
+      "h1": [
+        "Citation Latitude charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/aircraft/citation-x/",
+      "title": "Citation X Charter: Cost & Cabin Guide | EXJET",
+      "description": "Explore Citation X charter costs, cabin considerations and Dallas or New York mission planning. Compare aircraft options and request a tailored EXJET quote.",
+      "h1": [
+        "Citation X charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/aircraft/falcon-2000lx/",
+      "title": "Falcon 2000LX Charter: Cost & Cabin Guide | EXJET",
+      "description": "Explore Falcon 2000LX charter costs, cabin considerations and Dallas or New York mission planning. Compare aircraft options and request a tailored EXJET quote.",
+      "h1": [
+        "Falcon 2000LX charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/aircraft/falcon-900/",
+      "title": "Falcon 900LX Charter: Cost & Cabin Guide | EXJET",
+      "description": "Explore Falcon 900LX charter costs, cabin considerations and Dallas or New York mission planning. Compare aircraft options and request a tailored EXJET quote.",
+      "h1": [
+        "Falcon 900LX charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/aircraft/global-8000/",
+      "title": "Global 8000 Charter: Cost & Cabin Guide | EXJET",
+      "description": "Explore Global 8000 charter costs, cabin considerations and Dallas or New York mission planning. Compare aircraft options and request a tailored EXJET quote.",
+      "h1": [
+        "Global 8000 charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/aircraft/gulfstream-g650/",
+      "title": "Gulfstream G650 Charter: Cost & Cabin Guide | EXJET",
+      "description": "Explore Gulfstream G650 charter costs, cabin considerations and Dallas or New York mission planning. Compare aircraft options and request a tailored EXJET quote.",
+      "h1": [
+        "Gulfstream G650 charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/airports/",
+      "title": "Private Jet Airports & FBO Planning Guides | EXJET",
+      "description": "Compare airports for business jet charter, including private terminals, transfers and local planning considerations. Find your airport and request an EXJET quote.",
+      "h1": [
+        "Business aviation airport and FBO guides"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/airports/kads/",
+      "title": "Addison Airport (ADS) Charter Guide | EXJET",
+      "description": "Plan aircraft charter at Addison Airport (ADS). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+      "h1": [
+        "Addison Airport charter guide"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/airports/kase/",
+      "title": "Aspen/Pitkin County Airport (ASE) Charter Guide | EXJET",
+      "description": "Plan aircraft charter at Aspen/Pitkin County Airport (ASE). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+      "h1": [
+        "Aspen/Pitkin County Airport charter guide"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/airports/kdal/",
+      "title": "Dallas Love Field (DAL) Charter Guide | EXJET",
+      "description": "Plan aircraft charter at Dallas Love Field (DAL). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+      "h1": [
+        "Dallas Love Field charter guide"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/airports/kdjt/",
+      "title": "Palm Beach International / DJT (DJT) Charter Guide | EXJET",
+      "description": "Plan aircraft charter at Palm Beach International / DJT (DJT). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+      "h1": [
+        "Palm Beach International / DJT charter guide"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/airports/kege/",
+      "title": "Eagle County Regional Airport (EGE) Charter Guide | EXJET",
+      "description": "Plan aircraft charter at Eagle County Regional Airport (EGE). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+      "h1": [
+        "Eagle County Regional Airport charter guide"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/airports/khou/",
+      "title": "William P. Hobby Airport (HOU) Charter Guide | EXJET",
+      "description": "Plan aircraft charter at William P. Hobby Airport (HOU). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+      "h1": [
+        "William P. Hobby Airport charter guide"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/airports/khpn/",
+      "title": "Westchester County Airport (HPN) Charter Guide | EXJET",
+      "description": "Plan aircraft charter at Westchester County Airport (HPN). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+      "h1": [
+        "Westchester County Airport charter guide"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/airports/klas/",
+      "title": "Harry Reid Airport (LAS) Charter Guide | EXJET",
+      "description": "Plan aircraft charter at Harry Reid International Airport (LAS). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+      "h1": [
+        "Harry Reid International Airport charter guide"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/airports/kmdw/",
+      "title": "Chicago Midway Airport (MDW) Charter Guide | EXJET",
+      "description": "Plan aircraft charter at Chicago Midway International Airport (MDW). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+      "h1": [
+        "Chicago Midway International Airport charter guide"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/airports/kopf/",
+      "title": "Miami-Opa Locka Executive Airport (OPF) Charter Guide | EXJET",
+      "description": "Plan aircraft charter at Miami-Opa Locka Executive Airport (OPF). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+      "h1": [
+        "Miami-Opa Locka Executive Airport charter guide"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/airports/kteb/",
+      "title": "Teterboro Airport (TEB) Charter Guide | EXJET",
+      "description": "Plan aircraft charter at Teterboro Airport (TEB). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+      "h1": [
+        "Teterboro Airport charter guide"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/airports/kvny/",
+      "title": "Van Nuys Airport (VNY) Charter Guide | EXJET",
+      "description": "Plan aircraft charter at Van Nuys Airport (VNY). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+      "h1": [
+        "Van Nuys Airport charter guide"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/airports/mmsd/",
+      "title": "Los Cabos Airport (SJD) Charter Guide | EXJET",
+      "description": "Plan aircraft charter at Los Cabos International Airport (SJD). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+      "h1": [
+        "Los Cabos International Airport charter guide"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/articles/",
+      "title": "Business Jet Charter Articles & Flight Guide | EXJET",
+      "description": "Read practical charter guides covering aircraft, costs, passengers and trip planning. Understand the details, then discuss your itinerary with an EXJET advisor.",
+      "h1": [
+        "Aircraft charter articles and flight planning"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/articles/charter-vs-aircraft-ownership-for-a-family-office/",
+      "title": "Charter or aircraft ownership for a family office? | EXJET",
+      "description": "Compare on-demand charter with whole-aircraft ownership using mission consistency, control, capital, staffing, availability, and risk.",
+      "h1": [
+        "Charter or aircraft ownership for a family office?"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/articles/choosing-a-private-charter-aircraft/",
+      "title": "Choose the aircraft around the journey | EXJET",
+      "description": "Compare private charter aircraft by passengers, baggage, range and cabin needs. Build a practical shortlist and request a tailored quote from EXJET.",
+      "h1": [
+        "Choose the aircraft around the journey"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/articles/empty-leg-flights-explained/",
+      "title": "Empty legs: understand the opportunity and the limits | EXJET",
+      "description": "How empty-leg flights work, what to confirm before booking, and why route flexibility and a backup plan matter. Explore the guide and discuss your itinerary with EXJET.",
+      "h1": [
+        "Empty legs: understand the opportunity and the limits"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/articles/first-private-charter-checklist/",
+      "title": "Your first private charter: a practical checklist | EXJET",
+      "description": "Prepare your itinerary, verify the operator, confirm the airport meeting point, and review baggage and travel-document requirements.",
+      "h1": [
+        "Your first private charter: a practical checklist"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/articles/flying-private-with-children/",
+      "title": "Flying private with children: plan the cabin around your family | EXJET",
+      "description": "A practical guide to child restraints, baggage, routines, catering, and documents when arranging a private flight for your family.",
+      "h1": [
+        "Flying private with children: plan the cabin around your family"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/articles/gulfstream-g550-vs-boeing-bbj1-ownership/",
+      "title": "Gulfstream G550 vs. Boeing BBJ1: an ownership decision | EXJET",
+      "description": "Compare a Gulfstream G550 with a Boeing BBJ1 through mission profile, cabin use, airport access, staffing, maintenance, and acquisition risk.",
+      "h1": [
+        "Gulfstream G550 vs. Boeing BBJ1: an ownership decision"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/articles/planning-a-multigenerational-family-charter/",
+      "title": "Planning a multigenerational family charter | EXJET",
+      "description": "Plan a private charter for several generations with practical advice on seating, baggage, mobility and transfers. Discuss your family itinerary with EXJET.",
+      "h1": [
+        "Planning a multigenerational family charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/articles/private-charter-for-executive-assistants/",
+      "title": "Private charter planning for executive assistants | EXJET",
+      "description": "Build a clear trip brief, compare aircraft proposals, manage approvals, and keep executive travel details consistent from request to arrival.",
+      "h1": [
+        "Private charter planning for executive assistants"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/articles/private-charter-versus-jet-cards/",
+      "title": "On-demand charter or a jet card? Compare the terms | EXJET",
+      "description": "Compare trip-by-trip charter with jet-card commitments using your routes, booking habits, cancellation needs, and the actual program contract.",
+      "h1": [
+        "On-demand charter or a jet card? Compare the terms"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/articles/private-jet-travel-with-pets/",
+      "title": "Private jet travel with pets: prepare the complete itinerary | EXJET",
+      "description": "Plan a private flight with a pet by confirming operator approval, destination health rules, cabin arrangements, and ground transfers.",
+      "h1": [
+        "Private jet travel with pets: prepare the complete itinerary"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/articles/understanding-a-private-jet-charter-quote/",
+      "title": "What is included in a private jet charter quote? | EXJET",
+      "description": "Compare the complete trip price, possible additional charges, aircraft details, and cancellation terms before accepting a private charter quote.",
+      "h1": [
+        "What is included in a private jet charter quote?"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/cancellations/",
+      "title": "Cancellation & Refunds | EXJET",
+      "description": "How to request a change or cancellation, and how applicable refund rights are addressed.",
+      "h1": [
+        "Cancellation & Refunds"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/cargo/",
+      "title": "Air Cargo Charter Services | EXJET",
+      "description": "Request cargo aircraft charter for urgent, oversized or high-value shipments. Share weight, dimensions, route and timing for a tailored proposal from EXJET.",
+      "h1": [
+        "Air cargo charter services"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/cargo/dallas/",
+      "title": "Dallas air cargo charter | EXJET",
+      "description": "Request air cargo charter from Dallas\u2013Fort Worth for urgent or specialized shipments. Share dimensions, weight, handling and delivery timing with EXJET.",
+      "h1": [
+        "Dallas air cargo charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/charter-terms/",
+      "title": "Charter Terms & Disclosures | EXJET",
+      "description": "EXJET's broker role and the information provided for an individual passenger charter.",
+      "h1": [
+        "Charter Terms & Disclosures"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/charter/",
+      "title": "Request a Private Jet Charter Quote | Flight Search | EXJET",
+      "description": "Send your airports, travel dates and passenger count to EXJET. Request aircraft options and a complete charter quote for your domestic or international trip.",
+      "h1": [
+        "Request a charter quote."
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/contact/",
+      "title": "Request a Private Jet Charter Quote | EXJET",
+      "description": "Contact EXJET in Dallas for business jet, group or cargo charter. Send your itinerary and requirements, or speak with the charter desk about time-sensitive travel.",
+      "h1": [
+        "Contact EXJET for a charter quote"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/cookies/",
+      "title": "Cookies & Website Technologies | EXJET",
+      "description": "Embedded flight search, browser storage, and choices about website technologies.",
+      "h1": [
+        "Cookies & Website Technologies"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/corporate-travel/",
+      "title": "Corporate Private Jet Charter & Business Travel | EXJET",
+      "description": "Coordinate corporate aircraft charter for executives, teams and assistants. Plan multi-city schedules, passenger needs and clear trip approvals with EXJET.",
+      "h1": [
+        "Corporate aircraft charter for business travel"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/destinations/",
+      "title": "Private Jet Charter Destinations & Travel Planning | EXJET",
+      "description": "Plan aircraft charter to mountain and coastal destinations. Connect airport choices, baggage and transfers, then request a complete itinerary proposal from EXJET.",
+      "h1": [
+        "Business jet charter destinations"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/destinations/aspen/",
+      "title": "Aspen private jet charter | EXJET",
+      "description": "Plan aircraft charter to Aspen with airport, baggage and transfer guidance. Explore relevant route examples and request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Aspen private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/destinations/cabo/",
+      "title": "Los Cabos private jet charter | EXJET",
+      "description": "Plan aircraft charter to Los Cabos with airport, baggage and transfer guidance. Explore relevant route examples and request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Los Cabos private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/destinations/palm-beach/",
+      "title": "Palm Beach private jet charter | EXJET",
+      "description": "Plan aircraft charter to Palm Beach with airport, baggage and transfer guidance. Explore relevant route examples and request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Palm Beach private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/destinations/vail/",
+      "title": "Vail and Beaver Creek private jet charter | EXJET",
+      "description": "Plan aircraft charter to Vail and Beaver Creek with airport, baggage and transfer guidance. Explore relevant route examples and request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Vail and Beaver Creek private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/editorial-standards/",
+      "title": "Editorial Standards & Aviation Information Sources | EXJET",
+      "description": "Learn how EXJET presents aircraft, airport and charter information. Review source standards, estimate limitations and the distinction between guides and live quotes.",
+      "h1": [
+        "EXJET editorial standards and sources"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/empty-legs/",
+      "title": "Empty Leg Private Jet Flights | EXJET",
+      "description": "Explore empty leg flight opportunities with EXJET. Share your route and flexible dates to request current availability, aircraft details and a written quote.",
+      "h1": [
+        "Empty leg charter flights"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/empty-legs/dallas/",
+      "title": "Dallas empty leg flights | EXJET",
+      "description": "Request Dallas empty leg charter opportunities with flexible dates and routing. Understand availability, terms and backup options before confirming with EXJET.",
+      "h1": [
+        "Dallas empty leg flights"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/faq/",
+      "title": "Private Jet Charter FAQ | EXJET",
+      "description": "Find answers about charter pricing, aircraft selection, empty legs, passenger details and operator checks. Learn what to confirm before booking with EXJET.",
+      "h1": [
+        "Private jet charter questions and answers"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/glossary/",
+      "title": "Aircraft charter glossary | EXJET",
+      "description": "Understand aircraft charter terms including FBO, block time, positioning, empty legs and operational control. Use EXJET\u2019s glossary to review your next proposal.",
+      "h1": [
+        "Aircraft charter glossary"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/group-charter/",
+      "title": "Group Air Charter Services | EXJET",
+      "description": "Arrange group air charter for corporate teams, sports and events. Coordinate passenger counts, baggage, schedules and airport transfers with an EXJET advisor.",
+      "h1": [
+        "Group air charter for teams and events"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/group-charter/corporate-teams/",
+      "title": "Corporate group aircraft charter | EXJET",
+      "description": "Arrange group charter for corporate meetings, site visits and events. Coordinate approvals, passengers, baggage and multi-city schedules with EXJET.",
+      "h1": [
+        "Corporate group aircraft charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/group-charter/sports-teams/",
+      "title": "Sports team air charter | EXJET",
+      "description": "Coordinate sports team charter with EXJET. Plan the traveling roster, equipment, schedule and transfers, then request appropriate aircraft and a complete proposal.",
+      "h1": [
+        "Sports team air charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/guides/",
+      "title": "Private Jet Charter Guides & Booking Advice | EXJET",
+      "description": "Prepare your charter with guides to quotes, operator authority, aircraft selection and passenger needs. Get informed before requesting your EXJET proposal.",
+      "h1": [
+        "Private jet charter planning guides"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/guides/argus-wyvern/",
+      "title": "ARGUS and WYVERN safety ratings explained | EXJET",
+      "description": "Learn how operator ratings, audits and trip-specific reports differ. Understand what ARGUS and WYVERN information can tell you about a proposed charter flight.",
+      "h1": [
+        "ARGUS and WYVERN safety ratings explained"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/guides/part-135-vs-part-91/",
+      "title": "Part 135 vs Part 91: a charter passenger guide | EXJET",
+      "description": "Understand the distinction between on-demand charter and private aircraft operations. Learn what operating authority and aircraft details to verify before booking.",
+      "h1": [
+        "Part 135 vs Part 91: a charter passenger guide"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/interior-completions/",
+      "title": "Aircraft Interior Refurbishment & Completion Support | EXJET",
+      "description": "Plan aircraft interior refurbishment with EXJET. Define cabin priorities, scope, schedule and provider requirements for a coordinated completion project.",
+      "h1": [
+        "Aircraft interior refurbishment and completions"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/membership/",
+      "title": "Private Jet Membership Programs | EXJET",
+      "description": "Review EXJET membership information and discuss your travel pattern with an advisor. Confirm program terms, aircraft access and pricing before any commitment.",
+      "h1": [
+        "Aircraft charter membership"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/pricing/",
+      "title": "Private Jet Charter Cost & Hourly Pricing Guide | EXJET",
+      "description": "Understand charter costs with hourly reference inputs, route examples, fees and a complete trip calculation. Request a written itinerary-specific quote from EXJET.",
+      "h1": [
+        "Private jet charter cost and pricing"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/privacy/",
+      "title": "Privacy Policy | EXJET",
+      "description": "Read how EXJET collects, uses, stores, and protects information submitted through its website and services.",
+      "h1": [
+        "Privacy Policy"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/private-jet-charter/",
+      "title": "Private Jet Charter | On-Demand Aircraft Solutions | EXJET",
+      "description": "Arrange domestic and international business jet charter with EXJET. Compare aircraft, understand the broker relationship and request a complete trip proposal.",
+      "h1": [
+        "Private jet charter, arranged around you"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/private-jet-charter/dallas/",
+      "title": "Dallas private jet charter | EXJET",
+      "description": "Arrange business jet charter from Dallas with EXJET. Compare Love Field and Addison, explore routes and pricing, and request a complete trip proposal.",
+      "h1": [
+        "Dallas private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/",
+      "title": "Private Jet Charter Routes, Costs & Flight Times | EXJET",
+      "description": "Explore 30 business jet charter routes with airport choices, planning-time estimates and transparent cost examples. Request a quote for your itinerary from EXJET.",
+      "h1": [
+        "Private jet charter routes"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/dallas-to-aspen/",
+      "title": "Dallas to Aspen Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Dallas to Aspen aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Dallas to Aspen private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/dallas-to-cabo/",
+      "title": "Dallas to Cabo Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Dallas to Cabo aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Dallas to Cabo private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/dallas-to-chicago/",
+      "title": "Dallas to Chicago Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Dallas to Chicago aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Dallas to Chicago private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/dallas-to-houston/",
+      "title": "Dallas to Houston Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Dallas to Houston aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Dallas to Houston private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/dallas-to-las-vegas/",
+      "title": "Dallas to Las Vegas Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Dallas to Las Vegas aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Dallas to Las Vegas private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/dallas-to-los-angeles/",
+      "title": "Dallas to Los Angeles Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Dallas to Los Angeles aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Dallas to Los Angeles private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/dallas-to-miami/",
+      "title": "Dallas to Miami Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Dallas to Miami aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Dallas to Miami private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/dallas-to-new-york/",
+      "title": "Dallas to New York Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Dallas to New York aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Dallas to New York private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/dallas-to-palm-beach/",
+      "title": "Dallas to Palm Beach Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Dallas to Palm Beach aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Dallas to Palm Beach private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/dallas-to-vail/",
+      "title": "Dallas to Vail Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Dallas to Vail aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Dallas to Vail private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/los-angeles-to-aspen/",
+      "title": "Los Angeles to Aspen Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Los Angeles to Aspen aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Los Angeles to Aspen private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/los-angeles-to-cabo/",
+      "title": "Los Angeles to Cabo Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Los Angeles to Cabo aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Los Angeles to Cabo private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/los-angeles-to-chicago/",
+      "title": "Los Angeles to Chicago Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Los Angeles to Chicago aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Los Angeles to Chicago private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/los-angeles-to-las-vegas/",
+      "title": "Los Angeles to Las Vegas Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Los Angeles to Las Vegas aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Los Angeles to Las Vegas private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/los-angeles-to-miami/",
+      "title": "Los Angeles to Miami Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Los Angeles to Miami aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Los Angeles to Miami private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/los-angeles-to-new-york/",
+      "title": "Los Angeles to New York Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Los Angeles to New York aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Los Angeles to New York private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/los-angeles-to-palm-beach/",
+      "title": "Los Angeles to Palm Beach Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Los Angeles to Palm Beach aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Los Angeles to Palm Beach private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/los-angeles-to-vail/",
+      "title": "Los Angeles to Vail Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Los Angeles to Vail aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Los Angeles to Vail private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/miami-to-aspen/",
+      "title": "Miami to Aspen Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Miami to Aspen aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Miami to Aspen private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/miami-to-cabo/",
+      "title": "Miami to Cabo Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Miami to Cabo aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Miami to Cabo private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/miami-to-chicago/",
+      "title": "Miami to Chicago Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Miami to Chicago aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Miami to Chicago private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/miami-to-houston/",
+      "title": "Miami to Houston Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan Miami to Houston aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "Miami to Houston private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/new-york-to-aspen/",
+      "title": "New York to Aspen Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan New York to Aspen aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "New York to Aspen private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/new-york-to-cabo/",
+      "title": "New York to Cabo Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan New York to Cabo aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "New York to Cabo private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/new-york-to-chicago/",
+      "title": "New York to Chicago Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan New York to Chicago aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "New York to Chicago private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/new-york-to-houston/",
+      "title": "New York to Houston Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan New York to Houston aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "New York to Houston private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/new-york-to-las-vegas/",
+      "title": "New York to Las Vegas Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan New York to Las Vegas aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "New York to Las Vegas private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/new-york-to-miami/",
+      "title": "New York to Miami Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan New York to Miami aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "New York to Miami private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/new-york-to-palm-beach/",
+      "title": "New York to Palm Beach Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan New York to Palm Beach aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "New York to Palm Beach private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/routes/new-york-to-vail/",
+      "title": "New York to Vail Private Jet Charter: Cost & Time | EXJET",
+      "description": "Plan New York to Vail aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+      "h1": [
+        "New York to Vail private jet charter"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/safety/",
+      "title": "Charter safety and operator review | EXJET",
+      "description": "Understand operator authority, aircraft verification and independent safety reports. Learn what to confirm before booking business jet charter through EXJET.",
+      "h1": [
+        "Charter safety and operator review"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/sales/",
+      "title": "Private Aircraft Sales and Acquisitions | EXJET",
+      "description": "Discuss aircraft sales and acquisitions with EXJET. Define your mission, review representation options and request a confidential aircraft search or sale brief.",
+      "h1": [
+        "Aircraft sales and acquisitions"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/sales/citation-m2/",
+      "title": "Citation M2 Aircraft Sales | EXJET",
+      "description": "A completed EXJET transaction and a reference point for targeted light-jet acquisitions.",
+      "h1": [
+        "Citation M2"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/sales/global-7500/",
+      "title": "Global 7500 Aircraft Sales | EXJET",
+      "description": "A confidential low-time Global 7500 opportunity available to qualified parties under NDA.",
+      "h1": [
+        "Global 7500"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/sales/phenom-300e/",
+      "title": "Phenom 300E Aircraft Sales | EXJET",
+      "description": "A targeted sourcing program for buyers seeking a current-generation Phenom 300 or 300E.",
+      "h1": [
+        "Phenom 300E"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/sales/praetor-600/",
+      "title": "Praetor 600 Aircraft Sales | EXJET",
+      "description": "A low-time Praetor 600 offered for long-term dry lease with full manufacturer warranty.",
+      "h1": [
+        "Praetor 600"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/search/",
+      "title": "Search EXJET",
+      "description": "Find aircraft, destinations, airport guides, and private charter articles.",
+      "h1": [
+        "What\u2019s on your horizon?"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/terms/",
+      "title": "Website Terms | EXJET",
+      "description": "Review the terms governing access to the EXJET website and requests submitted through its digital forms.",
+      "h1": [
+        "Website Terms"
+      ],
+      "robots": "noindex, nofollow"
+    },
+    {
+      "path": "/why-exjet/",
+      "title": "Why Choose EXJET for Private Charter | EXJET",
+      "description": "Learn how EXJET coordinates aircraft selection, operator review and charter planning. Understand the broker relationship and the questions to ask before booking.",
+      "h1": [
+        "Why choose EXJET for aircraft charter"
+      ],
+      "robots": "noindex, nofollow"
+    }
+  ]
+}

@@ -1,0 +1,443 @@
+/*
+ * EXJET responsive design layer.
+ * Interaction proportions follow the measured Apple.com mobile system while
+ * color, typography, photography, and voice remain strictly EXJET.
+ */
+:root {
+  --ex-page-gutter: clamp(22px, 6.6vw, 44px);
+  --ex-content-width: 1120px;
+  --ex-reading-width: 680px;
+  --ex-section-gap: clamp(56px, 7vw, 88px);
+  --ex-ink: #16181a;
+  --ex-muted: #5e646a;
+  --ex-silver: #f5f5f7;
+  --ex-line: #d9dadd;
+  --ex-control-radius: 980px;
+  --ex-title-size: clamp(42px, 4.5vw, 60px);
+  --ex-heading-size: clamp(30px, 3.4vw, 44px);
+}
+
+body {
+  color: var(--ex-ink);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+.shell,
+.ex-container {
+  width: min(var(--ex-content-width), calc(100% - (2 * var(--ex-page-gutter))));
+}
+
+.section,
+.ex-section {
+  padding-block: var(--ex-section-gap);
+}
+
+/* Apple measured control geometry with EXJET color and Ubuntu typography. */
+.button {
+  position: relative;
+  width: auto;
+  min-height: 44px;
+  padding: 8px 16px;
+  border: 0;
+  border-radius: var(--ex-control-radius);
+  gap: 0;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 400;
+  letter-spacing: 0;
+  line-height: 18px;
+  text-transform: none;
+  transition: background-color 160ms ease, color 160ms ease, transform 140ms ease;
+}
+
+/* Visible controls provide a minimum 44px touch target. */
+
+.page-hero__inner > .button,
+.quote-form__submit .button,
+.account-panel .button,
+.charter-motion__content .button {
+  width: fit-content;
+  max-width: 100%;
+  min-height: 44px;
+  padding: 8px 16px;
+}
+
+.button:active {
+  transform: scale(.98);
+}
+
+.button--dark {
+  background: var(--ex-ink);
+  color: #fff;
+}
+
+.button--dark:hover {
+  background: #34373a;
+}
+
+.button--light {
+  background: #fff;
+  color: var(--ex-ink);
+}
+
+.button--light:hover {
+  background: #e8e8ed;
+}
+
+.button--outline {
+  min-height: 44px;
+  padding: 8px 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: inherit;
+}
+
+.button--outline:hover {
+  background: transparent;
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
+.ex-inline-link,
+.ex-text-link,
+.large-contact-link {
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.ex-inline-link {
+  gap: 4px;
+  min-height: 44px;
+  font-size: 14px;
+  line-height: 18px;
+}
+
+.ex-inline-link svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Consistent page and section hierarchy. */
+.page-hero__inner,
+.ex-page-intro,
+.ex-story-intro {
+  max-width: 860px;
+  margin-inline: auto;
+  text-align: center;
+}
+
+.page-hero__inner {
+  width: min(860px, calc(100% - (2 * var(--ex-page-gutter))));
+  padding-block: 58px 50px;
+}
+
+.page-hero h1,
+.ex-page-intro h1,
+.ex-story-intro h1 {
+  max-width: 18ch;
+  margin-inline: auto;
+  font-size: var(--ex-title-size);
+  font-weight: 500;
+  letter-spacing: -.035em;
+  line-height: 1.08;
+  text-wrap: balance;
+}
+
+.page-hero--dark h1 em,
+.page-hero--image h1 em {
+  color: var(--ex-muted);
+}
+
+.page-hero .page-hero__copy,
+.ex-page-intro > p:not(.ex-kicker),
+.ex-story-intro > p:not(.ex-kicker) {
+  max-width: 52ch;
+  margin: 20px auto 0;
+  color: var(--ex-muted);
+  font-size: 18px;
+  line-height: 1.55;
+  text-wrap: pretty;
+}
+
+.section-intro,
+.ex-section-heading {
+  max-width: 760px;
+  margin: 0 auto 34px;
+  display: block;
+  text-align: center;
+}
+
+.section-intro h2,
+.ex-section-heading h2,
+.split-copy h2,
+.about-perspective h2,
+.about-values h2,
+.about-location h2,
+.why-speed h2 {
+  font-size: var(--ex-heading-size);
+  font-weight: 500;
+  letter-spacing: -.025em;
+  line-height: 1.12;
+  text-wrap: balance;
+}
+
+.section-intro__copy,
+.ex-section-heading p {
+  max-width: 52ch;
+  margin: 16px auto 0;
+  color: var(--ex-muted);
+  font-size: 17px;
+  line-height: 1.6;
+  text-wrap: pretty;
+}
+
+.section-intro .eyebrow,
+.section-intro__copy,
+.page-hero .eyebrow {
+  text-align: center;
+}
+
+/* Editorial reading pages use one calm column and a repeatable rhythm. */
+.ex-reading {
+  max-width: var(--ex-reading-width);
+  padding-bottom: 72px;
+}
+
+.ex-reading h2 {
+  margin: 44px 0 16px;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -.022em;
+  line-height: 1.2;
+}
+
+.ex-reading p,
+.ex-reading li {
+  color: #353a3e;
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+.ex-reading p {
+  margin-bottom: 20px;
+}
+
+.ex-card-grid {
+  gap: 20px;
+}
+
+.ex-card {
+  padding: 28px;
+  border-radius: 18px;
+}
+
+.ex-card-image {
+  border-radius: 18px 18px 0 0;
+}
+
+.ex-action-panel {
+  padding: 64px var(--ex-page-gutter);
+}
+
+.ex-action-panel h2 {
+  font-size: var(--ex-heading-size);
+  font-weight: 500;
+}
+
+/* Keep the hosted search visually inside the EXJET surface. */
+.ex-search-panel {
+  overflow: clip;
+  border: 1px solid var(--ex-line);
+  border-radius: 22px;
+  background: var(--ex-silver);
+}
+
+.ex-search-panel-heading {
+  padding: 26px 28px 20px;
+  border: 0;
+  background: var(--ex-silver);
+}
+
+.ex-search-panel-heading h2 {
+  margin: 0;
+  font-size: 28px;
+  font-weight: 500;
+  letter-spacing: -.025em;
+  line-height: 1.15;
+}
+
+.ex-search-panel-heading p {
+  margin: 8px 0 0;
+  color: var(--ex-muted);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+@media (max-width: 760px) {
+  :root {
+    --ex-page-gutter: 20px;
+    --ex-section-gap: 40px;
+    --ex-mobile-title: clamp(1.875rem, 8.2vw, 2.125rem);
+    --ex-mobile-heading: 1.5rem;
+  }
+
+  body { font-size: 1rem; }
+
+  .shell,
+  .ex-container {
+    width: calc(100% - (2 * var(--ex-page-gutter)));
+  }
+
+  .page-hero__inner {
+    padding-block: 28px;
+  }
+
+  .ex-page-intro, .ex-story-intro { padding-block: 16px 24px; }
+
+  .page-hero h1,
+  .page-hero .page-hero__display,
+  .ex-page-intro h1,
+  .ex-story-intro h1 {
+    font-size: var(--ex-mobile-title);
+    line-height: 1.12;
+  }
+
+  .page-hero .page-hero__copy,
+  .ex-page-intro > p:not(.ex-kicker),
+  .ex-story-intro > p:not(.ex-kicker) {
+    margin-top: 16px;
+    font-size: 1rem;
+    line-height: 1.55;
+  }
+
+  .section-intro,
+  .ex-section-heading {
+    margin-bottom: 20px;
+  }
+
+  .section-intro h2,
+  .ex-section-heading h2,
+  .split-copy h2,
+  .about-perspective h2,
+  .about-values h2,
+  .about-location h2,
+  .why-speed h2 {
+    font-size: var(--ex-mobile-heading);
+    line-height: 1.14;
+  }
+
+  .section-intro__copy,
+  .ex-section-heading p {
+    font-size: 16px;
+    line-height: 1.6;
+  }
+
+  .ex-card-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .ex-card {
+    padding: 20px;
+    border-radius: 16px;
+  }
+
+  .ex-card-image {
+    margin: -20px -20px 18px;
+    border-radius: 16px 16px 0 0;
+  }
+
+  .ex-reading h2 {
+    margin-top: 28px;
+    font-size: var(--ex-mobile-heading);
+  }
+
+  .ex-reading p,
+  .ex-reading li {
+    font-size: 1rem;
+    line-height: 1.62;
+  }
+
+  .ex-reading { padding-bottom: 40px; }
+  .ex-card h2, .ex-card h3 { font-size: 1.25rem; }
+  .ex-action-panel { padding-block: 40px; }
+  .ex-action-panel h2 { font-size: var(--ex-mobile-heading); }
+
+  .detail-viewer__title h1, .sales-detail-hero h1,
+  .account-story h1, .legal-page h1 { font-size: var(--ex-mobile-title); }
+  .aircraft-category-card__heading h2, .sales-index-card h2,
+  .empty-leg-results__empty h2, .membership-card h2,
+  .account-panel h2 { font-size: var(--ex-mobile-heading); }
+  .process-grid h3, .group-mission-grid h3, .sales-service-grid h3,
+  .cargo-aircraft-grid h3 { font-size: 1.25rem; }
+  .aircraft-category-card { padding: 24px 20px; }
+  .sales-index-card__link, .account-panel { padding: 20px; }
+
+  .ex-search-panel {
+    border-radius: 18px;
+  }
+
+  .ex-search-panel-heading {
+    padding: 20px 20px 16px;
+  }
+
+  .ex-search-panel-heading h2 {
+    font-size: 24px;
+  }
+
+  .ex-search-panel-heading p {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 359px) {
+  :root {
+    --ex-page-gutter: 18px;
+  }
+}
+
+/* Shared interaction repairs: visible focus, legible hints and consistent icons. */
+.social-links svg { stroke: none; fill: currentColor; width: 20px; height: 20px; }
+.social-links svg :is(path, rect, circle) { fill: currentColor; stroke: none; }
+.social-links--compact a { min-width: 44px; min-height: 44px; font-size: 13px; text-transform: none; letter-spacing: 0; }
+.quote-form__airport { min-width: 0; padding: 1.45rem 1.35rem; border: 1px solid var(--line); border-top: 0; }
+.quote-form__airport > label { display: block; margin: 0 0 12px; padding: 0; border: 0 !important; font-size: 14px; color: #5e646a; }
+.quote-form__airport-list button[aria-selected="true"] { background: #e7e8e8; outline: 2px solid #16181a; outline-offset: -2px; }
+.quote-form__airport-list small { font-size: 13px; letter-spacing: 0; }
+.quote-form__airport-list strong { font-size: 14px; }
+.quote-form__progress { margin: 0; padding: 16px 0; color: #5e646a; font-size: 14px; }
+.quote-form :is(input, textarea, select):focus-visible,
+.empty-leg-board :is(input, textarea):focus-visible { outline: 2px solid #0071e3; outline-offset: 4px; }
+.quote-form__preference input:focus-visible + span { outline: 3px solid #0071e3; outline-offset: 3px; }
+.quote-form__preference label span { min-height: 44px; font-size: 14px; letter-spacing: 0; text-transform: capitalize; border-radius: 8px; }
+.quote-form__preference legend { font-size: 14px; letter-spacing: 0; text-transform: none; }
+.quote-form__submit p, .quote-form__broker-disclosure, .quote-form__error { font-size: 14px; color: #5e646a; }
+.quote-form__error { color: #7b2525; }
+.quote-form__mission-summary button, .quote-form__new { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: 14px; letter-spacing: 0; text-transform: none; cursor: pointer; }
+.quote-form__mission-summary { grid-template-columns: auto minmax(0, 1fr); }
+.quote-form__mission-summary small { font-size: 14px; }
+.quote-form__mission-summary p { flex-wrap: wrap; }
+.quote-form__mission-summary p strong { max-width: 100%; white-space: normal; overflow-wrap: anywhere; }
+.quote-form__submit .button { gap: 12px; }
+.empty-leg-inquiry form > header button { display: grid; place-items: center; min-width: 44px; min-height: 44px; }
+.empty-leg-inquiry input { min-height: 44px; font-size: 16px; }
+.empty-leg-inquiry label > span, .empty-leg-results__request { font-size: 14px; letter-spacing: 0; text-transform: none; }
+.empty-leg-results__request { min-height: 44px; }
+.empty-leg-inquiry a { text-decoration: underline; text-underline-offset: 3px; }
+.aircraft-scene-carousel button { min-width: 44px; min-height: 44px; display: grid; place-items: center; }
+.not-found { min-height: 65vh; padding-block: 72px; }
+.not-found h1 { font-size: clamp(36px, 6vw, 64px); line-height: 1.12; letter-spacing: -.035em; }
+.section-intro--inverse .section-intro__copy { color: #c9cdd1; }
+@media (max-width: 760px) {
+  .quote-form__mission-summary { grid-template-columns: 1fr; }
+  .quote-form__submit .button { width: 100%; }
+}
+.ex-contact-preference { margin-bottom: 24px; padding: 24px; background: #f4f4f4; border: 1px solid #dedee2; border-radius: 16px; }
+.ex-contact-preference p { font-size: 15px; color: #5e646a; line-height: 1.6; margin: 0 0 12px; }
+.ex-contact-preference h2 { margin: 0 0 12px; font-size: 24px; font-weight: 500; }
+.ex-contact-preference .button { gap: 10px; }
+@media(max-width:760px) { .ex-card-grid:has(> :nth-child(2)):not(:has(> :nth-child(3))), .ex-card-grid:has(> :nth-child(4)):not(:has(> :nth-child(5))) { grid-template-columns: 1fr; } }
