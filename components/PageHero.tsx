@@ -1,5 +1,5 @@
-import Image from "next/image";
 import type { CSSProperties } from "react";
+import { PriorityImage } from "@/components/PriorityImage";
 
 type PageHeroProps = {
   eyebrow: string;
@@ -49,7 +49,7 @@ export function PageHero({
         <p className="page-hero__copy">{copy}</p>
         {children}
       </div>
-      {image ? <div className="page-hero__photograph"><Image src={image} alt={imageAlt} width={imageWidth} height={imageHeight} priority sizes="(max-width: 1400px) 100vw, 1400px" /></div> : null}
+      {image ? <div className="page-hero__photograph"><PriorityImage src={image} alt={imageAlt} width={imageWidth} height={imageHeight} sizes="(max-width: 1400px) 100vw, 1400px" /></div> : null}
     </section>
   );
 }

@@ -9,10 +9,10 @@ type LogoProps = {
 
 export function Logo({ light = false, className, onClick }: LogoProps) {
   return (
-    <Link className={className} href="/" aria-label="EXJET home" onClick={onClick}>
+    <Link className={className} href="/" onClick={onClick}>
       <Image
         src={light ? "/brand/exjet-wordmark-light.svg" : "/brand/exjet-wordmark.svg"}
-        alt=""
+        alt="EXJET"
         width={335}
         height={143}
         loading="lazy"

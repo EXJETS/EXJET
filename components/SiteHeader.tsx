@@ -39,8 +39,8 @@ const groups = [
 ];
 
 function NavigationLogo({ onClick }: { onClick?: () => void }) {
-  return <Link className="ex-header-logo" href="/" aria-label="EXJET home" onClick={onClick}>
-    <Image src="/brand/exjet-navbar-logo.png" alt="" width={96} height={96} sizes="48px" loading="eager" />
+  return <Link className="ex-header-logo" href="/" onClick={onClick}>
+    <Image src="/brand/exjet-navbar-logo.png" alt="EXJET" width={96} height={96} sizes="48px" loading="eager" />
   </Link>;
 }
 

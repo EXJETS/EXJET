@@ -2,6 +2,7 @@
 
 import { TouchEvent, useMemo, useState } from "react";
 import Image from "next/image";
+import { PriorityImage } from "@/components/PriorityImage";
 import { ArrowLeftIcon } from "@phosphor-icons/react/dist/csr/ArrowLeft";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/csr/ArrowRight";
 import { AircraftScene } from "@/data/aircraft";
@@ -62,19 +63,26 @@ export function AircraftSceneMedia({ aircraftName, scene, priority = false }: Ai
         onTouchEnd={onTouchEnd}
       >
         {active.portraitImage ? <source media="(max-width: 820px)" srcSet={active.portraitImage} /> : null}
-        <Image
+        {priority ? <PriorityImage
           fill
           sizes="(max-width: 1200px) 100vw, 1200px"
           src={active.image}
           alt={active.alt ?? `${aircraftName} ${scene.label.toLowerCase()} view`}
-          loading={priority ? "eager" : "lazy"}
-          fetchPriority={priority ? "high" : "auto"}
-          decoding="async"
           style={{
             objectFit: scene.fit ?? "cover",
             objectPosition: active.focalPoint ?? scene.focalPoint ?? "center",
           }}
-        />
+        /> : <Image
+          fill
+          sizes="(max-width: 1200px) 100vw, 1200px"
+          src={active.image}
+          alt={active.alt ?? `${aircraftName} ${scene.label.toLowerCase()} view`}
+          loading="lazy"
+          style={{
+            objectFit: scene.fit ?? "cover",
+            objectPosition: active.focalPoint ?? scene.focalPoint ?? "center",
+          }}
+        />}
       </picture>
       {media.length > 1 ? (
         <div className="aircraft-scene-carousel" aria-label={`${scene.label} image controls`}>
