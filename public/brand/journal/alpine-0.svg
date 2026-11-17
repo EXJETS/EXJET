@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 440" fill="none">
+<defs>
+ <linearGradient id="ground" x1="0" y1="0" x2="720" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#f5f5f2"/><stop offset="1" stop-color="#ccd0d0"/></linearGradient>
+ <linearGradient id="silver" x1="100" y1="40" x2="580" y2="390" gradientUnits="userSpaceOnUse"><stop stop-color="#fff"/><stop offset=".45" stop-color="#e8e9e6"/><stop offset="1" stop-color="#9da5a7"/></linearGradient>
+ <linearGradient id="stone" x1="120" y1="80" x2="550" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#a9b1b3"/><stop offset="1" stop-color="#454f54"/></linearGradient>
+ <linearGradient id="night" x1="0" y1="0" x2="720" y2="440" gradientUnits="userSpaceOnUse"><stop stop-color="#303a40"/><stop offset="1" stop-color="#11191e"/></linearGradient>
+ <radialGradient id="globe" cx=".32" cy=".26" r=".8"><stop stop-color="#f5f6f2"/><stop offset=".45" stop-color="#bfc7c7"/><stop offset=".8" stop-color="#5b6a70"/><stop offset="1" stop-color="#243139"/></radialGradient>
+ <pattern id="grid" width="72" height="72" patternUnits="userSpaceOnUse"><path d="M72 0H0V72" stroke="#58636a" stroke-opacity=".09"/></pattern>
+</defs>
+<path fill="url(#ground)" d="M0 0h720v440H0z"/>
+<circle cx="540" cy="110" r="55" fill="#fff" fill-opacity=".52"/>
+ <path d="M0 330 128 170 210 250 350 60 508 258 590 180 720 310V440H0Z" fill="url(#silver)"/>
+ <path d="m350 60 52 244-63-51-72 69Z" fill="#d6dcdb"/>
+ <path d="m350 60 158 198-106 46Z" fill="url(#stone)"/>
+ <path d="m128 170 82 80-45 84Z" fill="#9ca7aa"/>
+ <path d="M0 380 165 286 272 355 451 207 597 343 720 268V440H0Z" fill="url(#stone)"/>
+ <path d="m451 207 15 133 131 3Z" fill="#5b696e"/>
+ <path d="M0 403c142-65 180 10 302-19s206-39 418 26v30H0Z" fill="#35464e"/>
+ <path d="m350 60 52 244M451 207l15 133" stroke="#fff" stroke-opacity=".55"/>
+ <path d="M0 426c142-65 180 10 302-19s206-39 418 26" stroke="#a7b5b8" stroke-opacity=".35"/><path d="M24 40V24h16M680 24h16v16M24 400v16h16M680 416h16v-16" stroke="#fff" stroke-opacity=".6"/>
+</svg>

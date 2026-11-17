@@ -1,0 +1,16 @@
+{
+  "ref": "exjet_public_canonical",
+  "description": "Send public-page requests directly to HTTPS www.exjet.com",
+  "expression": "(http.request.method in {\"GET\" \"HEAD\"}) and ((http.host eq \"exjet.com\") or (http.host eq \"www.exjet.com\" and http.request.scheme eq \"http\"))",
+  "action": "redirect",
+  "action_parameters": {
+    "from_value": {
+      "target_url": {
+        "expression": "concat(\"https://www.exjet.com\", http.request.uri.path)"
+      },
+      "status_code": 301,
+      "preserve_query_string": true
+    }
+  },
+  "enabled": true
+}

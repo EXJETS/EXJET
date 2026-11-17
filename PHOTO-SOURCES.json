@@ -1,0 +1,549 @@
+{
+  "date": "2026-10-23",
+  "scope": "Only direct original assets from the four owner-approved manufacturer websites. Sources are internal and never rendered as credits or source sections.",
+  "approved_hosts": [
+    "cessna.txtav.com",
+    "bombardier.com",
+    "dassaultfalcon.com",
+    "embraer.com"
+  ],
+  "assets": [
+    {
+      "file": "/images/manufacturers/latitude-floorplan.jpg",
+      "model": "Citation Latitude",
+      "scene": "floorplan",
+      "source_page": "https://cessna.txtav.com/en/citation/latitude",
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/jets/latitude/interior-floorplan/latitude-floorplan-club.jpg",
+      "dimensions": {
+        "width": 600,
+        "height": 750
+      },
+      "evidence": "Representative floor plan displayed on the exact model product page; layout varies by individual aircraft.",
+      "sha256": "9386ad34182a40fb462c14b500c42f86539e032644419f454442c923a7ba7159",
+      "file_bytes": 35610,
+      "source_bytes_verified_on": "2026-10-23",
+      "transformation": "Original manufacturer-served bytes.",
+      "publication_permission": "Commercial publication permission has not been verified.",
+      "source_kind": "manufacturer-product-gallery",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/manufacturers/global-8000-floorplan.png",
+      "model": "Global 8000",
+      "scene": "floorplan",
+      "source_page": "https://bombardier.com/en/aircraft/global-8000",
+      "image_url": "https://bombardier.com/sites/default/files/2024-10/DDBA1288A_Ac_Brochures_2024Phase2_7500_Floorplan_V8-no-bkgd-2600x697.png",
+      "dimensions": {
+        "width": 2600,
+        "height": 697
+      },
+      "evidence": "Representative floor plan displayed on the exact model product page; layout varies by individual aircraft.",
+      "sha256": "36f9cd738924d333b164bc6d30f79b2a3014711863b4bcece6e447d9ab625738",
+      "file_bytes": 1022739,
+      "source_bytes_verified_on": "2026-10-23",
+      "transformation": "Original manufacturer-served bytes.",
+      "publication_permission": "Commercial publication permission has not been verified.",
+      "source_kind": "manufacturer-product-gallery",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/manufacturers/longitude-floorplan-standard.jpg",
+      "model": "Citation Longitude",
+      "manufacturer": "Cessna",
+      "scene": "floorplan",
+      "source_kind": "manufacturer-product-gallery",
+      "source_page": "https://cessna.txtav.com/en/citation/longitude",
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/jets/longitude/interior-floorplan/longitude-std-black.jpg",
+      "dimensions": {
+        "width": 600,
+        "height": 750
+      },
+      "evidence": "Exact manufacturer cabin layout image linked by the Longitude product page; visually inspected. Representative configuration only.",
+      "sha256": "697f0cea9b91dadfecfc514eb2a954b5071cd4a490436f4531135afcfc40ccc0",
+      "file_bytes": 30502,
+      "source_bytes_verified_on": "2026-10-23",
+      "transformation": "Original manufacturer-served bytes; CSS only for display.",
+      "publication_permission": "Commercial publication permission not independently verified.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/manufacturers/longitude-floorplan-aft-couch.jpg",
+      "model": "Citation Longitude",
+      "manufacturer": "Cessna",
+      "scene": "floorplan",
+      "source_kind": "manufacturer-product-gallery",
+      "source_page": "https://cessna.txtav.com/en/citation/longitude",
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/jets/longitude/interior-floorplan/longitude-aft-black.jpg",
+      "dimensions": {
+        "width": 600,
+        "height": 750
+      },
+      "evidence": "Exact manufacturer cabin layout image linked by the Longitude product page; visually inspected. Representative configuration only.",
+      "sha256": "edbd1c69d414cfbf52e5935c7c5900804723a8cfb9536a30b2a03d13b0ef6bec",
+      "file_bytes": 29511,
+      "source_bytes_verified_on": "2026-10-23",
+      "transformation": "Original manufacturer-served bytes; CSS only for display.",
+      "publication_permission": "Commercial publication permission not independently verified.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/manufacturers/longitude-floorplan-side-seat.jpg",
+      "model": "Citation Longitude",
+      "manufacturer": "Cessna",
+      "scene": "floorplan",
+      "source_kind": "manufacturer-product-gallery",
+      "source_page": "https://cessna.txtav.com/en/citation/longitude",
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/jets/longitude/interior-floorplan/longitude-sfs-black.jpg",
+      "dimensions": {
+        "width": 600,
+        "height": 750
+      },
+      "evidence": "Exact manufacturer cabin layout image linked by the Longitude product page; visually inspected. Representative configuration only.",
+      "sha256": "1392ed661816cefcd968a6b6075be6cc97ebb139886929ec6bfeb94f784e13d1",
+      "file_bytes": 31030,
+      "source_bytes_verified_on": "2026-10-23",
+      "transformation": "Original manufacturer-served bytes; CSS only for display.",
+      "publication_permission": "Commercial publication permission not independently verified.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/manufacturers/global-8000-clouds.webp",
+      "model": "Global 8000",
+      "manufacturer": "Bombardier",
+      "scene": "exterior",
+      "source_kind": "manufacturer-product-gallery",
+      "source_page": "https://bombardier.com/en/aircraft/global-8000",
+      "image_url": "https://bombardier.com/sites/default/files/styles/retina_2700x860/public/2024-04/reBrandGL8000-1440x978.jpg.webp?itok=yFvfmkI6",
+      "dimensions": {
+        "width": 1440,
+        "height": 978
+      },
+      "evidence": "Original product page image, visually inspected for model, composition and intended placement.",
+      "sha256": "105a34cfb661dd628272fe4602237dcfb0c886fb4c59c1d5912c8fab32e56e6c",
+      "file_bytes": 137134,
+      "source_bytes_verified_on": "2026-10-24",
+      "transformation": "Original manufacturer-served bytes. Responsive display only.",
+      "publication_permission": "Commercial publication permission not independently verified.",
+      "visually_inspected": true,
+      "flight_status": "in-flight",
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/manufacturers/falcon-8x-lounge.jpg",
+      "model": "Falcon 8X",
+      "manufacturer": "Dassault",
+      "scene": "cabin",
+      "source_kind": "manufacturer-product-gallery",
+      "source_page": "https://www.dassaultfalcon.com/businessjets/falcon-8x/",
+      "image_url": "https://www.dassaultfalcon.com/app/uploads/2022/09/01.Falcon8X_Cabin_Desktop.jpg",
+      "dimensions": {
+        "width": 2000,
+        "height": 1100
+      },
+      "evidence": "Original product page image, visually inspected for model, composition and intended placement.",
+      "sha256": "fb4904ae4fa5195012a5df42e15cb512a39bcbed3f28c40076e8fbdaa2037c00",
+      "file_bytes": 198112,
+      "source_bytes_verified_on": "2026-10-24",
+      "transformation": "Original manufacturer-served bytes. Responsive display only.",
+      "publication_permission": "Commercial publication permission not independently verified.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/manufacturers/falcon-8x-flightdeck.jpg",
+      "model": "Falcon 8X",
+      "manufacturer": "Dassault",
+      "scene": "cockpit",
+      "source_kind": "manufacturer-product-gallery",
+      "source_page": "https://www.dassaultfalcon.com/businessjets/falcon-8x/",
+      "image_url": "https://www.dassaultfalcon.com/app/uploads/2022/09/03-1920_PiloteOffice.jpg",
+      "dimensions": {
+        "width": 1920,
+        "height": 984
+      },
+      "evidence": "Original product page image, visually inspected for model, composition and intended placement.",
+      "sha256": "ec02cc4f391f641244c7fa7866be4f0335f85e27d89ab231a428d3719de94b7a",
+      "file_bytes": 554943,
+      "source_bytes_verified_on": "2026-10-24",
+      "transformation": "Original manufacturer-served bytes. Responsive display only.",
+      "publication_permission": "Commercial publication permission not independently verified.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/manufacturers/falcon-support.jpg",
+      "model": "Falcon manufacturer support",
+      "manufacturer": "Dassault",
+      "scene": "service",
+      "source_kind": "manufacturer-service-showcase",
+      "source_page": "https://www.dassaultfalcon.com/businessjets/falcon-8x/",
+      "image_url": "https://www.dassaultfalcon.com/app/uploads/2022/09/support.jpg",
+      "dimensions": {
+        "width": 2000,
+        "height": 1333
+      },
+      "evidence": "Original product page image, visually inspected for model, composition and intended placement.",
+      "sha256": "9b70e12633de838cb58a44e240ea9199d0eba3b1d2dc38c267c6f73f9485faf7",
+      "file_bytes": 85803,
+      "source_bytes_verified_on": "2026-10-24",
+      "transformation": "Original manufacturer-served bytes. Responsive display only.",
+      "publication_permission": "Commercial publication permission not independently verified.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/jets/longitude/exterior-gallery/timemoney.jpg",
+      "source_page": "https://cessna.txtav.com/en/citation/longitude",
+      "model": "Citation Longitude",
+      "scene": "exterior",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "file": "/images/manufacturers/longitude-mission.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "1d964ab8a6b2ff04a4a0f1e00236437b59664da6322f93b235582ce563842714",
+      "file_bytes": 90342,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true,
+      "flight_status": "in-flight"
+    },
+    {
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/jets/longitude/interior-collections/longitude_glacier.jpg",
+      "source_page": "https://cessna.txtav.com/en/citation/longitude",
+      "model": "Citation Longitude",
+      "scene": "interior",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "file": "/images/manufacturers/longitude-glacier.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "916382790320988dbebaaad958faba719671573276a1fa88738a27d869a5cbf7",
+      "file_bytes": 412917,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/jets/longitude/interior-collections/longitude_ecru.jpg",
+      "source_page": "https://cessna.txtav.com/en/citation/longitude",
+      "model": "Citation Longitude",
+      "scene": "interior",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "file": "/images/manufacturers/longitude-ecru.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "a1fb723b0e2db19894082dbdf2af87459951ee077c8f2fd497990307b5ed96ee",
+      "file_bytes": 205748,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/jets/latitude/interior-collections/latitude_glacier.jpg",
+      "source_page": "https://cessna.txtav.com/en/citation/latitude",
+      "model": "Citation Latitude",
+      "scene": "interior",
+      "dimensions": {
+        "width": 1900,
+        "height": 1069
+      },
+      "file": "/images/manufacturers/latitude-glacier.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "cbe9ea51d84c5ca443d091e7bf6f5a72f5c19d3fe10383b9933ae8713d079e3a",
+      "file_bytes": 221033,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/jets/latitude/interior-collections/latitude_truffle.jpg",
+      "source_page": "https://cessna.txtav.com/en/citation/latitude",
+      "model": "Citation Latitude",
+      "scene": "interior",
+      "dimensions": {
+        "width": 1900,
+        "height": 1069
+      },
+      "file": "/images/manufacturers/latitude-truffle.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "2de08b6e51ce3b366632be776c64aefb74af32d78f281b51b227d2cb2432c00c",
+      "file_bytes": 256542,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/jets/cj3-gen3/exterior-gallery/cj3-gen3-exterior-2.jpg",
+      "source_page": "https://cessna.txtav.com/en/citation/cj3-gen3",
+      "model": "Citation CJ3 Gen3",
+      "scene": "exterior",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "file": "/images/manufacturers/cj3-flight.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "0e4077cc6deeab9747574ad8f4fe224cf70aca0b852348db474112c9d330d2db",
+      "file_bytes": 222870,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true,
+      "flight_status": "in-flight"
+    },
+    {
+      "image_url": "https://cessna.txtav.com/-/media/cessna/images/aircraft/turboprop/skycourier-freight/header/skycourier-freighter-header.jpg",
+      "source_page": "https://cessna.txtav.com/en/turboprop/skycourier-freighter",
+      "model": "Cessna SkyCourier Freighter",
+      "scene": "cargo",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "file": "/images/manufacturers/skycourier-freighter.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "4f60f6d5cd653131bfebee3bd4f2f8e7c552c054e726b48d2d3d6e1775e7cdcf",
+      "file_bytes": 240731,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "image_url": "https://www.dassaultfalcon.com/app/uploads/2022/09/Photo-02_RW_01_Falcon6X_0197.jpg",
+      "source_page": "https://www.dassaultfalcon.com/businessjets/falcon-6x/",
+      "model": "Falcon 6X",
+      "scene": "interior",
+      "dimensions": {
+        "width": 1920,
+        "height": 1281
+      },
+      "file": "/images/manufacturers/falcon-6x-lounge.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "c4822edf8e824fc404163fc29e8c6ba021c1a02730e1efa76db4112237963166",
+      "file_bytes": 456887,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "image_url": "https://www.dassaultfalcon.com/app/uploads/2022/09/M_05_W_01_Falcon6X_0272.jpg",
+      "source_page": "https://www.dassaultfalcon.com/businessjets/falcon-6x/",
+      "model": "Falcon 6X",
+      "scene": "interior",
+      "dimensions": {
+        "width": 1920,
+        "height": 1281
+      },
+      "file": "/images/manufacturers/falcon-6x-table.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "8d2db3f055f852efde4786eb18a97f29bcd7136de317c942be0fe628348063ed",
+      "file_bytes": 484289,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "image_url": "https://www.dassaultfalcon.com/app/uploads/2022/09/M_01_W_01_Falcon6X_0224_a.jpg",
+      "source_page": "https://www.dassaultfalcon.com/businessjets/falcon-6x/",
+      "model": "Falcon 6X",
+      "scene": "interior",
+      "dimensions": {
+        "width": 1920,
+        "height": 1281
+      },
+      "file": "/images/manufacturers/falcon-6x-galley.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "7600e7a095085ade3047e92cdb6c40b380d57f6db6c685db934edad9196d341b",
+      "file_bytes": 582280,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "image_url": "https://www.dassaultfalcon.com/app/uploads/2022/09/02.Falcon8X_Cabin_Desktop.jpg",
+      "source_page": "https://www.dassaultfalcon.com/businessjets/falcon-8x/",
+      "model": "Falcon 8X",
+      "scene": "interior",
+      "dimensions": {
+        "width": 2000,
+        "height": 1100
+      },
+      "file": "/images/manufacturers/falcon-8x-rest.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "1b393b34656ac758428f13ebd99b4a9e27859ce845e59425a061662d30b8b092",
+      "file_bytes": 413029,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "image_url": "https://www.dassaultfalcon.com/app/uploads/2022/09/03_B.jpg",
+      "source_page": "https://www.dassaultfalcon.com/businessjets/falcon-8x/",
+      "model": "Falcon 8X",
+      "scene": "interior",
+      "dimensions": {
+        "width": 2000,
+        "height": 1333
+      },
+      "file": "/images/manufacturers/falcon-8x-sofa.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "30bcb8925de9c43e6a897e0402bebd9d04857e87ea897bd1f5248b2fba48c0b3",
+      "file_bytes": 338054,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "image_url": "https://www.dassaultfalcon.com/app/uploads/2022/09/02.Header_Cabine_Falcon2000LXS_2025.jpg",
+      "source_page": "https://www.dassaultfalcon.com/businessjets/falcon-2000lxs/",
+      "model": "Falcon 2000LXS",
+      "scene": "exterior",
+      "dimensions": {
+        "width": 1536,
+        "height": 845
+      },
+      "file": "/images/manufacturers/falcon-2000lxs-flight.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "6e1633b43752a14fa1faa044074fa2f634dd5ca59b9a5ef88ace1874b502da15",
+      "file_bytes": 168506,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true,
+      "flight_status": "in-flight"
+    },
+    {
+      "image_url": "https://www.dassaultfalcon.com/app/uploads/2023/02/Falcon900LX_GAL_209_202302-1920x1280.jpg",
+      "source_page": "https://www.dassaultfalcon.com/news-and-media/photos/?products-services=falcon-900lx&category=aircraft-exterior",
+      "model": "Falcon 900LX",
+      "scene": "exterior",
+      "dimensions": {
+        "width": 1920,
+        "height": 1280
+      },
+      "file": "/images/manufacturers/falcon-900lx-coast.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "06f693cedbcecd8aaca9940ed3edcc82bd36b6f4ece121101b90032c6c5307d1",
+      "file_bytes": 633461,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true,
+      "flight_status": "in-flight"
+    },
+    {
+      "image_url": "https://www.dassaultfalcon.com/app/uploads/2023/02/Falcon900LX_GAL_500_202302-1920x1430.jpg",
+      "source_page": "https://www.dassaultfalcon.com/news-and-media/photos/?products-services=falcon-900lx&category=cabin-experience",
+      "model": "Falcon 900LX",
+      "scene": "interior",
+      "dimensions": {
+        "width": 1920,
+        "height": 1430
+      },
+      "file": "/images/manufacturers/falcon-900lx-cabin-new.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "10b1734b58ec561cec9799a28d9538b111cc5fc7c876c117773972aad5196b51",
+      "file_bytes": 317060,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "image_url": "https://bombardier.com/sites/default/files/2024-10/%C2%A9Guillaume-Plisson-for-Bombardier-_T9A1705_2024_V4-copy-1920x1080.jpg",
+      "source_page": "https://bombardier.com/en/aircraft/global-8000",
+      "model": "Global 8000",
+      "scene": "interior",
+      "dimensions": {
+        "width": 1920,
+        "height": 1080
+      },
+      "file": "/images/manufacturers/global-8000-entertainment.jpg",
+      "source_kind": "manufacturer-product-gallery",
+      "source_bytes_verified_on": "2026-10-23",
+      "sha256": "79bfd8ea8d6c8041ff411039a8a770c0be3f23c4cead09bcdb359355dd44dc8d",
+      "file_bytes": 398289,
+      "transformation": "Original manufacturer-served bytes, unchanged.",
+      "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    }
+  ],
+  "brand": "Existing EXJET marks and navbar; Ubuntu body and navigation; Libre Caslon Display public headings",
+  "retired_photos": [
+    "/images/manufacturers/latitude-header-new.jpg",
+    "/images/manufacturers/latitude-interior-new.jpg",
+    "/images/home/owner-selected-hero.webp",
+    "/images/manufacturers/falcon-900lx-cabin.jpg",
+    "/images/cargo-charter-747.webp",
+    "/images/editorial/citation-latitude-flight-forest.jpg",
+    "/images/editorial/citation-latitude-cabin-reclined.jpg",
+    "/images/editorial/citation-cj3-gen3-flight-lake.jpg",
+    "/images/editorial/citation-longitude-cabin.jpg",
+    "/images/editorial/citation-cj4-gen2-cabin-workspace.jpg",
+    "/images/editorial/citation-cj4-gen2-leather-detail.jpg",
+    "/images/editorial/citation-latitude-flight-deck.jpg",
+    "/images/editorial/falcon-6x-club-seating.jpg",
+    "/images/editorial/falcon-6x-cabin-credenza.jpg",
+    "/images/editorial/falcon-8x-dining-area.jpg",
+    "/images/editorial/falcon-2000lxs-cabin-table.jpg",
+    "/images/editorial/falcon-8x-flight-clouds.jpg",
+    "/images/editorial/falcon-8x-flight-coast.jpg",
+    "/images/manufacturers/citation-x-flight.jpg",
+    "/images/manufacturers/g650-flight.jpg",
+    "/images/manufacturers/g650-cabin.jpg",
+    "/images/manufacturers/challenger-350-flight.jpg",
+    "/images/manufacturers/falcon-2000lx-cabin.jpg",
+    "/images/manufacturers/challenger-300-flight.jpg",
+    "/images/manufacturers/global-8000-club.webp",
+    "/images/manufacturers/global-8000-flight.webp",
+    "/images/manufacturers/longitude-flight-sunrise.jpg",
+    "/images/manufacturers/falcon-900lx-flight.jpg"
+  ],
+  "gaps": [
+    "Citation X, Challenger 300, Challenger 350, Gulfstream G650 and Falcon 2000LX remain text-only until exact-model photos are available from the approved sites. No placeholders or substitute models.",
+    "Citation Latitude currently uses its exact-model cabin image; previous exterior removed."
+  ],
+  "display_rules": [
+    "No image counters or screenshot overlays",
+    "No public photo credits or source links",
+    "Keep exact-model floor plans",
+    "No placeholders"
+  ]
+}

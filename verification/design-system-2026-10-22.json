@@ -1,0 +1,317 @@
+{
+  "date": "2026-10-22",
+  "scope": "Shared public templates and client workspace presentation",
+  "static_layout_coverage": {
+    "static_pages": 224,
+    "shared_layout_pages": 224,
+    "missing_layout": []
+  },
+  "build": "PASS",
+  "lint": "PASS",
+  "seo": {
+    "status": "PASS",
+    "html_pages_checked": 224,
+    "original_pages_preserved": 62,
+    "sitemap_urls": 212
+  },
+  "browser": {
+    "mobile": [
+      {
+        "path": "/",
+        "brokenImages": [],
+        "h1": [
+          "Business aviation solutions"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/services",
+        "brokenImages": [],
+        "h1": [
+          "Business aviation solutions"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/aircraft/",
+        "brokenImages": [],
+        "h1": [
+          "Business aircraft categories and charter options"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/sales/",
+        "brokenImages": [],
+        "h1": [
+          "Aircraft sales and acquisitions"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/group-charter/",
+        "brokenImages": [],
+        "h1": [
+          "Group air charter for teams and events"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/contact/",
+        "brokenImages": [],
+        "h1": [
+          "Contact EXJET for business aviation solutions"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/executive-assistants",
+        "brokenImages": [],
+        "h1": [
+          "Private jet charter for executive assistants"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/family-office-private-aviation",
+        "brokenImages": [],
+        "h1": [
+          "Family office private aviation and charter"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/routes",
+        "brokenImages": [],
+        "h1": [
+          "Private jet charter routes"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/airports",
+        "brokenImages": [],
+        "h1": [
+          "Business aviation airport and FBO guides"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/pricing",
+        "brokenImages": [],
+        "h1": [
+          "Private jet charter cost and pricing"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/travel-journal",
+        "brokenImages": [],
+        "h1": [
+          "The Travel Journal."
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/aircraft/gulfstream-g650/",
+        "brokenImages": [],
+        "h1": [
+          "Gulfstream G650 charter"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/empty-legs/",
+        "brokenImages": [],
+        "h1": [
+          "Empty leg charter flights"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/charter/",
+        "h1": [
+          "Find a flight."
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/faq/",
+        "h1": [
+          "Private jet charter questions and answers"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/terms/",
+        "h1": [
+          "Website Terms"
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/app/",
+        "h1": [
+          "Your world.On your terms."
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/app/search/",
+        "h1": [
+          "Go your own way.We\u2019ll take care of the details."
+        ],
+        "scroll": 320,
+        "width": 320
+      },
+      {
+        "path": "/app/login/",
+        "h1": [
+          "Welcome to EXJET."
+        ],
+        "scroll": 320,
+        "width": 320
+      }
+    ],
+    "additionalWidths": [
+      {
+        "path": "/executive-assistants",
+        "h1": [
+          "Private jet charter for executive assistants"
+        ],
+        "scroll": 768,
+        "width": 768
+      },
+      {
+        "path": "/aircraft/",
+        "h1": [
+          "Business aircraft categories and charter options"
+        ],
+        "scroll": 768,
+        "width": 768
+      },
+      {
+        "path": "/app/",
+        "h1": [
+          "Your world.On your terms."
+        ],
+        "scroll": 390,
+        "width": 390
+      },
+      {
+        "path": "/travel-journal",
+        "h1": [
+          "The Travel Journal."
+        ],
+        "scroll": 390,
+        "width": 390
+      },
+      {
+        "path": "/services",
+        "h1": [
+          "Business aviation solutions"
+        ],
+        "scroll": 390,
+        "width": 390
+      }
+    ],
+    "desktop": [
+      {
+        "path": "/about/",
+        "h1": [
+          {
+            "font": "59.972px",
+            "text": "About EXJET business aviation"
+          }
+        ],
+        "scroll": 1363,
+        "width": 1363
+      },
+      {
+        "path": "/sales/",
+        "h1": [
+          {
+            "font": "59.972px",
+            "text": "Aircraft sales and acquisitions"
+          }
+        ],
+        "scroll": 1363,
+        "width": 1363
+      },
+      {
+        "path": "/contact/",
+        "h1": [
+          {
+            "font": "59.972px",
+            "text": "Contact EXJET for business aviation solutions"
+          }
+        ],
+        "scroll": 1363,
+        "width": 1363
+      },
+      {
+        "path": "/group-charter/",
+        "h1": [
+          {
+            "font": "59.972px",
+            "text": "Group air charter for teams and events"
+          }
+        ],
+        "scroll": 1363,
+        "width": 1363
+      },
+      {
+        "path": "/travel-journal/",
+        "h1": [
+          {
+            "font": "59.972px",
+            "text": "The Travel Journal."
+          }
+        ],
+        "scroll": 1363,
+        "width": 1363
+      },
+      {
+        "path": "/executive-assistants/",
+        "h1": [
+          {
+            "font": "59.972px",
+            "text": "Private jet charter for executive assistants"
+          }
+        ],
+        "scroll": 1363,
+        "width": 1363
+      }
+    ]
+  },
+  "interaction_checks": [
+    "Aircraft search filtered Gulfstream to one profile",
+    "Citation X and Challenger 350 comparison table rendered",
+    "Mobile reading outline opened",
+    "Mobile app menu opened and closed",
+    "Public mobile menu opened and Escape closed it"
+  ],
+  "limits": [
+    "Responsive checks use same-origin iframe widths, not physical-device emulation",
+    "No booking, inquiry or authentication submission performed",
+    "Existing client access availability unchanged"
+  ]
+}

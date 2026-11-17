@@ -1,25 +1,27 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  reactStrictMode: true,
+  devIndicators: false,
+  allowedDevOrigins: ["127.0.0.1", "terminal.local"],
+  trailingSlash: true,
   poweredByHeader: false,
-  // Vercel-safety: never fail a build on a lint rule, never on unused types.
-  // The local `npm run lint` still runs them manually.
-  eslint: {
-    ignoreDuringBuilds: true,
-  },
-  typescript: {
-    // Local `tsc --noEmit` passes; don't let stale build-time type probing
-    // block deploys.
-    ignoreBuildErrors: false,
-  },
   images: {
-    remotePatterns: [
+    formats: ["image/avif", "image/webp"],
+    unoptimized: false,
+  },
+  async redirects() {
+    return [
       {
-        protocol: "https",
-        hostname: "images.unsplash.com",
+        source: "/citation-latitude",
+        destination: "/aircraft/citation-latitude/",
+        statusCode: 301,
       },
-    ],
+      {
+        source: "/airports/kpbi",
+        destination: "/airports/kdjt/",
+        statusCode: 301,
+      },
+    ];
   },
 };
 

@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1125" height="675" viewBox="0 0 1125 675" role="img" aria-labelledby="title">
+  <title id="title">EXJET business card front template</title>
+  <rect width="1125" height="675" fill="#0b0c0e"/>
+  <g transform="translate(82 72) scale(.34)" fill="#fff">
+    <path d="M180 7 128 55l7 6 45-32z" opacity=".8"/><path d="M180 7 232 55l-7 6-45-32z"/>
+    <path d="M19 76h39v5H25v13h29v5H25v14h34v5H19z"/><path d="m82 76 17 17 17-17h8l-21 21 22 21h-8L99 101l-18 17h-8l22-21-21-21z"/><path d="M151 76h39v5h-14v21c0 11-7 17-20 17-11 0-18-5-20-14l7-1c1 6 5 10 13 10 9 0 13-4 13-12V81h-18z"/><path d="M216 76h39v5h-32v13h29v5h-29v14h34v5h-41z"/><path d="M276 76h65v5h-29v37h-7V81h-29z"/>
+  </g>
+  <text x="82" y="387" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" font-size="49" font-weight="400" letter-spacing="-1.2">[First Last]</text>
+  <text x="84" y="430" fill="#8f9399" font-family="Helvetica Neue,Arial,sans-serif" font-size="17" font-weight="600" letter-spacing="3.3">[TITLE] · EXJET</text>
+  <line x1="82" y1="486" x2="1043" y2="486" stroke="#34373b"/>
+  <text x="82" y="534" fill="#d7d8da" font-family="Helvetica Neue,Arial,sans-serif" font-size="19">+1 407 747 5288</text>
+  <text x="400" y="534" fill="#d7d8da" font-family="Helvetica Neue,Arial,sans-serif" font-size="19">[name]@exjet.com</text>
+  <text x="858" y="534" fill="#d7d8da" font-family="Helvetica Neue,Arial,sans-serif" font-size="19">exjet.com</text>
+  <text x="82" y="604" fill="#6d7075" font-family="Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="600" letter-spacing="3">GLOBAL ACCESS, ON-DEMAND.</text>
+</svg>
+
