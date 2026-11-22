@@ -55,7 +55,18 @@ app = Flask(__name__, static_folder=os.path.join(HERE, "public", "static"), stat
 if os.environ.get("EXJET_PROXY", "1" if ON_VERCEL else "0") == "1":   # behind one reverse proxy: take the real client address and scheme from it
     from werkzeug.middleware.proxy_fix import ProxyFix
     app.wsgi_app = ProxyFix(app.wsgi_app, x_for=1, x_proto=1, x_host=1)
-app.secret_key = os.environ.get("EXJET_SECRET") or secrets.token_hex(32)
+def _secret():
+    """Session signing key. Set EXJET_SECRET in production. Without it, keep one random key per server instance."""
+    if os.environ.get("EXJET_SECRET"): return os.environ["EXJET_SECRET"]
+    p = os.path.join(DATA, ".session_key")
+    try:
+        if not os.path.exists(p):
+            os.makedirs(DATA, exist_ok=True)
+            with open(p, "w") as fh: fh.write(secrets.token_hex(32))
+        return open(p).read().strip()
+    except OSError:
+        return secrets.token_hex(32)
+app.secret_key = _secret()
 app.config.update(MAX_CONTENT_LENGTH=12 * 1024 * 1024, SESSION_COOKIE_HTTPONLY=True, SESSION_COOKIE_SAMESITE="Lax",
                   SESSION_COOKIE_SECURE=os.environ.get("EXJET_HTTPS", "1" if ON_VERCEL else "0") == "1",
                   PERMANENT_SESSION_LIFETIME=dt.timedelta(days=14))

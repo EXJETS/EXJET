@@ -1,5 +1,6 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "flask",
   "functions": {
     "app.py": { "maxDuration": 30, "excludeFiles": "{test_e2e.py,uploads/**,sale_photos/**,exjet.db*,Dockerfile,README.md}" }
   }

@@ -4,3 +4,4 @@ sale_photos/
 __pycache__/
 .env
 .vercel
+.session_key
