@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% from '_m.html' import csrf_i, apt %}{% block body %}<div class="stack narrow" style="padding-top:24px"><div class="steps">1 Verify · <b>2 Identity</b> · 3 Membership</div><h1>Verify your identity</h1>
+{% if me.kyc_status=='verified' %}<div class="card stack"><h2>Verified</h2><a class="btn pri" href="{{ url_for('membership_page') }}">Choose a membership</a></div>
+{% elif me.kyc_status=='pending' %}<div class="card stack"><h2>In review</h2><p class="m">We are checking your ID. You get an email when it is done.</p></div>
+{% else %}{% if me.kyc_status=='failed' %}<div class="flash">We could not verify your ID{% if me.kyc_note %}: {{ me.kyc_note }}{% endif %}. Upload a clearer photo.</div>{% endif %}
+<form method="post" enctype="multipart/form-data" class="card stack">{{ csrf_i(csrf) }}<p class="m s">Upload a photo of your driver license. It is used only to confirm who you are.</p>
+<label class="f"><span class="cap">Driver license, front (JPG, PNG or PDF)</span><input type="file" name="license" accept=".jpg,.jpeg,.png,.pdf" required></label><button class="pri block">Submit for review</button></form>{% endif %}</div>{% endblock %}

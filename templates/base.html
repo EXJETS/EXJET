@@ -1,0 +1,24 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>{% block title %}EXJET | Private jet charter marketplace{% endblock %}</title>
+<meta name="description" content="{% block desc %}Pick your aircraft and request quotes from certificated operators at their own prices. No markup.{% endblock %}">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Instrument+Serif&family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="canonical" href="{{ request.url_root.rstrip('/') }}{{ request.path }}"><link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">{% block head %}{% endblock %}</head><body>
+{% if DEMO %}<div class="demo">Test mode. No email, text or payment leaves this system. Codes are shown on screen.</div>{% endif %}
+<a href="#main" class="btn txt" style="position:absolute;left:-999px">Skip to content</a>
+<header class="top"><a class="logo" href="/">EXJET</a>
+<nav aria-label="Main"><a class="d" href="{{ url_for('search') }}">Flights</a><a class="d" href="{{ url_for('for_sale') }}">For sale</a><a class="d" href="{{ url_for('guides') }}">Guides</a>
+{% if me %}{% if me.role=='admin' %}<a href="{{ url_for('admin') }}">Admin</a>{% elif me.role=='operator' %}<a href="{{ url_for('operator_dash') }}">Operator</a>{% else %}<a class="d" href="{{ url_for('trips') }}">Trips</a><a class="d" href="{{ url_for('favorites') }}">Saved</a>{% endif %}
+<a href="{{ url_for('account') }}">Account</a><form method="post" action="{{ url_for('logout') }}" style="margin:0"><input type="hidden" name="csrf" value="{{ csrf }}"><button class="txt">Log out</button></form>
+{% else %}<a class="d" href="{{ url_for('operators_landing') }}">List your fleet</a><a href="{{ url_for('login') }}">Log in</a><a class="btn" href="{{ url_for('signup') }}">Sign up</a>{% endif %}</nav></header>
+<main id="main" class="wrap">{% for m in get_flashed_messages() %}<div class="flash" role="alert">{{ m }}</div>{% endfor %}{% block body %}{% endblock %}
+<footer><div><a href="{{ url_for('legal') }}">Terms and policies</a><a href="{{ url_for('legal', doc='privacy') }}">Privacy</a><a href="{{ url_for('legal', doc='release') }}">Release</a><a href="{{ url_for('legal', doc='accessibility') }}">Accessibility</a><a href="{{ url_for('operators_landing') }}">Operators</a><a href="{{ url_for('for_sale') }}">Jets for sale</a><a href="{{ url_for('guides') }}">Guides</a></div>
+<p style="margin-top:12px">Charter and empty legs: <a href="mailto:{{ CHARTER_EMAIL }}">{{ CHARTER_EMAIL }}</a> · Jet sales, acquisition, lease and fractional: <a href="mailto:{{ SALES_EMAIL }}">{{ SALES_EMAIL }}</a></p><p style="margin-top:12px">EXJET is a marketplace booking platform. It is not an air carrier or a charter broker. Every flight is operated by a certificated direct air carrier that holds operational control. &copy; {{ year }} EXJET.</p></footer></main>
+{% if not me or me.role=='client' %}<nav class="tabbar" aria-label="Sections"><a href="/" class="{{ 'on' if request.path=='/' or request.path.startswith('/search') or request.path.startswith('/aircraft') }}">Flights</a><a href="{{ url_for('for_sale') }}" class="{{ 'on' if request.path.startswith('/for-sale') }}">For sale</a><a href="{{ url_for('trips') }}" class="{{ 'on' if request.path.startswith('/trips') or request.path.startswith('/request') }}">Trips</a><a href="{{ url_for('favorites') }}" class="{{ 'on' if request.path.startswith('/favorites') }}">Saved</a><a href="{{ url_for('account') }}" class="{{ 'on' if request.path.startswith('/account') or request.path.startswith('/membership') }}">Account</a></nav>{% endif %}
+<script>
+document.querySelectorAll('[data-apt]').forEach(function(inp){var box=inp.parentNode.querySelector('.sug'),t;
+ inp.addEventListener('input',function(){clearTimeout(t);t=setTimeout(function(){if(inp.value.length<2){box.style.display='none';return}
+  fetch('/api/airports?q='+encodeURIComponent(inp.value)).then(function(r){return r.json()}).then(function(d){box.innerHTML='';d.forEach(function(a){var el=document.createElement('div');
+   el.textContent=a.name+' ('+a.code+') · '+a.city+(a.region?', '+a.region:'')+' · '+(a.runway||'')+' ft';el.addEventListener('mousedown',function(e){e.preventDefault();inp.value=a.code;box.style.display='none'});box.appendChild(el)});
+   box.style.display=d.length?'block':'none'})},180)});
+ inp.addEventListener('blur',function(){setTimeout(function(){box.style.display='none'},150)})});
+</script></body></html>

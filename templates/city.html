@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block title %}Private Jet Charter {{ city }} | EXJET{% endblock %}{% block desc %}Private jet charter in {{ city }}. {{ aps|length }} airports for private jets. Request quotes from certificated operators, no markup.{% endblock %}{% block body %}
+<div class="stack narrow" style="padding-top:24px"><p class="m xs"><a href="{{ url_for('guides') }}">Guides</a> › Cities</p><h1>Private jet charter in {{ city }}</h1>
+<div class="card"><p>{{ city }} has {{ aps|length }} airport{{ 's' if aps|length!=1 }} with a paved runway of 5,000 feet or more used by private jets. The longest runway is at {{ aps[0].name }}.</p></div>
+<h2>Private jet airports</h2><div class="scroll"><table><tr><th>Airport</th><th>Code</th><th>Runway</th></tr>{% for a in aps %}<tr><td>{{ a.name }}</td><td>{{ acode(a) }}</td><td>{{ '{:,}'.format(a.longest_paved_runway_ft) }} ft</td></tr>{% endfor %}</table></div>
+<h2>Popular routes</h2><div class="chips">{% for r in routes %}<a class="chip" href="/routes/{{ city|lower|replace(' ','-') }}-to-{{ r|lower|replace(' ','-') }}">{{ city }} to {{ r }}</a>{% endfor %}</div>
+<a class="btn pri" href="{{ url_for('search', **{'from': acode(aps[0])}) }}">Find a jet from {{ city }}</a></div>{% endblock %}

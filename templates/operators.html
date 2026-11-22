@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block title %}List your fleet | EXJET{% endblock %}{% block body %}<div class="stack narrow" style="padding-top:24px"><h1>List your fleet</h1>
+<p class="m">{{ n_ops }} operators have aircraft on the approved fleet list. Listing costs nothing.</p>
+<div class="card stack"><div class="row"><span class="m">Cost to you</span><span>None. No listing fee or commission</span></div><div class="row"><span class="m">Price</span><span>Yours. The client sees it unchanged</span></div>
+<div class="row"><span class="m">Contract</span><span>Yours, naming the client</span></div><div class="row"><span class="m">Operational control</span><span>Yours at all times</span></div></div>
+<h2>Aircraft we accept</h2>{% for c,ts in CATEGORIES.items() %}<div class="card"><div class="cap">{{ c }}</div><p class="s">{% for t in ts %}{{ t|tname }}{{ ', ' if not loop.last }}{% endfor %}{% if c=='VIP' %}, Boeing BBJ, Embraer Lineage{% endif %}</p></div>{% endfor %}
+<p class="m s">Strict list. Any other type is declined.</p><h2>How to start</h2><p class="m">Email {{ CHARTER_EMAIL }} from your company address with your certificate number. Requests reach you by email, and each one has a link to quote with no login.</p></div>{% endblock %}

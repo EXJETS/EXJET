@@ -1,0 +1,14 @@
+{% extends 'base.html' %}{% from '_m.html' import csrf_i %}{% block title %}{{ a.registration }} | {{ a.display_name or (a.aircraft_type|tname) }} Charter | EXJET{% endblock %}
+{% block desc %}{{ a.registration }} is a {{ a.aircraft_type|tname }} available to request for private charter on EXJET. Operated under a Part 135 certificate.{% endblock %}{% block body %}
+<div class="two" style="padding-top:24px"><div class="stack"><p class="m xs"><a href="{{ url_for('search', category=cat) }}">{{ cat }}</a> › <a href="{{ url_for('type_page', tslug=a.aircraft_type|tslug) }}">{{ a.aircraft_type|tname }}</a></p>
+<h1>{{ a.display_name or (a.aircraft_type|tname) }}</h1><p class="m">{{ a.registration }}{% if a.safety_rating %} · <span class="pill">{{ a.safety_rating }}</span>{% endif %}{% if a.featured %} · <span class="feat">FEATURED</span>{% endif %}</p>
+{% if photos %}{% for p in photos %}<div class="ph"><img src="{{ p.thumbnail_large_url }}" alt="{{ a.registration }} {{ p.kind }}"><a class="credit" href="{{ p.source_link }}" rel="nofollow noopener">&copy; {{ p.photographer }} · {{ p.source }}</a></div>{% endfor %}{% else %}<div class="ph">Exterior and cabin photos are added by the operator</div>{% endif %}
+<div class="card stack"><h2>This aircraft</h2><div class="row"><span class="m">Type</span><span>{{ a.aircraft_type|tname }}</span></div><div class="row"><span class="m">Category</span><span>{{ cat }}</span></div>
+{% if a.model_year %}<div class="row"><span class="m">Year</span><span>{{ a.model_year }}</span></div>{% endif %}{% if a.seats %}<div class="row"><span class="m">Seats</span><span>{{ a.seats }}</span></div>{% endif %}
+{% if a.wifi %}<div class="row"><span class="m">Wi Fi</span><span>{{ a.wifi }}</span></div>{% endif %}<div class="row"><span class="m">Operated under</span><span>FAA Part 135 certificate</span></div>
+<div class="row"><span class="m">Operator</span><span>Named on the charter agreement, before you sign</span></div></div>
+<p class="m xs">Aircraft details come from FAA records and the operator. EXJET does not audit operators or recommend aircraft.</p></div>
+<aside class="stack"><div class="card stack" style="position:sticky;top:16px"><h2>Quote on request</h2><p class="m s">Your request also goes to all {{ tc.o }} operators with a {{ a.aircraft_type|tname }} ({{ tc.n }} aircraft). You can change that on the next step.</p>
+<a class="btn pri block" href="{{ url_for('req_trip', tail=a.registration) }}">Request this aircraft</a>
+<form method="post" action="{{ url_for('favorite', aid=a.aircraft_id) }}">{{ csrf_i(csrf) }}<button class="block">{{ 'Saved' if fav else 'Save' }}</button></form>
+<p class="m xs">Operator price, no markup. Membership and a request hold apply.</p></div></aside></div>{% endblock %}

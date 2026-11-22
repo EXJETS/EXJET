@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% from '_m.html' import csrf_i, apt %}{% block body %}<div class="stack" style="padding-top:24px"><div class="row c"><h1>Trips</h1><a class="btn pri" href="{{ url_for('req_trip') }}">New request</a></div>
+{% for r in rows %}<a class="card stack" style="text-decoration:none" href="{{ url_for('trip', code=r.code) }}"><div class="row c"><b>{{ r.from_apt }} to {{ r.to_apt }}</b><span class="feat">{{ r.status|upper }}</span></div>
+<div class="m s">{{ r.code }} · {{ r.depart_at|nice }} · {{ r.pax }} passengers</div><div class="s">{{ r.n_q }} quote{{ 's' if r.n_q!=1 }} from {{ r.n_ops }} operators{% if r.bid %} · payment {{ r.pay_status|replace('_',' ') }}{% endif %}</div></a>
+{% else %}<div class="card stack"><h2>No trips yet</h2><p class="m">Find an aircraft and send your first request.</p><a class="btn" href="{{ url_for('search') }}">Browse jets</a></div>{% endfor %}</div>{% endblock %}

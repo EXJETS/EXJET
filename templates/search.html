@@ -1,0 +1,12 @@
+{% extends 'base.html' %}{% from '_m.html' import card %}{% block title %}{{ title or 'Private jets' }} | EXJET{% endblock %}{% block body %}
+<div class="stack" style="padding-top:24px"><h1>{{ title or (cat ~ ' jets' if cat else 'All jets') }}</h1>
+{% if not title %}<p class="m">{% if a and b %}{{ acode(a) }} to {{ acode(b) }} · about {{ '{:,}'.format(nm|round|int) }} nm · {% endif %}{{ '{:,}'.format(total.n) }} aircraft from {{ total.o }} operators</p>
+<div class="chips"><a class="chip {{ 'on' if not cat and not types }}" href="{{ url_for('search', **{'from': args.get('from',''), 'to': args.get('to','')}) }}">All</a>
+{% for c in CATEGORIES %}<a class="chip {{ 'on' if cat==c }}" href="{{ url_for('search', category=c, **{'from': args.get('from',''), 'to': args.get('to','')}) }}">{{ c }}</a>{% endfor %}</div>
+{% if cat %}<div class="chips">{% for t in CATEGORIES[cat] if t in tc %}<a class="chip {{ 'on' if t in types }}" href="{{ url_for('search', category=cat, type=t, **{'from': args.get('from',''), 'to': args.get('to','')}) }}">{{ t|tname }} · {{ tc[t].n }}</a>{% endfor %}</div>{% endif %}
+<div class="card row c"><div><b>Send one request to all {{ total.o }} operators</b><div class="m s">Each replies with its own quote. You choose.</div></div>
+<a class="btn pri" href="{{ url_for('req_trip', category=cat or 'Super Midsize', type=types[0] if types else '', **{'from': args.get('from',''), 'to': args.get('to','')}) }}">Request quotes</a></div>
+<div class="chips xs">Sort: {% for k,l in [('featured','Featured first'),('tail','Tail number'),('year','Newest'),('seats','Most seats')] %}<a class="chip {{ 'on' if sort==k }}" href="{{ qs(sort=k, page=None) }}">{{ l }}</a>{% endfor %}</div>{% endif %}
+{% if rows %}<div class="grid">{% for r in rows %}{{ card(r, photo) }}{% endfor %}</div>
+{% if not title and total.n > page*24 %}<a class="btn" href="{{ qs(page=page+1) }}">Show more</a>{% endif %}
+{% else %}<div class="card stack"><h2>No aircraft match</h2><p class="m">Try another category, or send your trip to a whole category.</p><a class="btn" href="{{ url_for('search') }}">Clear filters</a></div>{% endif %}</div>{% endblock %}

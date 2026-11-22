@@ -1,0 +1,10 @@
+{% extends 'base.html' %}{% from '_m.html' import card %}{% block title %}{{ t|tname }} Charter | {{ tc.n }} Aircraft to Request | EXJET{% endblock %}
+{% block desc %}Request a {{ t|tname }} private jet charter. {{ tc.n }} aircraft from {{ tc.o }} certificated operators. Operator prices with no markup.{% endblock %}{% block body %}
+<div class="stack" style="padding-top:24px"><p class="m xs"><a href="{{ url_for('guides') }}">Guides</a> › {{ cat }}</p><h1>{{ t|tname }} charter</h1>
+<div class="card"><p>The {{ t|tname }} is a {{ cat|lower }} jet. {{ tc.n }} are available to request on EXJET from {{ tc.o }} operators.</p></div>
+<div class="row c"><div class="m s">One request reaches all {{ tc.o }} operators.</div><a class="btn pri" href="{{ url_for('req_trip', type=t) }}">Request a {{ t|tname }}</a></div>
+<h2>{{ t|tname }} aircraft on EXJET</h2><div class="grid">{% for a in tails %}{{ card(a, photo) }}{% endfor %}</div>
+<h2>Also in {{ cat }}</h2><div class="chips">{% for s in sibs %}<a class="chip" href="{{ url_for('type_page', tslug=s|tslug) }}">{{ s|tname }}</a>{% endfor %}</div>
+<h2>Questions people ask</h2><div class="card stack"><div><h3>How do I charter a {{ t|tname }}?</h3><p class="m s">Send one request with your route and date. Every operator with a {{ t|tname }} can reply with a quote, and you choose.</p></div>
+<div><h3>Does EXJET add a fee to the price?</h3><p class="m s">No. You pay the operator's own quote plus tax. EXJET earns a membership fee only.</p></div></div></div>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How do I charter a {{ t|tname }}?","acceptedAnswer":{"@type":"Answer","text":"Send one request with your route and date. Every operator with a {{ t|tname }} can reply with a quote, and you choose."}}]}</script>{% endblock %}

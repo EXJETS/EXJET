@@ -1,0 +1,2 @@
+{% extends 'base.html' %}{% from '_m.html' import csrf_i %}{% block title %}Reset password | EXJET{% endblock %}{% block body %}<div class="stack narrow" style="padding-top:48px"><h1>Reset your password</h1><form method="post" class="stack">{{ csrf_i(csrf) }}
+<label class="f"><span class="cap">Email</span><input type="email" name="email" autocomplete="email" required></label><button class="pri block">Send reset link</button><p class="m s"><a href="{{ url_for('login') }}">Back to log in</a></p></form></div>{% endblock %}

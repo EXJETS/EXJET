@@ -1,0 +1,14 @@
+{% macro card(a, photo, q='') %}{% set p = photo(a.registration) %}
+<a class="ac" href="{{ url_for('aircraft', tslug=a.aircraft_type|tslug, tail=a.registration|lower) }}{{ q }}">
+<div class="ph">{% if p %}<img src="{{ p.thumbnail_large_url }}" alt="{{ a.registration }} exterior" loading="lazy"><span class="credit">&copy; {{ p.photographer }}</span>{% else %}Photos from the operator{% endif %}</div>
+<div class="t"><div class="row c"><b>{{ a.display_name or (a.aircraft_type|tname) }}</b>{% if a.featured %}<span class="feat">FEATURED</span>{% endif %}</div>
+<div class="m s">{{ a.registration }}{% if a.model_year %} · {{ a.model_year }}{% endif %}{% if a.seats %} · {{ a.seats }} seats{% endif %}{% if a.wifi %} · {{ a.wifi }}{% endif %}</div>
+<div class="row c" style="margin-top:6px"><span class="s">Quote on request</span>{% if a.safety_rating %}<span class="pill">{{ a.safety_rating }}</span>{% endif %}</div></div></a>{% endmacro %}
+{% macro csrf_i(csrf) %}<input type="hidden" name="csrf" value="{{ csrf }}">{% endmacro %}
+{% macro apt(name, label, val='') %}<label class="f ac-list"><span class="cap">{{ label }}</span><input name="{{ name }}" value="{{ val }}" data-apt autocomplete="off" placeholder="City or airport" required><div class="sug"></div></label>{% endmacro %}
+{% macro scard(l, sale_photos) %}{% set p = sale_photos(l.id, 1) %}
+<a class="ac" href="{{ url_for('sale_detail', lid=l.id, sl=(l.title|lower|replace(' ','-')|replace('+','-plus'))) }}">
+<div class="ph">{% if p %}<img src="{{ url_for('sale_photo', name=p[0].file) }}" alt="{{ l.year }} {{ l.title }} {{ l.registration }}" loading="lazy">{% else %}Photos on request{% endif %}</div>
+<div class="t"><div class="row c"><b>{{ l.year }} {{ l.title }}</b>{% if l.status!='live' %}<span class="feat">{{ l.status|upper }}</span>{% endif %}</div>
+<div class="m s">{{ l.registration }} · S/N {{ l.serial }}{% if l.hours %} · {{ '{:,}'.format(l.hours) }} hrs{% endif %}</div>
+<div class="row c" style="margin-top:6px"><span class="s">{{ l.price_cents|money if l.price_cents else 'Price on request' }}</span><span class="pill">{{ 'Records verified' if l.records_ok else l.category }}</span></div></div></a>{% endmacro %}

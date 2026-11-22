@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% from '_m.html' import csrf_i, apt %}{% block body %}<div class="stack narrow" style="padding-top:24px"><h1>Before you fly</h1><div class="card stack"><div class="row"><span class="m">Passenger</span><span>{{ p.full_name }}</span></div><div class="row"><span class="m">Flight</span><span>{{ r.from_apt }} to {{ r.to_apt }}</span></div>
+<div class="row"><span class="m">Departure</span><span>{{ r.depart_at|nice }}</span></div><div class="row"><span class="m">Air carrier</span><span>{{ x.operator_name }}</span></div></div>
+{% if p.released_at %}<div class="card stack"><h2>Accepted</h2><p class="m">Recorded {{ p.released_at|nice }}. Nothing more to do.</p></div>{% else %}
+<p class="m s">EXJET is the booking marketplace. The air carrier above operates the flight and holds operational control.</p><form method="post" class="stack">{{ csrf_i(csrf) }}
+<label class="k top"><input type="checkbox" name="release" value="1" required><span class="rel">{{ RELEASE }}</span></label>
+<label class="k top"><input type="checkbox" name="policy" value="1" required><span>I agree to the <a href="/legal/passenger">Passenger policy</a> and the <a href="/legal/terms">Terms</a>, including individual arbitration.</span></label>
+<label class="f"><span class="cap">Type your full legal name</span><input name="full_name" required></label><button class="pri block">Accept</button></form>{% endif %}</div>{% endblock %}

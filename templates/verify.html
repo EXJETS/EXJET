@@ -1,0 +1,5 @@
+{% extends 'base.html' %}{% from '_m.html' import csrf_i, apt %}{% block body %}<div class="stack narrow" style="padding-top:24px"><div class="steps"><b>1 Verify</b> · 2 Identity · 3 Membership</div><h1>Verify your email and phone</h1>
+{% for kind,label,done,dest in [('email','Email',me.email_verified,me.email),('phone','Phone',me.phone_verified,me.phone)] %}<div class="card stack"><div class="row c"><h2>{{ label }}</h2><span class="m s">{{ dest }}</span></div>
+{% if done %}<p>Verified</p>{% else %}{% if codes.get(kind) %}<p class="demo">Test mode code: {{ codes[kind] }}</p>{% endif %}
+<form method="post" class="stack">{{ csrf_i(csrf) }}<input type="hidden" name="kind" value="{{ kind }}"><label class="f"><span class="cap">6 digit code</span><input name="code" inputmode="numeric" autocomplete="one-time-code" maxlength="6"></label>
+<div class="row c"><button class="pri">Verify</button><button class="txt" name="resend" value="1">Send a new code</button></div></form>{% endif %}</div>{% endfor %}</div>{% endblock %}

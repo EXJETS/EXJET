@@ -1,0 +1,2 @@
+EXJET aims to meet WCAG 2.2 level AA. Pages are built to work with keyboards and screen readers, with touch targets of at least 44 pixels and text that scales.
+If something does not work for you, write to access@exjet.com and we will help you complete your request another way.

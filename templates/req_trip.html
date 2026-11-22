@@ -1,0 +1,7 @@
+{% extends 'base.html' %}{% from '_m.html' import csrf_i, apt %}{% block body %}<div class="stack narrow" style="padding-top:24px"><div class="steps"><b>Trip</b> · Operators · Passengers and extras · Review and send</div><h1>Your trip</h1><form method="post" class="stack">{{ csrf_i(csrf) }}
+{{ apt('from','From',d.get('from','')) }}{{ apt('to','To',d.get('to','')) }}
+
+<label class="f"><span class="cap">Departure, local time</span><input type="datetime-local" name="date" value="{{ d.get('date','') }}" required></label>
+<label class="f"><span class="cap">Return, leave blank for one way</span><input type="datetime-local" name="ret" value="{{ d.get('ret','') }}"></label>
+<label class="f"><span class="cap">Passengers</span><input type="number" name="pax" min="1" max="19" value="{{ d.get('pax',4) }}" required></label>
+<div class="bar"><button class="pri block">Continue</button></div></form></div>{% endblock %}

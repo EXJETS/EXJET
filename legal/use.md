@@ -1,0 +1,2 @@
+You will not: give false identity or payment information; send requests you do not intend to book; resell or broker flights found on EXJET; contact Operators found on EXJET to book outside the platform; scrape, copy or republish listing data; interfere with the platform; or use it for anything unlawful.
+EXJET may suspend or close an account for breach, fraud risk, repeated withdrawn bookings or abuse of Operators or staff.

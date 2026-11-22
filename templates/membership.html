@@ -1,0 +1,13 @@
+{% extends 'base.html' %}{% from '_m.html' import csrf_i, apt %}{% block body %}<div class="stack narrow" style="padding-top:24px"><div class="steps">1 Verify · 2 Identity · <b>3 Membership</b></div><h1>Choose your membership</h1>
+<p class="m">Membership is the only thing EXJET charges. Flights are at the operator's own price with no markup.</p>
+<form method="post" class="stack" id="mf">{{ csrf_i(csrf) }}
+<label class="card k"><input type="radio" name="plan" value="individual" checked><span><b>Individual</b><br><span class="m s">{{ PLAN|money }} per month, one user</span></span></label>
+<label class="card k"><input type="radio" name="plan" value="business"><span><b>Business</b><br><span class="m s">{{ PLAN|money }} per month plus {{ SEAT|money }} per month for each additional user</span></span></label>
+<label class="f"><span class="cap">Users (Business only)</span><input type="number" name="seats" min="1" max="50" value="1"></label>
+<div class="cap">Billing term</div>{% for k,mo in TERMS.items() %}<label class="card k"><input type="radio" name="term" value="{{ k }}" {{ 'checked' if loop.first }}><span><b>{{ TERM_LABEL[k] }}</b><br><span class="m s" data-term="{{ mo }}">{{ (PLAN*mo)|money }} per term</span></span></label>{% endfor %}
+<div class="cap">Pay by</div><label class="k"><input type="radio" name="pay" value="wire" checked>Bank wire</label><label class="k"><input type="radio" name="pay" value="card" disabled>Card (coming soon)</label>
+<div class="card row"><span>Due today</span><b id="due">{{ (PLAN*3)|money }}</b></div>
+<label class="k top"><input type="checkbox" name="agree" value="1" required><span>I agree to the <a href="/legal/membership">Membership terms</a>. My membership renews automatically for the same term at the same price until I cancel in Account. Fees paid are not refunded for a term already started, except where the law requires.</span></label>
+<button class="pri block">Start membership</button><p class="m xs">Payment is not taken on this screen yet. Your membership becomes active when payment is received.</p></form></div>
+<script>(function(){var f=document.getElementById('mf');function u(){var p=f.plan.value,s=Math.max(1,+f.seats.value||1),mo={quarterly:3,'6mo':6,annual:12}[f.term.value];
+var c=({{ PLAN }}+(p=='business'?{{ SEAT }}*(s-1):0))*mo/100;document.getElementById('due').textContent='$'+c.toLocaleString();}f.addEventListener('input',u);u()})();</script>{% endblock %}

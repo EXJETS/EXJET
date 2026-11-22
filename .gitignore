@@ -1,0 +1,6 @@
+exjet.db*
+uploads/
+sale_photos/
+__pycache__/
+.env
+.vercel

@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% from '_m.html' import csrf_i, apt %}{% block body %}<div class="stack narrow" style="padding-top:24px"><div class="steps">Trip · Operators · <b>Passengers and extras</b> · Review and send</div><h1>Passengers and extras</h1><form method="post" class="stack">{{ csrf_i(csrf) }}
+<div class="card row"><span class="m">Passengers</span><span>{{ d.pax }}</span></div>
+<label class="f"><span class="cap">Bags, and anything large</span><input name="bags" value="{{ d.get('bags','') }}" placeholder="4 carry ons, 2 golf bags"></label>
+<div class="cap">Add ons. The operator prices these in its quote</div>{% for e in EXTRAS %}<label class="k"><input type="checkbox" name="extras" value="{{ e }}" {{ 'checked' if e in d.get('extras',[]) }}>{{ e }}</label>{% endfor %}
+<label class="f"><span class="cap">Notes for the operator</span><textarea name="notes" rows="4" maxlength="1000">{{ d.get('notes','') }}</textarea></label>
+<div class="bar"><a class="btn" href="{{ url_for('req_ops') }}">Back</a><button class="pri block">Continue</button></div></form></div>{% endblock %}

@@ -1,0 +1,5 @@
+{% extends 'base.html' %}{% block title %}{{ title or 'Terms and policies' }} | EXJET{% endblock %}{% block body %}<div class="stack narrow" style="padding-top:24px">
+{% if not doc %}<h1>Terms and policies</h1><p class="m s">Version {{ version }}</p>{% for k,l in docs %}<a class="card row c" style="text-decoration:none" href="{{ url_for('legal', doc=k) }}"><b>{{ l }}</b><span>›</span></a>{% endfor %}
+{% else %}<p class="m xs"><a href="{{ url_for('legal') }}">Terms and policies</a></p><h1>{{ title }}</h1><p class="m s">Version {{ version }}</p>
+<div class="flash">Draft. Not reviewed by counsel. Do not rely on this text until it is approved and this notice is removed.</div>
+<div class="md"><pre>{{ body or 'Text to be added from the approved terms document.' }}</pre></div>{% endif %}</div>{% endblock %}

@@ -1,0 +1,6 @@
+{% extends 'base.html' %}{% block title %}{{ ca }} to {{ cb }} Private Jet | Flight Time | EXJET{% endblock %}{% block desc %}{{ ca }} to {{ cb }} by private jet: about {{ '{:,}'.format(nm|round|int) }} nautical miles. Request quotes from certificated operators.{% endblock %}{% block body %}
+<div class="stack narrow" style="padding-top:24px"><p class="m xs"><a href="{{ url_for('guides') }}">Guides</a> › Routes</p><h1>{{ ca }} to {{ cb }} by private jet</h1>
+<div class="card"><p>{{ ca }} to {{ cb }} is about {{ '{:,}'.format(nm|round|int) }} nautical miles and takes roughly {{ times[-1][1] }} to {{ times[0][1] }} by private jet, depending on the aircraft.</p></div>
+<h2>Flight time by category</h2><table><tr><th>Category</th><th>Estimated time</th></tr>{% for c,t in times %}<tr><td><a href="{{ url_for('search', category=c) }}">{{ c }}</a></td><td>{{ t }}</td></tr>{% endfor %}</table>
+<p class="m xs">Estimates from great circle distance and typical cruise speed, plus 15 minutes. Winds and routing change them.</p>
+<a class="btn pri" href="{{ url_for('search', **{'from': acode(A), 'to': acode(B)}) }}">Find a jet for this route</a></div>{% endblock %}

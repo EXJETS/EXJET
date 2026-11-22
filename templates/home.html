@@ -1,0 +1,18 @@
+{% extends 'base.html' %}{% from '_m.html' import card, apt, scard %}{% block body %}
+<section class="hero stack"><h1>Find your jet. Ask every operator that flies it.</h1>
+<p class="m">{{ '{:,}'.format(total) }} aircraft from certificated operators. Operator prices, no markup.</p>
+<form class="card sbox" action="{{ url_for('search') }}">{{ apt('from','From','DAL') }}{{ apt('to','To') }}
+<label class="f"><span class="cap">Depart</span><input type="datetime-local" name="date"></label>
+<label class="f"><span class="cap">Passengers</span><input type="number" name="pax" min="1" max="19" value="4"></label><button class="pri">Search jets</button></form>
+<div class="chips">{% for c,n in cats %}<a class="chip" href="{{ url_for('search', category=c) }}">{{ c }} · {{ n }}</a>{% endfor %}</div></section>
+<section class="stack"><h2>Featured aircraft</h2><p class="m s">Featured listings are promoted placements, not a recommendation.</p>
+<div class="grid">{% for a in feat %}{{ card(a, photo) }}{% endfor %}</div></section>
+<section class="stack" style="margin-top:40px"><h2>Super Midsize, ready to request</h2><div class="grid">{% for a in near %}{{ card(a, photo) }}{% endfor %}</div>
+<a class="btn" href="{{ url_for('search', category='Super Midsize') }}">See all Super Midsize</a></section>
+<section class="stack" style="margin-top:40px"><div class="row c"><h2>Jets for sale</h2><a href="{{ url_for('for_sale') }}">See all {{ n_sale }}</a></div><div class="grid">{% for l in sale %}{{ scard(l, sale_photos) }}{% endfor %}</div></section>
+<section class="stack" style="margin-top:40px"><h2>How it works</h2><div class="grid">
+<div class="card"><h3>1. Pick an aircraft</h3><p class="m s">Browse by category, type or tail number.</p></div>
+<div class="card"><h3>2. One request, every operator</h3><p class="m s">Your request goes to every operator with that type. Each replies with its own price.</p></div>
+<div class="card"><h3>3. Choose, sign and pay</h3><p class="m s">You choose from the quotes, sign the operator's agreement and pay on the platform.</p></div></div></section>
+<section class="stack" style="margin-top:40px"><h2>Popular cities</h2><div class="chips">{% for h in hubs %}<a class="chip" href="/private-jet-charter/{{ h|lower|replace(' ','-') }}">{{ h }}</a>{% endfor %}</div></section>
+{% endblock %}

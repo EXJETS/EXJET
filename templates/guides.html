@@ -1,0 +1,4 @@
+{% extends 'base.html' %}{% block title %}Private jet charter guides | EXJET{% endblock %}{% block body %}<div class="stack" style="padding-top:24px"><h1>Guides</h1>
+{% for c,ts in CATEGORIES.items() %}<h2>{{ c }}</h2><div class="chips">{% for t in ts if t in tc %}<a class="chip" href="{{ url_for('type_page', tslug=t|tslug) }}">{{ t|tname }} · {{ tc[t].n }}</a>{% endfor %}</div>{% endfor %}
+<h2>Cities</h2><div class="chips">{% for h in hubs %}<a class="chip" href="/private-jet-charter/{{ h|lower|replace(' ','-') }}">{{ h }}</a>{% endfor %}</div>
+<h2>Routes from Dallas</h2><div class="chips">{% for h in hubs if h!='Dallas' %}<a class="chip" href="/routes/dallas-to-{{ h|lower|replace(' ','-') }}">Dallas to {{ h }}</a>{% endfor %}</div></div>{% endblock %}

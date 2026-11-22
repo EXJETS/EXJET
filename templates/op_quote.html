@@ -1,0 +1,18 @@
+{% extends 'base.html' %}{% from '_m.html' import csrf_i, apt %}{% block body %}<div class="stack narrow" style="padding-top:24px"><div class="cap">{{ op.operator_name }} · request {{ r.code }}</div><h1>{{ r.from_apt }} to {{ r.to_apt }}</h1>
+<div class="card stack"><div class="row"><span class="m">Trip</span><span>{{ r.trip_type }}</span></div><div class="row"><span class="m">Departure</span><span>{{ r.depart_at|nice }}</span></div>{% if r.return_at %}<div class="row"><span class="m">Return</span><span>{{ r.return_at|nice }}</span></div>{% endif %}
+<div class="row"><span class="m">Passengers</span><span>{{ r.pax }}</span></div><div class="row"><span class="m">Bags</span><span>{{ r.bags or 'Not stated' }}</span></div><div class="row"><span class="m">Types asked for</span><span style="text-align:right">{% for t in types %}{{ t|tname }}{{ ', ' if not loop.last }}{% endfor %}</span></div>
+{% if extras %}<div class="row"><span class="m">Add ons</span><span>{{ extras|join(', ') }}</span></div>{% endif %}{% if r.notes %}<div class="row"><span class="m">Notes</span><span>{{ r.notes }}</span></div>{% endif %}
+<p class="m xs">The client is verified by ID and holds a paid membership. The client's name is released to you when they sign your agreement.</p></div>
+{% for q in mine %}<div class="card row c"><span>Your quote: {{ q.registration }} · {{ q.price_cents|money }}</span><span class="feat">{{ q.status|replace('_',' ')|upper }}</span></div>{% endfor %}
+{% if r.status not in ('open','quoted') %}<div class="card"><h2>This request is closed</h2></div>{% elif ro.status=='declined' %}<div class="card"><h2>You declined this request</h2></div>{% elif not fleet %}<div class="card"><h2>No matching approved aircraft on your certificate</h2></div>{% else %}
+<form method="post" enctype="multipart/form-data" class="card stack">{{ csrf_i(csrf) }}<h2>Send a quote</h2>
+<label class="f"><span class="cap">Aircraft</span><select name="aircraft_id" required>{% for a in fleet %}<option value="{{ a.aircraft_id }}">{{ a.registration }} · {{ a.aircraft_type|tname }}</option>{% endfor %}</select></label>
+<label class="f"><span class="cap">Total price to the client, USD, before tax</span><input name="price" inputmode="decimal" placeholder="28500" required></label>
+<label class="f"><span class="cap">Quote valid for</span><select name="valid_hours"><option value="24">24 hours</option><option value="48" selected>48 hours</option><option value="72">72 hours</option></select></label>
+<label class="f"><span class="cap">Your cancellation terms</span><textarea name="cancel_terms" rows="3" required placeholder="As stated in your charter agreement"></textarea></label>
+<label class="f"><span class="cap">Notes to the client</span><textarea name="notes" rows="2"></textarea></label>
+<label class="f"><span class="cap">Your charter agreement (PDF)</span><input type="file" name="agreement" accept=".pdf"></label><label class="f"><span class="cap">Your quote sheet (PDF, optional)</span><input type="file" name="quote_file" accept=".pdf"></label>
+<label class="f"><span class="cap">Best email for future requests</span><input type="email" name="email" value="{{ contact.email if contact else '' }}"></label>
+<label class="k top"><input type="checkbox" name="confirm" value="1" required><span>The agreement names the client as charterer and does not name EXJET as a party. We hold operational control of this flight.</span></label>
+<button class="pri block">Send quote</button><button name="decline" value="1" formnovalidate>Decline this request</button>
+<p class="m xs">Your price reaches the client unchanged. EXJET adds no markup and takes no commission.</p></form>{% endif %}</div>{% endblock %}

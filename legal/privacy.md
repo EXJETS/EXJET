@@ -1,0 +1,6 @@
+What we collect. Account details, a photo of your ID for verification, trip requests, passenger manifest details (name, date of birth, weight, ID), payment records, messages, and device and log data.
+Why. To verify identity, run requests and bookings, prevent fraud, meet legal duties and support you.
+Who receives it. The Operator you sign with receives your name, contact details and manifest. Operators that only quote do not receive your name. Service providers that host, verify, message and process payments for us receive what they need. We do not sell personal data.
+Retention. Booking and acceptance records are kept for at least 7 years. ID images are deleted when no longer needed for verification or law.
+Your choices. You can access, correct or delete your data and opt out of marketing in Account or by writing to privacy@exjet.com. Residents of some states and countries have further rights under local law.
+Security. Data is encrypted in transit. Access is limited to staff who need it.
