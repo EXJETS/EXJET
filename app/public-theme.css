@@ -179,3 +179,7 @@
 .ex-footer :is(.ex-footer-brand,.ex-footer-bottom,.ex-footer-mobile details) { border-color: var(--public-night-line); }
 .ex-footer .ex-footer-brand > p { color: var(--public-paper); font-family: var(--public-font); letter-spacing: -.045em; }
 .ex-footer :is(.ex-footer-desktop h2,.ex-footer-bottom p) { color: var(--public-night-copy); }
+
+@media (min-width: 821px) {
+  .ex-footer .ex-footer-top { grid-template-columns: minmax(190px, 1.25fr) repeat(3, minmax(0, 1fr)); }
+}

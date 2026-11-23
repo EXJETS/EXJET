@@ -1,15 +1,14 @@
 import Link from "next/link";
 import Image from "next/image";
 import { SocialLinks } from "@/components/SocialLinks";
-import { siteConfig, aviationSolutions } from "@/data/site";
+import { siteConfig } from "@/data/site";
 import { CaretDownIcon } from "@phosphor-icons/react/dist/ssr";
 import { BrokerNotice } from "@/components/BrokerNotice";
 
 const groups = [
-  { title: "Charter", links: aviationSolutions.map(service => [service.name, service.path]) },
-  { title: "Explore", links: [["Aircraft", "/aircraft"], ["Empty legs", "/empty-legs"], ["Travel Journal", "/travel-journal"], ["Routes", "/routes"], ["Airports", "/airports"], ["Destinations", "/destinations"], ["Charter pricing", "/pricing"], ["Aircraft guides", "/aircraft-guides"], ["Flight Guide", "/articles"]] },
-  { title: "Your travel", links: [["Executive assistants", "/executive-assistants"], ["Family offices", "/family-office-private-aviation"], ["Fortune 500 teams", "/corporate-travel/fortune-500"], ["Sports teams", "/group-charter/sports-teams"], ["Entertainment & events", "/group-charter"]] },
-  { title: "EXJET", links: [["About", "/about"], ["Why EXJET", "/why-exjet"], ["Safety", "/safety"], ["How it works", "/how-it-works"], ["Operator relationships", "/operator-partners"], ["Client support", "/account"], ["Contact", "/contact"]] },
+  { title: "Charter", links: [["Plan a flight", "/charter"], ["Group charter", "/group-charter"], ["Cargo charter", "/cargo"], ["Empty legs", "/empty-legs"]] },
+  { title: "Explore", links: [["Aircraft", "/aircraft"], ["Routes", "/routes"], ["Charter pricing", "/pricing"], ["Travel Journal", "/travel-journal"]] },
+  { title: "EXJET", links: [["About", "/about"], ["Safety", "/safety"], ["Help and contact", "/contact"], ["Client account", "/account"]] },
 ];
 
 export function SiteFooter() {
