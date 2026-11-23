@@ -77,7 +77,6 @@ export default function CargoPage() {
           <h2>Complex mission?<br />Start directly.</h2>
           <div>
             <a className="large-contact-link" href={`mailto:${siteConfig.email.cargo}`}>{siteConfig.email.cargo} <span>→</span></a>
-            <a className="large-contact-link" href={siteConfig.phone.primary.href}>{siteConfig.phone.primary.display} <span>→</span></a>
           </div>
         </div>
       </section>

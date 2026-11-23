@@ -95,9 +95,9 @@ export async function sendPortalMessage(_state: ActionState, form: FormData): Pr
     const { client, user } = await identity();
     const body = textField(form, "message", 4000, 2);
     const { error } = await client.from("portal_messages").insert({ user_id: user.id, direction: "customer", body });
-    if (error) return { error: "Your message could not be saved. Please call EXJET for urgent assistance." };
+    if (error) return { error: "Your message could not be saved. Please email the EXJET charter desk for assistance." };
     revalidatePath("/app/messages");
-    return { success: "Message saved in your conversation. Call EXJET for time-sensitive travel changes." };
+    return { success: "Message saved in your conversation. Email the EXJET charter desk for time-sensitive travel changes." };
   } catch (error) { return failure(error); }
 }
 export async function replyToMessage(_state: ActionState, form: FormData): Promise<ActionState> {

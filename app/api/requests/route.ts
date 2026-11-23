@@ -157,8 +157,8 @@ async function sendEmail(input: IntakeRequest, id: string): Promise<DispatchResu
       to: [input.email],
       reply_to: deskFor(input.mode),
       subject: `EXJET has received your request · ${id}`,
-      text: `Hello ${input.name},\n\nYour request has been received. An EXJET advisor is reviewing your mission and will contact you ${siteConfig.responseWindow}.\n\nReference: ${id}\nRoute: ${input.departure} to ${input.destination}\nDate: ${input.date}\n\nFor an urgent request, call ${siteConfig.phone.primary.display}.\n\nEXJET\nGlobal Access, On-Demand.`,
-      html: `<div style="font-family:Arial,sans-serif;max-width:620px;margin:auto;color:#0b0c0e"><p style="font-size:11px;letter-spacing:2px;color:#73767b">EXJET · GLOBAL ACCESS, ON-DEMAND</p><h1 style="font-size:34px;font-weight:400">Request received.</h1><p>Hello ${escapeHtml(input.name)},</p><p style="line-height:1.7">An EXJET advisor is reviewing your mission and will contact you ${siteConfig.responseWindow}.</p><div style="margin:28px 0;padding:20px;border:1px solid #d7d8da"><strong>${escapeHtml(id)}</strong><br><span style="color:#73767b">${escapeHtml(input.departure)} to ${escapeHtml(input.destination)} · ${escapeHtml(input.date)}</span></div><p style="font-size:13px;color:#73767b">Urgent request? Call <a href="${siteConfig.phone.primary.href}" style="color:#0b0c0e">${siteConfig.phone.primary.display}</a>.</p></div>`,
+      text: `Hello ${input.name},\n\nYour request has been received. An EXJET advisor is reviewing your mission and will contact you ${siteConfig.responseWindow}.\n\nReference: ${id}\nRoute: ${input.departure} to ${input.destination}\nDate: ${input.date}\n\nFor a time-sensitive change, email ${deskFor(input.mode)} and include your reference.\n\nEXJET\nGlobal Access, On-Demand.`,
+      html: `<div style="font-family:Arial,sans-serif;max-width:620px;margin:auto;color:#0b0c0e"><p style="font-size:11px;letter-spacing:2px;color:#73767b">EXJET · GLOBAL ACCESS, ON-DEMAND</p><h1 style="font-size:34px;font-weight:400">Request received.</h1><p>Hello ${escapeHtml(input.name)},</p><p style="line-height:1.7">An EXJET advisor is reviewing your mission and will contact you ${siteConfig.responseWindow}.</p><div style="margin:28px 0;padding:20px;border:1px solid #d7d8da"><strong>${escapeHtml(id)}</strong><br><span style="color:#73767b">${escapeHtml(input.departure)} to ${escapeHtml(input.destination)} · ${escapeHtml(input.date)}</span></div><p style="font-size:13px;color:#73767b">Time-sensitive change? Email <a href="mailto:${deskFor(input.mode)}" style="color:#0b0c0e">${deskFor(input.mode)}</a> and include your reference.</p></div>`,
     }),
     signal: AbortSignal.timeout(12_000),
   }).catch(() => undefined);
@@ -231,7 +231,7 @@ async function sendAvinode(input: IntakeRequest, id: string): Promise<DispatchRe
 }
 
 export async function POST(request: Request) {
-  if (throttled(request)) return Response.json({ error: "Too many requests. Please call EXJET for immediate assistance." }, { status: 429 });
+  if (throttled(request)) return Response.json({ error: "Too many requests. Please email the EXJET flight desk for assistance." }, { status: 429 });
 
   let body: unknown;
   try {
@@ -255,7 +255,7 @@ export async function POST(request: Request) {
   ]);
   const durable = providers.some((result) => result.ok && result.provider !== "sms");
   if (!durable) {
-    return Response.json({ error: "Online intake is being connected. Please call or email the EXJET flight desk." }, { status: 503 });
+    return Response.json({ error: "Online intake is temporarily unavailable. Please email the EXJET flight desk." }, { status: 503 });
   }
 
   return Response.json({ ok: true, reference: id }, { status: 201, headers: { "Cache-Control": "no-store" } });

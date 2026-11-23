@@ -181,7 +181,7 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
       <section className={`quote-form quote-form--${mode}${compact ? " quote-form--compact" : ""} quote-form--success`} aria-live="polite">
         <p className="quote-form__kicker">Request received</p>
         <CheckCircleIcon size={32} aria-hidden="true" /><h3 tabIndex={-1} ref={element => { element?.focus(); }}>An EXJET advisor is reviewing your mission.</h3>
-        <p>We will contact you {siteConfig.responseWindow} using your preferred method. For an urgent departure, call <a href={siteConfig.phone.primary.href}>{siteConfig.phone.primary.display}</a>.</p>
+        <p>We will contact you {siteConfig.responseWindow} using your preferred method. For a time-sensitive change, <a href={`mailto:${recipient}`}>email the EXJET flight desk</a> and include your reference.</p>
         <div className="quote-form__reference"><span>Reference</span><strong>{reference}</strong></div>
         <button className="quote-form__new" type="button" onClick={() => { setForm({ ...initialState, passengers: mode === "group" ? "25" : "2" }); setReference(""); setStage("mission"); }}>
           Start another request <ArrowRightIcon size={18} aria-hidden="true" />
@@ -209,7 +209,7 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
             <button className="button button--dark" type="submit">
               Continue to contact details <ArrowRightIcon size={18} aria-hidden="true" />
             </button>
-            <p>{groupHandled ? "This passenger count will be routed to EXJET group charter." : compact ? "One more step. No account required." : `An EXJET advisor will respond ${siteConfig.responseWindow}. Urgent request? Call ${siteConfig.phone.primary.display}.`}</p>
+            <p>{groupHandled ? "This passenger count will be routed to EXJET group charter." : compact ? "One more step. No account required." : `An EXJET advisor will respond ${siteConfig.responseWindow}. For a time-sensitive request, email ${recipient}.`}</p>
           </div>
         </>
       ) : (
@@ -250,7 +250,7 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
           {status === "error" ? (
             <div className="quote-form__error" role="alert">
               <strong>{message}</strong>
-              <span><a href={`mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fallbackBody)}`}>Email {recipient}</a> or <a href={siteConfig.phone.primary.href}>call {siteConfig.phone.primary.display}</a>.</span>
+              <span><a href={`mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fallbackBody)}`}>Email {recipient}</a> with this request.</span>
             </div>
           ) : null}
     </form>

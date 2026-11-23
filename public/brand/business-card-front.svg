@@ -8,9 +8,8 @@
   <text x="82" y="387" fill="#fff" font-family="Helvetica Neue,Arial,sans-serif" font-size="49" font-weight="400" letter-spacing="-1.2">[First Last]</text>
   <text x="84" y="430" fill="#8f9399" font-family="Helvetica Neue,Arial,sans-serif" font-size="17" font-weight="600" letter-spacing="3.3">[TITLE] · EXJET</text>
   <line x1="82" y1="486" x2="1043" y2="486" stroke="#34373b"/>
-  <text x="82" y="534" fill="#d7d8da" font-family="Helvetica Neue,Arial,sans-serif" font-size="19">+1 407 747 5288</text>
-  <text x="400" y="534" fill="#d7d8da" font-family="Helvetica Neue,Arial,sans-serif" font-size="19">[name]@exjet.com</text>
-  <text x="858" y="534" fill="#d7d8da" font-family="Helvetica Neue,Arial,sans-serif" font-size="19">exjet.com</text>
+  <text x="82" y="534" fill="#d7d8da" font-family="Helvetica Neue,Arial,sans-serif" font-size="19">[name]@exjet.com</text>
+  <text x="400" y="534" fill="#d7d8da" font-family="Helvetica Neue,Arial,sans-serif" font-size="19">exjet.com</text>
   <text x="82" y="604" fill="#6d7075" font-family="Helvetica Neue,Arial,sans-serif" font-size="14" font-weight="600" letter-spacing="3">GLOBAL ACCESS, ON-DEMAND.</text>
 </svg>
 

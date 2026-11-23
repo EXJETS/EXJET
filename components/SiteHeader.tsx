@@ -4,10 +4,9 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { siteConfig, aviationSolutions } from "@/data/site";
+import { aviationSolutions } from "@/data/site";
 import { EqualsIcon } from "@phosphor-icons/react/dist/csr/Equals";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react/dist/csr/MagnifyingGlass";
-import { PhoneIcon } from "@phosphor-icons/react/dist/csr/Phone";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/csr/ArrowRight";
 import { UserCircleIcon } from "@phosphor-icons/react/dist/csr/UserCircle";
 import { XIcon } from "@phosphor-icons/react/dist/csr/X";
@@ -91,7 +90,6 @@ export function SiteHeader() {
           <nav aria-label={group.title}>{group.links.map(([label, href]) => <Link key={href} href={href} aria-current={isCurrent(href) ? "page" : undefined} onClick={close}>{label}</Link>)}</nav>
         </details>)}</div>
         <div className={styles.contact}>
-          <a href={siteConfig.phone.primary.href}><PhoneIcon size={18} aria-hidden="true" />{siteConfig.phone.primary.display}</a>
           <Link href="/search" onClick={close}><MagnifyingGlassIcon size={18} aria-hidden="true" />Search EXJET</Link>
           <Link href="/account" onClick={close}><UserCircleIcon size={18} aria-hidden="true" />Client support</Link>
         </div>

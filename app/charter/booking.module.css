@@ -1,19 +1,24 @@
-.booking { width: min(var(--ex-content-width,1200px), calc(100% - var(--ex-page-gutter,24px) * 2)); margin-inline: auto; padding-block: 64px 80px; }
-.heading { display: flex; align-items: end; justify-content: space-between; flex-wrap: wrap; gap: 16px 32px; margin-bottom: 28px; }
-.heading p { margin: 0 0 10px; color: #626267; font-size: .875rem; font-weight: 500; }
-.heading h1 { margin: 0; font-size: var(--ex-title-size,60px); font-weight: 400; line-height: 1.1; letter-spacing: -.045em; }
-.heading > a { font-size: .9375rem; }
-.search { scroll-margin-top: 88px; }
-.process { padding-top: 48px; }
-.process h2 { margin: 0 0 28px; font-size: 1.75rem; font-weight: 500; line-height: 1.2; letter-spacing: -.03em; }
-.process ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; margin: 0; padding: 0; list-style: none; }
-.process li { display: flex; align-items: start; gap: 14px; }
-.process li > span { display: inline-flex; align-items: center; justify-content: center; flex: 0 0 32px; height: 32px; border-radius: 50%; background: #f5f5f7; color: #626267; font-size: .875rem; }
-.process h3 { margin: 3px 0 8px; font-size: 1.0625rem; font-weight: 500; line-height: 1.3; }
-.process li p { margin: 0; color: #626267; font-size: .9375rem; line-height: 1.55; }
-.note { margin: 28px 0 0; color: #626267; font-size: .8125rem; line-height: 1.5; }
-.help { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 8px 24px; margin-top: 36px; padding-top: 24px; border-top: 1px solid #dedee2; }
-.help p { margin: 0; color: #626267; font-size: .9375rem; line-height: 1.5; }
-.help a { display: inline-flex; align-items: center; min-height: 44px; font-size: 1rem; font-weight: 500; }
-.help a:hover { text-decoration: underline; }
-@media (max-width: 760px) { .booking { padding-block: 24px 40px; } .heading { gap: 8px; margin-bottom: 20px; }.heading h1 { font-size: var(--ex-mobile-title,2rem); }.process { padding-top: 32px; }.process h2 { font-size: 1.5rem; margin-bottom: 20px; } .process ol { grid-template-columns: 1fr; gap: 24px; } }
+.booking { width: min(var(--ex-content-width,1200px), calc(100% - var(--ex-page-gutter,24px) * 2)); margin-inline: auto; padding-block: clamp(28px, 6vw, 80px) 72px; }
+.heading { max-width: 760px; margin-bottom: clamp(22px, 4vw, 40px); }
+.heading .kicker { margin: 0 0 14px; font-size: .72rem; font-weight: 600; letter-spacing: .14em; }
+.heading h1 { margin: 0; font-size: clamp(2.1rem, 6vw, 3.75rem); font-weight: 400; line-height: 1.06; letter-spacing: -.055em; }
+.heading p { margin: 14px 0 0; color: #56565c; font-size: 1rem; line-height: 1.55; }
+.workspace { display: grid; gap: clamp(16px, 3vw, 26px); align-items: start; grid-template-columns: minmax(0, 1fr) minmax(230px, 290px); }
+.search { min-width: 0; scroll-margin-top: 80px; }
+.advisor { border: 1px solid #dedee2; border-radius: 16px; background: #f7f7f8; padding: 22px; }
+.advisor h2 { margin: 0 0 8px; color: #1c1c1e; font-size: 1.125rem; line-height: 1.3; font-weight: 600; letter-spacing: -.02em; }
+.advisor p { margin: 0 0 12px; color: #56565c; font-size: .9375rem; line-height: 1.5; }
+.advisorLink,.pricingLink { display: flex; width: fit-content; align-items: center; min-height: 44px; text-underline-offset: .2em; text-decoration: underline; font-size: .9375rem; }
+.advisorLink { font-weight: 600; }
+.process { border-top: 1px solid #dedee2; margin-top: clamp(30px, 6vw, 64px); padding-top: clamp(28px, 4vw, 46px); }
+.process h2 { margin: 0 0 26px; font-size: 1.6rem; font-weight: 500; line-height: 1.2; letter-spacing: -.03em; }
+.process ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; margin: 0; padding: 0; list-style: none; }
+.process li { display: flex; align-items: start; gap: 12px; }
+.process li > span { display: inline-grid; place-items: center; flex: 0 0 30px; height: 30px; border-radius: 50%; background: #f1f1f3; color: #45454a; font-size: .875rem; }
+.process h3 { margin: 3px 0 5px; font-size: 1rem; font-weight: 600; line-height: 1.3; }
+.process li p { margin: 0; color: #56565c; font-size: .9375rem; line-height: 1.5; }
+@media (max-width: 850px) { .workspace { grid-template-columns: minmax(0, 1fr); } }
+@media (max-width: 600px) {
+  .booking { padding-bottom: 44px; }
+  .process ol { grid-template-columns: 1fr; gap: 20px; }
+}

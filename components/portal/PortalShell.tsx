@@ -13,7 +13,7 @@ import { UserCircleIcon } from '@phosphor-icons/react/dist/csr/UserCircle';
 import { ArrowUpRightIcon } from '@phosphor-icons/react/dist/csr/ArrowUpRight';
 import { ListIcon } from '@phosphor-icons/react/dist/csr/List';
 import { XIcon } from '@phosphor-icons/react/dist/csr/X';
-import { PhoneIcon } from '@phosphor-icons/react/dist/csr/Phone';
+import { EnvelopeSimpleIcon } from '@phosphor-icons/react/dist/csr/EnvelopeSimple';
 import { ArrowRightIcon } from '@phosphor-icons/react/dist/csr/ArrowRight';
 import { siteConfig } from '@/data/site';
 import styles from './Portal.module.css';
@@ -42,7 +42,7 @@ export function PortalShell({ children, name, signedIn }: { children: React.Reac
       <div className={styles.sidebarBottom}><Link href="/services">Aviation services <ArrowUpRightIcon size={16} aria-hidden="true"/></Link><Link href="/">EXJET home <ArrowUpRightIcon size={16} aria-hidden="true"/></Link></div>
     </aside>
     <div className={styles.workspace}>
-      <header className={styles.topbar}><div className={styles.breadcrumb}><span>EXJET</span><span>/</span>{links.find(link => link.path === path)?.label || 'Your workspace'}</div><Link className={styles.mobileBrand} href="/app/" aria-label="EXJET app home"><Image src="/brand/exjet-navbar-logo.png" alt="" width={32} height={32}/><span>EXJET</span></Link><div className={styles.topbarActions}><a href={siteConfig.phone.primary.href} className={styles.contactTop}><PhoneIcon size={17} aria-hidden="true"/>Speak with EXJET</a><Link className={styles.account} href={signedIn ? '/app/settings/' : '/app/login/'}><UserCircleIcon size={23} aria-hidden="true"/><span>{signedIn ? name || 'Account' : 'Client access'}</span></Link></div></header>
+      <header className={styles.topbar}><div className={styles.breadcrumb}><span>EXJET</span><span>/</span>{links.find(link => link.path === path)?.label || 'Your workspace'}</div><Link className={styles.mobileBrand} href="/app/" aria-label="EXJET app home"><Image src="/brand/exjet-navbar-logo.png" alt="" width={32} height={32}/><span>EXJET</span></Link><div className={styles.topbarActions}><a href={`mailto:${siteConfig.email.charter}`} className={styles.contactTop}><EnvelopeSimpleIcon size={17} aria-hidden="true"/>Email EXJET</a><Link className={styles.account} href={signedIn ? '/app/settings/' : '/app/login/'}><UserCircleIcon size={23} aria-hidden="true"/><span>{signedIn ? name || 'Account' : 'Client access'}</span></Link></div></header>
       <div className={styles.content}>{children}</div>
       <footer className={styles.footer}><span>EXJET <span aria-hidden="true">·</span> A different perspective.</span><div><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/contact">Contact</Link></div></footer>
     </div>
