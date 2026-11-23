@@ -34,3 +34,41 @@
 .passengerField button:disabled { opacity:.4; }
 .passengerField input { min-width:0; flex:1 1 2rem; text-align:center; appearance:textfield; }
 .passengerField input::-webkit-inner-spin-button,.passengerField input::-webkit-outer-spin-button { appearance:none; }
+
+
+/* Private trip search uses its own compact layout; group/cargo retain their controls. */
+.srOnly { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+.searchFlow { --search-line:#d5dce7; --search-blue:#2857c8; }
+.searchFlow :global(.quote-form__progress) { margin:0 0 10px; padding:0; color:#4b5c72; font-size:.75rem; font-weight:650; line-height:1.4; }
+.searchFlow .tripType { margin:0 0 12px; }
+.searchFlow .tripChoice { width:min(100%,385px); border:0; border-radius:6px; background:#edf1f6; padding:3px; gap:3px; }
+.searchFlow .tripChoice label > span { min-height:40px; border-radius:4px; }
+.searchFlow .tripChoice input:checked + span { background:#fff; color:#192c53; box-shadow:0 1px 4px #182b4c25; }
+.searchFlow .searchGrid { display:grid; position:relative; grid-template-columns:repeat(6,minmax(0,1fr)); gap:8px; border:0; background:transparent; margin:0; padding:0; overflow:visible; }
+.searchFlow .searchGrid > :is(div,label) { grid-column:span 2; display:flex; flex-direction:column; align-items:stretch; min-width:0; min-height:68px; gap:0; padding:6px 10px 1px; margin:0; border:1px solid var(--search-line); border-radius:6px; background:#f8f9fb; }
+.searchFlow .searchGrid > :nth-child(-n+2) { grid-column:span 3; padding-right:21px; }
+.searchFlow .searchGrid > :is(div,label):focus-within { background:#fff; border-color:var(--search-blue); }
+.searchFlow .searchGrid label,.searchFlow .searchGrid label > span { padding:0; margin:0; border:0; font-size:.75rem; font-weight:650; line-height:1.35; letter-spacing:normal; text-transform:none; color:#3b4b63; }
+.searchFlow .searchGrid input { display:block; width:100%; max-width:100%; min-height:42px; height:42px; padding:0; margin:0; border:0; background:transparent; color:#172337; font-size:16px; }
+.searchFlow .searchGrid input::placeholder { color:#536177; }
+.searchFlow .swap { position:absolute; z-index:2; display:grid; place-items:center; width:44px; height:44px; padding:0; margin:0; inset-block-start:12px; inset-inline-start:50%; transform:translateX(-50%); border:1px solid var(--search-line); border-radius:50%; background:#fff; }
+.searchFlow .swap:hover { background:#edf4ff; }
+.searchFlow .searchGrid > :nth-child(2) { padding-left:26px; padding-right:10px; }
+.searchFlow .passengerField { min-width:0; }
+.searchFlow .passengerField > div { min-width:0; }
+.searchFlow .passengerField button { flex-basis:35px; height:42px; }
+.searchFlow :global(.quote-form__submit) { display:flex; justify-content:flex-start; align-items:center; flex-wrap:wrap; gap:4px 15px; padding:12px 0 0; margin:0; }
+.searchFlow :global(.quote-form__submit .button) { min-height:44px; max-width:100%; }
+.searchFlow :global(.quote-form__submit p[hidden]) { display:none; }
+.searchFlow :global(.quote-form__mission-summary) { margin:0 0 12px; padding:0; border:0; background:none; }
+.searchFlow :global(.quote-form__mission-summary) h3 { font-size:clamp(1.12rem,3vw,1.42rem); margin:4px 0 7px; }
+.searchFlow .summaryList { padding-left:1.1rem; overflow-wrap:anywhere; }
+@media (max-width:550px) {
+  .searchFlow .searchGrid > :is(:nth-child(1),:nth-child(2),:nth-child(5)) { grid-column:1/-1; padding-inline:10px; }
+  .searchFlow .searchGrid > :nth-child(-n+2) { padding-right:52px; }
+  .searchFlow .searchGrid > :is(:nth-child(3),:nth-child(4)) { grid-column:span 3; }
+  .searchFlow .swap { inset-inline-start:auto; inset-inline-end:8px; inset-block-start:51px; transform:none; }
+  .searchFlow .passengerField > div { width:min(100%,152px); }
+  .searchFlow .passengerField button { flex-basis:44px; }
+  .searchFlow :global(.quote-form__submit .button) { flex-basis:100%; }
+}

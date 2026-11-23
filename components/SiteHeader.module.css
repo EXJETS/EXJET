@@ -87,3 +87,5 @@
   .homeHeader .dialog { width:100%; }
   .homeHeader .bar :is(a,button):focus-visible { outline-color:#fff; }
 }
+
+.bookFlight[aria-current="page"] { display:none; }

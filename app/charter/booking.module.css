@@ -1,12 +1,18 @@
-.booking { width: min(var(--ex-content-width,1200px), calc(100% - var(--ex-page-gutter,24px) * 2)); margin-inline: auto; padding-block: clamp(28px, 4vw, 48px) 72px; }
-.process { margin: 0; }
-.process h2 { margin: 0 0 26px; font-size: 1.6rem; font-weight: 500; line-height: 1.2; letter-spacing: -.03em; }
-.process ol { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 26px; margin: 0; padding: 0; list-style: none; }
-.process li { display: flex; align-items: start; gap: 12px; }
-.process li > span { display: inline-grid; place-items: center; flex: 0 0 30px; height: 30px; border-radius: 50%; background: #f1f1f3; color: #45454a; font-size: .875rem; }
-.process h3 { margin: 3px 0 5px; font-size: 1rem; font-weight: 600; line-height: 1.3; }
-.process li p { margin: 0; color: #56565c; font-size: .9375rem; line-height: 1.5; }
-@media (max-width: 600px) {
-  .booking { padding-bottom: 44px; }
-  .process ol { grid-template-columns: 1fr; gap: 20px; }
+.page { background:#f7f8fa; padding:clamp(22px,4vw,54px) 0 clamp(32px,5vw,66px); }
+.shell { width:min(820px,calc(100% - 40px)); margin-inline:auto; }
+.intro { text-align:center; margin:0 auto clamp(18px,3vw,28px); }
+.intro h1 { margin:0; font:650 clamp(2.1rem,5vw,3.25rem)/1.08 system-ui,sans-serif; letter-spacing:-.05em; color:#171a20; text-wrap:balance; }
+.intro p { margin:8px 0 0; color:#505b6b; font-size:.9rem; line-height:1.45; }
+.panel { background:#fff; border:1px solid #d8dfe8; border-radius:10px; padding:clamp(14px,3vw,27px); box-shadow:0 8px 24px #14284c08; scroll-margin-top:76px; }
+.panel :global(.quote-form) { background:transparent; border:0; padding:0; margin:0; box-shadow:none; }
+.support { display:grid; gap:8px; margin:12px 0 0; }
+.support > a { justify-self:start; display:inline-flex; align-items:center; min-height:44px; color:#20489b; font-size:.875rem; font-weight:580; text-decoration:underline; text-underline-offset:.18em; }
+.support :global(.ex-broker-disclosure) { margin:0; padding:0; border:0; background:transparent; }
+@media (max-width:550px) {
+  .page { padding-top:20px; }
+  .shell { width:calc(100% - 24px); }
+  .intro { text-align:left; padding-inline:4px; }
+  .intro h1 { font-size:clamp(29px,8vw,36px); }
+  .panel { padding:12px; }
+  .support { padding-inline:4px; }
 }
