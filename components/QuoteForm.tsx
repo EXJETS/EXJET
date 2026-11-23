@@ -294,17 +294,21 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
               <span>{label}</span>
             </label>)}</div>
           </fieldset>}
-          <div className="quote-form__row">
+          <div className={`quote-form__row${compact && mode !== "cargo" ? " quote-form__row--home-itinerary" : ""}`}>
             <AirportInput label={mode === "cargo" ? "Origin" : "Departure"} value={form.departure} code={form.departureIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, departure: value, departureIcao: icao }))} />
             <AirportInput label={mode === "cargo" ? "Destination" : "Arrival"} value={form.destination} code={form.destinationIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, destination: value, destinationIcao: icao }))} />
             <label><span>Date</span><input value={form.date} onInput={(event) => update("date", event.currentTarget.value)} name="date" type="date" min={today} required /></label>
+            {compact && mode !== "cargo" ? <label>
+              <span>Local time</span>
+              <input aria-label="Local departure time (optional)" value={form.time} onInput={(event) => update("time", event.currentTarget.value)} name="time" type="time" />
+            </label> : null}
             {mode === "cargo" ? (
               <label><span>Cargo type</span><input value={form.cargoType} onChange={(event) => update("cargoType", event.target.value)} name="cargoType" maxLength={160} required pattern={String.raw`.*\S.*`} title="Describe the cargo." placeholder="General description" /></label>
             ) : (
               <label><span>Passengers</span><input value={form.passengers} onChange={(event) => { const value = event.target.value; update("passengers", value); if (selectedCategory && Number(value) > selectedCategory.seats) setCategory(""); }} name="passengers" type="number" inputMode="numeric" min="1" max="100" step="1" required /></label>
             )}
           </div>
-          {mode !== "cargo" ? <div className="quote-form__row"><label>
+          {mode !== "cargo" && !compact ? <div className="quote-form__row"><label>
             <span>Local departure time (optional)</span>
             <input value={form.time} onInput={(event) => update("time", event.currentTarget.value)} name="time" type="time" />
           </label></div> : null}
