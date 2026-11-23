@@ -18,8 +18,8 @@ export default function CharterPage() {
       <CharterJourney
         active="private"
         eyebrow="On-demand private jet charter"
-        title="Request a private jet quote."
-        description="Start with your itinerary. Review aircraft options, the operating carrier and the full price before you commit."
+        title="Search private jet charter."
+        description="Enter your route, then compare cabin estimates and request a firm quote."
         panelId="charter-request"
         panelTitle="Plan your flight"
         advisorTitle="Have a specific itinerary?"
