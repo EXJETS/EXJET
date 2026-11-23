@@ -16,7 +16,7 @@ import re
 import sys
 from urllib.error import HTTPError
 from urllib.parse import urlsplit
-from urllib.request import urlopen
+from urllib.request import build_opener, HTTPRedirectHandler, urlopen
 import xml.etree.ElementTree as ET
 
 class Page(HTMLParser):
@@ -99,8 +99,17 @@ for label,values in [('title',titles),('description',descriptions)]:
     for value,paths in values.items():
         if len(paths)>1:errors.append(f'duplicate {label}: {paths}')
 expected=json.loads((root/'tests/seo-original-paths.json').read_text())
-for path in expected:
+retirements=json.loads((root/'data/public-route-retirements.json').read_text())
+removed={route(path) for path in retirements['removed']}
+redirected={route(path):route(target) for path,target in retirements['redirected'].items()}
+retired=removed | set(redirected)
+expected_preserved=set(expected)-retired
+for path in expected_preserved:
     if path not in pages:errors.append(f'Original URL missing: {path}')
+for path in retired:
+    if path in pages or path in runtime_pages:errors.append(f'Retired URL still renders a page: {path}')
+for path,target in redirected.items():
+    if target not in pages:errors.append(f'Retired URL has no proper destination: {path} -> {target}')
 for path,page in pages.items():
     for href in page.links:
         url=urlsplit(href)
@@ -108,6 +117,7 @@ for path,page in pages.items():
         if not url.path:target=path
         elif not url.path.startswith('/'):continue
         else:target=route(url.path)
+        target=redirected.get(target,target)
         if target not in pages and target in runtime_pages:
             linked_runtime.add(target)
         elif target not in pages:
@@ -121,7 +131,7 @@ while queue:
     reachable.add(path)
     for href in pages[path].links:
         u=urlsplit(href)
-        if not u.netloc and u.path.startswith('/') or u.netloc=='www.exjet.com':queue.append(route(u.path))
+        if not u.netloc and u.path.startswith('/') or u.netloc=='www.exjet.com':queue.append(redirected.get(route(u.path),route(u.path)))
 for path in pages:
     if path not in reachable:errors.append(f'Page unreachable from homepage links: {path}')
 sitemap_text=(build/'sitemap.xml.body').read_text()
@@ -172,16 +182,21 @@ if args.mode=='preview' and 'Disallow: /' not in robots:errors.append('preview n
 missing_path='/this-page-must-not-exist-seo-check/'
 http_status={}
 if args.base_url:
+    class NoRedirect(HTTPRedirectHandler):
+        def redirect_request(self, req, fp, code, msg, headers, newurl):
+            return None
+
     def fetch(path):
         try:
-            with urlopen(args.base_url.rstrip('/')+path,timeout=30) as response:
+            with build_opener(NoRedirect()).open(args.base_url.rstrip('/')+path,timeout=30) as response:
                 return path,response.status,response.headers.get('X-Robots-Tag','')
-        except HTTPError as e:return path,e.code,e.headers.get('X-Robots-Tag','')
+        except HTTPError as e:return path,e.code,e.headers.get('Location','') if path in redirected else e.headers.get('X-Robots-Tag','')
         except Exception as e:return path,str(e),''
     with ThreadPoolExecutor(max_workers=8) as pool:
-        for path,status,xrobots in pool.map(fetch,list(pages)+sorted(linked_runtime)+[missing_path]):
+        for path,status,xrobots in pool.map(fetch,list(pages)+sorted(linked_runtime|retired)+[missing_path]):
             http_status[path]=status
-            if status!=(200 if path in pages or path in linked_runtime else 404):errors.append(f'{path}: HTTP {status}')
+            if status!=(301 if path in redirected else 200 if path in pages or path in linked_runtime else 404):errors.append(f'{path}: HTTP {status}')
+            if path in redirected and urlsplit(xrobots).path!=redirected[path]:errors.append(f'{path}: wrong redirect target: {xrobots}')
             if path.startswith('/app/') and 'noindex' not in xrobots.lower():errors.append(f'{path}: app route missing noindex HTTP header')
             if args.mode=='production' and path in indexable and 'noindex' in xrobots.lower():errors.append(f'{path}: noindex HTTP header')
     try:
@@ -196,7 +211,7 @@ if args.base_url:
                 errors.append(f'404 lacks its own title: {missing.title}')
     except OSError as error:
         errors.append(f'404 metadata check failed: {error}')
-report={'mode':args.mode,'status':'PASS' if not errors else 'FAIL','html_pages_checked':len(pages),'original_pages_preserved':len(expected),'indexable_count':len(indexable),'sitemap_urls':len(locs),'noindex_pages':sorted(noindex),'robots':robots,'http_status':http_status,'errors':sorted(set(errors)), 'metadata':[{'path':p,'title':d.title,'description':d.meta.get('description'),'h1':d.h1,'robots':d.meta.get('robots')} for p,d in sorted(pages.items())]}
+report={'mode':args.mode,'status':'PASS' if not errors else 'FAIL','html_pages_checked':len(pages),'original_pages_preserved':len(expected_preserved & set(pages)),'original_pages_deliberately_retired':sorted(set(expected)&retired),'retired_public_paths':sorted(retired),'indexable_count':len(indexable),'sitemap_urls':len(locs),'noindex_pages':sorted(noindex),'robots':robots,'http_status':http_status,'errors':sorted(set(errors)), 'metadata':[{'path':p,'title':d.title,'description':d.meta.get('description'),'h1':d.h1,'robots':d.meta.get('robots')} for p,d in sorted(pages.items())]}
 report_dir=root/'verification';report_dir.mkdir(exist_ok=True)
 (report_dir/f'seo-{args.mode}.json').write_text(json.dumps(report,indent=2)+'\n')
 print(json.dumps({k:v for k,v in report.items() if k not in ('metadata','http_status','noindex_pages')},indent=2))

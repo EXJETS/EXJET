@@ -1,0 +1,131 @@
+.journey {
+  background: #f3f4f5;
+  color: #141517;
+  padding: clamp(20px, 4vw, 54px) 0 clamp(36px, 7vw, 84px);
+}
+.shell { width: min(1216px, calc(100% - clamp(32px, 7vw, 96px))); margin-inline: auto; }
+.journeys {
+  width: fit-content;
+  max-width: 100%;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, max-content));
+  gap: 4px;
+  padding: 4px;
+  border: 1px solid #d6d8da;
+  border-radius: 14px;
+  background: #fff;
+}
+.journeys a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 clamp(12px, 2.1vw, 26px);
+  min-height: 44px;
+  border-radius: 9px;
+  color: #37393c;
+  font-size: .875rem;
+  font-weight: 600;
+  text-decoration: none;
+  text-align: center;
+}
+.journeys a:hover { background: #eff0f1; color: #111; }
+.journeys a[aria-current="page"] { background: #222427; color: #fff; }
+.journeys a:focus-visible, .advisor a:focus-visible { outline: 2px solid #54739a; outline-offset: 2px; }
+.header { margin: clamp(22px, 4vw, 48px) 0 clamp(20px, 3vw, 35px); }
+.eyebrow {
+  margin: 0 0 .6rem;
+  font-size: .7rem;
+  font-weight: 650;
+  line-height: 1.45;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+}
+.header h1 {
+  margin: 0;
+  font-size: clamp(2rem, 4.8vw, 4.1rem);
+  line-height: 1.04;
+  font-weight: 550;
+  letter-spacing: -.06em;
+}
+.description, .panelIntro p, .advisor > p:not(.eyebrow) {
+  margin: .65rem 0 0;
+  color: #565a60;
+  font-size: .95rem;
+  line-height: 1.5;
+}
+.description { max-width: 64ch; }
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(235px, 280px);
+  gap: clamp(14px, 2.1vw, 24px);
+  align-items: start;
+}
+.panel {
+  min-width: 0;
+  border: 1px solid #dbdddf;
+  border-radius: 20px;
+  background: #fff;
+  box-shadow: 0 8px 24px #25292e0b;
+  scroll-margin-top: 96px;
+  padding: clamp(14px, 2.8vw, 28px);
+}
+.panelIntro h2 { margin: 0; font-size: clamp(1.13rem, 2.3vw, 1.5rem); letter-spacing: -.026em; font-weight: 650; }
+.panelIntro p { margin-top: .35rem; }
+.panel :global(.ex-broker-disclosure) { margin: .9rem 0 1rem; }
+.flow { min-width: 0; }
+.flow :global(.quote-form), .flow :global(.empty-leg-board) {
+  margin: 0;
+  border: 0;
+  box-shadow: none;
+  padding: 0;
+}
+.flow :global(.quote-form__progress) { padding: 0 0 .6rem; }
+.flow :global(.quote-form__airport), .flow :global(.quote-form__row > label), .flow :global(.empty-leg-search input) {
+  border-color: #d6d9dc;
+  border-radius: 9px;
+}
+.flow :global(.quote-form__row) { gap: 8px; }
+.flow :global(.quote-form__row + .quote-form__row) { margin-top: 8px; }
+.flow :global(.empty-leg-results__empty) {
+  min-height: auto;
+  padding: clamp(18px, 3vw, 36px);
+  background: #f3f4f5;
+  border-color: #e0e1e3;
+  text-align: start;
+}
+.flow :global(.empty-leg-results__empty h2) { font-size: clamp(1.3rem, 3vw, 2rem); }
+.flow :global(.empty-leg-results__empty p) { margin-inline: 0; }
+.advisor {
+  background: #222427;
+  color: #fff;
+  padding: clamp(16px, 2.5vw, 24px);
+  border-radius: 16px;
+}
+.advisor .eyebrow { color: #bec3c9; }
+.advisor h2 { margin: 0; font-size: 1.3rem; font-weight: 600; line-height: 1.2; letter-spacing: -.025em; }
+.advisor > p:not(.eyebrow) { color: #e4e6e9; font-size: .9rem; }
+.advisor ul { list-style: none; padding: 0; margin: 1rem 0 0; }
+.advisor li { border-top: 1px solid #50545a; }
+.advisor a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .7rem;
+  min-height: 44px;
+  color: #fff;
+  font-size: .88rem;
+  text-underline-offset: .18em;
+}
+.advisor a:hover { text-decoration: underline; }
+@media (max-width: 960px) {
+  .workspace { grid-template-columns: minmax(0, 1fr); }
+  .advisor { max-width: 100%; }
+}
+@media (max-width: 600px) {
+  .journeys { width: 100%; grid-template-columns: repeat(4, minmax(0,1fr)); }
+  .journeys a { padding-inline: 5px; font-size: .8rem; }
+  .header { margin-block: 20px; }
+  .eyebrow { margin-bottom: .4rem; }
+  .panel { border-radius: 14px; }
+}
+@media (max-width: 346px) { .journeys { grid-template-columns: repeat(2, minmax(0,1fr)); } }

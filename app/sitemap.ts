@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { aircraft } from "@/data/aircraft";
 import { contentPages } from "@/data/editorial";
 import { pageSeo } from "@/data/seo";
+import { isRetiredPublicPath } from "@/data/public-route-retirements";
 import { absoluteUrl } from "@/data/site";
 
 export const dynamic = "force-static";
@@ -20,7 +21,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...staticPaths, ...aircraftPaths, ...editorialPaths,
   ];
   // Never use the build time as lastmod. Omit dates we don't know.
-  return entries.map(({ path, lastModified }) => ({
+  return entries.filter(({ path }) => !isRetiredPublicPath(path)).map(({ path, lastModified }) => ({
     url: absoluteUrl(path),
     ...(lastModified ? { lastModified } : {}),
   }));

@@ -19,13 +19,14 @@ export function AircraftExplorer({ items, references }: { items: Aircraft[]; ref
   const compared = items.filter(item => selected.includes(item.slug));
   const toggle = (slug: string) => setSelected(current => current.includes(slug) ? current.filter(item => item !== slug) : current.length < 3 ? [...current, slug] : current);
 
-  return <section className={`${styles.section} ${selected.length ? styles.hasShortlist : ""}`} aria-labelledby="aircraft-explorer-title">
+  return <section className={`${styles.section} ${styles.marketExplorer} ${selected.length ? styles.hasShortlist : ""}`} aria-labelledby="aircraft-explorer-title">
     <div className={`${styles.heading} ${styles.explorerIntro}`}><div><p className={styles.kicker}>Find your aircraft</p><h2 id="aircraft-explorer-title">Explore. Compare. Decide.</h2><p>Discover cabin choices and compare up to three aircraft. Your advisor confirms the aircraft and configuration for your trip.</p></div></div>
     <div className={styles.toolbar}>
       <label className={styles.search}><MagnifyingGlassIcon size={20} aria-hidden="true" /><span className="sr-only">Search aircraft</span><input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Aircraft or manufacturer" enterKeyHint="search" /></label>
-      <label className={styles.select}><span>Cabin class</span><select value={category} onChange={event => setCategory(event.target.value)}>{categories.map(item => <option key={item}>{item}</option>)}</select></label>
+
       {(query || category !== "All aircraft") && <button className={styles.textButton} onClick={() => { setQuery(""); setCategory("All aircraft"); }}>Reset filters</button>}
     </div>
+    <div className={styles.marketFilters} role="group" aria-label="Cabin class">{categories.map(item => <button type="button" key={item} aria-pressed={category === item} onClick={() => setCategory(item)}>{item}</button>)}</div>
     <p className={styles.resultCount} role="status">{visible.length} aircraft {visible.length === 1 ? "profile" : "profiles"}{selected.length ? ` · ${selected.length} selected for comparison` : ""}</p>
     <div className={styles.grid}>{visible.map(item => <article className={styles.card} key={item.slug}>
       {item.image ? <Link className={styles.aircraftPhoto} href={`/aircraft/${item.slug}`} aria-label={`Explore ${item.name}`}>

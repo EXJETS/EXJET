@@ -1,21 +1,20 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowRightIcon, ArrowUpRightIcon, GlobeHemisphereWestIcon, PathIcon, ReceiptIcon } from "@phosphor-icons/react/dist/ssr";
-import { ServiceExplorer } from "@/components/ServiceExplorer";
 import { HomeAircraftEditorial } from "@/components/HomeAircraftEditorial";
 import { QuoteForm } from "@/components/QuoteForm";
 import { BrokerNotice } from "@/components/BrokerNotice";
 import { StructuredData } from "@/components/StructuredData";
 import { buildMetadata } from "@/data/seo";
 import { localBusinessJsonLd } from "@/data/site";
-import { charterPlanningRates, charterPlanningRateNote, formatCharterPlanningRate } from "@/data/charter-planning-rates";
+import { charterCabinCategories, charterCapacityNote } from "@/data/charter-planning-rates";
 import styles from "./landing.module.css";
 export const metadata = buildMetadata("/");
 const audiences = [
  ["Executive & corporate travel", "/corporate-travel/fortune-500", "Keep meetings and multi-city trips on your schedule."],
  ["Family offices & private clients", "/family-office-private-aviation", "Plan around your family, guests and preferred airports."],
  ["Sports, entertainment & groups", "/group-charter", "Coordinate passenger counts, equipment and tight travel windows."],
- ["Aircraft owners & operators", "/aircraft-owners", "Get support with buying, managing or maintaining an aircraft."],
+ ["Time-sensitive freight", "/cargo", "Plan your cargo route, timetable and handling requirements."],
 ];
 const featuredRoutes = [
   ["Dallas", "New York", "/routes/dallas-to-new-york/", "M11 46 C35 15 90 24 131 14", 14],
@@ -30,7 +29,7 @@ export default function Home() {
   <div className={styles.heroCopy}>
    <p className={styles.eyebrow}><GlobeHemisphereWestIcon size={16} aria-hidden="true" /> EXJET / Global Access. On-Demand.</p>
    <h1 id="home-title">Private jet charter.</h1>
-   <p>Plan your flight across the United States or internationally. Start with your itinerary.</p>
+   <p>One way, round trip or several stops. Start with your itinerary and get a written quote for the whole trip.</p>
   </div>
   <section id="plan-your-charter" className={styles.quotePanel} aria-labelledby="home-quote-title">
    <h2 id="home-quote-title"><PathIcon size={21} aria-hidden="true" /> Request a charter quote</h2>
@@ -75,20 +74,26 @@ export default function Home() {
     <p>Where applicable, your written proposal separates the net operator quote from our service fee and shows applicable taxes and the full trip total.</p>
    </div>
    <div className={styles.hourlyRates}>
-    <h3>Hourly charter planning rates</h3>
-    <dl>{charterPlanningRates.map(([category, rate]) => (
-      <div key={category}><dt>{category}</dt><dd>{formatCharterPlanningRate(rate)} <span>/ hour</span></dd></div>
+    <h3>Aircraft categories</h3>
+    <dl>{charterCabinCategories.map(([category, seats]) => (
+      <div key={category}><dt>{category}</dt><dd>{seats} <span>seats</span></dd></div>
     ))}</dl>
-    <p>{charterPlanningRateNote}</p>
+    <p>{charterCapacityNote}</p>
    </div>
    <Link className={styles.textLink} href="/pricing/">How pricing works <ArrowUpRightIcon size={17} aria-hidden="true" /></Link>
   </div>
  </section>
- <section id="aviation-solutions" className={styles.services}><header className={styles.sectionHeading}><p className={styles.eyebrow}>03 / Aviation solutions</p><h2>More possibilities.<br />At every stage.</h2><Link className={styles.textLink} href="/services">All eleven services <ArrowUpRightIcon size={18} /></Link></header><ServiceExplorer /></section>
+ <section className={styles.travelOptions} aria-labelledby="charter-options">
+  <header><p className={styles.eyebrow}>Charter, and only charter</p><h2 id="charter-options">Choose how you need to fly.</h2></header>
+  <div>{[
+    ["Passenger charter", "A private aircraft for your itinerary.", "/charter/"],
+    ["Group charter", "One point of contact for larger movements.", "/group-charter/"],
+    ["Cargo charter", "Aircraft capacity planned around your shipment.", "/cargo/"],
+    ["Empty legs", "Repositioning opportunities for flexible trips.", "/empty-legs/"],
+  ].map(([label, copy, href]) => <Link href={href} key={href}><h3>{label}</h3><p>{copy}</p><ArrowUpRightIcon size={20} aria-hidden="true" /></Link>)}</div>
+ </section>
  <section className={styles.collection}><header className={styles.sectionHeading}><p className={styles.eyebrow}>04 / Aircraft</p><h2>Find your perspective.</h2><Link className={styles.textLink} href="/aircraft">Explore the collection <ArrowUpRightIcon size={18} /></Link></header><HomeAircraftEditorial /></section>
- <section className={styles.cabin} aria-labelledby="cabin-title"><Image src="/images/manufacturers/falcon-8x-lounge.jpg" alt="Dassault Falcon 8X lounge with white leather seating and a walnut conference table" width={2000} height={1100} sizes="100vw" /><div className={styles.cabinCopy}><p className={styles.eyebrow}>05 / Interior completion</p><h2 id="cabin-title">Considered.<br />Down to the last detail.</h2><p>Cabin planning, materials and completion support. Shape an aircraft around the way you live and work.</p><Link className={styles.pill} href="/interior-completions">Explore interiors <ArrowUpRightIcon size={18} /></Link></div></section>
  <section className={styles.audiences}><div><p className={styles.eyebrow}>06 / Your world</p><h2>Personal by nature.<br />Global by design.</h2><p>Different priorities. One dedicated point of contact.</p></div><div className={styles.audienceList}>{audiences.map(([title,href,copy],i)=><Link key={href} href={href}><span className={styles.number}>0{i+1}</span><div><h3>{title}</h3><p>{copy}</p></div><ArrowUpRightIcon size={23} aria-hidden="true" /></Link>)}</div></section>
- <section className={styles.support}><div className={styles.supportPhoto}><Image src="/images/manufacturers/falcon-support.jpg" alt="Dassault manufacturer support team beside a Falcon aircraft" width={2000} height={1333} sizes="(max-width:760px) 100vw, 55vw" /></div><div><p className={styles.eyebrow}>07 / Beyond the flight</p><h2>The expertise<br />behind every mission.</h2><p>From crew sourcing and maintenance planning to engineering and STC coordination, keep your next requirement moving.</p><Link className={styles.pill} href="/mro">Service & repair <ArrowUpRightIcon size={18} /></Link><Link className={styles.textLink} href="/engineering-stc">Engineering & STC <ArrowUpRightIcon size={18} /></Link></div></section>
  <section className={styles.journal}><header className={styles.sectionHeading}><p className={styles.eyebrow}>The EXJET journal</p><h2>Before you go.</h2><Link className={styles.textLink} href="/travel-journal">Explore the journal <ArrowUpRightIcon size={18} /></Link></header><div className={styles.journalGrid}>{[["Aircraft knowledge","Know your aircraft.","Cabins, capabilities and the details that matter.","/aircraft-guides"],["Journey planning","A different way there.","Routes, airports and the possibilities between them.","/routes"],["Charter insight","The complete picture.","Understand the full quote before you fly.","/pricing"]].map(([k,t,c,h],i)=><Link href={h} key={h}><span>0{i+1} / {k}</span><h3>{t}</h3><p>{c}</p><ArrowUpRightIcon size={24} /></Link>)}</div></section>
  <section className={styles.contact}><p className={styles.eyebrow}>Your next chapter</p><h2>Where will it take you?</h2><div><Link className={styles.pill} href="/charter/">Request a quote <ArrowUpRightIcon size={18} /></Link><Link className={styles.pill} href="/contact">Speak with EXJET <ArrowUpRightIcon size={18} /></Link></div><BrokerNotice /></section>
  </div>;

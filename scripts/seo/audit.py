@@ -52,8 +52,13 @@ def audit(root):
         if path.startswith('/_'):continue
         p=Page();p.feed(file.read_text()); d={k:v for k,v in vars(p).items() if k in ('title','description','robots','canonical','h1','headings','links','images','schemas','og_url','og_image','googlebot')}
         d.update(path=path,words=len(' '.join(p.text).split()),ids=sorted(p.ids),issues=[]);pages.append(d)
-    known={p['path'] for p in pages};redirects={'/citation-latitude/','/airports/kpbi/'}
+    retirements=json.loads((Path(__file__).resolve().parents[2]/'data/public-route-retirements.json').read_text())
+    redirects={'/citation-latitude/':'/aircraft/citation-latitude/','/airports/kpbi/':'/airports/kdjt/'}
+    redirects.update({normalize(source):normalize(target) for source,target in retirements['redirected'].items()})
+    retired={normalize(path) for path in retirements['removed']} | set(redirects)
+    known={p['path'] for p in pages}
     for p in pages:
+        if p['path'] in retired:p['issues'].append('retired path still renders a page')
         indexed='noindex' not in p['robots']
         if not p['title']:p['issues'].append('missing title')
         if not p['description']:p['issues'].append('missing description')
@@ -82,7 +87,7 @@ def audit(root):
         path=pending.pop()
         if path in seen or path not in by_path:continue
         seen.add(path)
-        pending.extend(normalize(link) for link in by_path[path]['links'] if link.startswith('/') and not link.startswith('//'))
+        pending.extend(redirects.get(normalize(link),normalize(link)) for link in by_path[path]['links'] if link.startswith('/') and not link.startswith('//'))
     for p in pages:
         if 'noindex' not in p['robots'] and p['path'] not in seen:p['issues'].append('not reachable from homepage')
     return pages

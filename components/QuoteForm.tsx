@@ -1,5 +1,6 @@
 "use client";
 
+import { CharterEstimate } from "./CharterEstimate";
 import Link from "next/link";
 import { FormEvent, useEffect, useId, useMemo, useRef, useState } from "react";
 import { localDate } from "./localDate";
@@ -7,6 +8,7 @@ import { ArrowRightIcon } from "@phosphor-icons/react/dist/csr/ArrowRight";
 import { ArrowLeftIcon } from "@phosphor-icons/react/dist/csr/ArrowLeft";
 import { CheckCircleIcon } from "@phosphor-icons/react/dist/csr/CheckCircle";
 import { siteConfig } from "@/data/site";
+import styles from "./QuoteItinerary.module.css";
 
 type QuoteMode = "charter" | "cargo" | "group";
 type Airport = { icao: string; iata?: string; name: string; city?: string; country?: string };
@@ -16,13 +18,39 @@ type QuoteFormProps = {
   compact?: boolean;
 };
 
-type FormState = {
+const tripTypes = [
+  ["one_way", "One way"],
+  ["round_trip", "Round trip"],
+  ["multi_leg", "Multi leg"],
+] as const;
+const categories = [
+  { value: "midsize", label: "Midsize", seats: 8 },
+  { value: "large", label: "Large", seats: 9 },
+  { value: "heavy", label: "Heavy", seats: 13 },
+  { value: "ulr", label: "Ultra long range (ULR)", seats: 16 },
+] as const;
+const maxLegs = 6;
+type TripType = (typeof tripTypes)[number][0];
+type Category = (typeof categories)[number]["value"];
+type Leg = {
   departure: string;
   departureIcao: string;
   destination: string;
   destinationIcao: string;
   date: string;
   time: string;
+};
+type AdditionalLeg = Leg & { id: number };
+
+function newLeg(id: number): AdditionalLeg {
+  return { id, departure: "", departureIcao: "", destination: "", destinationIcao: "", date: "", time: "" };
+}
+
+function legOnly({ departure, departureIcao, destination, destinationIcao, date, time }: Leg): Leg {
+  return { departure, departureIcao, destination, destinationIcao, date, time };
+}
+
+type FormState = Leg & {
   passengers: string;
   cargoType: string;
   name: string;
@@ -111,6 +139,12 @@ function AirportInput({ label, value, code, onChange }: {
 export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const submitting = useRef(false);
+  const nextLegId = useRef(3);
+  const categoryId = useId();
+  const [tripType, setTripType] = useState<TripType>("one_way");
+  const [returnLeg, setReturnLeg] = useState(() => newLeg(1));
+  const [followingLegs, setFollowingLegs] = useState<AdditionalLeg[]>(() => [newLeg(2)]);
+  const [category, setCategory] = useState<Category | "">("");
   const [stage, setStage] = useState<"mission" | "contact" | "success">("mission");
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -119,7 +153,20 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
   const recipient = mode === "cargo" ? siteConfig.email.cargo : siteConfig.email.charter;
   const today = useMemo(() => localDate(), []);
   const passengerCount = Number(form.passengers);
-  const groupHandled = mode === "charter" && Number.isFinite(passengerCount) && passengerCount > 18;
+  const groupHandled = mode === "charter" && Number.isFinite(passengerCount) && passengerCount > 16;
+  const selectedCategory = categories.find(item => item.value === category && passengerCount <= item.seats);
+  const tripLabel = tripTypes.find(([value]) => value === tripType)?.[1];
+  const outbound = legOnly(form);
+  const reversedReturn: Leg = {
+    departure: outbound.destination, departureIcao: outbound.destinationIcao,
+    destination: outbound.departure, destinationIcao: outbound.departureIcao,
+    date: returnLeg.date, time: returnLeg.time,
+  };
+  const legs = [outbound, ...(tripType === "round_trip" ? [reversedReturn] : tripType === "multi_leg" ? followingLegs.map(legOnly) : [])];
+
+  const updateFollowingLeg = (id: number, patch: Partial<Leg>) => {
+    setFollowingLegs(current => current.map(leg => leg.id === id ? { ...leg, ...patch } : leg));
+  };
 
   const update = <Key extends keyof FormState>(key: Key, value: FormState[Key]) => {
     setForm((current) => ({ ...current, [key]: value }));
@@ -130,13 +177,21 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
     if (!event.currentTarget.reportValidity()) return;
     if (submitting.current) return;
     if (stage === "mission") {
-      const origin = (form.departureIcao || form.departure).trim().toUpperCase();
-      const destination = (form.destinationIcao || form.destination).trim().toUpperCase();
-      if (origin === destination) {
-        setStatus("error"); setMessage("Choose different origin and destination airports."); return;
-      }
-      if (origin.length < 2 || destination.length < 2) {
-        setStatus("error"); setMessage("Enter a departure and destination city or airport."); return;
+      const tripLegs = mode === "cargo" ? [outbound] : legs;
+      for (const [index, leg] of tripLegs.entries()) {
+        const origin = (leg.departureIcao || leg.departure).trim().toUpperCase();
+        const destination = (leg.destinationIcao || leg.destination).trim().toUpperCase();
+        const prefix = tripLegs.length > 1 ? `Leg ${index + 1}: ` : "";
+        if (origin.length < 2 || destination.length < 2 || origin === destination) {
+          setStatus("error");
+          setMessage(`${prefix}Choose different departure and arrival airports.`);
+          return;
+        }
+        if (!leg.date || leg.date < today || (index > 0 && leg.date < tripLegs[index - 1].date)) {
+          setStatus("error");
+          setMessage(`${prefix}Choose a valid date that isn’t before the preceding flight.`);
+          return;
+        }
       }
       if (mode !== "cargo" && (!Number.isInteger(passengerCount) || passengerCount < 1 || passengerCount > 100)) {
         setStatus("error"); setMessage("Enter a whole number between 1 and 100 for passengers."); return;
@@ -161,7 +216,12 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
       const response = await fetch("/api/requests/", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ mode: groupHandled ? "group" : mode, ...form, source: window.location.pathname }),
+        body: JSON.stringify({
+          mode: groupHandled ? "group" : mode,
+          ...form,
+          ...(mode !== "cargo" ? { tripType, legs, ...(selectedCategory ? { aircraftCategory: selectedCategory.value } : {}) } : {}),
+          source: window.location.pathname,
+        }),
         signal: AbortSignal.timeout(45_000),
       });
       const payload = (await response.json()) as { ok?: boolean; reference?: string };
@@ -182,9 +242,12 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
   const subject = mode === "cargo" ? "Cargo charter request" : mode === "group" || groupHandled ? "Group charter request" : "Private charter request";
   const fallbackBody = [
     subject,
-    `From: ${form.departure}`, `To: ${form.destination}`, `Date: ${form.date}`,
-    ...(mode === "cargo" ? [`Cargo: ${form.cargoType}`] : [`Passengers: ${form.passengers}`]),
-    ...(form.time ? [`Local departure time: ${form.time}`] : []),
+    ...(mode === "cargo" ? [`From: ${form.departure}`, `To: ${form.destination}`, `Date: ${form.date}`, `Cargo: ${form.cargoType}`] : [
+      `Trip type: ${tripLabel}`,
+      ...legs.map((leg, index) => `Leg ${index + 1}: ${leg.departure || "Not specified"} to ${leg.destination || "Not specified"} · ${leg.date || "Date not specified"}${leg.time ? ` at ${leg.time} local` : ""}`),
+      `Passengers: ${form.passengers}`,
+      `Preferred aircraft category: ${selectedCategory?.label ?? "No preference"}`,
+    ]),
     `Name: ${form.name}`, `Mobile: ${form.phone}`, `Email: ${form.email}`, `Notes: ${form.notes}`,
   ].join("\n");
   const emailHref = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fallbackBody)}`;
@@ -192,8 +255,8 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
   const notesPlaceholder = mode === "cargo"
     ? "Dimensions, weight, handling requirements, timing, permits..."
     : mode === "group"
-      ? "Return date, baggage, equipment, ground transport, schedule..."
-      : "Return date, schedule flexibility, pets, baggage, ground coordination...";
+      ? "Baggage, equipment, ground transport, schedule..."
+      : "Schedule flexibility, pets, baggage, ground coordination...";
 
   if (stage === "success") {
     return (
@@ -202,7 +265,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
         <CheckCircleIcon size={32} aria-hidden="true" /><h3 tabIndex={-1} ref={element => { element?.focus(); }}>Your request has been sent.</h3>
         <p>This request does not reserve an aircraft. For a time-sensitive change, <a href={`mailto:${recipient}`}>email the EXJET flight desk</a> and include your reference.</p>
         <div className="quote-form__reference"><span>Reference</span><strong>{reference}</strong></div>
-        <button className="quote-form__new" type="button" onClick={() => { setForm({ ...initialState, passengers: mode === "group" ? "25" : "2" }); setReference(""); setStage("mission"); }}>
+        <button className="quote-form__new" type="button" onClick={() => { setForm({ ...initialState, passengers: mode === "group" ? "25" : "2" }); setReference(""); setTripType("one_way"); setReturnLeg(newLeg(1)); setFollowingLegs([newLeg(2)]); setCategory(""); nextLegId.current = 3; setStage("mission"); }}>
           Start another request <ArrowRightIcon size={18} aria-hidden="true" />
         </button>
       </section>
@@ -214,20 +277,66 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
       <p className="quote-form__progress">Step {stage === "mission" ? mode === "cargo" ? "1 of 2 · Shipment details" : "1 of 2 · Trip details" : "2 of 2 · Contact details"}</p>
       {stage === "mission" ? (
         <>
+          {mode === "cargo" ? null : <fieldset className={styles.tripType}>
+            <legend>Trip type</legend>
+            <div className={styles.tripChoice}>{tripTypes.map(([type,label]) => <label key={type}>
+              <input type="radio" name="tripType" value={type} checked={tripType === type} onChange={() => { setTripType(type); setStatus("idle"); setMessage(""); }} />
+              <span>{label}</span>
+            </label>)}</div>
+          </fieldset>}
           <div className="quote-form__row">
             <AirportInput label={mode === "cargo" ? "Origin" : "Departure"} value={form.departure} code={form.departureIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, departure: value, departureIcao: icao }))} />
-            <AirportInput label="Destination" value={form.destination} code={form.destinationIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, destination: value, destinationIcao: icao }))} />
+            <AirportInput label={mode === "cargo" ? "Destination" : "Arrival"} value={form.destination} code={form.destinationIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, destination: value, destinationIcao: icao }))} />
             <label><span>Date</span><input value={form.date} onChange={(event) => update("date", event.target.value)} name="date" type="date" min={today} required /></label>
             {mode === "cargo" ? (
               <label><span>Cargo type</span><input value={form.cargoType} onChange={(event) => update("cargoType", event.target.value)} name="cargoType" maxLength={160} required pattern={String.raw`.*\S.*`} title="Describe the cargo." placeholder="General description" /></label>
             ) : (
-              <label><span>Passengers</span><input value={form.passengers} onChange={(event) => update("passengers", event.target.value)} name="passengers" type="number" inputMode="numeric" min="1" max="100" step="1" required /></label>
+              <label><span>Passengers</span><input value={form.passengers} onChange={(event) => { const value = event.target.value; update("passengers", value); if (selectedCategory && Number(value) > selectedCategory.seats) setCategory(""); }} name="passengers" type="number" inputMode="numeric" min="1" max="100" step="1" required /></label>
             )}
           </div>
           {mode !== "cargo" ? <div className="quote-form__row"><label>
             <span>Local departure time (optional)</span>
             <input value={form.time} onChange={(event) => update("time", event.target.value)} name="time" type="time" />
           </label></div> : null}
+          {mode !== "cargo" && tripType === "round_trip" ? <fieldset className={styles.segment}>
+            <legend>Return flight</legend>
+            <p>{reversedReturn.departure || "Arrival airport"} to {reversedReturn.destination || "Departure airport"}</p>
+            <div className="quote-form__row">
+              <label><span>Return date</span><input type="date" min={form.date || today} value={returnLeg.date} onChange={event => setReturnLeg({ ...returnLeg, date: event.target.value })} required /></label>
+              <label><span>Local return time (optional)</span><input type="time" value={returnLeg.time} onChange={event => setReturnLeg({ ...returnLeg, time: event.target.value })} /></label>
+            </div>
+          </fieldset> : null}
+          {mode !== "cargo" && tripType === "multi_leg" ? <>
+            {followingLegs.map((leg,index) => <fieldset className={styles.segment} key={leg.id}>
+              <legend>Leg {index + 2}</legend>
+              <div className="quote-form__row">
+                <AirportInput label="Departure" value={leg.departure} code={leg.departureIcao} onChange={(value, icao = "") => updateFollowingLeg(leg.id, { departure: value, departureIcao: icao })} />
+                <AirportInput label="Arrival" value={leg.destination} code={leg.destinationIcao} onChange={(value, icao = "") => updateFollowingLeg(leg.id, { destination: value, destinationIcao: icao })} />
+                <label><span>Date</span><input type="date" min={(index ? followingLegs[index - 1].date : form.date) || today} value={leg.date} onChange={event => updateFollowingLeg(leg.id, { date: event.target.value })} required /></label>
+                <label><span>Local departure time (optional)</span><input type="time" value={leg.time} onChange={event => updateFollowingLeg(leg.id, { time: event.target.value })} /></label>
+              </div>
+              {followingLegs.length > 1 ? <div className={styles.segmentActions}>
+                <button type="button" aria-label={`Remove leg ${index + 2}`} onClick={() => setFollowingLegs(current => current.filter(item => item.id !== leg.id))}>Remove leg</button>
+              </div> : null}
+            </fieldset>)}
+            <div className={styles.segmentActions}>
+              {legs.length < maxLegs ? <button type="button" onClick={() => {
+                const added = newLeg(nextLegId.current++);
+                const previous = followingLegs.at(-1);
+                if (previous) Object.assign(added, { departure: previous.destination, departureIcao: previous.destinationIcao });
+                setFollowingLegs(current => [...current, added]);
+              }}>Add flight leg</button> : null}
+              <small>{legs.length} of {maxLegs} legs. For more stops, email the charter desk.</small>
+            </div>
+          </> : null}
+          {mode === "cargo" ? null : <div className={styles.aircraft}>
+            <label htmlFor={categoryId}>Preferred aircraft category</label>
+            <select id={categoryId} value={selectedCategory?.value ?? ""} onChange={event => setCategory(event.target.value as Category | "")} aria-describedby={`${categoryId}-capacity`}>
+              <option value="">No preference</option>
+              {categories.map(item => <option key={item.value} value={item.value} disabled={passengerCount > item.seats}>{item.label} · up to {item.seats} passengers</option>)}
+            </select>
+            <small id={`${categoryId}-capacity`}>{passengerCount > 16 ? "Larger group? Leave this as No preference so we can source group options." : "Planning capacities only. The actual aircraft configuration may vary."}</small>
+          </div>}
           <div className="quote-form__submit">
             <button className="button button--dark" type="submit">
               Continue to contact details <ArrowRightIcon size={18} aria-hidden="true" />
@@ -240,9 +349,15 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
         <>
           <div className="quote-form__mission-summary">
             <button type="button" disabled={status === "loading"} onClick={() => { setStatus("idle"); setMessage(""); setStage("mission"); }}><ArrowLeftIcon size={18} aria-hidden="true" /> {mode === "cargo" ? "Edit shipment" : "Edit trip"}</button>
-            <p><strong>{form.departure}</strong><ArrowRightIcon size={18} aria-hidden="true" /><strong>{form.destination}</strong></p>
-            <small>{form.date} · {mode === "cargo" ? form.cargoType : `${form.passengers} traveler${form.passengers === "1" ? "" : "s"}`}</small>
+            {mode === "cargo" ? <>
+              <p><strong>{form.departure}</strong><ArrowRightIcon size={18} aria-hidden="true" /><strong>{form.destination}</strong></p>
+              <small>{form.date} · {form.cargoType}</small>
+            </> : <>
+              <small>{tripLabel} · {form.passengers} traveler{form.passengers === "1" ? "" : "s"}{selectedCategory ? ` · ${selectedCategory.label}` : ""}</small>
+              <ol className={styles.summaryList}>{legs.map((leg,index) => <li key={index}>{leg.departure} to {leg.destination} · {leg.date}{leg.time ? ` at ${leg.time} local` : ""}</li>)}</ol>
+            </>}
           </div>
+          {mode !== "cargo" ? <CharterEstimate legs={legs} passengers={passengerCount} aircraftCategory={selectedCategory?.value} /> : null}
           <div className="quote-form__row quote-form__row--identity">
             <label><span>Name</span><input value={form.name} onChange={(event) => update("name", event.target.value)} name="name" minLength={2} maxLength={100} pattern={String.raw`.*\S.*`} title="Enter your name." autoComplete="name" required placeholder="Your name" /></label>
             <label><span>Mobile</span><input value={form.phone} onChange={(event) => update("phone", event.target.value)} name="phone" maxLength={40} type="tel" inputMode="tel" autoComplete="tel" required placeholder="+1" /></label>

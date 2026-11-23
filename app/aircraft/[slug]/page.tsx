@@ -8,7 +8,8 @@ import aircraftGuides from "@/data/aircraft-guides.json";
 import { PageOutline } from "@/components/PageOutline";
 import { AircraftDetail } from "@/components/AircraftDetail";
 import { ButtonLink } from "@/components/ButtonLink";
-import { SectionIntro } from "@/components/SectionIntro";
+import Link from "next/link";
+import styles from "@/components/PublicAircraftMarket.module.css";
 import { aircraft, getAircraft } from "@/data/aircraft";
 import { buildDynamicMetadata } from "@/data/seo";
 import { absoluteUrl } from "@/data/site";
@@ -51,23 +52,34 @@ export default async function AircraftDetailPage({ params }: PageProps) {
   return (
     <>
       <StructuredData data={breadcrumb} />
-      <AircraftDetail item={item} />
-      {reference ? <nav className="aircraft-detail-jump" aria-label={`${item.name} page sections`}>
-        <a href="#aircraft-specifications">Specifications <span aria-hidden="true">↓</span></a>
-        {reference.floorplans?.length ? <a href="#cabin-layout">Cabin layouts <span aria-hidden="true">↓</span></a> : null}
-      </nav> : null}
-      <section className="section aircraft-detail-copy">
-        <div className="shell">
-          <SectionIntro eyebrow={`${item.maker} · ${item.category}`} title="At a glance." copy={item.summary} />
-          <div className="spec-grid">
-            <div><span>Passengers</span><strong>{item.typical.passengers}</strong></div>
-            <div><span>Range</span><strong>{item.typical.range}</strong></div>
-            <div><span>Baggage</span><strong>{item.typical.baggage}</strong></div>
-            <div><span>Cabin</span><strong>{item.typical.cabin}</strong></div>
+      <section className={styles.wrap}>
+        <nav className={styles.back} aria-label="Breadcrumb"><Link href="/aircraft">← All aircraft</Link></nav>
+        <div className={`${styles.split} ${styles.aircraftSplit}`}>
+          <div>
+            {item.scenes.some(scene => scene.image || scene.gallery?.length) && <div className={styles.gallery}><AircraftDetail item={item} mediaOnly /></div>}
+            <div className={styles.profileCopy}>
+              <p className={styles.label}>Aircraft profile</p>
+              <h2 className={styles.sectionTitle}>About this aircraft</h2>
+              <p>{item.summary}</p>
+              {reference && <nav className={styles.strip} aria-label={`${item.name} page sections`}>
+                <a href="#aircraft-specifications">Specifications <span aria-hidden="true">↓</span></a>
+                {!!reference.floorplans?.length && <a href="#cabin-layout">Cabin layouts <span aria-hidden="true">↓</span></a>}
+              </nav>}
+              <BrokerNotice prominent />
+            </div>
           </div>
-          <p className="specification-note">Specifications are typical for the type. Actual configuration varies by aircraft. Range and availability depend on route, payload, weather, and operating conditions.</p>
-          <ButtonLink href={`/contact?aircraft=${item.slug}`}>Request this aircraft</ButtonLink>
-          <BrokerNotice prominent />
+          <div className={styles.summary}>
+            <p className={styles.label}>{item.maker} · {item.category}</p>
+            <h1>{item.name} charter</h1>
+            <dl className={styles.facts}>
+              <div><dt>Passengers</dt><dd>{item.typical.passengers}</dd></div>
+              <div><dt>Range</dt><dd>{item.typical.range}</dd></div>
+              <div><dt>Baggage</dt><dd>{item.typical.baggage}</dd></div>
+              <div><dt>Cabin</dt><dd>{item.typical.cabin}</dd></div>
+            </dl>
+            <ButtonLink href={`/contact?aircraft=${item.slug}`}>Request this aircraft</ButtonLink>
+            <p className={styles.note}>Specifications are typical for the type. Actual configuration varies by aircraft. Range and availability depend on route, payload, weather, and operating conditions.</p>
+          </div>
         </div>
       </section>
       <AircraftReference slug={slug} />

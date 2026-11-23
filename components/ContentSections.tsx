@@ -1,5 +1,6 @@
 import Link from "next/link";
 import type { ContentSection } from "@/data/content-types";
+import { isRetiredPublicPath } from "@/data/public-route-retirements";
 import { StructuredData } from "@/components/StructuredData";
 
 export function ContentSections({ sections }: { sections: ContentSection[] }) {
@@ -21,7 +22,7 @@ export function ContentSections({ sections }: { sections: ContentSection[] }) {
         </div>
       ) : null}
       {section.bullets?.length ? <ul>{section.bullets.map(text => <li key={text}>{text}</li>)}</ul> : null}
-      {section.links?.map(link => <p key={link.path}><Link href={link.path}>{link.label}</Link></p>)}
+      {section.links?.filter(link => !isRetiredPublicPath(link.path)).map(link => <p key={link.path}><Link href={link.path}>{link.label}</Link></p>)}
     </section>
   ));
 }

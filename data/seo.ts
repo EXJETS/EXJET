@@ -10,8 +10,8 @@ type SeoEntry = {
 
 export const pageSeo = {
   "/": {
-    title: "EXJET | Private Jet Charter & Business Aviation",
-    description: "EXJET is a Dallas-based aviation solutions company arranging nationwide private jet charter, group travel and air cargo through licensed carriers.",
+    title: "EXJET | Private Jet Charter",
+    description: "EXJET is a Dallas based air charter broker arranging private passenger flights, group travel and air cargo nationwide through licensed carriers.",
   },
   "/charter": {
     title: "Request a Private Jet Charter Quote | Flight Search | EXJET",
@@ -44,11 +44,11 @@ export const pageSeo = {
   },
   "/why-exjet": {
     title: "Private Aviation Consulting & Charter Planning | EXJET",
-    description: "Learn how EXJET coordinates aircraft selection, operator review and charter planning. Explore aviation consulting and the questions to ask before booking.",
+    description: "Learn how EXJET coordinates aircraft selection, operator review and charter planning. See what to ask before booking a charter.",
   },
   "/about": {
-    title: "About EXJET | Business & Commercial Aviation Solutions",
-    description: "EXJET is a Dallas-based aviation solutions company serving business and commercial aviation, from charter and leasing to ownership and technical support.",
+    title: "About EXJET | Private Jet Charter",
+    description: "EXJET is a Dallas based air charter broker for passenger, group and cargo flights. Learn how EXJET works with licensed aircraft operators.",
   },
   "/faq": {
     title: "Private Jet Charter FAQ | EXJET",
@@ -56,7 +56,7 @@ export const pageSeo = {
   },
   "/contact": {
     title: "Contact EXJET | Aviation Solutions",
-    description: "Contact EXJET for business and commercial aviation solutions. Discuss passenger and cargo charter, leasing, ACMI, ownership, crew or technical requirements.",
+    description: "Contact EXJET for a private passenger, group or cargo charter request, empty leg inquiry, or general assistance.",
   },
   "/privacy": {
     noindex: true,

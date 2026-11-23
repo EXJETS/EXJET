@@ -1,0 +1,21 @@
+.estimate {
+  display: grid;
+  gap: 1rem;
+  padding: 1rem;
+  border: 1px solid #d1d5db;
+  border-radius: 0.75rem;
+  background: #f5f6f7;
+  color: #151719;
+}
+.heading { display: grid; gap: 0.25rem; }
+.heading h3, .heading p { margin: 0; }
+.heading h3 { font-size: .875rem; font-weight: 650; }
+.heading p { font-size: .95rem; }
+.heading strong { font-size: clamp(1.35rem, 5vw, 1.95rem); line-height: 1.2; }
+.heading small, .map figcaption { font-size: .8rem; color: #444b51; }
+.map { margin: 0; }
+.map svg { display: block; width: 100%; max-height: 11rem; border-radius: .5rem; background: #1c2228; }
+.map figcaption { margin-top: .35rem; }
+.grid { stroke: #535e69; stroke-width: 1; }
+.route { stroke: #cbdffc; stroke-width: 2; }
+.airport { fill: #fff; stroke: #497396; stroke-width: 1.35; }
