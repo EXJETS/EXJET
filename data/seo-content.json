@@ -52,7 +52,7 @@
       {
         "heading": "Popular itinerary examples",
         "paragraphs": [
-          "Compare a few different mission profiles before requesting a quote. A short Houston business trip is often influenced by minimum charges; a New York itinerary needs time-zone and ground-transfer planning; an Aspen visit needs mountain-airport flexibility."
+          "Compare a few different mission profiles before requesting a quote. A short Houston business trip is often influenced by minimum charges; a New York itinerary needs time-zone and ground-transfer planning. The ski routes below use three different mountain airports: Aspen (ASE), Eagle County for Vail and Beaver Creek (EGE), and Jackson Hole (JAC)."
         ],
         "links": [
           {
@@ -70,6 +70,14 @@
           {
             "label": "Dallas to Aspen",
             "path": "/routes/dallas-to-aspen"
+          },
+          {
+            "label": "Dallas to Vail and Beaver Creek",
+            "path": "/routes/dallas-to-vail"
+          },
+          {
+            "label": "Dallas to Jackson Hole",
+            "path": "/routes/dallas-to-jackson-hole"
           },
           {
             "label": "Dallas to Cabo",
@@ -566,39 +574,55 @@
   {
     "path": "/destinations/aspen",
     "title": "Aspen private jet charter",
-    "description": "Plan aircraft charter to Aspen with airport, baggage and transfer guidance. Explore relevant route examples and request a trip-specific proposal from EXJET.",
+    "description": "Plan aircraft charter to Aspen with ASE curfew, baggage, and the 2027 runway closure in view. The Dallas route guide has flight times and a quote request.",
     "kind": "destination",
     "kicker": "EXJET flight planning",
     "sections": [
       {
         "heading": "Mountain arrivals and ski equipment",
         "paragraphs": [
-          "Build the trip around the accommodation address and the time you need to be there. Aspen’s mountain setting, aircraft limitations and operating procedures require trip-specific review. An alternative airport is only a practical solution if you also accept the ground transfer."
-        ]
-      },
-      {
-        "heading": "Coordinate the full stay",
-        "paragraphs": [
-          "List skis, snowboards and bulky winter bags before an aircraft is proposed. For a group staying in different properties, plan the transfer stops and vehicle capacity. Discuss a weather-driven change early rather than relying on a tightly scheduled arrival."
-        ]
-      },
-      {
-        "heading": "Aircraft, costs and confirmation",
-        "paragraphs": [
-          "The suitable aircraft depends on passengers, bags, dates and the operating carrier’s assessment. Review the complete trip price rather than only an hourly reference. Include a return window, any onward sectors and the conditions under which your plans could change."
+          "Build the trip around the accommodation address and the time you need to be there. Aspen’s elevation, curfew, and wingspan limit require a trip-specific review. An alternate airport only helps if the group accepts the drive."
         ],
         "links": [
           {
+            "label": "Dallas to Aspen charter",
+            "path": "/routes/dallas-to-aspen"
+          },
+          {
             "label": "Aspen airport guide",
             "path": "/airports/kase"
+          }
+        ]
+      },
+      {
+        "heading": "2027 ASE runway closure",
+        "paragraphs": [
+          "ASE is scheduled to close from the night of 4 April 2027 through 19 November 2027 for runway reconstruction. The 2026–27 ski season can finish at Aspen. Summer 2027 and the start of the next winter need another field. Eagle County, Rifle, and Grand Junction are the alternates to discuss, with a ground transfer."
+        ],
+        "links": [
+          {
+            "label": "Eagle County and Vail",
+            "path": "/destinations/vail"
+          },
+          {
+            "label": "EGE airport guide",
+            "path": "/airports/kege"
+          }
+        ]
+      },
+      {
+        "heading": "Aircraft, costs, and confirmation",
+        "paragraphs": [
+          "The suitable aircraft depends on passengers, bags, dates, and the operating carrier’s assessment. Review the complete trip price rather than an hourly reference. Include a return window and what can change if the curfew or the weather moves the arrival."
+        ],
+        "links": [
+          {
+            "label": "Request a Dallas–Aspen quote",
+            "path": "/charter/?from=KDAL&to=KASE"
           },
           {
             "label": "Charter pricing and fees",
             "path": "/pricing"
-          },
-          {
-            "label": "Request your itinerary",
-            "path": "/charter"
           }
         ]
       }
@@ -607,44 +631,52 @@
       "name": "Destinations",
       "path": "/destinations"
     },
-    "seoTitle": "Aspen Private Jet Charter & Flight Planning | EXJET"
+    "seoTitle": "Aspen Private Jet Charter & Flight Planning | EXJET",
+    "updated": "2026-11-23",
+    "quotePath": "/charter/?from=KDAL&to=KASE"
   },
   {
     "path": "/destinations/vail",
     "title": "Vail and Beaver Creek private jet charter",
-    "description": "Plan aircraft charter to Vail and Beaver Creek with airport, baggage and transfer guidance. Explore relevant route examples and request a trip-specific proposal from EXJET.",
+    "description": "Plan aircraft charter to Vail and Beaver Creek through Eagle County (EGE). One airport serves both resorts; the Dallas route guide covers flight time and the quote.",
     "kind": "destination",
     "kicker": "EXJET flight planning",
     "sections": [
       {
         "heading": "Eagle County and the resort transfer",
         "paragraphs": [
-          "Use Eagle County as the airport reference and specify the actual Vail or Beaver Creek destination. The flight and the onward mountain drive should be planned together, with realistic room for winter road conditions."
+          "Use Eagle County as the airport and name Vail or Beaver Creek as the destination. There is no jet airport in Vail Village. Typical drives are about 30–37 miles to Vail and about 28 miles to Beaver Creek or Avon, longer in a storm. EXJET does not operate the cars."
+        ],
+        "links": [
+          {
+            "label": "Dallas to Vail and Beaver Creek",
+            "path": "/routes/dallas-to-vail"
+          },
+          {
+            "label": "Eagle County airport guide",
+            "path": "/airports/kege"
+          }
         ]
       },
       {
         "heading": "Coordinate the full stay",
         "paragraphs": [
-          "Give the group size, ski equipment and any child-seat requirements. Tell EXJET whether the last ski day is flexible and whether guests may return separately. Confirm the proposed aircraft, airport handling and transfer arrangements before departure."
+          "Give the group size, ski equipment, and any child-seat requirements. Say whether the last ski day is flexible. Vail’s scheduled 2026–27 season runs from 13 November 2026 to 11 April 2027 on public lists. Beaver Creek’s opening is listed as either 25 or 27 November 2026; confirm it on beavercreek.com. The listed close is 11 April 2027."
         ]
       },
       {
-        "heading": "Aircraft, costs and confirmation",
+        "heading": "Aircraft, costs, and confirmation",
         "paragraphs": [
-          "The suitable aircraft depends on passengers, bags, dates and the operating carrier’s assessment. Review the complete trip price rather than only an hourly reference. Include a return window, any onward sectors and the conditions under which your plans could change."
+          "EGE’s longer runway can accept a wider set of cabins than Aspen, still subject to winter payload and the operator’s performance plan. Review the written trip total, the return window, and what happens if the field is below minimums."
         ],
         "links": [
           {
-            "label": "Vail and Beaver Creek airport guide",
-            "path": "/airports/kege"
+            "label": "Request a Dallas–Eagle County quote",
+            "path": "/charter/?from=KDAL&to=KEGE"
           },
           {
             "label": "Charter pricing and fees",
             "path": "/pricing"
-          },
-          {
-            "label": "Request your itinerary",
-            "path": "/charter"
           }
         ]
       }
@@ -653,7 +685,67 @@
       "name": "Destinations",
       "path": "/destinations"
     },
-    "seoTitle": "Vail & Beaver Creek Private Jet Charter | EXJET"
+    "seoTitle": "Vail & Beaver Creek Private Jet Charter | EXJET",
+    "updated": "2026-11-23",
+    "quotePath": "/charter/?from=KDAL&to=KEGE"
+  },
+  {
+    "path": "/destinations/jackson-hole",
+    "title": "Jackson Hole private jet charter",
+    "description": "Plan aircraft charter to Jackson Hole with JAC runway, curfew, and transfer guidance. Dallas flight times and a trip-specific quote are on the route guide.",
+    "kind": "destination",
+    "kicker": "EXJET flight planning",
+    "updated": "2026-11-23",
+    "quotePath": "/charter/?from=KDAL&to=KJAC",
+    "sections": [
+      {
+        "heading": "When Jackson Hole is the trip",
+        "paragraphs": [
+          "Use this page to frame the stay, and the Dallas route guide for flight time and aircraft fit. Jackson Hole works as a ski week or a summer valley stay. The airport is inside Grand Teton National Park, so the arrival has limits a lifestyle guide does not cover: a 6,300-foot runway, a voluntary 21:30–07:00 curfew, and limited overnight parking."
+        ],
+        "links": [
+          {
+            "label": "Dallas to Jackson Hole charter",
+            "path": "/routes/dallas-to-jackson-hole"
+          },
+          {
+            "label": "JAC airport guide",
+            "path": "/airports/kjac"
+          },
+          {
+            "label": "Jackson Hole travel journal",
+            "path": "/travel-journal/jackson-hole"
+          }
+        ]
+      },
+      {
+        "heading": "Ski season and the rest of the year",
+        "paragraphs": [
+          "Jackson Hole Mountain Resort is scheduled to open 27 November 2026 and close 4 April 2027. Confirm those dates on the resort site; they can move. Summer is a separate peak for the valley and the parks. Choose the season before you choose the aircraft, and keep the first activity off the exact landing time."
+        ]
+      },
+      {
+        "heading": "Aircraft, the airport, and the quote",
+        "paragraphs": [
+          "Midsize and super-midsize cabins are the usual place to start. A heavy jet needs the operator’s landing and takeoff numbers for 6,300 feet at about 6,451 feet of elevation, with fuel and ski bags on the return. EXJET does not operate the aircraft. Request a written quote for the dates, the Dallas airport you prefer, and the town or Teton Village address."
+        ],
+        "links": [
+          {
+            "label": "Request a Dallas–Jackson Hole quote",
+            "path": "/charter/?from=KDAL&to=KJAC"
+          },
+          {
+            "label": "Charter pricing and fees",
+            "path": "/pricing"
+          }
+        ]
+      }
+    ],
+    "parent": {
+      "name": "Destinations",
+      "path": "/destinations"
+    },
+    "seoTitle": "Jackson Hole Private Jet Charter & JAC Planning | EXJET"
   },
   {
     "path": "/destinations/cabo",

@@ -32,4 +32,6 @@ export type ContentPage = {
   draft?: boolean;
   noindex?: boolean;
   faqs?: { question: string; answer: string }[];
+  /** Prefills `/charter/` when this page has a known route. */
+  quotePath?: string;
 };

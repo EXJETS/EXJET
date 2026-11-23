@@ -61,6 +61,20 @@
         "paragraphs": [
           "For an itinerary that includes an international arrival, ask the operating team to confirm customs arrangements before committing to the schedule. Dallas publishes a dedicated general aviation customs page with service conditions and capacity limits. These arrangements are separate from the private terminal and should be reconfirmed for your trip.",
           "The operator confirms current airport restrictions, weather, parking and the aircraft’s performance for your particular flight. These passenger guides do not replace current aeronautical information or the operating crew’s flight plan."
+        ],
+        "links": [
+          {
+            "label": "Dallas to Aspen",
+            "path": "/routes/dallas-to-aspen"
+          },
+          {
+            "label": "Dallas to Vail and Beaver Creek",
+            "path": "/routes/dallas-to-vail"
+          },
+          {
+            "label": "Dallas to Jackson Hole",
+            "path": "/routes/dallas-to-jackson-hole"
+          }
         ]
       }
     ],
@@ -347,6 +361,18 @@
           {
             "label": "Understand charter pricing",
             "path": "/pricing"
+          },
+          {
+            "label": "Dallas to Aspen",
+            "path": "/routes/dallas-to-aspen"
+          },
+          {
+            "label": "Dallas to Vail and Beaver Creek",
+            "path": "/routes/dallas-to-vail"
+          },
+          {
+            "label": "Dallas to Jackson Hole",
+            "path": "/routes/dallas-to-jackson-hole"
           }
         ]
       }
@@ -512,7 +538,7 @@
     "icao": "KASE",
     "iata": "ASE",
     "timezone": "America/Denver",
-    "description": "Aspen/Pitkin County Airport serves Aspen and the surrounding mountain area. Mountain weather, aircraft limitations and operating-hour restrictions make a flexible arrival plan especially valuable for charter travelers.",
+    "description": "Aspen/Pitkin County Airport serves Aspen at about 7,838 feet, with a night curfew and a 2027 runway closure. Mountain performance and the attended day belong in the charter plan.",
     "location": "Aspen",
     "planningNotes": [],
     "runways": [],
@@ -520,30 +546,41 @@
       {
         "heading": "Choosing your arrival",
         "paragraphs": [
-          "Start with the resort or residence, travel date and latest useful arrival. Tell EXJET whether you can leave earlier, travel the previous day or accept a different airport. An alternate arrival is only useful if the group is comfortable with the resulting ground journey."
+          "Start with the resort or residence, the travel date, and the latest useful arrival. Aspen/Pitkin County (ASE / KASE) is a high-altitude mountain airport, not a suburban field with spare runway. Tell EXJET whether you can leave earlier, travel the previous day, or accept Eagle County, Rifle, or Grand Junction and the drive that follows."
         ]
       },
       {
-        "heading": "Private terminal and ground transfer",
+        "heading": "Runway, elevation, and the 2027 closure",
         "paragraphs": [
-          "List skis, snowboards, boots and all checked luggage separately from the passenger count. Bulky sports equipment can determine the suitable aircraft and transfer vehicle. Confirm storage dimensions on the proposed aircraft instead of relying on a category label."
+          "Elevation is about 7,838 feet. Runway 15/33 is published as 8,006 by 100 feet, with 7,006 feet of landing distance available in both directions because of a displaced threshold on runway 33 and reduced takeoff distances on runway 15. The airport states a 95-foot wingspan limit. FAA remarks warn of terrain and recommend a performance review. These figures are from the FAA display effective 29 October 2026 through 26 November 2026.",
+          "The airport is scheduled to close for runway reconstruction from 11:00 p.m. on 4 April 2027 through 7:00 p.m. on 19 November 2027. The 2026–27 ski season can still use ASE. During the closure, the alternates to discuss are EGE, Rifle (RIL), and Grand Junction (GJT), with a ground transfer. After the project the runway is planned to widen and the wingspan limit is planned to rise. Confirm the current notice before you plan summer 2027 or the start of the 2027–28 season."
+        ],
+        "links": [
+          {
+            "label": "Dallas to Aspen route guide",
+            "path": "/routes/dallas-to-aspen"
+          },
+          {
+            "label": "Eagle County alternate",
+            "path": "/airports/kege"
+          }
         ]
       },
       {
-        "heading": "Schedule and operating considerations",
+        "heading": "Curfew and the private terminal",
         "paragraphs": [
-          "Aspen publishes aircraft restrictions, approach information and operating procedures for flight crews. The operator must confirm suitability for the actual aircraft, payload and conditions. Ask about the agreed process if weather or operating restrictions require a delay or a different airport."
+          "The field is closed 2300–0700 MST. Attendance is 0700–2300, there are no departures after 2230 MST, and Stage I operations are prohibited. Night general aviation has additional equipment and experience rules. Atlantic Aviation at 69 East Airport Road is the FBO named in public sources. Confirm hours, the two-hour staging notice, and holiday ramp limits for your dates. Give the driver that street address, not the airline terminal."
         ]
       },
       {
         "heading": "What to include in your request",
         "paragraphs": [
-          "Send the dates, departure airport, passenger count and full baggage list. State whether you need catering, connectivity, mobility support or a return flight on the same aircraft. Ask for the complete written trip price and the conditions for any change before confirming."
+          "Send the dates, the Dallas-area departure airport, the passenger count, and a separate list of skis, boards, and bags. State the return window and what can move if weather or the curfew closes the arrival. Ask for the written trip total before you confirm. The operator, not the aircraft name, decides whether the flight can be flown."
         ],
         "links": [
           {
-            "label": "Request a trip-specific charter quote",
-            "path": "/charter"
+            "label": "Request an ASE quote",
+            "path": "/charter/?to=KASE"
           },
           {
             "label": "Understand charter pricing",
@@ -554,22 +591,43 @@
     ],
     "sources": [
       {
-        "label": "Aspen/Pitkin County Airport — official airport information",
-        "url": "https://www.aspenairport.com/pilotinformation/"
+        "label": "FAA airport display, KASE (chart data effective 29 Oct–26 Nov 2026)",
+        "url": "https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=KASE"
+      },
+      {
+        "label": "Aspen/Pitkin County Airport — curfew",
+        "url": "https://www.aspenairport.com/pilotinformation/operating-procedures/curfew/"
+      },
+      {
+        "label": "Aspen Airport — runway reconstruction FAQs",
+        "url": "https://www.aspenairport.com/runway-reconstruction-faqs/"
+      },
+      {
+        "label": "Atlantic Aviation ASE",
+        "url": "https://www.atlanticaviation.com/locations/ASE"
       }
     ],
     "seoTitle": "Aspen Airport (ASE) Private Jet Charter Guide | EXJET",
-    "metaDescription": "Plan aircraft charter at Aspen/Pitkin County Airport (ASE). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "metaDescription": "Plan aircraft charter at Aspen/Pitkin County Airport (ASE). Review the curfew, runway limits, and 2027 closure, then request a quote from EXJET.",
     "faqs": [
       {
         "question": "Where do I meet my charter flight at ASE?",
-        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+        "answer": "Use the FBO and street address the operator confirms. Atlantic Aviation at 69 East Airport Road is the facility named in public sources. Share those instructions with your driver."
       },
       {
         "question": "Can every business jet use this airport?",
-        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+        "answer": "No. Elevation near 7,838 feet, a 7,006-foot landing distance, a 95-foot wingspan limit, payload, and the return with fuel and ski bags all have to be checked for the specific aircraft."
+      },
+      {
+        "question": "What time can a charter arrive or depart?",
+        "answer": "The airport is closed 2300–0700 MST, with no departures after 2230. Plan inside the attended day and have the operator confirm the curfew and any night restrictions for your dates."
+      },
+      {
+        "question": "Will ASE be open for the 2027 ski season?",
+        "answer": "The 2026–27 season can use ASE. A full closure is scheduled from the night of 4 April 2027 through 19 November 2027 for runway reconstruction. Summer 2027 and the start of the following winter need an alternate."
       }
-    ]
+    ],
+    "dateChecked": "2026-11-23"
   },
   {
     "slug": "kege",
@@ -579,7 +637,7 @@
     "icao": "KEGE",
     "iata": "EGE",
     "timezone": "America/Denver",
-    "description": "Eagle County Regional Airport is a gateway for Vail, Beaver Creek and the wider Eagle Valley. Charter planning should connect the flight with the mountain transfer and the baggage requirements of the whole group.",
+    "description": "Eagle County Regional Airport is the shared gateway for Vail and Beaver Creek. Charter planning should connect the 9,000-foot runway with the mountain transfer and winter snow-removal hours.",
     "location": "Vail / Eagle County",
     "planningNotes": [],
     "runways": [],
@@ -587,30 +645,37 @@
       {
         "heading": "Choosing your arrival",
         "paragraphs": [
-          "Provide the precise resort, chalet or meeting location. Vail and Beaver Creek are separate destinations, and the airport arrival is not the end of the journey. Confirm the transfer route and allow room for winter road conditions when planning an evening appointment."
+          "Eagle County Regional Airport (EGE / KEGE) in Gypsum is the airport for both Vail and Beaver Creek. There is no jet field in Vail Village. Provide the precise resort, chalet, or meeting location. The flight and the mountain drive are one itinerary, and winter road conditions need room in the schedule."
         ]
       },
       {
-        "heading": "Private terminal and ground transfer",
+        "heading": "Runway, hours, and winter nights",
         "paragraphs": [
-          "Eagle County lists Signature Aviation for general aviation handling. The operator should confirm the assigned facility, parking and services for the trip. Include ski equipment, child seats, mobility assistance and vehicle capacity in the ground-service brief."
+          "Elevation is about 6,547 feet. Runway 07/25 is 9,000 by 150 feet, with a displaced threshold on runway 25 that leaves 8,000 feet of landing distance on that end. The tower is published 0700–1900 and attendance 0600–2100. From November through April, snow removal and runway monitoring are not guaranteed from 11:00 p.m. to 6:00 a.m. MST. Night operations are discouraged for crews unfamiliar with the field. Figures follow the FAA display effective 29 October 2026 through 26 November 2026."
+        ],
+        "links": [
+          {
+            "label": "Dallas to Vail and Beaver Creek",
+            "path": "/routes/dallas-to-vail"
+          }
         ]
       },
       {
-        "heading": "Schedule and operating considerations",
+        "heading": "Private terminal and the two resorts",
         "paragraphs": [
-          "Mountain airport suitability depends on the aircraft and conditions, not simply the published runway length. Establish the acceptable arrival window and any alternative airport before departure. Ask how an itinerary change would affect crew arrangements, ground transfers and price."
+          "Signature Aviation at 871 Cooley Mesa Road, Gypsum, is the FBO to name. Older guides may say Vail Valley Jet Center. Published hours are 0600–2100 local, with call-out on request. Confirm that street address before the car is booked.",
+          "Vail Village and Lionshead are typically about 30–37 miles from the airport. Beaver Creek and Avon are closer, about 28 miles and roughly 40 minutes when the road is clear. Both figures are typical, weather-dependent estimates. EXJET does not operate the cars. A Saturday airline peak shares the single runway with charter traffic; a midweek arrival is easier when the passenger can choose."
         ]
       },
       {
         "heading": "What to include in your request",
         "paragraphs": [
-          "Send the dates, departure airport, passenger count and full baggage list. State whether you need catering, connectivity, mobility support or a return flight on the same aircraft. Ask for the complete written trip price and the conditions for any change before confirming."
+          "Send dates, the Dallas departure airport if that is the origin, passenger count, ski equipment, and whether the stay is Vail or Beaver Creek. Ask what happens if EGE is below minimums. Rifle, the Denver area, or a delay are the usual conversations. Aspen is only an alternate when the aircraft is approved for ASE and the curfew still works."
         ],
         "links": [
           {
-            "label": "Request a trip-specific charter quote",
-            "path": "/charter"
+            "label": "Request an EGE quote",
+            "path": "/charter/?to=KEGE"
           },
           {
             "label": "Understand charter pricing",
@@ -621,20 +686,137 @@
     ],
     "sources": [
       {
-        "label": "Eagle County Regional Airport — official airport information",
-        "url": "https://www.flyvail.com/general-aviation/"
+        "label": "FAA airport display, KEGE (chart data effective 29 Oct–26 Nov 2026)",
+        "url": "https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=KEGE"
+      },
+      {
+        "label": "FlyEGE — airport statistics",
+        "url": "https://flyege.com/about-ege/news/statistics/"
+      },
+      {
+        "label": "Signature Aviation EGE",
+        "url": "https://www.signatureaviation.com/locations/EGE"
       }
     ],
     "seoTitle": "Eagle County Airport (EGE) Private Jet Charter | EXJET",
-    "metaDescription": "Plan aircraft charter at Eagle County Regional Airport (EGE). Review private terminal, transfer and itinerary considerations, then request a quote from EXJET.",
+    "metaDescription": "Plan aircraft charter at Eagle County Regional Airport (EGE) for Vail and Beaver Creek. Review runway, winter hours, and transfers, then request a quote from EXJET.",
     "faqs": [
       {
         "question": "Where do I meet my charter flight at EGE?",
-        "answer": "Use the FBO and street address confirmed by the aircraft operator. Private aircraft may be handled separately from the airline terminal; share the confirmed instructions with your driver."
+        "answer": "Use the FBO and street address the operator confirms. Signature Aviation at 871 Cooley Mesa Road in Gypsum is the facility named in current public sources."
       },
       {
         "question": "Can every business jet use this airport?",
-        "answer": "No aircraft is guaranteed suitable from its category or runway length alone. The operating carrier must check aircraft performance, payload, weather, restrictions and required permissions for the flight."
+        "answer": "The 9,000-foot runway accepts a wider range than Aspen, including many heavy jets, but winter payload, density altitude, and the return still have to be calculated. The operator confirms the aircraft."
+      },
+      {
+        "question": "Do Vail and Beaver Creek use different airports?",
+        "answer": "No. Both use Eagle County (EGE). The resort name matters for the car, not for a second flight."
+      },
+      {
+        "question": "Are overnight snow operations guaranteed?",
+        "answer": "No. From November through April, snow removal and runway monitoring are not guaranteed between 11:00 p.m. and 6:00 a.m. MST. An early departure should allow for that."
+      }
+    ],
+    "dateChecked": "2026-11-23"
+  },
+  {
+    "slug": "kjac",
+    "name": "Jackson Hole Airport",
+    "city": "Jackson Hole",
+    "citySlug": "jackson-hole",
+    "icao": "KJAC",
+    "iata": "JAC",
+    "timezone": "America/Denver",
+    "description": "Jackson Hole Airport is the only U.S. commercial airport entirely inside a national park. Charter planning has to respect a 6,300-foot runway, a voluntary night curfew, and limited ramp space.",
+    "location": "Jackson, Wyoming",
+    "planningNotes": [],
+    "runways": [
+      {
+        "designation": "01/19",
+        "lengthFeet": 6300
+      }
+    ],
+    "dateChecked": "2026-11-23",
+    "sections": [
+      {
+        "heading": "Choosing your arrival",
+        "paragraphs": [
+          "Jackson Hole Airport (JAC / KJAC) serves the town and Teton Village. It sits inside Grand Teton National Park, which is why noise rules and ramp space are tighter than at a typical resort field. Share whether the stay is in town or at the mountain, and the latest arrival you can use."
+        ]
+      },
+      {
+        "heading": "Runway and elevation",
+        "paragraphs": [
+          "Elevation is about 6,451 feet. Runway 01/19 is 6,300 by 150 feet of asphalt, with 6,300 feet of landing distance both ways. A paved safety area past the departure end of runway 19 is not usable for performance calculations. The combination of runway length and elevation is why a heavy jet is a calculation, not an assumption. FAA figures here are from the display effective 29 October 2026 through 26 November 2026."
+        ],
+        "links": [
+          {
+            "label": "Dallas to Jackson Hole route guide",
+            "path": "/routes/dallas-to-jackson-hole"
+          }
+        ]
+      },
+      {
+        "heading": "Curfew, noise, and winter",
+        "paragraphs": [
+          "Private aircraft are requested not to land or take off between 21:30 and 07:00 local except in an emergency. The curfew is voluntary. Plan as if it were mandatory. Stage II aircraft are prohibited. From November through April, airport information and snow removal are not guaranteed outside attended hours. It is a cold-temperature airport."
+        ]
+      },
+      {
+        "heading": "The FBO and what to request",
+        "paragraphs": [
+          "Jackson Hole Flight Services is the on-field FBO. Overnight stays need a reservation and prior permission. Hangar space for transients is not guaranteed. Send dates, passengers, ski bags, and the return window, and ask the operator for performance numbers on the actual aircraft.",
+          "The operator confirms current restrictions, weather, parking, and performance. This guide does not replace the chart supplement or the crew’s flight plan."
+        ],
+        "links": [
+          {
+            "label": "Request a JAC quote",
+            "path": "/charter/?to=KJAC"
+          },
+          {
+            "label": "Jackson Hole destination guide",
+            "path": "/destinations/jackson-hole"
+          },
+          {
+            "label": "Understand charter pricing",
+            "path": "/pricing"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "FAA airport display, JAC (chart data effective 29 Oct–26 Nov 2026)",
+        "url": "https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=JAC"
+      },
+      {
+        "label": "Jackson Hole Airport — pilot information",
+        "url": "https://www.jacksonholeairport.com/about/pilot-information/"
+      },
+      {
+        "label": "Jackson Hole Flight Services",
+        "url": "https://www.jacksonholeflightservices.com/services"
+      }
+    ],
+    "seoTitle": "Jackson Hole Airport (JAC) Private Jet Charter | EXJET",
+    "metaDescription": "Plan aircraft charter at Jackson Hole Airport (JAC). Review the 6,300-foot runway, voluntary curfew, and FBO limits, then request a quote from EXJET.",
+    "faqs": [
+      {
+        "question": "Where do I meet my charter flight at JAC?",
+        "answer": "Use the FBO and street address the operator confirms. Jackson Hole Flight Services is the on-field handler named in current public sources. Overnight parking is by reservation."
+      },
+      {
+        "question": "Can every business jet use this airport?",
+        "answer": "No. A 6,300-foot runway at about 6,451 feet of elevation requires a landing-distance and payload check, especially on departure with fuel and ski bags. The operator confirms the aircraft."
+      },
+      {
+        "question": "Is the night curfew mandatory?",
+        "answer": "It is a request that private aircraft not operate between 21:30 and 07:00 local, except in an emergency. It is voluntary, and it should still be planned as a hard stop."
+      },
+      {
+        "question": "Is hangar space included?",
+        "answer": "No. Transient hangar space is not guaranteed, and the ramp is limited because the airport is inside a national park. Confirm parking before you rely on an overnight."
       }
     ]
   },

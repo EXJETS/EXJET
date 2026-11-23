@@ -3,11 +3,19 @@ import { BrokerNotice } from "@/components/BrokerNotice";
 import { QuoteForm } from "@/components/QuoteForm";
 import { buildMetadata } from "@/data/seo";
 import { siteConfig } from "@/data/site";
+import { prefillAirport } from "./prefill";
 import styles from "./booking.module.css";
 
 export const metadata = buildMetadata("/charter");
 
-export default function CharterPage() {
+export default async function CharterPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ from?: string | string[]; to?: string | string[] }>;
+}) {
+  const query = await searchParams;
+  const initialFrom = prefillAirport(query.from);
+  const initialTo = prefillAirport(query.to);
   return (
     <section className={styles.page} aria-labelledby="charter-heading">
       <div className={styles.shell}>
@@ -16,7 +24,7 @@ export default function CharterPage() {
           <p>Enter your route and dates to compare aircraft estimates. No account is needed to request a quote.</p>
         </header>
         <div className={styles.panel} id="charter-request">
-          <QuoteForm />
+          <QuoteForm initialFrom={initialFrom} initialTo={initialTo} />
         </div>
         <div className={styles.support}>
           <a href={`mailto:${siteConfig.email.charter}`}>Contact the charter desk</a>

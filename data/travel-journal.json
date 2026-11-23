@@ -573,6 +573,10 @@
           {
             "label": "Aircraft charter and airport planning for this destination",
             "path": "/destinations/aspen"
+          },
+          {
+            "label": "Dallas to Aspen private jet charter",
+            "path": "/routes/dallas-to-aspen"
           }
         ]
       }
@@ -590,7 +594,7 @@
       "/travel-journal"
     ],
     "published": "2026-10-22",
-    "updated": "2026-10-22",
+    "updated": "2026-11-23",
     "readTime": "2 min read"
   },
   {
@@ -649,6 +653,10 @@
           {
             "label": "Aircraft charter and airport planning for this destination",
             "path": "/destinations/vail"
+          },
+          {
+            "label": "Dallas to Vail and Beaver Creek charter",
+            "path": "/routes/dallas-to-vail"
           }
         ]
       }
@@ -674,7 +682,7 @@
       "/travel-journal"
     ],
     "published": "2026-10-22",
-    "updated": "2026-10-22",
+    "updated": "2026-11-23",
     "readTime": "2 min read"
   },
   {
@@ -2346,6 +2354,16 @@
           "Choose the accommodation around the daily meeting points.",
           "Confirm current park or activity access with the responsible provider.",
           "Review equipment capacity for both the aircraft and ground vehicle."
+        ],
+        "links": [
+          {
+            "label": "Dallas to Jackson Hole private jet charter",
+            "path": "/routes/dallas-to-jackson-hole"
+          },
+          {
+            "label": "Jackson Hole airport guide",
+            "path": "/airports/kjac"
+          }
         ]
       }
     ],
@@ -2366,7 +2384,7 @@
       "/travel-journal"
     ],
     "published": "2026-10-22",
-    "updated": "2026-10-22",
+    "updated": "2026-11-23",
     "readTime": "2 min read",
     "faqs": [
       {
@@ -3292,6 +3310,20 @@
           "Guests: ability, instruction, mobility needs and non-skiing preferences.",
           "Equipment: dimensions, rental decisions and vehicle capacity.",
           "Arrival: operator-approved plan, alternative and property handover."
+        ],
+        "links": [
+          {
+            "label": "Dallas to Aspen charter",
+            "path": "/routes/dallas-to-aspen"
+          },
+          {
+            "label": "Dallas to Vail and Beaver Creek charter",
+            "path": "/routes/dallas-to-vail"
+          },
+          {
+            "label": "Dallas to Jackson Hole charter",
+            "path": "/routes/dallas-to-jackson-hole"
+          }
         ]
       }
     ],
@@ -3312,7 +3344,7 @@
       "/travel-journal"
     ],
     "published": "2026-10-22",
-    "updated": "2026-10-22",
+    "updated": "2026-11-23",
     "readTime": "2 min read"
   },
   {

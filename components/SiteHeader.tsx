@@ -32,7 +32,7 @@ export function SiteHeader(){
 
   return <header className={styles.header}>
     <div className={styles.bar}>
-      <Link className={styles.brand} href="/" aria-label="EXJET home">EXJET<span>Charter</span></Link>
+      <Link className={styles.brand} href="/" aria-label="EXJET Charter">EXJET<span>Charter</span></Link>
       <nav className={styles.primary} aria-label="Primary navigation">
         {primary.map(([href,label])=><Link key={href} href={href} aria-current={current===href?"page":current.startsWith(href+"/")?"location":undefined}>{label}</Link>)}
       </nav>

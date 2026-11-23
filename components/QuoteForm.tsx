@@ -18,6 +18,8 @@ type QuoteMode = "charter" | "cargo" | "group";
 type QuoteFormProps = {
   mode?: QuoteMode;
   compact?: boolean;
+  initialFrom?: { label: string; icao: string };
+  initialTo?: { label: string; icao: string };
 };
 
 const tripTypes = [
@@ -80,7 +82,7 @@ const initialState: FormState = {
   website: "",
 };
 
-export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps) {
+export function QuoteForm({ mode = "charter", compact = false, initialFrom, initialTo }: QuoteFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const submitting = useRef(false);
   const nextLegId = useRef(3);
@@ -95,7 +97,14 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [message, setMessage] = useState("");
   const [reference, setReference] = useState("");
-  const [form, setForm] = useState<FormState>({ ...initialState, passengers: mode === "group" ? "25" : "2" });
+  const [form, setForm] = useState<FormState>({
+    ...initialState,
+    passengers: mode === "group" ? "25" : "2",
+    departure: initialFrom?.label ?? "",
+    departureIcao: initialFrom?.icao ?? "",
+    destination: initialTo?.label ?? "",
+    destinationIcao: initialTo?.icao ?? "",
+  });
   const useSearch = mode === "charter";
   const searchTitle = useRef<HTMLHeadingElement>(null);
   const recipient = mode === "cargo" ? siteConfig.email.cargo : siteConfig.email.charter;

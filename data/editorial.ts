@@ -1,3 +1,4 @@
+import { charterHref } from "./charter-links";
 import { isRetiredPublicPath } from "./public-route-retirements";
 import { charterCabinCategories, charterCapacityNote } from "./charter-planning-rates";
 import articleData from "./articles.json";
@@ -50,25 +51,45 @@ const articles: ContentPage[] = articleData.map(item => ({
 const policies: ContentPage[] = legalData.map(item => ({
   ...item,path:`/${item.slug}`,kind:"legal",kicker:"Legal",draft:item.status === "draft",noindex:true,
 }));
+const quoteForAirports = (originSlug: string, destinationSlug: string) => {
+  const from = airportGuides.find(airport => airport.slug === originSlug)?.icao;
+  const to = airportGuides.find(airport => airport.slug === destinationSlug)?.icao;
+  return charterHref(from, to);
+};
+const airportQuotePath = (slug: string) => {
+  const airport = airportGuides.find(item => item.slug === slug);
+  if (!airport) return "/charter/";
+  if (slug === "kdal" || slug === "kads") return charterHref(airport.icao);
+  if (slug === "kase" || slug === "kege" || slug === "kjac") return charterHref(undefined, airport.icao);
+  return "/charter/";
+};
 const airports: ContentPage[] = airportGuides.map(item => ({
   path:`/airports/${item.slug}`, title:`${item.name} charter guide`, seoTitle:item.seoTitle,
   description:item.metaDescription, kicker:`${item.city} · Airport guide`,kind:"airport",
   parent:{name:"Airports",path:"/airports"},
   facts:[{label:"ICAO",value:item.icao},{label:"IATA",value:item.iata},{label:"Location",value:item.city}],
   sections:item.sections, sources:item.sources, faqs:item.faqs,
+  quotePath: airportQuotePath(item.slug),
+  updated: item.slug === "kase" || item.slug === "kege" || item.slug === "kjac" ? "2026-11-23" : undefined,
   related:[...airportMarketPaths([item.slug]), ...routeGuides.filter(route=>[route.originAirport,route.destinationAirport].includes(item.slug)).slice(0,6).map(route=>`/routes/${route.slug}`)],
 }));
+const skiRouteLinks: Record<string, string[]> = {
+  "dallas-to-aspen": ["/destinations/aspen", "/travel-journal/aspen", "/routes/dallas-to-vail"],
+  "dallas-to-vail": ["/destinations/vail", "/travel-journal/vail", "/routes/dallas-to-aspen", "/routes/dallas-to-jackson-hole"],
+  "dallas-to-jackson-hole": ["/destinations/jackson-hole", "/travel-journal/jackson-hole", "/routes/dallas-to-vail", "/routes/dallas-to-aspen"],
+};
 const routes: ContentPage[] = routeGuides.map(item=>({
   ...item,path:`/routes/${item.slug}`,kind:"route",
   description: item.description.replace("estimated flight time and clear cost examples", "estimated flight time and trip planning"),
+  quotePath: quoteForAirports(item.originAirport, item.destinationAirport),
   sections: item.sections.map((section, index) => index === 0 && section.table ? {
     heading: "Estimated flight time",
     paragraphs: [section.paragraphs[0], "Enter your route and aircraft category to see a planning estimate for your itinerary, or request a complete written quote."],
-    links: [{ label: "Get a route estimate", path: "/charter" }],
+    links: [{ label: "Get a route estimate", path: quoteForAirports(item.originAirport, item.destinationAirport) }],
   } : section),kicker:"Private charter route",
   parent:{name:"Routes",path:"/routes"},
   codes:[item.originAirport,item.destinationAirport].map(code=>airportGuides.find(airport=>airport.slug===code)?.iata || code.toUpperCase()),
-  related:[...airportMarketPaths([item.originAirport,item.destinationAirport]),`/airports/${item.originAirport}`,`/airports/${item.destinationAirport}`,"/pricing"],
+  related:[...airportMarketPaths([item.originAirport,item.destinationAirport]),`/airports/${item.originAirport}`,`/airports/${item.destinationAirport}`,"/pricing", ...(skiRouteLinks[item.slug] ?? [])],
 }));
 const services = (serviceData as ContentPage[]).map(page => page.path === "/pricing" ? {
   ...page,
