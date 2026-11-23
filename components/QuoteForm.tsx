@@ -157,7 +157,6 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
   const recipient = mode === "cargo" ? siteConfig.email.cargo : siteConfig.email.charter;
   const today = useMemo(() => localDate(), []);
   const passengerCount = Number(form.passengers);
-  const groupHandled = mode === "charter" && Number.isFinite(passengerCount) && passengerCount > 16;
   const selectedCategory = categories.find(item => item.value === category && passengerCount <= item.seats);
   const tripLabel = tripTypes.find(([value]) => value === tripType)?.[1];
   const outbound = legOnly(form);
@@ -208,8 +207,8 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
           return;
         }
       }
-      if (mode !== "cargo" && (!Number.isInteger(count) || count < 1 || count > 100)) {
-        setStatus("error"); setMessage("Enter a whole number between 1 and 100 for passengers."); return;
+      if (mode !== "cargo" && (!Number.isInteger(count) || count < 1 || count > (useSearch ? 16 : 100))) {
+        setStatus("error"); setMessage(useSearch ? "Enter between 1 and 16 passengers." : "Enter between 1 and 100 passengers."); return;
       }
       setForm(current => ({ ...current, date: tripLegs[0].date, time: tripLegs[0].time, cargoType: read("cargoType", current.cargoType), passengers: read("passengers", current.passengers) }));
       if (mode !== "cargo") {
@@ -236,7 +235,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          mode: groupHandled ? "group" : mode,
+          mode,
           ...form,
           ...(mode !== "cargo" ? { tripType, legs, ...(selectedCategory ? { aircraftCategory: selectedCategory.value } : {}) } : {}),
           source: window.location.pathname,
@@ -258,7 +257,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
     }
   };
 
-  const subject = mode === "cargo" ? "Cargo charter request" : mode === "group" || groupHandled ? "Group charter request" : "Private charter request";
+  const subject = mode === "cargo" ? "Cargo charter request" : mode === "group" ? "Group charter request" : "Private charter request";
   const fallbackBody = [
     subject,
     ...(mode === "cargo" ? [`From: ${form.departure}`, `To: ${form.destination}`, `Date: ${form.date}`, `Cargo: ${form.cargoType}`] : [
@@ -318,8 +317,8 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
                 <label htmlFor={passengerId}>Passengers</label>
                 <div>
                   <button aria-label="Decrease passengers" type="button" disabled={passengerCount <= 1} onClick={() => update("passengers", String(Math.max(1, passengerCount - 1)))}>−</button>
-                  <input id={passengerId} name="passengers" value={form.passengers} onChange={event => update("passengers", event.target.value)} type="number" inputMode="numeric" min="1" max="100" step="1" required />
-                  <button aria-label="Increase passengers" type="button" disabled={passengerCount >= 100} onClick={() => update("passengers", String(Math.min(100, passengerCount + 1)))}>+</button>
+                  <input id={passengerId} name="passengers" value={form.passengers} onChange={event => update("passengers", event.target.value)} type="number" inputMode="numeric" min="1" max="16" step="1" required />
+                  <button aria-label="Increase passengers" type="button" disabled={passengerCount >= 16} onClick={() => update("passengers", String(Math.min(16, passengerCount + 1)))}>+</button>
                 </div>
               </div>
             ) : (
@@ -377,14 +376,13 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
               {mode === "cargo" ? "Continue to contact details" : useSearch ? "Search flights" : "See trip estimate"} {useSearch ? <CharterIcon name="search" width={18} height={18} /> : <ArrowRightIcon size={18} aria-hidden="true" />}
             </button>
             <a className="ex-text-link" href={emailHref}>Email instead</a>
-            <p hidden={useSearch && !groupHandled}>{groupHandled ? "This passenger count will be routed to EXJET group charter." : useSearch ? null : compact ? "One more step. No account required." : `No account required. For a time-sensitive request, email ${recipient}.`}</p>
           </div>
         </>
       ) : stage === "results" ? (
         <div className={styles.results}>
           <div className="quote-form__mission-summary">
             <button type="button" onClick={() => { setMessage(""); setStatus("idle"); setStage("mission"); }}><ArrowLeftIcon size={18} aria-hidden="true" /> Edit trip</button>
-            <h3 ref={searchTitle} tabIndex={-1}>{groupHandled ? "Group charter" : "Compare aircraft categories"}</h3>
+            <h3 ref={searchTitle} tabIndex={-1}>Compare aircraft categories</h3>
             <small>{tripLabel} · {form.passengers} passenger{form.passengers === "1" ? "" : "s"}</small>
             <ol className={styles.summaryList}>{legs.map((leg,index) => <li key={index}>{leg.departure} to {leg.destination} · {leg.date}{leg.time ? ` at ${leg.time} local` : ""}</li>)}</ol>
           </div>

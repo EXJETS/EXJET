@@ -5,6 +5,8 @@
     "/aircraft-owners",
     "/articles/gulfstream-g550-vs-boeing-bbj1-ownership",
     "/business-aviation-consulting",
+    "/cargo",
+    "/cargo/dallas",
     "/crew",
     "/dry-lease",
     "/engineering-stc",
@@ -26,7 +28,11 @@
     "/starlink-installation"
   ],
   "redirected": {
-    "/services": "/aircraft-charter",
-    "/ways-to-fly": "/aircraft-charter"
+    "/services": "/private-jet-charter",
+    "/ways-to-fly": "/private-jet-charter",
+    "/group-charter": "/private-jet-charter",
+    "/group-charter/sports-teams": "/private-jet-charter",
+    "/group-charter/corporate-teams": "/private-jet-charter",
+    "/aircraft-charter": "/private-jet-charter"
   }
 }

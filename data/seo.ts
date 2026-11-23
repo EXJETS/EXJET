@@ -11,7 +11,7 @@ type SeoEntry = {
 export const pageSeo = {
   "/": {
     title: "EXJET | Private Jet Charter",
-    description: "EXJET is a Dallas based air charter broker arranging private passenger flights, group travel and air cargo nationwide through licensed carriers.",
+    description: "EXJET is a Dallas based air charter broker arranging private jet charter for passengers and empty leg flights nationwide through licensed carriers.",
   },
   "/charter": {
     title: "Request a Private Jet Charter Quote | Flight Search | EXJET",
@@ -20,14 +20,6 @@ export const pageSeo = {
   "/empty-legs": {
     title: "Empty Leg Private Jet Flights | EXJET",
     description: "Explore empty leg flight opportunities with EXJET. Share your route and flexible dates to request current availability, aircraft details and a written quote.",
-  },
-  "/group-charter": {
-    title: "Group Air Charter for Corporate & Sports Teams | EXJET",
-    description: "Arrange group air charter for corporate teams, sports and events. Coordinate passenger counts, baggage, schedules and airport transfers with an EXJET advisor.",
-  },
-  "/cargo": {
-    title: "Air Cargo Charter Services | EXJET",
-    description: "Request cargo aircraft charter for urgent, oversized or high-value shipments. Share weight, dimensions, route and timing for a tailored proposal from EXJET.",
   },
   "/aircraft": {
     title: "Private Jet Charter Aircraft: Cabins & Costs | EXJET",
@@ -43,20 +35,20 @@ export const pageSeo = {
     description: "Discuss aircraft sales and acquisitions with EXJET. Define your mission, review representation options and request a confidential aircraft search or sale brief.",
   },
   "/why-exjet": {
-    title: "Private Aviation Consulting & Charter Planning | EXJET",
+    title: "Private Jet Charter Planning | EXJET",
     description: "Learn how EXJET coordinates aircraft selection, operator review and charter planning. See what to ask before booking a charter.",
   },
   "/about": {
     title: "About EXJET | Private Jet Charter",
-    description: "EXJET is a Dallas based air charter broker for passenger, group and cargo flights. Learn how EXJET works with licensed aircraft operators.",
+    description: "EXJET is a Dallas based air charter broker for private jet charter and empty leg flights. Learn how EXJET works with licensed aircraft operators.",
   },
   "/faq": {
     title: "Private Jet Charter FAQ | EXJET",
     description: "Find answers about charter pricing, aircraft selection, empty legs, passenger details and operator checks. Learn what to confirm before booking with EXJET.",
   },
   "/contact": {
-    title: "Contact EXJET | Aviation Solutions",
-    description: "Contact EXJET for a private passenger, group or cargo charter request, empty leg inquiry, or general assistance.",
+    title: "Contact EXJET | Private Jet Charter",
+    description: "Contact EXJET for private jet charter quotes, empty leg inquiries, or general assistance.",
   },
   "/privacy": {
     noindex: true,

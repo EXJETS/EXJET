@@ -1,11 +1,10 @@
 # EXJET
 
-> EXJET LLC is an air charter broker based in Dallas. It arranges passenger, group and cargo charter and empty legs through licensed air carriers. EXJET is not an operating air carrier.
+> EXJET LLC is an air charter broker based in Dallas. It arranges private jet charter for passengers and empty leg flights through licensed air carriers. EXJET is not an operating air carrier.
 
 Official website: https://www.exjet.com/
 Passenger charter: charter@exjet.com
 General inquiries: info@exjet.com
-Cargo: cargo@exjet.com
 
 Licensed direct air carriers operate the flights. Only a current written proposal identifies the aircraft, operating carrier, trip-specific pricing and terms. Published pricing examples are planning illustrations, not live fares or guaranteed availability. Published aircraft specifications are reference values, not confirmation of an assigned aircraft.
 
@@ -16,10 +15,8 @@ Licensed direct air carriers operate the flights. Only a current written proposa
 - [Private jet routes](https://www.exjet.com/routes/): Route-specific airport options, estimated flight times and cost examples.
 - [Business aviation airports](https://www.exjet.com/airports/): Airport and FBO planning guides.
 - [Charter cost guide](https://www.exjet.com/pricing/): Pricing inputs, minimums, additional costs and illustrated examples.
-- [Aircraft guide](https://www.exjet.com/aircraft/): Aircraft categories and cabin options.
+- [Aircraft guide](https://www.exjet.com/aircraft/): Approved aircraft profiles, published specifications, range maps and side-by-side comparisons.
 - [Empty legs](https://www.exjet.com/empty-legs/): Flexible repositioning opportunities, subject to operator confirmation.
-- [Group air charter](https://www.exjet.com/group-charter/): Passenger, baggage and schedule planning for teams and events.
-- [Cargo air charter](https://www.exjet.com/cargo/): Air transport planning for time-sensitive and specialist cargo.
 - [Request a private jet quote](https://www.exjet.com/charter/): Submit an itinerary for review; submitting a request does not confirm a reservation.
 
 ## Company and references

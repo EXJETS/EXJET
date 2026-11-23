@@ -20,7 +20,7 @@ const groups = [
   { title: "Ways to charter", links: aviationSolutions.map(service => [service.name, service.path]) },
   { title: "Your travel", links: [
     ["Aircraft", "/aircraft"], ["Charter pricing", "/pricing"], ["Empty legs", "/empty-legs"],
-    ["Executive assistants", "/executive-assistants"], ["Family offices", "/family-office-private-aviation"], ["Sports teams", "/group-charter/sports-teams"], ["Entertainment & event travel", "/group-charter"], ["Fortune 500 teams", "/corporate-travel/fortune-500"], ["Cargo charter", "/cargo"],
+    ["Executive assistants", "/executive-assistants"], ["Family offices", "/family-office-private-aviation"], ["Fortune 500 teams", "/corporate-travel/fortune-500"],
   ] },
   { title: "Resources", links: [
     ["Travel Journal", "/travel-journal"],

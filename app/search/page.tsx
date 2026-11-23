@@ -2,7 +2,7 @@ import { isRetiredPublicPath } from "@/data/public-route-retirements";
 import { Suspense } from "react";
 import { SiteSearch } from "@/components/SiteSearch";
 import { contentPages } from "@/data/editorial";
-import { aircraft } from "@/data/aircraft";
+import { directoryAircraft as aircraft } from "@/data/aircraft-directory";
 import { pageSeo, buildDynamicMetadata } from "@/data/seo";
 import { contentSearchItem } from "@/data/search";
 

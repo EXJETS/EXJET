@@ -13,15 +13,13 @@ import styles from "./landing.module.css";
 export const metadata = buildMetadata("/");
 
 const heroSlides: readonly HeroSlide[] = [
-  { src: "/images/hero/gulfstream-g700-water.webp", label: "Gulfstream G700", description: "Gulfstream G700 in flight over turquoise water", href: "/aircraft/", position: "65% 38%" },
+  { src: "/images/hero/gulfstream-g700-water.webp", label: "Gulfstream G700", description: "Gulfstream G700 in flight over turquoise water", href: "/aircraft/gulfstream-g700/", position: "65% 38%" },
   { src: "/images/hero/bombardier-global-8000-coast.webp", label: "Bombardier Global 8000", description: "Bombardier Global 8000 flying along a coastline", href: "/aircraft/global-8000/", position: "47% 50%" },
-  { src: "/images/hero/bombardier-challenger-3500-water.webp", label: "Bombardier Challenger 3500", description: "Bombardier Challenger 3500 in flight over deep blue water", href: "/aircraft/", position: "49% 46%" },
+  { src: "/images/hero/bombardier-challenger-3500-water.webp", label: "Bombardier Challenger 3500", description: "Bombardier Challenger 3500 in flight over deep blue water", href: "/aircraft/challenger-3500/", position: "49% 46%" },
 ];
 
 const charterOptions = [
-  {icon:"aircraft", name:"Passenger charter", href:"/charter/"},
-  {icon:"group", name:"Group charter", href:"/group-charter/"},
-  {icon:"cargo", name:"Cargo charter", href:"/cargo/"},
+  {icon:"aircraft", name:"Private jet charter", href:"/charter/"},
   {icon:"empty", name:"Empty legs", href:"/empty-legs/"},
 ] satisfies {icon:CharterIconName;name:string;href:string}[];
 

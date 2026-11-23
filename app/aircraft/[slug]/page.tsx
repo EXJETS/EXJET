@@ -14,32 +14,39 @@ import { aircraft, getAircraft } from "@/data/aircraft";
 import { buildDynamicMetadata } from "@/data/seo";
 import { absoluteUrl } from "@/data/site";
 import { getAircraftReference } from "@/data/aircraft-reference";
+import { directoryAircraft, getDirectoryAircraft, getModelSpecification, isRequestOnly, unknownSpec } from "@/data/aircraft-directory";
+import { AircraftRangeMap } from "@/components/AircraftRangeMap";
 
 type PageProps = { params: Promise<{ slug: string }> };
 
 export function generateStaticParams() {
-  return aircraft.map((item) => ({ slug: item.slug }));
+  return [...new Set([...aircraft, ...directoryAircraft].map(item => item.slug))].map(slug => ({ slug }));
 }
 
 export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
   const { slug } = await params;
-  const item = getAircraft(slug);
+  const item = getDirectoryAircraft(slug) ?? getAircraft(slug);
   if (!item) return {};
+  const model = getModelSpecification(slug);
   return buildDynamicMetadata({
     path: `/aircraft/${item.slug}`,
-    title: `${item.name} Charter: Cost & Cabin Guide | EXJET`,
+    title: `${item.name} Aircraft Profile: Specs & Range | EXJET`,
     description: aircraftGuides[slug as keyof typeof aircraftGuides]?.description ?? item.summary,
     image: item.image,
+    noindex: Boolean(model && !model.rangeNm && !getAircraft(slug)),
   });
 }
 
 export default async function AircraftDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  const item = getAircraft(slug);
+  const item = getDirectoryAircraft(slug) ?? getAircraft(slug);
   if (!item) notFound();
 
   const guide = aircraftGuides[slug as keyof typeof aircraftGuides];
-  const reference = getAircraftReference(slug);
+  const model = getModelSpecification(slug);
+  const legacy = getAircraft(slug);
+  const reference = !model || legacy?.name === model.name ? getAircraftReference(slug) : undefined;
+  const requestOnly = model ? isRequestOnly(model) : false;
   const breadcrumb = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
@@ -61,29 +68,49 @@ export default async function AircraftDetailPage({ params }: PageProps) {
               <p className={styles.label}>Aircraft profile</p>
               <h2 className={styles.sectionTitle}>About this aircraft</h2>
               <p>{item.summary}</p>
-              {reference && <nav className={styles.strip} aria-label={`${item.name} page sections`}>
-                <a href="#aircraft-specifications">Specifications <span aria-hidden="true">↓</span></a>
-                {!!reference.floorplans?.length && <a href="#cabin-layout">Cabin layouts <span aria-hidden="true">↓</span></a>}
+              {(model || reference) && <nav className={styles.strip} aria-label={`${item.name} page sections`}>
+                <a href={model ? "#aircraft-specifications" : "#aircraft-legacy-specifications"}>Specifications <span aria-hidden="true">↓</span></a>
+                {!!reference?.floorplans?.length && <a href="#cabin-layout">Cabin layouts <span aria-hidden="true">↓</span></a>}
               </nav>}
               <BrokerNotice prominent />
             </div>
           </div>
           <div className={styles.summary}>
             <p className={styles.label}>{item.maker} · {item.category}</p>
-            <h1>{item.name} charter</h1>
+            <h1>{item.name}{requestOnly ? " reference" : " charter"}</h1>
             <dl className={styles.facts}>
               <div><dt>Passengers</dt><dd>{item.typical.passengers}</dd></div>
               <div><dt>Range</dt><dd>{item.typical.range}</dd></div>
               <div><dt>Baggage</dt><dd>{item.typical.baggage}</dd></div>
               <div><dt>Cabin</dt><dd>{item.typical.cabin}</dd></div>
             </dl>
-            <ButtonLink href={`/contact?aircraft=${item.slug}`}>Request this aircraft</ButtonLink>
+            <ButtonLink href={`/contact?aircraft=${item.slug}`}>{requestOnly ? "Discuss with an advisor" : "Request this aircraft"}</ButtonLink>
+            {requestOnly && <p className={styles.note}>Reference only. This model is not listed as available inventory and is not eligible for an automatic quote.</p>}
             <p className={styles.note}>Specifications are typical for the type. Actual configuration varies by aircraft. Range and availability depend on route, payload, weather, and operating conditions.</p>
           </div>
         </div>
       </section>
-      <AircraftReference slug={slug} />
-      {guide ? <div className="ex-editorial"><div className="ex-container ex-content-layout ex-content-layout--outline"><PageOutline sections={guide.sections} /><div className="ex-reading">
+      {model && <section id="aircraft-specifications" className={styles.wrap} aria-labelledby="model-planning">
+        <p className={styles.label}>Aircraft specifications</p>
+        <h2 className={styles.sectionTitle} id="model-planning">Model planning reference</h2>
+        <dl className={styles.facts}>
+          <div><dt>Published passengers</dt><dd>{item.typical.passengers}</dd></div>
+          {model.configurationSeats !== undefined && <div><dt>Source configuration</dt><dd>{model.configurationSeats} seats</dd></div>}
+          <div><dt>Published range</dt><dd>{item.typical.range}</dd></div>
+          <div><dt>Published speed</dt><dd>{model.maxSpeed ?? unknownSpec}</dd></div>
+          <div><dt>Published ceiling</dt><dd>{model.ceiling ?? unknownSpec}</dd></div>
+          <div><dt>Cabin height</dt><dd>{model.cabin?.height ?? unknownSpec}</dd></div>
+          <div><dt>Cabin width</dt><dd>{model.cabin?.width ?? unknownSpec}</dd></div>
+          <div><dt>Cabin length</dt><dd>{model.cabin?.length ?? unknownSpec}</dd></div>
+          <div><dt>Baggage volume</dt><dd>{model.baggage ?? unknownSpec}</dd></div>
+        </dl>
+        {model.rangeBasis && <p>{model.rangeBasis}</p>}
+        {model.notes && <p>{model.notes}</p>}
+        {model.source && <p>Source: <a href={model.source.url}>{model.source.label}</a></p>}
+        <AircraftRangeMap profiles={[model]} />
+      </section>}
+      {reference && <AircraftReference slug={slug} />}
+      {guide && (!model || legacy?.name === model.name) ? <div className="ex-editorial"><div className="ex-container ex-content-layout ex-content-layout--outline"><PageOutline sections={guide.sections} /><div className="ex-reading">
         <ContentSections sections={guide.sections} />
         <ContentFaq faqs={guide.faqs} />
       </div></div></div> : null}
