@@ -1,7 +1,15 @@
 {
-  "rows": 1357,
+  "rows": 1673,
   "source": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders.xlsx",
   "source_last_modified": "2026-11-16T19:03:18Z",
-  "notes": "Only FAA roster fields and approved model-slug derivations; no airport, no live inventory, no floating classification. Unresolved exact-variant groups and tails with multiple listed operators held out, not forced into a tuple.",
-  "multiple_operator_tails_held": 2
+  "notes": "FAA roster fields with regulator model-slug validation where regulatory designator spans multiple variants. No location, emails, images, tracking, live inventory, floating classification or JETNET data.",
+  "classificationLinks": [
+    "https://ad.easa.europa.eu/blob/CF-2023-07-E.pdf/AD_CF-2023-07_1",
+    "https://ad.easa.europa.eu/blob/CF-2023-13-E.pdf/AD_CF-2023-13_1",
+    "https://www.easa.europa.eu/en/downloads/7244/en",
+    "https://www.easa.europa.eu/en/downloads/7368/en",
+    "https://www.easa.europa.eu/en/downloads/7459/en",
+    "https://www.easa.europa.eu/sites/default/files/dfu/20150519%20OSD%20FC%20G-IV.pdf",
+    "https://www.easa.europa.eu/en/downloads/129064/en"
+  ]
 }
