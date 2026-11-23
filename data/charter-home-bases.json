@@ -5,7 +5,62 @@
     "modelSlug": "challenger-604",
     "seats": 12,
     "category": "heavy",
-    "coverage": { "kind": "home_base", "airport": "KHOU" },
+    "coverage": {
+      "kind": "home_base",
+      "airport": "KHOU"
+    },
     "baseSource": "https://www.wingaviation.com/fleet/bombardier-challenger-604-n18rc/"
+  },
+  {
+    "id": "latitude33-n429rm",
+    "tail": "N429RM",
+    "modelSlug": "challenger-350",
+    "seats": 9,
+    "category": "large",
+    "coverage": {
+      "kind": "home_base",
+      "airport": "KCRQ"
+    },
+    "baseSource": "https://l33jets.com/fleet/super-midsize-private-jets/bombardier-challenger-350-n429rm/",
+    "seatSource": "https://l33jets.com/fleet/"
+  },
+  {
+    "id": "latitude33-n369ll",
+    "tail": "N369LL",
+    "modelSlug": "challenger-350",
+    "seats": 9,
+    "category": "large",
+    "coverage": {
+      "kind": "home_base",
+      "airport": "KBFI"
+    },
+    "baseSource": "https://l33jets.com/fleet/super-midsize-private-jets/bombardier-challenger-350-n369ll/",
+    "seatSource": "https://l33jets.com/fleet/"
+  },
+  {
+    "id": "latitude33-n422mp",
+    "tail": "N422MP",
+    "modelSlug": "challenger-300",
+    "seats": 9,
+    "category": "large",
+    "coverage": {
+      "kind": "home_base",
+      "airport": "KVNY"
+    },
+    "baseSource": "https://l33jets.com/fleet/super-midsize-private-jets/bombardier-challenger-300-n422mp/",
+    "seatSource": "https://l33jets.com/fleet/"
+  },
+  {
+    "id": "latitude33-n605ce",
+    "tail": "N605CE",
+    "modelSlug": "challenger-605",
+    "seats": 9,
+    "category": "heavy",
+    "coverage": {
+      "kind": "home_base",
+      "airport": "KSNA"
+    },
+    "baseSource": "https://l33jets.com/fleet/heavy-private-jets/bombardier-challenger-605-n605ce/",
+    "seatSource": "https://l33jets.com/fleet/"
   }
 ]
