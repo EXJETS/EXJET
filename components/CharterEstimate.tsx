@@ -2,6 +2,7 @@
 
 import { useEffect, useId, useState } from "react";
 import styles from "./CharterEstimate.module.css";
+import { CharterAircraftCards, type AircraftPreference } from "./CharterAircraftCards";
 
 type Endpoint = { code: string; label: string; lat: number; lon: number };
 type Segment = { from: Endpoint; to: Endpoint };
@@ -63,7 +64,7 @@ function RouteMap({ segments }: { segments: Segment[] }) {
 
 const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
-export function CharterEstimate({ legs, passengers, aircraftCategory, choices, onSelect }: { legs: EstimateLeg[]; passengers: number; aircraftCategory?: string; choices?: readonly CabinOption[]; onSelect?: (value: string) => void }) {
+export function CharterEstimate({ legs, passengers, aircraftCategory, choices, onSelect, onAircraft, selectedAircraft }: { legs: EstimateLeg[]; passengers: number; aircraftCategory?: string; choices?: readonly CabinOption[]; onSelect?: (value: string) => void; onAircraft?: (value: AircraftPreference) => void; selectedAircraft?: AircraftPreference | null }) {
   const title = useId();
   const request = JSON.stringify({ legs, passengers, ...(choices ? { compareCabins: true } : { aircraftCategory }) });
   const [result, setResult] = useState<{ request: string; estimate: Estimate | null } | null>(null);
@@ -91,7 +92,8 @@ export function CharterEstimate({ legs, passengers, aircraftCategory, choices, o
   const estimate = loaded ? result.estimate : null;
   const amount = choices && aircraftCategory ? estimate?.cabinTotals?.[aircraftCategory] : estimate?.estimateUsd;
   const mapped = estimate?.segments.length === legs.length ? estimate.segments : [];
-  return <section className={styles.estimate} aria-labelledby={title}>
+  return <section className={`${styles.estimate} ${onAircraft ? styles.cardsMode : ""}`} aria-labelledby={title}>
+    {choices && onAircraft && <CharterAircraftCards airport={legs[0]?.departureIcao ?? ""} passengers={passengers} totals={estimate?.cabinTotals} onSelect={onAircraft} selected={selectedAircraft} />}
     <div className={styles.heading}>
       <h3 id={title}>Estimated flight total</h3>
       <div role="status" aria-live="polite">
@@ -100,7 +102,7 @@ export function CharterEstimate({ legs, passengers, aircraftCategory, choices, o
       {amount ? <small>Excludes taxes and additional charges. This is an estimate, not a confirmed quote or aircraft availability.</small> : null}
     </div>
     {mapped.length ? <RouteMap segments={mapped} /> : null}
-    {choices?.length ? <fieldset className={styles.cabins}>
+    {choices?.length && !onAircraft ? <fieldset className={styles.cabins}>
       <legend>Aircraft category</legend>
       {choices.map(choice => <label key={choice.value} className={styles.cabin}>
         <input type="radio" name={`${title}-cabin`} checked={aircraftCategory === choice.value} onChange={() => onSelect?.(choice.value)} />

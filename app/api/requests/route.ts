@@ -1,4 +1,7 @@
 import { createAvinodeLead, avinodeStatus, resolveAvinodeAirport } from "@/integration/avinode/client";
+import { getModelSpecification } from "@/data/aircraft-directory";
+import { isFloatingFleetEnabled, publishedCharterFleet } from "@/lib/charter-catalog.server";
+import { matchFleet } from "@/lib/charter-fleet";
 import { siteConfig } from "@/data/site";
 import guides from "@/data/airports-guide.json";
 import { aircraftLabel, civilDate, legLabel, parseItinerary, tripLabel, type Itinerary } from "./itinerary";
@@ -23,6 +26,9 @@ type IntakeRequest = {
   contactPreference: "text" | "call" | "email";
   notes?: string;
   source?: string;
+  preferredAircraftModel?: string;
+  preferredAircraftListing?: string;
+  preferredAircraftTail?: string;
   website?: string;
 } & Partial<Itinerary>;
 
@@ -86,6 +92,21 @@ function parseRequest(value: unknown): IntakeRequest | null {
     website: clean(raw.website, 120) || undefined,
   };
 
+  if (mode === "charter" && first && raw.preferredAircraft && typeof raw.preferredAircraft === "object") {
+    const preference = raw.preferredAircraft as { model?: unknown; listing?: unknown };
+    const model = getModelSpecification(clean(preference.model, 75));
+    const listing = clean(preference.listing, 60);
+    if (listing) {
+      try {
+        const matched = matchFleet(publishedCharterFleet(), first.departureIcao || "", passengers, isFloatingFleetEnabled());
+        const row = [...matched.floating, ...matched.based].find(item =>
+          item.id === listing && model?.slug === item.modelSlug && item.category === itinerary?.aircraftCategory,
+        );
+        if (row) { parsed.preferredAircraftListing = row.id; parsed.preferredAircraftTail = row.tail; }
+      } catch { /* Preserve the quote request if the list changed before submission. */ }
+    }
+    if (model) parsed.preferredAircraftModel = model.name;
+  }
   const dateValid = civilDate(submittedDate);
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(parsed.email);
   const phoneValid = parsed.phone.replace(/\D/g, "").length >= 7;
@@ -135,6 +156,9 @@ function details(input: IntakeRequest, id: string) {
       ["Time", input.time || "To be confirmed"],
     ] as Array<[string, string]>),
     [input.mode === "cargo" ? "Cargo" : "Passengers", input.mode === "cargo" ? input.cargoType : input.passengers],
+    ["Preferred aircraft model", input.preferredAircraftModel],
+    ["Aircraft listing reference", input.preferredAircraftListing],
+    ["Aircraft registration", input.preferredAircraftTail],
     ["Name", input.name],
     ["Mobile", input.phone],
     ["Email", input.email],

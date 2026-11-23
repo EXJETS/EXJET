@@ -1,0 +1,11 @@
+[
+  {
+    "id": "wing-n18rc",
+    "tail": "N18RC",
+    "modelSlug": "challenger-604",
+    "seats": 12,
+    "category": "heavy",
+    "coverage": { "kind": "home_base", "airport": "KHOU" },
+    "baseSource": "https://www.wingaviation.com/fleet/bombardier-challenger-604-n18rc/"
+  }
+]

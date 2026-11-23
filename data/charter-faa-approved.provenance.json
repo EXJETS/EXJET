@@ -1,0 +1,7 @@
+{
+  "rows": 1357,
+  "source": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders.xlsx",
+  "source_last_modified": "2026-11-16T19:03:18Z",
+  "notes": "Only FAA roster fields and approved model-slug derivations; no airport, no live inventory, no floating classification. Unresolved exact-variant groups and tails with multiple listed operators held out, not forced into a tuple.",
+  "multiple_operator_tails_held": 2
+}
