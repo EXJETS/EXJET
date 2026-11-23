@@ -31,15 +31,15 @@ export default function Home() {
    <h1 id="home-title">Private jet charter.</h1>
    <p>One way, round trip or several stops. Start with your itinerary and get a written quote for the whole trip.</p>
   </div>
+  <figure className={styles.heroVisual}>
+   <Image className={styles.heroPhoto} src="/images/manufacturers/global-8000-clouds.webp" alt="Bombardier Global 8000 banking above the clouds" fill sizes="(min-width: 860px) 55vw, 100vw" preload />
+   <figcaption>Bombardier Global 8000</figcaption>
+  </figure>
   <section id="plan-your-charter" className={styles.quotePanel} aria-labelledby="home-quote-title">
    <h2 id="home-quote-title"><PathIcon size={21} aria-hidden="true" /> Request a charter quote</h2>
    <QuoteForm compact />
    <BrokerNotice className={styles.heroNotice} />
   </section>
-  <figure className={styles.heroVisual}>
-   <Image className={styles.heroPhoto} src="/images/manufacturers/global-8000-clouds.webp" alt="Bombardier Global 8000 banking above the clouds" fill sizes="(min-width: 860px) 55vw, 100vw" preload />
-   <figcaption>Bombardier Global 8000</figcaption>
-  </figure>
  </section>
  <section className={styles.charterBoard} aria-labelledby="home-routes-title">
   <div className={styles.routePanel}>

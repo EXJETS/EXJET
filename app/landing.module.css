@@ -72,12 +72,6 @@
   border-radius: 5px;
   background: #d9dde0;
 }
-.quotePanel :global(.quote-form--mission .quote-form__row + .quote-form__row) {
-  display: block;
-  width: fit-content;
-  max-width: 100%;
-  margin-top: 8px;
-}
 .quotePanel :global(.quote-form--mission .quote-form__row > :is(label, div)) {
   min-width: 0;
   margin: 0;
@@ -211,7 +205,6 @@
 .pricePanel a { align-self: center; }
 @media (min-width: 860px) {
   .heroVisual { margin-top: -92px; }
-  .quotePanel :global(.quote-form--mission .quote-form__row:first-of-type) { grid-template-columns: 1.35fr 1.35fr 1fr .8fr; }
 }
 @media (max-width: 570px) {
   .routeList { grid-template-columns: minmax(0, 1fr); gap: 7px; }
@@ -270,5 +263,31 @@
   .quotePanel { grid-area: 2 / 1; align-self: start; margin: 26px var(--gutter) 42px; }
   .heroVisual { grid-area: 1 / 2 / 3 / 3; height: auto; min-height: 520px; }
   .heroPhoto { object-position: 56% 54%; }
-  .quotePanel :global(.quote-form--mission .quote-form__row:first-of-type) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+
+/* The compact homepage has one continuous itinerary grid with predictable touch targets. */
+.quotePanel :global(.quote-form--mission .quote-form__row--home-itinerary) {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+}
+.quotePanel :global(.quote-form__row--home-itinerary > *) { grid-column: span 2; }
+.quotePanel :global(.quote-form__row--home-itinerary > :nth-child(-n+2)) { grid-column: span 3; }
+.quotePanel :global(.quote-form__row--home-itinerary > label) {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+}
+.quotePanel :global(.quote-form__row--home-itinerary input) { width: 100%; max-width: 100%; background: transparent; }
+.heroCopy { align-self: center; max-width: 100%; }
+@media (max-width: 859px) {
+  .heroCopy { padding-bottom: 25px; }
+  .heroVisual { height: clamp(158px, 41vw, 315px); }
+  .heroPhoto { object-position: 50% 50%; }
+}
+@media (max-width: 440px) {
+  .quotePanel :global(.quote-form__row--home-itinerary > :nth-child(-n+2)) { grid-column: 1 / -1; }
+  .quotePanel :global(.quote-form__row--home-itinerary > :is(:nth-child(3), :nth-child(4))) { grid-column: span 3; }
+  .quotePanel :global(.quote-form__row--home-itinerary > :last-child) { grid-column: 1 / -1; }
+  .quotePanel :global(.quote-form__row--home-itinerary > :last-child input) { width: min(100%, 10rem); }
 }
