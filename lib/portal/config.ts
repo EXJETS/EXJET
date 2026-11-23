@@ -12,7 +12,7 @@ export function portalOrigin() {
   return "https://www.exjet.com";
 }
 
-export const portalReturnPaths = ["/app/", "/app/trips/", "/app/locations/", "/app/messages/", "/app/settings/", "/app/alerts/"];
+export const portalReturnPaths = ["/app/", "/app/trips/", "/app/locations/", "/app/messages/", "/app/settings/", "/app/alerts/", "/app/booking/"];
 export function safeReturnPath(value: unknown) {
   return typeof value === "string" && portalReturnPaths.includes(value) ? value : "/app/";
 }

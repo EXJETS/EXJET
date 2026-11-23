@@ -1,27 +1,36 @@
 import Link from "next/link";
-import { SocialLinks } from "@/components/SocialLinks";
-import { siteConfig } from "@/data/site";
-import { CaretDownIcon } from "@phosphor-icons/react/dist/ssr";
 import { BrokerNotice } from "@/components/BrokerNotice";
+import { siteConfig } from "@/data/site";
+import { BrowseFlightGlyph as Icon } from "./BrowseFlightGlyph";
+import styles from "./SiteFooter.module.css";
 
 const groups = [
-  { title: "Charter", links: [["Plan a flight", "/charter"], ["Empty legs", "/empty-legs"]] },
-  { title: "Explore", links: [["Aircraft", "/aircraft"], ["Routes", "/routes"], ["Charter pricing", "/pricing"], ["Travel Journal", "/travel-journal"]] },
-  { title: "EXJET", links: [["About", "/about"], ["Safety", "/safety"], ["Help and contact", "/contact"], ["Client account", "/account"]] },
-];
+  ["Fly",[["Plan a flight","/charter"],["Private jet charter","/private-jet-charter"],["Empty legs","/empty-legs"],["Charter pricing","/pricing"]]],
+  ["Explore",[["Aircraft","/aircraft"],["Airports","/airports"],["Routes","/routes"],["Travel Journal","/travel-journal"]]],
+  ["EXJET",[["About","/about"],["Safety","/safety"],["Help and contact","/contact"],["Client account","/account"]]],
+] as const;
+const legal = [
+  ["Privacy","/privacy"],["Terms","/terms"],["Charter terms","/charter-terms"],["Cancellations","/cancellations"],["Cookies","/cookies"],["Accessibility","/accessibility"],["Editorial standards","/editorial-standards"],
+] as const;
 
-export function SiteFooter() {
-  return <footer className="ex-footer">
-    <div className="shell ex-footer-top">
-      <div className="ex-footer-brand"><Link className="ex-footer-name" href="/" aria-label="EXJET home">EXJET</Link><p>Global Access, On-Demand.</p><a className="ex-footer-phone" href={`mailto:${siteConfig.email.general}`}>{siteConfig.email.general}</a><address className="ex-footer-address">{siteConfig.legalName}<br />{siteConfig.address.display}</address><SocialLinks compact /></div>
-      {groups.map((group) => <nav className="ex-footer-desktop" key={group.title} aria-label={group.title}><h2>{group.title}</h2>{group.links.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</nav>)}
-      <div className="ex-footer-mobile">
-        {groups.map((group) => <details key={group.title}>
-          <summary>{group.title}<CaretDownIcon size={14} aria-hidden="true" /></summary>
-          <nav aria-label={group.title}>{group.links.map(([label, href]) => <Link key={href} href={href}>{label}</Link>)}</nav>
-        </details>)}
+export function SiteFooter(){
+  return <footer className={styles.footer}>
+    <div className={styles.shell}>
+      <div className={styles.main}>
+        <div className={styles.identity}>
+          <Link className={styles.name} href="/" aria-label="EXJET home">EXJET</Link>
+          <p>Global Access. On-Demand.</p>
+          <a className={styles.email} href={`mailto:${siteConfig.email.general}`}>{siteConfig.email.general}</a>
+          <address>{siteConfig.legalName}<br/>{siteConfig.address.display}</address>
+          <div className={styles.social}><a href={siteConfig.social.instagram}>Instagram</a><a href={siteConfig.social.linkedin}>LinkedIn</a></div>
+        </div>
+        {groups.map(([title,links])=><nav key={title} aria-label={title}><h2>{title}</h2>{links.map(([label,href])=><Link key={href} href={href}>{label}</Link>)}</nav>)}
+      </div>
+      <div className={styles.bottom}>
+        <BrokerNotice className={styles.notice}/>
+        <nav className={styles.legal} aria-label="Legal and website information">{legal.map(([label,href])=><Link key={href} href={href}>{label}</Link>)}</nav>
+        <div className={styles.outro}><p>© {new Date().getFullYear()} EXJET LLC. All rights reserved.</p><a href="#main-content">Back to content <Icon name="forward" width={16} height={16}/></a></div>
       </div>
     </div>
-    <div className="shell ex-footer-bottom"><BrokerNotice /><nav className="ex-legal-links" aria-label="Legal and website information"><Link href="/privacy">Privacy</Link><Link href="/terms">Terms</Link><Link href="/charter-terms">Charter terms</Link><Link href="/cancellations">Cancellations</Link><Link href="/cookies">Cookies</Link><Link href="/accessibility">Accessibility</Link><Link href="/editorial-standards">Editorial standards</Link></nav><p>© {new Date().getFullYear()} EXJET LLC. All rights reserved.</p></div>
   </footer>;
 }

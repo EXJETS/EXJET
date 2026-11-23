@@ -1,10 +1,9 @@
-import { ButtonLink } from "@/components/ButtonLink";
+import { FlightPageHeading } from "@/components/FlightPageHeading";
 import { Suspense } from "react";
 import { ArrowUpRightIcon, AirplaneTakeoffIcon, EnvelopeSimpleIcon } from "@phosphor-icons/react/dist/ssr";
 import { ContactPreference } from "@/components/ContactPreference";
 import { directoryAircraft as aircraft } from "@/data/aircraft-directory";
 import { aircraftCategories } from "@/data/aircraftCategories";
-import { PageHero } from "@/components/PageHero";
 import { FlightSearchLink } from "@/components/FlightSearchLink";
 import { SocialLinks } from "@/components/SocialLinks";
 import { StructuredData } from "@/components/StructuredData";
@@ -22,9 +21,7 @@ export default function ContactPage() {
   return (
     <>
       <StructuredData data={localBusinessJsonLd()} />
-      <PageHero heading="Contact EXJET" eyebrow="Start with the right desk" title="Contact EXJET" copy="Choose the right desk for your request.">
-        <ButtonLink href="#contact-desks">See contact details</ButtonLink>
-      </PageHero>
+      <FlightPageHeading label="EXJET support" title="How can we help?" description="Get help with a private charter, an empty leg, or an existing trip." links={[["Plan a flight", "/charter/"], ["Contact details", "#contact-desks"]]} />
       <section className={styles.directory} id="contact-desks">
         <h2>Contact details</h2>
         <ul className={styles.desks}>{desks.map(({title, copy, email, Icon}) => <li key={title}><Icon size={22} aria-hidden="true" /><h3>{title}</h3><p>{copy}</p><a href={`mailto:${email}`}>{email}<ArrowUpRightIcon size={15} aria-hidden="true" /></a></li>)}</ul>

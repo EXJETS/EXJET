@@ -282,6 +282,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
         <p className="quote-form__kicker">Request received</p>
         <CheckCircleIcon size={32} aria-hidden="true" /><h3 tabIndex={-1} ref={element => { element?.focus(); }}>Your request has been sent.</h3>
         <p>This request does not reserve an aircraft. For a time-sensitive change, <a href={`mailto:${recipient}`}>email the EXJET flight desk</a> and include your reference.</p>
+        {useSearch && <Link className="ex-text-link" href="/app/booking/">How booking verification works</Link>}
         <div className="quote-form__reference"><span>Reference</span><strong>{reference}</strong></div>
         <button className="quote-form__new" type="button" onClick={() => { setForm({ ...initialState, passengers: mode === "group" ? "25" : "2" }); setReference(""); setTripType("one_way"); setReturnLeg(newLeg(1)); setFollowingLegs([newLeg(2)]); setCategory(""); nextLegId.current = 3; setStage("mission"); }}>
           Start another request <ArrowRightIcon size={18} aria-hidden="true" />

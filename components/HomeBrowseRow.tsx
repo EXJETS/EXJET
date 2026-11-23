@@ -1,7 +1,6 @@
 "use client";
 
-import { ArrowLeftIcon } from "@phosphor-icons/react/dist/csr/ArrowLeft";
-import { ArrowRightIcon } from "@phosphor-icons/react/dist/csr/ArrowRight";
+import { BrowseFlightGlyph as Icon } from "./BrowseFlightGlyph";
 import { useEffect, useId, useRef, useState, type ReactNode } from "react";
 import styles from "@/app/home-browse.module.css";
 
@@ -32,8 +31,8 @@ export function HomeBrowseRow({ label, children, photos = false }: { label: stri
   };
   return <div className={styles.rowShell}>
     {!(edges.start && edges.end) && <div className={styles.rowButtons}>
-      <button type="button" aria-label={`Previous ${label}`} aria-controls={id} disabled={edges.start} onClick={() => move(-1)}><ArrowLeftIcon size={18} aria-hidden="true" /></button>
-      <button type="button" aria-label={`Next ${label}`} aria-controls={id} disabled={edges.end} onClick={() => move(1)}><ArrowRightIcon size={18} aria-hidden="true" /></button>
+      <button type="button" aria-label={`Previous ${label}`} aria-controls={id} disabled={edges.start} onClick={() => move(-1)}><Icon name="back" width={18} height={18}/></button>
+      <button type="button" aria-label={`Next ${label}`} aria-controls={id} disabled={edges.end} onClick={() => move(1)}><Icon name="forward" width={18} height={18}/></button>
     </div>}
     <div ref={rail} id={id} tabIndex={0} role="region" aria-label={label} className={`${styles.row} ${photos ? styles.photoRow : ""}`}>{children}</div>
   </div>;
