@@ -292,19 +292,18 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
   }
 
   return (
-    <form ref={formRef} className={`quote-form quote-form--${mode}${compact ? " quote-form--compact" : ""} quote-form--${stage}`} onSubmit={submit} aria-busy={status === "loading"}>
+    <form ref={formRef} className={`quote-form quote-form--${mode}${compact ? " quote-form--compact" : ""} quote-form--${stage} ${useSearch ? styles.searchFlow : ""}`} onSubmit={submit} aria-busy={status === "loading"}>
       <p className="quote-form__progress">{useSearch ? ({mission:"1 of 3 · Your trip",results:"2 of 3 · Aircraft & estimate",contact:"3 of 3 · Request a firm quote"} as const)[stage] : stage === "mission" ? mode === "cargo" ? "1 of 2 · Shipment details" : "1 of 2 · Trip details" : "2 of 2 · Contact details"}</p>
       {stage === "mission" ? (
         <>
           {mode === "cargo" ? null : <fieldset className={styles.tripType}>
-            <legend>Trip type</legend>
+            <legend className={useSearch ? styles.srOnly : undefined}>Trip type</legend>
             <div className={styles.tripChoice}>{tripTypes.map(([type,label]) => <label key={type}>
               <input type="radio" name="tripType" value={type} checked={tripType === type} onChange={() => { setTripType(type); setStatus("idle"); setMessage(""); }} />
               <span>{label}</span>
             </label>)}</div>
           </fieldset>}
-          {useSearch ? <button className={styles.swap} type="button" aria-label="Swap departure and arrival" onClick={() => setForm(current => ({ ...current, departure: current.destination, departureIcao: current.destinationIcao, destination: current.departure, destinationIcao: current.departureIcao }))}>⇄ <span>Swap airports</span></button> : null}
-          <div className={`quote-form__row${(compact && mode !== "cargo") || useSearch ? " quote-form__row--home-itinerary" : ""}`}>
+          <div className={`quote-form__row ${useSearch ? styles.searchGrid : compact && mode !== "cargo" ? "quote-form__row--home-itinerary" : ""}`}>
             <AirportInput label={mode === "cargo" ? "Origin" : useSearch ? "From" : "Departure"} value={form.departure} code={form.departureIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, departure: value, departureIcao: icao }))} />
             <AirportInput label={mode === "cargo" ? "Destination" : useSearch ? "To" : "Arrival"} value={form.destination} code={form.destinationIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, destination: value, destinationIcao: icao }))} />
             <label><span>Date</span><input value={form.date} onInput={(event) => update("date", event.currentTarget.value)} name="date" type="date" min={today} required /></label>
@@ -326,6 +325,9 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
             ) : (
               <label><span>Passengers</span><input value={form.passengers} onChange={(event) => { const value = event.target.value; update("passengers", value); if (selectedCategory && Number(value) > selectedCategory.seats) setCategory(""); }} name="passengers" type="number" inputMode="numeric" min="1" max="100" step="1" required /></label>
             )}
+            {useSearch ? <button className={styles.swap} type="button" aria-label="Swap departure and arrival" title="Swap airports" onClick={() => setForm(current => ({ ...current, departure: current.destination, departureIcao: current.destinationIcao, destination: current.departure, destinationIcao: current.departureIcao }))}>
+              <svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true"><path d="M4 8h15m-4-4 4 4-4 4M20 16H5m4-4-4 4 4 4" /></svg>
+            </button> : null}
           </div>
           {mode !== "cargo" && !compact && !useSearch ? <div className="quote-form__row"><label>
             <span>Local departure time (optional)</span>
@@ -375,7 +377,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
               {mode === "cargo" ? "Continue to contact details" : useSearch ? "Search flights" : "See trip estimate"} {useSearch ? <CharterIcon name="search" width={18} height={18} /> : <ArrowRightIcon size={18} aria-hidden="true" />}
             </button>
             <a className="ex-text-link" href={emailHref}>Email instead</a>
-            <p>{groupHandled ? "This passenger count will be routed to EXJET group charter." : useSearch ? "Compare estimated trip totals before sharing your contact details." : compact ? "One more step. No account required." : `No account required. For a time-sensitive request, email ${recipient}.`}</p>
+            <p hidden={useSearch && !groupHandled}>{groupHandled ? "This passenger count will be routed to EXJET group charter." : useSearch ? null : compact ? "One more step. No account required." : `No account required. For a time-sensitive request, email ${recipient}.`}</p>
           </div>
         </>
       ) : stage === "results" ? (

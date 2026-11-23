@@ -27,3 +27,9 @@
 .cabin input { width:17px; min-width:17px; height:17px; padding:0; margin:0; accent-color:#2857c8; }
 .cabin strong,.cabin small { display:block; }
 .cabin > span:last-child { font-size:.875rem; font-weight:650; white-space:nowrap; }
+
+.estimate:has(.cabins) { background:#fff; border:0; border-radius:0; padding:0; gap:12px; }
+.estimate:has(.cabins) .heading { padding:10px 13px; background:#edf4ff; border-radius:6px; }
+.estimate:has(.cabins) .map svg { max-height:8.5rem; }
+.estimate:has(.cabins) .cabin.cabin { padding-block:7px; min-height:54px; }
+.cabin small { font-size:.76rem; }
