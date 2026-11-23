@@ -1,5 +1,5 @@
 {
-  "rows": 1673,
+  "rows": 1678,
   "source": "https://www.faa.gov/about/officeorg/headquartersoffices/avs/faa-certificated-aircraft-operators-legal-part-135-holders.xlsx",
   "source_last_modified": "2026-11-16T19:03:18Z",
   "notes": "FAA roster fields with regulator model-slug validation where regulatory designator spans multiple variants. No location, emails, images, tracking, live inventory, floating classification or JETNET data.",
@@ -11,5 +11,21 @@
     "https://www.easa.europa.eu/en/downloads/7459/en",
     "https://www.easa.europa.eu/sites/default/files/dfu/20150519%20OSD%20FC%20G-IV.pdf",
     "https://www.easa.europa.eu/en/downloads/129064/en"
+  ],
+  "exact_operator_supplements": [
+    {
+      "operator": "WINDSTAR AVIATION INC",
+      "designator": "WNDA",
+      "faa_model": "CE-750",
+      "approved_exact_model": "citation-x",
+      "tails": [
+        "N12BA",
+        "N26BT",
+        "N200JT",
+        "N708CA",
+        "N947EL"
+      ],
+      "verification": "Current FAA Part 135 aircraft and certificate; exact model and KADS base corroborated by Jet-Ten individual charter pages."
+    }
   ]
 }

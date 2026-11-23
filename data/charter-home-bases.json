@@ -62,5 +62,65 @@
     },
     "baseSource": "https://l33jets.com/fleet/heavy-private-jets/bombardier-challenger-605-n605ce/",
     "seatSource": "https://l33jets.com/fleet/"
+  },
+  {
+    "id": "jet-ten-n12ba",
+    "tail": "N12BA",
+    "modelSlug": "citation-x",
+    "seats": 9,
+    "category": "large",
+    "coverage": {
+      "kind": "home_base",
+      "airport": "KADS"
+    },
+    "baseSource": "https://jet-ten.com/aircraft-for-charter-cessna-citation-x-2004/"
+  },
+  {
+    "id": "jet-ten-n26bt",
+    "tail": "N26BT",
+    "modelSlug": "citation-x",
+    "seats": 8,
+    "category": "large",
+    "coverage": {
+      "kind": "home_base",
+      "airport": "KADS"
+    },
+    "baseSource": "https://jet-ten.com/aircraft-for-charter-cessna-citation-x-1998/"
+  },
+  {
+    "id": "jet-ten-n200jt",
+    "tail": "N200JT",
+    "modelSlug": "citation-x",
+    "seats": 8,
+    "category": "large",
+    "coverage": {
+      "kind": "home_base",
+      "airport": "KADS"
+    },
+    "baseSource": "https://jet-ten.com/aircraft-for-charter-cessna-citation-x-2000/"
+  },
+  {
+    "id": "jet-ten-n708ca",
+    "tail": "N708CA",
+    "modelSlug": "citation-x",
+    "seats": 9,
+    "category": "large",
+    "coverage": {
+      "kind": "home_base",
+      "airport": "KADS"
+    },
+    "baseSource": "https://jet-ten.com/aircraft-for-charter-cessna-citation-x-n708ca/"
+  },
+  {
+    "id": "jet-ten-n947el",
+    "tail": "N947EL",
+    "modelSlug": "citation-x",
+    "seats": 8,
+    "category": "large",
+    "coverage": {
+      "kind": "home_base",
+      "airport": "KADS"
+    },
+    "baseSource": "https://jet-ten.com/aircraft-for-charter-cessna-citation-x-1998-n947el/"
   }
 ]
