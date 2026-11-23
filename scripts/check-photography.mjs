@@ -6,6 +6,14 @@ import { fileURLToPath } from "node:url";
 const root = fileURLToPath(new URL("../", import.meta.url));
 const manifest = JSON.parse(await readFile(path.join(root, "PHOTO-SOURCES.json"), "utf8"));
 const approved = new Map(manifest.assets.map(asset => [asset.file, asset]));
+const bases = JSON.parse(await readFile(path.join(root, "data/charter-home-bases.json"), "utf8"));
+const jetTenSource = (value, assetKind) => {
+  try {
+    const url = new URL(value);
+    return url.protocol === "https:" && ["jet-ten.com", "www.jet-ten.com"].includes(url.hostname) &&
+      (assetKind === "image" ? url.pathname.startsWith("/wp-content/uploads/") : url.pathname.startsWith("/aircraft-for-charter-"));
+  } catch { return false; }
+};
 const errors = [];
 const references = JSON.parse(await readFile(path.join(root, "data/aircraft-reference.json"), "utf8"));
 for (const reference of Object.values(references)) {
@@ -18,7 +26,7 @@ for (const reference of Object.values(references)) {
     }
   }
 }
-// Manufacturer-direct sources, with three separately directed homepage uploads.
+// Keep manufacturer/editorial constraints; exact operator assets are restricted to the named charter cards.
 const ownerHeroFiles = new Set([
   "/images/hero/gulfstream-g700-water.webp",
   "/images/hero/bombardier-global-8000-coast.webp",
@@ -47,7 +55,17 @@ async function checkDirectory(directory) {
     }
     const bytes = await readFile(filename);
     const ownerHero = asset.source_kind === "owner-supplied-hero";
-    if (ownerHero) {
+    const exactJetTenTail = asset.source_kind === "jet-ten-exact-tail";
+    if (exactJetTenTail) {
+      const base = bases.find(row => row.id === `jet-ten-${asset.tail?.toLowerCase()}` &&
+        row.tail === asset.tail && row.coverage?.airport === "KADS" && row.baseSource === asset.source_page);
+      if (!base || !/^N[1-9][A-Z0-9]{0,4}$/.test(asset.tail) ||
+          publicPath !== `/images/charter-fleet/jet-ten/${asset.tail.toLowerCase()}.webp` ||
+          asset.publication_scope !== "EXJET exact-tail charter card only" || !asset.owner_publication_directed_on ||
+          !jetTenSource(asset.source_page, "page") || !jetTenSource(asset.image_url, "image")) {
+        errors.push(`Invalid Jet-Ten exact-tail photo record: ${publicPath}`);
+      }
+    } else if (ownerHero) {
       if (!ownerHeroFiles.has(publicPath) || asset.publication_scope !== "EXJET homepage hero only" ||
           !asset.original_filename || !/^[a-f0-9]{64}$/.test(asset.original_sha256) || !asset.owner_publication_directed_on) {
         errors.push(`Unauthorized owner-supplied hero record: ${publicPath}`);
@@ -64,10 +82,10 @@ async function checkDirectory(directory) {
       errors.push(`Photo has not passed visual review for gallery counters, controls and overlays: ${publicPath}`);
     }
     const sha256 = createHash("sha256").update(bytes).digest("hex");
-    if (asset.scene === "exterior" && asset.flight_status !== "in-flight") {
+    if (!exactJetTenTail && asset.scene === "exterior" && asset.flight_status !== "in-flight") {
       errors.push(`Exterior photo is not verified in-flight promotional photography: ${publicPath}`);
     }
-    if (sha256 !== asset.sha256) errors.push(`Photo differs from verified manufacturer bytes: ${publicPath}`);
+    if (sha256 !== asset.sha256) errors.push(`Photo differs from its verified asset hash: ${publicPath}`);
     if (!ownerHero && (!asset.source_page || !asset.image_url || !asset.source_bytes_verified_on)) {
       errors.push(`Missing source evidence: ${publicPath}`);
     }

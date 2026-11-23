@@ -1,6 +1,6 @@
 {
   "date": "2026-10-23",
-  "scope": "Manufacturer-direct library photography, plus individually approved owner-supplied EXJET homepage hero images.",
+  "scope": "Manufacturer-direct library photography, individually directed homepage hero images, and user-directed exact Jet-Ten tail photos for Addison charter cards only.",
   "approved_hosts": [
     "cessna.txtav.com",
     "bombardier.com",
@@ -564,6 +564,126 @@
       "publication_scope": "EXJET homepage hero only",
       "publication_permission": "Owner directed publication of this supplied asset; underlying license not independently verified.",
       "transformation": "Optimized WebP, metadata removed; no subject added or removed.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/charter-fleet/jet-ten/n12ba.webp",
+      "model": "Citation X",
+      "tail": "N12BA",
+      "scene": "exterior",
+      "source_page": "https://jet-ten.com/aircraft-for-charter-cessna-citation-x-2004/",
+      "image_url": "https://jet-ten.com/wp-content/uploads/2024/02/N722XJ-Exterior.png",
+      "dimensions": {
+        "width": 800,
+        "height": 424
+      },
+      "evidence": "Official Jet-Ten sales page explicitly identifies the same airframe as N722XJ / N12BA. Gallery filename uses its former registration. Current FAA serial is 7500222.",
+      "sha256": "524bb6f70779fed6e5022c1ec5b456b1b2ed044ba39712bd296966a637e5ca80",
+      "file_bytes": 32276,
+      "source_bytes_verified_on": "2026-11-23",
+      "transformation": "Resized if needed and encoded as WebP; full framing and existing marks retained.",
+      "publication_permission": "Site owner directed this publication and retained responsibility for rights clearance; no independent license finding.",
+      "source_kind": "jet-ten-exact-tail",
+      "owner_publication_directed_on": "2026-11-23",
+      "publication_scope": "EXJET exact-tail charter card only",
+      "visually_inspected": true,
+      "ui_overlay_free": true,
+      "former_registration": "N722XJ",
+      "supporting_urls": [
+        "https://jet-ten.com/aircraft-for-sale/",
+        "https://www.faa.gov/sites/faa.gov/files/2026-06/NAARMO_US_IGA_RVSM_Approvals_Part_135_91_Section_3_0.pdf"
+      ]
+    },
+    {
+      "file": "/images/charter-fleet/jet-ten/n26bt.webp",
+      "model": "Citation X",
+      "tail": "N26BT",
+      "scene": "exterior",
+      "source_page": "https://jet-ten.com/aircraft-for-charter-cessna-citation-x-1998/",
+      "image_url": "https://jet-ten.com/wp-content/uploads/2024/01/N26BT-Citation-X-Exterior.png",
+      "dimensions": {
+        "width": 800,
+        "height": 424
+      },
+      "evidence": "Tail explicitly identified in the operator filename and alt text.",
+      "sha256": "259a8c9f0268bf119ade2944984806346a77f8d1ef4bcbf92618eb3443be4aa8",
+      "file_bytes": 31792,
+      "source_bytes_verified_on": "2026-11-23",
+      "transformation": "Resized if needed and encoded as WebP; full framing and existing marks retained.",
+      "publication_permission": "Site owner directed this publication and retained responsibility for rights clearance; no independent license finding.",
+      "source_kind": "jet-ten-exact-tail",
+      "owner_publication_directed_on": "2026-11-23",
+      "publication_scope": "EXJET exact-tail charter card only",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/charter-fleet/jet-ten/n200jt.webp",
+      "model": "Citation X",
+      "tail": "N200JT",
+      "scene": "exterior",
+      "source_page": "https://jet-ten.com/aircraft-for-charter-cessna-citation-x-2000/",
+      "image_url": "https://jet-ten.com/wp-content/uploads/2024/01/Cessna200ext.png",
+      "dimensions": {
+        "width": 800,
+        "height": 424
+      },
+      "evidence": "Tail explicitly identified in the operator charter page; lead exterior caption/filename is Cessna200ext. Registration not legible. Existing watermark preserved.",
+      "sha256": "30686da4e2b493b4765b1b8e84fb2a0fd700f74da67d9eaf91047c966333e184",
+      "file_bytes": 25774,
+      "source_bytes_verified_on": "2026-11-23",
+      "transformation": "Resized if needed and encoded as WebP; full framing and existing marks retained.",
+      "publication_permission": "Site owner directed this publication and retained responsibility for rights clearance; no independent license finding.",
+      "source_kind": "jet-ten-exact-tail",
+      "owner_publication_directed_on": "2026-11-23",
+      "publication_scope": "EXJET exact-tail charter card only",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/charter-fleet/jet-ten/n708ca.webp",
+      "model": "Citation X",
+      "tail": "N708CA",
+      "scene": "exterior",
+      "source_page": "https://jet-ten.com/aircraft-for-charter-cessna-citation-x-n708ca/",
+      "image_url": "https://jet-ten.com/wp-content/uploads/2025/05/N708CA-Web-Size-1.jpg",
+      "dimensions": {
+        "width": 1200,
+        "height": 800
+      },
+      "evidence": "Tail explicitly identified in the operator filename and alt text.",
+      "sha256": "19305b3635382ec6b872cfeb3bcc4d29218ab017ce41b8ad1ecb33788d1078c7",
+      "file_bytes": 66528,
+      "source_bytes_verified_on": "2026-11-23",
+      "transformation": "Resized if needed and encoded as WebP; full framing and existing marks retained.",
+      "publication_permission": "Site owner directed this publication and retained responsibility for rights clearance; no independent license finding.",
+      "source_kind": "jet-ten-exact-tail",
+      "owner_publication_directed_on": "2026-11-23",
+      "publication_scope": "EXJET exact-tail charter card only",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/charter-fleet/jet-ten/n947el.webp",
+      "model": "Citation X",
+      "tail": "N947EL",
+      "scene": "exterior",
+      "source_page": "https://jet-ten.com/aircraft-for-charter-cessna-citation-x-1998-n947el/",
+      "image_url": "https://jet-ten.com/wp-content/uploads/2025/05/N947EL-Web-Size-1-1.jpg",
+      "dimensions": {
+        "width": 1200,
+        "height": 675
+      },
+      "evidence": "Tail explicitly identified in the operator filename, alt text and visible aircraft registration.",
+      "sha256": "0a06c873a304a0a23bd5a1ec72f06778e93a3c1025b6c671c306f8c115c9fb57",
+      "file_bytes": 45550,
+      "source_bytes_verified_on": "2026-11-23",
+      "transformation": "Resized if needed and encoded as WebP; full framing and existing marks retained.",
+      "publication_permission": "Site owner directed this publication and retained responsibility for rights clearance; no independent license finding.",
+      "source_kind": "jet-ten-exact-tail",
+      "owner_publication_directed_on": "2026-11-23",
+      "publication_scope": "EXJET exact-tail charter card only",
       "visually_inspected": true,
       "ui_overlay_free": true
     }
