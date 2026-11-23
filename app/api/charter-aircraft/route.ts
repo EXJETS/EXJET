@@ -1,3 +1,4 @@
+import photoSources from "@/PHOTO-SOURCES.json";
 import { fleetCategoryLabel, matchFleet, type FleetCategory, type FleetRecord } from "@/lib/charter-fleet";
 import { isFloatingFleetEnabled, publishedCharterFleet } from "@/lib/charter-catalog.server";
 import { getDirectoryAircraft, getModelSpecification, isRequestOnly } from "@/data/aircraft-directory";
@@ -14,9 +15,19 @@ function modelCard(modelSlug: string, category: FleetCategory) {
     image: profile.image ?? null, fit: profile.cardFit ?? "cover",
   };
 }
+const exactPhotos = new Map(
+  photoSources.assets.flatMap(asset => asset.source_kind === "jet-ten-exact-tail" && "tail" in asset &&
+    typeof asset.tail === "string" ? [[asset.tail, { file: asset.file, formerRegistration: "former_registration" in asset ? asset.former_registration : undefined }] as const] : []),
+);
+
 function listedCard(record: FleetRecord) {
   const model = modelCard(record.modelSlug, record.category);
-  return model ? { ...model, id: record.id, tail: record.tail, seats: record.seats } : null;
+  if (!model) return null;
+  const exactPhoto = record.id === `jet-ten-${record.tail.toLowerCase()}` ? exactPhotos.get(record.tail) : undefined;
+  return {
+    ...model, id: record.id, tail: record.tail, seats: record.seats,
+    ...(exactPhoto ? { image: exactPhoto.file, fit: "contain", photoCredit: "Jet-Ten", photoFormerRegistration: exactPhoto.formerRegistration } : {}),
+  };
 }
 
 export function GET(request: Request) {

@@ -8,7 +8,7 @@ import styles from "./CharterAircraftCards.module.css";
 
 type Card = {
   id: string; tail: string; modelSlug: string; name: string; category: FleetCategory; categoryLabel: string;
-  image: string | null; fit: "cover" | "contain"; seats?: number;
+  image: string | null; photoCredit?: string; photoFormerRegistration?: string; fit: "cover" | "contain"; seats?: number;
 };
 type Catalog = { floating: Card[]; based: Card[] };
 export type AircraftPreference = { id: string; tail: string; modelSlug: string; name: string; category: FleetCategory };
@@ -52,9 +52,9 @@ export function CharterAircraftCards({ airport, passengers, totals, onSelect, se
             <button className={styles.card} type="button" aria-pressed={isSelected}
               onClick={() => onSelect({ id: card.id, tail: card.tail, modelSlug: card.modelSlug, name: card.name, category: card.category })}>
               <span className={styles.photo}>
-                {card.image ? <Image src={card.image} alt="" fill sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw" style={{objectFit: card.fit}} />
+                {card.image ? <Image src={card.image} alt={card.photoCredit ? `${card.name} ${card.tail} exterior${card.photoFormerRegistration ? `, pictured as ${card.photoFormerRegistration}` : ""}` : ""} fill sizes="(max-width: 560px) 100vw, (max-width: 900px) 50vw, 33vw" style={{objectFit: card.fit}} />
                   : <Icon name="aircraft" width={44} height={44} />}
-                {card.image && <span className={styles.photoLabel}>Model photo</span>}
+                {card.image && <span className={styles.photoLabel}>{card.photoCredit ? `Photo: ${card.photoCredit}${card.photoFormerRegistration ? ` · as ${card.photoFormerRegistration}` : ""}` : "Model photo"}</span>}
               </span>
               <span className={styles.info}>
                 <strong>{card.name}</strong>
@@ -75,7 +75,7 @@ export function CharterAircraftCards({ airport, passengers, totals, onSelect, se
       {group("floating", "Floating fleet", catalog.floating)}
       {group("based", `Based at ${airport}`, catalog.based)}
       {!hasListings ? <p className={styles.notice}>No aircraft are listed at this departure airport yet. Ask the charter desk to source your flight.</p> : null}
-      {hasListings ? <p className={styles.notice}>Photos are representative. Prices are cabin estimates. The operator confirms aircraft, airport suitability and availability for your dates.</p> : null}
+      {hasListings ? <p className={styles.notice}>Images marked “Model photo” are representative. Prices are cabin estimates. The operator confirms aircraft, airport suitability and availability for your dates.</p> : null}
     </>}
   </div>;
 }
