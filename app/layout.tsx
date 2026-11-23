@@ -21,6 +21,13 @@ import "./exjet-browse-theme.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),
+  icons: {
+    icon: [
+      { url: "/icon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "48x48", type: "image/x-icon" },
+    ],
+    apple: [{ url: "/apple-touch-icon.png", sizes: "180x180", type: "image/png" }],
+  },
 };
 
 export const viewport: Viewport = {

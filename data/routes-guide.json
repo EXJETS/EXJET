@@ -855,256 +855,549 @@
   {
     "slug": "dallas-to-aspen",
     "title": "Dallas to Aspen private jet charter",
-    "seoTitle": "Dallas to Aspen Private Jet Charter: Cost & Time | EXJET",
+    "seoTitle": "Dallas to Aspen Private Jet Charter (DAL, ADS, DFW to ASE) | EXJET",
     "originAirport": "kdal",
     "destinationAirport": "kase",
-    "description": "Plan Dallas to Aspen aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "description": "Charter a private jet from Dallas to Aspen. Planning times from Love Field, Addison and DFW to ASE, airport and curfew notes, aircraft guidance, and a trip-specific quote from EXJET.",
     "sections": [
       {
-        "heading": "Flight time and budget illustration",
+        "heading": "A Dallas–Aspen charter, arranged as a broker",
         "paragraphs": [
-          "Allow approximately 1.75–2.5 hours of block time for early planning on Dallas to Aspen. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
-          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+          "EXJET arranges Dallas to Aspen charter as an air charter broker. The licensed operating carrier flies the aircraft and confirms performance, payload, and airport suitability. A planning range is not a schedule and not a quote.",
+          "Allow approximately 1.75–2.5 hours of block time for early planning between the Dallas area and Aspen (ASE). That editorial range matches a typical winter westbound trip on a midsize through heavy jet, with about 25–40 minutes allowed for taxi, climb, descent, and a mountain arrival. Winds, routing, and the specific tail change the plan."
+        ],
+        "links": [
+          {
+            "label": "Request a Dallas–Aspen quote",
+            "path": "/charter/?from=KDAL&to=KASE"
+          },
+          {
+            "label": "Aspen airport guide",
+            "path": "/airports/kase"
+          },
+          {
+            "label": "Aspen destination guide",
+            "path": "/destinations/aspen"
+          }
+        ]
+      },
+      {
+        "heading": "Flight times by aircraft class from DAL, ADS, and DFW",
+        "paragraphs": [
+          "Love Field, Addison, and DFW are close enough that the choice of Dallas airport changes airborne time by only a few minutes. The meaningful difference is the drive to the passenger, not the flight. Great-circle planning figures are about 618 nautical miles from DAL, 614 from ADS, and 610 from DFW. Re-check them in a flight-planning tool before treating them as more than a sketch.",
+          "The ranges below are EXJET planning estimates for a typical winter westbound cruise with 4–6 passengers and no unusual holding. They are not quotes and not a schedule. The operating carrier confirms the flight plan. A light jet may also be payload- or fuel-limited on the return from ASE; do not treat it as the default if the date will not support it."
         ],
         "table": {
-          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "caption": "Planning block times, Dallas area to ASE — estimates, not a quote",
           "headers": [
-            "Aircraft category",
-            "Hourly example input",
-            "Flight-charge illustration"
+            "Aircraft class",
+            "Planning block time"
           ],
           "rows": [
             [
+              "Light jet",
+              "2 hr 00 min – 2 hr 30 min"
+            ],
+            [
+              "Midsize",
+              "1 hr 50 min – 2 hr 20 min"
+            ],
+            [
               "Super-midsize",
-              "$11,500/hour",
-              "$20,000–$29,000"
+              "1 hr 45 min – 2 hr 15 min"
             ],
             [
-              "Large cabin",
-              "$13,500/hour",
-              "$23,500–$34,000"
-            ],
-            [
-              "Ultra-long-range",
-              "$16,750/hour",
-              "$29,500–$42,000"
+              "Heavy / long-range",
+              "1 hr 45 min – 2 hr 15 min"
             ]
           ]
         },
         "links": [
           {
-            "label": "See the calculation basis and complete trip-price example",
+            "label": "How charter pricing works",
             "path": "/pricing"
           }
         ]
       },
       {
-        "heading": "Include a mountain-arrival alternative",
+        "heading": "Airport notes: ASE",
         "paragraphs": [
-          "Give your preferred Aspen arrival window and an acceptable fallback before selecting an aircraft. If a ski day or dinner reservation is fixed, an earlier departure or travel the previous day may provide more flexibility. The operator must review Aspen restrictions, weather and the specific aircraft’s performance."
-        ]
-      },
-      {
-        "heading": "Compare cabins against the actual passenger brief",
-        "paragraphs": [
-          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+          "Aspen/Pitkin County Airport sits at about 7,838 feet. Runway 15/33 is published as 8,006 by 100 feet of asphalt. The landing distance available in both directions is 7,006 feet: runway 33 has a displaced threshold of about 1,000 feet, and runway 15’s takeoff and landing distances are also 7,006 feet. FAA remarks describe mountainous terrain nearby and recommend a performance review for density altitude, weight and balance, and climb. These figures are from the FAA airport display effective 29 October 2026 through 26 November 2026. Recheck the current chart cycle and NOTAMs before travel.",
+          "The airport is closed 2300–0700 MST. It is attended 0700–2300, the tower is published 0700–2000, and there are no departures after 2230 MST. Stage I operations are prohibited. County rules further limit Stage II and Stage III operations after sunset, and night general aviation has extra equipment and experience requirements. Plan the arrival as if the curfew were the end of the day.",
+          "Atlantic Aviation is the FBO named in public sources, at 69 East Airport Road. Published passenger hours run earlier than the airport arrival window; the FAA remarks also reference a two-hour advance notice for staging before departure. Confirm the FBO address, ramp limits, and holiday compression with the operator for the actual dates. The airport states a 95-foot wingspan limitation.",
+          "ASE is scheduled to close for runway reconstruction from 11:00 p.m. on Sunday, 4 April 2027 through 7:00 p.m. on Friday, 19 November 2027. The 2026–27 ski season can still use ASE. After the closure the runway is planned to widen and the wingspan limit is planned to rise. During the closure, Eagle County (EGE), Rifle (RIL), and Grand Junction (GJT) are the alternates to discuss, with a ground transfer the passenger accepts. The operator and the advisor confirm which field the aircraft can use."
         ],
         "links": [
           {
-            "label": "Challenger 350 cabin and mission guide",
-            "path": "/aircraft/challenger-350"
+            "label": "Full ASE airport guide",
+            "path": "/airports/kase"
           },
           {
-            "label": "Falcon 2000LX charter guide",
-            "path": "/aircraft/falcon-2000lx"
+            "label": "Eagle County as a weather or closure alternate",
+            "path": "/routes/dallas-to-vail"
           }
         ]
       },
       {
-        "heading": "Airport and private-terminal choices",
+        "heading": "Dallas origin choice",
         "paragraphs": [
-          "This example uses Dallas Love Field (DAL) and Aspen/Pitkin County Airport (ASE). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
+          "Love Field (DAL) is the usual central-Dallas starting point. Addison (ADS) often fits a north-Dallas, Plano, or Frisco pickup. DFW is worth comparing when the group is already on that side of the Metroplex or when an international connection is part of the same day. Ask the operator which field the proposed aircraft can use, then match the FBO street address to the car."
         ],
         "links": [
           {
-            "label": "DAL airport guide",
+            "label": "Dallas private jet charter",
+            "path": "/private-jet-charter/dallas"
+          },
+          {
+            "label": "Love Field guide",
             "path": "/airports/kdal"
           },
           {
-            "label": "ASE airport guide",
-            "path": "/airports/kase"
+            "label": "Addison guide",
+            "path": "/airports/kads"
           }
         ]
       },
       {
-        "heading": "Request a complete proposal",
+        "heading": "Aircraft recommendations",
         "paragraphs": [
-          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+          "Midsize and super-midsize cabins are the usual planning starting points for a Dallas–Aspen ski trip. A heavy jet is appropriate only when the operator confirms ASE performance, payload, and the field’s wingspan limit for that tail. A light jet is reasonable only with a conservative payload and a weather and alternate plan. The model name does not confirm suitability. The operator does, for this aircraft, these weights, and this day.",
+          "List skis, snowboards, boots, and every checked bag separately from the passenger count. Winter equipment changes both the cabin choice and the transfer vehicle."
+        ]
+      },
+      {
+        "heading": "Peak ski-season dates",
+        "paragraphs": [
+          "Scheduled 2026–27 dates, which can move with weather: Aspen Mountain and Snowmass are scheduled to open 26 November 2026. Aspen Mountain is scheduled through 18 April 2027 and Snowmass through 11 April 2027 in the Aspen Times report of the resort announcement; another public list has carried Snowmass later. Aspen Highlands and Buttermilk are scheduled to open 12 December 2026, with Highlands through 11 April 2027 and Buttermilk through 4 April 2027. Confirm the current calendar on aspensnowmass.com.",
+          "The busiest booking windows, as a planning estimate rather than an official resort calendar, are the two weeks around Christmas and New Year, Martin Luther King Jr. Day weekend, Presidents’ Day weekend, and March spring-break weeks. Atlantic Aviation ASE has flagged holiday ramp compression for 24 December 2026 through 3 January 2027. Request the quote early for those windows. The April 2027 runway closure begins as the season is ending, so late-season travel should be checked against that date."
+        ]
+      },
+      {
+        "heading": "A sample Friday arrival",
+        "paragraphs": [
+          "One workable shape is a Friday afternoon departure from Love Field for a Saturday ski day, with a Sunday or Monday return. Call out ski bags in the request. If the ASE arrival window is tight against the curfew or the forecast, move the outbound to earlier in the day or to Saturday morning rather than planning to land at the edge of the operating day."
         ],
         "links": [
           {
-            "label": "Request a quote for Dallas to Aspen",
-            "path": "/charter"
-          },
-          {
-            "label": "Understand operator review",
-            "path": "/safety"
+            "label": "Request a Dallas–Aspen quote",
+            "path": "/charter/?from=KDAL&to=KASE"
           }
         ]
       }
     ],
     "sources": [
       {
-        "label": "City of Dallas — Love Field questions and private aircraft meeting locations",
-        "url": "https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"
+        "label": "FAA airport display, KASE (chart data effective 29 Oct–26 Nov 2026)",
+        "url": "https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=KASE"
       },
       {
-        "label": "Aspen/Pitkin County Airport — official airport information",
-        "url": "https://www.aspenairport.com/pilotinformation/"
+        "label": "Aspen/Pitkin County Airport — curfew",
+        "url": "https://www.aspenairport.com/pilotinformation/operating-procedures/curfew/"
+      },
+      {
+        "label": "Aspen Airport — runway reconstruction FAQs",
+        "url": "https://www.aspenairport.com/runway-reconstruction-faqs/"
+      },
+      {
+        "label": "Atlantic Aviation ASE",
+        "url": "https://www.atlanticaviation.com/locations/ASE"
+      },
+      {
+        "label": "Aspen Times — 2026–27 opening days, 9 Sep 2026",
+        "url": "https://www.aspentimes.com/news/aspen-snowmass-announces-opening-days-for-winter-2026-27-season/"
       }
     ],
     "faqs": [
       {
-        "question": "How long is a Dallas to Aspen charter flight?",
-        "answer": "Our early planning allowance is 1.75–2.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+        "question": "How long is a Dallas to Aspen charter?",
+        "answer": "Plan on about 1.75–2.5 hours of block time, with class-by-class ranges from roughly 1 hour 45 minutes to 2 hours 30 minutes. Those are planning estimates. The operator confirms the schedule for the aircraft, winds, and airport conditions."
       },
       {
-        "question": "Is the example price the amount I will pay?",
-        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+        "question": "Is a planning price the amount I will pay?",
+        "answer": "No. EXJET does not publish a Dallas–Aspen fare on this page. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes, and any requested extras."
       },
       {
-        "question": "Can I request an empty leg on this route?",
-        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+        "question": "Can I request an empty leg?",
+        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing follow the underlying trip, and there may be no suitable flight. Keep a backup plan if the journey is essential."
+      },
+      {
+        "question": "What time can I arrive at ASE?",
+        "answer": "The airport is closed 2300–0700 MST, with no departures after 2230 MST. Stage and night rules are tighter than the clock alone. Plan to be on the ground well inside the attended day, and have the operator confirm the curfew for your dates."
+      },
+      {
+        "question": "Which Dallas airport should I use?",
+        "answer": "Love Field, Addison, and DFW change the flight time only slightly. Choose the field that shortens the drive and that the operator accepts for the aircraft. Compare Love Field and Addison in the Dallas charter guide."
+      },
+      {
+        "question": "What happens during the 2027 runway closure?",
+        "answer": "ASE is scheduled to close from the night of 4 April 2027 through the evening of 19 November 2027 for runway reconstruction. The 2026–27 ski season can still use ASE. During the closure, discuss EGE, Rifle, or Grand Junction and a ground transfer the group will accept."
+      },
+      {
+        "question": "Can every midsize or heavy jet use ASE?",
+        "answer": "No. Elevation, the 7,006-foot landing distance, the 95-foot wingspan limit, payload, and the return with fuel and ski bags all have to be checked. The operator confirms the specific aircraft. A heavy jet is not automatic."
       }
     ],
-    "updated": "2026-10-17"
+    "updated": "2026-11-23"
   },
   {
     "slug": "dallas-to-vail",
-    "title": "Dallas to Vail private jet charter",
-    "seoTitle": "Dallas to Vail Private Jet Charter: Cost & Time | EXJET",
+    "title": "Dallas to Vail and Beaver Creek private jet charter",
+    "seoTitle": "Dallas to Vail & Beaver Creek Private Jet (EGE) | EXJET",
     "originAirport": "kdal",
     "destinationAirport": "kege",
-    "description": "Plan Dallas to Vail aircraft charter with airport options, estimated flight time and clear cost examples. Request a trip-specific proposal from EXJET.",
+    "description": "Charter a private jet from Dallas to Eagle County (EGE) for Vail and Beaver Creek. Flight-time planning from DAL, ADS and DFW, airport notes, transfer guidance, and a written EXJET quote.",
     "sections": [
       {
-        "heading": "Flight time and budget illustration",
+        "heading": "One flight for Vail and Beaver Creek",
         "paragraphs": [
-          "Allow approximately 1.75–2.5 hours of block time for early planning on Dallas to Vail. This is an EXJET editorial estimate, not a confirmed schedule. Aircraft choice, winds, air traffic routing and taxi time can change the operating carrier’s flight plan.",
-          "The examples below multiply that time allowance by the published category reference inputs explained in our pricing guide. They show flight charges only, rounded to $500; they are not live fares, all-in trip totals or promises of aircraft availability. Positioning, minimum usage, airport charges, crew expenses, taxes and requested extras can change the total substantially."
+          "Vail and Beaver Creek share Eagle County Regional Airport (EGE) in Gypsum. There is no separate Dallas–Beaver Creek or Dallas–Eagle County route page, because it would be the same flight, the same runway, and the same FBO. Tell the advisor which resort or residence you are going to so the ground transfer is planned with the flight.",
+          "EXJET arranges the charter as a broker. The operating carrier confirms the aircraft and the airport. Allow approximately 1.75–2.5 hours of block time for early planning from the Dallas area to EGE. That is an editorial range, not a schedule."
+        ],
+        "links": [
+          {
+            "label": "Request a Dallas–Eagle County quote",
+            "path": "/charter/?from=KDAL&to=KEGE"
+          },
+          {
+            "label": "Eagle County airport guide",
+            "path": "/airports/kege"
+          },
+          {
+            "label": "Vail and Beaver Creek destination guide",
+            "path": "/destinations/vail"
+          }
+        ]
+      },
+      {
+        "heading": "Flight times by aircraft class from DAL, ADS, and DFW to EGE",
+        "paragraphs": [
+          "Great-circle planning figures are about 635 nautical miles from DAL, 631 from ADS, and 626 from DFW. Origin choice inside Dallas changes block time by only a few minutes. Re-check the distance in a flight-planning tool; third-party mileage pages are a sketch, not the operator’s plan.",
+          "The table uses the same assumptions as the Aspen estimate: typical winter westbound cruise, 4–6 passengers, no unusual holding, and about 25–40 minutes for taxi, climb, descent, and a mountain arrival. These are planning estimates. The operating carrier confirms the flight plan. A light jet may be payload-limited on the return."
         ],
         "table": {
-          "caption": "Illustrative flight charges in USD — request a complete trip quote",
+          "caption": "Planning block times, Dallas area to EGE — estimates, not a quote",
           "headers": [
-            "Aircraft category",
-            "Hourly example input",
-            "Flight-charge illustration"
+            "Aircraft class",
+            "Planning block time"
           ],
           "rows": [
             [
+              "Light jet",
+              "2 hr 00 min – 2 hr 30 min"
+            ],
+            [
+              "Midsize",
+              "1 hr 50 min – 2 hr 20 min"
+            ],
+            [
               "Super-midsize",
-              "$11,500/hour",
-              "$20,000–$29,000"
+              "1 hr 45 min – 2 hr 15 min"
             ],
             [
-              "Large cabin",
-              "$13,500/hour",
-              "$23,500–$34,000"
-            ],
-            [
-              "Ultra-long-range",
-              "$16,750/hour",
-              "$29,500–$42,000"
+              "Heavy / long-range",
+              "1 hr 45 min – 2 hr 15 min"
             ]
           ]
-        },
-        "links": [
-          {
-            "label": "See the calculation basis and complete trip-price example",
-            "path": "/pricing"
-          }
+        }
+      },
+      {
+        "heading": "One airport, two resorts",
+        "paragraphs": [
+          "There is no jet airport in Vail Village. Eagle County Regional Airport, west of the resorts along I-70, is the field. Name Vail Village, Lionshead, Beaver Creek, Avon, or the exact residence in the request. EXJET does not operate the cars. Drive times below are typical, non-storm estimates and should be confirmed with the transfer provider and the FBO street address."
         ]
       },
       {
-        "heading": "Connect Eagle County with the resort",
+        "heading": "Airport notes: EGE",
         "paragraphs": [
-          "A Vail charter itinerary typically needs a ground transfer after the flight to Eagle County. Identify Vail, Beaver Creek or the exact residence and list every ski bag. A group with winter equipment may need a different vehicle and cabin arrangement than a similarly sized business party."
-        ]
-      },
-      {
-        "heading": "Compare cabins against the actual passenger brief",
-        "paragraphs": [
-          "A cabin category is a starting point for sourcing. Provide the number of travelers, bag sizes and any equipment, then confirm the seating and storage on the specific aircraft offered. Tell the advisor whether connectivity, a flight attendant, meal service or space to rest is important. None of those amenities should be assumed from the model name."
+          "Eagle County’s airport elevation is about 6,547 feet. Runway 07/25 is 9,000 by 150 feet. Runway 25 has a displaced threshold of about 1,000 feet, so the landing distance on that end is 8,000 feet. The tower is published 0700–1900 and attendance 0600–2100. Figures are from the FAA airport display effective 29 October 2026 through 26 November 2026. Recheck the next chart cycle.",
+          "From November through April, FAA remarks say snow removal and runway monitoring are not provided from 0600–1300Z, which is 11:00 p.m. to 6:00 a.m. MST. Night operations are discouraged for crews who do not know the field. It is a cold-temperature airport. A morning departure after an overnight storm can wait on daylight snow removal. Signature Aviation (Signature Vail), 871 Cooley Mesa Road, Gypsum, is the FBO to name; older guides may still say Vail Valley Jet Center. Published hours are 0600–2100 local, with call-out on request. Confirm the address before booking cars.",
+          "EGE has one runway shared with a busy airline bank on holiday weekends. A midweek or Friday arrival is easier than a Saturday peak if the passenger can be flexible. If EGE is below minimums, discuss Rifle (RIL), the Denver area, or waiting. A same-day divert to ASE is only useful when that aircraft is ASE-approved and the Aspen curfew still works."
         ],
         "links": [
           {
-            "label": "Challenger 350 cabin and mission guide",
-            "path": "/aircraft/challenger-350"
-          },
-          {
-            "label": "Falcon 2000LX charter guide",
-            "path": "/aircraft/falcon-2000lx"
-          }
-        ]
-      },
-      {
-        "heading": "Airport and private-terminal choices",
-        "paragraphs": [
-          "This example uses Dallas Love Field (DAL) and Eagle County Regional Airport (EGE). Ask EXJET to compare appropriate alternatives if they improve the journey to your actual address. Confirm the FBO name and street address at both ends before booking cars."
-        ],
-        "links": [
-          {
-            "label": "DAL airport guide",
-            "path": "/airports/kdal"
-          },
-          {
-            "label": "EGE airport guide",
+            "label": "Full EGE airport guide",
             "path": "/airports/kege"
           }
         ]
       },
       {
-        "heading": "Request a complete proposal",
+        "heading": "Ground transfer: Vail and Beaver Creek",
         "paragraphs": [
-          "Send the route, dates, preferred local departure times, passenger count and baggage details. State any return or onward sectors and what can change. Review the final aircraft, operating carrier, trip total, payment requirements and cancellation or substitution terms together before confirming."
+          "Vail Village and Lionshead are typically about 30–37 miles from EGE. In ordinary winter conditions the drive is longer than the mileage suggests once I-70 and the town streets slow down. Build the evening reservation around that, not around touchdown.",
+          "Beaver Creek and Avon are closer to the airport than Vail Village, on the order of 28 miles and about 40 minutes when the road is clear. A storm, a Saturday changeover, or a stop in Avon changes that. These are typical estimates. EXJET does not operate the transfer. Confirm the FBO street address with the operator before the car is booked."
+        ]
+      },
+      {
+        "heading": "Dallas origin choice",
+        "paragraphs": [
+          "Use the same Dallas choice as an Aspen trip. Love Field for central Dallas, Addison for the north corridor, DFW when the group is already there. The airborne time barely changes. The operator still has to accept the field for the aircraft."
         ],
         "links": [
           {
-            "label": "Request a quote for Dallas to Vail",
-            "path": "/charter"
+            "label": "Dallas private jet charter",
+            "path": "/private-jet-charter/dallas"
           },
           {
-            "label": "Understand operator review",
-            "path": "/safety"
+            "label": "Love Field guide",
+            "path": "/airports/kdal"
+          },
+          {
+            "label": "Addison guide",
+            "path": "/airports/kads"
+          }
+        ]
+      },
+      {
+        "heading": "Aircraft recommendations",
+        "paragraphs": [
+          "EGE’s 9,000-foot runway can accept a wider cabin range than ASE, including heavy and ultra-long-range types, subject to winter payload, density altitude, and the operator’s performance planning. Light and midsize jets still need a payload and fuel check for the return with people and ski bags. Suitability is a tail-specific answer, not a category label."
+        ]
+      },
+      {
+        "heading": "Peak ski-season dates",
+        "paragraphs": [
+          "Vail is scheduled to open 13 November 2026 and close 11 April 2027 on public season lists. Confirm both dates on vail.com; opening was also reported by Colorado.com in late October 2026. Beaver Creek’s opening has been listed as 25 November 2026 and as 27 November 2026 depending on the source. That one-day conflict should be checked on beavercreek.com before you lock a first ski day. The listed close is 11 April 2027, also subject to conditions.",
+          "Peak booking windows, as a planning estimate, are Christmas and New Year, Martin Luther King Jr. Day weekend, Presidents’ Day weekend, and March spring break. A midweek EGE arrival is easier to handle than a Saturday airline peak."
+        ]
+      },
+      {
+        "heading": "A sample midweek or Friday arrival",
+        "paragraphs": [
+          "A Saturday peak mixes airline banks with charter traffic on one runway. A cleaner example is a Friday or midweek arrival into EGE, a transfer to Beaver Creek or Vail, and a Monday return. Leave slack for the unmonitored overnight hours if the departure is early, and for a slow I-70 drive if the arrival is late."
+        ],
+        "links": [
+          {
+            "label": "Request a Dallas–Eagle County quote",
+            "path": "/charter/?from=KDAL&to=KEGE"
           }
         ]
       }
     ],
     "sources": [
       {
-        "label": "City of Dallas — Love Field questions and private aircraft meeting locations",
-        "url": "https://dallascityhall.com/departments/aviation/love_field/Pages/love_field_faqs.aspx"
+        "label": "FAA airport display, KEGE (chart data effective 29 Oct–26 Nov 2026)",
+        "url": "https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=KEGE"
       },
       {
-        "label": "Eagle County Regional Airport — official airport information",
-        "url": "https://www.flyvail.com/general-aviation/"
+        "label": "FlyEGE — airport statistics",
+        "url": "https://flyege.com/about-ege/news/statistics/"
+      },
+      {
+        "label": "Signature Aviation EGE",
+        "url": "https://www.signatureaviation.com/locations/EGE"
+      },
+      {
+        "label": "Colorado.com — 2026–27 ski openings, 28 Oct 2026",
+        "url": "https://www.colorado.com/media-room/news-press/powder-returns-colorado-now-open-skiing-and-riding"
       }
     ],
     "faqs": [
       {
-        "question": "How long is a Dallas to Vail charter flight?",
-        "answer": "Our early planning allowance is 1.75–2.5 hours of block time. The operator confirms the schedule for the selected aircraft, route, weather and airport conditions."
+        "question": "How long is Dallas to Eagle County?",
+        "answer": "Plan on about 1.75–2.5 hours of block time, the same editorial band as Dallas to Aspen. Class-by-class planning ranges run from about 1 hour 45 minutes to 2 hours 30 minutes. The operator confirms the flight plan."
       },
       {
-        "question": "Is the example price the amount I will pay?",
-        "answer": "No. The table illustrates flight charges using stated category inputs. Ask for the complete written trip total, including positioning, minimum charges, fees, taxes and any requested extras."
+        "question": "Do Vail and Beaver Creek use the same airport?",
+        "answer": "Yes. Both use Eagle County Regional Airport (EGE) in Gypsum. Tell EXJET which resort or residence the car should serve. There is no separate charter route for Beaver Creek."
       },
       {
-        "question": "Can I request an empty leg on this route?",
-        "answer": "You can ask EXJET to search for a matching repositioning flight. Timing and routing are constrained by the underlying flight, and there may be no suitable availability. Discuss a backup plan if the journey is essential."
+        "question": "Is there an airport in Vail Village?",
+        "answer": "No. Private jet arrivals for Vail use Eagle County (EGE), then a ground transfer. Beaver Creek and Avon use that same airport."
+      },
+      {
+        "question": "How long is the transfer to Vail versus Beaver Creek?",
+        "answer": "Public figures are about 30–37 miles to Vail and about 28 miles, roughly 40 minutes in clear conditions, to Beaver Creek or Avon. Treat both as weather-dependent estimates. EXJET does not operate the cars."
+      },
+      {
+        "question": "Will snow overnight delay a morning departure?",
+        "answer": "It can. From November through April the FAA remarks say snow removal and runway monitoring are not guaranteed from 11:00 p.m. to 6:00 a.m. MST. An early departure should not assume the runway was tended overnight."
+      },
+      {
+        "question": "What if EGE is below minimums?",
+        "answer": "Discuss Rifle (RIL), the Denver area, or waiting. Aspen is a different airport with its own curfew and aircraft limits, so use it only if that aircraft is approved for ASE and the arrival window still works."
+      },
+      {
+        "question": "Is the example time the price I will pay?",
+        "answer": "No. This page does not publish a trip total. Ask for a written quote that separates the operator’s charges, EXJET’s fee where it applies, taxes, and what is included."
       }
     ],
-    "updated": "2026-10-17"
+    "updated": "2026-11-23"
+  },
+  {
+    "slug": "dallas-to-jackson-hole",
+    "title": "Dallas to Jackson Hole private jet charter",
+    "seoTitle": "Dallas to Jackson Hole Private Jet Charter (DAL to JAC) | EXJET",
+    "originAirport": "kdal",
+    "destinationAirport": "kjac",
+    "description": "Charter a private jet from Dallas to Jackson Hole Airport (JAC). Planning times from Love Field, Addison and DFW, runway and curfew notes, aircraft guidance, and a trip-specific EXJET quote.",
+    "sections": [
+      {
+        "heading": "Dallas to Jackson Hole, on a longer stage",
+        "paragraphs": [
+          "Jackson Hole is a different airport from Aspen and Eagle County: a longer stage from Dallas, a shorter runway, and a voluntary night curfew inside Grand Teton National Park. EXJET arranges the charter as a broker. The operating carrier confirms whether a specific aircraft can use JAC on the day, with the weights you actually have.",
+          "Do not reuse the 1.75–2.5 hour Dallas–Aspen band here. A planning range for Dallas to Jackson Hole is about 2 hours 15 minutes to 3 hours 15 minutes of block time, depending on cabin class."
+        ],
+        "links": [
+          {
+            "label": "Request a Dallas–Jackson Hole quote",
+            "path": "/charter/?from=KDAL&to=KJAC"
+          },
+          {
+            "label": "Jackson Hole airport guide",
+            "path": "/airports/kjac"
+          },
+          {
+            "label": "Jackson Hole destination guide",
+            "path": "/destinations/jackson-hole"
+          }
+        ]
+      },
+      {
+        "heading": "Flight times by aircraft class from DAL, ADS, and DFW",
+        "paragraphs": [
+          "A published great-circle figure for DAL–JAC is about 1,056 statute miles, roughly 918 nautical miles. Addison and DFW are close enough that origin choice changes the flight by only a few minutes. Confirm the mileage in a flight-planning tool; the statute-mile source is a calculator, and the nautical-mile figure is arithmetic.",
+          "Assumptions, stated so the table is not mistaken for a schedule: typical winter westbound cruise, 4–6 passengers, no unusual holding, and about 25–40 minutes for taxi, climb, descent, and a mountain arrival. Cruise used for the sketch is about 420 knots for a light jet, 440 for a midsize, 480 for a super-midsize, and 500 for a heavy jet. The operating carrier confirms the flight plan."
+        ],
+        "table": {
+          "caption": "Planning block times, Dallas area to JAC — estimates, not a quote",
+          "headers": [
+            "Aircraft class",
+            "Planning block time"
+          ],
+          "rows": [
+            [
+              "Light jet",
+              "2 hr 30 min – 3 hr 15 min"
+            ],
+            [
+              "Midsize",
+              "2 hr 25 min – 3 hr 05 min"
+            ],
+            [
+              "Super-midsize",
+              "2 hr 15 min – 2 hr 55 min"
+            ],
+            [
+              "Heavy / long-range",
+              "2 hr 15 min – 2 hr 50 min"
+            ]
+          ]
+        }
+      },
+      {
+        "heading": "Airport notes: JAC",
+        "paragraphs": [
+          "Jackson Hole Airport states that it is the only commercial airport in the United States located completely inside a national park, Grand Teton. Noise-abatement procedures apply. Elevation is about 6,451 feet. Runway 01/19 is 6,300 by 150 feet, with 6,300 feet of landing distance both ways. A paved safety area beyond the departure end of runway 19 is not usable for performance calculations. Figures follow the FAA airport display effective 29 October 2026 through 26 November 2026 and the airport’s pilot page. Recheck NOTAMs.",
+          "Private aircraft are requested not to land or take off between 21:30 and 07:00 local, except in an emergency. That curfew is voluntary, unlike Aspen’s mandatory night closure. Plan as if it were hard. Stage II aircraft are prohibited, and the airport publishes a single-event approach noise limit.",
+          "Winter can be severe from November through April. FAA remarks say airport information and snow removal are not guaranteed when the field is unattended. It is a cold-temperature airport. Jackson Hole Flight Services is the on-field FBO for fuel, de-ice, parking, limited hangar, and maintenance. Overnight parking needs a reservation and prior permission. Transient hangar space is not guaranteed, and the ramp is limited because of the park. Older references may say Jackson Hole Aviation; use the current name and confirm it with the operator."
+        ],
+        "links": [
+          {
+            "label": "Full JAC airport guide",
+            "path": "/airports/kjac"
+          },
+          {
+            "label": "Jackson Hole travel journal",
+            "path": "/travel-journal/jackson-hole"
+          }
+        ]
+      },
+      {
+        "heading": "Dallas origin choice",
+        "paragraphs": [
+          "Love Field, Addison, and DFW are all reasonable Dallas origins. Pick the one that fits the pickup and that the operator will use. The stage length to Jackson Hole is what drives the aircraft choice, not which side of Dallas you leave from."
+        ],
+        "links": [
+          {
+            "label": "Dallas private jet charter",
+            "path": "/private-jet-charter/dallas"
+          },
+          {
+            "label": "Love Field guide",
+            "path": "/airports/kdal"
+          },
+          {
+            "label": "Addison guide",
+            "path": "/airports/kads"
+          }
+        ]
+      },
+      {
+        "heading": "Aircraft recommendations",
+        "paragraphs": [
+          "Midsize and super-midsize cabins are the usual starting point. Many heavy jets need a careful landing-distance and payload analysis on 6,300 feet at 6,451 feet of elevation, especially on the return with fuel, people, and ski bags. Ultra-long-range types are not automatically suitable. A light jet may not be a realistic offer once the return fuel and bags are counted; if it is not, it should not be presented as the default.",
+          "The operator has to show numbers for this tail, these weights, and this day. Experience at JAC matters more here than the marketing name of the cabin category."
+        ]
+      },
+      {
+        "heading": "Peak ski-season dates",
+        "paragraphs": [
+          "Jackson Hole Mountain Resort is scheduled to open 27 November 2026 and close 4 April 2027, according to the resort’s published facts page. Dates are scheduled and can move. Confirm them on the resort site.",
+          "The same peak windows apply as a planning estimate: the fortnight around Christmas and New Year, Martin Luther King Jr. Day weekend, Presidents’ Day weekend, and March spring break. Ask early. The voluntary 21:30 curfew still applies on those nights."
+        ]
+      },
+      {
+        "heading": "A sample Friday arrival",
+        "paragraphs": [
+          "A practical shape is a Friday departure from Dallas, a night in town or at Teton Village, and a Sunday or Monday return. Build slack for the 21:30 curfew and for winter weather. Do not put a non-refundable dinner or a first lesson on top of the planned landing time. If the forecast is tight, move the arrival earlier in the day rather than toward the curfew."
+        ],
+        "links": [
+          {
+            "label": "Request a Dallas–Jackson Hole quote",
+            "path": "/charter/?from=KDAL&to=KJAC"
+          },
+          {
+            "label": "Another Dallas ski route: Vail and Beaver Creek",
+            "path": "/routes/dallas-to-vail"
+          }
+        ]
+      }
+    ],
+    "sources": [
+      {
+        "label": "FAA airport display, JAC (chart data effective 29 Oct–26 Nov 2026)",
+        "url": "https://nfdc.faa.gov/nfdcApps/services/ajv5/airportDisplay.jsp?airportId=JAC"
+      },
+      {
+        "label": "Jackson Hole Airport — pilot information",
+        "url": "https://www.jacksonholeairport.com/about/pilot-information/"
+      },
+      {
+        "label": "Jackson Hole Flight Services — services and FAQ",
+        "url": "https://www.jacksonholeflightservices.com/services"
+      },
+      {
+        "label": "Jackson Hole Mountain Resort — resort facts",
+        "url": "https://www.jacksonhole.com/blog/jackson-hole-faqs"
+      }
+    ],
+    "faqs": [
+      {
+        "question": "How long is Dallas to Jackson Hole?",
+        "answer": "Plan on about 2 hours 15 minutes to 3 hours 15 minutes of block time, depending on the aircraft class. That is longer than Dallas to Aspen or Eagle County. The operator confirms the flight plan. These figures are estimates, not a schedule."
+      },
+      {
+        "question": "Why does the runway length matter?",
+        "answer": "JAC’s runway is 6,300 feet at about 6,451 feet of elevation. Landing distance, the return takeoff with fuel and ski bags, and density altitude have to be calculated for the actual aircraft. A category name is not that calculation."
+      },
+      {
+        "question": "Is there a curfew?",
+        "answer": "Private aircraft are requested not to operate between 21:30 and 07:00 local, except in an emergency. The request is voluntary, unlike Aspen’s mandatory closure. Plan as if it were firm."
+      },
+      {
+        "question": "Can a heavy jet land at JAC?",
+        "answer": "Sometimes, and sometimes not. Many heavy jets need a specific landing-distance and payload analysis on this runway and elevation, particularly on departure. The operator has to show the numbers for that tail. Ultra-long-range aircraft are not automatically suitable."
+      },
+      {
+        "question": "Is hangar space guaranteed?",
+        "answer": "No. Overnight parking requires a reservation and prior permission. Transient hangar space is not guaranteed, and ramp space is limited by the park setting. Confirm parking with the operator and the FBO before you rely on an overnight."
+      },
+      {
+        "question": "Is the airport inside the national park, and what does that change?",
+        "answer": "The airport states that it is the only U.S. commercial airport located completely inside a national park. Noise-abatement rules apply, Stage II aircraft are prohibited, and the ramp cannot sprawl the way a suburban field can. It does not change who operates your flight: a licensed carrier does, not EXJET."
+      }
+    ],
+    "updated": "2026-11-23"
   },
   {
     "slug": "dallas-to-las-vegas",

@@ -41,6 +41,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
   const hasOutline = page.sections.length >= 3;
   const hasReading = Boolean(page.sections.length || page.faqs?.length || page.draft);
   const showRequest = isCharterPlanning || page.kind === "service";
+  const quotePath = page.quotePath || "/charter/";
   const RailIcon = showRequest ? PathIcon : page.kind === "article" ? BookOpenIcon : page.kind === "legal" ? FileTextIcon : CompassIcon;
   const railTitle = isCharterPlanning ? "Plan your itinerary" : page.kind === "service" ? "Your next step" : page.kind === "article" ? "About this guide" : page.kind === "legal" ? "Policy information" : "Explore this page";
   const updatedLabel = page.updated ? new Intl.DateTimeFormat("en-US", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${page.updated}T00:00:00Z`)) : null;
@@ -106,11 +107,11 @@ export function EditorialPage({ page }: { page: ContentPage }) {
             </div> : null}
             {showRequest ? <div className={styles.actions}>
               {isCharterPlanning ? <>
-                  <Link className="button button--dark" href="/charter/">Plan a flight <ArrowRightIcon size={18} aria-hidden="true" /></Link>
+                  <Link className="button button--dark" href={quotePath}>Plan a flight <ArrowRightIcon size={18} aria-hidden="true" /></Link>
                 <Link className="ex-inline-link" href="/pricing/">How charter pricing works <CaretRightIcon size={16} aria-hidden="true" /></Link>
               </> : <>
                 {consultationHref ? <a className="button button--dark" href={consultationHref}>{page.consultation?.label} <ArrowRightIcon size={18} aria-hidden="true" /></a> : <Link className="button button--dark" href="/contact">Discuss your plans <ArrowRightIcon size={18} aria-hidden="true" /></Link>}
-                <Link className="ex-inline-link" href={consultationHref ? "/aircraft-charter" : "/charter"}>{consultationHref ? "Explore charter options" : "Find a flight"} <CaretRightIcon size={16} aria-hidden="true" /></Link>
+                <Link className="ex-inline-link" href={consultationHref ? "/aircraft-charter" : quotePath}>{consultationHref ? "Explore charter options" : "Find a flight"} <CaretRightIcon size={16} aria-hidden="true" /></Link>
               </>}
               {isDirectory ? <a className={styles.jump} href="#editorial-directory">Browse this collection <ArrowDownIcon size={16} aria-hidden="true" /></a> : null}
             </div> : null}
@@ -139,6 +140,6 @@ export function EditorialPage({ page }: { page: ContentPage }) {
       </div>
     </div> : null}
     {page.related?.length ? <ContentCollection paths={page.related.filter(path => path !== page.path)} title="Related pages" silver showImages={false} /> : null}
-    {page.kind!=="legal" ? <section className={`ex-action-panel ${styles.bottomAction}`}><h2>{consultationHref ? "Plan your next aviation decision." : "Plan a flight"}</h2><p>{consultationHref ? "Share the aircraft, objectives and timing. EXJET will help define the next steps." : "See an estimated trip total and route map."}</p>{consultationHref ? <a href={consultationHref} className="button button--dark">{page.consultation?.label}</a> : <><Link href="/charter" className="button button--dark">Find a flight</Link><BrokerNotice /></>}</section> : null}
+    {page.kind!=="legal" ? <section className={`ex-action-panel ${styles.bottomAction}`}><h2>{consultationHref ? "Plan your next aviation decision." : "Plan a flight"}</h2><p>{consultationHref ? "Share the aircraft, objectives and timing. EXJET will help define the next steps." : "See an estimated trip total and route map."}</p>{consultationHref ? <a href={consultationHref} className="button button--dark">{page.consultation?.label}</a> : <><Link href={quotePath} className="button button--dark">Find a flight</Link><BrokerNotice /></>}</section> : null}
   </div>;
 }
