@@ -52,3 +52,10 @@
  .estimate:has(.cabins) .map svg{max-height:8.5rem}
 }
 @media(min-width:711px){.estimate:has(.cabins):not(:has(.map)) .cabins{grid-column:1/-1}}
+
+.cardsMode { padding: 0; border: 0; background: #fff; gap: 14px; }
+.cardsMode .heading { border-top: 1px solid #e2e3e3; padding-top: 12px; }
+.cardsMode .map svg { background: #e9eef5; }
+.cardsMode .map .grid { stroke: #cfd7e3; }
+.cardsMode .map .route { stroke: #3457b1; stroke-dasharray: 6 3; }
+.cardsMode .map .airport { stroke: #3457b1; }

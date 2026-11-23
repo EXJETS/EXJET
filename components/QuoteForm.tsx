@@ -2,6 +2,7 @@
 
 import { CharterIcon } from "./CharterVisuals";
 import { AirportPicker } from "./AirportPicker";
+import type { AircraftPreference } from "./CharterAircraftCards";
 import { CharterEstimate } from "./CharterEstimate";
 import Link from "next/link";
 import { FormEvent, useId, useMemo, useRef, useState } from "react";
@@ -89,6 +90,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
   const [returnLeg, setReturnLeg] = useState(() => newLeg(1));
   const [followingLegs, setFollowingLegs] = useState<AdditionalLeg[]>(() => [newLeg(2)]);
   const [category, setCategory] = useState<Category | "">("");
+  const [aircraftPreference, setAircraftPreference] = useState<AircraftPreference | null>(null);
   const [stage, setStage] = useState<"mission" | "results" | "contact" | "success">("mission");
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -167,6 +169,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
         if (!selectedCategory || count > selectedCategory.seats) setCategory(categories.find(item => item.seats >= count)?.value ?? "");
       }
       setStatus("idle");
+      setAircraftPreference(null);
       setStage(useSearch ? "results" : "contact");
       window.setTimeout(() => useSearch ? searchTitle.current?.focus() : formRef.current?.querySelector<HTMLInputElement>('input[name="name"]')?.focus(), 0);
       return;
@@ -188,6 +191,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
           mode,
           ...form,
           ...(mode !== "cargo" ? { tripType, legs, ...(selectedCategory ? { aircraftCategory: selectedCategory.value } : {}) } : {}),
+          ...(aircraftPreference ? { preferredAircraft: { model: aircraftPreference.modelSlug, ...(aircraftPreference.id ? { listing: aircraftPreference.id } : {}) } } : {}),
           source: window.location.pathname,
         }),
         signal: AbortSignal.timeout(45_000),
@@ -215,6 +219,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
       ...legs.map((leg, index) => `Leg ${index + 1}: ${leg.departure || "Not specified"} to ${leg.destination || "Not specified"} · ${leg.date || "Date not specified"}${leg.time ? ` at ${leg.time} local` : ""}`),
       `Passengers: ${form.passengers}`,
       `Preferred aircraft category: ${selectedCategory?.label ?? "No preference"}`,
+      ...(aircraftPreference ? [`Preferred model: ${aircraftPreference.name}`, ...(aircraftPreference.id ? [`Aircraft registration: ${aircraftPreference.tail}`] : [])] : []),
     ]),
     `Name: ${form.name}`, `Mobile: ${form.phone}`, `Email: ${form.email}`, `Notes: ${form.notes}`,
   ].join("\n");
@@ -234,7 +239,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
         <p>This request does not reserve an aircraft. For a time-sensitive change, <a href={`mailto:${recipient}`}>email the EXJET flight desk</a> and include your reference.</p>
         {useSearch && <Link className="ex-text-link" href="/app/booking/">How booking verification works</Link>}
         <div className="quote-form__reference"><span>Reference</span><strong>{reference}</strong></div>
-        <button className="quote-form__new" type="button" onClick={() => { setForm({ ...initialState, passengers: mode === "group" ? "25" : "2" }); setReference(""); setTripType("one_way"); setReturnLeg(newLeg(1)); setFollowingLegs([newLeg(2)]); setCategory(""); nextLegId.current = 3; setStage("mission"); }}>
+        <button className="quote-form__new" type="button" onClick={() => { setForm({ ...initialState, passengers: mode === "group" ? "25" : "2" }); setReference(""); setTripType("one_way"); setReturnLeg(newLeg(1)); setFollowingLegs([newLeg(2)]); setCategory(""); setAircraftPreference(null); nextLegId.current = 3; setStage("mission"); }}>
           Start another request <ArrowRightIcon size={18} aria-hidden="true" />
         </button>
       </section>
@@ -333,11 +338,11 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
         <div className={styles.results}>
           <div className="quote-form__mission-summary">
             <button type="button" onClick={() => { setMessage(""); setStatus("idle"); setStage("mission"); }}><ArrowLeftIcon size={18} aria-hidden="true" /> Edit trip</button>
-            <h3 ref={searchTitle} tabIndex={-1}>Compare aircraft categories</h3>
+            <h3 ref={searchTitle} tabIndex={-1}>Explore aircraft for your trip</h3>
             <small>{tripLabel} · {form.passengers} passenger{form.passengers === "1" ? "" : "s"}</small>
             <ol className={styles.summaryList}>{legs.map((leg,index) => <li key={index}>{leg.departure} to {leg.destination} · {leg.date}{leg.time ? ` at ${leg.time} local` : ""}</li>)}</ol>
           </div>
-          <CharterEstimate legs={legs} passengers={passengerCount} aircraftCategory={selectedCategory?.value} choices={categories.filter(item => passengerCount <= item.seats)} onSelect={value => setCategory(categories.find(item => item.value === value)?.value ?? "")} />
+          <CharterEstimate legs={legs} passengers={passengerCount} aircraftCategory={selectedCategory?.value} choices={categories.filter(item => passengerCount <= item.seats)} selectedAircraft={aircraftPreference} onAircraft={value => { setCategory(value.category); setAircraftPreference(value); }} />
           <div className="quote-form__submit"><button className="button button--dark" type="submit">Continue to request <ArrowRightIcon size={18} aria-hidden="true" /></button><a className="ex-text-link" href={emailHref}>Email instead</a></div>
         </div>
       ) : (
@@ -348,7 +353,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
               <p><strong>{form.departure}</strong><ArrowRightIcon size={18} aria-hidden="true" /><strong>{form.destination}</strong></p>
               <small>{form.date} · {form.cargoType}</small>
             </> : <>
-              <small>{tripLabel} · {form.passengers} traveler{form.passengers === "1" ? "" : "s"}{selectedCategory ? ` · ${selectedCategory.label}` : ""}</small>
+              <small>{tripLabel} · {form.passengers} traveler{form.passengers === "1" ? "" : "s"}{selectedCategory ? ` · ${selectedCategory.label}` : ""}{aircraftPreference ? ` · ${aircraftPreference.name} (${aircraftPreference.tail})` : ""}</small>
               <ol className={styles.summaryList}>{legs.map((leg,index) => <li key={index}>{leg.departure} to {leg.destination} · {leg.date}{leg.time ? ` at ${leg.time} local` : ""}</li>)}</ol>
             </>}
           </div>
