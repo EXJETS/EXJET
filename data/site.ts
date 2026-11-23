@@ -136,7 +136,13 @@ export const siteConfig = {
   responseWindow: "shortly",
 } as const;
 
-export const socialProfiles = Object.values(siteConfig.social);
+// Use owned brand profiles as identity references. Third-party listings may
+// show stale contact details and are not authoritative brand identifiers.
+export const socialProfiles = [
+  siteConfig.social.instagram,
+  siteConfig.social.facebook,
+  siteConfig.social.linkedin,
+];
 
 export function absoluteUrl(path = "/") {
   const url = new URL(path, `${siteOrigin}/`);
@@ -152,6 +158,7 @@ export function organizationJsonLd() {
     "@type": "Organization",
     "@id": `${siteOrigin}/#organization`,
     name: siteConfig.name,
+    legalName: siteConfig.legalName,
     url: siteConfig.url,
     logo: absoluteUrl("/brand/exjet-wordmark.svg"),
     description: siteConfig.description,
@@ -199,6 +206,7 @@ export function localBusinessJsonLd() {
     "@type": "LocalBusiness",
     "@id": `${siteOrigin}/#dallas-office`,
     name: siteConfig.name,
+    parentOrganization: { "@id": `${siteOrigin}/#organization` },
     url: siteConfig.url,
     image: absoluteUrl("/images/manufacturers/global-8000-clouds.webp"),
     logo: absoluteUrl("/brand/exjet-wordmark.svg"),

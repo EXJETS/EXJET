@@ -35,12 +35,39 @@ export function EditorialPage({ page }: { page: ContentPage }) {
   const isReading = page.kind === "article" || page.kind === "legal";
   const updatedLabel = page.updated ? new Intl.DateTimeFormat("en-US", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${page.updated}T00:00:00Z`)) : null;
   const breadcrumb = [{name:"Home",path:"/"}, ...(page.parent ? [page.parent] : []),{name:page.title,path:page.path}];
-  const schema = {"@context":"https://schema.org","@type":"BreadcrumbList",itemListElement:breadcrumb.map((entry,index)=>({"@type":"ListItem",position:index+1,name:entry.name,item:absoluteUrl(entry.path)}))};
+  const pageUrl = absoluteUrl(page.path);
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "@id": pageUrl + "#breadcrumb",
+    itemListElement: breadcrumb.map((entry, index) => ({
+      "@type": "ListItem", position: index + 1, name: entry.name, item: absoluteUrl(entry.path),
+    })),
+  };
+  const pageSchema = {
+    "@context": "https://schema.org",
+    "@type": collection.length ? "CollectionPage" : "WebPage",
+    "@id": pageUrl + "#webpage",
+    name: page.seoTitle || page.title,
+    url: pageUrl,
+    description: page.description,
+    inLanguage: "en-US",
+    isPartOf: { "@id": absoluteUrl("/") + "#website" },
+    publisher: { "@id": absoluteUrl("/") + "#organization" },
+    breadcrumb: { "@id": schema["@id"] },
+    ...(page.updated ? { dateModified: page.updated } : {}),
+    ...(collection.length ? { mainEntity: {
+      "@type": "ItemList",
+      itemListElement: collection.map((item, index) => ({
+        "@type": "ListItem", position: index + 1, name: item.title, url: absoluteUrl(item.path),
+      })),
+    } } : {}),
+  };
   return <div className="ex-editorial" data-page-kind={page.kind}>
     <StructuredData data={schema} />
-    {page.journalDirectory ? <StructuredData data={{"@context":"https://schema.org","@type":"CollectionPage",name:page.title,description:page.description,url:absoluteUrl(page.path),mainEntity:{"@type":"ItemList",itemListElement:collection.map((item,index)=>({"@type":"ListItem",position:index+1,name:item.title,url:absoluteUrl(item.path)}))}}} /> : null}
+    {!page.noindex && !page.draft ? <StructuredData data={pageSchema} /> : null}
     {page.kind === "service" ? <StructuredData data={{"@context":"https://schema.org","@type":"Service",name:page.title,description:page.description,url:absoluteUrl(page.path),provider:{"@id":absoluteUrl("/")+"#organization"}}} /> : null}
-    {page.kind === "article" ? <StructuredData data={{"@context":"https://schema.org","@type":page.journal ? "BlogPosting" : "Article",headline:page.title,description:page.description,mainEntityOfPage:absoluteUrl(page.path),publisher:{"@id":absoluteUrl("/")+"#organization"},author:{"@type":"Organization",name:"EXJET editorial",url:absoluteUrl("/editorial-standards")},datePublished:page.published,dateModified:page.updated, ...(page.journal ? {articleSection:page.journal.category,isPartOf:{"@type":"Blog",name:"EXJET Travel Journal",url:absoluteUrl("/travel-journal")}} : {}), ...(page.image ? {image:absoluteUrl(page.image.src)} : {})}} /> : null}
+    {page.kind === "article" ? <StructuredData data={{"@context":"https://schema.org","@type":page.journal ? "BlogPosting" : "Article",headline:page.title,description:page.description,mainEntityOfPage:{"@id":pageUrl+"#webpage"},publisher:{"@id":absoluteUrl("/")+"#organization"},author:{"@type":"Organization",name:"EXJET editorial",url:absoluteUrl("/editorial-standards")},datePublished:page.published,dateModified:page.updated, ...(page.journal ? {articleSection:page.journal.category,isPartOf:{"@type":"Blog",name:"EXJET Travel Journal",url:absoluteUrl("/travel-journal")}} : {}), ...(page.image ? {image:absoluteUrl(page.image.src)} : {})}} /> : null}
     <div className={`ex-editorial-masthead${feature && page.kind!=="hub" ? " ex-editorial-masthead--photo" : ""}`}><div className="ex-container"><nav className="ex-breadcrumb" aria-label="Breadcrumb">{breadcrumb.map((entry,index)=><span key={entry.path}>{index > 0 ? <span aria-hidden="true"> / </span> : null}{index===breadcrumb.length-1 ? <span aria-current="page">{entry.name}</span>:<Link href={entry.path}>{entry.name}</Link>}</span>)}</nav>
       <header className={isReading ? "ex-story-intro" : "ex-page-intro"}><p className="ex-kicker">{page.kicker}</p><h1>{page.title}</h1><p>{page.description}</p>
         {page.kind==="article" ? <div className="ex-story-meta"><Link href="/editorial-standards">EXJET editorial</Link><span>{page.readTime}</span>{updatedLabel ? <span>Updated {updatedLabel}</span> : null}</div> : null}

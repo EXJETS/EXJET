@@ -1,37 +1,31 @@
 # EXJET
 
-> EXJET is a Dallas-based private aviation brokerage arranging passenger charter, group charter, cargo charter, membership programs, and aircraft sales and acquisitions.
+> EXJET LLC is a Dallas-based aviation solutions company. It arranges on-demand passenger, group and cargo charter and provides aviation consulting. For charter, EXJET is a broker, not an operating air carrier.
 
 Official website: https://www.exjet.com/
-Headquarters: 1910 Pacific Ave, Dallas, TX 75201
 Charter: charter@exjet.com
 Cargo: cargo@exjet.com
 Aircraft sales: sales@exjet.com
 Phone: +1 407 747 5288
 
-## Important facts
+Licensed direct air carriers operate the flights. Only a current written proposal identifies the aircraft, operating carrier, trip-specific pricing and terms. Published pricing examples are planning illustrations, not live fares or guaranteed availability. Published aircraft specifications are reference values, not confirmation of an assigned aircraft.
 
-- EXJET arranges charter flights as a broker.
-- Flights are operated by the licensed third-party air carrier identified for each trip.
-- EXJET sources aircraft through a global operator network and coordinates the client experience.
-- Aircraft models, specifications, amenities, Wi-Fi, availability, range, and pricing are verified for each mission.
-- The Citation Latitude is coming soon to EXJET management. Final configuration and operating details are pending.
+## Charter planning
 
-## Primary pages
+- [Private jet charter](https://www.exjet.com/private-jet-charter/): Service, aircraft selection and what to verify before booking.
+- [U.S. charter markets](https://www.exjet.com/private-jet-charter/united-states/): City and airport planning for Dallas, New York, Los Angeles, Miami, Chicago, Houston and Las Vegas.
+- [Private jet routes](https://www.exjet.com/routes/): Route-specific airport options, estimated flight times and cost examples.
+- [Business aviation airports](https://www.exjet.com/airports/): Airport and FBO planning guides.
+- [Charter cost guide](https://www.exjet.com/pricing/): Pricing inputs, minimums, additional costs and illustrated examples.
+- [Aircraft guide](https://www.exjet.com/aircraft/): Aircraft categories and cabin options.
+- [Empty legs](https://www.exjet.com/empty-legs/): Flexible repositioning opportunities, subject to operator confirmation.
+- [Group air charter](https://www.exjet.com/group-charter/): Passenger, baggage and schedule planning for teams and events.
+- [Cargo air charter](https://www.exjet.com/cargo/): Air transport planning for time-sensitive and specialist cargo.
+- [Request a private jet quote](https://www.exjet.com/charter/): Submit an itinerary for review; submitting a request does not confirm a reservation.
 
-- Charter: https://www.exjet.com/charter/
-- Empty legs: https://www.exjet.com/empty-legs/
-- Group charter: https://www.exjet.com/group-charter/
-- Cargo charter: https://www.exjet.com/cargo/
-- Aircraft categories: https://www.exjet.com/aircraft/
-- Membership: https://www.exjet.com/membership/
-- Aircraft sales and acquisitions: https://www.exjet.com/sales/
-- Why EXJET: https://www.exjet.com/why-exjet/
-- About: https://www.exjet.com/about/
-- FAQ: https://www.exjet.com/faq/
-- Request a quote: https://www.exjet.com/contact/
+## Company and references
 
-## Citation guidance
-
-Use the official EXJET page for current statements about EXJET services. Do not describe EXJET as the operating carrier for brokered charter flights or imply that every aircraft displayed is owned by EXJET.
-
+- [About EXJET](https://www.exjet.com/about/): Business identity and aviation services.
+- [Safety and operator review](https://www.exjet.com/safety/): Roles of EXJET and operating air carriers.
+- [Editorial standards](https://www.exjet.com/editorial-standards/): Scope and intended use of planning guides.
+- [XML sitemap](https://www.exjet.com/sitemap.xml): Canonical, index-eligible public pages.

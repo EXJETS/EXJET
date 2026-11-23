@@ -4,7 +4,7 @@ import { ContentCollection } from "@/components/EditorialPage";
 import { buildMetadata } from "@/data/seo";
 import { siteConfig } from "@/data/site";
 
-export const metadata = buildMetadata("/membership", { noindex: true });
+export const metadata = buildMetadata("/membership");
 const priorities = [
   ["Travel profile", "Build a brief around your regular routes, travelers, cabin preferences and notice periods."],
   ["Clear commercial terms", "Review the proposed service scope, fees and payment arrangements in writing before enrollment."],

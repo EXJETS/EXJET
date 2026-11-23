@@ -1,8 +1,8 @@
 [
   {
     "path": "/private-jet-charter",
-    "title": "Private jet charter, arranged around you",
-    "description": "Arrange domestic and international business jet charter with EXJET. Compare aircraft, discuss your flight requirements and request a complete trip proposal.",
+    "title": "On-demand private jet charter",
+    "description": "Arrange a private flight across the U.S. or internationally. Share your itinerary and review the aircraft, operating carrier and full trip cost before you book.",
     "kicker": "Private jet charter",
     "kind": "service",
     "image": {
@@ -13,10 +13,10 @@
     },
     "sections": [
       {
-        "heading": "Your itinerary comes first.",
+        "heading": "Start with the trip you need to make",
         "paragraphs": [
-          "One way, a return trip, or several stops: begin with the journey you need to make. Share your preferred airports, travel dates, passenger count, and baggage requirements. Cabin comfort, an important meeting, or a flexible return can matter as much as the distance.",
-          "EXJET arranges flights through licensed operating carriers. The operator retains responsibility for the aircraft, crew, and safe conduct of the flight. A request starts a conversation; it does not reserve an aircraft."
+          "For a one-way, round-trip or multi-leg flight, tell us where you need to be and when. Include your preferred airports, local departure times, passenger count and bags. If a meeting, transfer or onward flight sets the schedule, tell us that first.",
+          "EXJET arranges the trip. The licensed air carrier operates it and is responsible for the aircraft, crew and flight. Submitting a request does not reserve an aircraft."
         ]
       },
       {
@@ -32,9 +32,9 @@
         ]
       },
       {
-        "heading": "Compare the complete offer.",
+        "heading": "See what makes up the trip price",
         "paragraphs": [
-          "Review the proposed aircraft and cabin, operator, itinerary, total price, and conditions together. Confirm whether photography is representative or depicts the specific aircraft. Ask about catering, connectivity, ground transport, and any potential charges before agreeing to the trip."
+          "Where applicable, the written proposal separates the net operator quote from the EXJET service fee and shows applicable taxes and the total. Review the proposed aircraft, operating carrier, what is included and the cancellation terms before accepting. Let us know if catering, connectivity or a ground transfer matters to your trip."
         ],
         "links": [
           {
@@ -70,8 +70,8 @@
             "path": "/charter"
           },
           {
-            "label": "Dallas charter and airport choices",
-            "path": "/private-jet-charter/dallas"
+            "label": "U.S. private jet charter by city",
+            "path": "/private-jet-charter/united-states"
           },
           {
             "label": "Route planning guides",
@@ -113,7 +113,7 @@
       "/routes/dallas-to-miami",
       "/articles/choosing-a-private-charter-aircraft"
     ],
-    "seoTitle": "Private Jet Charter | On-Demand Aircraft Solutions | EXJET"
+    "seoTitle": "Private Jet Charter in the U.S. & Worldwide | EXJET"
   },
   {
     "path": "/corporate-travel",

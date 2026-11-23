@@ -10,10 +10,10 @@ import { localBusinessJsonLd } from "@/data/site";
 import styles from "./landing.module.css";
 export const metadata = buildMetadata("/");
 const audiences = [
- ["Executive & corporate travel", "/corporate-travel/fortune-500", "For the decisions that move your business."],
- ["Family offices & private clients", "/family-office-private-aviation", "A personal approach to every journey."],
- ["Sports, entertainment & groups", "/group-charter", "People, equipment and schedules. Together."],
- ["Aircraft owners & operators", "/aircraft-owners", "Expertise across the aircraft lifecycle."],
+ ["Executive & corporate travel", "/corporate-travel/fortune-500", "Keep meetings and multi-city trips on your schedule."],
+ ["Family offices & private clients", "/family-office-private-aviation", "Plan around your family, guests and preferred airports."],
+ ["Sports, entertainment & groups", "/group-charter", "Coordinate passenger counts, equipment and tight travel windows."],
+ ["Aircraft owners & operators", "/aircraft-owners", "Get support with buying, managing or maintaining an aircraft."],
 ];
 export default function Home() {
  return <div className={styles.landing}>
@@ -21,9 +21,9 @@ export default function Home() {
  <section className={styles.hero} aria-labelledby="home-title">
   <Image className={styles.heroPhoto} src="/images/manufacturers/global-8000-clouds.webp" alt="Bombardier Global 8000 banking above the clouds" width={1440} height={978} sizes="100vw" preload />
   <div className={styles.heroCopy}><p className={styles.eyebrow}>EXJET · Business & commercial aviation</p><h1 id="home-title">Global Access.<br className={styles.mobileBreak} /> On-Demand.</h1></div>
-  <div className={styles.heroBottom}><p>Aviation solutions.<br />Built around your world.</p><nav aria-label="Start with EXJET"><Link className={styles.pill} href="/charter">Find a flight <ArrowUpRightIcon size={18} /></Link><a className={styles.pill} href="#aviation-solutions">Explore our services <ArrowDownIcon size={18} /></a></nav></div>
+  <div className={styles.heroBottom}><p>Private jet charter.<br />Built around your itinerary.</p><nav aria-label="Start with EXJET"><Link className={styles.pill} href="/charter">Find a flight <ArrowUpRightIcon size={18} /></Link><a className={styles.pill} href="#aviation-solutions">Explore our services <ArrowDownIcon size={18} /></a></nav></div>
  </section>
- <section className={styles.introduction}><p className={styles.eyebrow}>An aviation solutions company</p><h2>One relationship.<br />A world of expertise.</h2><p>From your next flight to your next aircraft. EXJET brings passenger and cargo capacity, ownership and technical support together for business and commercial aviation.</p><Link href="/about" className={styles.textLink}>Discover EXJET <ArrowUpRightIcon size={18} /></Link></section>
+ <section className={styles.introduction}><p className={styles.eyebrow}>An aviation solutions company</p><h2>One relationship.<br />A world of expertise.</h2><p>EXJET arranges <Link href="/private-jet-charter" style={{ textDecoration: "underline", textUnderlineOffset: "0.15em" }}>private jet charter across the United States</Link> and internationally through licensed air carriers. Review the aircraft, operator and complete trip price before you commit. For aircraft owners and commercial teams, we also support cargo charter, leasing, acquisitions and technical projects.</p><Link href="/about" className={styles.textLink}>Discover EXJET <ArrowUpRightIcon size={18} /></Link></section>
  <section id="aviation-solutions" className={styles.services}><header className={styles.sectionHeading}><p className={styles.eyebrow}>01 / Aviation solutions</p><h2>More possibilities.<br />At every stage.</h2><Link className={styles.textLink} href="/services">All eleven services <ArrowUpRightIcon size={18} /></Link></header><ServiceExplorer /></section>
  <section className={styles.collection}><header className={styles.sectionHeading}><p className={styles.eyebrow}>02 / Aircraft</p><h2>Find your perspective.</h2><Link className={styles.textLink} href="/aircraft">Explore the collection <ArrowUpRightIcon size={18} /></Link></header><HomeAircraftEditorial /></section>
  <section className={styles.cabin} aria-labelledby="cabin-title"><Image src="/images/manufacturers/falcon-8x-lounge.jpg" alt="Dassault Falcon 8X lounge with white leather seating and a walnut conference table" width={2000} height={1100} sizes="100vw" /><div className={styles.cabinCopy}><p className={styles.eyebrow}>03 / Interior completion</p><h2 id="cabin-title">Considered.<br />Down to the last detail.</h2><p>Cabin planning, materials and completion support. Shape an aircraft around the way you live and work.</p><Link className={styles.pill} href="/interior-completions">Explore interiors <ArrowUpRightIcon size={18} /></Link></div></section>
