@@ -1,3 +1,4 @@
+import { BrokerNotice } from "@/components/BrokerNotice";
 import { AircraftReference } from "@/components/AircraftReference";
 import { StructuredData } from "@/components/StructuredData";
 import type { Metadata } from "next";
@@ -66,6 +67,7 @@ export default async function AircraftDetailPage({ params }: PageProps) {
           </div>
           <p className="specification-note">Specifications are typical for the type. Actual configuration varies by aircraft. Range and availability depend on route, payload, weather, and operating conditions.</p>
           <ButtonLink href={`/contact?aircraft=${item.slug}`}>Request this aircraft</ButtonLink>
+          <BrokerNotice prominent />
         </div>
       </section>
       <AircraftReference slug={slug} />

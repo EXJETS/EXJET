@@ -5,7 +5,7 @@ export function BrokerNotice({ className = "", prominent = false }: { className?
   if (!prominent) return <p className={`broker-notice ${className}`}>{copy}</p>;
   return (
     <div className="ex-broker-disclosure">
-      <p><strong>Air charter broker disclosure.</strong> {copy} <Link href="/charter-terms/">Charter disclosures</Link></p>
+      <p>{copy} <Link href="/charter-terms/">Charter disclosures</Link></p>
     </div>
   );
 }

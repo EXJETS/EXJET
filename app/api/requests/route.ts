@@ -77,11 +77,16 @@ function parseRequest(value: unknown): IntakeRequest | null {
   const dateValid = /^\d{4}-\d{2}-\d{2}$/.test(submittedDate) && !Number.isNaN(Date.parse(`${submittedDate}T12:00:00Z`));
   const emailValid = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(parsed.email);
   const phoneValid = parsed.phone.replace(/\D/g, "").length >= 7;
-  const missionValid = parsed.departure.length >= 2 && parsed.destination.length >= 2 && dateValid;
+  const departure = (parsed.departureIcao || parsed.departure).toUpperCase();
+  const destination = (parsed.destinationIcao || parsed.destination).toUpperCase();
+  const missionValid = parsed.departure.length >= 2 && parsed.destination.length >= 2 &&
+    departure !== destination && dateValid;
   const today = new Date().toISOString().slice(0, 10);
   const dateNotPast = submittedDate >= today;
   if (parsed.mode === "charter" && parsed.passengers && parsed.passengers > 18) parsed.mode = "group";
-  const modeValid = parsed.mode === "cargo" ? Boolean(parsed.cargoType) : Boolean(parsed.passengers && parsed.passengers >= 1 && parsed.passengers <= 100);
+  const modeValid = parsed.mode === "cargo"
+    ? Boolean(parsed.cargoType)
+    : passengers >= 1 && passengers <= 100 && Number.isInteger(passengers);
   return missionValid && dateNotPast && modeValid && parsed.name.length >= 2 && emailValid && phoneValid ? parsed : null;
 }
 

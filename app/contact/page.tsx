@@ -19,7 +19,7 @@ export default function ContactPage() {
       <PageHero heading="Speak with EXJET" eyebrow="Contact EXJET" title={<>Let’s plan<br /><em>what’s next.</em></>} copy="Discuss your business or commercial aviation requirements. From passenger and cargo capacity to aircraft ownership, crew and technical support, start with your objectives.">
         <div className="ex-intro-actions contact-primary-actions">
           <ButtonLink href={`mailto:${siteConfig.email.charter}`}>Email charter desk</ButtonLink>
-          <ButtonLink href={`mailto:${siteConfig.email.general}`} variant="outline">Email an advisor</ButtonLink>
+          <ButtonLink href={`mailto:${siteConfig.email.cargo}`} variant="outline">Email cargo desk</ButtonLink>
         </div>
       </PageHero>
       <section className="section contact-section">
@@ -31,7 +31,7 @@ export default function ContactPage() {
           <aside>
             <p>Passenger charter</p><a href={`mailto:${siteConfig.email.charter}`}>{siteConfig.email.charter}</a>
             <p>Cargo charter</p><a href={`mailto:${siteConfig.email.cargo}`}>{siteConfig.email.cargo}</a>
-            <p>Aircraft ownership and consulting</p><a href={`mailto:${siteConfig.email.general}`}>{siteConfig.email.general}</a>
+            <p>General inquiries, ownership and consulting</p><a href={`mailto:${siteConfig.email.general}`}>{siteConfig.email.general}</a>
             <p>Dallas</p><a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.address.display)}`} target="_blank" rel="noreferrer">{siteConfig.address.streetAddress}<br />{siteConfig.address.addressLocality}, {siteConfig.address.addressRegion} {siteConfig.address.postalCode}</a>
             <p>Social</p><SocialLinks compact />
           </aside>

@@ -18,8 +18,8 @@
       {
         "heading": "Flight search and website information",
         "paragraphs": [
-          "Flight search is delivered through Avinode’s embedded service. Your browser connects to Avinode when the search loads. The provider handles the trip and contact details you provide through its screens. When you submit EXJET’s separate empty-leg request form, EXJET sends your selected flight, name, email, telephone number and any notes to Avinode to handle the inquiry.",
-          "Website requests can include technical information such as an IP address, browser information, requested page and request time. EXJET’s native request service uses the request’s network address to limit repeated submissions. See Cookies & Website Technologies for embedded services, account features and browser choices."
+          "When you submit a charter request, EXJET receives the trip and contact details you enter. Depending on the request, those details may be shared with aircraft sourcing and request delivery providers. If you request an empty leg, relevant details can include the selected flight, your name, email, telephone number and any notes.",
+          "Website requests can include technical information such as an IP address, browser information, requested page and request time. EXJET’s native request service uses the request’s network address to limit repeated submissions. See Cookies & Website Technologies for account features and browser choices."
         ]
       },
       {
@@ -33,7 +33,7 @@
         "heading": "Retention and your choices",
         "paragraphs": [
           "A general inquiry does not require an account. Where client access is enabled, EXJET uses Supabase to support sign-in, saved account information and advisor conversations. Some trip and airport tools also save information in the browser on the device you use. Retention depends on the type of information, the stage of your inquiry or transaction, applicable recordkeeping requirements and any unresolved dispute.",
-          "Depending on the law that applies, you may have rights to access, correct, obtain a copy of, or delete personal information, or object to certain uses. Send privacy requests to sales@exjet.com. Identity verification and legal exceptions may apply."
+          "Depending on the law that applies, you may have rights to access, correct, obtain a copy of, or delete personal information, or object to certain uses. Send privacy requests to info@exjet.com. Identity verification and legal exceptions may apply."
         ]
       }
     ],
@@ -197,7 +197,7 @@
   {
     "slug": "cookies",
     "title": "Cookies & Website Technologies",
-    "description": "Embedded flight search, browser storage, and choices about website technologies.",
+    "description": "Browser storage, EXJET account features, and choices about website technologies.",
     "status": "draft",
     "effectiveDate": null,
     "reviewedAt": "2026-09-11",
@@ -211,10 +211,10 @@
         ]
       },
       {
-        "heading": "Embedded flight search",
+        "heading": "Submitting a charter request",
         "paragraphs": [
-          "Flight search uses Avinode’s hosted service. Loading it connects your browser to Avinode even though it appears on an EXJET page. Avinode describes its own browser technologies and privacy practices in its privacy and cookies notice.",
-          "You can email charter@exjet.com to request charter without using the embedded search. Submitting a request does not create an account or confirm a trip."
+          "Submitting a request sends the information you enter to EXJET so it can evaluate your itinerary and respond. Website technology and aircraft sourcing providers may help deliver or process your request.",
+          "You can email charter@exjet.com to request charter without using the online form. Submitting a request does not create an account or confirm a trip."
         ]
       },
       {
@@ -227,7 +227,7 @@
       {
         "heading": "Your browser choices",
         "paragraphs": [
-          "Most browsers let you view or remove stored data and restrict third-party cookies. Available controls differ by browser and device. Blocking content or storage may prevent an embedded search feature from loading or remembering information.",
+          "Most browsers let you view or remove stored data and restrict third-party cookies. Available controls differ by browser and device. Blocking browser storage can affect client sign-in and saved planning selections.",
           "Deleting cookies does not erase information already sent to a service. Private browsing also does not prevent websites from receiving the network information needed to respond to a request. For questions about information already submitted, use the privacy contact route described in the Privacy Policy."
         ]
       },

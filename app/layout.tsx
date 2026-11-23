@@ -16,6 +16,7 @@ import "./interaction.css";
 import "./design-system.css";
 import "./aviation-editorial.css";
 import "./public-campaign.css";
+import "./public-theme.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteOrigin),

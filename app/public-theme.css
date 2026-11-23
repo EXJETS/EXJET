@@ -1,0 +1,181 @@
+/* EXJET public theme: paper, platinum and graphite with one action accent.
+   Scope the theme to the public shell; assets and the client workspace are unchanged. */
+.ex-public,
+.ex-header,
+.ex-footer {
+  --public-paper: #fff;
+  --public-platinum: #f2f3f5;
+  --public-silver: #e7e9ec;
+  --public-line: #d5d8dd;
+  --public-field-line: #959da8;
+  --public-ink: #191c20;
+  --public-muted: #505862;
+  --public-graphite: #1f2329;
+  --public-night-line: #494e56;
+  --public-night-copy: #d2d7de;
+  --public-action: #2852c5;
+  --public-action-hover: #1c3da0;
+  --public-action-tint: #edf2ff;
+  --public-focus-dark: #a9c0ff;
+  --public-radius: 6px;
+  --public-font: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+}
+
+.ex-public {
+  --ex-display: var(--public-font);
+  --ex-surface: var(--public-platinum);
+  --ex-line: var(--public-line);
+  --ex-radius: var(--public-radius);
+  --ex-cta-ink: var(--public-ink);
+  --ex-cta-surface: var(--public-paper);
+  --ex-cta-hover: var(--public-silver);
+  --ex-cta-border: var(--public-field-line);
+  background: var(--public-paper);
+  color: var(--public-ink);
+  font-family: var(--public-font);
+  color-scheme: light;
+}
+.ex-public :is(h1,h2,h3) {
+  font-family: var(--public-font);
+  letter-spacing: -.042em;
+  font-weight: 550;
+}
+.ex-public :is(.eyebrow,.ex-kicker,.ex-breadcrumb,.ex-card-meta) { color: var(--public-muted); }
+.ex-public :is(.ex-reading,.ex-content-faq) a:not(.button) {
+  color: var(--public-action-hover);
+  text-decoration-color: var(--public-field-line);
+  text-underline-offset: .2em;
+}
+.ex-public :is(.page-hero,.ex-editorial-masthead) { border-bottom-color: var(--public-line); }
+.ex-public :is(.page-hero--dark,.ex-section--silver,.section--silver,.section--pale,.sales-detail-hero,.ex-facts) {
+  background-color: var(--public-platinum);
+}
+.ex-public :is(.ex-card:not(.ex-card--text),.ex-service-card,.sales-index-card,.membership-card,.aircraft-category-card) {
+  background-color: var(--public-platinum);
+  border-color: var(--public-line);
+  border-radius: var(--public-radius);
+  box-shadow: none;
+}
+.ex-public :is(.ex-inline-link,.ex-text-link) {
+  color: var(--public-ink);
+  font-family: var(--public-font);
+  font-weight: 530;
+  text-underline-offset: .2em;
+}
+
+.ex-public .button {
+  border-radius: var(--public-radius);
+  font-family: var(--public-font);
+  font-weight: 600;
+  letter-spacing: 0;
+  line-height: 1.35;
+  text-transform: none;
+}
+.ex-public :is(.button--dark,.button--primary),
+.ex-public #plan-your-charter .quote-form__submit .button {
+  background: var(--public-action);
+  border-color: var(--public-action);
+  color: var(--public-paper);
+}
+.ex-public :is(.button--dark,.button--primary):hover:not(:disabled):not([aria-disabled="true"]),
+.ex-public #plan-your-charter .quote-form__submit .button:hover:not(:disabled) {
+  background: var(--public-action-hover);
+  border-color: var(--public-action-hover);
+  color: var(--public-paper);
+}
+.ex-public .button--outline {
+  background: transparent;
+  border-color: var(--public-field-line);
+  color: var(--public-ink);
+}
+.ex-public .button--outline:hover:not(:disabled) {
+  background: var(--public-platinum);
+  border-color: var(--public-muted);
+  color: var(--public-ink);
+}
+.ex-public button:disabled { cursor: not-allowed; }
+
+.ex-public :is(.ex-action-panel,.section--dark,.section-intro--inverse) {
+  --public-focus: var(--public-focus-dark);
+  color: var(--public-paper);
+}
+.ex-public :is(.ex-action-panel,.section--dark) { background-color: var(--public-graphite); }
+.ex-public :is(.ex-action-panel,.section--dark,.section-intro--inverse) :is(.eyebrow,.ex-kicker,.ex-inline-link,.ex-text-link,.broker-notice) {
+  color: var(--public-night-copy);
+}
+.ex-public :is(.ex-action-panel,.section--dark) .button--outline {
+  background: transparent;
+  border-color: var(--public-field-line);
+  color: var(--public-paper);
+}
+.ex-public :is(.ex-action-panel,.section--dark) .button--outline:hover:not(:disabled) {
+  background: var(--public-night-line);
+  border-color: var(--public-night-copy);
+  color: var(--public-paper);
+}
+
+.ex-public :is(.quote-form,.empty-leg-board,.empty-leg-inquiry) :is(input:not([type="radio"]):not([type="checkbox"]),select,textarea) {
+  color: var(--public-ink);
+  border-color: var(--public-field-line);
+  font-family: var(--public-font);
+}
+.ex-public :is(.quote-form__airport,.quote-form__row > label,.quote-form__airport-list) { border-color: var(--public-line); }
+.ex-public .quote-form__airport-list button[aria-selected="true"] {
+  background: var(--public-action-tint);
+  outline: 2px solid var(--public-action);
+  outline-offset: -2px;
+}
+.ex-public :is(input,select,textarea,button,a,summary):focus-visible,
+.ex-header :is(button,a,summary):focus-visible,
+.ex-footer :is(button,a,summary):focus-visible {
+  outline: 2px solid var(--public-focus, var(--public-action));
+  outline-offset: 3px;
+}
+.ex-public .quote-form__preference input:focus-visible + span { outline-color: var(--public-action); }
+
+.ex-public section[aria-labelledby="home-routes-title"] ul a[href^="/routes/"] {
+  background-color: var(--public-platinum);
+  border-color: var(--public-line);
+  color: var(--public-ink);
+  border-radius: var(--public-radius);
+}
+.ex-public section[aria-labelledby="home-routes-title"] ul a[href^="/routes/"]:hover {
+  background-color: var(--public-silver);
+  border-color: var(--public-field-line);
+}
+.ex-public section[aria-labelledby="home-routes-title"] li a > svg:first-child { color: var(--public-muted); }
+
+.ex-header {
+  background: var(--public-paper);
+  color: var(--public-ink);
+  border-color: var(--public-line);
+  font-family: var(--public-font);
+}
+.ex-header :is(.ex-primary-nav a,.ex-menu-button) { color: var(--public-ink); }
+.ex-header .ex-menu-button:hover { background: var(--public-platinum); }
+.ex-header .ex-primary-nav a[aria-current="page"] { text-decoration: underline; text-underline-offset: .35em; }
+.ex-header :is(.ex-header-actions,#exjet-navigation) a[href="/charter"] {
+  background: var(--public-action);
+  border-color: var(--public-action);
+  color: var(--public-paper);
+  border-radius: var(--public-radius);
+  font-weight: 600;
+}
+.ex-header :is(.ex-header-actions,#exjet-navigation) a[href="/charter"]:hover {
+  background: var(--public-action-hover);
+  border-color: var(--public-action-hover);
+  color: var(--public-paper);
+  text-decoration: none;
+}
+.ex-header #exjet-navigation { background: var(--public-paper); color: var(--public-ink); }
+
+.ex-footer {
+  --public-focus: var(--public-focus-dark);
+  background: var(--public-graphite);
+  color: var(--public-paper);
+  border-color: var(--public-night-line);
+  font-family: var(--public-font);
+}
+.ex-footer :is(.ex-footer-brand,.ex-footer-bottom,.ex-footer-mobile details) { border-color: var(--public-night-line); }
+.ex-footer .ex-footer-brand > p { color: var(--public-paper); font-family: var(--public-font); letter-spacing: -.045em; }
+.ex-footer :is(.ex-footer-desktop h2,.ex-footer-bottom p) { color: var(--public-night-copy); }

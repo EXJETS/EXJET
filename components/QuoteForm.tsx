@@ -7,7 +7,6 @@ import { ArrowRightIcon } from "@phosphor-icons/react/dist/csr/ArrowRight";
 import { ArrowLeftIcon } from "@phosphor-icons/react/dist/csr/ArrowLeft";
 import { CheckCircleIcon } from "@phosphor-icons/react/dist/csr/CheckCircle";
 import { siteConfig } from "@/data/site";
-import { FlightSearchPanel } from "./FlightSearchPanel";
 
 type QuoteMode = "charter" | "cargo" | "group";
 type Airport = { icao: string; iata?: string; name: string; city?: string; country?: string };
@@ -110,19 +109,8 @@ function AirportInput({ label, value, code, onChange }: {
 }
 
 export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps) {
-  if (mode !== "cargo") return (
-    <>
-      <p className="ex-quote-privacy">
-        Flight search is provided by Avinode. Your browser connects to Avinode when the search loads. Avinode handles the trip and contact information you provide through the search. Read the <a href="https://avinodegroup.com/privacy/">Avinode privacy and cookies notice</a> and <Link href="/privacy">EXJET privacy information</Link>, or <a href={`mailto:${siteConfig.email.charter}`}>email the charter desk</a> without submitting details to the search tool.
-      </p>
-      <FlightSearchPanel compact={compact} group={mode === "group"} />
-    </>
-  );
-  return <CargoRequestForm mode={mode} compact={compact} />;
-}
-
-function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
+  const submitting = useRef(false);
   const [stage, setStage] = useState<"mission" | "contact" | "success">("mission");
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [message, setMessage] = useState("");
@@ -140,10 +128,18 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
   const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (!event.currentTarget.reportValidity()) return;
-    if (status === "loading") return;
+    if (submitting.current) return;
     if (stage === "mission") {
-      if (form.departure.trim().toLowerCase() === form.destination.trim().toLowerCase()) {
+      const origin = (form.departureIcao || form.departure).trim().toUpperCase();
+      const destination = (form.destinationIcao || form.destination).trim().toUpperCase();
+      if (origin === destination) {
         setStatus("error"); setMessage("Choose different origin and destination airports."); return;
+      }
+      if (origin.length < 2 || destination.length < 2) {
+        setStatus("error"); setMessage("Enter a departure and destination city or airport."); return;
+      }
+      if (mode !== "cargo" && (!Number.isInteger(passengerCount) || passengerCount < 1 || passengerCount > 100)) {
+        setStatus("error"); setMessage("Enter a whole number between 1 and 100 for passengers."); return;
       }
       const fields = new FormData(event.currentTarget);
       setForm(current => ({ ...current, date: String(fields.get("date") ?? current.date), cargoType: String(fields.get("cargoType") ?? current.cargoType), passengers: String(fields.get("passengers") ?? current.passengers) }));
@@ -153,7 +149,12 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
       return;
     }
     if (stage !== "contact") return;
-
+    if (form.name.trim().length < 2 || form.phone.replace(/\D/g, "").length < 7) {
+      setStatus("error");
+      setMessage("Enter your name and a valid contact number, or email the desk below.");
+      return;
+    }
+    submitting.current = true;
     setStatus("loading");
     setMessage("");
     try {
@@ -163,19 +164,30 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
         body: JSON.stringify({ mode: groupHandled ? "group" : mode, ...form, source: window.location.pathname }),
         signal: AbortSignal.timeout(45_000),
       });
-      const payload = (await response.json()) as { reference?: string; error?: string };
-      if (!response.ok || !payload.reference) throw new Error(payload.error || "Your request could not be sent.");
+      const payload = (await response.json()) as { ok?: boolean; reference?: string };
+      if (response.status !== 201 || payload.ok !== true || !payload.reference) {
+        throw new Error("The request was not confirmed.");
+      }
       setReference(payload.reference);
       setStage("success");
       setStatus("idle");
-    } catch (error) {
+    } catch {
       setStatus("error");
-      setMessage(error instanceof Error ? error.message : "Your request could not be sent.");
+      setMessage("We did not receive confirmation. Email the desk below for assistance.");
+    } finally {
+      submitting.current = false;
     }
   };
 
-  const subject = mode === "cargo" ? "Cargo charter request" : mode === "group" ? "Group charter request" : "Private charter request";
-  const fallbackBody = `${subject}\nFrom: ${form.departure}\nTo: ${form.destination}\nDate: ${form.date}\nCargo: ${form.cargoType}\nName: ${form.name}\nMobile: ${form.phone}\nEmail: ${form.email}\nNotes: ${form.notes}`;
+  const subject = mode === "cargo" ? "Cargo charter request" : mode === "group" || groupHandled ? "Group charter request" : "Private charter request";
+  const fallbackBody = [
+    subject,
+    `From: ${form.departure}`, `To: ${form.destination}`, `Date: ${form.date}`,
+    ...(mode === "cargo" ? [`Cargo: ${form.cargoType}`] : [`Passengers: ${form.passengers}`]),
+    ...(form.time ? [`Local departure time: ${form.time}`] : []),
+    `Name: ${form.name}`, `Mobile: ${form.phone}`, `Email: ${form.email}`, `Notes: ${form.notes}`,
+  ].join("\n");
+  const emailHref = `mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fallbackBody)}`;
   const notesLabel = mode === "cargo" ? "Shipment details" : mode === "group" ? "Group details" : "Anything else we should know?";
   const notesPlaceholder = mode === "cargo"
     ? "Dimensions, weight, handling requirements, timing, permits..."
@@ -187,8 +199,8 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
     return (
       <section className={`quote-form quote-form--${mode}${compact ? " quote-form--compact" : ""} quote-form--success`} aria-live="polite">
         <p className="quote-form__kicker">Request received</p>
-        <CheckCircleIcon size={32} aria-hidden="true" /><h3 tabIndex={-1} ref={element => { element?.focus(); }}>An EXJET advisor is reviewing your mission.</h3>
-        <p>We will contact you {siteConfig.responseWindow} using your preferred method. For a time-sensitive change, <a href={`mailto:${recipient}`}>email the EXJET flight desk</a> and include your reference.</p>
+        <CheckCircleIcon size={32} aria-hidden="true" /><h3 tabIndex={-1} ref={element => { element?.focus(); }}>Your request has been sent.</h3>
+        <p>This request does not reserve an aircraft. For a time-sensitive change, <a href={`mailto:${recipient}`}>email the EXJET flight desk</a> and include your reference.</p>
         <div className="quote-form__reference"><span>Reference</span><strong>{reference}</strong></div>
         <button className="quote-form__new" type="button" onClick={() => { setForm({ ...initialState, passengers: mode === "group" ? "25" : "2" }); setReference(""); setStage("mission"); }}>
           Start another request <ArrowRightIcon size={18} aria-hidden="true" />
@@ -199,7 +211,7 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
 
   return (
     <form ref={formRef} className={`quote-form quote-form--${mode}${compact ? " quote-form--compact" : ""} quote-form--${stage}`} onSubmit={submit} aria-busy={status === "loading"}>
-      <p className="quote-form__progress">Step {stage === "mission" ? "1 of 2 · Shipment details" : "2 of 2 · Contact details"}</p>
+      <p className="quote-form__progress">Step {stage === "mission" ? mode === "cargo" ? "1 of 2 · Shipment details" : "1 of 2 · Trip details" : "2 of 2 · Contact details"}</p>
       {stage === "mission" ? (
         <>
           <div className="quote-form__row">
@@ -209,20 +221,25 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
             {mode === "cargo" ? (
               <label><span>Cargo type</span><input value={form.cargoType} onChange={(event) => update("cargoType", event.target.value)} name="cargoType" maxLength={160} required pattern={String.raw`.*\S.*`} title="Describe the cargo." placeholder="General description" /></label>
             ) : (
-              <label><span>Passengers</span><input value={form.passengers} onChange={(event) => update("passengers", event.target.value)} name="passengers" type="number" inputMode="numeric" min="1" max="100" required /></label>
+              <label><span>Passengers</span><input value={form.passengers} onChange={(event) => update("passengers", event.target.value)} name="passengers" type="number" inputMode="numeric" min="1" max="100" step="1" required /></label>
             )}
           </div>
+          {mode !== "cargo" ? <div className="quote-form__row"><label>
+            <span>Local departure time (optional)</span>
+            <input value={form.time} onChange={(event) => update("time", event.target.value)} name="time" type="time" />
+          </label></div> : null}
           <div className="quote-form__submit">
             <button className="button button--dark" type="submit">
               Continue to contact details <ArrowRightIcon size={18} aria-hidden="true" />
             </button>
-            <p>{groupHandled ? "This passenger count will be routed to EXJET group charter." : compact ? "One more step. No account required." : `An EXJET advisor will respond ${siteConfig.responseWindow}. For a time-sensitive request, email ${recipient}.`}</p>
+            <a className="ex-text-link" href={emailHref}>Email instead</a>
+            <p>{groupHandled ? "This passenger count will be routed to EXJET group charter." : compact ? "One more step. No account required." : `No account required. For a time-sensitive request, email ${recipient}.`}</p>
           </div>
         </>
       ) : (
         <>
           <div className="quote-form__mission-summary">
-            <button type="button" disabled={status === "loading"} onClick={() => { setStatus("idle"); setMessage(""); setStage("mission"); }}><ArrowLeftIcon size={18} aria-hidden="true" /> Edit shipment</button>
+            <button type="button" disabled={status === "loading"} onClick={() => { setStatus("idle"); setMessage(""); setStage("mission"); }}><ArrowLeftIcon size={18} aria-hidden="true" /> {mode === "cargo" ? "Edit shipment" : "Edit trip"}</button>
             <p><strong>{form.departure}</strong><ArrowRightIcon size={18} aria-hidden="true" /><strong>{form.destination}</strong></p>
             <small>{form.date} · {mode === "cargo" ? form.cargoType : `${form.passengers} traveler${form.passengers === "1" ? "" : "s"}`}</small>
           </div>
@@ -250,14 +267,15 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
             <button className="button button--dark" type="submit" disabled={status === "loading"}>
               {status === "loading" ? "Sending securely..." : "Submit request"}<ArrowRightIcon size={18} aria-hidden="true" />
             </button>
-            <p>EXJET uses your shipment and contact details to handle this request and contact you about it. Read our <Link href="/privacy">privacy information</Link>. Please don’t include payment details, identification documents or medical information.</p>
+            <a className="ex-text-link" href={emailHref}>Email instead</a>
+            <p>EXJET uses your {mode === "cargo" ? "shipment" : "trip"} and contact details to handle this request, including sharing them with the service providers needed for it. Read our <Link href="/privacy">privacy information</Link>. Please don’t include payment details, identification documents or medical information.</p>
           </div>
         </>
       )}
           {status === "error" ? (
             <div className="quote-form__error" role="alert">
               <strong>{message}</strong>
-              <span><a href={`mailto:${recipient}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(fallbackBody)}`}>Email {recipient}</a> with this request.</span>
+              <span><a href={emailHref}>Email the {mode === "cargo" ? "cargo" : "charter"} desk</a> with this request.</span>
             </div>
           ) : null}
     </form>

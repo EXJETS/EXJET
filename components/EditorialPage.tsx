@@ -73,6 +73,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
       <header className={isReading ? "ex-story-intro" : "ex-page-intro"}><p className="ex-kicker">{page.kicker}</p><h1>{page.title}</h1><p>{page.description}</p>
         {page.kind==="article" ? <div className="ex-story-meta"><Link href="/editorial-standards">EXJET editorial</Link><span>{page.readTime}</span>{updatedLabel ? <span>Updated {updatedLabel}</span> : null}</div> : null}
         {isCharterPlanning ? <div className="ex-intro-actions"><Link className="button button--dark" href="/charter/">Request a charter quote</Link><Link className="ex-inline-link" href="/pricing/">How charter pricing works<CaretRightIcon size={16} weight="light" aria-hidden="true" /></Link></div> : page.kind==="service" ? <div className="ex-intro-actions">{consultationHref ? <a className="button button--dark" href={consultationHref}>{page.consultation?.label}</a> : <Link className="button button--dark" href="/contact">Discuss your plans</Link>}<Link className="ex-inline-link" href={consultationHref ? "/services" : "/charter"}>{consultationHref ? "Explore all services" : "Find a flight"}<CaretRightIcon size={16} weight="light" aria-hidden="true" /></Link></div> : null}
+        {!isReading ? <BrokerNotice prominent /> : null}
       </header>
     </div>
     {feature && page.kind!=="hub" ? <figure className="ex-feature-photo" ><Image src={feature.src} alt={feature.alt} width={feature.width} height={feature.height} priority sizes="100vw" /></figure> : null}

@@ -98,9 +98,8 @@
 .page-hero h1.page-hero__topic { max-width:54ch; margin:0 auto 14px; font-size:14px; font-weight:400; line-height:1.5; letter-spacing:0; color:#5e646a; }
 @media(max-width:760px) { .page-hero .page-hero__display { font-size:clamp(36px,10.25vw,42px); } .ex-data-table th,.ex-data-table td { padding:12px; } }
 
-.ex-broker-disclosure { padding: 9px var(--ex-page-gutter, 24px); background: #f5f5f6; border-bottom: 1px solid #dedee2; color: #36363b; }
-.ex-broker-disclosure p { margin: 0 auto; max-width: var(--ex-content-width, 1200px); font-size: .875rem; line-height: 1.5; }
-.ex-broker-disclosure strong { font-weight: 600; }
+.ex-broker-disclosure { margin-block: 14px; color: #45454b; }
+.ex-broker-disclosure p { margin: 0; max-width: 85ch; font-size: .875rem; line-height: 1.5; }
 .ex-broker-disclosure a { text-decoration: underline; text-underline-offset: .18em; }
 .ex-broker-disclosure a:focus-visible { outline: 2px solid #202125; outline-offset: 2px; }
 .ex-quote-privacy { margin: 0 0 14px; color: #4b4b50; font-size: .875rem; line-height: 1.55; }

@@ -79,6 +79,7 @@ export const aviationSolutions = [
 ] as const;
 
 const PRODUCTION_ORIGIN = "https://www.exjet.com";
+const PUBLIC_CONTACT_EMAIL = "info@exjet.com";
 
 function normalizeOrigin(value: string) {
   try {
@@ -108,7 +109,7 @@ export const siteConfig = {
   description:
     "EXJET is an aviation solutions company serving business and commercial aviation through charter, leasing, ACMI, ownership, management, crew and technical services.",
   email: {
-    general: "sales@exjet.com",
+    general: PUBLIC_CONTACT_EMAIL,
     charter: "charter@exjet.com",
     cargo: "cargo@exjet.com",
   },
