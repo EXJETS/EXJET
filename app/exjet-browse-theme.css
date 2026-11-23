@@ -1,32 +1,33 @@
-/* Public EXJET surfaces. The authenticated workspace keeps its existing style. */
+/* Neutral EXJET public system. The authenticated workspace is intentionally unchanged. */
 :root {
   --flight-paper:#fff;
-  --flight-surface:#f2f5f6;
-  --flight-ink:#172229;
-  --flight-muted:#52616a;
-  --flight-line:#d5dfe3;
-  --flight-accent:#12645f;
-  --flight-accent-hover:#094942;
-  --flight-radius:10px;
-  --flight-shell:min(1320px,calc(100% - clamp(32px,8vw,120px)));
+  --flight-surface:#f4f4f4;
+  --flight-ink:#171a20;
+  --flight-muted:#5c5e62;
+  --flight-line:#e2e3e3;
+  --flight-accent:#3e6ae1;
+  --flight-accent-hover:#3457b1;
+  --flight-radius:8px;
+  --flight-shell:min(1500px,calc(100% - clamp(32px,9.4vw,160px)));
+  --flight-font:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
 }
 .ex-public,.ex-header,.ex-footer {
+  --public-font:var(--flight-font);
   --public-paper:var(--flight-paper);
   --public-platinum:var(--flight-surface);
-  --public-silver:#e5efef;
+  --public-silver:#f0f1f2;
   --public-line:var(--flight-line);
-  --public-field-line:#889ba3;
+  --public-field-line:#8d9298;
   --public-ink:var(--flight-ink);
   --public-muted:var(--flight-muted);
-  --public-graphite:#19272d;
-  --public-night-line:#687b83;
-  --public-night-copy:#dce9e9;
+  --public-graphite:#171a20;
+  --public-night-line:#636870;
+  --public-night-copy:#e3e6eb;
   --public-action:var(--flight-accent);
   --public-action-hover:var(--flight-accent-hover);
-  --public-action-tint:#e6f1ef;
-  --public-focus-dark:#a9e1dc;
+  --public-action-tint:#eef3ff;
+  --public-focus-dark:#a9c4ff;
   --public-radius:var(--flight-radius);
 }
-.ex-public :is(input,select,textarea,button,a,summary):focus-visible {
-  outline-color:var(--public-focus,var(--flight-accent));
-}
+.ex-public .button { border-radius:5px; }
+.ex-public :is(input,select,textarea,button,a,summary):focus-visible { outline-color:var(--public-focus,var(--flight-accent-hover)); }

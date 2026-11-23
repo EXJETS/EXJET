@@ -60,19 +60,14 @@ export default async function AircraftDetailPage({ params }: PageProps) {
   return (
     <>
       <StructuredData data={breadcrumb} />
-      <header className={catalog.mast}><div className={styles.wrap}>
-        <nav className={styles.back} aria-label="Breadcrumb"><Link href="/aircraft/">← Browse aircraft</Link></nav>
-        <p className={styles.label}>{item.maker} · {item.category}{requestOnly ? " · Request only" : ""}</p>
-        <h1>{item.name}</h1>
-        <p>{requestOnly ? "Aircraft reference. Discuss your trip with an advisor." : "Aircraft profile for charter planning. The operator confirms the specific aircraft and configuration."}</p>
-      </div></header>
-      <section className={styles.wrap}>
+      <section className={`${styles.wrap} ${catalog.profilePage}`}>
+        <nav className={styles.back} aria-label="Breadcrumb"><Link href="/aircraft/">← Back to aircraft</Link></nav>
         <div className={`${styles.split} ${catalog.profileSplit}`}>
           <div>
             {item.scenes.some(scene => scene.image || scene.gallery?.length) ? <div className={styles.gallery}><AircraftDetail item={item} mediaOnly /></div> : <div className={catalog.noMedia}><span>{item.name}</span><p>No approved model photography is shown for this profile.</p></div>}
             <div className={styles.profileCopy}>
-              <p className={styles.label}>Aircraft profile</p>
-              <h2 className={styles.sectionTitle}>About this aircraft</h2>
+              <p className={styles.label}>{item.maker} · {item.category}{requestOnly ? " · Request only" : ""}</p>
+              <h1>{item.name}</h1>
               <p>{item.summary}</p>
               {(model || reference) && <nav className={styles.strip} aria-label={`${item.name} page sections`}>
                 <a href={model ? "#aircraft-specifications" : "#aircraft-legacy-specifications"}>Specifications <span aria-hidden="true">↓</span></a>
@@ -90,7 +85,7 @@ export default async function AircraftDetailPage({ params }: PageProps) {
               <div><dt>Baggage</dt><dd>{item.typical.baggage}</dd></div>
               <div><dt>Cabin</dt><dd>{item.typical.cabin}</dd></div>
             </dl>
-            <ButtonLink href={`/contact?aircraft=${item.slug}`}>{requestOnly ? "Discuss with an advisor" : "Ask about this model"}</ButtonLink>
+            <ButtonLink className={catalog.primary} href={`/contact?aircraft=${item.slug}`}>{requestOnly ? "Discuss with an advisor" : "Ask about this model"}</ButtonLink>
             {model && <a href="#aircraft-specifications" className={catalog.profileAnchor}>See specifications and range ↓</a>}
             {requestOnly && <p className={styles.note}>Reference only. This model is not listed as available inventory and is not eligible for an automatic quote.</p>}
             <p className={styles.note}>Specifications are typical for the type. Actual configuration varies by aircraft. Range and availability depend on route, payload, weather, and operating conditions.</p>

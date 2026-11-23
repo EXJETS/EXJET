@@ -1,7 +1,8 @@
 import Image from "next/image";
 import { ButtonLink } from "@/components/ButtonLink";
-import { FlightPageHeading } from "@/components/FlightPageHeading";
-import { SectionIntro } from "@/components/SectionIntro";
+import Link from "next/link";
+import { SupportHeader } from "@/components/PublicSupport";
+import styles from "@/components/PublicSupport.module.css";
 import { SocialLinks } from "@/components/SocialLinks";
 import { buildMetadata } from "@/data/seo";
 import { siteConfig } from "@/data/site";
@@ -17,12 +18,20 @@ const values = [
 ];
 
 export default function AboutPage() {
-  return <>
-    <FlightPageHeading label="About EXJET" title="Private charter, made clear." description="Based in Dallas, EXJET arranges private passenger jet charter and empty leg flights through licensed air carriers." links={[["Plan a flight", "/charter/"], ["Why EXJET", "/why-exjet/"], ["Operator relationships", "/operator-partners/"]]} />
-    <section className="section about-story"><div className="shell"><SectionIntro eyebrow="Our story" title="Built from the flight deck outward." copy="EXJET was founded by two pilots who understand that a successful charter is more than an aircraft and a departure time. It is an operational mission, a client experience, and a responsibility to get every detail right." /><div className="about-story-grid"><div className="about-story__image"><Image src="/images/manufacturers/falcon-8x-flightdeck.jpg" alt="Dassault Falcon 8X flight deck with instrument displays and dual pilot controls" fill sizes="(max-width: 820px) 92vw, 54vw" /></div><div className="about-story-grid__copy"><p>That perspective shapes how we evaluate aircraft, communicate with operators, anticipate operational constraints, and support the people on board. We look at each trip from the traveler&apos;s seat, the cockpit, the operator&apos;s dispatch desk, and the advisor&apos;s responsibility to keep the mission connected.</p><p>We do not ask clients to sort through an endless list of aircraft. We ask the questions that change the answer: schedule, runway, range, baggage, cabin priorities, ground coordination, and the people who need to arrive ready.</p><dl><div><dt>Founders</dt><dd>Two pilots</dd></div><div><dt>Published certificate</dt><dd>{publishedPilotCredentials.certificate}</dd></div><div><dt>Published type ratings</dt><dd>{publishedPilotCredentials.typeRatings.join(" · ")}</dd></div><div><dt>Base</dt><dd>Dallas, Texas</dd></div><div><dt>Focus</dt><dd>Private jet charter and empty legs</dd></div></dl></div></div></div></section>
-    <section className="section about-perspective"><div className="shell"><p className="eyebrow"><span />The pilot perspective</p><div className="about-perspective__grid"><h2>Experience changes what you notice.</h2><div><p>Pilots learn to think ahead: weather, runway performance, alternates, timing, crew duty, and the chain of decisions behind a smooth departure. EXJET brings that same forward-looking discipline to every charter conversation.</p><p>It means asking better questions early, explaining tradeoffs clearly, and treating the operator relationship with the professional respect the mission deserves.</p></div></div><div className="about-archive-callout"><span>The founders&apos; archive</span><strong>Every pilot starts with an airplane, a logbook, and the decision to keep learning.</strong><p>We are preserving the early aircraft and flying stories that shaped EXJET, because where we began still informs how we work today.</p></div></div></section>
-    <section className="section section--dark about-values"><div className="shell"><SectionIntro inverse eyebrow="Core values" title="The standard behind every conversation." /><div className="about-value-grid">{values.map(([number, title, copy]) => <article key={number}><span>{number}</span><h2>{title}</h2><p>{copy}</p></article>)}</div></div></section>
-    <section className="section about-model"><div className="shell split-copy"><p className="eyebrow"><span />How we work</p><h2>EXJET advises. Licensed carriers operate.</h2><div><p>EXJET coordinates private jet charter and empty leg flights. The licensed air carrier identified for each trip operates the aircraft and retains operational control.</p><p>This clear division preserves operating responsibility while giving every client one consistent point of contact.</p><ButtonLink href="/private-jet-charter">Explore charter</ButtonLink></div></div></section>
-    <section className="about-location"><div className="shell about-location__grid"><div><p className="eyebrow eyebrow--light"><span />Dallas headquarters</p><h2>{siteConfig.address.streetAddress}<br />{siteConfig.address.addressLocality}, {siteConfig.address.addressRegion} {siteConfig.address.postalCode}</h2><a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.address.display)}`} target="_blank" rel="noreferrer">Open in Maps <span>→</span></a></div><div><p>Follow EXJET</p><h3>Flights, aircraft, and the work behind the mission.</h3><SocialLinks light /></div></div></section>
-  </>;
+  return <div className={styles.frame}>
+    <SupportHeader label="Company" title="About EXJET" copy="Based in Dallas, EXJET arranges private jet charter and empty leg flights through licensed air carriers." />
+    <div className={`${styles.wrap} ${styles.workspace}`}>
+      <div className={styles.main}>
+        <div className={styles.photo}><Image src="/images/manufacturers/falcon-8x-flightdeck.jpg" alt="Dassault Falcon 8X flight deck" width={2000} height={1100} sizes="(max-width: 760px) 94vw, 62vw" /></div>
+        <section className={styles.card}><p className={styles.eyebrow}>Our story</p><h2>Founded by two pilots</h2><p>We look at every trip from the traveler’s seat, the flight deck and the operator’s dispatch desk. That means asking early about schedule, runway, range, baggage and ground coordination.</p><p>Weather, crew duty and alternates shape a flight. We explain those tradeoffs and keep clients informed as the mission comes together.</p></section>
+        <section className={styles.card}><h2>How we work</h2><p>EXJET coordinates private jet charter and empty leg flights. The licensed air carrier identified for your trip operates the aircraft and retains operational control.</p><ButtonLink href="/charter/" className={styles.primary}>Plan a flight</ButtonLink></section>
+        <section className={styles.card}><h2>The standard we work to</h2>{values.map(([number,title,copy])=><article className={styles.numberRow} key={title}><span>{number}</span><div><h3>{title}</h3><p>{copy}</p></div></article>)}</section>
+      </div>
+      <aside className={styles.rail}>
+        <section className={styles.card}><p className={styles.eyebrow}>Company details</p><h2>At a glance</h2><dl className={styles.factList}><div><dt>Founders</dt><dd>Two pilots</dd></div><div><dt>Published certificate</dt><dd>{publishedPilotCredentials.certificate}</dd></div><div><dt>Published type ratings</dt><dd>{publishedPilotCredentials.typeRatings.join(" · ")}</dd></div><div><dt>Focus</dt><dd>Private jet charter and empty legs</dd></div></dl></section>
+        <section className={styles.card}><h2>Dallas headquarters</h2><p>{siteConfig.address.display}</p><a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.address.display)}`} target="_blank" rel="noreferrer">Open in Maps ↗</a><SocialLinks compact /></section>
+        <section className={styles.card}><h2>Explore EXJET</h2><nav className={styles.anchorList} aria-label="About EXJET links"><Link href="/private-jet-charter/">Explore charter</Link><Link href="/why-exjet/">Why EXJET</Link><Link href="/operator-partners/">Operator relationships</Link></nav></section>
+      </aside>
+    </div>
+  </div>;
 }

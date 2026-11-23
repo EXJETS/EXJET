@@ -33,3 +33,22 @@
 .estimate:has(.cabins) .map svg { max-height:8.5rem; }
 .estimate:has(.cabins) .cabin.cabin { padding-block:7px; min-height:54px; }
 .cabin small { font-size:.76rem; }
+
+.estimate{background:var(--flight-surface,#f4f4f4);border-color:var(--flight-line,#e2e3e3);border-radius:8px}
+.estimate:has(.cabins){grid-template-columns:minmax(0,1.24fr) minmax(0,1fr);gap:12px 20px;align-items:start}
+.estimate:has(.cabins) .heading{grid-column:1/-1;background:#f4f4f4;border:1px solid var(--flight-line,#e2e3e3)}
+.estimate:has(.cabins) .map{grid-column:2;grid-row:2;align-self:stretch;border:1px solid var(--flight-line,#e2e3e3);border-radius:7px;background:#f6f8fb;padding:10px}
+.estimate:has(.cabins) .cabins{grid-column:1;grid-row:2}
+.estimate:has(.cabins) .map svg{max-height:12rem;background:#e9eef5}
+.estimate:has(.cabins) .map svg text{fill:#171a20;stroke:none}
+.estimate:has(.cabins) .map .grid{stroke:#cfd7e3}
+.estimate:has(.cabins) .map .route{stroke:#3457b1;stroke-dasharray:6 3}
+.estimate:has(.cabins) .map .airport{fill:#fff;stroke:#3457b1}
+.cabin.cabin{border-color:var(--flight-line,#e2e3e3);color:var(--flight-ink,#171a20)}
+.cabin.cabin:has(:checked){border-color:#3e6ae1;box-shadow:inset 0 0 0 1px #3e6ae1}
+@media(max-width:710px){
+ .estimate:has(.cabins){grid-template-columns:minmax(0,1fr)}
+ .estimate:has(.cabins) :is(.heading,.map,.cabins){grid-column:1;grid-row:auto}
+ .estimate:has(.cabins) .map svg{max-height:8.5rem}
+}
+@media(min-width:711px){.estimate:has(.cabins):not(:has(.map)) .cabins{grid-column:1/-1}}

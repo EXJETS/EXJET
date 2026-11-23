@@ -5,6 +5,9 @@ import Link from "next/link";
 import { useState } from "react";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react/dist/csr/MagnifyingGlass";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/csr/ArrowRight";
+import { SlidersHorizontalIcon } from "@phosphor-icons/react/dist/csr/SlidersHorizontal";
+import { GridFourIcon } from "@phosphor-icons/react/dist/csr/GridFour";
+import { MapTrifoldIcon } from "@phosphor-icons/react/dist/csr/MapTrifold";
 import { XIcon } from "@phosphor-icons/react/dist/csr/X";
 import type { Aircraft } from "@/data/aircraft";
 import type { AircraftComparison } from "@/data/aircraft-reference";
@@ -20,6 +23,7 @@ export function AircraftExplorer({ items, models = [], references = {} }: { item
   const [filters, setFilters] = useState(false);
   const [view, setView] = useState<"profiles"|"split">("split");
   const [selected, setSelected] = useState<string[]>([]);
+  const ResultsHeading = models.length ? "h1" : "h2";
   const categories = ["All aircraft", ...new Set(items.map(item => item.category))];
   const makers = Array.from(new Set(items.map(item => item.maker))).sort();
   const reset = () => { setQuery(""); setCategory("All aircraft"); setMaker(""); };
@@ -29,17 +33,17 @@ export function AircraftExplorer({ items, models = [], references = {} }: { item
   const toggle = (slug: string) => setSelected(current => current.includes(slug) ? current.filter(item => item !== slug) : current.length < 3 ? [...current, slug] : current);
 
   return <section className={`${styles.section} ${styles.marketExplorer} ${catalog.catalog} ${selected.length ? styles.hasShortlist : ""}`} aria-labelledby="aircraft-explorer-title">
-    <div className={catalog.searchBand}>
+    <div className={catalog.searchZone}><div className={catalog.searchBand}>
       <label className={catalog.searchControl}><span>Find a model</span><span className={catalog.searchInput}><MagnifyingGlassIcon size={20} aria-hidden="true" /><input type="search" value={query} onChange={event => setQuery(event.target.value)} placeholder="Aircraft or manufacturer" enterKeyHint="search" /></span></label>
       <label className={catalog.searchControl}>Cabin class<select value={category} onChange={event => setCategory(event.target.value)}>{categories.map(item => <option key={item}>{item}</option>)}</select></label>
-      <button type="button" className={catalog.control} aria-expanded={filters} aria-controls="aircraft-advanced-filters" onClick={() => setFilters(!filters)}>{filters ? "Hide filters" : "More filters"}</button>
-    </div>
+      <button type="button" className={catalog.control} aria-expanded={filters} aria-controls="aircraft-advanced-filters" onClick={() => setFilters(!filters)}><SlidersHorizontalIcon size={18} aria-hidden="true"/>{filters ? "Hide filters" : "Filters"}</button>
+    </div></div>
     <div id="aircraft-advanced-filters" hidden={!filters} className={catalog.extraFilters}>
       <label className={catalog.searchControl}>Manufacturer<select value={maker} onChange={event=>setMaker(event.target.value)}><option value="">All manufacturers</option>{makers.map(name=><option key={name}>{name}</option>)}</select></label>
       <button type="button" className={catalog.control} onClick={reset}>Reset filters</button>
     </div>
-    <div className={catalog.resultsHead}><div><h2 id="aircraft-explorer-title">Aircraft profiles</h2><p className={styles.resultCount} role="status">{visible.length} {visible.length === 1 ? "profile" : "profiles"}{selected.length ? ` · ${selected.length} selected for comparison` : ""}</p></div>
-      <div className={catalog.view} role="group" aria-label="Directory view"><button type="button" className={catalog.control} aria-pressed={view==="profiles"} onClick={()=>setView("profiles")}>Profiles</button><button type="button" className={catalog.control} aria-pressed={view==="split"} onClick={()=>setView("split")}>Compare view</button></div>
+    <div className={catalog.resultsHead}><div><ResultsHeading id="aircraft-explorer-title">Explore aircraft</ResultsHeading><p className={styles.resultCount} role="status">{visible.length} {visible.length === 1 ? "profile" : "profiles"}{selected.length ? ` · ${selected.length} selected for comparison` : ""} · Planning profiles, not live inventory</p></div>
+      <div className={catalog.view} role="group" aria-label="Directory view"><button type="button" className={catalog.control} aria-pressed={view==="profiles"} onClick={()=>setView("profiles")}><GridFourIcon size={17} aria-hidden="true"/> Profiles</button><button type="button" className={catalog.control} aria-pressed={view==="split"} onClick={()=>setView("split")}><MapTrifoldIcon size={17} aria-hidden="true"/> Compare view</button></div>
     </div>
     <div className={styles.marketFilters} role="group" aria-label="Cabin class quick filters">{categories.map(item => <button type="button" key={item} aria-pressed={category === item} onClick={() => setCategory(item)}>{item}</button>)}</div>
     <div className={view==="split" ? catalog.split : undefined}>
@@ -57,9 +61,9 @@ export function AircraftExplorer({ items, models = [], references = {} }: { item
     {!visible.length && <div className={styles.empty}><MagnifyingGlassIcon size={36} aria-hidden="true" /><h3>No matching aircraft</h3><p>Try a model name, manufacturer, or a different cabin class.</p><button className="button button--dark" onClick={reset}>Show all aircraft</button></div>}
     </div>
     {view==="split" && <aside className={catalog.rail} aria-label="Aircraft selection">
-      <p className={styles.kicker}>Planning desk</p><h3>Compare your shortlist</h3>
+      <p className={styles.kicker}>Illustrative range</p><h3>Compare aircraft</h3>
       <p>Select up to three aircraft. Published figures are for planning, not live fleet inventory or route availability.</p>
-      {compared.length ? <><ul>{compared.map(item=><li key={item.slug}><Link href={`/aircraft/${item.slug}`}>{item.name}</Link><button type="button" aria-label={`Remove ${item.name}`} onClick={()=>toggle(item.slug)}><XIcon size={16}/></button></li>)}</ul><a className={catalog.control} href="#aircraft-comparison">View range and specifications <ArrowRightIcon size={16}/></a></> : <Link className={catalog.control} href="/aircraft-comparisons/">Browse planning guides <ArrowRightIcon size={16}/></Link>}
+      {compared.length ? <><AircraftRangeMap profiles={compared.map(item => ({ ...item, rangeNm: getModel(item.slug)?.rangeNm, rangeBasis: getModel(item.slug)?.rangeBasis }))} /><ul>{compared.map(item=><li key={item.slug}><Link href={`/aircraft/${item.slug}`}>{item.name}</Link><button type="button" aria-label={`Remove ${item.name}`} onClick={()=>toggle(item.slug)}><XIcon size={16}/></button></li>)}</ul><a className={catalog.control} href="#aircraft-comparison">View range and specifications <ArrowRightIcon size={16}/></a></> : <Link className={catalog.control} href="/aircraft-comparisons/">Browse planning guides <ArrowRightIcon size={16}/></Link>}
     </aside>}
     </div>
     {compared.length > 0 && <aside className={styles.shortlistBar} aria-label="Selected aircraft">

@@ -1,18 +1,10 @@
-.page { background:var(--flight-surface,#f2f5f6); padding:clamp(22px,4vw,54px) 0 clamp(32px,5vw,66px); }
-.shell { width:min(1010px,calc(100% - 40px)); margin-inline:auto; }
-.intro { text-align:center; margin:0 auto clamp(18px,3vw,28px); }
-.intro h1 { margin:0; font:650 clamp(2.1rem,5vw,3.25rem)/1.08 system-ui,sans-serif; letter-spacing:-.05em; color:var(--flight-ink,#172229); text-wrap:balance; }
-.intro p { margin:8px 0 0; color:var(--flight-muted,#52616a); font-size:.9rem; line-height:1.45; }
-.panel { background:var(--flight-paper,#fff); border:1px solid var(--flight-line,#d5dfe3); border-radius:var(--flight-radius,10px); padding:clamp(14px,3vw,27px); box-shadow:0 8px 24px #14284c08; scroll-margin-top:76px; }
-.panel :global(.quote-form) { background:transparent; border:0; padding:0; margin:0; box-shadow:none; }
-.support { display:grid; gap:8px; margin:12px 0 0; }
-.support > a { justify-self:start; display:inline-flex; align-items:center; min-height:44px; color:var(--flight-accent,#12645f); font-size:.875rem; font-weight:580; text-decoration:underline; text-underline-offset:.18em; }
-.support :global(.ex-broker-disclosure) { margin:0; padding:0; border:0; background:transparent; }
-@media (max-width:550px) {
-  .page { padding-top:20px; }
-  .shell { width:calc(100% - 24px); }
-  .intro { text-align:left; padding-inline:4px; }
-  .intro h1 { font-size:clamp(29px,8vw,36px); }
-  .panel { padding:12px; }
-  .support { padding-inline:4px; }
-}
+.page{background:white;padding:clamp(24px,5vw,64px) 0 clamp(38px,7vw,80px)}
+.shell{width:min(1180px,calc(100% - clamp(28px,9vw,132px)));margin-inline:auto}
+.intro{margin:0 0 clamp(18px,3vw,30px)}
+.intro h1{margin:0;font:570 clamp(2.25rem,5vw,4.25rem)/1.04 var(--flight-font);letter-spacing:-.055em;color:var(--flight-ink)}
+.intro p{margin:9px 0 0;color:var(--flight-muted);font-size:clamp(.91rem,1.5vw,1.05rem);line-height:1.5;max-width:59ch}
+.panel{border:1px solid var(--flight-line);border-radius:10px;background:#fff;padding:clamp(13px,2.3vw,24px);box-shadow:0 3px 16px #171a200b;scroll-margin-top:70px}
+.panel :global(.quote-form){background:none;border:0;padding:0;margin:0;box-shadow:none}
+.support{display:flex;flex-wrap:wrap;gap:6px 20px;margin:13px 0 0}
+.support>a{display:inline-flex;align-items:center;min-height:42px;color:var(--flight-ink);font-size:.875rem;text-decoration:underline;text-underline-offset:.2em}
+.support :global(.ex-broker-disclosure){flex:1 0 100%;margin:0;padding:0;border:0;background:none;color:var(--flight-muted)}

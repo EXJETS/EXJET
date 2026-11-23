@@ -1,8 +1,18 @@
 import Link from "next/link";
 import { siteConfig } from "@/data/site";
+import styles from "@/app/secondary.module.css";
+
 export function AccountPreview() {
-  return <section className="account-page"><div className="shell account-layout">
-    <div className="account-story"><p className="eyebrow">EXJET client access</p><h1>Manage your charter request.</h1><p>For your itinerary, documents, or a new flight request, contact the EXJET team directly.</p></div>
-    <div className="account-panel"><p className="ex-kicker">Client support</p><h2>Need help with an itinerary?</h2><p>Online sign-in and saved trip records are not available yet. No account or password is needed to request a flight.</p><Link className="button button--dark" href="/contact">Contact EXJET</Link><a className="ex-inline-link" href={`mailto:${siteConfig.email.charter}`}>Email the charter desk</a></div>
-  </div></section>;
+  return <section className={styles.split} aria-labelledby="client-title">
+    <div>
+      <h1 id="client-title">Your EXJET account</h1>
+      <p>Manage saved itineraries and access your client workspace.</p>
+    </div>
+    <div className={styles.panel}>
+      <h2>Client access</h2>
+      <p>You do not need an account to compare aircraft or request a quote.</p>
+      <div className={styles.actions}><Link className={styles.primary} href="/app/login/">Sign in</Link><Link href="/app/booking/">Booking verification</Link></div>
+      <p>Already working with us on a trip? <a href={`mailto:${siteConfig.email.charter}`}>Contact the charter desk</a>.</p>
+    </div>
+  </section>;
 }

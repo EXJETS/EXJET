@@ -1,0 +1,9 @@
+.cabins{width:var(--flight-shell,min(1200px,calc(100% - 40px)));margin:42px auto;color:#171a20}
+.heading{display:flex;align-items:flex-start;justify-content:space-between;gap:16px}
+.heading h2{font-size:clamp(1.5rem,3vw,2.45rem);letter-spacing:-.045em;margin:0}
+.heading p{margin:7px 0 17px;color:#565b64}
+.heading a{min-height:44px;display:inline-flex;align-items:center;white-space:nowrap;text-decoration:underline;text-underline-offset:4px;font-size:.9rem}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.grid div{display:grid;gap:4px;padding:clamp(10px,2vw,18px);border:1px solid #e3e5e8;border-radius:7px;scroll-margin:80px}
+.grid span{color:#565b64;font-size:.9rem}
+@media(max-width:690px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}

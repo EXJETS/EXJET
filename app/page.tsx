@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { CharterHero } from "@/components/CharterHero";
 import { HomeBrowseRow } from "@/components/HomeBrowseRow";
 import { QuoteForm } from "@/components/QuoteForm";
 import { BrokerNotice } from "@/components/BrokerNotice";
@@ -35,51 +36,29 @@ const journal=[
   ["Paris","Culture & dining","paris","culture"],["Cape Town","Safari & nature","cape-town","nature"],
 ] as const;
 
-function CabinSketch({index}:{index:number}) {
-  const wing = [100,115,130,146][index] ?? 100;
-  const right=174+index*13, left=57-index*5;
-  return <svg className={styles.cabinArt} viewBox="0 0 275 112" fill="none" aria-hidden="true" focusable="false">
-    <path d="M0 25h275M0 56h275M0 87h275M47 0v112m46-112v112m46-112v112m46-112v112m46-112v112" stroke="currentColor" opacity=".17"/>
-    <path d={`M${left} 54 h${right-left} q23 0 35 5-12 7-35 7H${left}l-19-5 19-7Zm24 0-8-12h-13l7 12m14 12-8 12h-13l7-12M${wing} 55l-31-28h-22l20 28m33 11-31 26h-22l20-26`} stroke="currentColor" strokeWidth="1.65" strokeLinejoin="round"/>
-    {[0,1,2,3,4,5].slice(0,3+index).map(k=><circle key={k} cx={111+k*12} cy="60" r="1.4" fill="currentColor"/>)}
-    <path d="M12 19v-8h9m231 0h10v8m-250 73v8h9m231 0h10v-8" stroke="currentColor" opacity=".55"/>
-  </svg>;
-}
+const cabinImages = [
+  "/images/manufacturers/latitude-truffle.jpg",
+  "/images/manufacturers/longitude-ecru.jpg",
+  "/images/manufacturers/falcon-900lx-cabin-new.jpg",
+  "/images/manufacturers/global-8000-entertainment.jpg",
+] as const;
 
 export default function Home() {
   return <div className={styles.home}>
     <StructuredData data={localBusinessJsonLd()} />
-    <section className={styles.hero} aria-labelledby="home-title">
-      <div className={styles.heroInner}>
-        <div className={styles.heroCopy}>
-          <p className={styles.eyebrow}>Dallas based · Worldwide charter</p>
-          <h1 id="home-title">Charter a<br/>private jet.</h1>
-          <p>Choose your airports and dates. Compare aircraft, see a trip estimate, or explore empty legs for flexible travel.</p>
-          <Link className={styles.heroLink} href="#plan-your-charter">Plan a flight <Icon name="forward" width={17} height={17}/></Link>
-        </div>
-        <figure className={styles.heroVisual}>
-          <Image src={models[0].image} alt="Gulfstream G700 in flight over turquoise water" fill sizes="(max-width: 720px) 100vw, 60vw" preload className={styles.heroPhoto}/>
-          <figcaption><span>EXJET AIRCRAFT GUIDE</span><Link href="/aircraft/gulfstream-g700/">Gulfstream G700 <Icon name="forward" width={15} height={15}/></Link></figcaption>
-        </figure>
-      </div>
-    </section>
-
+    <CharterHero />
     <section id="plan-your-charter" className={styles.searchArea} aria-labelledby="home-plan-title">
-      <div className={styles.discovery}>
-        <div className={styles.searchNav}>
-          <h2 id="home-plan-title"><Icon name="aircraft" /> Plan a charter</h2>
-          <Link href="/empty-legs/"><Icon name="empty" /> Browse empty legs <Icon name="forward" width={16} height={16} /></Link>
-        </div>
-        <div className={styles.quote}><QuoteForm compact/><BrokerNotice className={styles.notice}/></div>
-      </div>
+      <h2 id="home-plan-title" className={styles.sr}>Plan a private charter</h2>
+      <div className={styles.discovery}><QuoteForm compact /></div>
+      <BrokerNotice className={styles.notice} />
     </section>
 
     <div className={styles.content}>
       <section className={`${styles.section} ${styles.cabinSection}`} aria-labelledby="home-cabins">
-        <header className={styles.heading}><h2 id="home-cabins">Find your cabin</h2><Link href="/aircraft/">Compare aircraft <Icon name="forward" width={16} height={16}/></Link></header>
+        <header className={styles.heading}><h2 id="home-cabins">Charter cabins</h2><Link href="/aircraft/">Compare aircraft <Icon name="forward" width={16} height={16}/></Link></header>
         <HomeBrowseRow label="cabin choices">
           {charterCabinCategories.map(([category, seats],index) => <Link className={styles.cabinCard} key={category} href="/aircraft/">
-            <CabinSketch index={index}/><div><h3>{category === "ULR" ? "Ultra long range" : category}</h3><p>{seats} planning seats</p></div>
+            <div className={styles.cabinPhoto}><Image src={cabinImages[index]} alt="" fill sizes="(max-width: 700px) 55vw, 24vw"/></div><div><h3>{category === "ULR" ? "Ultra long range" : category}</h3><p>{seats} seats for planning</p></div>
           </Link>)}
         </HomeBrowseRow>
         <p className={styles.caption}>{charterCapacityNote}</p>

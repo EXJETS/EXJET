@@ -7,7 +7,7 @@ import { BrowseFlightGlyph as Icon } from "./BrowseFlightGlyph";
 import styles from "./SiteHeader.module.css";
 
 const primary = [
-  ["/charter", "Private charter"], ["/aircraft","Aircraft"], ["/airports","Airports"], ["/empty-legs","Empty legs"],
+  ["/aircraft","Explore aircraft"], ["/charter", "Plan a flight"], ["/empty-legs","Empty legs"], ["/app/trips","Your trips"],
 ] as const;
 const groups=[
   ["Fly",[["Private jet charter","/charter"],["Charter guide","/private-jet-charter"],["Empty legs","/empty-legs"],["Charter pricing","/pricing"],["How it works","/how-it-works"]]],
@@ -32,13 +32,13 @@ export function SiteHeader(){
 
   return <header className={styles.header}>
     <div className={styles.bar}>
-      <Link className={styles.brand} href="/" aria-label="EXJET home">EXJET</Link>
+      <Link className={styles.brand} href="/" aria-label="EXJET home">EXJET<span>Charter</span></Link>
       <nav className={styles.primary} aria-label="Primary navigation">
         {primary.map(([href,label])=><Link key={href} href={href} aria-current={current===href?"page":current.startsWith(href+"/")?"location":undefined}>{label}</Link>)}
       </nav>
       <div className={styles.actions}>
-        <Link href="/account/" className={styles.account} aria-label="Client account"><Icon name="account" width={18} height={18}/></Link>
-        <Link href="/charter/" className={styles.book} aria-current={current==="/charter"?"page":undefined}>Plan a flight</Link>
+        <Link href="/search/" className={styles.search} aria-label="Search EXJET"><Icon name="search" width={19} height={19}/></Link>
+        <Link href="/account/" className={styles.account} aria-label="Client account"><Icon name="account" width={17} height={17}/><span>Client account</span></Link>
         <button ref={trigger} type="button" className={styles.menuButton} aria-label="Open navigation menu" aria-haspopup="dialog" aria-controls="exjet-navigation" aria-expanded={open} onClick={()=>setMenuPath(path)}><Icon name="menu" width={20} height={20}/></button>
       </div>
     </div>

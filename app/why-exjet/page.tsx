@@ -1,8 +1,9 @@
 import { ButtonLink } from "@/components/ButtonLink";
 import { CredentialsStrip } from "@/components/CredentialsStrip";
 import { OperatorReview } from "@/components/OperatorReview";
-import { PageHero } from "@/components/PageHero";
-import { SectionIntro } from "@/components/SectionIntro";
+import Link from "next/link";
+import { SupportHeader } from "@/components/PublicSupport";
+import styles from "@/components/PublicSupport.module.css";
 import { buildMetadata } from "@/data/seo";
 import { safetyResources } from "@/data/trust";
 
@@ -16,13 +17,15 @@ const pillars = [
 ];
 
 export default function WhyExjetPage() {
-  return <>
-    <PageHero heading="Why choose EXJET for aircraft charter" dark eyebrow="Why EXJET" title={<>More access.<br /><em>Less complexity.</em></>} copy="EXJET gives you one point of contact for private jet charter and empty leg flights. Know who operates the flight and what the trip costs before you commit.">
-      <ButtonLink href="/contact" variant="light">Start a flight request</ButtonLink>
-    </PageHero>
-    <section className="why-speed"><div className="shell"><p>Time sensitive mission?</p><h2>Tell us when you need to depart.</h2><span>Short-notice requests are assessed against aircraft, crew, airport, regulatory and route availability. Departure is confirmed for each trip.</span></div></section>
-    <section className="section principles-section"><div className="shell"><SectionIntro eyebrow="The EXJET difference" title="One relationship. Fewer gaps. Better decisions." copy="The market is broad. The client experience should still feel precise." /><div className="principles-list why-pillar-list">{pillars.map(([number, title, copy]) => <article key={number}><span>{number}</span><h2>{title}</h2><p>{copy}</p></article>)}</div></div></section>
-    <section className="section section--dark safety-standard"><div className="shell"><SectionIntro inverse eyebrow="Operator review" title="Recognized resources. Trip-specific decisions." copy="EXJET arranges charter with licensed third-party air carriers. Available ARGUS and WYVERN operator safety data may be considered during sourcing; EXJET does not represent those operator ratings as certifications held by EXJET." /><OperatorReview /><CredentialsStrip credentials={safetyResources} /></div></section>
-    <section className="section broker-section"><div className="shell split-copy"><p className="eyebrow"><span />Clear roles</p><h2>EXJET coordinates. The identified carrier operates.</h2><div><p>EXJET provides charter consulting, aircraft sourcing and trip coordination. Each flight is performed by the licensed third-party air carrier named for that trip.</p><p>Clients gain the benefit of broad market access without losing accountability. One advisor stays with the mission while operating control remains where it belongs.</p><ButtonLink href="/faq">Read the charter FAQ</ButtonLink></div></div></section>
-  </>;
+  return <div className={styles.frame}>
+    <SupportHeader label="How EXJET works" title="Why EXJET" copy="One contact for private charter and empty legs, with the operating carrier and trip cost identified before you commit." />
+    <div className={`${styles.wrap} ${styles.workspace}`}>
+      <div className={styles.main}>
+        <section className={styles.card}><h2>What to expect</h2>{pillars.map(([number,title,copy])=><article className={styles.numberRow} key={title}><span>{number}</span><div><h3>{title}</h3><p>{copy}</p></div></article>)}</section>
+        <section className={styles.card}><h2>Operator review</h2><p>EXJET arranges charter with licensed third-party air carriers. Available ARGUS and WYVERN operator safety data may be considered during sourcing. EXJET does not represent those operator ratings as its own certifications.</p><OperatorReview /><CredentialsStrip credentials={safetyResources}/></section>
+        <section className={styles.card}><h2>Who operates the flight?</h2><p>EXJET sources aircraft and coordinates the trip. The licensed third-party air carrier named for your flight performs it and holds operational control.</p><Link href="/faq/">Read the charter FAQ →</Link></section>
+      </div>
+      <aside className={styles.rail}><section className={styles.card}><p className={styles.eyebrow}>Timing</p><h2>Short notice?</h2><p>Tell us when you need to depart. Short-notice requests depend on aircraft, crew, airport, regulatory and route availability.</p><ButtonLink href="/contact/" className={styles.primary}>Discuss your trip</ButtonLink></section><section className={styles.card}><p className={styles.eyebrow}>Trip planning</p><h2>Compare your options</h2><nav className={styles.anchorList} aria-label="Planning links"><Link href="/aircraft/">Explore aircraft</Link><Link href="/pricing/">Review charter pricing</Link><Link href="/safety/">Read about operator review</Link></nav></section></aside>
+    </div>
+  </div>;
 }

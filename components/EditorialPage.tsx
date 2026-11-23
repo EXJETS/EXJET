@@ -36,6 +36,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
   const consultationHref = page.consultation ? `mailto:${siteConfig.email.general}?subject=${encodeURIComponent(page.consultation.subject)}` : null;
   const isReading = page.kind === "article" || page.kind === "legal";
   const isCharterPlanning = page.kind === "route" || page.kind === "airport" || page.kind === "city" || page.path === "/private-jet-charter" || page.path.startsWith("/private-jet-charter/");
+  const isCompact = page.kind === "route" || page.kind === "airport" || page.kind === "city";
   const isDirectory = Boolean(page.items || page.journalDirectory || page.serviceCatalog);
   const hasOutline = page.sections.length >= 3;
   const hasReading = Boolean(page.sections.length || page.faqs?.length || page.draft);
@@ -72,7 +73,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
       })),
     } } : {}),
   };
-  return <div className={`ex-editorial ${styles.editorial}`} data-page-kind={page.kind}>
+  return <div className={`ex-editorial ${styles.editorial}`} data-page-kind={page.kind} data-compact={isCompact ? "true" : undefined}>
     <StructuredData data={schema} />
     {!page.noindex && !page.draft ? <StructuredData data={pageSchema} /> : null}
     {page.kind === "service" ? <StructuredData data={{"@context":"https://schema.org","@type":"Service",name:page.title,description:page.description,url:absoluteUrl(page.path),provider:{"@id":absoluteUrl("/")+"#organization"}}} /> : null}
@@ -121,7 +122,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
           </aside>
           {!isReading ? <div className={styles.disclosure}><BrokerNotice prominent /></div> : null}
         </div>
-        {feature && page.kind!=="hub" ? <figure className={styles.feature}><Image src={feature.src} alt={feature.alt} width={feature.width} height={feature.height} preload sizes="(min-width: 1320px) 1320px, 100vw" /></figure> : null}
+        {feature && page.kind!=="hub" && !isCompact ? <figure className={styles.feature}><Image src={feature.src} alt={feature.alt} width={feature.width} height={feature.height} preload sizes="(min-width: 1320px) 1320px, 100vw" /></figure> : null}
       </div>
     </div>
     {isDirectory ? <div id="editorial-directory" className={styles.directory}>
@@ -138,6 +139,6 @@ export function EditorialPage({ page }: { page: ContentPage }) {
       </div>
     </div> : null}
     {page.related?.length ? <ContentCollection paths={page.related.filter(path => path !== page.path)} title="Related pages" silver showImages={false} /> : null}
-    {page.kind!=="legal" ? <section className="ex-action-panel"><h2>{consultationHref ? "Plan your next aviation decision." : "Plan a flight"}</h2><p>{consultationHref ? "Share the aircraft, objectives and timing. EXJET will help define the next steps." : "See an estimated trip total and route map."}</p>{consultationHref ? <a href={consultationHref} className="button button--dark">{page.consultation?.label}</a> : <><Link href="/charter" className="button button--dark">Find a flight</Link><BrokerNotice /></>}</section> : null}
+    {page.kind!=="legal" ? <section className={`ex-action-panel ${styles.bottomAction}`}><h2>{consultationHref ? "Plan your next aviation decision." : "Plan a flight"}</h2><p>{consultationHref ? "Share the aircraft, objectives and timing. EXJET will help define the next steps." : "See an estimated trip total and route map."}</p>{consultationHref ? <a href={consultationHref} className="button button--dark">{page.consultation?.label}</a> : <><Link href="/charter" className="button button--dark">Find a flight</Link><BrokerNotice /></>}</section> : null}
   </div>;
 }

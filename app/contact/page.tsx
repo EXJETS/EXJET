@@ -1,4 +1,5 @@
-import { FlightPageHeading } from "@/components/FlightPageHeading";
+import { SupportHeader } from "@/components/PublicSupport";
+import support from "@/components/PublicSupport.module.css";
 import { Suspense } from "react";
 import { ArrowUpRightIcon, AirplaneTakeoffIcon, EnvelopeSimpleIcon } from "@phosphor-icons/react/dist/ssr";
 import { ContactPreference } from "@/components/ContactPreference";
@@ -19,24 +20,17 @@ const desks = [
 
 export default function ContactPage() {
   return (
-    <>
+    <div className={support.frame}>
       <StructuredData data={localBusinessJsonLd()} />
-      <FlightPageHeading label="EXJET support" title="How can we help?" description="Get help with a private charter, an empty leg, or an existing trip." links={[["Plan a flight", "/charter/"], ["Contact details", "#contact-desks"]]} />
-      <section className={styles.directory} id="contact-desks">
-        <h2>Contact details</h2>
-        <ul className={styles.desks}>{desks.map(({title, copy, email, Icon}) => <li key={title}><Icon size={22} aria-hidden="true" /><h3>{title}</h3><p>{copy}</p><a href={`mailto:${email}`}>{email}<ArrowUpRightIcon size={15} aria-hidden="true" /></a></li>)}</ul>
-        <div className={styles.guidance}>
-          <div>
-            <Suspense fallback={null}><ContactPreference aircraft={Object.fromEntries(aircraft.map(item => [item.slug, item.name]))} categories={Object.fromEntries(aircraftCategories.map(item => [item.slug, item.name]))} /></Suspense>
-            <FlightSearchLink />
-          </div>
-          <aside>
-            <h2>Dallas, Texas</h2>
-            <a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.address.display)}`} target="_blank" rel="noreferrer">{siteConfig.address.streetAddress}<br />{siteConfig.address.addressLocality}, {siteConfig.address.addressRegion} {siteConfig.address.postalCode}</a>
-            <SocialLinks compact />
-          </aside>
-        </div>
-      </section>
-    </>
+      <SupportHeader label="EXJET support" title="Contact EXJET" copy="Get help with a private charter, an empty leg or an existing trip." />
+      <div className={`${support.wrap} ${support.workspace}`}>
+        <section id="contact-desks" className={support.card}><h2>Contact details</h2>
+          <ul className={styles.desks}>{desks.map(({title, copy, email, Icon}) => <li key={title}><Icon size={22} aria-hidden="true" /><h3>{title}</h3><p>{copy}</p><a href={`mailto:${email}`}>{email}<ArrowUpRightIcon size={15} aria-hidden="true" /></a></li>)}</ul>
+          <Suspense fallback={null}><ContactPreference aircraft={Object.fromEntries(aircraft.map(item => [item.slug, item.name]))} categories={Object.fromEntries(aircraftCategories.map(item => [item.slug, item.name]))} /></Suspense>
+        </section>
+        <aside className={support.rail}><section className={support.card}><p className={support.eyebrow}>New trip</p><h2>Plan a flight</h2><p>Enter your route and travel details to start a charter request.</p><FlightSearchLink /></section>
+          <section className={support.card}><h2>Dallas, Texas</h2><a href={`https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(siteConfig.address.display)}`} target="_blank" rel="noreferrer">{siteConfig.address.streetAddress}<br />{siteConfig.address.addressLocality}, {siteConfig.address.addressRegion} {siteConfig.address.postalCode}</a><SocialLinks compact /></section></aside>
+      </div>
+    </div>
   );
 }

@@ -1,0 +1,11 @@
+.shell{width:min(1040px,calc(100% - clamp(28px,9vw,128px)));margin:auto;padding:clamp(25px,5vw,60px) 0 clamp(36px,7vw,86px);color:var(--flight-ink)}
+.intro{margin:0 0 clamp(17px,3vw,27px)}
+.intro h1{font-size:clamp(2.2rem,5vw,4rem);letter-spacing:-.05em;line-height:1.08;margin:0}
+.intro p{font-size:clamp(.91rem,1.5vw,1.05rem);color:var(--flight-muted);margin:8px 0 0}
+.shell :global(.ex-site-search){width:100%;max-width:none;margin:0;padding:0}
+.shell :global(.ex-search-form){min-height:52px;border:1px solid var(--flight-line);border-radius:7px;background:var(--flight-surface)}
+.shell :global(.ex-search-form input){font-size:16px}
+.shell :global(.ex-search-count){margin:14px 0 10px;color:var(--flight-muted)}
+.shell :global(.ex-search-result){padding:14px 0;border-top:1px solid var(--flight-line)}
+.shell :global(.ex-search-result h2){font-size:clamp(1.05rem,2vw,1.28rem);margin:0}
+.shell :global(.ex-search-result p){font-size:.9rem;color:var(--flight-muted);margin:5px 0 0}
