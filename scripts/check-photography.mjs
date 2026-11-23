@@ -18,8 +18,12 @@ for (const reference of Object.values(references)) {
     }
   }
 }
-// Owner's source restriction: only the four supplied manufacturer websites.
-// No uploader, press-distributor, dealership or archival republication exceptions.
+// Manufacturer-direct sources, with three separately directed homepage uploads.
+const ownerHeroFiles = new Set([
+  "/images/hero/gulfstream-g700-water.webp",
+  "/images/hero/bombardier-global-8000-coast.webp",
+  "/images/hero/bombardier-challenger-3500-water.webp",
+]);
 const manufacturerHosts = ["bombardier.com", "cessna.txtav.com", "dassaultfalcon.com", "embraer.com"];
 function isManufacturerUrl(value) {
   try {
@@ -42,11 +46,19 @@ async function checkDirectory(directory) {
       continue;
     }
     const bytes = await readFile(filename);
-    if (!isManufacturerUrl(asset.source_page) || !isManufacturerUrl(asset.image_url)) {
-      errors.push(`Photo source is outside the specified manufacturer websites: ${publicPath}`);
-    }
-    if (!["manufacturer-product-gallery", "manufacturer-campaign", "manufacturer-service-showcase"].includes(asset.source_kind) || /pre-?owned|used-aircraft|dealer/i.test(asset.source_page)) {
-      errors.push(`Photo is not approved manufacturer promotional imagery: ${publicPath}`);
+    const ownerHero = asset.source_kind === "owner-supplied-hero";
+    if (ownerHero) {
+      if (!ownerHeroFiles.has(publicPath) || asset.publication_scope !== "EXJET homepage hero only" ||
+          !asset.original_filename || !/^[a-f0-9]{64}$/.test(asset.original_sha256) || !asset.owner_publication_directed_on) {
+        errors.push(`Unauthorized owner-supplied hero record: ${publicPath}`);
+      }
+    } else {
+      if (!isManufacturerUrl(asset.source_page) || !isManufacturerUrl(asset.image_url)) {
+        errors.push(`Photo source is outside the specified manufacturer websites: ${publicPath}`);
+      }
+      if (!["manufacturer-product-gallery", "manufacturer-campaign", "manufacturer-service-showcase"].includes(asset.source_kind) || /pre-?owned|used-aircraft|dealer/i.test(asset.source_page)) {
+        errors.push(`Photo is not approved manufacturer promotional imagery: ${publicPath}`);
+      }
     }
     if (!asset.visually_inspected || asset.ui_overlay_free !== true) {
       errors.push(`Photo has not passed visual review for gallery counters, controls and overlays: ${publicPath}`);
@@ -56,7 +68,7 @@ async function checkDirectory(directory) {
       errors.push(`Exterior photo is not verified in-flight promotional photography: ${publicPath}`);
     }
     if (sha256 !== asset.sha256) errors.push(`Photo differs from verified manufacturer bytes: ${publicPath}`);
-    if (!asset.source_page || !asset.image_url || !asset.source_bytes_verified_on) {
+    if (!ownerHero && (!asset.source_page || !asset.image_url || !asset.source_bytes_verified_on)) {
       errors.push(`Missing source evidence: ${publicPath}`);
     }
     approved.delete(publicPath);

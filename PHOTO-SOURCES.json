@@ -1,6 +1,6 @@
 {
   "date": "2026-10-23",
-  "scope": "Only direct original assets from the four owner-approved manufacturer websites. Sources are internal and never rendered as credits or source sections.",
+  "scope": "Manufacturer-direct library photography, plus individually approved owner-supplied EXJET homepage hero images.",
   "approved_hosts": [
     "cessna.txtav.com",
     "bombardier.com",
@@ -501,6 +501,69 @@
       "file_bytes": 398289,
       "transformation": "Original manufacturer-served bytes, unchanged.",
       "evidence": "Exact original asset URL observed on the linked manufacturer page. Image visually inspected; no gallery counters, screenshot chrome or UI overlays.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/hero/gulfstream-g700-water.webp",
+      "model": "Gulfstream G700",
+      "scene": "exterior",
+      "flight_status": "in-flight",
+      "source_kind": "owner-supplied-hero",
+      "original_filename": "IMG_3066.jpeg",
+      "original_sha256": "26e64c0b098d0e55d7a0d54f0c2cc6e660dba8d5d9dc64aa99eeb01bca4a7ce9",
+      "dimensions": {
+        "width": 1800,
+        "height": 1080
+      },
+      "sha256": "7f329d59ae28079df369046e6b52c1a1613d6cedec68c760aea08c97d44a695f",
+      "file_bytes": 175786,
+      "owner_publication_directed_on": "2026-11-23",
+      "publication_scope": "EXJET homepage hero only",
+      "publication_permission": "Owner directed publication of this supplied asset; underlying license not independently verified.",
+      "transformation": "Optimized WebP, metadata removed; no subject added or removed.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/hero/bombardier-global-8000-coast.webp",
+      "model": "Global 8000",
+      "scene": "exterior",
+      "flight_status": "in-flight",
+      "source_kind": "owner-supplied-hero",
+      "original_filename": "IMG_3064(1).webp",
+      "original_sha256": "ae4018cec20adb79e7e2eab341d071d7a45c29ad16effdafc34be7139f3742ea",
+      "dimensions": {
+        "width": 1800,
+        "height": 804
+      },
+      "sha256": "f4bbd407649318021893dc79c3d540a41fafa41663694528dfe4c781c5948f6b",
+      "file_bytes": 178992,
+      "owner_publication_directed_on": "2026-11-23",
+      "publication_scope": "EXJET homepage hero only",
+      "publication_permission": "Owner directed publication of this supplied asset; underlying license not independently verified.",
+      "transformation": "Optimized WebP, metadata removed; no subject added or removed.",
+      "visually_inspected": true,
+      "ui_overlay_free": true
+    },
+    {
+      "file": "/images/hero/bombardier-challenger-3500-water.webp",
+      "model": "Challenger 3500",
+      "scene": "exterior",
+      "flight_status": "in-flight",
+      "source_kind": "owner-supplied-hero",
+      "original_filename": "IMG_1281(1).jpeg",
+      "original_sha256": "5818def80a764042134a006d6656aadab6cd4de107fd4c05d9e109276b7666d3",
+      "dimensions": {
+        "width": 1440,
+        "height": 1080
+      },
+      "sha256": "61b2c8d5e5869ef9b1348574b30dbe7bd12a8bf6825df12446adc500203c6bc4",
+      "file_bytes": 113832,
+      "owner_publication_directed_on": "2026-11-23",
+      "publication_scope": "EXJET homepage hero only",
+      "publication_permission": "Owner directed publication of this supplied asset; underlying license not independently verified.",
+      "transformation": "Optimized WebP, metadata removed; no subject added or removed.",
       "visually_inspected": true,
       "ui_overlay_free": true
     }
