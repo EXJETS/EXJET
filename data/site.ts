@@ -81,7 +81,6 @@ export function organizationJsonLd() {
     name: siteConfig.name,
     legalName: siteConfig.legalName,
     url: siteConfig.url,
-    logo: absoluteUrl("/brand/exjet-wordmark.svg"),
     description: siteConfig.description,
     email: siteConfig.email.general,
     address: {
@@ -126,7 +125,6 @@ export function localBusinessJsonLd() {
     parentOrganization: { "@id": `${siteOrigin}/#organization` },
     url: siteConfig.url,
     image: absoluteUrl("/images/manufacturers/global-8000-clouds.webp"),
-    logo: absoluteUrl("/brand/exjet-wordmark.svg"),
     description: siteConfig.description,
     email: siteConfig.email.general,
     address: {

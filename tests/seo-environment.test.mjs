@@ -47,7 +47,10 @@ for (const [name, env, indexable] of scenarios) {
     assert.equal(result.route, `${origin}/routes/dallas-to-miami/`);
     assert.equal(result.organization.url, origin);
     assert.equal(result.localBusiness.url, origin);
-    assert.equal(new URL(result.organization.logo).origin, origin);
+    assert.equal(result.organization.name, "EXJET");
+    assert.equal(result.localBusiness.name, "EXJET");
+    assert.equal(Object.hasOwn(result.organization, "logo"), false);
+    assert.equal(Object.hasOwn(result.localBusiness, "logo"), false);
     assert.equal(new URL(result.localBusiness.image).origin, origin);
   });
 }
