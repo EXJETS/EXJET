@@ -36,7 +36,7 @@ export function HomeHeroSlides({ slides }: { slides: readonly HeroSlide[] }) {
       <h1 id="home-title">{index === 0 ? "Private jet charter" : slide.label}</h1>
       <div className={styles.actions}>
         <a className={styles.primary} href="#plan-your-charter">Plan a flight</a>
-        <Link className={styles.secondary} href={slide.href}>{index === 0 ? "Explore aircraft" : "View aircraft"}</Link>
+        <Link className={styles.secondary} href={slide.href}>{slide.href === "/aircraft/" ? "Explore aircraft" : "View aircraft"}</Link>
       </div>
     </div>
     <div className={styles.controls} aria-label="Choose an aircraft photo">

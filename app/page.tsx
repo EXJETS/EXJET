@@ -13,9 +13,9 @@ import styles from "./landing.module.css";
 export const metadata = buildMetadata("/");
 
 const heroSlides: readonly HeroSlide[] = [
-  { src: "/images/manufacturers/global-8000-clouds.webp", label: "Bombardier Global 8000", description: "Bombardier Global 8000 flying above the clouds", href: "/aircraft/", position: "center 50%" },
-  { src: "/images/manufacturers/longitude-mission.jpg", label: "Citation Longitude", description: "Cessna Citation Longitude in flight", href: "/aircraft/citation-longitude/", position: "center 47%" },
-  { src: "/images/manufacturers/falcon-900lx-coast.jpg", label: "Falcon 900LX", description: "Dassault Falcon 900LX flying along the coast", href: "/aircraft/falcon-900/", position: "center 52%" },
+  { src: "/images/hero/gulfstream-g700-water.webp", label: "Gulfstream G700", description: "Gulfstream G700 in flight over turquoise water", href: "/aircraft/", position: "65% 38%" },
+  { src: "/images/hero/bombardier-global-8000-coast.webp", label: "Bombardier Global 8000", description: "Bombardier Global 8000 flying along a coastline", href: "/aircraft/global-8000/", position: "47% 50%" },
+  { src: "/images/hero/bombardier-challenger-3500-water.webp", label: "Bombardier Challenger 3500", description: "Bombardier Challenger 3500 in flight over deep blue water", href: "/aircraft/", position: "49% 46%" },
 ];
 
 const charterOptions = [

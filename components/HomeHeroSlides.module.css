@@ -21,9 +21,9 @@
 .secondary:hover { background:#e8eef6; color:#171a20; }
 @media (max-width:760px) {
   .copy { padding-top:calc(env(safe-area-inset-top) + 86px); }
-  .visual { inset:0; }
-  .photo { object-fit:cover; object-position:center !important; }
-  .shade { background:linear-gradient(180deg,#071322ce 0%,#0713229c 25%,#07132218 58%,#07132291 100%); }
+  .visual { inset:30% 0 6%; mask-image:linear-gradient(180deg,transparent 0%,#000 12%,#000 85%,transparent 100%); }
+  .photo { object-fit:contain; object-position:center !important; }
+  .shade { background:linear-gradient(180deg,#07132270 0%,#07132217 38%,transparent 58%,#07132245 100%); }
   .controls { bottom:8px; }
   .actions { width:100%; max-width:390px; }
   .actions a { flex:1 1 0; min-width:0; }
