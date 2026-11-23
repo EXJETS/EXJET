@@ -1,9 +1,10 @@
 "use client";
 
 import { CharterIcon } from "./CharterVisuals";
+import { AirportPicker } from "./AirportPicker";
 import { CharterEstimate } from "./CharterEstimate";
 import Link from "next/link";
-import { FormEvent, useEffect, useId, useMemo, useRef, useState } from "react";
+import { FormEvent, useId, useMemo, useRef, useState } from "react";
 import { localDate } from "./localDate";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/csr/ArrowRight";
 import { ArrowLeftIcon } from "@phosphor-icons/react/dist/csr/ArrowLeft";
@@ -12,7 +13,6 @@ import { siteConfig } from "@/data/site";
 import styles from "./QuoteItinerary.module.css";
 
 type QuoteMode = "charter" | "cargo" | "group";
-type Airport = { icao: string; iata?: string; name: string; city?: string; country?: string };
 
 type QuoteFormProps = {
   mode?: QuoteMode;
@@ -79,64 +79,6 @@ const initialState: FormState = {
   website: "",
 };
 
-function AirportInput({ label, value, code, onChange }: {
-  label: string; value: string; code: string; onChange: (value: string, icao?: string) => void;
-}) {
-  const id = useId();
-  const listId = `${id}-options`;
-  const input = useRef<HTMLInputElement>(null);
-  const [items, setItems] = useState<Airport[]>([]);
-  const [open, setOpen] = useState(false);
-  const [active, setActive] = useState(-1);
-  const choose = (airport: Airport) => {
-    const title = [airport.city, airport.name].filter(Boolean).join(" · ");
-    const codes = [airport.iata, airport.icao].filter(Boolean).join(" / ");
-    onChange(`${title} (${codes})`, airport.icao);
-    setOpen(false); setActive(-1);
-  };
-  useEffect(() => {
-    if (value.trim().length < 2 || code) return;
-    const controller = new AbortController();
-    const timer = window.setTimeout(async () => {
-      try {
-        const response = await fetch(`/api/airports/?q=${encodeURIComponent(value.trim())}`, { signal: controller.signal });
-        if (!response.ok) return;
-        const payload = await response.json() as { items?: Airport[] };
-        if (controller.signal.aborted) return;
-        setItems(payload.items ?? []);
-        setActive(-1);
-        setOpen(document.activeElement === input.current && Boolean(payload.items?.length));
-      } catch { /* A plain-text airport remains valid if lookup is unavailable. */ }
-    }, 280);
-    return () => { window.clearTimeout(timer); controller.abort(); };
-  }, [code, value]);
-  return <div className="quote-form__airport">
-    <label htmlFor={id}>{label}</label>
-    <input ref={input} id={id} value={value} maxLength={120} required pattern={String.raw`.*\S.*`} title="Enter a city or airport." autoComplete="off"
-      placeholder="City or airport" role="combobox" aria-autocomplete="list"
-      aria-expanded={open} aria-controls={open ? listId : undefined}
-      aria-activedescendant={open && active >= 0 ? `${id}-${active}` : undefined}
-      onChange={event => { setItems([]); setOpen(false); setActive(-1); onChange(event.target.value); }}
-      onFocus={() => setOpen(!code && Boolean(items.length))} onBlur={() => setOpen(false)}
-      onKeyDown={event => {
-        if ((event.key === "ArrowDown" || event.key === "ArrowUp") && items.length && !code) {
-          event.preventDefault(); setOpen(true);
-          setActive(current => event.key === "ArrowDown" ? (current + 1) % items.length : (current <= 0 ? items.length - 1 : current - 1));
-        } else if (event.key === "Enter" && open && active >= 0) {
-          event.preventDefault(); choose(items[active]);
-        } else if (event.key === "Escape") { setOpen(false); setActive(-1); }
-      }} />
-    {code ? <small>{code} selected</small> : null}
-    {open ? <div id={listId} className="quote-form__airport-list" role="listbox" aria-label={`${label} suggestions`}>
-      {items.map((airport, index) => <button id={`${id}-${index}`} key={airport.icao} type="button" role="option" tabIndex={-1}
-        aria-selected={active === index} onPointerDown={event => event.preventDefault()} onClick={() => choose(airport)}>
-        <strong>{[airport.city, airport.name].filter(Boolean).join(" · ")}</strong>
-        <small>{[airport.iata, airport.icao].filter(Boolean).join(" / ")}{airport.country ? ` · ${airport.country}` : ""}</small>
-      </button>)}
-    </div> : null}
-  </div>;
-}
-
 export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps) {
   const formRef = useRef<HTMLFormElement>(null);
   const submitting = useRef(false);
@@ -196,7 +138,15 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
         const origin = (leg.departureIcao || leg.departure).trim().toUpperCase();
         const destination = (leg.destinationIcao || leg.destination).trim().toUpperCase();
         const prefix = tripLegs.length > 1 ? `Leg ${index + 1}: ` : "";
-        if (origin.length < 2 || destination.length < 2 || origin === destination) {
+        if (origin.length < 2 || destination.length < 2) {
+          const missingDeparture = origin.length < 2;
+          setStatus("error");
+          setMessage(`${prefix}Choose a ${missingDeparture ? "departure" : "destination"} airport.`);
+          const fieldIndex = (tripType === "multi_leg" ? index : 0) * 2 + (missingDeparture ? 0 : 1);
+          formRef.current?.querySelectorAll<HTMLButtonElement>("[data-airport-trigger]")[fieldIndex]?.focus();
+          return;
+        }
+        if (origin === destination) {
           setStatus("error");
           setMessage(`${prefix}Choose different departure and arrival airports.`);
           return;
@@ -304,8 +254,8 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
             </label>)}</div>
           </fieldset>}
           <div className={`quote-form__row ${useSearch ? styles.searchGrid : compact && mode !== "cargo" ? "quote-form__row--home-itinerary" : ""}`}>
-            <AirportInput label={mode === "cargo" ? "Origin" : useSearch ? "From" : "Departure"} value={form.departure} code={form.departureIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, departure: value, departureIcao: icao }))} />
-            <AirportInput label={mode === "cargo" ? "Destination" : useSearch ? "To" : "Arrival"} value={form.destination} code={form.destinationIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, destination: value, destinationIcao: icao }))} />
+            <AirportPicker label={mode === "cargo" ? "Origin" : useSearch ? "From" : "Departure"} value={form.departure} code={form.departureIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, departure: value, departureIcao: icao }))} />
+            <AirportPicker label={mode === "cargo" ? "Destination" : useSearch ? "To" : "Arrival"} value={form.destination} code={form.destinationIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, destination: value, destinationIcao: icao }))} />
             <label><span>Date</span><input value={form.date} onInput={(event) => update("date", event.currentTarget.value)} name="date" type="date" min={today} required /></label>
             {(compact && mode !== "cargo") || useSearch ? <label>
               <span>Local time</span>
@@ -345,8 +295,8 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
             {followingLegs.map((leg,index) => <fieldset className={styles.segment} key={leg.id}>
               <legend>Leg {index + 2}</legend>
               <div className="quote-form__row">
-                <AirportInput label="Departure" value={leg.departure} code={leg.departureIcao} onChange={(value, icao = "") => updateFollowingLeg(leg.id, { departure: value, departureIcao: icao })} />
-                <AirportInput label="Arrival" value={leg.destination} code={leg.destinationIcao} onChange={(value, icao = "") => updateFollowingLeg(leg.id, { destination: value, destinationIcao: icao })} />
+                <AirportPicker label="Departure" title={`Leg ${index + 2} departure airport`} value={leg.departure} code={leg.departureIcao} onChange={(value, icao = "") => updateFollowingLeg(leg.id, { departure: value, departureIcao: icao })} />
+                <AirportPicker label="Arrival" title={`Leg ${index + 2} arrival airport`} value={leg.destination} code={leg.destinationIcao} onChange={(value, icao = "") => updateFollowingLeg(leg.id, { destination: value, destinationIcao: icao })} />
                 <label><span>Date</span><input name={`leg-${leg.id}-date`} type="date" min={(index ? followingLegs[index - 1].date : form.date) || today} value={leg.date} onInput={event => updateFollowingLeg(leg.id, { date: event.currentTarget.value })} required /></label>
                 <label><span>Local departure time (optional)</span><input name={`leg-${leg.id}-time`} type="time" value={leg.time} onInput={event => updateFollowingLeg(leg.id, { time: event.currentTarget.value })} /></label>
               </div>
@@ -365,11 +315,11 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
             </div>
           </> : null}
           {mode !== "group" ? null : <div className={styles.aircraft}>
-            <label htmlFor={categoryId}>Preferred aircraft category</label>
-            <select id={categoryId} value={selectedCategory?.value ?? ""} onChange={event => setCategory(event.target.value as Category | "")} aria-describedby={`${categoryId}-capacity`}>
-              <option value="">No preference</option>
-              {categories.map(item => <option key={item.value} value={item.value} disabled={passengerCount > item.seats}>{item.label} · up to {item.seats} passengers</option>)}
-            </select>
+            <p id={categoryId}>Preferred aircraft category</p>
+            <div className={styles.categoryButtons} role="group" aria-labelledby={categoryId} aria-describedby={`${categoryId}-capacity`}>
+              <button type="button" aria-pressed={!selectedCategory} onClick={() => setCategory("")}>No preference</button>
+              {categories.map(item => <button key={item.value} type="button" aria-pressed={selectedCategory?.value === item.value} disabled={passengerCount > item.seats} onClick={() => setCategory(item.value)}>{item.label} · up to {item.seats} passengers</button>)}
+            </div>
             <small id={`${categoryId}-capacity`}>{passengerCount > 16 ? "Larger group? Leave this as No preference so we can source group options." : "If you don’t choose, we’ll estimate with the smallest category that fits. Actual seating may vary."}</small>
           </div>}
           <div className={`quote-form__submit ${useSearch ? styles.searchSubmit : ""}`}>

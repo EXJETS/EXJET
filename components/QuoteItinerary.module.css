@@ -111,3 +111,9 @@
   .searchFlow .passengerField button { height:37px; }
   .searchFlow .searchSubmit { padding-top:8px; }
 }
+
+.aircraft p{margin:0;font-size:.875rem;font-weight:650}
+.categoryButtons{display:flex;flex-wrap:wrap;gap:5px}
+.categoryButtons button{min-height:44px;padding:4px 10px;border-radius:5px;border:1px solid var(--flight-line,#e2e3e3);background:#fff;text-align:left;color:var(--flight-ink,#171a20);cursor:pointer}
+.categoryButtons button[aria-pressed=true]{border-color:var(--flight-accent-hover,#3457b1);background:#edf3ff}
+.categoryButtons button:disabled{opacity:.5;cursor:not-allowed}
