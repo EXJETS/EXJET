@@ -2,6 +2,7 @@ import { ContentCollection } from "@/components/EditorialPage";
 import { AircraftCategoryCard } from "@/components/AircraftCategoryCard";
 import { ButtonLink } from "@/components/ButtonLink";
 import styles from "@/components/PublicAircraftMarket.module.css";
+import catalog from "@/components/AircraftCatalog.module.css";
 import { SectionIntro } from "@/components/SectionIntro";
 import { aircraftCategories } from "@/data/aircraftCategories";
 import { buildMetadata } from "@/data/seo";
@@ -13,11 +14,11 @@ export const metadata = buildMetadata("/aircraft");
 export default function AircraftPage() {
   return (
     <>
-      <header className={`${styles.wrap} ${styles.mast}`}>
+      <header className={catalog.mast}><div className={styles.wrap}>
         <p className={styles.label}>Charter aircraft directory</p>
-        <h1>Explore business aircraft</h1>
-        <p>Compare cabin classes and aircraft. Availability and seating are confirmed with your quote.</p>
-      </header>
+        <h1>Explore aircraft</h1>
+        <p>Find a model, compare cabin and published range, then discuss your route. These are planning profiles, not live inventory.</p>
+      </div></header>
       <AircraftExplorer items={directoryAircraft} models={modelSpecs} />
       <section className="aircraft-category-index section">
         <div className="shell">
