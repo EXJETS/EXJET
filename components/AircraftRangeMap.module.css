@@ -1,0 +1,13 @@
+.panel{margin:2rem 0;padding:clamp(1rem,3vw,2rem);border:1px solid #dde1e7;border-radius:1.2rem;color:#171b23;background:#fff}
+.header{display:flex;align-items:flex-end;justify-content:space-between;gap:1rem;flex-wrap:wrap;margin-bottom:1rem}
+.header h3{margin:0;font-size:clamp(1.25rem,3vw,1.65rem)}
+.header p{margin:.35rem 0 0;color:#505968}
+.header label{display:grid;gap:.3rem;font-size:.85rem}
+.header select{min-height:2.75rem;padding:.4rem .65rem;border-radius:.55rem;border:1px solid #c8cfd8;background:#fff;color:#171b23}
+.map{width:100%;height:auto;display:block;background:#edf3f9;border-radius:.6rem}
+.grid{stroke:#dce5f0;stroke-width:.4;fill:none}
+.land{fill:#d4dde8;stroke:#b8c7d9;stroke-width:.5}
+.legend{display:flex;gap:.55rem 1rem;flex-wrap:wrap;margin:1rem 0 .6rem;padding:0;list-style:none;font-size:.9rem}
+.legend li{display:flex;align-items:center;gap:.4rem}
+.legend span{width:.75rem;height:.75rem;border-radius:50%;background:#d4d8df}
+.note{font-size:.85rem;color:#505968;margin:0;line-height:1.55}

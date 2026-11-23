@@ -1,5 +1,6 @@
 import type { MetadataRoute } from "next";
 import { aircraft } from "@/data/aircraft";
+import { modelSpecs } from "@/data/aircraft-directory";
 import { contentPages } from "@/data/editorial";
 import { pageSeo } from "@/data/seo";
 import { isRetiredPublicPath } from "@/data/public-route-retirements";
@@ -13,7 +14,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = Object.entries(pageSeo).flatMap(([path, entry]) =>
     "noindex" in entry && entry.noindex ? [] : [{ path }],
   );
-  const aircraftPaths = aircraft.map(item => ({ path: `/aircraft/${item.slug}` }));
+  const aircraftPaths = [...new Set([...aircraft.map(item => item.slug), ...modelSpecs.filter(model => model.rangeNm).map(model => model.slug)])].map(slug => ({ path: `/aircraft/${slug}` }));
   const editorialPaths = contentPages
     .filter(page => !page.noindex && !page.draft)
     .map(page => ({ path: page.path, lastModified: page.updated }));

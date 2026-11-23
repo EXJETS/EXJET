@@ -2,7 +2,7 @@ import { ButtonLink } from "@/components/ButtonLink";
 import { Suspense } from "react";
 import { ArrowUpRightIcon, AirplaneTakeoffIcon, EnvelopeSimpleIcon } from "@phosphor-icons/react/dist/ssr";
 import { ContactPreference } from "@/components/ContactPreference";
-import { aircraft } from "@/data/aircraft";
+import { directoryAircraft as aircraft } from "@/data/aircraft-directory";
 import { aircraftCategories } from "@/data/aircraftCategories";
 import { PageHero } from "@/components/PageHero";
 import { FlightSearchLink } from "@/components/FlightSearchLink";

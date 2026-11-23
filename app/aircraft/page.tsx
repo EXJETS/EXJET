@@ -6,8 +6,7 @@ import { SectionIntro } from "@/components/SectionIntro";
 import { aircraftCategories } from "@/data/aircraftCategories";
 import { buildMetadata } from "@/data/seo";
 import { AircraftExplorer } from "@/components/AircraftExplorer";
-import { aircraft } from "@/data/aircraft";
-import { getAircraftComparison } from "@/data/aircraft-reference";
+import { directoryAircraft, modelSpecs } from "@/data/aircraft-directory";
 
 export const metadata = buildMetadata("/aircraft");
 
@@ -19,7 +18,7 @@ export default function AircraftPage() {
         <h1>Explore business aircraft</h1>
         <p>Compare cabin classes and aircraft. Availability and seating are confirmed with your quote.</p>
       </header>
-      <AircraftExplorer items={aircraft} references={Object.fromEntries(aircraft.map(item => [item.slug, getAircraftComparison(item.slug)]))} />
+      <AircraftExplorer items={directoryAircraft} models={modelSpecs} />
       <section className="aircraft-category-index section">
         <div className="shell">
           <SectionIntro

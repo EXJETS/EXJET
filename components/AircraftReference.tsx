@@ -4,7 +4,7 @@ import { AircraftFloorplans } from "./AircraftFloorplans";
 export function AircraftReference({ slug }: { slug: string }) {
   const reference = getAircraftReference(slug);
   if (!reference) return null;
-  return <section id="aircraft-specifications" className="aircraft-reference section" aria-labelledby="aircraft-specifications-title">
+  return <section id="aircraft-legacy-specifications" className="aircraft-reference section" aria-labelledby="aircraft-specifications-title">
     <div className="shell">
       <p className="eyebrow">Performance & design</p>
       <h2 id="aircraft-specifications-title">The details that shape your journey.</h2>
