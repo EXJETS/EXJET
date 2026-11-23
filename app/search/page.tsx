@@ -1,7 +1,7 @@
 import { isRetiredPublicPath } from "@/data/public-route-retirements";
 import { Suspense } from "react";
 import { SiteSearch } from "@/components/SiteSearch";
-import { FlightPageHeading } from "@/components/FlightPageHeading";
+import styles from "./search.module.css";
 import { contentPages } from "@/data/editorial";
 import { directoryAircraft as aircraft } from "@/data/aircraft-directory";
 import { pageSeo, buildDynamicMetadata } from "@/data/seo";
@@ -14,5 +14,5 @@ const items = [
   ...aircraft.map(item => ({ path: `/aircraft/${item.slug}`, title: item.name, description: item.category })),
  ].filter(item => !isRetiredPublicPath(item.path));
 export default function SearchPage() {
-  return <div className="ex-editorial"><FlightPageHeading label="Search EXJET" title="Find what you need." description="Look up aircraft models, airports, routes, and charter guides." /><Suspense fallback={<p className="ex-container" role="status">Loading search…</p>}><SiteSearch items={Array.from(new Map(items.map(item => [item.path, item])).values())} /></Suspense></div>;
+  return <section className={styles.shell} aria-labelledby="site-search-heading"><header className={styles.intro}><h1 id="site-search-heading">Search EXJET</h1><p>Find aircraft models, airports, routes, and charter guides.</p></header><Suspense fallback={<p className="ex-container" role="status">Loading search…</p>}><SiteSearch items={Array.from(new Map(items.map(item => [item.path, item])).values())} /></Suspense></section>;
 }

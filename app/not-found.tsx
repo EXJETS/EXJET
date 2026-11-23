@@ -1,20 +1,12 @@
 import Link from "next/link";
+import styles from "./secondary.module.css";
 
 export default function NotFound() {
-  return (
-    <>
-      <title>Page Not Found | EXJET</title>
-      <section className="not-found">
-        <div className="shell">
-          <p className="eyebrow eyebrow--light"><span />404</p>
-          <h1>This route is not on the itinerary.</h1>
-          <p>The page may have moved, or the address may be incomplete.</p>
-          <div>
-            <Link className="button button--light" href="/">Return home <span>→</span></Link>
-            <Link href="/contact">Request a flight</Link>
-          </div>
-        </div>
-      </section>
-    </>
-  );
+  return <section className={styles.recovery} aria-labelledby="missing-title">
+    <title>Page Not Found | EXJET</title>
+    <p className={styles.eyebrow}>404</p>
+    <h1 id="missing-title">Page not found</h1>
+    <p>The page may have moved, or the address may be incomplete.</p>
+    <div className={styles.actions}><Link className={styles.primary} href="/">Return home</Link><Link href="/charter/">Plan a flight</Link></div>
+  </section>;
 }

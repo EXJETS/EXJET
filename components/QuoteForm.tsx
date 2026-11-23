@@ -113,7 +113,7 @@ function AirportInput({ label, value, code, onChange }: {
   return <div className="quote-form__airport">
     <label htmlFor={id}>{label}</label>
     <input ref={input} id={id} value={value} maxLength={120} required pattern={String.raw`.*\S.*`} title="Enter a city or airport." autoComplete="off"
-      placeholder="City, airport, IATA or ICAO" role="combobox" aria-autocomplete="list"
+      placeholder="City or airport" role="combobox" aria-autocomplete="list"
       aria-expanded={open} aria-controls={open ? listId : undefined}
       aria-activedescendant={open && active >= 0 ? `${id}-${active}` : undefined}
       onChange={event => { setItems([]); setOpen(false); setActive(-1); onChange(event.target.value); }}
@@ -295,7 +295,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
     <form ref={formRef} className={`quote-form quote-form--${mode}${compact ? " quote-form--compact" : ""} quote-form--${stage} ${useSearch ? styles.searchFlow : ""}`} onSubmit={submit} aria-busy={status === "loading"}>
       <p className="quote-form__progress">{useSearch ? ({mission:"1 of 3 · Your trip",results:"2 of 3 · Aircraft & estimate",contact:"3 of 3 · Request a firm quote"} as const)[stage] : stage === "mission" ? mode === "cargo" ? "1 of 2 · Shipment details" : "1 of 2 · Trip details" : "2 of 2 · Contact details"}</p>
       {stage === "mission" ? (
-        <>
+        <div className={useSearch ? `${styles.mission} ${tripType === "one_way" ? styles.simpleMission : ""}` : undefined}>
           {mode === "cargo" ? null : <fieldset className={styles.tripType}>
             <legend className={useSearch ? styles.srOnly : undefined}>Trip type</legend>
             <div className={styles.tripChoice}>{tripTypes.map(([type,label]) => <label key={type}>
@@ -372,13 +372,13 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
             </select>
             <small id={`${categoryId}-capacity`}>{passengerCount > 16 ? "Larger group? Leave this as No preference so we can source group options." : "If you don’t choose, we’ll estimate with the smallest category that fits. Actual seating may vary."}</small>
           </div>}
-          <div className="quote-form__submit">
+          <div className={`quote-form__submit ${useSearch ? styles.searchSubmit : ""}`}>
             <button className="button button--dark" type="submit">
-              {mode === "cargo" ? "Continue to contact details" : useSearch ? "Search flights" : "See trip estimate"} {useSearch ? <CharterIcon name="search" width={18} height={18} /> : <ArrowRightIcon size={18} aria-hidden="true" />}
+              {useSearch && <CharterIcon name="search" width={18} height={18} />} {mode === "cargo" ? "Continue to contact details" : useSearch ? "Search flights" : "See trip estimate"} {!useSearch && <ArrowRightIcon size={18} aria-hidden="true" />}
             </button>
             <a className="ex-text-link" href={emailHref}>Email instead</a>
           </div>
-        </>
+        </div>
       ) : stage === "results" ? (
         <div className={styles.results}>
           <div className="quote-form__mission-summary">

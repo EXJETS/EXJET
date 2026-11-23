@@ -47,3 +47,30 @@
 .legAdvisor p{color:var(--flight-muted,#52616a);line-height:1.55;margin-bottom:15px}
 .legAdvisor>a:last-child{display:flex;align-items:center;min-height:44px;margin-top:7px;text-underline-offset:4px}
 @media(max-width:780px){.profileRail{position:static}.legLayout{grid-template-columns:1fr}.mast{padding:26px 0 31px}}
+
+/* Public aircraft catalog mirrors the search-first rental reference, without
+   suggesting that planning profiles are vehicles in stock. */
+.catalog{--cat-text:#171a20;--cat-muted:#5c5e62;--cat-surface:#f4f4f4;--cat-line:#e2e3e3;--cat-accent:#3e6ae1;padding-top:0!important}
+.searchZone{background:#fafafa;padding:18px 0;border-bottom:1px solid var(--cat-line)}
+.searchBand{background:#fff;box-shadow:0 2px 5px #171a200a;border-radius:8px}
+.searchInput,.searchControl select{border-color:#dededf;border-radius:5px}
+.searchBand>.control,.catalog .control[aria-pressed=true],.primary{background:#3e6ae1!important;color:#fff!important;border-color:#3e6ae1!important;border-radius:5px}
+.searchBand>.control{min-height:48px}
+.searchBand>.control:hover,.primary:hover{background:#3457b1!important}
+.resultsHead h1{font-size:clamp(30px,4vw,50px);letter-spacing:-.04em;line-height:1.08;font-weight:550;margin:0}
+.resultsHead .view{flex-wrap:nowrap}.view button{white-space:nowrap;border-radius:5px}
+.split{grid-template-columns:minmax(0,1.75fr) minmax(270px,1fr)}
+.rail{background:#fff;border-radius:8px}
+.noPhoto{background:linear-gradient(135deg,#f4f4f4,#eceeef)}
+:global(.ex-public) .catalog .cards article{border-radius:8px}
+.profilePage{--flight-surface:#f4f4f4;--flight-ink:#171a20;padding-top:14px}
+.profileRail,.specSheet,.noMedia{background:#fafafa;border-color:#e2e3e3;border-radius:8px}
+.profilePage h1{font-size:clamp(32px,5vw,59px);line-height:1.03;letter-spacing:-.04em;font-weight:550;margin:9px 0 12px}
+.profilePage .profileSplit{grid-template-columns:minmax(0,1.55fr) minmax(290px,1fr);gap:24px}
+.profilePage :global(.detail-viewer__controls button){border-radius:5px}
+.profilePage :global(.detail-viewer__controls button.is-active){background:#3e6ae1;color:white}
+@media(max-width:950px){.resultsHead .view{display:none}}
+@media(max-width:780px){.profilePage .profileSplit{grid-template-columns:minmax(0,1fr)}}
+
+.legSearch :global(.empty-leg-search){min-width:0}
+.legSearch :global(.empty-leg-search button[type=submit]){background:#3e6ae1;color:#fff;border-color:#3e6ae1;border-radius:5px}

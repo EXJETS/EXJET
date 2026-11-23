@@ -186,3 +186,25 @@
 .actions :global(.button) { width:auto; min-width:min(180px,100%); }
 .disclosure :global(.ex-broker-disclosure) { border:0; background:transparent; padding:3px 0; }
 @media (max-width:739px) { .heroGrid { gap:14px; } .topCard { border-top:1px solid var(--editorial-line); padding-top:12px; } }
+
+/* Reading-first charter resources. */
+.editorial{--editorial-line:#e2e3e3;--editorial-muted:#5c5e62;--editorial-silver:#f5f5f5;--editorial-graphite:#171a20;background:white;color:var(--editorial-graphite)}
+.shell{width:min(1080px,calc(100% - var(--editorial-gutter)*2))}
+.masthead,.editorial[data-page-kind="legal"] .masthead,.editorial[data-page-kind="article"] .masthead{background:#fff;padding-bottom:clamp(20px,3vw,35px)}
+.masthead .breadcrumb{border-bottom:1px solid var(--editorial-line);font-size:13px;padding-block:11px}
+.heroGrid{grid-template-columns:minmax(0,1.65fr) minmax(225px,.7fr);gap:clamp(14px,3vw,34px);padding-top:clamp(16px,3vw,33px)}
+.intro h1{font-size:clamp(31px,4.5vw,64px);line-height:1.04;max-width:24ch;letter-spacing:-.05em;text-wrap:initial}
+.topCard{background:#f7f8fa;border:1px solid var(--editorial-line);border-radius:8px;padding:14px}
+.topCard :global(.button--dark),.bottomAction :global(.button--dark){background:#3e6ae1;color:#fff;border-color:#3e6ae1;border-radius:5px}
+.topCard :global(.button--dark):hover,.bottomAction :global(.button--dark):hover{background:#3457b1}
+.editorial[data-compact="true"] .shell{width:min(620px,calc(100% - var(--editorial-gutter)*2))}
+.editorial[data-compact="true"] .heroGrid,.editorial[data-compact="true"] .withRail{display:block}
+.editorial[data-compact="true"] .intro h1{font-size:clamp(30px,4.9vw,51px)}
+.editorial[data-compact="true"] .topCard{margin-top:16px}
+.editorial[data-compact="true"] .disclosure{margin-top:12px}
+.editorial[data-compact="true"] .rail :global(.ex-outline){display:none}
+.editorial[data-compact="true"] .rail :global(.ex-outline-mobile){display:block;margin-bottom:16px}
+.editorial[data-compact="true"] .facts{grid-template-columns:repeat(2,minmax(0,1fr))}
+.editorial[data-compact="true"] .reading h2{font-size:clamp(22px,3vw,31px);letter-spacing:-.025em}
+.bottomAction{background:#f5f5f5}
+@media(max-width:739px){.heroGrid{display:block}.topCard{margin-top:14px}.disclosure{margin-top:12px}}

@@ -72,3 +72,42 @@
   .searchFlow .passengerField button { flex-basis:44px; }
   .searchFlow :global(.quote-form__submit .button) { flex-basis:100%; }
 }
+
+/* The public booking shell uses the same practical controls on Home and Plan a flight. */
+.searchFlow { --search-line:var(--flight-line,#e2e3e3); --search-blue:var(--flight-accent,#3e6ae1); }
+.searchFlow .tripChoice { width:min(100%,340px); background:var(--flight-surface,#f4f4f4); border-radius:5px; }
+.searchFlow .tripChoice label > span { min-height:34px;color:#393c41;font-weight:540; }
+.searchFlow .tripChoice input:checked + span { color:var(--flight-ink,#171a20); box-shadow:0 1px 5px #171a2025; }
+.searchFlow .searchGrid > :is(div,label) { background:#fff; border-color:var(--search-line); min-height:62px; }
+.searchFlow .searchGrid label,.searchFlow .searchGrid label > span { color:var(--flight-ink,#171a20); font-size:.78rem; font-weight:570; }
+.searchFlow .searchGrid input { color:var(--flight-ink,#171a20); }
+.searchFlow .searchGrid input::placeholder { color:var(--flight-muted,#5c5e62); }
+.searchFlow .swap { color:var(--flight-accent-hover,#3457b1); }
+.searchFlow .searchSubmit :global(.button) { display:inline-flex; gap:7px; padding-inline:13px; min-height:46px; white-space:nowrap; }
+.searchFlow :global(.quote-form__submit) { row-gap:3px; }
+:global(.quote-form--compact.quote-form--mission).searchFlow :global(.quote-form__progress) { display:none; }
+.searchFlow .passengerField button { color:var(--flight-ink,#171a20); }
+@media(min-width:896px){
+  .searchFlow .simpleMission { display:grid; grid-template-columns:minmax(0,1fr) auto; column-gap:10px; align-items:center; }
+  .searchFlow .simpleMission .tripType { grid-column:1/-1; }
+  .searchFlow .simpleMission .searchGrid { grid-template-columns:minmax(110px,1.18fr) minmax(110px,1.18fr) minmax(121px,1.05fr) minmax(105px,.85fr) minmax(108px,.91fr); gap:0; }
+  .searchFlow .simpleMission .searchGrid > :is(div,label) { grid-column:auto; border:0; border-right:1px solid var(--search-line); border-radius:0; padding:2px 10px 0; min-height:54px; }
+  .searchFlow .simpleMission .searchGrid > :is(div,label):focus-within { background:#f6f8fc; }
+  .searchFlow .simpleMission .searchGrid > :nth-child(1) { padding-right:24px; }
+  .searchFlow .simpleMission .searchGrid > :nth-child(2) { padding-left:23px; }
+  .searchFlow .simpleMission .swap { inset-inline-start:22.5%; inset-block-start:13px; width:30px; height:30px; min-height:30px; }
+  .searchFlow .simpleMission .swap svg { width:14px;height:14px; }
+  .searchFlow .simpleMission .searchSubmit { display:grid; padding:0; align-self:center; }
+  .searchFlow .simpleMission .searchSubmit :global(.ex-text-link) { display:none; }
+  .searchFlow .simpleMission .passengerField button { flex-basis:27px; }
+  .searchFlow .simpleMission .passengerField input { padding:0; }
+}
+@media(max-width:550px){
+  .searchFlow .searchGrid { gap:6px; }
+  .searchFlow .searchGrid > :is(div,label) { min-height:55px;padding-top:3px; }
+  .searchFlow .searchGrid > :nth-child(2) { padding-left:10px; }
+  .searchFlow .searchGrid input { height:36px;min-height:36px;font-size:16px; }
+  .searchFlow .swap { inset-block-start:42px; }
+  .searchFlow .passengerField button { height:37px; }
+  .searchFlow .searchSubmit { padding-top:8px; }
+}
