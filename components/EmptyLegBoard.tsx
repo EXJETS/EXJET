@@ -124,7 +124,7 @@ export function EmptyLegBoard({ items, live = false }: { items: EmptyLeg[]; live
                 <label><span>Email</span><input value={contact.email} onChange={(event) => setContact((current) => ({ ...current, email: event.target.value }))} type="email" autoComplete="email" maxLength={180} required /></label>
               </div>
               <label className="empty-leg-inquiry__notes"><span>Notes</span><textarea value={contact.notes} onChange={(event) => setContact((current) => ({ ...current, notes: event.target.value }))} maxLength={2500} rows={3} placeholder="Schedule flexibility, baggage, pets, return needs..." /></label>
-              <p>EXJET arranges charter as a broker. Availability and pricing require confirmation. By submitting, you agree that EXJET may contact you about this request. Read our <Link href="/privacy">privacy policy</Link>.</p>
+              <p>EXJET arranges charter as a broker. Availability and pricing require confirmation. EXJET sends your contact details, selected flight and any notes to Avinode to handle this request. Read the <a href="https://avinodegroup.com/privacy/">Avinode privacy and cookies notice</a> and <Link href="/privacy">EXJET privacy information</Link> before sending. Do not include payment details or identification documents.</p>
               <button className="button button--dark" type="submit" disabled={requestStatus === "sending"}><span>{requestStatus === "sending" ? "Sending securely..." : "Send request"}</span><ArrowRightIcon size={18} aria-hidden="true" /></button>
               {requestStatus === "error" ? <strong role="alert">{requestMessage}</strong> : null}
             </form>

@@ -46,7 +46,7 @@ const articles: ContentPage[] = articleData.map(item => ({
   published: "2026-09-12", updated: "updated" in item ? String(item.updated) : "2026-09-12",
 }));
 const policies: ContentPage[] = legalData.map(item => ({
-  ...item,path:`/${item.slug}`,kind:"legal",kicker:"Legal",draft:true,noindex:true,
+  ...item,path:`/${item.slug}`,kind:"legal",kicker:"Legal",draft:item.status === "draft",noindex:true,
 }));
 const airports: ContentPage[] = airportGuides.map(item => ({
   path:`/airports/${item.slug}`, title:`${item.name} charter guide`, seoTitle:item.seoTitle,

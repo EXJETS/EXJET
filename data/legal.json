@@ -18,21 +18,21 @@
       {
         "heading": "Flight search and website information",
         "paragraphs": [
-          "Flight search is delivered through Avinode's embedded service. Loading or using it connects your browser to that provider. Information entered into its search and request screens is handled through that service; EXJET's Privacy Policy does not replace the provider's own notice.",
-          "Website requests can include technical information such as an IP address, browser information, requested page, and request time. The native request service uses the request's network address to limit repeated submissions. See Cookies & Website Technologies for more about embedded services and browser choices."
+          "Flight search is delivered through Avinode’s embedded service. Your browser connects to Avinode when the search loads. The provider handles the trip and contact details you provide through its screens. When you submit EXJET’s separate empty-leg request form, EXJET sends your selected flight, name, email, telephone number and any notes to Avinode to handle the inquiry.",
+          "Website requests can include technical information such as an IP address, browser information, requested page and request time. EXJET’s native request service uses the request’s network address to limit repeated submissions. See Cookies & Website Technologies for embedded services, account features and browser choices."
         ]
       },
       {
         "heading": "Use and sharing",
         "paragraphs": [
           "Request information is used to respond, evaluate your requirements, source services, and communicate with you about the inquiry. Contact preferences supplied for a request concern that request; they are not permission for unrelated marketing.",
-          "Information may be shared with the aircraft operators and other service providers needed to handle your inquiry or agreed service, and with technology providers supporting hosting, email, messaging, and lead delivery. Only the services enabled for the relevant request are involved. Information may also need to be retained or disclosed to meet applicable legal obligations."
+          "Information may be shared with aircraft operators and other service providers needed to handle your inquiry or agreed service. Website hosting, email, messaging and lead-delivery providers process information as needed when enabled for the relevant feature. Information may also be retained or disclosed to meet applicable legal obligations."
         ]
       },
       {
         "heading": "Retention and your choices",
         "paragraphs": [
-          "Retention depends on the information, the stage of an inquiry or transaction, applicable recordkeeping duties, and any unresolved dispute. A general inquiry does not require an EXJET account. The account page is currently a preview and does not create a functioning account or retrieve booking records.",
+          "A general inquiry does not require an account. Where client access is enabled, EXJET uses Supabase to support sign-in, saved account information and advisor conversations. Some trip and airport tools also save information in the browser on the device you use. Retention depends on the type of information, the stage of your inquiry or transaction, applicable recordkeeping requirements and any unresolved dispute.",
           "Depending on the law that applies, you may have rights to access, correct, obtain a copy of, or delete personal information, or object to certain uses. Send privacy requests to sales@exjet.com. Identity verification and legal exceptions may apply."
         ]
       }
@@ -101,24 +101,24 @@
   },
   {
     "slug": "charter-terms",
-    "title": "Charter Terms & Disclosures",
-    "description": "EXJET's broker role and the information provided for an individual passenger charter.",
-    "status": "draft",
+    "title": "Passenger Charter Disclosures",
+    "description": "EXJET’s role as an air charter broker and what to review before accepting a flight agreement.",
+    "status": "information",
     "effectiveDate": null,
     "reviewedAt": "2026-09-11",
-    "reviewNote": "Draft passenger-charter overview. Operator, broker capacity, insurance, and commercial terms must be supplied for each actual contract.",
+    "reviewNote": "Public information about U.S. passenger charter disclosures. This is not a contract or a trip-specific disclosure.",
     "sections": [
       {
         "heading": "Your flight agreement",
         "paragraphs": [
-          "EXJET LLC arranges passenger charter as an air charter broker. The identified carrier operates the aircraft and retains operational control. This page explains the contracting process; it is not a quotation, a flight confirmation, or a disclosure of the operator and insurance for a particular trip.",
+          "EXJET LLC arranges passenger charter as an air charter broker. Properly licensed direct U.S. or foreign air carriers operate the flights and retain operational control. This overview is not a quote, flight confirmation, or disclosure for a particular trip.",
           "A written flight agreement should identify the proposed itinerary, services, commercial conditions, and applicable carrier terms. Review it with your EXJET contact before committing."
         ]
       },
       {
-        "heading": "Before a passenger-charter contract",
+        "heading": "Before agreeing to a passenger charter",
         "paragraphs": [
-          "Under 14 CFR 295.24, EXJET must disclose the operating carrier's corporate and public-facing names; the capacity in which EXJET is contracting; and whether EXJET holds liability insurance covering the charterer, passengers, and property, including its monetary limits.",
+          "For single-entity passenger charter covered by 14 CFR 295.24, EXJET must disclose the operating carrier’s legal and trade names, the capacity in which EXJET is acting for the specific contract, and whether EXJET carries its own liability insurance for the charterer, passengers and property on that flight, including the limits of any such insurance.",
           "On request, the same rule requires disclosure of relevant carrier relationships when EXJET acts as the charterer's agent; the total amount payable to or through EXJET, including fees and taxes; and known direct third-party charges or good-faith estimates. These disclosures may be delivered electronically."
         ]
       },
@@ -131,7 +131,7 @@
       {
         "heading": "Confirm the trip details",
         "paragraphs": [
-          "Ask about the aircraft and cabin configuration, passenger and baggage requirements, schedule flexibility, payment timetable, potential additional charges, and arrangements if the proposed aircraft becomes unavailable. Identify any essential accessibility or handling requirement before accepting a quotation.",
+          "Ask about the aircraft and cabin configuration, passenger and baggage requirements, schedule flexibility, payment timetable, potential additional charges, and arrangements if the proposed aircraft becomes unavailable. Identify any essential accessibility or handling requirement before accepting a quotation. To ask EXJET for a written disclosure or report a change, contact charter@exjet.com.",
           "Do not assume a photograph, aircraft category, inquiry reference, or search result confirms a particular tail number, departure slot, or carrier commitment. Make sure those details are expressly agreed where they matter to your journey."
         ]
       },
@@ -213,8 +213,15 @@
       {
         "heading": "Embedded flight search",
         "paragraphs": [
-          "The flight-search area uses Avinode's hosted service. When that area loads, your browser connects to Avinode even though the search appears within the EXJET page. Its content may involve additional service providers and browser technologies. Review the notices displayed by the search service before submitting personal information.",
-          "The availability of the search interface does not mean you have an EXJET account or that your trip is confirmed. You can instead use the contact details on the Contact page to discuss a request directly with EXJET."
+          "Flight search uses Avinode’s hosted service. Loading it connects your browser to Avinode even though it appears on an EXJET page. Avinode describes its own browser technologies and privacy practices in its privacy and cookies notice.",
+          "You can email charter@exjet.com to request charter without using the embedded search. Submitting a request does not create an account or confirm a trip."
+        ]
+      },
+      {
+        "heading": "EXJET account and planning tools",
+        "paragraphs": [
+          "Where client sign-in is enabled, EXJET uses account session cookies to support authentication and maintain a session. These are scoped to the client portal.",
+          "Trip and airport tools may store itineraries or airport selections in local storage in your browser. This lets the device remember them for future visits. Use the tool’s delete controls where available or clear EXJET site data in your browser. Clearing this information on one device does not clear it on another device."
         ]
       },
       {
@@ -228,7 +235,7 @@
         "heading": "Other websites and changes",
         "paragraphs": [
           "Following an external link opens a service with its own technology and privacy practices. EXJET's website controls do not manage settings on those other websites or on every device you use.",
-          "Any future analytics, advertising, or additional embedded service must be reflected in this notice and the applicable user controls. This draft does not represent that a consent manager, an advertising opt-out, or a complete third-party cookie inventory has already been implemented."
+          "This draft describes the website features above. It does not establish that a consent manager or an advertising opt-out is active, and it does not list every technology a third-party service may use."
         ]
       }
     ],
