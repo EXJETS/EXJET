@@ -71,7 +71,7 @@ const hubs: ContentPage[] = [
     path: nationalCharterPath,
     title: "Private jet charter across the United States",
     seoTitle: "U.S. Private Jet Charter: Cities, Airports & Routes | EXJET",
-    description: "Plan U.S. private jet charter by city, airport and route. Compare local airport options, understand trip costs and request a written proposal from EXJET.",
+    description: "Plan a private jet charter in the United States. Compare departure airports by city, explore route and pricing guides and request a written trip proposal from EXJET.",
     kicker: "U.S. charter planning",
     kind: "hub",
     parent: { name: "Private jet charter", path: "/private-jet-charter" },
@@ -81,12 +81,12 @@ const hubs: ContentPage[] = [
     sections: [
       {
         heading: "Choose a city, then the airport that fits the trip",
-        paragraphs: ["These city guides cover departure and arrival choices in several U.S. regions. The best airport is not always the closest one on a map. Give your advisor the final address, desired arrival time and any ground transfer requirements. For mountain airports and busy event weekends, include one alternate you could accept."],
+        paragraphs: ["Compare options in Dallas, New York, Los Angeles, Miami, Chicago, Houston and Las Vegas. Give your advisor the final address and when you need to be there so the proposal accounts for the ground transfer. For mountain airports or busy event weekends, share a backup airport or arrival time you could accept."],
         links: [{ label: "Compare business aviation airports", path: "/airports" }, { label: "Browse private jet routes", path: "/routes" }],
       },
       {
         heading: "Compare the full itinerary and trip total",
-        paragraphs: ["For a useful quote, share airports or city pairs, local dates and times, passenger count, baggage, pet needs and the planned return or onward segments. Compare the result by total price and applicable terms rather than hourly aircraft rate alone. Positioning, segment minimums, taxes and extras depend on the proposal."],
+        paragraphs: ["Share your cities or airports, local dates and times, passengers, bags, pets and return or onward stops. Compare the full trip price rather than the hourly aircraft rate alone. Where applicable, review the net operator quote, EXJET service fee, taxes and what is included. Positioning and minimums can affect the total."],
         links: [{ label: "What goes into a private jet charter quote", path: "/pricing" }, { label: "Compare aircraft categories and cabins", path: "/aircraft" }],
       },
       {
