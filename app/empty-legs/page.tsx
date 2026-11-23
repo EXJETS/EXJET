@@ -1,7 +1,6 @@
-import { BrokerNotice } from "@/components/BrokerNotice";
+import { CharterJourney } from "@/components/CharterJourney";
 import { ContentCollection } from "@/components/EditorialPage";
 import { EmptyLegBoard } from "@/components/EmptyLegBoard";
-import { PageHero } from "@/components/PageHero";
 import { SectionIntro } from "@/components/SectionIntro";
 import { emptyLegPreview } from "@/data/emptyLegs";
 import { buildMetadata } from "@/data/seo";
@@ -17,19 +16,22 @@ const steps = [
 export default function EmptyLegsPage() {
   return (
     <>
-      <PageHero heading="Empty leg charter flights"
-        dark
-        eyebrow="Empty leg opportunities"
-        title={<>A repositioning flight.<br /><em>A smarter opening.</em></>}
-        copy="Explore one-way aircraft repositioning opportunities. Availability and timing require confirmation."
-      />
-      <section className="empty-leg-board-section section" aria-labelledby="empty-leg-search-title">
-        <div className="shell">
-          <h2 id="empty-leg-search-title" className="sr-only">Search empty legs</h2>
-          <BrokerNotice prominent />
-          <EmptyLegBoard items={emptyLegPreview} />
-        </div>
-      </section>
+      <CharterJourney
+        active="empty"
+        eyebrow="Flexible one-way charter"
+        title="Find an empty leg."
+        description="Browse one-way repositioning opportunities by route and date. The operator must reconfirm availability and timing."
+        panelId="empty-leg-search"
+        panelTitle="Search empty legs"
+        advisorTitle="Dates or airports flexible?"
+        advisorCopy="Tell the desk your preferred cities, date range and passenger count. We can check whether a suitable leg is available."
+        links={[
+          { href: "/contact/?service=empty-leg", label: "Ask for an empty-leg match" },
+          { href: "/charter/", label: "Request a dedicated charter" },
+        ]}
+      >
+        <EmptyLegBoard items={emptyLegPreview} />
+      </CharterJourney>
       <section className="section section--dark empty-leg-process">
         <div className="shell">
           <SectionIntro inverse eyebrow="How it works" title="Fast-moving inventory. Clear coordination." />

@@ -4,17 +4,17 @@ import { useState } from "react";
 import { AircraftSceneMedia, hasAircraftSceneMedia } from "@/components/AircraftSceneMedia";
 import { Aircraft } from "@/data/aircraft";
 
-export function AircraftDetail({ item }: { item: Aircraft }) {
+export function AircraftDetail({ item, mediaOnly = false }: { item: Aircraft; mediaOnly?: boolean }) {
   const [sceneId, setSceneId] = useState(item.scenes[0]?.id ?? "exterior");
   const scene = item.scenes.find((value) => value.id === sceneId) ?? item.scenes[0];
 
   return (
     <div className="detail-viewer">
-      <header className="detail-viewer__title">
+      {!mediaOnly && <header className="detail-viewer__title">
         <p>{item.maker} · {item.category}</p>
         <h1>{item.name} charter</h1>
         <a className="button button--dark" href={`/contact?aircraft=${item.slug}`}>Enquire about this aircraft</a>
-      </header>
+      </header>}
       {hasAircraftSceneMedia(scene) ? <>
       <div className={`detail-viewer__visual${scene?.fit === "contain" ? " is-contained" : ""}`}>
         <AircraftSceneMedia key={`${item.slug}-${scene.id}`} aircraftName={item.name} scene={scene} priority />

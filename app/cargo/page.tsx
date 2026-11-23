@@ -1,7 +1,5 @@
-import { BrokerNotice } from "@/components/BrokerNotice";
+import { CharterJourney } from "@/components/CharterJourney";
 import { ContentCollection } from "@/components/EditorialPage";
-import { ButtonLink } from "@/components/ButtonLink";
-import { PageHero } from "@/components/PageHero";
 import { QuoteForm } from "@/components/QuoteForm";
 import { SectionIntro } from "@/components/SectionIntro";
 import { buildMetadata } from "@/data/seo";
@@ -23,18 +21,23 @@ const freighters = [
 export default function CargoPage() {
   return (
     <>
-      <PageHero heading="Air cargo charter services"
-        dark
-        image="/images/manufacturers/skycourier-freighter.jpg"
-        imageAlt="Cessna SkyCourier freighter on the apron"
-        imageWidth={1920}
-        imageHeight={1080}
-        eyebrow="Cargo charter"
-        title={<>Cargo without<br /><em>compromise.</em></>}
-        copy="Aircraft sourcing and charter coordination for time-sensitive, specialized, and mission-specific cargo movements worldwide."
+      <CharterJourney
+        active="cargo"
+        eyebrow="Air cargo charter"
+        title="Request air cargo capacity."
+        description="Source airlift for time-sensitive or specialist shipments. Give us the origin, destination and delivery window."
+        panelId="cargo-request"
+        panelTitle="Describe your shipment"
+        panelDescription="Add dimensions, weight, loading requirements and any permits or handling needs in your notes."
+        advisorTitle="Need help with a complex load?"
+        advisorCopy="Send specifications to the cargo desk. Acceptance, routing, permits and aircraft availability are subject to operator review."
+        links={[
+          { href: `mailto:${siteConfig.email.cargo}`, label: "Email the cargo desk" },
+          { href: "#cargo-aircraft", label: "Compare representative freighters" },
+        ]}
       >
-        <ButtonLink href="#cargo-request" variant="light">Request cargo capacity</ButtonLink>
-      </PageHero>
+        <QuoteForm mode="cargo" />
+      </CharterJourney>
 
       <section className="cargo-manifest">
         <div className="shell cargo-manifest__grid">
@@ -44,7 +47,7 @@ export default function CargoPage() {
         </div>
       </section>
 
-      <section className="section cargo-aircraft-section">
+      <section className="section cargo-aircraft-section" id="cargo-aircraft">
         <div className="shell">
           <SectionIntro
             eyebrow="Representative freighter access"
@@ -60,16 +63,7 @@ export default function CargoPage() {
               </article>
             ))}
           </div>
-          <p className="form-disclaimer">Aircraft types shown are representative examples. EXJET does not own or exclusively control these aircraft. Final type, operator, payload, routing, permits, loading method, and availability are confirmed for each mission.</p>
-        </div>
-      </section>
-
-      <section className="section page-form-section cargo-form-section" id="cargo-request">
-        <div className="shell">
-          <SectionIntro eyebrow="Request cargo capacity" title="Start with the shipment." copy="Provide the route, timing, dimensions, weight, and handling requirements. An EXJET advisor will assess the mission with qualified cargo operators." />
-          <BrokerNotice prominent />
-          <QuoteForm mode="cargo" />
-          <p className="form-disclaimer">Cargo acceptance, routing, permits, handling, and aircraft availability are subject to operator review and applicable regulations. EXJET does not guarantee capacity until confirmed by the operating carrier.</p>
+          <p className="form-disclaimer">Aircraft types shown are representative examples. EXJET does not own or exclusively control these aircraft. Final type, operator, payload, routing, permits, loading method, and availability are confirmed for each mission. EXJET does not guarantee capacity until confirmed by the operating carrier.</p>
         </div>
       </section>
 

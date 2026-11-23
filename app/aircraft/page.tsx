@@ -1,7 +1,7 @@
 import { ContentCollection } from "@/components/EditorialPage";
 import { AircraftCategoryCard } from "@/components/AircraftCategoryCard";
 import { ButtonLink } from "@/components/ButtonLink";
-import { PageHero } from "@/components/PageHero";
+import styles from "@/components/PublicAircraftMarket.module.css";
 import { SectionIntro } from "@/components/SectionIntro";
 import { aircraftCategories } from "@/data/aircraftCategories";
 import { buildMetadata } from "@/data/seo";
@@ -14,7 +14,11 @@ export const metadata = buildMetadata("/aircraft");
 export default function AircraftPage() {
   return (
     <>
-      <PageHero heading="Explore business aircraft" eyebrow="Aircraft categories" title={<>The right class.<br /><em>The right fit.</em></>} copy="Compare cabin classes and passenger capacity. Your advisor confirms availability, configuration and suitability for your route." />
+      <header className={`${styles.wrap} ${styles.mast}`}>
+        <p className={styles.label}>Charter aircraft directory</p>
+        <h1>Explore business aircraft</h1>
+        <p>Browse cabin classes and compare individual aircraft. Your advisor confirms the exact aircraft, configuration and availability for your route.</p>
+      </header>
       <AircraftExplorer items={aircraft} references={Object.fromEntries(aircraft.map(item => [item.slug, getAircraftComparison(item.slug)]))} />
       <section className="aircraft-category-index section">
         <div className="shell">

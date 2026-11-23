@@ -1,11 +1,15 @@
 import { avinodeStatus, searchAvinodeAirports } from "@/integration/avinode/client";
 import guides from "@/data/airports-guide.json";
+import { airportCoordinates } from "../charter-estimate/airports";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
 const headers = { "Cache-Control": "private, no-store" };
-const directory = guides.map(({ icao, iata, name, city }) => ({ icao, iata, name, city }));
+const directory = [
+  ...guides.map(({ icao, iata, name, city }) => ({ icao, iata, name, city })),
+  ...airportCoordinates.filter(([icao]) => !guides.some(g => g.icao === icao)).map(([icao, iata, name]) => ({ icao, iata, name, city: "" })),
+];
 
 export async function GET(request: Request) {
   const filter = new URL(request.url).searchParams.get("q")?.trim().slice(0, 80) ?? "";

@@ -1,8 +1,6 @@
+import { CharterJourney } from "@/components/CharterJourney";
 import { QuoteForm } from "@/components/QuoteForm";
-import { BrokerNotice } from "@/components/BrokerNotice";
 import { ContentCollection } from "@/components/EditorialPage";
-import { ButtonLink } from "@/components/ButtonLink";
-import { PageHero } from "@/components/PageHero";
 import { SectionIntro } from "@/components/SectionIntro";
 import { buildMetadata } from "@/data/seo";
 import { siteConfig } from "@/data/site";
@@ -19,33 +17,23 @@ const missions = [
 export default function GroupCharterPage() {
   return (
     <>
-      <PageHero heading="Group charter. Every detail aligned."
-        dark
-        image="/images/manufacturers/longitude-glacier.jpg"
-        imageAlt="Citation Longitude cabin with facing leather seats, representative of small-group travel"
-        imageWidth={1920}
-        imageHeight={1080}
-        imagePosition="center"
+      <CharterJourney
+        active="group"
         eyebrow="Group air charter"
-        title={<>Move together.<br /><em>Arrive ready.</em></>}
-        copy="Private flights for executive teams, sports and entertainment travel. One advisor coordinates your aircraft, schedule and ground arrangements."
+        title="Group charter, on your schedule."
+        description="Arrange private air travel for teams, events and delegations. Start with the passenger count, dates and arrival requirements."
+        panelId="group-request"
+        panelTitle="Build your group brief"
+        panelDescription="Add baggage, equipment, synchronized arrivals or multiple aircraft in the request notes."
+        advisorTitle="More than one aircraft?"
+        advisorCopy="Email the complete schedule and any fixed commitments. Include equipment, bags and transfers that affect the trip."
+        links={[
+          { href: `mailto:${siteConfig.email.charter}?subject=Group%20charter%20enquiry`, label: "Email the group charter desk" },
+          { href: "/group-charter/sports-teams/", label: "Plan travel for a sports team" },
+        ]}
       >
-        <ButtonLink href="#group-request" variant="light">Start a group request</ButtonLink>
-      </PageHero>
-
-      <section className="section group-request-section" id="group-request">
-        <div className="shell">
-          <SectionIntro
-            eyebrow="Build the movement"
-            title="One brief. A coordinated journey."
-            copy="Share your route, dates and passenger count. We’ll help plan aircraft capacity, baggage, equipment and transfers around your schedule."
-          />
-          <div className="ex-intro-actions"><ButtonLink href={`mailto:${siteConfig.email.charter}?subject=Group%20charter%20enquiry`}>Discuss your group</ButtonLink></div>
-          <BrokerNotice prominent />
-          <QuoteForm mode="group" />
-          <p className="specification-note">For multiple aircraft or special requirements, <a href={`mailto:${siteConfig.email.charter}`}>contact EXJET with your group brief</a>.</p>
-        </div>
-      </section>
+        <QuoteForm mode="group" />
+      </CharterJourney>
 
       <section className="section section--dark group-missions-section">
         <div className="shell">

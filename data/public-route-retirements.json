@@ -1,0 +1,32 @@
+{
+  "removed": [
+    "/acmi",
+    "/aircraft-management",
+    "/aircraft-owners",
+    "/articles/gulfstream-g550-vs-boeing-bbj1-ownership",
+    "/business-aviation-consulting",
+    "/crew",
+    "/dry-lease",
+    "/engineering-stc",
+    "/fractional",
+    "/guides/aircraft-cabin-upgrade-planning",
+    "/guides/aircraft-maintenance-quotes",
+    "/guides/aircraft-management-proposals",
+    "/guides/buying-a-business-jet",
+    "/interior-completions",
+    "/membership",
+    "/mro",
+    "/ownership",
+    "/partnership",
+    "/sales",
+    "/sales/citation-m2",
+    "/sales/global-7500",
+    "/sales/phenom-300e",
+    "/sales/praetor-600",
+    "/starlink-installation"
+  ],
+  "redirected": {
+    "/services": "/aircraft-charter",
+    "/ways-to-fly": "/aircraft-charter"
+  }
+}

@@ -1,6 +1,6 @@
 # EXJET
 
-> EXJET LLC is a Dallas-based aviation solutions company. It arranges on-demand passenger, group and cargo charter and provides aviation consulting. For charter, EXJET is a broker, not an operating air carrier.
+> EXJET LLC is an air charter broker based in Dallas. It arranges passenger, group and cargo charter and empty legs through licensed air carriers. EXJET is not an operating air carrier.
 
 Official website: https://www.exjet.com/
 Passenger charter: charter@exjet.com
@@ -24,7 +24,7 @@ Licensed direct air carriers operate the flights. Only a current written proposa
 
 ## Company and references
 
-- [About EXJET](https://www.exjet.com/about/): Business identity and aviation services.
+- [About EXJET](https://www.exjet.com/about/): Company and charter process.
 - [Safety and operator review](https://www.exjet.com/safety/): Roles of EXJET and operating air carriers.
 - [Editorial standards](https://www.exjet.com/editorial-standards/): Scope and intended use of planning guides.
 - [XML sitemap](https://www.exjet.com/sitemap.xml): Canonical, index-eligible public pages.

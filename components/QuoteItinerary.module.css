@@ -1,0 +1,23 @@
+.tripType, .segment { margin: 0 0 12px; padding: 0; border: 0; min-width: 0; }
+.tripType legend, .segment legend { font-size: .875rem; font-weight: 650; margin-bottom: 6px; }
+.tripChoice { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 4px; background:#f2f3f4; border:1px solid #d8dbde; border-radius:10px; padding:4px; }
+.tripType .tripChoice label { display:block; position:relative; margin:0; padding:0; border:0; min-width:0; }
+.tripChoice input { position: absolute; opacity: 0; height: 1px; width: 1px; }
+.tripType .tripChoice label > span { margin:0; letter-spacing:normal; text-transform:none; display:grid; place-items:center; min-height:44px; text-align:center; border-radius:7px; padding-inline:4px; font-size:.85rem; font-weight:600; color:#33383d; cursor:pointer; }
+.tripChoice input:checked + span { background:#24272a; color:white; }
+.tripChoice input:focus-visible + span { outline:2px solid #315c91; outline-offset:2px; }
+.segment { border:1px solid #d8dbde; border-radius:12px; padding:12px; }
+.segment :global(.quote-form__row) { grid-template-columns:repeat(2,minmax(0,1fr)); }
+.segment p { font-size:.92rem; margin: 0 0 8px; overflow-wrap:anywhere; }
+.segment legend { padding-inline:4px; }
+.segmentActions { display:flex; flex-wrap:wrap; align-items:center; gap: 4px 14px; margin-block:4px 12px; }
+.segmentActions button { color:#202226; background:#fff; border:1px solid #aeb2b7; border-radius:8px; min-height:44px; padding:0 12px; cursor:pointer; font:inherit; font-size:.85rem; }
+.segmentActions button:hover { background:#f3f4f6; }
+.segmentActions button:focus-visible { outline:2px solid #315c91; outline-offset:2px; }
+.segmentActions small, .aircraft small { color:#50565b; font-size:.8rem; line-height:1.4; }
+.aircraft { display:grid; gap:6px; width:min(100%,24rem); margin-block:14px; }
+.aircraft.aircraft label { display:block; margin:0; padding:0; border:0; font-size:.875rem; font-weight:650; }
+.aircraft.aircraft select { border:1px solid #aeb2b7; background:#fff; color:#16181a; border-radius:8px; min-height:44px; min-width:0; padding:6px 10px; font-size:16px; }
+.summaryList { margin:.25rem 0 0; padding-left:1.3rem; font-size:.875rem; line-height:1.45; }
+.summaryList li { padding-block:2px; }
+@media (max-width:600px) { .segment :global(.quote-form__row) { grid-template-columns:1fr; } }
