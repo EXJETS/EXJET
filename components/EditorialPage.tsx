@@ -105,8 +105,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
             </div> : null}
             {showRequest ? <div className={styles.actions}>
               {isCharterPlanning ? <>
-                <p>Share your preferred airports, date and passenger count to request a quote.</p>
-                <Link className="button button--dark" href="/charter/">Request a charter quote <ArrowRightIcon size={18} aria-hidden="true" /></Link>
+                  <Link className="button button--dark" href="/charter/">Plan a flight <ArrowRightIcon size={18} aria-hidden="true" /></Link>
                 <Link className="ex-inline-link" href="/pricing/">How charter pricing works <CaretRightIcon size={16} aria-hidden="true" /></Link>
               </> : <>
                 {consultationHref ? <a className="button button--dark" href={consultationHref}>{page.consultation?.label} <ArrowRightIcon size={18} aria-hidden="true" /></a> : <Link className="button button--dark" href="/contact">Discuss your plans <ArrowRightIcon size={18} aria-hidden="true" /></Link>}
@@ -138,7 +137,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
         {page.faqs ? <ContentFaq faqs={page.faqs} /> : null}
       </div>
     </div> : null}
-    {page.related?.length ? <ContentCollection paths={page.related.filter(path => path !== page.path)} title="Continue exploring." silver showImages={false} /> : null}
-    {page.kind!=="legal" ? <section className="ex-action-panel"><h2>{consultationHref ? "Plan your next aviation decision." : "Make it your itinerary."}</h2><p>{consultationHref ? "Share the aircraft, objectives and timing. EXJET will help define the next steps." : "Tell EXJET where you’re going, who’s travelling, and what matters along the way."}</p>{consultationHref ? <a href={consultationHref} className="button button--dark">{page.consultation?.label}</a> : <><Link href="/charter" className="button button--dark">Find a flight</Link><BrokerNotice /></>}</section> : null}
+    {page.related?.length ? <ContentCollection paths={page.related.filter(path => path !== page.path)} title="Related pages" silver showImages={false} /> : null}
+    {page.kind!=="legal" ? <section className="ex-action-panel"><h2>{consultationHref ? "Plan your next aviation decision." : "Plan a flight"}</h2><p>{consultationHref ? "Share the aircraft, objectives and timing. EXJET will help define the next steps." : "See an estimated trip total and route map."}</p>{consultationHref ? <a href={consultationHref} className="button button--dark">{page.consultation?.label}</a> : <><Link href="/charter" className="button button--dark">Find a flight</Link><BrokerNotice /></>}</section> : null}
   </div>;
 }

@@ -23,11 +23,11 @@ export default function ContactPage() {
   return (
     <>
       <StructuredData data={localBusinessJsonLd()} />
-      <PageHero heading="Contact EXJET" eyebrow="Start with the right desk" title="Contact EXJET" copy="Tell us what needs to move, where it’s going, and when it needs to be there.">
-        <ButtonLink href="#contact-desks">Find your contact</ButtonLink>
+      <PageHero heading="Contact EXJET" eyebrow="Start with the right desk" title="Contact EXJET" copy="Choose the right desk for your request.">
+        <ButtonLink href="#contact-desks">See contact details</ButtonLink>
       </PageHero>
       <section className={styles.directory} id="contact-desks">
-        <h2>Choose a desk.</h2>
+        <h2>Contact details</h2>
         <ul className={styles.desks}>{desks.map(({title, copy, email, Icon}) => <li key={title}><Icon size={22} aria-hidden="true" /><h3>{title}</h3><p>{copy}</p><a href={`mailto:${email}`}>{email}<ArrowUpRightIcon size={15} aria-hidden="true" /></a></li>)}</ul>
         <div className={styles.guidance}>
           <div>

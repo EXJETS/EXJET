@@ -58,7 +58,7 @@ export function SiteHeader() {
     return () => document.body.classList.remove("menu-open");
   }, [open]);
 
-  return <header className={styles.header}>
+  return <header className={`${styles.header} ${currentPath === "/" ? styles.homeHeader : ""}`}>
     <div className={styles.bar}>
       <NavigationBrand />
       <nav className={styles.primary} aria-label="Primary navigation">
