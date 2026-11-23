@@ -110,7 +110,14 @@ function AirportInput({ label, value, code, onChange }: {
 }
 
 export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps) {
-  if (mode !== "cargo") return <FlightSearchPanel compact={compact} group={mode === "group"} />;
+  if (mode !== "cargo") return (
+    <>
+      <p className="ex-quote-privacy">
+        Flight search is provided by Avinode. Your browser connects to Avinode when the search loads. Avinode handles the trip and contact information you provide through the search. Read the <a href="https://avinodegroup.com/privacy/">Avinode privacy and cookies notice</a> and <Link href="/privacy">EXJET privacy information</Link>, or <a href={`mailto:${siteConfig.email.charter}`}>email the charter desk</a> without submitting details to the search tool.
+      </p>
+      <FlightSearchPanel compact={compact} group={mode === "group"} />
+    </>
+  );
   return <CargoRequestForm mode={mode} compact={compact} />;
 }
 
@@ -243,7 +250,7 @@ function CargoRequestForm({ mode = "cargo", compact = false }: QuoteFormProps) {
             <button className="button button--dark" type="submit" disabled={status === "loading"}>
               {status === "loading" ? "Sending securely..." : "Submit request"}<ArrowRightIcon size={18} aria-hidden="true" />
             </button>
-            <p>By submitting, you agree that EXJET may contact you about this request. See our <Link href="/privacy">privacy policy</Link>.</p>
+            <p>EXJET uses your shipment and contact details to handle this request and contact you about it. Read our <Link href="/privacy">privacy information</Link>. Please don’t include payment details, identification documents or medical information.</p>
           </div>
         </>
       )}
