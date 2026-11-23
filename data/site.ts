@@ -1,7 +1,5 @@
 export const aviationSolutions = [
-  { name: "Passenger charter", path: "/private-jet-charter", description: "On demand private jet charter for business and personal travel.", icon: "charter", scope: "" },
-  { name: "Group charter", path: "/group-charter", description: "Private aircraft for larger groups, events and team travel.", icon: "charter", scope: "" },
-  { name: "Cargo charter", path: "/cargo", description: "Aircraft capacity for time sensitive charter shipments.", icon: "charter", scope: "" },
+  { name: "Private jet charter", path: "/private-jet-charter", description: "On demand private jet charter for business and personal travel.", icon: "charter", scope: "" },
   { name: "Empty legs", path: "/empty-legs", description: "Repositioning flight opportunities for flexible trips.", icon: "empty", scope: "" },
 ] as const;
 
@@ -34,7 +32,7 @@ export const siteConfig = {
   url: siteOrigin,
   productionUrl: PRODUCTION_ORIGIN,
   description:
-    "EXJET is a Dallas based air charter broker arranging private passenger flights, group travel, cargo and empty legs through licensed air carriers.",
+    "EXJET is a Dallas based air charter broker arranging private jet charter for passengers and empty leg flights through licensed air carriers.",
   email: {
     general: PUBLIC_CONTACT_EMAIL,
     charter: "charter@exjet.com",
@@ -96,18 +94,6 @@ export function organizationJsonLd() {
         "@type": "ContactPoint",
         contactType: "charter reservations",
         email: siteConfig.email.charter,
-        availableLanguage: "en",
-      },
-      {
-        "@type": "ContactPoint",
-        contactType: "cargo charter",
-        email: siteConfig.email.cargo,
-        availableLanguage: "en",
-      },
-      {
-        "@type": "ContactPoint",
-        contactType: "aircraft sales",
-        email: siteConfig.email.general,
         availableLanguage: "en",
       },
     ],

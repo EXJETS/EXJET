@@ -20,14 +20,14 @@
         ]
       },
       {
-        "heading": "Private and group charters.",
+        "heading": "Private flights for business and personal travel.",
         "paragraphs": [
-          "From individual travel to executive teams, sports and entertainment groups, plan the aircraft around your passengers, baggage and schedule."
+          "For a solo trip, family travel or an executive team, plan the aircraft around your passengers, baggage and schedule."
         ],
         "links": [
           {
-            "label": "Explore group charter",
-            "path": "/group-charter"
+            "label": "Explore empty leg flights",
+            "path": "/empty-legs"
           }
         ]
       },
@@ -165,8 +165,8 @@
             "path": "/articles/private-charter-for-executive-assistants"
           },
           {
-            "label": "Group charter for corporate teams",
-            "path": "/group-charter/corporate-teams"
+            "label": "Private jet charter for corporate teams",
+            "path": "/corporate-travel"
           },
           {
             "label": "Compare on-demand charter and jet cards",

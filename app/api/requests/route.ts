@@ -95,7 +95,7 @@ function parseRequest(value: unknown): IntakeRequest | null {
     departure !== destination && dateValid;
   const today = new Date().toISOString().slice(0, 10);
   const dateNotPast = Boolean(itinerary) || submittedDate >= today;
-  if (parsed.mode === "charter" && passengers > (itinerary ? 16 : 18)) parsed.mode = "group";
+  if (parsed.mode === "charter" && passengers > 16) parsed.mode = "group";
   const modeValid = parsed.mode === "cargo"
     ? Boolean(parsed.cargoType)
     : passengers >= 1 && passengers <= 100 && Number.isInteger(passengers);
@@ -275,6 +275,7 @@ export async function POST(request: Request) {
 
   const input = parseRequest(body);
   if (!input) return Response.json({ error: "Please review the required trip and contact details." }, { status: 400 });
+  if (input.mode !== "charter") return Response.json({ error: "Online requests are available for private jet charter with up to 16 passengers." }, { status: 400 });
   if (input.website) return Response.json({ ok: true, reference: requestId() });
 
   const id = requestId();

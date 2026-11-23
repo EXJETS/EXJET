@@ -72,7 +72,7 @@ export function calculateCharterEstimate(payload: unknown): Estimate {
   const passengers = typeof raw.passengers === "number" ? raw.passengers
     : typeof raw.passengers === "string" && /^\d{1,3}$/.test(raw.passengers.trim()) ? Number(raw.passengers) : NaN;
   if (!Number.isInteger(passengers) || passengers < 1 || passengers > 100) return unavailable(segments, "Enter a passenger count to estimate the trip total.");
-  if (passengers > 16) return unavailable(segments, "Request a group charter quote for this passenger count.");
+  if (passengers > 16) return unavailable(segments, "Private jet estimates are available for up to 16 passengers.");
   const totalFor = (key: AircraftCategory) => {
     const profile = planning[key];
     const total = segments.reduce((sum, segment) => {

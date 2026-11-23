@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "EXJET",
     short_name: "EXJET",
-    description: "Global private aircraft charter access, on demand.",
+    description: "Private jet charter and empty leg flights.",
     start_url: "/",
     display: "standalone",
     background_color: "#f4f4f4",

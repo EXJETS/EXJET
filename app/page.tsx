@@ -19,9 +19,7 @@ const heroSlides: readonly HeroSlide[] = [
 ];
 
 const charterOptions = [
-  {icon:"aircraft", name:"Passenger charter", href:"/charter/"},
-  {icon:"group", name:"Group charter", href:"/group-charter/"},
-  {icon:"cargo", name:"Cargo charter", href:"/cargo/"},
+  {icon:"aircraft", name:"Private jet charter", href:"/charter/"},
   {icon:"empty", name:"Empty legs", href:"/empty-legs/"},
 ] satisfies {icon:CharterIconName;name:string;href:string}[];
 

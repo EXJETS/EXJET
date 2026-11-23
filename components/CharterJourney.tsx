@@ -4,8 +4,6 @@ import styles from "./CharterJourney.module.css";
 
 const journeys = [
   { id: "private", href: "/charter/", title: "Private jets" },
-  { id: "group", href: "/group-charter/", title: "Group travel" },
-  { id: "cargo", href: "/cargo/", title: "Air cargo" },
   { id: "empty", href: "/empty-legs/", title: "Empty legs" },
 ] as const;
 

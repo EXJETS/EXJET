@@ -1,6 +1,6 @@
 import { ButtonLink } from "@/components/ButtonLink";
 import { Suspense } from "react";
-import { ArrowUpRightIcon, AirplaneTakeoffIcon, CubeIcon, EnvelopeSimpleIcon } from "@phosphor-icons/react/dist/ssr";
+import { ArrowUpRightIcon, AirplaneTakeoffIcon, EnvelopeSimpleIcon } from "@phosphor-icons/react/dist/ssr";
 import { ContactPreference } from "@/components/ContactPreference";
 import { aircraft } from "@/data/aircraft";
 import { aircraftCategories } from "@/data/aircraftCategories";
@@ -14,8 +14,7 @@ import styles from "./contact.module.css";
 
 export const metadata = buildMetadata("/contact");
 const desks = [
-  { title:"Passenger charter", copy:"Private flights, group travel and empty legs.", email:siteConfig.email.charter, Icon:AirplaneTakeoffIcon },
-  { title:"Cargo charter", copy:"Time-sensitive shipments and specialized air transport.", email:siteConfig.email.cargo, Icon:CubeIcon },
+  { title:"Passenger charter", copy:"Private jet charter and empty leg flights.", email:siteConfig.email.charter, Icon:AirplaneTakeoffIcon },
   { title:"General inquiries", copy:"Questions about EXJET or help finding the right contact.", email:siteConfig.email.general, Icon:EnvelopeSimpleIcon },
 ];
 

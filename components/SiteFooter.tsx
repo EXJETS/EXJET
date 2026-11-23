@@ -5,7 +5,7 @@ import { CaretDownIcon } from "@phosphor-icons/react/dist/ssr";
 import { BrokerNotice } from "@/components/BrokerNotice";
 
 const groups = [
-  { title: "Charter", links: [["Plan a flight", "/charter"], ["Group charter", "/group-charter"], ["Cargo charter", "/cargo"], ["Empty legs", "/empty-legs"]] },
+  { title: "Charter", links: [["Plan a flight", "/charter"], ["Empty legs", "/empty-legs"]] },
   { title: "Explore", links: [["Aircraft", "/aircraft"], ["Routes", "/routes"], ["Charter pricing", "/pricing"], ["Travel Journal", "/travel-journal"]] },
   { title: "EXJET", links: [["About", "/about"], ["Safety", "/safety"], ["Help and contact", "/contact"], ["Client account", "/account"]] },
 ];
