@@ -1,100 +1,98 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ArrowRightIcon, ArrowUpRightIcon, GlobeHemisphereWestIcon, PathIcon, ReceiptIcon } from "@phosphor-icons/react/dist/ssr";
 import { HomeAircraftEditorial } from "@/components/HomeAircraftEditorial";
 import { QuoteForm } from "@/components/QuoteForm";
 import { BrokerNotice } from "@/components/BrokerNotice";
 import { StructuredData } from "@/components/StructuredData";
+import { CharterCoverageGraphic, CharterIcon, type CharterIconName } from "@/components/CharterVisuals";
 import { buildMetadata } from "@/data/seo";
 import { localBusinessJsonLd } from "@/data/site";
 import { charterCabinCategories, charterCapacityNote } from "@/data/charter-planning-rates";
 import styles from "./landing.module.css";
+
 export const metadata = buildMetadata("/");
-const audiences = [
- ["Executive & corporate travel", "/corporate-travel/fortune-500", "Keep meetings and multi-city trips on your schedule."],
- ["Family offices & private clients", "/family-office-private-aviation", "Plan around your family, guests and preferred airports."],
- ["Sports, entertainment & groups", "/group-charter", "Coordinate passenger counts, equipment and tight travel windows."],
- ["Time-sensitive freight", "/cargo", "Plan your cargo route, timetable and handling requirements."],
+
+const charterOptions = [
+  {icon:"aircraft", name:"Passenger charter", href:"/charter/", info:"A private aircraft for you and your guests."},
+  {icon:"group", name:"Group charter", href:"/group-charter/", info:"Coordinate larger groups on one itinerary."},
+  {icon:"cargo", name:"Cargo charter", href:"/cargo/", info:"Dedicated lift for freight that cannot wait."},
+  {icon:"empty", name:"Empty legs", href:"/empty-legs/", info:"Repositioning flights for flexible travel."},
+] satisfies {icon:CharterIconName;name:string;href:string;info:string}[];
+
+const routes = [
+  {name:"Dallas to Aspen", detail:"DAL → ASE", href:"/routes/dallas-to-aspen/"},
+  {name:"Dallas to New York", detail:"DAL → TEB", href:"/routes/dallas-to-new-york/"},
+  {name:"Dallas to Miami", detail:"DAL → OPF", href:"/routes/dallas-to-miami/"},
 ];
-const featuredRoutes = [
-  ["Dallas", "New York", "/routes/dallas-to-new-york/", "M11 46 C35 15 90 24 131 14", 14],
-  ["Dallas", "Miami", "/routes/dallas-to-miami/", "M11 46 C48 3 94 18 131 41", 41],
-  ["Dallas", "Aspen", "/routes/dallas-to-aspen/", "M11 46 C50 45 83 1 131 19", 19],
-] as const;
+
+const steps = [
+  {icon:"route", name:"Build your itinerary", info:"Choose your airports, dates, passenger count, and cabin. Add a return or more stops when you need them."},
+  {icon:"quote", name:"See the trip estimate", info:"Review the estimated flight total and an illustrated route map before sharing your contact details."},
+  {icon:"check", name:"Confirm the details", info:"Review the written quote, available aircraft, and operating carrier before you book."},
+] satisfies {icon:CharterIconName;name:string;info:string}[];
 
 export default function Home() {
  return <div className={styles.landing}>
- <StructuredData data={localBusinessJsonLd()} />
- <section className={styles.hero} aria-labelledby="home-title">
-  <div className={styles.heroCopy}>
-   <p className={styles.eyebrow}><GlobeHemisphereWestIcon size={16} aria-hidden="true" /> EXJET / Global Access. On-Demand.</p>
-   <h1 id="home-title">Private jet charter.</h1>
-   <p>One way, round trip or several stops. Start with your itinerary and get a written quote for the whole trip.</p>
-  </div>
-  <section id="plan-your-charter" className={styles.quotePanel} aria-labelledby="home-quote-title">
-   <h2 id="home-quote-title"><PathIcon size={21} aria-hidden="true" /> Request a charter quote</h2>
-   <QuoteForm compact />
-   <BrokerNotice className={styles.heroNotice} />
+  <StructuredData data={localBusinessJsonLd()} />
+  <section className={styles.hero} aria-labelledby="home-title">
+   <figure className={styles.heroVisual}>
+    <Image className={styles.heroPhoto} src="/images/manufacturers/global-8000-clouds.webp" alt="Bombardier Global 8000 banking above the clouds" fill sizes="100vw" preload />
+    <figcaption>Pictured: Bombardier Global 8000</figcaption>
+   </figure>
+   <div className={styles.heroCopy}>
+    <h1 id="home-title">Private jet charter</h1>
+    <p>Choose your route. See your trip estimate.</p>
+    <div className={styles.heroButtons}>
+     <a className={styles.blueButton} href="#plan-your-charter">Plan a flight <CharterIcon name="arrow" /></a>
+     <Link className={styles.whiteButton} href="/aircraft/">Explore aircraft</Link>
+    </div>
+   </div>
   </section>
-  <figure className={styles.heroVisual}>
-   <Image className={styles.heroPhoto} src="/images/manufacturers/global-8000-clouds.webp" alt="Bombardier Global 8000 banking above the clouds" fill sizes="(min-width: 860px) 55vw, 100vw" preload />
-   <figcaption>Bombardier Global 8000</figcaption>
-  </figure>
- </section>
- <section className={styles.charterBoard} aria-labelledby="home-routes-title">
-  <div className={styles.routePanel}>
-   <header>
-    <p className={styles.eyebrow}>01 / Explore routes</p>
-    <h2 id="home-routes-title">Where to from Dallas?</h2>
-   </header>
-   <ul className={styles.routeList}>
-    {featuredRoutes.map(([from, to, href, curve, endpoint]) => <li key={href}>
-     <Link href={href}>
-      <svg className={styles.routeGraphic} viewBox="0 0 142 62" fill="none" aria-hidden="true" focusable="false">
-       <path d="M0 15H142M0 31H142M0 47H142M16 0V62M44 0V62M72 0V62M100 0V62M128 0V62" stroke="currentColor" opacity=".15" />
-       <path d={curve} stroke="currentColor" strokeWidth="1.5" />
-       <circle cx="11" cy="46" r="3.5" fill="currentColor" /><circle cx="131" cy={endpoint} r="3.5" fill="currentColor" />
-      </svg>
-      <span className={styles.routeName}>{from} <ArrowRightIcon size={15} aria-hidden="true" /><span className={styles.visuallyHidden}>to</span> {to}</span>
-      <ArrowUpRightIcon size={17} aria-hidden="true" />
-     </Link>
-    </li>)}
-   </ul>
-   <nav className={styles.routeNav} aria-label="More charter options">
-    <Link className={styles.textLink} href="/routes/">All routes <ArrowUpRightIcon size={15} aria-hidden="true" /></Link>
-    <Link className={styles.textLink} href="/empty-legs/">Empty legs <ArrowUpRightIcon size={15} aria-hidden="true" /></Link>
-    <Link className={styles.textLink} href="/private-jet-charter/">U.S. charter <ArrowUpRightIcon size={15} aria-hidden="true" /></Link>
-   </nav>
-  </div>
-  <div className={styles.pricePanel}>
-   <ReceiptIcon size={28} aria-hidden="true" />
-   <div>
-    <p className={styles.eyebrow}>02 / What you pay</p>
-    <h2>See the full trip price.</h2>
-    <p>Where applicable, your written proposal separates the net operator quote from our service fee and shows applicable taxes and the full trip total.</p>
+
+  <section id="plan-your-charter" className={styles.planner} aria-labelledby="home-quote-title">
+   <div className={styles.plannerInner}>
+    <header className={styles.plannerIntro}>
+     <p className={styles.kicker}>On demand charter</p>
+     <h2 id="home-quote-title">Plan your flight.</h2>
+     <p>One way, round trip or multiple stops. Get a route map and an estimated flight total before you enter your contact details.</p>
+     <Link href="/pricing/" className={styles.inlineLink}>How charter pricing works <CharterIcon name="arrow" /></Link>
+    </header>
+    <div className={styles.quotePanel}><QuoteForm compact /><BrokerNotice className={styles.quoteNotice} /></div>
    </div>
-   <div className={styles.hourlyRates}>
-    <h3>Aircraft categories</h3>
-    <dl>{charterCabinCategories.map(([category, seats]) => (
-      <div key={category}><dt>{category}</dt><dd>{seats} <span>seats</span></dd></div>
-    ))}</dl>
-    <p>{charterCapacityNote}</p>
+  </section>
+
+  <section className={styles.optionSection} aria-labelledby="charter-options">
+   <header className={styles.sectionIntro}><h2 id="charter-options">Choose how you fly.</h2></header>
+   <div className={styles.optionCards}>{charterOptions.map(option => <Link key={option.href} href={option.href}>
+    <CharterIcon className={styles.featureIcon} name={option.icon} /><h3>{option.name}</h3><p>{option.info}</p><CharterIcon className={styles.optionArrow} name="arrow" />
+   </Link>)}</div>
+  </section>
+
+  <section className={styles.collectionSection} aria-labelledby="home-aircraft">
+   <header className={styles.sectionIntro}><div><p className={styles.kicker}>Aircraft</p><h2 id="home-aircraft">Find the right cabin.</h2></div><Link className={styles.inlineLink} href="/aircraft/">View all aircraft <CharterIcon name="arrow" /></Link></header>
+   <div className={styles.cabinRow} aria-label="Charter cabin categories">{charterCabinCategories.map(([category, seats]) => <div key={category}><span>{category}</span><strong>{seats} seats</strong></div>)}</div>
+   <p className={styles.caption}>{charterCapacityNote}</p>
+   <HomeAircraftEditorial />
+  </section>
+
+  <section className={styles.coverage} aria-labelledby="home-routes-title">
+   <div className={styles.coverageInner}>
+    <div><p className={styles.kicker}>Where to fly</p><h2 id="home-routes-title">Private charter across the U.S.</h2><p>Start with a popular route or build your own itinerary.</p>
+     <ul>{routes.map(route => <li key={route.href}><Link href={route.href}><span>{route.name}<small>{route.detail}</small></span><CharterIcon name="arrow" /></Link></li>)}</ul>
+     <Link className={styles.inlineLink} href="/routes/">Explore all routes <CharterIcon name="arrow" /></Link>
+    </div>
+    <figure><CharterCoverageGraphic className={styles.mapGraphic} /><figcaption>Illustrative routes · Map data: Natural Earth</figcaption></figure>
    </div>
-   <Link className={styles.textLink} href="/pricing/">How pricing works <ArrowUpRightIcon size={17} aria-hidden="true" /></Link>
-  </div>
- </section>
- <section className={styles.travelOptions} aria-labelledby="charter-options">
-  <header><p className={styles.eyebrow}>Charter, and only charter</p><h2 id="charter-options">Choose how you need to fly.</h2></header>
-  <div>{[
-    ["Passenger charter", "A private aircraft for your itinerary.", "/charter/"],
-    ["Group charter", "One point of contact for larger movements.", "/group-charter/"],
-    ["Cargo charter", "Aircraft capacity planned around your shipment.", "/cargo/"],
-    ["Empty legs", "Repositioning opportunities for flexible trips.", "/empty-legs/"],
-  ].map(([label, copy, href]) => <Link href={href} key={href}><h3>{label}</h3><p>{copy}</p><ArrowUpRightIcon size={20} aria-hidden="true" /></Link>)}</div>
- </section>
- <section className={styles.collection}><header className={styles.sectionHeading}><p className={styles.eyebrow}>04 / Aircraft</p><h2>Find your perspective.</h2><Link className={styles.textLink} href="/aircraft">Explore the collection <ArrowUpRightIcon size={18} /></Link></header><HomeAircraftEditorial /></section>
- <section className={styles.audiences}><div><p className={styles.eyebrow}>06 / Your world</p><h2>Personal by nature.<br />Global by design.</h2><p>Different priorities. One dedicated point of contact.</p></div><div className={styles.audienceList}>{audiences.map(([title,href,copy],i)=><Link key={href} href={href}><span className={styles.number}>0{i+1}</span><div><h3>{title}</h3><p>{copy}</p></div><ArrowUpRightIcon size={23} aria-hidden="true" /></Link>)}</div></section>
- <section className={styles.journal}><header className={styles.sectionHeading}><p className={styles.eyebrow}>The EXJET journal</p><h2>Before you go.</h2><Link className={styles.textLink} href="/travel-journal">Explore the journal <ArrowUpRightIcon size={18} /></Link></header><div className={styles.journalGrid}>{[["Aircraft knowledge","Know your aircraft.","Cabins, capabilities and the details that matter.","/aircraft-guides"],["Journey planning","A different way there.","Routes, airports and the possibilities between them.","/routes"],["Charter insight","The complete picture.","Understand the full quote before you fly.","/pricing"]].map(([k,t,c,h],i)=><Link href={h} key={h}><span>0{i+1} / {k}</span><h3>{t}</h3><p>{c}</p><ArrowUpRightIcon size={24} /></Link>)}</div></section>
- <section className={styles.contact}><p className={styles.eyebrow}>Your next chapter</p><h2>Where will it take you?</h2><div><Link className={styles.pill} href="/charter/">Request a quote <ArrowUpRightIcon size={18} /></Link><Link className={styles.pill} href="/contact">Speak with EXJET <ArrowUpRightIcon size={18} /></Link></div><BrokerNotice /></section>
+  </section>
+
+  <section className={styles.process} aria-labelledby="home-process">
+   <header className={styles.sectionIntro}><div><p className={styles.kicker}>How it works</p><h2 id="home-process">From route to quote.</h2></div><Link className={styles.inlineLink} href="/how-it-works/">What to expect <CharterIcon name="arrow" /></Link></header>
+   <ol>{steps.map(step => <li key={step.name}><CharterIcon className={styles.featureIcon} name={step.icon} /><h3>{step.name}</h3><p>{step.info}</p></li>)}</ol>
+  </section>
+
+  <section className={styles.closeout} aria-labelledby="home-next">
+   <div><p className={styles.kicker}>EXJET charter desk</p><h2 id="home-next">Where are you headed?</h2></div>
+   <div className={styles.heroButtons}><a className={styles.blueButton} href="#plan-your-charter">Plan a flight <CharterIcon name="arrow" /></a><Link className={styles.whiteButton} href="/contact/">Contact EXJET</Link></div>
+  </section>
  </div>;
 }

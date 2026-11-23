@@ -4,18 +4,18 @@
 .ex-header,
 .ex-footer {
   --public-paper: #fff;
-  --public-platinum: #f2f3f5;
-  --public-silver: #e7e9ec;
-  --public-line: #d5d8dd;
+  --public-platinum: #f3f6fa;
+  --public-silver: #e9f1fd;
+  --public-line: #d3dbea;
   --public-field-line: #959da8;
   --public-ink: #191c20;
   --public-muted: #505862;
-  --public-graphite: #1f2329;
-  --public-night-line: #494e56;
-  --public-night-copy: #d2d7de;
-  --public-action: #2852c5;
-  --public-action-hover: #1c3da0;
-  --public-action-tint: #edf2ff;
+  --public-graphite: #0a1f49;
+  --public-night-line: #405780;
+  --public-night-copy: #dbe5f6;
+  --public-action: #2857c8;
+  --public-action-hover: #1743a6;
+  --public-action-tint: #edf4ff;
   --public-focus-dark: #a9c0ff;
   --public-radius: 6px;
   --public-font: system-ui, -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
