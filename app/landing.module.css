@@ -248,3 +248,27 @@
 .travelOptions svg { grid-column: 2; grid-row: 1; color: #2852c5; }
 @media(max-width:800px) { .travelOptions>div { grid-template-columns: repeat(2,minmax(0,1fr)); } }
 @media(max-width:420px) { .travelOptions a { padding: 12px; } }
+
+/* Place the original manufacturer photo beside the trip planner instead of underneath it. */
+.hero {
+  grid-template-columns: minmax(0, 1fr);
+  background: #181d24;
+  padding-top: 0;
+  color: #fff;
+}
+.heroCopy { justify-self: start; text-align: left; padding: 34px var(--gutter) 0; }
+.heroCopy .eyebrow { justify-content: start; color: #c4d0dd; }
+.heroCopy > p:last-child { margin-inline: 0; color: #dce3eb; }
+.quotePanel { margin: 22px auto 22px; color: #181b20; border: 0; border-radius: 7px; }
+.heroVisual { height: clamp(210px, 52vw, 440px); margin: 0; max-width: none; }
+.heroPhoto { object-position: center 54%; }
+.heroVisual figcaption { inset: auto 18px 18px auto; }
+@media (min-width: 860px) {
+  .hero { grid-template-columns: minmax(0, 9fr) minmax(0, 11fr); }
+  .heroCopy { grid-area: 1 / 1; padding: clamp(36px,5vw,80px) var(--gutter) 0; align-self: end; }
+  .landing .heroCopy h1 { font-size: clamp(40px, 5vw, 83px); }
+  .quotePanel { grid-area: 2 / 1; align-self: start; margin: 26px var(--gutter) 42px; }
+  .heroVisual { grid-area: 1 / 2 / 3 / 3; height: auto; min-height: 520px; }
+  .heroPhoto { object-position: 56% 54%; }
+  .quotePanel :global(.quote-form--mission .quote-form__row:first-of-type) { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}

@@ -37,7 +37,7 @@ export default function Home() {
    <BrokerNotice className={styles.heroNotice} />
   </section>
   <figure className={styles.heroVisual}>
-   <Image className={styles.heroPhoto} src="/images/manufacturers/global-8000-clouds.webp" alt="Bombardier Global 8000 banking above the clouds" fill sizes="(min-width: 1440px) 1440px, 100vw" preload />
+   <Image className={styles.heroPhoto} src="/images/manufacturers/global-8000-clouds.webp" alt="Bombardier Global 8000 banking above the clouds" fill sizes="(min-width: 860px) 55vw, 100vw" preload />
    <figcaption>Bombardier Global 8000</figcaption>
   </figure>
  </section>
