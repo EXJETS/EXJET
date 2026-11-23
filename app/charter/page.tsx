@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { BrokerNotice } from "@/components/BrokerNotice";
 import { QuoteForm } from "@/components/QuoteForm";
 import { buildMetadata } from "@/data/seo";
 import { siteConfig } from "@/data/site";
@@ -21,7 +22,8 @@ export default function CharterPage() {
         <p>Tell us where you need to be and when. We’ll help you compare options for the entire trip.</p>
       </header>
       <div className={styles.workspace}>
-        <section id="charter-request" className={styles.search} aria-label="Aircraft search and quote request">
+        <section id="charter-request" className={styles.search} aria-label="Direct EXJET quote request">
+          <BrokerNotice prominent />
           <QuoteForm />
         </section>
         <aside className={styles.advisor} aria-labelledby="charter-advisor">

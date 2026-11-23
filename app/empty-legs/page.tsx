@@ -1,3 +1,4 @@
+import { BrokerNotice } from "@/components/BrokerNotice";
 import { ContentCollection } from "@/components/EditorialPage";
 import { EmptyLegBoard } from "@/components/EmptyLegBoard";
 import { PageHero } from "@/components/PageHero";
@@ -25,6 +26,7 @@ export default function EmptyLegsPage() {
       <section className="empty-leg-board-section section" aria-labelledby="empty-leg-search-title">
         <div className="shell">
           <h2 id="empty-leg-search-title" className="sr-only">Search empty legs</h2>
+          <BrokerNotice prominent />
           <EmptyLegBoard items={emptyLegPreview} />
         </div>
       </section>

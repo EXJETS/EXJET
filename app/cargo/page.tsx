@@ -1,3 +1,4 @@
+import { BrokerNotice } from "@/components/BrokerNotice";
 import { ContentCollection } from "@/components/EditorialPage";
 import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
@@ -66,6 +67,7 @@ export default function CargoPage() {
       <section className="section page-form-section cargo-form-section" id="cargo-request">
         <div className="shell">
           <SectionIntro eyebrow="Request cargo capacity" title="Start with the shipment." copy="Provide the route, timing, dimensions, weight, and handling requirements. An EXJET advisor will assess the mission with qualified cargo operators." />
+          <BrokerNotice prominent />
           <QuoteForm mode="cargo" />
           <p className="form-disclaimer">Cargo acceptance, routing, permits, handling, and aircraft availability are subject to operator review and applicable regulations. EXJET does not guarantee capacity until confirmed by the operating carrier.</p>
         </div>

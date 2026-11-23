@@ -1,19 +1,27 @@
 import { avinodeStatus, searchAvinodeAirports } from "@/integration/avinode/client";
+import guides from "@/data/airports-guide.json";
 
 export const runtime = "nodejs";
 export const dynamic = "force-dynamic";
 
+const headers = { "Cache-Control": "private, no-store" };
+const directory = guides.map(({ icao, iata, name, city }) => ({ icao, iata, name, city }));
+
 export async function GET(request: Request) {
-  const status = avinodeStatus();
   const filter = new URL(request.url).searchParams.get("q")?.trim().slice(0, 80) ?? "";
-  if (!status.enabled || filter.length < 2) {
-    return Response.json({ items: [], enabled: status.enabled }, { headers: { "Cache-Control": "no-store" } });
+  if (filter.length < 2) return Response.json({ items: [], enabled: true }, { headers });
+
+  if (avinodeStatus().enabled) {
+    try {
+      const items = await searchAvinodeAirports(filter);
+      if (items.length) return Response.json({ items, enabled: true }, { headers });
+    } catch { /* Keep airport entry usable when the remote directory is unavailable. */ }
   }
 
-  try {
-    const items = await searchAvinodeAirports(filter);
-    return Response.json({ items, enabled: true }, { headers: { "Cache-Control": "private, no-store" } });
-  } catch {
-    return Response.json({ items: [], enabled: true }, { status: 502, headers: { "Cache-Control": "no-store" } });
-  }
+  const query = filter.toLowerCase();
+  const items = directory
+    .filter(item => [item.icao, item.iata, item.name, item.city].some(value => value?.toLowerCase().includes(query)))
+    .sort((a, b) => Number([b.icao.toLowerCase(), b.iata?.toLowerCase()].includes(query)) - Number([a.icao.toLowerCase(), a.iata?.toLowerCase()].includes(query)))
+    .slice(0, 8);
+  return Response.json({ items, enabled: true }, { headers });
 }

@@ -1,3 +1,5 @@
+import { QuoteForm } from "@/components/QuoteForm";
+import { BrokerNotice } from "@/components/BrokerNotice";
 import { ContentCollection } from "@/components/EditorialPage";
 import { ButtonLink } from "@/components/ButtonLink";
 import { PageHero } from "@/components/PageHero";
@@ -38,8 +40,10 @@ export default function GroupCharterPage() {
             title="One brief. A coordinated journey."
             copy="Share your route, dates and passenger count. We’ll help plan aircraft capacity, baggage, equipment and transfers around your schedule."
           />
-          <div className="ex-intro-actions"><ButtonLink href={`mailto:${siteConfig.email.charter}?subject=Group%20charter%20enquiry`}>Discuss your group</ButtonLink><ButtonLink href="/charter" variant="outline">Find a flight</ButtonLink></div>
-          <p className="specification-note">For multiple aircraft or a larger group than the search supports, <a href={`mailto:${siteConfig.email.charter}`}>contact EXJET with your group brief</a>.</p>
+          <div className="ex-intro-actions"><ButtonLink href={`mailto:${siteConfig.email.charter}?subject=Group%20charter%20enquiry`}>Discuss your group</ButtonLink></div>
+          <BrokerNotice prominent />
+          <QuoteForm mode="group" />
+          <p className="specification-note">For multiple aircraft or special requirements, <a href={`mailto:${siteConfig.email.charter}`}>contact EXJET with your group brief</a>.</p>
         </div>
       </section>
 

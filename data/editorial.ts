@@ -1,3 +1,4 @@
+import { charterPlanningRates, charterPlanningRateNote, formatCharterPlanningRate } from "./charter-planning-rates";
 import articleData from "./articles.json";
 import aircraftArticleData from "./aircraft-articles.json";
 import legalData from "./legal.json";
@@ -62,7 +63,21 @@ const routes: ContentPage[] = routeGuides.map(item=>({
   codes:[item.originAirport,item.destinationAirport].map(code=>airportGuides.find(airport=>airport.slug===code)?.iata || code.toUpperCase()),
   related:[...airportMarketPaths([item.originAirport,item.destinationAirport]),`/airports/${item.originAirport}`,`/airports/${item.destinationAirport}`,"/pricing"],
 }));
-const services = serviceData as ContentPage[];
+const services = (serviceData as ContentPage[]).map(page => page.path === "/pricing" ? {
+  ...page,
+  updated: "2026-11-23",
+  sections: [{
+    heading: "EXJET hourly charter planning rates",
+    paragraphs: [charterPlanningRateNote],
+    table: {
+      caption: "EXJET planning rates by aircraft category",
+      headers: ["Aircraft category", "USD per hour"],
+      rows: charterPlanningRates.map(([category, hourly]) => [category, formatCharterPlanningRate(hourly)]),
+    },
+  }, ...page.sections.map(section => section.heading === "Hourly reference inputs by aircraft category"
+    ? { ...section, heading: "Published third-party inputs used in the examples below" }
+    : section)],
+} : page);
 const aircraftArticles = aircraftArticleData as ContentPage[];
 const travelArticles = travelData as ContentPage[];
 const allArticles = [...articles,...aircraftArticles,...additional.filter(page=>page.kind==="article")];
