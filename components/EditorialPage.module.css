@@ -176,3 +176,13 @@
   .rail, .topCard { display: none; }
   .heroGrid, .withRail { display: block; }
 }
+
+/* One clear heading and primary action; route details continue below the opening band. */
+.masthead { background:var(--public-action-tint, #edf4ff); }
+.editorial[data-page-kind="legal"] .masthead,
+.editorial[data-page-kind="article"] .masthead { background:var(--public-platinum, #f3f6fa); }
+.topCard { border:0; background:transparent; box-shadow:none; padding:0; }
+.topCard h2 { font-size:.95rem; }
+.actions :global(.button) { width:auto; min-width:min(180px,100%); }
+.disclosure :global(.ex-broker-disclosure) { border:0; background:transparent; padding:3px 0; }
+@media (max-width:739px) { .heroGrid { gap:14px; } .topCard { border-top:1px solid var(--editorial-line); padding-top:12px; } }

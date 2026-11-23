@@ -17,15 +17,15 @@ export default function AircraftPage() {
       <header className={`${styles.wrap} ${styles.mast}`}>
         <p className={styles.label}>Charter aircraft directory</p>
         <h1>Explore business aircraft</h1>
-        <p>Browse cabin classes and compare individual aircraft. Your advisor confirms the exact aircraft, configuration and availability for your route.</p>
+        <p>Compare cabin classes and aircraft. Availability and seating are confirmed with your quote.</p>
       </header>
       <AircraftExplorer items={aircraft} references={Object.fromEntries(aircraft.map(item => [item.slug, getAircraftComparison(item.slug)]))} />
       <section className="aircraft-category-index section">
         <div className="shell">
           <SectionIntro
             eyebrow="Browse by category"
-            title="More choice, without turning the trip into a catalog search."
-            copy="These customer-facing categories simplify the aircraft landscape. Actual availability, model, configuration, range, baggage capacity, and amenities are confirmed with every charter option."
+            title="Charter aircraft categories"
+            copy="Compare seating and cabin space."
           />
           <nav className="aircraft-category-jump" aria-label="Aircraft categories">
             {aircraftCategories.map((item, index) => (
@@ -43,9 +43,9 @@ export default function AircraftPage() {
       <section className="aircraft-category-advisor section section--dark">
         <div className="shell split-copy">
           <p className="eyebrow eyebrow--light"><span />Not sure where to begin?</p>
-          <h2>Give us the mission. We will narrow the field.</h2>
+          <h2>Find the right aircraft</h2>
           <div>
-            <p>Route, passenger count, baggage, airport constraints, schedule, and cabin priorities all shape the right recommendation. Your EXJET advisor can compare categories and individual aircraft before presenting the strongest available options.</p>
+            <p>Share your route and passenger count with an advisor.</p>
             <ButtonLink href="/contact" variant="light">Ask an advisor</ButtonLink>
           </div>
         </div>

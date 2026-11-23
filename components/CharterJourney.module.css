@@ -129,3 +129,11 @@
   .panel { border-radius: 14px; }
 }
 @media (max-width: 346px) { .journeys { grid-template-columns: repeat(2, minmax(0,1fr)); } }
+
+.journey { background:var(--public-action-tint,#edf4ff); }
+.panel { border-color:var(--public-line,#d3dbea); border-radius:10px; box-shadow:none; }
+.journeys { border-color:var(--public-line,#d3dbea); border-radius:8px; }
+.journeys a { border-radius:5px; }
+.journeys a[aria-current="page"] { background:var(--public-action,#2857c8); }
+.advisor { background:var(--public-graphite,#0a1f49); border-radius:10px; }
+.advisor li { border-color:var(--public-night-line,#405780); }

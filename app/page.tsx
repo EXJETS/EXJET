@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import { HomeHeroSlides, type HeroSlide } from "@/components/HomeHeroSlides";
 import { HomeAircraftEditorial } from "@/components/HomeAircraftEditorial";
 import { QuoteForm } from "@/components/QuoteForm";
 import { BrokerNotice } from "@/components/BrokerNotice";
@@ -11,6 +11,12 @@ import { charterCabinCategories, charterCapacityNote } from "@/data/charter-plan
 import styles from "./landing.module.css";
 
 export const metadata = buildMetadata("/");
+
+const heroSlides: readonly HeroSlide[] = [
+  { src: "/images/manufacturers/global-8000-clouds.webp", label: "Bombardier Global 8000", description: "Bombardier Global 8000 flying above the clouds", href: "/aircraft/", position: "center 50%" },
+  { src: "/images/manufacturers/longitude-mission.jpg", label: "Citation Longitude", description: "Cessna Citation Longitude in flight", href: "/aircraft/citation-longitude/", position: "center 47%" },
+  { src: "/images/manufacturers/falcon-900lx-coast.jpg", label: "Falcon 900LX", description: "Dassault Falcon 900LX flying along the coast", href: "/aircraft/falcon-900/", position: "center 52%" },
+];
 
 const charterOptions = [
   {icon:"aircraft", name:"Passenger charter", href:"/charter/"},
@@ -29,17 +35,7 @@ export default function Home() {
  return <div className={styles.landing}>
   <StructuredData data={localBusinessJsonLd()} />
   <section className={styles.hero} aria-labelledby="home-title">
-   <figure className={styles.heroVisual}>
-    <Image className={styles.heroPhoto} src="/images/manufacturers/global-8000-clouds.webp" alt="Bombardier Global 8000 banking above the clouds" fill sizes="100vw" preload />
-    <figcaption>Pictured: Bombardier Global 8000</figcaption>
-   </figure>
-   <div className={styles.heroCopy}>
-    <h1 id="home-title">Private jet charter</h1>
-    <div className={styles.heroButtons}>
-     <a className={styles.blueButton} href="#plan-your-charter">Plan a flight <CharterIcon name="arrow" /></a>
-     <Link className={styles.whiteButton} href="/aircraft/">Explore aircraft</Link>
-    </div>
-   </div>
+   <HomeHeroSlides slides={heroSlides} />
   </section>
 
   <section id="plan-your-charter" className={styles.planner} aria-labelledby="home-quote-title">

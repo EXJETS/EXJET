@@ -1,0 +1,30 @@
+.gallery { position:absolute; inset:0; z-index:0; touch-action:pan-y pinch-zoom; }
+.visual { position:absolute; inset:0; margin:0; }
+.photo { object-fit:cover; }
+.shade { position:absolute; inset:0; pointer-events:none; background:linear-gradient(180deg,#09182dbe 0%,#09182d65 28%,transparent 61%,#09182d85 100%); }
+.controls { position:absolute; inset:auto auto 10px 50%; transform:translateX(-50%); display:flex; align-items:center; padding:0 4px; border-radius:28px; background:#0b172d85; color:#fff; }
+.controls button { width:44px; height:44px; padding:0; border:0; border-radius:50%; color:inherit; background:transparent; cursor:pointer; }
+.controls button:hover { background:#ffffff36; }
+.controls button:focus-visible { outline:2px solid #fff; outline-offset:-2px; }
+.dot span { display:block; width:8px; height:8px; margin:auto; border-radius:50%; background:#ffffff75; }
+.dot[aria-pressed=true] span { background:#fff; }
+.arrow { font:400 25px/1 system-ui,sans-serif; }
+.sr { position:absolute; width:1px; height:1px; padding:0; overflow:hidden; clip-path:inset(50%); white-space:nowrap; }
+
+.copy { position:absolute; inset:0 0 auto; text-align:center; padding:clamp(42px,7vh,78px) max(18px,5vw) 0; pointer-events:none; color:#fff; }
+.copy h1 { color:#fff; margin:0; font-size:clamp(2.3rem,6.25vw,5.25rem); line-height:1.04; text-wrap:balance; text-shadow:0 2px 12px #0b172d45; }
+.actions { display:flex; justify-content:center; gap:8px; margin:clamp(15px,2.3vw,24px) auto 0; }
+.actions a { pointer-events:auto; display:inline-flex; align-items:center; justify-content:center; min-height:44px; width:min(100%,185px); border-radius:5px; padding:8px 10px; text-decoration:none; font-size:.875rem; line-height:1.2; font-weight:650; white-space:nowrap; }
+.primary { background:#2857c8; color:#fff; }
+.primary:hover { background:#1743a6; color:#fff; }
+.secondary { background:#fff; color:#171a20; }
+.secondary:hover { background:#e8eef6; color:#171a20; }
+@media (max-width:760px) {
+  .copy { padding-top:calc(env(safe-area-inset-top) + 86px); }
+  .visual { inset:0; }
+  .photo { object-fit:cover; object-position:center !important; }
+  .shade { background:linear-gradient(180deg,#071322ce 0%,#0713229c 25%,#07132218 58%,#07132291 100%); }
+  .controls { bottom:8px; }
+  .actions { width:100%; max-width:390px; }
+  .actions a { flex:1 1 0; min-width:0; }
+}

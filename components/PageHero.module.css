@@ -24,3 +24,10 @@
   .visual { min-height: 0; aspect-ratio: 2.1; }
   .visual img { object-position: var(--mobile-image-position); }
 }
+
+.hero { --hero-panel:#edf4ff; --hero-line:#d3dbea; background:#edf4ff; }
+.dark { --hero-panel:#0e2b61; --hero-line:#405780; background:#0a1f49; }
+.actions { padding:0; border:0; background:transparent; }
+.actions nav { display:flex; flex-wrap:wrap; }
+.actions nav a { background:#fff; }
+.actions nav a:first-child { background:var(--public-action,#2857c8); }
