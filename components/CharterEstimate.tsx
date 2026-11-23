@@ -5,7 +5,8 @@ import styles from "./CharterEstimate.module.css";
 
 type Endpoint = { code: string; label: string; lat: number; lon: number };
 type Segment = { from: Endpoint; to: Endpoint };
-type Estimate = { estimateUsd: number | null; segments: Segment[] };
+type Estimate = { estimateUsd: number | null; segments: Segment[]; cabinTotals?: Record<string, number> };
+type CabinOption = { value: string; label: string; seats: number };
 type EstimateLeg = { departure: string; destination: string; departureIcao: string; destinationIcao: string; date: string; time: string };
 
 function isEndpoint(value: unknown): value is Endpoint {
@@ -22,6 +23,7 @@ function parseEstimate(body: unknown): Estimate | null {
   if (value.currency !== "USD" || !Array.isArray(value.segments)) return null;
   return {
     estimateUsd: typeof value.estimateUsd === "number" && Number.isFinite(value.estimateUsd) && value.estimateUsd > 0 ? value.estimateUsd : null,
+    cabinTotals: value.cabinTotals && typeof value.cabinTotals === "object" ? Object.fromEntries(Object.entries(value.cabinTotals).filter(([, amount]) => typeof amount === "number" && Number.isFinite(amount) && amount > 0)) : undefined,
     segments: value.segments.filter(segment => segment && isEndpoint(segment.from) && isEndpoint(segment.to)),
   };
 }
@@ -61,9 +63,9 @@ function RouteMap({ segments }: { segments: Segment[] }) {
 
 const usd = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
 
-export function CharterEstimate({ legs, passengers, aircraftCategory }: { legs: EstimateLeg[]; passengers: number; aircraftCategory?: string }) {
+export function CharterEstimate({ legs, passengers, aircraftCategory, choices, onSelect }: { legs: EstimateLeg[]; passengers: number; aircraftCategory?: string; choices?: readonly CabinOption[]; onSelect?: (value: string) => void }) {
   const title = useId();
-  const request = JSON.stringify({ legs, passengers, aircraftCategory });
+  const request = JSON.stringify({ legs, passengers, ...(choices ? { compareCabins: true } : { aircraftCategory }) });
   const [result, setResult] = useState<{ request: string; estimate: Estimate | null } | null>(null);
   useEffect(() => {
     const controller = new AbortController();
@@ -87,7 +89,7 @@ export function CharterEstimate({ legs, passengers, aircraftCategory }: { legs: 
 
   const loaded = result?.request === request;
   const estimate = loaded ? result.estimate : null;
-  const amount = estimate?.estimateUsd;
+  const amount = choices && aircraftCategory ? estimate?.cabinTotals?.[aircraftCategory] : estimate?.estimateUsd;
   const mapped = estimate?.segments.length === legs.length ? estimate.segments : [];
   return <section className={styles.estimate} aria-labelledby={title}>
     <div className={styles.heading}>
@@ -98,5 +100,13 @@ export function CharterEstimate({ legs, passengers, aircraftCategory }: { legs: 
       {amount ? <small>Excludes taxes and additional charges. This is an estimate, not a confirmed quote or aircraft availability.</small> : null}
     </div>
     {mapped.length ? <RouteMap segments={mapped} /> : null}
+    {choices?.length ? <fieldset className={styles.cabins}>
+      <legend>Aircraft category</legend>
+      {choices.map(choice => <label key={choice.value} className={styles.cabin}>
+        <input type="radio" name={`${title}-cabin`} checked={aircraftCategory === choice.value} onChange={() => onSelect?.(choice.value)} />
+        <span><strong>{choice.label}</strong><small>Up to {choice.seats} passengers</small></span>
+        <span>{!loaded ? "Calculating…" : estimate?.cabinTotals?.[choice.value] ? usd.format(estimate.cabinTotals[choice.value]) : "Request quote"}</span>
+      </label>)}
+    </fieldset> : null}
   </section>;
 }

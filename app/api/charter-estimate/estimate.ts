@@ -4,7 +4,7 @@ import { airportCoordinates } from "./airports";
 
 type Airport = { code: string; label: string; lat: number; lon: number };
 type Segment = { from: Airport; to: Airport };
-type Estimate = { estimateUsd: number | null; segments: Segment[]; currency: "USD"; reason?: string };
+type Estimate = { estimateUsd: number | null; segments: Segment[]; currency: "USD"; reason?: string; cabinTotals?: Partial<Record<AircraftCategory, number>> };
 
 const normalized = (value: string) => value.normalize("NFC").trim().replace(/\s+/g, " ").toUpperCase();
 const airports = new Map<string, Airport>();
@@ -73,13 +73,24 @@ export function calculateCharterEstimate(payload: unknown): Estimate {
     : typeof raw.passengers === "string" && /^\d{1,3}$/.test(raw.passengers.trim()) ? Number(raw.passengers) : NaN;
   if (!Number.isInteger(passengers) || passengers < 1 || passengers > 100) return unavailable(segments, "Enter a passenger count to estimate the trip total.");
   if (passengers > 16) return unavailable(segments, "Request a group charter quote for this passenger count.");
+  const totalFor = (key: AircraftCategory) => {
+    const profile = planning[key];
+    const total = segments.reduce((sum, segment) => {
+      const hours = Math.max(profile.minimum, (distanceNm(segment) * 1.07 / profile.knots) + 0.35);
+      return sum + profile.hourly * hours;
+    }, 0);
+    return Math.round(total / 100) * 100;
+  };
+  if (raw.compareCabins === true) {
+    const eligible = (Object.keys(planning) as AircraftCategory[]).filter(key => passengers <= aircraftCapacity[key]);
+    return {
+      estimateUsd: totalFor(eligible[0]),
+      segments, currency: "USD",
+      cabinTotals: Object.fromEntries(eligible.map(key => [key, totalFor(key)])),
+    };
+  }
   if (typeof category !== "string" || !Object.hasOwn(planning, category)) return unavailable(segments, "Choose an aircraft category to estimate the trip total.");
   const key = category as AircraftCategory;
   if (passengers > aircraftCapacity[key]) return unavailable(segments, "Choose an aircraft category that seats everyone.");
-  const profile = planning[key];
-  const total = segments.reduce((sum, segment) => {
-    const hours = Math.max(profile.minimum, (distanceNm(segment) * 1.07 / profile.knots) + 0.35);
-    return sum + profile.hourly * hours;
-  }, 0);
-  return { estimateUsd: Math.round(total / 100) * 100, segments, currency: "USD" };
+  return { estimateUsd: totalFor(key), segments, currency: "USD" };
 }

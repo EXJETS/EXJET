@@ -137,3 +137,11 @@
 .journeys a[aria-current="page"] { background:var(--public-action,#2857c8); }
 .advisor { background:var(--public-graphite,#0a1f49); border-radius:10px; }
 .advisor li { border-color:var(--public-night-line,#405780); }
+
+.flow :global(.quote-form--charter .quote-form__row--home-itinerary) { display:grid; grid-template-columns:repeat(6,minmax(0,1fr)); }
+.flow :global(.quote-form--charter .quote-form__row--home-itinerary > *) { grid-column:span 2; min-width:0; }
+.flow :global(.quote-form--charter .quote-form__row--home-itinerary > :nth-child(-n+2)) { grid-column:span 3; }
+@media (max-width:550px) {
+  .flow :global(.quote-form--charter .quote-form__row--home-itinerary > :is(:nth-child(-n+2),:last-child)) { grid-column:1/-1; }
+  .flow :global(.quote-form--charter .quote-form__row--home-itinerary > :is(:nth-child(3),:nth-child(4))) { grid-column:span 3; }
+}

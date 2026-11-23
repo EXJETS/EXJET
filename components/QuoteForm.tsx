@@ -1,5 +1,6 @@
 "use client";
 
+import { CharterIcon } from "./CharterVisuals";
 import { CharterEstimate } from "./CharterEstimate";
 import Link from "next/link";
 import { FormEvent, useEffect, useId, useMemo, useRef, useState } from "react";
@@ -141,15 +142,18 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
   const submitting = useRef(false);
   const nextLegId = useRef(3);
   const categoryId = useId();
+  const passengerId = useId();
   const [tripType, setTripType] = useState<TripType>("one_way");
   const [returnLeg, setReturnLeg] = useState(() => newLeg(1));
   const [followingLegs, setFollowingLegs] = useState<AdditionalLeg[]>(() => [newLeg(2)]);
   const [category, setCategory] = useState<Category | "">("");
-  const [stage, setStage] = useState<"mission" | "contact" | "success">("mission");
+  const [stage, setStage] = useState<"mission" | "results" | "contact" | "success">("mission");
   const [status, setStatus] = useState<"idle" | "loading" | "error">("idle");
   const [message, setMessage] = useState("");
   const [reference, setReference] = useState("");
   const [form, setForm] = useState<FormState>({ ...initialState, passengers: mode === "group" ? "25" : "2" });
+  const useSearch = mode === "charter";
+  const searchTitle = useRef<HTMLHeadingElement>(null);
   const recipient = mode === "cargo" ? siteConfig.email.cargo : siteConfig.email.charter;
   const today = useMemo(() => localDate(), []);
   const passengerCount = Number(form.passengers);
@@ -176,6 +180,11 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
     event.preventDefault();
     if (!event.currentTarget.reportValidity()) return;
     if (submitting.current) return;
+    if (stage === "results") {
+      setStage("contact");
+      window.setTimeout(() => formRef.current?.querySelector<HTMLInputElement>('input[name="name"]')?.focus(), 0);
+      return;
+    }
     if (stage === "mission") {
       const fields = new FormData(event.currentTarget);
       const read = (key: string, fallback: string) => String(fields.get(key) ?? fallback);
@@ -209,8 +218,8 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
         if (!selectedCategory || count > selectedCategory.seats) setCategory(categories.find(item => item.seats >= count)?.value ?? "");
       }
       setStatus("idle");
-      setStage("contact");
-      window.setTimeout(() => formRef.current?.querySelector<HTMLInputElement>('input[name="name"]')?.focus(), 0);
+      setStage(useSearch ? "results" : "contact");
+      window.setTimeout(() => useSearch ? searchTitle.current?.focus() : formRef.current?.querySelector<HTMLInputElement>('input[name="name"]')?.focus(), 0);
       return;
     }
     if (stage !== "contact") return;
@@ -284,7 +293,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
 
   return (
     <form ref={formRef} className={`quote-form quote-form--${mode}${compact ? " quote-form--compact" : ""} quote-form--${stage}`} onSubmit={submit} aria-busy={status === "loading"}>
-      <p className="quote-form__progress">Step {stage === "mission" ? mode === "cargo" ? "1 of 2 · Shipment details" : "1 of 2 · Trip details" : "2 of 2 · Contact details"}</p>
+      <p className="quote-form__progress">{useSearch ? ({mission:"1 of 3 · Your trip",results:"2 of 3 · Aircraft & estimate",contact:"3 of 3 · Request a firm quote"} as const)[stage] : stage === "mission" ? mode === "cargo" ? "1 of 2 · Shipment details" : "1 of 2 · Trip details" : "2 of 2 · Contact details"}</p>
       {stage === "mission" ? (
         <>
           {mode === "cargo" ? null : <fieldset className={styles.tripType}>
@@ -294,21 +303,31 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
               <span>{label}</span>
             </label>)}</div>
           </fieldset>}
-          <div className={`quote-form__row${compact && mode !== "cargo" ? " quote-form__row--home-itinerary" : ""}`}>
-            <AirportInput label={mode === "cargo" ? "Origin" : "Departure"} value={form.departure} code={form.departureIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, departure: value, departureIcao: icao }))} />
-            <AirportInput label={mode === "cargo" ? "Destination" : "Arrival"} value={form.destination} code={form.destinationIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, destination: value, destinationIcao: icao }))} />
+          {useSearch ? <button className={styles.swap} type="button" aria-label="Swap departure and arrival" onClick={() => setForm(current => ({ ...current, departure: current.destination, departureIcao: current.destinationIcao, destination: current.departure, destinationIcao: current.departureIcao }))}>⇄ <span>Swap airports</span></button> : null}
+          <div className={`quote-form__row${(compact && mode !== "cargo") || useSearch ? " quote-form__row--home-itinerary" : ""}`}>
+            <AirportInput label={mode === "cargo" ? "Origin" : useSearch ? "From" : "Departure"} value={form.departure} code={form.departureIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, departure: value, departureIcao: icao }))} />
+            <AirportInput label={mode === "cargo" ? "Destination" : useSearch ? "To" : "Arrival"} value={form.destination} code={form.destinationIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, destination: value, destinationIcao: icao }))} />
             <label><span>Date</span><input value={form.date} onInput={(event) => update("date", event.currentTarget.value)} name="date" type="date" min={today} required /></label>
-            {compact && mode !== "cargo" ? <label>
+            {(compact && mode !== "cargo") || useSearch ? <label>
               <span>Local time</span>
               <input aria-label="Local departure time (optional)" value={form.time} onInput={(event) => update("time", event.currentTarget.value)} name="time" type="time" />
             </label> : null}
             {mode === "cargo" ? (
               <label><span>Cargo type</span><input value={form.cargoType} onChange={(event) => update("cargoType", event.target.value)} name="cargoType" maxLength={160} required pattern={String.raw`.*\S.*`} title="Describe the cargo." placeholder="General description" /></label>
+            ) : useSearch ? (
+              <div className={styles.passengerField}>
+                <label htmlFor={passengerId}>Passengers</label>
+                <div>
+                  <button aria-label="Decrease passengers" type="button" disabled={passengerCount <= 1} onClick={() => update("passengers", String(Math.max(1, passengerCount - 1)))}>−</button>
+                  <input id={passengerId} name="passengers" value={form.passengers} onChange={event => update("passengers", event.target.value)} type="number" inputMode="numeric" min="1" max="100" step="1" required />
+                  <button aria-label="Increase passengers" type="button" disabled={passengerCount >= 100} onClick={() => update("passengers", String(Math.min(100, passengerCount + 1)))}>+</button>
+                </div>
+              </div>
             ) : (
               <label><span>Passengers</span><input value={form.passengers} onChange={(event) => { const value = event.target.value; update("passengers", value); if (selectedCategory && Number(value) > selectedCategory.seats) setCategory(""); }} name="passengers" type="number" inputMode="numeric" min="1" max="100" step="1" required /></label>
             )}
           </div>
-          {mode !== "cargo" && !compact ? <div className="quote-form__row"><label>
+          {mode !== "cargo" && !compact && !useSearch ? <div className="quote-form__row"><label>
             <span>Local departure time (optional)</span>
             <input value={form.time} onInput={(event) => update("time", event.currentTarget.value)} name="time" type="time" />
           </label></div> : null}
@@ -343,7 +362,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
               <small>{legs.length} of {maxLegs} legs. For more stops, email the charter desk.</small>
             </div>
           </> : null}
-          {mode === "cargo" ? null : <div className={styles.aircraft}>
+          {mode !== "group" ? null : <div className={styles.aircraft}>
             <label htmlFor={categoryId}>Preferred aircraft category</label>
             <select id={categoryId} value={selectedCategory?.value ?? ""} onChange={event => setCategory(event.target.value as Category | "")} aria-describedby={`${categoryId}-capacity`}>
               <option value="">No preference</option>
@@ -353,16 +372,27 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
           </div>}
           <div className="quote-form__submit">
             <button className="button button--dark" type="submit">
-              {mode === "cargo" ? "Continue to contact details" : "See trip estimate"} <ArrowRightIcon size={18} aria-hidden="true" />
+              {mode === "cargo" ? "Continue to contact details" : useSearch ? "Search flights" : "See trip estimate"} {useSearch ? <CharterIcon name="search" width={18} height={18} /> : <ArrowRightIcon size={18} aria-hidden="true" />}
             </button>
             <a className="ex-text-link" href={emailHref}>Email instead</a>
-            <p>{groupHandled ? "This passenger count will be routed to EXJET group charter." : compact ? "One more step. No account required." : `No account required. For a time-sensitive request, email ${recipient}.`}</p>
+            <p>{groupHandled ? "This passenger count will be routed to EXJET group charter." : useSearch ? "Compare estimated trip totals before sharing your contact details." : compact ? "One more step. No account required." : `No account required. For a time-sensitive request, email ${recipient}.`}</p>
           </div>
         </>
+      ) : stage === "results" ? (
+        <div className={styles.results}>
+          <div className="quote-form__mission-summary">
+            <button type="button" onClick={() => { setMessage(""); setStatus("idle"); setStage("mission"); }}><ArrowLeftIcon size={18} aria-hidden="true" /> Edit trip</button>
+            <h3 ref={searchTitle} tabIndex={-1}>{groupHandled ? "Group charter" : "Compare aircraft categories"}</h3>
+            <small>{tripLabel} · {form.passengers} passenger{form.passengers === "1" ? "" : "s"}</small>
+            <ol className={styles.summaryList}>{legs.map((leg,index) => <li key={index}>{leg.departure} to {leg.destination} · {leg.date}{leg.time ? ` at ${leg.time} local` : ""}</li>)}</ol>
+          </div>
+          <CharterEstimate legs={legs} passengers={passengerCount} aircraftCategory={selectedCategory?.value} choices={categories.filter(item => passengerCount <= item.seats)} onSelect={value => setCategory(categories.find(item => item.value === value)?.value ?? "")} />
+          <div className="quote-form__submit"><button className="button button--dark" type="submit">Continue to request <ArrowRightIcon size={18} aria-hidden="true" /></button><a className="ex-text-link" href={emailHref}>Email instead</a></div>
+        </div>
       ) : (
         <>
           <div className="quote-form__mission-summary">
-            <button type="button" disabled={status === "loading"} onClick={() => { setStatus("idle"); setMessage(""); setStage("mission"); }}><ArrowLeftIcon size={18} aria-hidden="true" /> {mode === "cargo" ? "Edit shipment" : "Edit trip"}</button>
+            <button type="button" disabled={status === "loading"} onClick={() => { setStatus("idle"); setMessage(""); setStage(useSearch ? "results" : "mission"); }}><ArrowLeftIcon size={18} aria-hidden="true" /> {mode === "cargo" ? "Edit shipment" : useSearch ? "Back to aircraft options" : "Edit trip"}</button>
             {mode === "cargo" ? <>
               <p><strong>{form.departure}</strong><ArrowRightIcon size={18} aria-hidden="true" /><strong>{form.destination}</strong></p>
               <small>{form.date} · {form.cargoType}</small>
@@ -371,7 +401,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
               <ol className={styles.summaryList}>{legs.map((leg,index) => <li key={index}>{leg.departure} to {leg.destination} · {leg.date}{leg.time ? ` at ${leg.time} local` : ""}</li>)}</ol>
             </>}
           </div>
-          {mode !== "cargo" ? <CharterEstimate legs={legs} passengers={passengerCount} aircraftCategory={selectedCategory?.value} /> : null}
+          {mode === "group" ? <CharterEstimate legs={legs} passengers={passengerCount} aircraftCategory={selectedCategory?.value} /> : null}
           <div className="quote-form__row quote-form__row--identity">
             <label><span>Name</span><input value={form.name} onChange={(event) => update("name", event.target.value)} name="name" minLength={2} maxLength={100} pattern={String.raw`.*\S.*`} title="Enter your name." autoComplete="name" required placeholder="Your name" /></label>
             <label><span>Mobile</span><input value={form.phone} onChange={(event) => update("phone", event.target.value)} name="phone" maxLength={40} type="tel" inputMode="tel" autoComplete="tel" required placeholder="+1" /></label>
@@ -394,7 +424,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
           <p className="quote-form__broker-disclosure">EXJET arranges charter as a broker. The identified licensed third-party air carrier operates the flight and retains operational control.</p>
           <div className="quote-form__submit quote-form__submit--contact">
             <button className="button button--dark" type="submit" disabled={status === "loading"}>
-              {status === "loading" ? "Sending securely..." : "Submit request"}<ArrowRightIcon size={18} aria-hidden="true" />
+              {status === "loading" ? "Sending securely..." : useSearch ? "Request a firm quote" : "Submit request"}<ArrowRightIcon size={18} aria-hidden="true" />
             </button>
             <a className="ex-text-link" href={emailHref}>Email instead</a>
             <p>EXJET uses your {mode === "cargo" ? "shipment" : "trip"} and contact details to handle this request, including sharing them with the service providers needed for it. Read our <Link href="/privacy">privacy information</Link>. Please don’t include payment details, identification documents or medical information.</p>
