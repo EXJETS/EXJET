@@ -177,7 +177,13 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
     if (!event.currentTarget.reportValidity()) return;
     if (submitting.current) return;
     if (stage === "mission") {
-      const tripLegs = mode === "cargo" ? [outbound] : legs;
+      const fields = new FormData(event.currentTarget);
+      const read = (key: string, fallback: string) => String(fields.get(key) ?? fallback);
+      const count = Number(read("passengers", form.passengers));
+      const tripLegs = (mode === "cargo" ? [outbound] : legs).map((leg, index) => {
+        const prefix = index === 0 ? "" : tripType === "round_trip" ? "return-" : `leg-${followingLegs[index - 1].id}-`;
+        return { ...leg, date: read(prefix + "date", leg.date), time: read(prefix + "time", leg.time) };
+      });
       for (const [index, leg] of tripLegs.entries()) {
         const origin = (leg.departureIcao || leg.departure).trim().toUpperCase();
         const destination = (leg.destinationIcao || leg.destination).trim().toUpperCase();
@@ -193,11 +199,15 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
           return;
         }
       }
-      if (mode !== "cargo" && (!Number.isInteger(passengerCount) || passengerCount < 1 || passengerCount > 100)) {
+      if (mode !== "cargo" && (!Number.isInteger(count) || count < 1 || count > 100)) {
         setStatus("error"); setMessage("Enter a whole number between 1 and 100 for passengers."); return;
       }
-      const fields = new FormData(event.currentTarget);
-      setForm(current => ({ ...current, date: String(fields.get("date") ?? current.date), cargoType: String(fields.get("cargoType") ?? current.cargoType), passengers: String(fields.get("passengers") ?? current.passengers) }));
+      setForm(current => ({ ...current, date: tripLegs[0].date, time: tripLegs[0].time, cargoType: read("cargoType", current.cargoType), passengers: read("passengers", current.passengers) }));
+      if (mode !== "cargo") {
+        if (tripType === "round_trip") setReturnLeg(current => ({ ...current, date: tripLegs[1].date, time: tripLegs[1].time }));
+        if (tripType === "multi_leg") setFollowingLegs(current => current.map((leg,index) => ({ ...leg, date: tripLegs[index + 1].date, time: tripLegs[index + 1].time })));
+        if (!selectedCategory || count > selectedCategory.seats) setCategory(categories.find(item => item.seats >= count)?.value ?? "");
+      }
       setStatus("idle");
       setStage("contact");
       window.setTimeout(() => formRef.current?.querySelector<HTMLInputElement>('input[name="name"]')?.focus(), 0);
@@ -287,7 +297,7 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
           <div className="quote-form__row">
             <AirportInput label={mode === "cargo" ? "Origin" : "Departure"} value={form.departure} code={form.departureIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, departure: value, departureIcao: icao }))} />
             <AirportInput label={mode === "cargo" ? "Destination" : "Arrival"} value={form.destination} code={form.destinationIcao} onChange={(value, icao = "") => setForm((current) => ({ ...current, destination: value, destinationIcao: icao }))} />
-            <label><span>Date</span><input value={form.date} onChange={(event) => update("date", event.target.value)} name="date" type="date" min={today} required /></label>
+            <label><span>Date</span><input value={form.date} onInput={(event) => update("date", event.currentTarget.value)} name="date" type="date" min={today} required /></label>
             {mode === "cargo" ? (
               <label><span>Cargo type</span><input value={form.cargoType} onChange={(event) => update("cargoType", event.target.value)} name="cargoType" maxLength={160} required pattern={String.raw`.*\S.*`} title="Describe the cargo." placeholder="General description" /></label>
             ) : (
@@ -296,14 +306,14 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
           </div>
           {mode !== "cargo" ? <div className="quote-form__row"><label>
             <span>Local departure time (optional)</span>
-            <input value={form.time} onChange={(event) => update("time", event.target.value)} name="time" type="time" />
+            <input value={form.time} onInput={(event) => update("time", event.currentTarget.value)} name="time" type="time" />
           </label></div> : null}
           {mode !== "cargo" && tripType === "round_trip" ? <fieldset className={styles.segment}>
             <legend>Return flight</legend>
             <p>{reversedReturn.departure || "Arrival airport"} to {reversedReturn.destination || "Departure airport"}</p>
             <div className="quote-form__row">
-              <label><span>Return date</span><input type="date" min={form.date || today} value={returnLeg.date} onChange={event => setReturnLeg({ ...returnLeg, date: event.target.value })} required /></label>
-              <label><span>Local return time (optional)</span><input type="time" value={returnLeg.time} onChange={event => setReturnLeg({ ...returnLeg, time: event.target.value })} /></label>
+              <label><span>Return date</span><input name="return-date" type="date" min={form.date || today} value={returnLeg.date} onInput={event => setReturnLeg({ ...returnLeg, date: event.currentTarget.value })} required /></label>
+              <label><span>Local return time (optional)</span><input name="return-time" type="time" value={returnLeg.time} onInput={event => setReturnLeg({ ...returnLeg, time: event.currentTarget.value })} /></label>
             </div>
           </fieldset> : null}
           {mode !== "cargo" && tripType === "multi_leg" ? <>
@@ -312,8 +322,8 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
               <div className="quote-form__row">
                 <AirportInput label="Departure" value={leg.departure} code={leg.departureIcao} onChange={(value, icao = "") => updateFollowingLeg(leg.id, { departure: value, departureIcao: icao })} />
                 <AirportInput label="Arrival" value={leg.destination} code={leg.destinationIcao} onChange={(value, icao = "") => updateFollowingLeg(leg.id, { destination: value, destinationIcao: icao })} />
-                <label><span>Date</span><input type="date" min={(index ? followingLegs[index - 1].date : form.date) || today} value={leg.date} onChange={event => updateFollowingLeg(leg.id, { date: event.target.value })} required /></label>
-                <label><span>Local departure time (optional)</span><input type="time" value={leg.time} onChange={event => updateFollowingLeg(leg.id, { time: event.target.value })} /></label>
+                <label><span>Date</span><input name={`leg-${leg.id}-date`} type="date" min={(index ? followingLegs[index - 1].date : form.date) || today} value={leg.date} onInput={event => updateFollowingLeg(leg.id, { date: event.currentTarget.value })} required /></label>
+                <label><span>Local departure time (optional)</span><input name={`leg-${leg.id}-time`} type="time" value={leg.time} onInput={event => updateFollowingLeg(leg.id, { time: event.currentTarget.value })} /></label>
               </div>
               {followingLegs.length > 1 ? <div className={styles.segmentActions}>
                 <button type="button" aria-label={`Remove leg ${index + 2}`} onClick={() => setFollowingLegs(current => current.filter(item => item.id !== leg.id))}>Remove leg</button>
@@ -335,11 +345,11 @@ export function QuoteForm({ mode = "charter", compact = false }: QuoteFormProps)
               <option value="">No preference</option>
               {categories.map(item => <option key={item.value} value={item.value} disabled={passengerCount > item.seats}>{item.label} · up to {item.seats} passengers</option>)}
             </select>
-            <small id={`${categoryId}-capacity`}>{passengerCount > 16 ? "Larger group? Leave this as No preference so we can source group options." : "Planning capacities only. The actual aircraft configuration may vary."}</small>
+            <small id={`${categoryId}-capacity`}>{passengerCount > 16 ? "Larger group? Leave this as No preference so we can source group options." : "If you don’t choose, we’ll estimate with the smallest category that fits. Actual seating may vary."}</small>
           </div>}
           <div className="quote-form__submit">
             <button className="button button--dark" type="submit">
-              Continue to contact details <ArrowRightIcon size={18} aria-hidden="true" />
+              {mode === "cargo" ? "Continue to contact details" : "See trip estimate"} <ArrowRightIcon size={18} aria-hidden="true" />
             </button>
             <a className="ex-text-link" href={emailHref}>Email instead</a>
             <p>{groupHandled ? "This passenger count will be routed to EXJET group charter." : compact ? "One more step. No account required." : `No account required. For a time-sensitive request, email ${recipient}.`}</p>
