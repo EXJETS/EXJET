@@ -5,26 +5,21 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { aviationSolutions } from "@/data/site";
-import { EqualsIcon } from "@phosphor-icons/react/dist/csr/Equals";
+import { ListIcon } from "@phosphor-icons/react/dist/csr/List";
 import { MagnifyingGlassIcon } from "@phosphor-icons/react/dist/csr/MagnifyingGlass";
 import { ArrowRightIcon } from "@phosphor-icons/react/dist/csr/ArrowRight";
 import { UserCircleIcon } from "@phosphor-icons/react/dist/csr/UserCircle";
 import { XIcon } from "@phosphor-icons/react/dist/csr/X";
 import { CaretDownIcon } from "@phosphor-icons/react/dist/csr/CaretDown";
-import { AirplaneTakeoffIcon } from "@phosphor-icons/react/dist/csr/AirplaneTakeoff";
-import { PathIcon } from "@phosphor-icons/react/dist/csr/Path";
-import { ReceiptIcon } from "@phosphor-icons/react/dist/csr/Receipt";
-import { LightningIcon } from "@phosphor-icons/react/dist/csr/Lightning";
 import styles from "./SiteHeader.module.css";
 
 const primary = [
-  { href: "/private-jet-charter", label: "Charter", icon: AirplaneTakeoffIcon },
-  { href: "/routes", label: "Routes", icon: PathIcon },
-  { href: "/aircraft", label: "Aircraft", icon: AirplaneTakeoffIcon },
-  { href: "/pricing", label: "Pricing", icon: ReceiptIcon },
-  { href: "/empty-legs", label: "Empty legs", icon: LightningIcon },
+  { href: "/private-jet-charter", label: "Charter" },
+  { href: "/routes", label: "Routes" },
+  { href: "/aircraft", label: "Aircraft" },
+  { href: "/pricing", label: "Pricing" },
+  { href: "/empty-legs", label: "Empty legs" },
 ];
-const mobileLinks = primary.filter(link => link.href !== "/aircraft");
 const groups = [
   { title: "Ways to charter", links: aviationSolutions.map(service => [service.name, service.path]) },
   { title: "Your travel", links: [
@@ -43,8 +38,9 @@ const groups = [
 ];
 
 function NavigationLogo({ onClick }: { onClick?: () => void }) {
-  return <Link className="ex-header-logo" href="/" aria-label="EXJET home" onClick={onClick}>
-    <Image src="/brand/exjet-navbar-logo.png" alt="" width={96} height={96} sizes="48px" loading="eager" />
+  return <Link className={styles.brand} href="/" aria-label="EXJET home" onClick={onClick}>
+    <Image src="/brand/exjet-navbar-logo.png" alt="" width={96} height={96} sizes="36px" loading="eager" />
+    <span aria-hidden="true">EXJET</span>
   </Link>;
 }
 
@@ -67,23 +63,19 @@ export function SiteHeader() {
     return () => document.body.classList.remove("menu-open");
   }, [open]);
 
-  return <header className={`ex-header ${styles.header}`}>
-    <div className="shell ex-header-inner">
+  return <header className={styles.header}>
+    <div className={styles.bar}>
       <NavigationLogo />
-      <nav className="ex-primary-nav" aria-label="Primary navigation">
+      <nav className={styles.primary} aria-label="Primary navigation">
         {primary.map(link => <Link key={link.href} href={link.href} aria-current={isCurrent(link.href) ? "page" : isSection(link.href) ? "location" : undefined}>{link.label}</Link>)}
       </nav>
-      <div className="ex-header-actions">
-        <Link className={styles.bookFlight} href="/charter" aria-current={isCurrent("/charter") ? "page" : undefined}>Request a quote</Link>
-        <Link className={`ex-menu-button ${styles.desktopSearch}`} href="/search" title="Search EXJET" aria-label="Search EXJET" aria-current={isCurrent("/search") ? "page" : undefined}><MagnifyingGlassIcon size={20} aria-hidden="true" /></Link>
-        <button ref={trigger} className="ex-menu-button" type="button" aria-label="Explore EXJET" aria-haspopup="dialog" aria-expanded={open} aria-controls="exjet-navigation" onClick={() => setMenuPath(pathname)}><EqualsIcon size={20} aria-hidden="true" /></button>
+      <div className={styles.actions}>
+        <Link className={styles.bookFlight} href="/charter" aria-current={isCurrent("/charter") ? "page" : undefined}>Plan a flight <ArrowRightIcon size={17} aria-hidden="true" /></Link>
+        <button ref={trigger} className={styles.menuButton} type="button" aria-label="Open navigation menu" aria-haspopup="dialog" aria-expanded={open} aria-controls="exjet-navigation" onClick={() => setMenuPath(pathname)}><ListIcon size={22} aria-hidden="true" /><span aria-hidden="true">Menu</span></button>
       </div>
     </div>
-    <nav className={styles.mobileShortcuts} aria-label="Charter destinations and planning">
-      {mobileLinks.map(({href, label, icon: Icon}) => <Link key={href} href={href} aria-current={isCurrent(href) ? "page" : isSection(href) ? "location" : undefined}><Icon size={16} aria-hidden="true" />{label}</Link>)}
-    </nav>
     <dialog ref={dialog} id="exjet-navigation" className={styles.dialog} aria-labelledby="exjet-navigation-title" onCancel={close} onClose={close} onClick={event => { if (event.target === dialog.current) close(); }}>
-      <div className={styles.heading}><NavigationLogo onClick={close} /><button type="button" className="ex-menu-button" aria-label="Close navigation" onClick={() => { close(); trigger.current?.focus(); }}><XIcon size={20} aria-hidden="true" /></button></div>
+      <div className={styles.heading}><NavigationLogo onClick={close} /><button type="button" className={styles.closeButton} aria-label="Close navigation" onClick={close}><XIcon size={20} aria-hidden="true" /></button></div>
       <div className={styles.content}>
         <h2 id="exjet-navigation-title" className={styles.label}>Explore EXJET</h2>
         <div className={styles.quickLinks}>
@@ -91,9 +83,6 @@ export function SiteHeader() {
           <Link href="/pricing" onClick={close}>Compare charter pricing <ArrowRightIcon size={18} aria-hidden="true" /></Link>
           <Link href="/contact" onClick={close}>Speak with an advisor <ArrowRightIcon size={18} aria-hidden="true" /></Link>
         </div>
-        <div className={styles.groups}>{groups.map(group => <nav key={group.title} aria-label={group.title}>
-          <h3>{group.title}</h3>{group.links.map(([label, href]) => <Link key={href} href={href} aria-current={isCurrent(href) ? "page" : undefined} onClick={close}>{label}</Link>)}
-        </nav>)}</div>
         <div className={styles.mobileGroups}>{groups.map(group => <details key={group.title} name="exjet-mobile-navigation">
           <summary>{group.title}<CaretDownIcon size={18} aria-hidden="true" /></summary>
           <nav aria-label={group.title}>{group.links.map(([label, href]) => <Link key={href} href={href} aria-current={isCurrent(href) ? "page" : undefined} onClick={close}>{label}</Link>)}</nav>
