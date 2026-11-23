@@ -1,0 +1,86 @@
+[
+  {
+    "path": "/private-jet-charter/new-york",
+    "title": "New York private jet charter",
+    "seoTitle": "New York Private Jet Charter: Teterboro & Westchester | EXJET",
+    "description": "Arrange private jet charter to or from New York. Compare Teterboro and Westchester for Manhattan, northern suburbs and Connecticut, and request a trip proposal.",
+    "kicker": "Northeast · New York metro",
+    "kind": "city",
+    "parent": { "name": "U.S. charter markets", "path": "/private-jet-charter/united-states" },
+    "sections": [
+      { "heading": "Teterboro or Westchester?", "paragraphs": ["Teterboro is in New Jersey and is an option when the trip starts or ends in Manhattan or northern New Jersey. Westchester County Airport can better suit Westchester, Greenwich and parts of Connecticut. Compare the ground journey at your arrival time rather than choosing by mileage alone."], "links": [{ "label": "Teterboro Airport charter guide", "path": "/airports/kteb" }, { "label": "Westchester County Airport charter guide", "path": "/airports/khpn" }] },
+      { "heading": "Set the New York arrival time around the meeting", "paragraphs": ["Tell your advisor where in the region you need to be and when. For an early Manhattan appointment, ask for a ground-transfer plan and a fallback if weather or traffic changes. For a same-day return, give the latest departure you can accept so the proposal includes the right crew and scheduling assumptions."] },
+      { "heading": "Compare examples before requesting a quote", "paragraphs": ["The itinerary, actual departure airport, aircraft availability and positioning determine the trip total. These guides show planning assumptions rather than available aircraft or live prices."], "links": [{ "label": "Dallas to New York charter", "path": "/routes/dallas-to-new-york" }, { "label": "New York to Miami charter", "path": "/routes/new-york-to-miami" }, { "label": "New York to Chicago charter", "path": "/routes/new-york-to-chicago" }] }
+    ]
+  },
+  {
+    "path": "/private-jet-charter/los-angeles",
+    "title": "Los Angeles private jet charter",
+    "seoTitle": "Los Angeles Private Jet Charter: Van Nuys & LA Routes | EXJET",
+    "description": "Plan Los Angeles private jet charter with Van Nuys airport guidance, coast-to-coast route examples and aircraft selection based on your passengers and itinerary.",
+    "kicker": "West · Los Angeles area",
+    "kind": "city",
+    "parent": { "name": "U.S. charter markets", "path": "/private-jet-charter/united-states" },
+    "sections": [
+      { "heading": "Start with your Los Angeles address", "paragraphs": ["Van Nuys is in the San Fernando Valley. It can suit a trip focused on the Valley, but a Westside, coastal or downtown itinerary deserves a transfer comparison at the planned arrival hour. Provide your final address and tell the advisor whether airport choice or aircraft selection is more important."], "links": [{ "label": "Van Nuys Airport charter guide", "path": "/airports/kvny" }] },
+      { "heading": "Plan aircraft around the actual mission", "paragraphs": ["A short hop between Los Angeles and Las Vegas and an eastbound flight to New York are different aircraft decisions. Passenger count, baggage, headwinds on the return and any proposed fuel stop all matter. Ask whether the proposal assumes nonstop operation and what the carrier would do if the plan changes."] },
+      { "heading": "Explore routes from the Los Angeles area", "paragraphs": ["Use these guides to frame the itinerary and then request a current, trip-specific proposal."], "links": [{ "label": "Los Angeles to New York charter", "path": "/routes/los-angeles-to-new-york" }, { "label": "Los Angeles to Las Vegas charter", "path": "/routes/los-angeles-to-las-vegas" }, { "label": "Los Angeles to Aspen charter", "path": "/routes/los-angeles-to-aspen" }] }
+    ]
+  },
+  {
+    "path": "/private-jet-charter/miami",
+    "title": "Miami and South Florida private jet charter",
+    "seoTitle": "Miami Private Jet Charter: Opa-Locka & South Florida | EXJET",
+    "description": "Plan Miami and South Florida private jet charter. Compare Opa-Locka and Palm Beach according to your final address, then request a current charter proposal.",
+    "kicker": "Southeast · South Florida",
+    "kind": "city",
+    "parent": { "name": "U.S. charter markets", "path": "/private-jet-charter/united-states" },
+    "sections": [
+      { "heading": "Select the airport for the actual South Florida stop", "paragraphs": ["Miami-Opa Locka is a business aviation option for the Miami area. For a stay in Palm Beach County, it can make more sense to compare a separate Palm Beach arrival rather than assume an interchangeably short ground transfer. Share every stop, not just the name of the nearest large city."], "links": [{ "label": "Miami-Opa Locka Airport charter guide", "path": "/airports/kopf" }, { "label": "Palm Beach airport charter guide", "path": "/airports/kdjt" }] },
+      { "heading": "Separate seasonal demand from flight availability", "paragraphs": ["Holiday and event dates are a reason to plan earlier, not proof of a price or aircraft assignment. If your dates are flexible, ask for options on more than one departure day. If a boat, villa or commercial connection sets the timing, share that constraint before reviewing alternate airports."] },
+      { "heading": "Compare common South Florida itineraries", "paragraphs": ["Use the route guides to compare planning times and cost assumptions. Individual trips require operator confirmation."], "links": [{ "label": "New York to Miami charter", "path": "/routes/new-york-to-miami" }, { "label": "Dallas to Miami charter", "path": "/routes/dallas-to-miami" }, { "label": "Miami to Aspen charter", "path": "/routes/miami-to-aspen" }] }
+    ]
+  },
+  {
+    "path": "/private-jet-charter/chicago",
+    "title": "Chicago private jet charter",
+    "seoTitle": "Chicago Private Jet Charter: Midway & Business Routes | EXJET",
+    "description": "Plan Chicago private jet charter with business aviation guidance for Midway, timed ground transfers and planning examples from Dallas, New York and Miami.",
+    "kicker": "Midwest · Chicago area",
+    "kind": "city",
+    "parent": { "name": "U.S. charter markets", "path": "/private-jet-charter/united-states" },
+    "sections": [
+      { "heading": "Compare Midway with the location of your Chicago stop", "paragraphs": ["Midway is on Chicago’s southwest side. It can be a useful option for a city itinerary, while a meeting in a distant suburb can change the best airport and handoff plan. Share the destination address and proposed passenger transfer times before choosing."], "links": [{ "label": "Chicago Midway Airport charter guide", "path": "/airports/kmdw" }] },
+      { "heading": "Keep a weather and return window in the brief", "paragraphs": ["For a winter trip, ask how deicing costs are handled and whether an alternate is contemplated. If an executive trip includes multiple stops or a late return, communicate the full schedule so the carrier can evaluate feasibility and outline any crew or waiting charges."] },
+      { "heading": "Build the itinerary from route examples", "paragraphs": ["These route guides explain planning assumptions. Review the actual proposed carrier, aircraft, total and terms before accepting a specific trip."], "links": [{ "label": "Dallas to Chicago charter", "path": "/routes/dallas-to-chicago" }, { "label": "New York to Chicago charter", "path": "/routes/new-york-to-chicago" }, { "label": "Miami to Chicago charter", "path": "/routes/miami-to-chicago" }] }
+    ]
+  },
+  {
+    "path": "/private-jet-charter/houston",
+    "title": "Houston private jet charter",
+    "seoTitle": "Houston Private Jet Charter: Hobby & Business Itineraries | EXJET",
+    "description": "Compare Houston private jet charter options around Hobby Airport, the destination address and same-day business travel from Dallas, New York or Miami.",
+    "kicker": "South Central · Houston area",
+    "kind": "city",
+    "parent": { "name": "U.S. charter markets", "path": "/private-jet-charter/united-states" },
+    "sections": [
+      { "heading": "Plan around the transfer, not just Houston Hobby", "paragraphs": ["Hobby is in southeast Houston. Downtown, the Texas Medical Center and the Energy Corridor are different ground trips. Share your exact meeting address, the intended arrival window and whether passengers need a separate ground pickup. Your advisor can discuss alternatives before the carrier confirms the flight."], "links": [{ "label": "Houston Hobby Airport charter guide", "path": "/airports/khou" }] },
+      { "heading": "Check what determines the short-leg total", "paragraphs": ["A Dallas to Houston flight can be short enough that a quoted hourly rate is not a reliable trip budget. Ask how flight minimums, repositioning, crew waiting and same-day return charges affect the total, and compare the complete proposed itinerary rather than one segment in isolation."] },
+      { "heading": "Explore charter routes into Houston", "paragraphs": ["Compare time and aircraft examples before submitting the full itinerary."], "links": [{ "label": "Dallas to Houston charter", "path": "/routes/dallas-to-houston" }, { "label": "New York to Houston charter", "path": "/routes/new-york-to-houston" }, { "label": "Miami to Houston charter", "path": "/routes/miami-to-houston" }] }
+    ]
+  },
+  {
+    "path": "/private-jet-charter/las-vegas",
+    "title": "Las Vegas private jet charter",
+    "seoTitle": "Las Vegas Private Jet Charter: Airport & Event Travel | EXJET",
+    "description": "Plan Las Vegas private jet charter around the Strip, conventions and major events. Review airport and ground handling, then request a trip-specific proposal.",
+    "kicker": "Mountain West · Las Vegas area",
+    "kind": "city",
+    "parent": { "name": "U.S. charter markets", "path": "/private-jet-charter/united-states" },
+    "sections": [
+      { "heading": "Set the itinerary around your Las Vegas event", "paragraphs": ["A hotel on the Strip, a convention venue and a location outside the city require different ground plans. Confirm the private terminal with the operator rather than using the main commercial terminal as the meeting point."], "links": [{ "label": "Las Vegas Harry Reid Airport charter guide", "path": "/airports/klas" }] },
+      { "heading": "Discuss event-day timing and flexibility", "paragraphs": ["If several passengers have the same narrow arrival window, have a fallback time or alternate airport ready in case handling constraints change. Ask what event-related charges are included and whether parking or a return positioning flight is built into the proposal."] },
+      { "heading": "Compare Las Vegas charter routes", "paragraphs": ["A regional flight from Southern California and a transcontinental itinerary call for different aircraft and budgeting assumptions. Compare the mission guides and ask for a current quote."], "links": [{ "label": "Los Angeles to Las Vegas charter", "path": "/routes/los-angeles-to-las-vegas" }, { "label": "Dallas to Las Vegas charter", "path": "/routes/dallas-to-las-vegas" }, { "label": "New York to Las Vegas charter", "path": "/routes/new-york-to-las-vegas" }] }
+    ]
+  }
+]

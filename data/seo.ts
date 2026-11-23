@@ -5,12 +5,13 @@ type SeoEntry = {
   title: string;
   description: string;
   image?: string;
+  noindex?: boolean;
 };
 
 export const pageSeo = {
   "/": {
-    title: "Business & Commercial Aviation Solutions | EXJET",
-    description: "EXJET supports business and commercial aviation with passenger and cargo charter, dry lease, ACMI, ownership, crew and aircraft technical services.",
+    title: "EXJET | Private Jet Charter & Business Aviation",
+    description: "EXJET is a Dallas-based aviation solutions company arranging nationwide private jet charter, group travel and air cargo through licensed carriers.",
   },
   "/charter": {
     title: "Request a Private Jet Charter Quote | Flight Search | EXJET",
@@ -33,6 +34,7 @@ export const pageSeo = {
     description: "Compare Citation, Challenger, Gulfstream, Global and Falcon aircraft. Review cabins, mission planning and charter costs, then request options for your journey.",
   },
   "/membership": {
+    noindex: true,
     title: "Private Jet Membership Programs | EXJET",
     description: "Review EXJET membership information and discuss your travel pattern with an advisor. Confirm program terms, aircraft access and pricing before any commitment.",
   },
@@ -57,14 +59,17 @@ export const pageSeo = {
     description: "Contact EXJET for business and commercial aviation solutions. Discuss passenger and cargo charter, leasing, ACMI, ownership, crew or technical requirements.",
   },
   "/privacy": {
+    noindex: true,
     title: "Privacy Policy | EXJET",
     description: "Read how EXJET collects, uses, stores, and protects information submitted through its website and services.",
   },
   "/terms": {
+    noindex: true,
     title: "Website Terms | EXJET",
     description: "Review the terms governing access to the EXJET website and requests submitted through its digital forms.",
   },
   "/account": {
+    noindex: true,
     title: "Client Support | EXJET",
     description: "Contact your EXJET advisor for itineraries, documents and new flight requests. Online account sign-in is not available yet.",
   },
@@ -72,10 +77,10 @@ export const pageSeo = {
 
 export type StaticSeoPath = keyof typeof pageSeo;
 
-export function buildMetadata(path: StaticSeoPath, options?: { noindex?: boolean }): Metadata {
+export function buildMetadata(path: StaticSeoPath): Metadata {
   const entry: SeoEntry = pageSeo[path];
   const image = entry.image || "/images/manufacturers/global-8000-clouds.webp";
-  const index = isPublicProduction && !options?.noindex;
+  const index = isPublicProduction && !entry.noindex;
   return {
     title: { absolute: entry.title },
     description: entry.description,
@@ -111,6 +116,8 @@ export function buildDynamicMetadata({
   image,
   noindex = false,
   type = "website",
+  published,
+  updated,
 }: {
   path: string;
   title: string;
@@ -118,16 +125,21 @@ export function buildDynamicMetadata({
   image?: string;
   noindex?: boolean;
   type?: "website" | "article";
+  published?: string;
+  updated?: string;
 }): Metadata {
   const index = isPublicProduction && !noindex;
   const socialImage = image || "/images/manufacturers/global-8000-clouds.webp";
+  const sharedOpenGraph = { url: absoluteUrl(path), siteName: "EXJET", title, description, images: [{ url: socialImage, alt: title }] };
   return {
     title: { absolute: title },
     description,
     alternates: { canonical: absoluteUrl(path) },
-    openGraph: { type, url: absoluteUrl(path), siteName: "EXJET", title, description, images: [{ url: socialImage, alt: title }] },
+    openGraph: type === "article"
+      ? { ...sharedOpenGraph, type, publishedTime: published, modifiedTime: updated }
+      : { ...sharedOpenGraph, type },
     twitter: { card: "summary_large_image", title, description, images: [socialImage] },
-    robots: { index, follow: isPublicProduction, googleBot: { index, follow: isPublicProduction, ...(index ? { "max-image-preview": "large" as const, "max-snippet": -1, "max-video-preview": -1 } : {}) } },
     metadataBase: new URL(absoluteUrl("/")),
+    robots: { index, follow: isPublicProduction, googleBot: { index, follow: isPublicProduction, ...(index ? { "max-image-preview": "large" as const, "max-snippet": -1, "max-video-preview": -1 } : {}) } },
   };
 }

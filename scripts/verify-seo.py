@@ -7,6 +7,7 @@ No third-party dependencies required. Run after the corresponding Next build.
 """
 import argparse
 from collections import defaultdict
+from datetime import datetime
 from concurrent.futures import ThreadPoolExecutor
 from html.parser import HTMLParser
 import json
@@ -21,14 +22,18 @@ import xml.etree.ElementTree as ET
 class Page(HTMLParser):
     def __init__(self, html):
         super().__init__(convert_charrefs=True)
-        self.meta={}; self.canonical=[]; self.links=[]; self.ids=set()
+        self.meta={}; self.meta_values=defaultdict(list); self.canonical=[]; self.links=[]; self.ids=set()
         self.title=''; self.h1=[]; self.jsonld=[]; self.images=[]
         self.in_title=False; self.in_h1=False; self.in_schema=False
         self.schema=''; self.feed(html)
     def handle_starttag(self, tag, attrs):
         a=dict(attrs)
         if a.get('id'): self.ids.add(a['id'])
-        if tag=='meta': self.meta[a.get('name',a.get('property',''))]=a.get('content','')
+        if tag=='meta':
+            key=a.get('name', a.get('property',''))
+            value=a.get('content','')
+            self.meta[key]=value
+            self.meta_values[key].append(value)
         if tag=='link' and a.get('rel')=='canonical': self.canonical.append(a.get('href'))
         if tag=='a' and a.get('href'): self.links.append(a['href'])
         if tag=='img': self.images.append(a)
@@ -79,6 +84,8 @@ for file in build.rglob('*.html'):
     for key in ['og:image','twitter:image']:
         if urlsplit(page.meta.get(key,'')).netloc!='www.exjet.com':errors.append(f'{path}: wrong {key}')
     robots=page.meta.get('robots',''); googlebot=page.meta.get('googlebot','')
+    if len(page.meta_values['robots']) != 1 or len(page.meta_values['googlebot']) != 1:
+        errors.append(f'{path}: missing or duplicate crawler directives')
     if args.mode=='preview' and ('noindex' not in robots or 'nofollow' not in robots or 'noindex' not in googlebot):
         errors.append(f'{path}: preview is not fully excluded')
     if args.mode=='production' and (('noindex' in robots)!=('noindex' in googlebot)):
@@ -118,7 +125,17 @@ while queue:
 for path in pages:
     if path not in reachable:errors.append(f'Page unreachable from homepage links: {path}')
 sitemap_text=(build/'sitemap.xml.body').read_text()
-locs=[node.text for node in ET.fromstring(sitemap_text).iter('{http://www.sitemaps.org/schemas/sitemap/0.9}loc')]
+ns={'sm':'http://www.sitemaps.org/schemas/sitemap/0.9'}
+sitemap_root=ET.fromstring(sitemap_text)
+locs=[node.text for node in sitemap_root.findall('sm:url/sm:loc', ns)]
+for entry in sitemap_root.findall('sm:url', ns):
+    loc=entry.findtext('sm:loc', namespaces=ns)
+    lastmod=entry.findtext('sm:lastmod', namespaces=ns)
+    if not loc or not loc.startswith(origin + '/') or loc != origin + route(urlsplit(loc).path):
+        errors.append(f'noncanonical XML sitemap location: {loc}')
+    if lastmod:
+        try:datetime.fromisoformat(lastmod.replace('Z', '+00:00'))
+        except ValueError:errors.append(f'invalid lastmod date: {loc} {lastmod}')
 if len(set(locs))!=len(locs):errors.append('duplicate sitemap URLs')
 for loc in locs:
     if urlsplit(loc).netloc!='www.exjet.com':errors.append(f'wrong sitemap origin: {loc}')
@@ -127,6 +144,24 @@ indexable=[p for p,d in pages.items() if 'noindex' not in d.meta.get('robots',''
 noindex=[p for p,d in pages.items() if 'noindex' in d.meta.get('robots','')]
 if args.mode=='production' and set(locs)!={origin+p for p in indexable}:
     errors.append('sitemap does not exactly match indexable pages')
+market_hub='/private-jet-charter/united-states/'
+market_paths={f'/private-jet-charter/{city}/' for city in (
+    'dallas','new-york','los-angeles','miami','chicago','houston','las-vegas')}
+if market_hub not in pages:
+    errors.append('U.S. charter hub missing')
+else:
+    market_links={route(urlsplit(href).path) for href in pages[market_hub].links}
+    if not market_paths <= market_links:
+        errors.append(f'U.S. charter hub missing crawlable city links: {market_paths-market_links}')
+for path in {market_hub} | market_paths:
+    if origin+path not in locs:
+        errors.append(f'Market not discoverable in sitemap: {path}')
+    if path not in pages or not any(schema.get('@id') == origin+path+'#webpage' for schema in pages[path].jsonld):
+        errors.append(f'Market missing canonical page schema: {path}')
+llms=(root/'public/llms.txt').read_text()
+for cited_url in re.findall(r'\]\((https://www\.exjet\.com/[^)]+)\)', llms):
+    if cited_url != origin+'/sitemap.xml' and cited_url not in locs:
+        errors.append(f'llms.txt cites excluded or unknown URL: {cited_url}')
 for path in ['/account/','/search/']:
     if path not in noindex:errors.append(f'utility page indexable: {path}')
 robots=(build/'robots.txt.body').read_text()
@@ -134,6 +169,7 @@ if f'Sitemap: {origin}/sitemap.xml' not in robots:errors.append('wrong robots si
 if 'Host:' in robots:errors.append('unsupported robots Host directive')
 if args.mode=='production' and ('Disallow: /' in robots or 'Allow: /' not in robots):errors.append('production blocked in robots')
 if args.mode=='preview' and 'Disallow: /' not in robots:errors.append('preview not blocked in robots')
+missing_path='/this-page-must-not-exist-seo-check/'
 http_status={}
 if args.base_url:
     def fetch(path):
@@ -143,11 +179,23 @@ if args.base_url:
         except HTTPError as e:return path,e.code,e.headers.get('X-Robots-Tag','')
         except Exception as e:return path,str(e),''
     with ThreadPoolExecutor(max_workers=8) as pool:
-        for path,status,xrobots in pool.map(fetch,list(pages)+sorted(linked_runtime)+['/this-page-must-not-exist-seo-check/']):
+        for path,status,xrobots in pool.map(fetch,list(pages)+sorted(linked_runtime)+[missing_path]):
             http_status[path]=status
             if status!=(200 if path in pages or path in linked_runtime else 404):errors.append(f'{path}: HTTP {status}')
             if path.startswith('/app/') and 'noindex' not in xrobots.lower():errors.append(f'{path}: app route missing noindex HTTP header')
             if args.mode=='production' and path in indexable and 'noindex' in xrobots.lower():errors.append(f'{path}: noindex HTTP header')
+    try:
+        urlopen(args.base_url.rstrip('/')+missing_path, timeout=30).close()
+    except HTTPError as response:
+        if response.code == 404:
+            missing=Page(response.read().decode('utf-8'))
+            robots_values=missing.meta_values['robots']
+            if missing.canonical or not robots_values or any('noindex' not in value for value in robots_values):
+                errors.append(f'404 has a canonical or missing/conflicting noindex: {missing.canonical}, {robots_values}')
+            if not missing.title or missing.title == pages['/'].title:
+                errors.append(f'404 lacks its own title: {missing.title}')
+    except OSError as error:
+        errors.append(f'404 metadata check failed: {error}')
 report={'mode':args.mode,'status':'PASS' if not errors else 'FAIL','html_pages_checked':len(pages),'original_pages_preserved':len(expected),'indexable_count':len(indexable),'sitemap_urls':len(locs),'noindex_pages':sorted(noindex),'robots':robots,'http_status':http_status,'errors':sorted(set(errors)), 'metadata':[{'path':p,'title':d.title,'description':d.meta.get('description'),'h1':d.h1,'robots':d.meta.get('robots')} for p,d in sorted(pages.items())]}
 report_dir=root/'verification';report_dir.mkdir(exist_ok=True)
 (report_dir/f'seo-{args.mode}.json').write_text(json.dumps(report,indent=2)+'\n')

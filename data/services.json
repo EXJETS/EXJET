@@ -2,7 +2,7 @@
   {
     "path": "/private-jet-charter",
     "title": "Private jet charter, arranged around you",
-    "description": "Arrange domestic and international business jet charter with EXJET. Compare aircraft, discuss your flight requirements and request a complete trip proposal.",
+    "description": "Arrange private jet charter across the U.S. and internationally. Compare aircraft, airports and trip costs, then request a written proposal from EXJET.",
     "kicker": "Private jet charter",
     "kind": "service",
     "image": {
@@ -70,8 +70,8 @@
             "path": "/charter"
           },
           {
-            "label": "Dallas charter and airport choices",
-            "path": "/private-jet-charter/dallas"
+            "label": "U.S. private jet charter by city",
+            "path": "/private-jet-charter/united-states"
           },
           {
             "label": "Route planning guides",
@@ -113,7 +113,7 @@
       "/routes/dallas-to-miami",
       "/articles/choosing-a-private-charter-aircraft"
     ],
-    "seoTitle": "Private Jet Charter | On-Demand Aircraft Solutions | EXJET"
+    "seoTitle": "Private Jet Charter in the U.S. & Worldwide | EXJET"
   },
   {
     "path": "/corporate-travel",
