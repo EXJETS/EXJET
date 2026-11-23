@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { siteConfig } from "@/data/site";
 import styles from "./AvinodeWidget.module.css";
 
 type WidgetStatus = "loading" | "loaded" | "slow" | "error";
@@ -47,6 +48,7 @@ export function AvinodeWidget({ compact = false }: { compact?: boolean }) {
           <p>{status === "error" ? "Aircraft search couldn’t load." : "Aircraft search is taking longer to load."}</p>
           <div className={styles.actions}>
             <button type="button" onClick={retry}>Reload search</button>
+            <a href={`mailto:${siteConfig.email.charter}`}>Email the charter desk</a>
           </div>
         </div>
       )}
@@ -59,7 +61,7 @@ export function AvinodeWidget({ compact = false }: { compact?: boolean }) {
         style={{ height }}
         onError={() => setStatus("error")}
       />
-      <noscript><p className={styles.status}>Enable JavaScript to search aircraft, or contact EXJET to plan your flight.</p></noscript>
+      <noscript><p className={styles.status}>Enable JavaScript to search aircraft, or <a href={`mailto:${siteConfig.email.charter}`}>email the charter desk</a> to plan your flight.</p></noscript>
     </section>
   );
 }

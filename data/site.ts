@@ -107,13 +107,6 @@ export const siteConfig = {
   productionUrl: PRODUCTION_ORIGIN,
   description:
     "EXJET is an aviation solutions company serving business and commercial aviation through charter, leasing, ACMI, ownership, management, crew and technical services.",
-  phone: {
-    primary: {
-      display: "+1 407 747 5288",
-      e164: "+14077475288",
-      href: "tel:+14077475288",
-    },
-  },
   email: {
     general: "sales@exjet.com",
     charter: "charter@exjet.com",
@@ -163,7 +156,6 @@ export function organizationJsonLd() {
     logo: absoluteUrl("/brand/exjet-wordmark.svg"),
     description: siteConfig.description,
     email: siteConfig.email.general,
-    telephone: siteConfig.phone.primary.e164,
     address: {
       "@type": "PostalAddress",
       streetAddress: siteConfig.address.streetAddress,
@@ -177,21 +169,18 @@ export function organizationJsonLd() {
         "@type": "ContactPoint",
         contactType: "charter reservations",
         email: siteConfig.email.charter,
-        telephone: siteConfig.phone.primary.e164,
         availableLanguage: "en",
       },
       {
         "@type": "ContactPoint",
         contactType: "cargo charter",
         email: siteConfig.email.cargo,
-        telephone: siteConfig.phone.primary.e164,
         availableLanguage: "en",
       },
       {
         "@type": "ContactPoint",
         contactType: "aircraft sales",
         email: siteConfig.email.general,
-        telephone: siteConfig.phone.primary.e164,
         availableLanguage: "en",
       },
     ],
@@ -211,7 +200,6 @@ export function localBusinessJsonLd() {
     image: absoluteUrl("/images/manufacturers/global-8000-clouds.webp"),
     logo: absoluteUrl("/brand/exjet-wordmark.svg"),
     description: siteConfig.description,
-    telephone: siteConfig.phone.primary.e164,
     email: siteConfig.email.general,
     address: {
       "@type": "PostalAddress",

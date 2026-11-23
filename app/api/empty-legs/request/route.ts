@@ -39,6 +39,6 @@ export async function POST(request: Request) {
     return Response.json({ ok: true, reference }, { status: 201, headers: { "Cache-Control": "no-store" } });
   } catch (error) {
     console.error("[avinode] Empty-leg lead failed", error instanceof Error ? error.message : "Unknown error");
-    return Response.json({ error: "This request could not be sent. Please call EXJET for immediate assistance." }, { status: 502 });
+    return Response.json({ error: "This request could not be sent. Please email the EXJET charter desk at charter@exjet.com." }, { status: 502 });
   }
 }

@@ -33,6 +33,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
   const collection = (page.items || []).map(path => contentPages.find(item => item.path === path)).filter((item): item is ContentPage => Boolean(item));
   const consultationHref = page.consultation ? `mailto:${siteConfig.email.general}?subject=${encodeURIComponent(page.consultation.subject)}` : null;
   const isReading = page.kind === "article" || page.kind === "legal";
+  const isCharterPlanning = page.path === "/private-jet-charter" || page.path.startsWith("/private-jet-charter/") || page.path.startsWith("/routes/");
   const updatedLabel = page.updated ? new Intl.DateTimeFormat("en-US", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" }).format(new Date(`${page.updated}T00:00:00Z`)) : null;
   const breadcrumb = [{name:"Home",path:"/"}, ...(page.parent ? [page.parent] : []),{name:page.title,path:page.path}];
   const pageUrl = absoluteUrl(page.path);
@@ -71,7 +72,7 @@ export function EditorialPage({ page }: { page: ContentPage }) {
     <div className={`ex-editorial-masthead${feature && page.kind!=="hub" ? " ex-editorial-masthead--photo" : ""}`}><div className="ex-container"><nav className="ex-breadcrumb" aria-label="Breadcrumb">{breadcrumb.map((entry,index)=><span key={entry.path}>{index > 0 ? <span aria-hidden="true"> / </span> : null}{index===breadcrumb.length-1 ? <span aria-current="page">{entry.name}</span>:<Link href={entry.path}>{entry.name}</Link>}</span>)}</nav>
       <header className={isReading ? "ex-story-intro" : "ex-page-intro"}><p className="ex-kicker">{page.kicker}</p><h1>{page.title}</h1><p>{page.description}</p>
         {page.kind==="article" ? <div className="ex-story-meta"><Link href="/editorial-standards">EXJET editorial</Link><span>{page.readTime}</span>{updatedLabel ? <span>Updated {updatedLabel}</span> : null}</div> : null}
-        {page.kind==="service" ? <div className="ex-intro-actions">{consultationHref ? <a className="button button--dark" href={consultationHref}>{page.consultation?.label}</a> : <Link className="button button--dark" href="/contact">Discuss your plans</Link>}<Link className="ex-inline-link" href={consultationHref ? "/services" : "/charter"}>{consultationHref ? "Explore all services" : "Find a flight"}<CaretRightIcon size={16} weight="light" aria-hidden="true" /></Link></div> : null}
+        {isCharterPlanning ? <div className="ex-intro-actions"><Link className="button button--dark" href="/charter/">Request a charter quote</Link><Link className="ex-inline-link" href="/pricing/">How charter pricing works<CaretRightIcon size={16} weight="light" aria-hidden="true" /></Link></div> : page.kind==="service" ? <div className="ex-intro-actions">{consultationHref ? <a className="button button--dark" href={consultationHref}>{page.consultation?.label}</a> : <Link className="button button--dark" href="/contact">Discuss your plans</Link>}<Link className="ex-inline-link" href={consultationHref ? "/services" : "/charter"}>{consultationHref ? "Explore all services" : "Find a flight"}<CaretRightIcon size={16} weight="light" aria-hidden="true" /></Link></div> : null}
       </header>
     </div>
     {feature && page.kind!=="hub" ? <figure className="ex-feature-photo" ><Image src={feature.src} alt={feature.alt} width={feature.width} height={feature.height} priority sizes="100vw" /></figure> : null}

@@ -11,7 +11,7 @@ export default function ErrorPage({ retry }: { error: Error & { digest?: string 
     <div className="ex-inline-actions">
       <button type="button" className="button button--dark" onClick={retry}>Try again</button>
       <Link className="ex-text-link" href="/">Return home</Link>
-      <a className="ex-text-link" href={siteConfig.phone.primary.href}>Call EXJET</a>
+      <a className="ex-text-link" href={`mailto:${siteConfig.email.general}`}>Email EXJET</a>
     </div>
   </section>;
 }
