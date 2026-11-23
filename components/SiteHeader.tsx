@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 import { aviationSolutions } from "@/data/site";
@@ -34,10 +33,9 @@ const groups = [
   ] },
 ];
 
-function NavigationLogo({ onClick }: { onClick?: () => void }) {
+function NavigationBrand({ onClick }: { onClick?: () => void }) {
   return <Link className={styles.brand} href="/" aria-label="EXJET home" onClick={onClick}>
-    <Image src="/brand/exjet-navbar-logo.png" alt="" width={96} height={96} sizes="36px" loading="eager" />
-    <span aria-hidden="true">EXJET</span>
+    EXJET
   </Link>;
 }
 
@@ -62,7 +60,7 @@ export function SiteHeader() {
 
   return <header className={styles.header}>
     <div className={styles.bar}>
-      <NavigationLogo />
+      <NavigationBrand />
       <nav className={styles.primary} aria-label="Primary navigation">
         {primary.map(link => <Link key={link.href} href={link.href} aria-current={isCurrent(link.href) ? "page" : isSection(link.href) ? "location" : undefined}>{link.label}</Link>)}
       </nav>
@@ -72,7 +70,7 @@ export function SiteHeader() {
       </div>
     </div>
     <dialog ref={dialog} id="exjet-navigation" className={styles.dialog} aria-labelledby="exjet-navigation-title" onCancel={close} onClose={close} onClick={event => { if (event.target === dialog.current) close(); }}>
-      <div className={styles.heading}><NavigationLogo onClick={close} /><button type="button" className={styles.closeButton} aria-label="Close navigation" onClick={close}><CharterIcon name="close" width={20} height={20} /></button></div>
+      <div className={styles.heading}><NavigationBrand onClick={close} /><button type="button" className={styles.closeButton} aria-label="Close navigation" onClick={close}><CharterIcon name="close" width={20} height={20} /></button></div>
       <div className={styles.content}>
         <h2 id="exjet-navigation-title" className={styles.label}>Explore EXJET</h2>
         <div className={styles.quickLinks}>
